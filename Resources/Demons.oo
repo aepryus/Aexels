@@ -1,0 +1,18 @@
+<aether readOnly="1" offsetX="384.5" aetherID="1" name="Demons" note="" offsetY="234" >
+	<instance tokens="6:(;4:Auto1.Self;1:+;0:1;6:);1:%;0:1;0:2" y="352" aetherID="1" name="up" instanceID="3" x="696" />
+	<if x="550" thenString="4:I00003" ifID="1" ifString="6:(;4:Auto1.B;1:=;4:I00003;6:);1:|;6:(;4:Auto1.D;1:=;4:I00003;6:);1:|;6:(;4:Auto1.F;1:=;4:I00003;6:);1:|;6:(;4:Auto1.H;1:=;4:I00003;6:)" y="424" elseString="4:Auto1.Self" name="IF00001" aetherID="1" />
+	<auto states="12" autoID="1" x="407" statesString="" y="309" nextString="4:IF00001" aetherID="1" >
+		<autoState autoStateID="1" state="0" autoID="1" color="20" />
+		<autoState autoStateID="2" state="1" autoID="1" color="21" />
+		<autoState autoStateID="3" state="2" autoID="1" color="22" />
+		<autoState autoStateID="4" state="3" autoID="1" color="23" />
+		<autoState autoStateID="5" state="4" autoID="1" color="24" />
+		<autoState autoStateID="6" state="5" autoID="1" color="25" />
+		<autoState autoStateID="7" state="6" autoID="1" color="26" />
+		<autoState autoStateID="8" state="7" autoID="1" color="27" />
+		<autoState autoStateID="9" state="8" autoID="1" color="28" />
+		<autoState autoStateID="10" state="9" autoID="1" color="29" />
+		<autoState autoStateID="11" state="10" autoID="1" color="30" />
+		<autoState autoStateID="12" state="11" autoID="1" color="31" />
+	</auto>
+</aether>

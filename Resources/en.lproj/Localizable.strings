@@ -1,0 +1,616 @@
+/* 
+  Localizable.strings
+  Aexels
+
+  Created by Joe Charlier on 7/18/14.
+  Copyright (c) 2014 Aepryus Software. All rights reserved.
+*/
+
+"Intro" = "A new universe has been discovered…
+
+Universe X
+
+Come along as we explore this new universe and discover the similarities and differences it has with our own.
+
+There are things we know for certain about Universe X; there are things we can speculate about and there are many things yet to be discovered.  Hopefully, over the life time of this app we will be able to continually increase our knowledge and understanding of this new world.
+
+This app is divided into sections that each describe a different aspect of Universe X.  Eventually each of these sections will also contain an exploration screen that will allow the user to see each aspect modeled visually.
+
+The first exploration screen is for the Cellular Automata section.  This explorer will allow the user to view a number of famous Cellular Automata and will also allow the user to define and execute their own Cellular Automata using the Oovium visual programming language.
+
+So what is Universe X?
+
+Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates, length contracts; God plays dice with our universe.  Our universe contains dark matter and dark energy; our universe is expanding and expanding at an increasing rate.
+
+In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
+
+In the 19th century it was speculated that the space between planets and stars contained a fluid called the aether that was analogous to air.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
+
+In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
+
+The 19th century concept of aether was that of a fluid that the planets and stars moved through and displaced, just as an object moving in air or water displaces each of those fluids.  For example, as an airplane flies through the sky, air collides with it and flows along the surface of the craft.  It was believed that there must be a similar substance in space that both collides with and flows along the surface of the planets as they orbit the sun.
+
+In 1887, Michelson and Morley performed their famous experiment looking for the flow of that aether along the surface of the Earth.  They were shocked to discover that no such flow existed.
+
+In Universe X, the aether is not a substance that is displaced by planets and stars.  Rather, in Universe X, the aether is a substance upon which the matter of the universe sits.  It is the canvas upon which the painting appears; it is the game board upon which the chess pieces move.  The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
+
+And like a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from ‘picture elements’ or ‘picture cells’), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from ‘aether elements’ or ‘aether cells’).
+
+Currently, there are a few things we know about these aexels.  Like the atoms of a liquid, they can move and flow.  Like the atoms of a crystal lattice, they repulse when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
+
+These aexels have state.  Just as each pixel of a screen has a three dimensional state representing red, green and blue, each aexel also has a multidimensional state.  This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.
+
+And perhaps most shockingly, based on those states, new aexels can be created and existing aexels can be destroyed.
+
+At a base level, aexels are the only thing that exist in Universe X.  However, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
+
+Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X, space and time are entirely separate notions that are not intertwined at all.
+
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the exact equation of force between individual aexels?  Does the notion of momentum exist for aexels?  How many dimensions of state are there?  Answering these questions and many more will be the primary focus of this app for years to come.
+
+As such, let our exploration begin…
+
+
+
+
+
+";
+
+"CellularAutomata" = "Cellular Automata
+
+A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
+
+The system progresses, using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell’s neighbors.
+
+For example, perhaps the most famous cellular automaton is Conway’s Game of Life.  In Conway’s game of life the world consists of a 2 dimensional square grid of cells.  Each cell can be either on or off.  The neighbors of a cell consist of the 8 cells directly surrounding it.  If exactly 2 neighbors are on, then the state of the cell will not change.  If exactly 3 neighbors are on then the state of the cell will be turned/remain on.  In all other cases the state of the cell will be turned/remain off.
+
+This simple set of rules is able to exhibit an amazing amount of complexity.  Initially, when the cells of such a system are randomly populated the progression of state will be quite chaotic.  However, over time, patterns will automatically arise.
+
+For example, if a closed subset of cells has a certain state at time t and that subset of cells returns to that same state at a later time, the cells will be in a stable state loop and continue that loop into perpetuity (or until it is disrupted somehow, i.e., stops being a closed subset).  Perhaps the cells remain in the same state each time step giving the loop a period of 1.  Or perhaps the cells loop back after 2, 3 or more steps, giving their loop a period of 2, 3 or more steps.
+
+Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loops back creating stable state loops.
+
+In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all “matter” in Universe X.
+
+The matter of Universe X is not fundamental.  It is an artifact of the properties of aexels. It is not made up of particles; it is not made up of waves; it does not displace the aether.  Matter is made up of stable state loops that exist on top of the aether.
+
+However, there are also some differences between Universe X and most cellular automata.  Unlike the static cells of Conway’s game of life, the cells of Universe X are dynamic; they can move, they can be created and they can be destroyed.
+
+The aexels of Universe X are created and destroyed as a direct result of the state changes of the aexels themselves.  The aexels move because they exert a force on one another, but ultimately this motion is first initiated by the creation and destruction of the aexels themselves.
+
+Another somewhat speculative difference is that although the new states of our simple cellular automata are usually based on the current states of the cell and their neighbors, it is probably the case that the state change of an aexel is a function of the change of state rather than just the absolute state of the neighborhood.
+
+In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  In Universe X this delay is called a ‘tic’.
+
+Each aexel in Universe X can only directly effect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels in Universe X is one aexel per tic.
+
+In Universe X, one aexel per tic is referred to as ‘the speed of light’.
+
+
+
+
+
+";
+
+"Kinematics" = "Kinematics
+
+Kinematics is the study of motion absent of force.  In our universe, such motion is quite straightforward.  Generally things in Universe X are less complicated than in our own universe, but in this case things in Universe X are considerably more complicated.
+
+In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at some later time.  However, this definition is perhaps unnecessarily restrictive.
+
+If one observes Conway’s Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it “moves”.  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+
+Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the ‘tic’ time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the ‘speed of light’ (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
+
+But there is another entirely different way in which a stable state loop can move.  Since the aexels themselves can move, it is possible for a stable state loop that is not translating across an aexel field at all, to simply move along with aexels it is sitting upon, like a leaf floating down a stream.  And since this motion is not dependent on the signal delay between neighboring aexels, its speed is in no way bounded.
+
+And of course a stable state loop could be (and most of the time probably is) experiencing both of these forms of motion simultaneously.
+
+There are some rather sticky ramifications to all of this.  In our universe a single particle moving in the absence of force can be described entirely by a velocity vector (ignoring quantum effects for the time being).  In Universe X, in order to accurately understand the motion of stable state loop it is necessary to know the translating velocity of the loop measured in aexels per time as well as both the velocity of the aexels measured in distance per time and density of those same aexels, which in a simple system could be constant, but in more complex situations could vary from place to place.
+
+
+
+
+
+";
+
+"Gravity" = "Gravity
+
+Gravity is the tendency of objects with mass to move towards one another.
+
+Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledge some discomfort with this idea:
+
+\“That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\”
+
+When Albert Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
+
+But, even with Newton and Einstein’s contributions to Gravity we still really don’t understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
+
+But, in Universe X, Gravity is a quite simple and mundane phenomenon.
+
+In Universe X there exists many different types of stable state loops.  These loops can be divided into three categories:
+
+- Loops that don’t effect aexels
+- Loops that destroy aexels
+- Loops that create aexels
+
+That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  But for this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called ‘matter’.
+
+Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called ‘mass’.  As matter destroys the aexels, more aexels get pulled in because the aether’s crystalline nature does not allow the aexels to ever get too far apart.
+
+Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dish ware sitting on the table cloth will appear to be ‘attracted’ to the center.
+
+In Universe X as various concentrations of matter continually destroy the aether between one another they will continually tend to clump together.  As a clump of matter gets bigger and bigger the velocity at which the aether is pulled towards the clump will continually increase.
+
+At some point, certain clumps in Universe X get so big and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic (‘the speed of light’) will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+
+
+
+
+
+";
+
+"TimeDilation" = "Time Dilation
+
+Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
+
+In our universe time dilation is the variation in the perceived rate of time of various frames of reference based on their relative velocity to one another as well as the relative difference in their gravitational field strength.  That the rate of time itself can vary in our universe is severely magical in and of itself.
+
+But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite direction near the speed of light will both note that their clocks are running at a different rate than the other ship’s clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ships clocks moving slower.  One truly shocking ramification of this is that simultaneous events in one frame will not necessarily be simultaneous in another frame.
+
+In Universe X, however, no such time dilation occurs.  There is however an analogous phenomenon, which is perhaps better described as ‘animation dilation’.
+
+Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
+
+In Universe X the interaction of matter (loops that destroy aexels) is mediated by ‘loops that don’t effect aexels’.  For now let’s refer to ‘loops that don’t effect aexels’ as photons.  These photons always travel at one aexel per tic, which is to say they always travel at ‘the speed of light’.
+
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon effects that loops’s rate of translation across the aexel field.
+
+For example, consider a loop that is stationary on a field of stationary aexels (ignore gravity for a moment).  A photon traveling from elsewhere is moving towards the loop.  When the photon hits the loop (and is absorbed) the loop begins to translate across the stationary field of aexels.
+
+In this way, complex static or dynamic systems of loops can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes photons to travel from loop to loop.
+
+For two stationary loops separated by a fixed number of aexels the photon will travel between them at one aexel per tic.  However, if the loops are both translating across the aexel field, the amount of time it takes photons to move between them will vary based on the direction of the photon relative to the translating motion of the loops across the aexel field.
+
+In some cases the time will be less in others the time will be more, but in all cases the round trip time of a photon between the loops will increase as the rate of translation increases.  This increased round trip time will result in a slow down of the rate of the animation of the dynamic system of loops.
+
+This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the photons to move most quickly between the loops.
+
+In Universe X, dilation is not an observational phenomena.  It is a real phenomena that is entirely dependent on a system’s rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
+
+In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
+
+Furthermore, in Universe X this dilation is not of time, but rather is in the animation rate of phenomena mediated by photons.  This dilation does not effect motion not mediated by photons.  Because of this one could imagine an experiment that could be run in both universes that would yield very different results.
+
+Any clock or biological system is entirely mediated by photons and therefore will be subject to dilation.  However, one could imagine a gravity clock; for example a tank of water suspended above a sensor.  A drop of water is released and is calibrated to hit the sensor in exactly one second.  When the drop hits the center a photon pulse is sent up to the tank triggering the release of the next drop.  The time of the photon pulse is substantially smaller than the water travel time.
+
+In our universe, if we were to take one normal clock and one gravity clock, calibrate and synchronize both and place them on a levitating bullet train traveling due east at 300 mph for 100 miles and then observe both clocks, we would note that both clocks remain synchronized because in our universe time itself dilates.
+
+However, such an experiment in Universe X would yield very different results.  In Universe X dilation only effects the normal clock, not the gravity clock and consequently the two clocks will now be out of sync.
+
+
+
+
+
+";
+
+"LengthContraction" = "Length Contraction
+
+Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
+
+In our universe, length contraction is analogous to time dilation in that there are no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
+
+In Universe X, however, length contraction is a real phenomenon and like dilation, is entirely a function of the translation rate of a system.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
+
+In our universe there is a feature of nature called Lorentz covariance which indicates that the speed of light is constant across all frames of reference.
+
+In Universe X this concept would appear to break down quickly.  For any system that is translating across an aexel field it would seem that the speed of light parallel to the direction of the aexel flow would be different than the speed of light perpendicular to the flow.
+
+Certainly, in Universe X, the speed of light is always one aexel per tic.  But, since the aexels themselves can move and since they can vary in density it would seem it might be easy to detect variations in the distance traveled per time.
+
+However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.  The flow of aexels through a system causes the distance that the loops sit from one another to become closer in the direction of flow.  This smaller distance between the loops shrinks every object that’s structure is dependent on the transmission of mediating photons.
+
+And this amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick’s length itself is a function of the speed of light.  As the speed of light changes; the meter stick’s length changes.
+
+Essentially, a meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
+
+
+
+
+
+";
+
+"Darkness" = "Darkness
+
+Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
+
+From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
+
+Luckily, once again, Universe X isn’t nearly so magical.
+
+Previously, we have mentioned 3 types of stable state loops:
+
+- Loops that don’t effect aexels
+- Loops that destroy aexels
+- Loops that create aexels
+
+Tentatively, we have named ‘loops that don’t effect aexels’ as photons and ‘loops that destroy aexels’ as matter.  Again, it is perhaps somewhat speculative, but let’s name ‘loops that create aexels’ as antimatter.
+
+In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  It has been observed that at times a particle and its antiparticle will be spontaneously created.  Similarly, if a particle and its antiparticle meet they will each be entirely destroyed.
+
+If we assume that this is also the case in Universe X, than perhaps all matter and antimatter was created through pair creation.  And perhaps the total matter in Universe X is equal to the total antimatter in the Universe X.  Alternatively, perhaps it is possible that Universe X was initially seeded with more matter or more antimatter.
+
+If the amount of matter and antimatter is equal in Universe X and always remains so because of pair creation and pair destruction.  And if antimatter creates aexels and creates them at the same rate at which matter destroys them, than perhaps the total amount of aexels in Universe X is a constant.
+
+Matter in Universe X is continually destroying aexels drawing other matter towards it causing it to clump up.  Perhaps the antimatter of Universe X is continually creating aexels causing the antimatter to spread apart.
+
+And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
+
+And just as the destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X looks like a push.  The antigravity of the antimatter pushing on the galaxies from the outside making it appear as if they have more mass than they actually do.
+
+
+
+
+
+";
+
+"GameOfLife" = "This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
+
+In the upper left is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  In this case, Conway’s Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the ‘new’ button.
+
+Below the aether definition panel are the play / pause, reset, and guide lines buttons.  The play / pause button will put the automaton into motion (or pause it).  The reset button will reinitialize the cells.  The guide lines button will turn on and off the zoom indicator boxes.
+
+To the right of the buttons is the time dilator slider.  One can adjust the step rate, speeding or slowing the system between 1 step per second up to 10 steps per second.
+
+The right side of the screen contains the 3 world view panels.  The top large view is the main world view panel.  Tapping this panel will cause a 2x zoomed section of the world to appear in the second panel.  Tapping the second panel will cause a 4x zoomed section to appear in the third panel.
+
+Game of Life
+
+In 1970, British Mathematician, John Conway devised the cellular automaton known as the Game of Life.  Conway was attempting to create a much simpler version of a system previously devised by John von Neumann in the 1940s.
+
+The rules to Conway’s Game of Life are fairly straightforward: Take a plane made up of square cells.  Each cell can either be on or off.  Each cell has 8 neighbors, the 8 cells directly surrounding it.  If two of a cell’s neighbors are ‘on’ then the cell’s state is unchanged.  If three of the cell’s neighbors are ‘on’ then the cell’s state is turned / remains on.  In all other cases the cell’s state is turned / remains off.
+
+Some things to look for:
+
+- Look for static patterns (called still lifes).  These are any shapes that repeat each step, i.e., stay exactly the same each step.  One common still life is the ‘block’, which is 4 pixels situated in a square.
+
+- Look for any dynamic patterns.  The most common dynamic pattern is a bar 3 cells long.  It will continually iterate between horizontal and vertical.  This loop is called a ‘blinker’.  The blinker is by far the most common dynamic pattern.  There are a handful of other relatively common 2 step loops, such as ‘beacons’ and ‘frogs’.
+
+- About once every few runs a rather large 3 step loop called a ‘pulsar’ will develop.  In some cases a half pulsar will develop on the edge of the world.
+
+- Perhaps the most famous loop is called the ‘glider’.  The glider is a fairly common 4 step pattern, that has one important distinction from the above loops.  The glider is a translating pattern, which is to say it moves across the plane.
+
+For the purpose of Universe X there are a number of important qualitative concepts illustrated by Conway’s Game of Life that can be gleaned fairly quickly.  However, a shockingly large amount of research has been done into Conway’s Game of Life and a few minutes with Google can open up this massive body of work to enable further research, if so desired.
+
+
+";
+
+"Demons" = "Demons
+
+Another type of cellular automaton, is the cyclic cellular automaton devised by David Griffeath of the University of Wisconsin.  And while perhaps not quite as fruitful as Game of Life in generating complex systems, it does nicely illustrate a number of important qualitative concepts, in addition to making pretty cool pictures.
+
+A cyclic cellular automaton again makes use of a plane tiled with square cells.  Each cell can be in one of n possible states (in this case 12) and has 4 neighbors; the cells directly above, below, left and right of it.
+
+If any of the neighboring cells is in a state that is one more than the current cell (or 0 for a cell of state n-1), than the cell will be eaten and take on the state of the neighboring cell.  A cell can eat and be eaten in the same time step.  This allows loops to form that contain each of the n states.  These loops will create spirals called demons.
+
+
+";
+
+"Oovium" = "Oovium
+
+Using the Oovium visual programming language it is possible to define custom cellular automata.
+
+Double tapping on an empty area of the Oovium panel will create a new bubble.  By default an instance bubble will be created that allows the user to enter in a number or a calculation.  Using the bubble maker in the upper right of the Oovium panel, one can also create an IfBub which is a visual conditional or a MechBub which enables the creation of custom functions.
+
+The workspace of Oovium is called an ‘aether’ (Oovium was created well before Universe X was discovered and the usage of the term aether is just a coincidence).  By default, each of the aethers in the automata lab are pre populated with an AutoBub, which allows one to define their own cellular automata.
+
+The top area of the AutoBub represents a cell and its neighbors’ current state: the neighborhood.  The bottom area represents the cell’s new state which should be a calculation based on the current state of the neighborhood.
+
+There is also a properties button which will allow for the number of states to be defined (between 2 and 32) and also allow for various colors to be selected for the different states.
+
+More about learning how to use the Oovium visual programming language including tutorial videos can be found at oovium.com.  The full Oovium visual programming language is available for iPad and iPhone in the AppStore and for Mac in the Mac AppStore.
+
+
+";
+
+"KinematicsLab" = "Kinematics
+
+Kinematics is the study of motion absent a force.  In our universe such motion is fairly straightforward, but it is considerably more complicated in Universe X.
+
+Motion in our own universe can be described entirely by a vector which represents the velocity of a given object.  In Universe X, however there are two distinct forms of motion: translation across the aether and the flow of the aether itself.  In order to fully describe motion in Universe X, one must know both the translating vector and the aethereal flow vector, as well as the density and geometry of the aexels themselves.
+
+This lab allows us to compare the motion of our Universe with that of Universe X.  The lab models an object frictionlessly moving inside a 2 dimensional box, elastically bouncing off the walls.
+
+For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational “velocity” vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
+
+Perhaps the first thing one might note when comparing the two models is that motion in the Universe X model is quite jerky as opposed to the smooth motion of the model for our Universe.  However, the Universe X model is a statistical model and we are looking at both large aexels and large time steps.  As the density of aexels and time steps increase the motion will continually get more and more smooth until it would become difficult to differentiate the motion of the two systems.
+
+In looking at the Universe X model there are two important things to note.  The first is that during collisions there can be a transfer between translating motion and flow motion.  For example, if we stop the translating motion entirely and point the aether directly downward.  The particle will smoothly flow down along with the aether.  However, once the particle hits the bottom wall, the flow motion will be converted into twice the translating motion upwards, which when added to the flow motion will cause the object to move upwards at (statistically) the same velocity with which it moved downwards.
+
+The other thing to note then is that as the density of aexels and time steps increases, the flow of the aether is irrelevant to the dynamics of the system.  I.e., a system where there is no aethereal flow will behave statistically the same as one in which there is an aethereal flow.
+
+Although it is the case that God plays dice with our Universe, it is an open question as to whether God places dice with Universe X.  In this situation, it was necessary for the model to employ a random number generator in order to model the motion.  Arbitrary directions of translation could not be achieved without this randomness.  However, this does not imply that such randomness is a necessary component of Universe X.
+
+In this case the aether is modeled simplistically with regular 2 dimensional hexagons.  However, one could imagine the actual distribution of 3 dimensional aexels in Universe X as being quite irregular.  Potentially an entirely deterministic way of jumping from aexel to aexel would appear random due to the unknown hidden variables which are the geometry of the aexels themselves.
+
+
+
+";
+
+
+/*
+ Localizable.strings
+ Oovium
+ 
+ Created by Joe Charlier on 1/21/12.
+ Copyright (c) 2012 Aepryus Software. All rights reserved.
+ */
+
+/* name of the Oovium workspace */
+"aether" = "aether";
+
+/* remove all bubbles from the current aether */
+"clear" = "clear";
+
+"buy" = "buy";
+
+/* internet URLs */
+"links" = "links";
+"help" = "help";
+
+"album" = "album";
+
+/* the Dropbox cloud service */
+"dropbox" = "dropbox";
+
+/* the iPad / iPhone or iPod touch */
+"device" = "device";
+
+/* log out of dropbox */
+"logoff" = "logoff";
+
+/* link to oovium.com */
+"oovium" = "oovium";
+
+/* online messageboard */
+"forums" = "forums";
+
+/* link to Oovium's twitter feed */
+"twitter" = "twitter";
+
+/* rate or review the app in the AppStore. */
+"review" = "review";
+
+/* bring up the about info (i.e., version and copyright) */
+"about" = "about";
+
+/* list of changes in the current version */
+"whatsnew" = "what's new";
+
+/* Oovium term describing a subset of gestures */
+"anchoring" = "anchoring";
+"tutorial" = "tutorial";
+
+/* tutorial explaining Oovium basics */
+"basics" = "basics";
+
+/* tutorial explaining how to make Mind Maps */
+"mapper" = "mapper";
+"cancel" = "cancel";
+
+"new" = "new";
+"add" = "add";
+"remove" = "remove";
+
+/* include other aethers in the current aether, similar to import */
+"includes" = "includes";
+"replace" = "replace";
+
+/* A sticker or tag affixed to an item to provide identifying or descriptive information. */
+"label" = "label";
+"copy" = "copy";
+
+/* menu option that allows the user to change the color of a bubble */
+"color" = "color";
+
+/* menu option that allows the user to change the shape of a bubble */
+"shape" = "shape";
+"delete" = "delete";
+
+"addParam" = "add param";
+"removeParam" = "remove param";
+
+/* set of functions that work on aggregate data (sum,count,average) */
+"aggregate" = "footer";
+
+/* text justification (center, right, left) */
+"justify" = "justify";
+"sum" = "sum";
+"average" = "average";
+
+/* a type of aggregate function which tallies a running total of a given column */
+"running" = "running";
+"none" = "none";
+"left" = "left";
+"center" = "center";
+"right" = "right";
+
+/* a list of nodes that flow into the current node */
+"inputs" = "inputs";
+
+/* a list of nodes that flow out of the current node */
+"outputs" = "outputs";
+"OK" = "OK";
+"Yes" = "Yes";
+"No" = "No";
+
+"clearConfirm" = "Clear this aether completely?";
+"deleteOneConfirm" = "Delete selected bubble?";
+"deleteManyConfirm" = "Delete selected bubbles?";
+"deleteColumn" = "Delete selected column?";
+"deleteRow" = "Delete selected row?";
+
+"bootupText" = "ANNOUNCING
+
+** Oovium for Mac **
+
+The conversion of Oovium to the desktop has recently been completed.  Oovium for Mac is now available in the Mac AppStore!
+
+All the Oovium goodness you've come to know and love on the iPad (and iPhone) is now available on your computer, allowing you to share Aethers between all of your devices via Dropbox.
+
+AepCalc, RPN calculator for Mac is also available.
+";
+
+"whatsnewText" = "What's New 1.1.4
+
+** Oovium for Mac **
+The conversion of Oovium to the desktop has recently been completed.  Oovium for Mac is now available in the Mac AppStore!  All the Oovium goodness you've come to know and love on the iPad (and iPhone) is now available on your computer, allowing you to share Aethers between all of your devices via Dropbox.
+
+AepCalc, RPN calculator for Mac is also available.
+
+BUBBLES:
+- IfBub : A visual conditional that can be used instead of the in-bubble 'if' function.  Aside from its visual representation, it also has the advantage of only evalutating the appropriate resultant.  This makes the IfBub very useful in creating recursive functions without needing to use the Function data type.
+
+- TailBub : A new type of a MechBub specifically designed for creating recursive functions, greatly simplifing the ability to create loops.  The TailBub's visual structure guides the user in creating a tail call optimized recursion which has performance advantages over MechBub recursion, but more importantly eliminates the 500 loop limit of the MechBub.  (The TailBub will process for up to 1 second, which allow for signficantly more iterations)
+
+- CronBub : Allows for the creation of a timer that increments its value periodically based on input parameters.  The utility of the CronBub, is perhaps a bit limited at this point, but it will become an essential tool for modeling and animating with the arrival of the 2nd aspect of Oovium.
+
+- TypeBub : Allows for the mapping of entities and relationships.  Currently, the TypeBub is not integrated with the other bubble types of Oovium and is a faint shadow of it's ultimate functionality.  However, it has been slipped into this version both as a preview of future attractions and because even in it's current form, it can be useful in creating some simple diagrams.
+
+FUNCTIONS:
+- [!,&,|] - the 'not' !, 'and' & and 'or' | operators have been added to the Lexicon
+
+OTHER:
+- The resolution of exported images has been increased to match the retina display.  There are still plans to create a vector output, but that hasn't been done yet.
+
+- In conjunction with the conversion of Oovium to OS X, once again massive under-the-cover refactoring has occurred with this version, including the conversion to the ARC memory model, a revamp of the Hover mechanism, some tweaks to the Math engine and major restructing of the Bubble system to allow for easier creation of new Bubbles, although more work is still needed with that.";
+
+"ooviumText" = "Welcome to Oovium
+
+What if a person ignorant of all past calculation tools were to design from scratch an app for doing calculations that made full use of the technology and concepts available to us today?  What would that application look like?
+
+Over the years Aepryus has had numerous ideas for applications.  Eventually, it was realized that six of these ideas were just six different aspects of the same program.  Oovium is that program.
+
+Or rather, Oovium will become that program.  Oovium is a mathematical sandbox.  As of version 1.1, Oovium includes one of the six aspects; code named Bricklin; this aspect is the implementation of an object oriented spreadsheet.  Eventually, the other 5 aspects will be incorporated into Oovium, code named Crawford, Shazaam, Archimedes, Eddington and Mithrandir.";
+
+"ooviumMmText" = "Oovium Mind Mapper
+
+Designed to replace your white board; it allows you to place nodes on a field (the aether) and designate links between them. Each node can have multiple inputs and outputs (a directed graph).
+
+Particular attention was given to creating a natural and elegant gesture suite that allows for quick and easy manipulations of the bubbles upon the aether.
+
+Be sure to read up on Anchoring to learn about these gestures.";
+
+"anchoringText" = "The Joy of Anchoring
+
+The workspace of Oovium is an arbitrarily large 2 dimensional plane that allows users to place bubbles upon it.  This plane is referred to as the Aether.  As Bubbles are added to the Aether, it automatically resizes to accommodate all of the bubbles.  In using Oovium, there is an important class of gestures known as anchoring.
+
+Anchoring is holding the Aether still with one finger while performing another action with a different finger.  These gestures are:
+
+MOVE BUBBLE [Anchor+Drag:bubble]
+Anchor with one finger, then drag a bubble with another.  The more fingers that you use, the more bubbles you can drag around.
+
+CONTEXT MENU [Anchor+Tap:bubble]
+Anchor with one finger and tap a bubble with another.  This will bring up a context menu for the bubble that will allow you to perform additional actions to the bubble, such as Label and Delete.
+
+LASSO [Anchor+Drag:aether]
+Anchor with one finger and drag another finger on empty space.  A yellow path will begin to render along the path of your second finger.  You will be able to select multiple Bubbles and then move them as a group or perform relevant context menu actions on all of them.
+
+MOVE CURSOR [Anchor+Tap:expression]
+While editing an expression, anchor with one finger and tap the expression with another.  The cursor will move to the location of the tap, allowing you to modify the expression at that location.";
+
+"basics01" = "Double\nTap\nMe";
+"basics02" = "The \"aether\" is your workspace.  You have just created an instance bubble on that aether.";
+"basics03" = "Using the keypad input 5781 =";
+"basics04" = "Double\nTap\nMe";
+"basics05" = "You can enter full expressions into a bubble.";
+"basics06" = "Input 84\U00D7114=";
+"basics07" = "Double\nTap\nMe";
+"basics08" = "Previous bubbles can be referenced from new bubbles.";
+"basics09" = "Touch your first bubble";
+"basics10" = "Hit the \U00D7 key";
+"basics11" = "Now touch your second bubble";
+"basics12" = "Hit the equal sign";
+"basics13" = "Bubbles can be revisited and edited.";
+"basics14" = "Hit the 5781 bubble";
+"basics15" = "Using the backspace, change the number to 5783; hit =";
+"basics16" = "Want to be able to access the context menu?  Want to be able to move a bubble or a collection of bubbles?  Read about anchoring! (in Help)";
+"basics17" = "Hit the menu key (the red dot in the lower left corner)";
+"basics18" = "Hit the aether key";
+"basics19" = "Hit the clear key";
+"basics20" = "Hit yes to clear your aether";
+
+"mapper01" = "Tap the box in the upper right corner (the tool bar) and select the orange oval.";
+"mapper02" = "Double\nTap\nMe";
+"mapper03" = "The \"aether\" is your workspace.  You have just created a node on the aether.";
+"mapper04" = "Type \"peanut butter\" and then hit return.";
+"mapper05" = "The toolbar in the upper right determines what gets created when double tapping on the aether.  Tap the color tool (the left most one) and select purple.";
+"mapper06" = "Double\nTap\nMe";
+"mapper07" = "In the second node type \"jelly\" and then hit return.";
+"mapper08" = "Feel free try a different color or shape combination before double tapping.";
+"mapper09" = "Double\nTap\nMe";
+"mapper10" = "In the third node type \"pb&j\" and then return.";
+"mapper11" = "You can edit the text of a node by double tapping on it.";
+"mapper12" = "Double tap on the pb&j node and add \"sandwich\", then hit return.";
+"mapper13" = "Single tapping on a node will allow you to connect it to other nodes.";
+"mapper14" = "Single tap on the \"pb&j sandwich\" node.";
+"mapper15" = "Tap both the \"peanut butter\" and \"jelly\" nodes.  Hit \"OK\" to set the connections.";
+"mapper16" = "Want to be able to change the shape or color of existing nodes?  Want to be able to move a bubble or a collection of bubbles?  Read about anchoring! (in Help)";
+"mapper17" = "Hit the menu key (the red dot in the lower left corner)";
+"mapper18" = "Hit the aether key";
+"mapper19" = "Hit the clear key";
+"mapper20" = "Hit yes to clear your aether";
+
+"lexiconMain" = "Single tap a token to see its description.\n\nDouble tap a token to insert it into your current expression.";
+"lexiconFilter" = "(filter)";
+"lexOperator" = "operator";
+"lexMisc" = "miscellaneous";
+"lexPower" = "exponentiation";
+"lexTrig" = "trigonometric";
+"lexAdd" = "addition operator";
+"lexSub" = "subtraction operator";
+"lexMul" = "multiplication operator";
+"lexDiv" = "division operator";
+"lexMod" = "modulus operator";
+"lexPow" = "power operator\n\nNegative Real inputs taken to non-integer powers will result in Nan.";
+"lexDot" = "dot product operator";
+"lexEqual" = "equal to\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexNotEqual" = "not equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexLess" = "less than\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexLessEqual" = "less than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexGreat" = "greater than\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexGreatEqual" = "greater than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexNot" = "unary not operator\n\nThis operator will return true (1) if the operand is false (0) and false (0) if the operand is true (not equal to 0).";
+"lexAnd" = "and operator\n\nThis operator will return true (1) if both operands are also true (not equal to 0).";
+"lexOr" = "or operator\n\nThis operator will return true (1) if either of the operands are true (not equal to 0).";
+"lexFac" = "factorial";
+"lexRound" = "round to nearest integer";
+"lexFloor" = "The floor function shifts a value to the lessor of the two integers that it falls between (or the value itself if it is already an integer).";
+"lexAbs" = "absolute value";
+"lexMin" = "returns the lesser of two values";
+"lexMax" = "returns the greater of two values";
+"lexIf" = "if then else\n\nIf the 'if' parameter (1st) is true (evaluates to a non-zero value) then the 'then' parameter (2nd) will be returned; otherwise if it is false (evaluates to zero) then the 'else' parameter (3rd) will be returned.\n\nWithin Oovium, all parameters are evaluated first before being sent to their function.  However, this will cause recursive functions to always result in a stack overflow.  For recursive functions, it is necessary to use the 2nd form with Function type 'then' and 'else' parameters.  In the 2nd form, the function itself is the result and therefore only the appropriate version will be evaluated preventing the stack overflow.";
+"lexSum" = "summation\n\nThis function will sum the results of the function parameter (3rd), by iterating that function using incrementing values of k.\n\nIn the first form k will iterate from the start parameter (1st) through the stop parameter (2nd).  In the 2nd form k will start with the start parameter (1st), but will continue to execute while the condition parameter (2nd) remains true.";
+"lexRandom" = "returns a random integer from 0 to n-1";
+"lexSqrt" = "square root (i.e., x^0.5)\n\nNegative Real inputs will result in NaN.";
+"lexLn" = "natural logarithm (i.e., logarithm base e)\n\nInverse of the exp function.";
+"lexLog" = "logarithm base 10\n\nInverse of the ten function.";
+"lexLog2" = "logarithm base 2\n\nInverse of the two function.";
+"lexExp" = "exponential, power of e (~2.71...) (e^x)";
+"lexTen" = "power of 10 (10^x)";
+"lexTwo" = "power of 2 (2^x)";
+"lexSin" = "sine\n\nThe input angle should be in radians.";
+"lexCos" = "cosine\n\nThe input angle should be in radians.";
+"lexTan" = "tangent\n\nThe input angle should be in radians.";
+"lexSec" = "secant\n\nThe input angle should be in radians.";
+"lexCsc" = "cosecant\n\nThe input angle should be in radians.";
+"lexCot" = "cotangent\n\nThe input angle should be in radians.";
+"lexAsin" = "arcsine";
+"lexAcos" = "arccosine";
+"lexAtan" = "arctangent";
+"lexSinh" = "hyperbolic sine";
+"lexCosh" = "hyperbolic cosine";
+"lexTanh" = "hyperbolic tangent";
+"lexAsinh" = "hyperbolic arcsine";
+"lexAcosh" = "hyperbolic arccosine";
+"lexAtanh" = "hyperbolic arctangent";

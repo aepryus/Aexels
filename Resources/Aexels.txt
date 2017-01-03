@@ -1,0 +1,316 @@
+Qualitative Analysis of the Metric Expansion of Space
+
+Joe Charlier
+Aepryus Software
+developer of the Universe
+denting iOS app
+Oovium
+
+
+PREFACE
+
+When I left the University of Chicago with a B.A. in Physics in 1994, I left with the overwhelming sense that I lacked an intuitive understanding of both Relativity and Quantum Mechanics.  It was my hope to one day return to these subjects and finally gain that intuitive understanding.
+
+On March 21, 2013 researchers working with the Planck cosmology probe released data that the probe had acquired.  Through news stories relating the event, I realized that my understanding of the phrase “expansion of the universe” was entirely inaccurate and as a result I first became aware of the “metric expansion of space”; the notion that distant objects are receding from one another, not just because of their inertial momentum, but because the space between them itself is expanding.
+
+This paper is a result of thought experiments motivated by a desire to make sense of that Metric Expansion of Space, combined with my ambient desire to intuitively understand Relativity and Quantum Mechanics.
+
+
+METRIC EXPANSION OF SPACE
+
+Hubble’s law stipulates that all objects in space are receding from Earth and from each other and that the rate of the recession of any two objects is proportional to the distance between them.
+
+	v = H0D
+
+Where v is the rate of recession, H0 is the Hubble constant and D is the distance between the objects.  In an effort to make sense of this, let’s consider the following thought experiment:
+
+Take an entirely empty universe and place two tennis balls in the same inertial frame 1 Mpc apart.
+Are the two tennis balls getting further apart?
+Do the two tennis balls remain in the same inertial frame?
+
+The aforementioned Planck cosmology probe recently measured the Hubble constant H0 to be equal to 67.8 (km/s)/Mpc.
+
+Normally the phrase, ‘same inertial frame’ is a way of stipulating that there is no relative motion between some set of objects.  But, here a paradox seems to arise; Hubble’s law says the tennis balls will be moving away from one another at 67.8 km/s, meaning there is relative motion between the two objects.
+
+Does that imply that there is some force acting on them; that the Metric Expansion of Space acts as an ambient force on all things pulling them away from one another?
+
+Let’s modify our experiment slightly.  Let’s provide a switch that allows us to turn on and off the expansion of the universe instantly.  Let’s begin our experiment with the switch in the off position.  We place the two tennis balls 1 Mpc apart with no relative motion.  This is a fairly simple system, there is no motion, no momentum and the distance between the two tennis balls remains constant.
+
+Now, we flip the switch, instantly turning the expansion on.  The two tennis balls immediately start receding from one another at 67.8 km/s.  But, have we applied a force to the tennis balls?  Do the tennis balls now have momentum?
+
+Before we attempt to answer that lets now flip the switch back to the off position.  We stop the expansion instantly.  Do we now assume that the tennis balls stop receding from one another?  Or do we assume that the tennis balls continue their relative velocity indefinitely?
+
+One aspect of expansion that may give us some guidance on this question is that although Special Relativity tell us that one can not travel faster than the speed of light there is no such limitation on the expansion of the universe.  Using Hubble’s law we can calculate the following (converting H0 to meters; c is the speed of light):
+
+	v = H0D
+	c = 67,800 D
+	D = c / 67,800 ≈ 4.42 Gpc
+
+Which tells us any two objects in space separated by distance greater than 4.42 Gpc (Gigaparsecs) will be receding from one another at a rate greater than c.  From this we can argue that this expansion is not inertial in nature.
+
+When we turn the expansion switch of our universe off the two tennis balls stop dead relative to one another.  Throughout the experiment the tennis balls never had any momentum.  Momentum is equal to the mass times the velocity (p = mv), but perhaps we should modify that equation a bit in order to account for Hubble’s law:
+
+	p = m (v - H0D)
+
+So, returning to our original question: are the tennis balls getting further apart? -- yes.  Are the tennis balls remaining in the same inertial frame?  -- yes, their relative momentum remains zero.
+
+But, conceptually, how could this possibly be the case?  How could something be moving further away and not have momentum?
+
+Imagine a checkerboard; on the checkerboard we place two checkers on opposite ends of the board.  We can count the number of spaces between the two checkers; 7 for instance.  Now keeping the checkers stationary we modify the grid of the checkerboard making each of the squares smaller.  For instance we could divide each square into 4 smaller squares.  Now we count the number of spaces between the two checkers and it’s 14.  Divide the spaces again and now there are 28 spaces between the two checkers.
+
+In this way we have caused the “expansion” of the checkerboard without effecting the position of the checkers themselves.  We have simply redefined distances as being the number of spaces between the checkers instead of our normal concept of distance.
+
+However, there is another way we could perhaps accomplish this.  Instead of making the spaces on the checkerboard smaller, let’s chop the checkerboard in half between the two checkers.  Now, let’s place a new checkerboard in the middle of the two halves of the old checkerboard.  The checkers are now 15 spaces apart; their distance is further apart also, but at the same time neither checker has moved from it’s original space.  Rather than redefining the notion of distance, we could simply adjust our notion of momentum from being distance traveled per time to being spaces traveled per time.
+
+This conceptualization is highly evocative of the idea that perhaps space itself is quantized.  Let’s posit that space itself is made of tiny cells upon which matter sits.  Hubble’s law could than be explained to simply be the result of the creation of new instances of these little cells, let’s call them aexels.  The concept of momentum would no longer relate to matter’s velocity, but rather to the rate at which matter moves across the aexels.
+ 
+Let’s define a new dimension: aexels traversed per time, denoted with the Japanese syllable ひ (hi, pronounced ‘hee’).  Now we can re-render the concept of momentum in terms of ひ instead of v (velocity, i.e., distance / time):
+
+	p = m ひ
+
+Which for aexels of constant density will reduce back to p = mv.CELLULAR AUTOMATA
+
+“If everything when it occupies an equal space is at rest, and if that which is in locomotion is always occupying such a space at any moment, the flying arrow is therefore motionless.” - Zeno
+
+With the development of the computer and increasingly so as computers became ubiquitous, people began experimenting with a class of problems known as Cellular Automata.
+
+The basic concept is that you divide some finite dimensional space into a number of discrete homogenous units called cells.  Each of these cells is able to store state, which could be a simple on/off or could be any number of scalar and/or vector values.
+
+The system then progresses using a discrete concept of time called a time step.  Inherent in the system is some static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and current state of each of the cell’s neighbors.
+
+One such system is called a Cyclic Cellular Automaton.  This system allows for an arbitrary number of dimensions, with each cell having a fixed number of possible states.  Let’s consider a 2-dimensional variant with 12 states.
+
+A plane is divided into a square grid with each space on the grid representing a cell.  Each cell is randomly assigned one of 12 states; numbered 0 through 11.  A neighbor is defined to be one of the 4 cells directly above, below or to the side of the cell. 
+
+The rule of the system is that any cell with state n, will ‘capture’ any neighbor cells that are of state n-1 (state 0 cells capture state 11 cells).  A captured cell will take on the state of it’s capturer.  However, a capturer may, itself, be captured in the same time step, having its state changed also.
+
+Each of the states is represented by a different color.  We randomly seed the states of the cells to begin with and then let the system progress until it achieves a steady state.Initially, the system starts out with a rather uniform distribution of noise.  Eventually little fiefdoms of state begin to develop creating splotches of solid areas throughout the system that grow over time.  Then something interesting happens: a loop gets created of some length that contains all 12 states.  The length of a loop will vary, but can be as little as 12.  The number of time steps it takes a loop to do a full rotation will be equal to the number of cells it contains.
+
+These loops will eventually crowd out the single state fiefdoms and dominate the entire board.  However, the system will not have achieved steady state yet.  The shorter a loop is, the quicker it will be able to expand its area of influence.  This will allow the 12 cell loops to eat away at the longer loops, eventually destroying them.
+
+Usually, at least one or more 12 cell loops will appear as it did in the above instance.  The  system will achieve stead state once the 12 cell loops finish eating up their slower competitors.  At that point all cells on the board will get captured each time step.
+
+Previously, I posited that space itself, is made up of little tiny cells upon which matter sits.  Now, we have a conceptual framework to discuss what is perhaps meant by the phrase ‘upon which matter sits.’
+
+At times matter has exhibited properties indicative of it being a set of particles.  At other times matter has exhibited properties indicative of it being a wave.  Perhaps what matter actually is, is a relatively stable state loop.
+
+If we posit that space is made up of tiny aexels; we can also posit that each of these aexels is capable of maintaining state.  If an aexel’s change in state is a function of the aexel’s current state as well as the current state of its adjacent aexels then stable state loops could arise as we have previously seen with Cyclic Cellular Automaton.  These relatively stable state loops could be the basis of what we consider to be matter.
+
+Now of course unlike the loops in our Cyclic Cellular Automaton, matter actually moves.  It is perhaps important then to develop a conceptual framework to figure out how motion would be possible with such a system.
+
+The term ‘translate’ is used to describe the shifting of an object across a space.  In order for this state loop model to be an accurate representation of our universe, there would need to be a mechanism that would allow such a state loop to translate across the aexel field.
+
+Let’s create a new Cellular Automaton, that is a 2-dimensional space tiled, this time, with hexagons.  Each cell, this time will have two variables of state.  One will be a simple binary on / off switch; the other will be a vector, which will either be length 0 or 1 and if 1 will point in the direction of one of the 6 sides of the hexagon.
+
+The rule will be this: If a cell is on and it’s vector is 0 then it will remain on and the vector will remain 0.  If an adjacent cell is on and it’s vector is pointing to the cell, then the cell will be turned / left on and it’s vector will be set to the adjacent cell’s vector.  (for completeness sake let’s say if multiple adjacent cells point to the cell, than the cell just turns off).  In all other cases, the cell turns off and it’s vector is set to 0.
+
+Let’s look at a time step of a simple instance of this automaton:
+
+In this system we have three ‘particles’.  The particle on the left has 0 length vector states and so remains stationary.  The particle in the upper right has vector states pointing up and to the right, so it’s pattern translates up and to the right in the next time step while passing its vector states on to its new cells.
+
+Similarly the particle on the bottom right’s vector are pointing to the right, so it translates one step to the right also maintaining its vector states.
+
+For the sake of Zeno, let’s do one more example:Now in this case, I’m not looking at the progression of a single system, but rather comparing a single time step of two separate systems.
+
+Currently, this model is explicitly displaying the vector states.  But, one could imagine a new version that doesn’t bother to display the vector states (such as in nature).  In such a case, looking at a single time step of the two systems it is impossible to differentiate the two.  However, just because the systems are indistinguishable to the eye does not mean that they are indistinct.
+
+To solve Zeno’s paradox we must simply note that although in a single instant the momentum state is not visible to the eye, it does not mean that the momentum state does not exist and it does not mean that it is not different in the two systems described.
+
+
+
+
+SPECIAL RELATIVITY
+
+So, perhaps, it’s possible to create some little toy algorithms that are able to model exceptionally simple behavior.  But, what does that have to do with all the subtlety, all the craziness, all the magic that is the universe?  For example, how would one even begin to try to replicate some of the phenomena demonstrated by Special Relativity using Cellular Automata?
+
+Actually, rather then being a difficulty, perhaps Special Relativity is a direct consequence of Cellular Automata.
+
+Previously, we have posited that space is populated by aexels.  These aexels contain state and perhaps among those state variables is a momentum vector that allows matter to translate across the aexel field.  Let’s further assume that each aexel has a finite number of adjacent aexels and let’s assume that each aexel only communicates with its adjacent aexels.
+
+Special Relativity says that nothing can go faster than the speed of light; how could aexels explain that?
+
+One would imagine that there would be some time delay from the moment that an aexel received a signal to the time that it took to pass that signal on.  For our purposes, let’s call this unit of time a tic.
+
+Now all of a sudden, a fundamental value of the universe, the speed of light goes from being the seemingly arbitrary 299,792,458 meters per second, to instead being the intuitive, one aexel per tic.  And the explanation for why nothing can travel faster than the speed of light becomes rather trivial.
+
+But, of course, Special Relativity, says more than just you can’t go faster than the speed of light.  It says that particles without mass, will move at the speed of light and particles with mass, will move slower than the speed of light.
+
+But, I think here again our Cellular Automata are instructive of why that might be.  Our second automaton with momentum vectors might be reasonable representation of the photon.  Whatever aexel states that make up the photon it seems that the state propagation moves in a straight line that allows / requires the photon to translate across the aexel field at one aexel per tic.
+
+Particles with mass however, might be better represented by our Cyclic automaton.  The rotational aspect of the state loop requires that the particle moves less than 1 aexel per tic.  Which is to say that it is not possible for the  entire state loop to translate a full aexel in a single tic.
+
+For example, let’s say that a particle is the result of a state loop.  In this case we have a particle that is made up of the states of 6 aexels.   If while the particle is rotating it is also moving across the aexel field, then some states are moving with the translation while others are moving against it.
+
+Thus, if this particle were moving across the aexel field at one aexel per tic.  The states moving against the translating motion of the particle would be moving slower than one aexel per tic and the states moving with the translation would need to move faster than one aexel per tic.
+
+This would violate the principle that the new state of each aexel must only depend on the aexel itself and its directly adjacent neighbors.
+
+Perhaps, this is what truly differentiates a particle with mass with one without.  A particle with mass has a cyclic state loop while a massless particle has a straight line state “loop”.
+
+For photons we know this to be the case.  The photon is a slinky’esk progression of electric and magnetic fields in a straight line.
+
+Time Dilation
+But, what about time dilation?  How could time dilation possibly come into play and if it did how would aexels explain the mechanism?  I suspect the interpretation of time dilation to perhaps be slightly off.
+
+When time is dilating what is actually happening?  How do we actually measure time?  In all cases our measurement of time is simply observing the time it takes some physical system to move.  Whether that physical system is a clock or the biological aging process, we are ultimately not really measuring time, but rather measuring the motion of a physical system.
+
+So, rather than describing this phenomenon as time dilation perhaps it would be more accurate to describe it as the ‘alacrity coefficient’; the rate at which physics works.
+
+If, as stipulated by perturbation theory, all physical phenomena is result of perturbations caused by messenger particles traveling at c, then as a system’s rate of translation increases, the time it takes for messenger particles to move back and forth between various elements of the system will increase precisely as dictated by the Lorentz transformation.
+
+As the translating motion gets faster and faster relative to an aexel field, the rate of animation of the system gets slower and slower; clocks and biological systems all start to slow down.  Their ‘alacrity coefficient’ gets closer and closer to 0 as their translating motion gets closer and closer to one aexel per tic.
+
+Let’s use the Japanese syllable あ (a, pronounced ah) to represent the alacrity coefficient.  For a system that is stationary on an aexel field time is moving at full speed and in that case あ=1.  As the translation of a system gets closer and closer to one aexel per tic, the rate at which the animation occurs slows down, so あ moves towards 0, but never reaches 0.  For a system translating across an aexel field, a second will take longer, such that:
+
+	s’ = s / あ
+
+where s’ is the true duration of one perceived second in the translating frame of reference.
+
+The Twin Paradox
+Let’s consider the twin paradox; using the Lorentz transformation by plugging in the traveling twins velocity, say 0.9c.  One finds that one twin has aged more than the other.  However, the Lorentz equations should work equally well for either twin since the basic premise of Special Relativity is that there are no special frame of reference.  And as such, it isn’t clear which of the twins should have aged quicker.
+
+One of the solutions put forth for the twin paradox is that the twin that traveled to Alpha Centauri was the one that felt the inertial acceleration therefore he is the one that would be affected by the time dilation.
+
+However, it is pretty easy to come up with a new thought experiment that torpedoes that explanation.  Let’s call it the Russian Nesting Doll Paradox:
+
+Take an empty universe and a place a Russian Nesting Doll in it, sitting in an inertial frame.  Open up doll A and remove doll B from inside.  These nesting dolls have rockets attached (of course) and now doll B blasts off from doll A accelerating to close to the speed of light very rapidly (within less than a day for example).  Doll B is the one that has felt the inertial acceleration so its the doll experiencing the time dilation, not doll A.  After the acceleration is complete doll B turns off it’s rocket and floats through space; now, in it’s own inertial frame.
+
+At this point, we open up doll B and remove doll C.  As before doll C blasts off again accelerating to close to the speed of light very rapidly.  As before doll C is the doll that feels the inertial acceleration so it is the one that is experiencing the time dilation.  So, time for C is moving slower than time for B and time for B is moving slower than time for A.
+
+However, when doll C blasted off from B, it blasted off in the direction of doll A.  And as a matter of fact it accelerated until it returned exactly to doll A’s inertial frame.  So, either doll A and doll C are now in the exact same inertial frame experiencing different time dilation or even though doll C was the one that experienced the inertial acceleration its time became faster than doll B not slower.
+
+This of course creates the situation where when something accelerates you can’t be sure which frame is going to experience the faster time and which will experience the slower time.
+
+This aexel theory says that there is, in fact, a special frame of reference.  That time moves quickest, i.e., that alacrity coefficient, あ is 1 in any frame that isn’t translating against the aexel field.  The velocity used in the Lorentz transformation should always be the velocity relative to the aexel field.
+
+Time moves quickest when one isn’t moving across the aexel field.  In order to figure out which twin will experience faster time or slower time, one must simply compare each of the twins’ velocities relative to the aexel field.
+
+
+GRAVITATION
+
+Up until this point we have limited our discussion to basic kinematics.  Let’s move further afield and try our hand out on gravitation.
+
+The theory holds that space is made up of aexels and that light travels at one aexel per tic.  But, almost instantly when considering gravitation a serious issue arrises.
+
+Given the existence of black holes and the fact that light can’t escape from them how could this possibly be reconciled with this aexel theory.  Even if gravity were warping the geometry of the aexels, squeezing them into an increasingly dense configuration, there would still be a finite number of them and light would eventually be able to escape from the black hole.
+
+One could perhaps imagine the aexels flowing into the black hole at a rate greater than the speed of light in order to keep the light from escaping, but it would seem that very quickly the aexel density inside the black hole would get untenable.  It would seem our aexels are incompatible with black holes.
+
+Unless somehow the black holes were destroying the aexels.  If the black hole were destroying the aexels at a rate that required them to flow into the black hole faster than the speed of light, then light trying to translate across the aexel field would never be able to escape.  It would be like a jogger running on treadmill thats speed is set too high.
+
+But, what is it about a black hole that could be causing it to destroy aexels?  A black hole isn’t magical; it’s simply a large enough accumulation of mass in one spot that allows it to prevent light from escaping.
+
+If a black hole isn’t special, than perhaps stars also destroy aexels; perhaps the Sun destroys aexels; perhaps the Earth destroys aexels; perhaps all mass destroys aexels.
+
+And as such is there any need for a gravitational field any longer?  The reason why gravitational mass and inertial mass seem the same is because they are the same.  It is the exact same phenomenon.  In both cases they simply represent an object’s resistance to being accelerated against a flow of aexels.
+
+There is no such thing as a gravitational field.  Masses are not attracted to one another.  Two masses only appear so because both of them are destroying the space between each other which is drawing them closer together.
+
+A Tantalizingly Simple Test
+No gravitational force means that gravity has no ability to effect the momentum state of a particle on the aexel field; the apparent gravitational force being simply an illusion caused by the tugging on the aexel field.
+
+Imagine a table with a table cloth on it with plates and glasses on top.  In the center of the table is a small hole.  Someone goes below the table and starts to pull the table cloth through the hole.  The plates and glasses and such will appear to be attracted to the center of the table as they move towards it, but really they are just going along for the ride.
+
+Let’s calculate the velocity of the aexels passing into the Earth, at the Earth’s surface.  We take an empty universe and place the Earth in it.  Arbitrarily far away we place a tennis ball.  Both the Earth and the tennis ball are not translating across the aexel field.  The Earth will be destroying aexels and as it is doing so drawing in the tennis ball.  Since gravity is not capable of adding momentum to the tennis ball, the tennis ball will exactly follow the aexels it is sitting on towards the Earth.
+
+Meaning, the velocity of the tennis ball when it hits the Earth surface (ignoring the atmosphere which doesn’t effect the motion of aexels) will be exactly equal to the velocity of the aexels at the surface.
+
+The potential at infinity is 0.  The potential at the Earth’s surface is GMeMt/re.  The kinetic energy of the tennis ball is Mtv2/2.  Which gives:
+
+	Mtv2/2 = GMeMt/re
+	v = sqrt(2GMe/r) ≈ 11,187 m/s
+
+The theory states that the speed of light is a limitation on the rate at which photons translate across an aexel field.  It places no restrictions on the motions of aexels themselves.
+
+Therefore, the speed of a photon traveling towards the Earth at the Earth’s surface will be c + 11,187 ≈ 299,803,645 m/s and the speed of a photon traveling away from the Earth at the Earth’s surface will be c - 11,187 ≈ 299,781,271 m/s.
+
+The test for this would require a variation on the Michelson-Morley experiment that would compare the speed of light along a horizontal arm to the speed of light along a vertical arm as opposed to comparing the speed of light of two perpendicular horizontal arms.
+
+One quick aside, I would argue that this situation is analogous to our first experiment in the beginning where we switch on and off the universe’s expansion.  The tennis ball, as it falls towards the Earth, is not gaining any momentum what-so-ever.  If we were to be able to instantly delete the Earth, the motion of the tennis ball would stop dead.  Well, it would stop dead relative to the aexel field.  Depending on the dynamics of the compressibility of the aexels themselves it may jiggle back and forth a bit as the aexel field deals with the jolt.  Also, I assume that the aexels get compressed as they are drawn towards the Earth.  So, they would relax, which would cause the tennis ball to actually recede from (the former position of) the Earth, but the point still remains -- the tennis ball gains no momentum, that is, no ability to translate across the aexel field, as it falls towards the Earth.
+
+Similarly, stationary objects situated on the surface of the Earth must have momentum pointing upwards against the flow of aexels in order to remain stationary.  If the Earth were instantly deleted anything sitting on top of it would be spewed outward at 11,187 m/s.
+
+Ramifications on Newton’s Law of Universal Gravitation
+As it stands now, Newton’s Law states:
+
+	F = GM1M2/r2
+
+But, as Galileo and the photon have previously so eloquently pointed out, that second mass factor is of dubious value.  Beyond that, we are arguing that gravity is not a force, rather it is an ambient acceleration.  Let’s re-render it as such:
+
+	a = GM/r2
+
+Now, there is a certain tautological aspect to our belief in Newton’s Law.  It’s not something easily tested.  We calculate measurements of the “mass” of astronomical bodies, by watching their motion and plugging it into Newton’s Law and then declare Newton’s Law valid because it is able to predict the motion of the bodies.
+
+In the lab we can attempt to measure the attraction of extremely dense weights and we can determine that that attraction is proportional to their mass, but here again all we are really doing is determining that the proportionality factor is proportional to mass under laboratory conditions.
+
+Let’s create a new dimension denoted with the Japanese syllable ま (ma, pronounced ma), which is the aexel destruction coefficient of a body.  Newton’s Law now becomes:
+
+	a = G ま/r2
+
+Now, it may entirely be the case that ま=M, but let’s, for a moment, consider the possibility that they might not be equal.
+
+Our theory of matter is that everything is some sort of stable state progression of the aexels; photons being a progression in a straight line, matter with mass being a progression in some sort of loop.  There are 61 particles in the standard model.  Each of these 61 particles will have a different type of state progression pattern.
+
+It is possible that the state progression of each particle with mass destroys aexels at a rate exactly proportional to its mass or perhaps that destruction is mass.  However, I could also imagine that some of the mass particles’ state progression involves aexel destruction and some does not.
+
+For example, perhaps aexel destruction is the result of the Strong interaction only, and only occurs in protons and neutrons; and perhaps each destroy aexels at a different rate.  In this case, under laboratory conditions, the proportions of protons and neutrons in an object will be relatively constant and proportional to that object’s mass, which allows mass to become a proxy for the destruction factor in the lab.  But, that proportionality may break down outside the lab.
+
+To reiterate, I’m not saying this is necessarily the case.  There may, in fact, be some inherent reason why all particles with mass destroy aexels proportional to their mass.  However, it’s also believable that perhaps an electron, for instance, does not destroy aexels.
+
+Ultimately, when we measure the mass of some astronomical body using Newton’s scale, we aren’t really measuring the mass, we are measuring it’s aexel destruction coefficient.
+
+Given this theory, Dark Matter is simply an unaccounted for aexel sink.  If there is a discrepancy between ま and M, then Dark Matter may simply be that discrepancy.
+
+
+OTHER TOPICS
+
+Metric Expansion of Space Revisited
+In the context of this theory, lets define the following terms:
+
+Universe: sum total of everything we can observe and interact with.
+Space or Void: 3 dimensional area of the universe.  It is plain old ordinary space, no warping, no curving, just void.
+Time: intuitive one dimensional time; again just plain old ordinary time no dilating.
+Aether: the set of all aexels.  (Aexel is to aether as pixel is to picture.)
+
+Given these definitions, the Universe is not expanding.  Space is not expanding.  Possibly the Aether is expanding.  Well, we don’t know anything about the Universe or Space, so what I should say is that when people say the Universe is expanding or Space is expanding, what they actually mean (in the context of this theory) is that the Aether is expanding.  But, let’s explore that question a little more.
+
+Let’s take a new universe, the void of this universe is an infinite tube with some radius r.  We fill the tube with aether.  We then place 2 stars each of aexel destruction coefficient ま in the tube each with a radius a bit less than r.  We give the stars just enough separation velocity v to escape each other’s gravitational pull.
+
+As the stars move apart, the amount of aexels between them is going to increase at a constant rate due to their motion, however the volume between them is going to expand at the exact same rate, so the net effect is zero.  At the same time each of the stars are going to be destroying aexels at a rate of たま, half will be destroyed from outside of the stars, half from in between the stars.
+
+This means over time the aexel density between the two stars will continually drop.  As the aexel density in between the two stars decreases (hypothetically depending on the particular dynamics of the aether) there will be a flow of aexels around the edges of the stars from the outside to the inside in order to equalize the density.
+
+That flow of aexels in between the two stars will cause the “space” between the two stars to expand, therefore giving you the “expansion of space”.  However, that is perhaps a questionable way to describe it.
+
+One obvious question that arrises from this theory is that if mass is destroying aexels, where do the aexels come from?  Wouldn’t the universe run out of aexels fairly rapidly given the amount of matter in the Universe?
+
+Certainly, well within the realm of wild speculation, but if one were to imagine that all matter were created through pair creation then the amount of matter and antimatter in the universe would be equal.
+
+If matter destroys aexels than perhaps antimatter creates them at the exact same rate.  Perhaps the rate at which aexels are destroyed by matter throughout the Universe is always equal to the rate at which they are created by antimatter giving a constant number of aexels throughout time.
+
+And where matter’s destruction of the aether tends to draw things towards it allowing for matter to clump up, leading to the creation of planets and stars and galaxies.  Antimatter’s creation of the aether tends to push things away, causing it to never clump up.  And as such, perhaps the universe is permeated with an antimatter dust throughout continually generating new aexels and consequently continually causing the “space” between galaxies, for example, to increase.
+
+General Relativity
+I haven’t explicitly stated it, but implied in much of this analysis is the assumption that the theory and math behind General Relativity are describing the dynamics of the aether as it flow towards its doom into a gravity well, as well as the decrease in the alacrity coefficient as the velocity of the aexels increase i.e, time dilation.
+
+As the aexels flow into the well, they get increasingly dense and their volume  gets increasingly tiny.  Since, momentum is not p=mv, but rather p=mひ, those squished aexels will have an effect on the motion of particles through the well, which, for example, is the additional bending of light that we see.
+
+Often a picture such as this on the right is used to describe General Relativity’s “warping of spacetime”.  
+ 
+However, I think we can perhaps replace it with a much more intuitive and descriptive picture entirely in 2D which shows the Aether’s aexels increasing density and decreasing area as they get drawn into the gravity source.  Such an image of the “squeezing of the aether” will then be much easier to mentally extend to 3D.
+
+Along these lines, this concept really folds General Relativity into Special Relativity.  For example, previously we calculated that the speed of aexels flowing into the Earth at it’s surface is equal to sqrt(2GM/r) ≈ 11,187 m/s.
+
+The time dilation indicated by Special Relativity by the Lorentz factor is: 1/sqrt(1-v^2/c^2).  If we plug in the aexel speed at the surface of the Earth this gives us our time dilation due to gravity as 1/sqrt(1-2GM/r/c^2).
+
+In General Relativity this same problem is solved using the Schwarzchild metric.  The calculation of the time dilation due to a non-rotating massive spherically-symmetric object is 1/sqrt(1-2GN/r/c^2); exactly as we had just calculated using special relativity and this aexel theory.
+
+
+CONCLUSION
+
+I am perhaps being absurdly naive and hubristic in writing this document.  Perhaps, I could save myself a lot of head aches by simply forgetting about this whole thing.
+
+The problem is that these ideas just clicked.  It has allowed me to understanding too many things, to anticipate too many ideas and theories that I had never encountered before.  It has given me a useful intuition about the nature of the Universe which I entirely lacked prior to these epiphanies.
+
+For these reasons, I can’t simply drop it.  I will have to endure what comes my way until I can either convince myself that this theory is wrong or else I can convince others that this theory is right.
+
