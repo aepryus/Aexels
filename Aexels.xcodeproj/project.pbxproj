@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D80425981E1B4A97009C9ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425971E1B4A97009C9ED3 /* AppDelegate.swift */; };
-		D804259A1E1B4A97009C9ED3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425991E1B4A97009C9ED3 /* ViewController.swift */; };
+		D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425971E1B4A97009C9ED3 /* AexelsDelegate.swift */; };
 		D804259F1E1B4A97009C9ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D804259E1E1B4A97009C9ED3 /* Assets.xcassets */; };
 		D80425C51E1B4FBD009C9ED3 /* Icon20.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425B91E1B4FBD009C9ED3 /* Icon20.png */; };
 		D80425C61E1B4FBD009C9ED3 /* Icon29.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425BA1E1B4FBD009C9ED3 /* Icon29.png */; };
@@ -28,12 +27,21 @@
 		D80425DA1E1B50D7009C9ED3 /* Game of Life.oo in Resources */ = {isa = PBXBuildFile; fileRef = D80425D41E1B50D7009C9ED3 /* Game of Life.oo */; };
 		D80425DB1E1B50D7009C9ED3 /* TrajanPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80425D51E1B50D7009C9ED3 /* TrajanPro-Bold.ttf */; };
 		D80425DC1E1B50D7009C9ED3 /* TrajanPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D80425D61E1B50D7009C9ED3 /* TrajanPro-Regular.otf */; };
+		D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425E41E1B5876009C9ED3 /* Aexels.swift */; };
+		D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */; };
+		D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */; };
+		D80425EE1E1B6DEF009C9ED3 /* AEAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425ED1E1B6DEF009C9ED3 /* AEAttributes.swift */; };
+		D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */; };
+		D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */; };
+		D80425F71E1B8BCF009C9ED3 /* UIButton+AE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F61E1B8BCF009C9ED3 /* UIButton+AE.swift */; };
+		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
+		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
+		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D80425941E1B4A97009C9ED3 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D80425971E1B4A97009C9ED3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D80425991E1B4A97009C9ED3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D80425971E1B4A97009C9ED3 /* AexelsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsDelegate.swift; sourceTree = "<group>"; };
 		D804259E1E1B4A97009C9ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Aexels/Assets.xcassets; sourceTree = "<group>"; };
 		D80425A31E1B4A97009C9ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D80425B91E1B4FBD009C9ED3 /* Icon20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon20.png; path = Resources/Icon20.png; sourceTree = "<group>"; };
@@ -54,6 +62,16 @@
 		D80425D41E1B50D7009C9ED3 /* Game of Life.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Game of Life.oo"; path = "Resources/Game of Life.oo"; sourceTree = "<group>"; };
 		D80425D51E1B50D7009C9ED3 /* TrajanPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TrajanPro-Bold.ttf"; path = "Resources/TrajanPro-Bold.ttf"; sourceTree = "<group>"; };
 		D80425D61E1B50D7009C9ED3 /* TrajanPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TrajanPro-Regular.otf"; path = "Resources/TrajanPro-Regular.otf"; sourceTree = "<group>"; };
+		D80425E41E1B5876009C9ED3 /* Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aexels.swift; sourceTree = "<group>"; };
+		D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusViewController.swift; sourceTree = "<group>"; };
+		D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusButton.swift; sourceTree = "<group>"; };
+		D80425ED1E1B6DEF009C9ED3 /* AEAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAttributes.swift; sourceTree = "<group>"; };
+		D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AX.swift"; sourceTree = "<group>"; };
+		D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusLabel.swift; sourceTree = "<group>"; };
+		D80425F61E1B8BCF009C9ED3 /* UIButton+AE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+AE.swift"; sourceTree = "<group>"; };
+		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
+		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +105,10 @@
 		D80425961E1B4A97009C9ED3 /* Aexels */ = {
 			isa = PBXGroup;
 			children = (
-				D80425971E1B4A97009C9ED3 /* AppDelegate.swift */,
-				D80425991E1B4A97009C9ED3 /* ViewController.swift */,
-				D80425A31E1B4A97009C9ED3 /* Info.plist */,
+				D80425E01E1B5444009C9ED3 /* Utility */,
+				D80425E31E1B5465009C9ED3 /* Simulation */,
+				D80425E21E1B5450009C9ED3 /* Interface */,
+				D80425E11E1B544A009C9ED3 /* Global */,
 			);
 			path = Aexels;
 			sourceTree = "<group>";
@@ -102,6 +121,7 @@
 				D80425DD1E1B50DC009C9ED3 /* Fonts */,
 				D80425DE1E1B50E3009C9ED3 /* Aethers */,
 				D804259E1E1B4A97009C9ED3 /* Assets.xcassets */,
+				D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */,
 				D80425D11E1B50D7009C9ED3 /* Aexels.txt */,
 			);
 			name = Resources;
@@ -150,6 +170,77 @@
 				D80425D21E1B50D7009C9ED3 /* Back.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		D80425E01E1B5444009C9ED3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D80425F31E1B8A8B009C9ED3 /* Extensions */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		D80425E11E1B544A009C9ED3 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				D80425E61E1B5943009C9ED3 /* Support Files */,
+				D80425971E1B4A97009C9ED3 /* AexelsDelegate.swift */,
+				D80425E41E1B5876009C9ED3 /* Aexels.swift */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		D80425E21E1B5450009C9ED3 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				D80425EC1E1B6DCC009C9ED3 /* Utility */,
+				D80425E71E1B5C43009C9ED3 /* Nexus */,
+			);
+			name = Interface;
+			sourceTree = "<group>";
+		};
+		D80425E31E1B5465009C9ED3 /* Simulation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Simulation;
+			sourceTree = "<group>";
+		};
+		D80425E61E1B5943009C9ED3 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D80425A31E1B4A97009C9ED3 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		D80425E71E1B5C43009C9ED3 /* Nexus */ = {
+			isa = PBXGroup;
+			children = (
+				D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */,
+				D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */,
+				D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */,
+			);
+			name = Nexus;
+			sourceTree = "<group>";
+		};
+		D80425EC1E1B6DCC009C9ED3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D80425ED1E1B6DEF009C9ED3 /* AEAttributes.swift */,
+				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
+				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		D80425F31E1B8A8B009C9ED3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D80425F61E1B8BCF009C9ED3 /* UIButton+AE.swift */,
+				D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +308,7 @@
 				D80425CE1E1B4FBD009C9ED3 /* Icon152.png in Resources */,
 				D80425DC1E1B50D7009C9ED3 /* TrajanPro-Regular.otf in Resources */,
 				D80425C51E1B4FBD009C9ED3 /* Icon20.png in Resources */,
+				D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */,
 				D80425CD1E1B4FBD009C9ED3 /* Icon120.png in Resources */,
 				D80425CC1E1B4FBD009C9ED3 /* Icon87.png in Resources */,
 				D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */,
@@ -241,12 +333,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D804259A1E1B4A97009C9ED3 /* ViewController.swift in Sources */,
-				D80425981E1B4A97009C9ED3 /* AppDelegate.swift in Sources */,
+				D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */,
+				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
+				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
+				D80425F71E1B8BCF009C9ED3 /* UIButton+AE.swift in Sources */,
+				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
+				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
+				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
+				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
+				D80425EE1E1B6DEF009C9ED3 /* AEAttributes.swift in Sources */,
+				D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D80425FF1E1BA7C6009C9ED3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D80425A41E1B4A97009C9ED3 /* Debug */ = {
@@ -346,12 +457,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				INFOPLIST_FILE = Aexels/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -359,12 +472,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				INFOPLIST_FILE = Aexels/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
