@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClosureSleeve {
+fileprivate class ClosureSleeve {
 	let closure: ()->()
 	
 	init (_ closure: @escaping ()->()) {
