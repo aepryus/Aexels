@@ -10,6 +10,6 @@ import Foundation
 
 class TimeDilationExplorer: Explorer {
 	init () {
-		super.init(name: "TimeDilation", canExplore: false)
+		super.init(name: "Time Dilation", key: "TimeDilation", canExplore: false)
 	}
 }

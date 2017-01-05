@@ -10,6 +10,6 @@ import Foundation
 
 class GravityExplorer: Explorer {
 	init () {
-		super.init(name: "Gravity", canExplore: false)
+		super.init(name: "Gravity", key: "Gravity", canExplore: false)
 	}
 }

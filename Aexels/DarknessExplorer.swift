@@ -10,6 +10,6 @@ import Foundation
 
 class DarknessExplorer: Explorer {
 	init () {
-		super.init(name: "Darkness", canExplore: false)
+		super.init(name: "Darkness", key: "Darkness", canExplore: false)
 	}
 }

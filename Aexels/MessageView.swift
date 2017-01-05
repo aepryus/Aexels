@@ -9,10 +9,11 @@
 import UIKit
 
 class MessageView: LimboView {
+	let axMaskView = MaskView()
 	let scrollView = UIScrollView()
 	let imageView = UIImageView()
 
-	var name: String = ""
+	var key: String = ""
 	var text: String = ""
 	
 	override init () {
@@ -23,20 +24,24 @@ class MessageView: LimboView {
 		let w: CGFloat = 1024-x-m
 		frame = CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20)
 
-		scrollView.frame = bounds.insetBy(dx: 10, dy: 10)
-		
 		imageView.isUserInteractionEnabled = false
-		addSubview(scrollView)
+		
 		scrollView.addSubview(imageView)
+		addSubview(scrollView)
+		axMaskView.frame = bounds
+		axMaskView.content = scrollView
+		scrollView.frame = bounds.insetBy(dx: 10, dy: 10)
+		addSubview(axMaskView)
 		
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
 		addGestureRecognizer(gesture)
+		
 	}
 	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
 	
-	func load (name: String) {
-		self.name = name
-		self.text = NSLocalizedString(name, comment: "")
+	func load (key: String) {
+		self.key = key
+		self.text = NSLocalizedString(key, comment: "")
 
 		let format = Format()
 		format.font = UIFont(name: "Verdana", size: 18)!
@@ -65,6 +70,10 @@ class MessageView: LimboView {
 
 		scrollView.contentSize = CGSize(width: w+2*p, height: max(h+2*p,self.scrollView.bounds.size.height+1))
 		scrollView.contentOffset = CGPoint.zero
+	}
+	
+	override func applyMask () {
+		axMaskView.path = limboPath.maskPath
 	}
 	
 // Events ==========================================================================================

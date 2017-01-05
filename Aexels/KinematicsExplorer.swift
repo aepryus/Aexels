@@ -10,6 +10,6 @@ import Foundation
 
 class KinematicsExplorer: Explorer {
 	init () {
-		super.init(name: "Kinematics", canExplore: true)
+		super.init(name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
 }

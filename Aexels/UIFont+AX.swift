@@ -12,7 +12,7 @@ extension UIFont {
 	static func aexelFont (size: CGFloat) -> UIFont {
 		return UIFont(name: "Trajan Pro", size: size)!
 	}
-	static func aexelBoldFont (size: CGFloat) -> UIFont {
+	static func aexelFontBold (size: CGFloat) -> UIFont {
 		return UIFont(name: "TrajanPro-Bold", size: size)!
 	}
 }

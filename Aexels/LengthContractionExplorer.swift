@@ -10,6 +10,6 @@ import Foundation
 
 class LengthContractionExplorer: Explorer {
 	init () {
-		super.init(name: "LengthContraction", canExplore: false)
+		super.init(name: "Length Contraction", key: "LengthContraction", canExplore: false)
 	}
 }

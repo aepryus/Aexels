@@ -10,6 +10,6 @@ import Foundation
 
 class IntroExplorer: Explorer {
 	init () {
-		super.init(name: "Intro", canExplore: false)
+		super.init(name: "Intro", key: "Intro", canExplore: false)
 	}
 }

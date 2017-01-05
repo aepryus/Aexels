@@ -10,6 +10,6 @@ import Foundation
 
 class CellularAutomataExplorer: Explorer {
 	init () {
-		super.init(name: "CellularAutomata", canExplore: true)
+		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
 }

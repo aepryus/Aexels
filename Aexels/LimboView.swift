@@ -8,8 +8,25 @@
 
 import UIKit
 
+class LimboPath {
+	var strokePath: CGPath!
+	var shadowPath: CGPath!
+	var maskPath: CGPath!
+}
+
 class LimboView: UIView {
-	var path: CGPath!
+	var _limboPath = LimboPath()
+	var limboPath: LimboPath {
+		set {
+			_limboPath = newValue
+			setNeedsDisplay()
+			self.layer.shadowPath = limboPath.shadowPath
+			applyMask()
+		}
+		get {
+			return _limboPath
+		}
+	}
 	
 	init () {
 		super.init(frame: CGRect.zero)
@@ -23,19 +40,29 @@ class LimboView: UIView {
 	}
 	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
 	
+	func applyMask () {}
+	
 // UIView ==========================================================================================
+	override var frame: CGRect {
+		set {
+			super.frame = newValue
+			guard frame != CGRect.zero else {return}
+			limboPath.strokePath = CGPath(roundedRect: bounds.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
+			limboPath.shadowPath = CGPath(roundedRect: bounds.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
+			limboPath.maskPath = limboPath.strokePath
+			self.layer.shadowPath = limboPath.shadowPath
+			applyMask()
+		}
+		get {
+			return super.frame
+		}
+	}
 	override func draw(_ rect: CGRect) {
 		let c = UIGraphicsGetCurrentContext()!
 
-		var path = CGPath(roundedRect: rect.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
-		c.addPath(path)
+		c.addPath(limboPath.strokePath)
 		c.setStrokeColor(UIColor(white: 0.3, alpha: 1).cgColor)
 		c.setLineWidth(1.5)
 		c.strokePath()
-		
-		path = CGPath(roundedRect: rect.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
-		self.layer.shadowPath = path;
-
-		self.path = CGPath(roundedRect: rect.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
 	}
 }

@@ -10,10 +10,12 @@ import Foundation
 
 class Explorer {
 	let name: String
+	let key: String
 	let canExplore: Bool
 	
-	init (name: String, canExplore: Bool) {
+	init (name: String, key: String, canExplore: Bool) {
 		self.name = name
+		self.key = key
 		self.canExplore = canExplore
 	}
 }

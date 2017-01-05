@@ -45,6 +45,7 @@
 		D8B13C151E1E3ED200E02E16 /* TimeDilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */; };
 		D8B13C171E1E3EF800E02E16 /* LengthContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */; };
 		D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */; };
+		D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDilationExplorer.swift; sourceTree = "<group>"; };
 		D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthContractionExplorer.swift; sourceTree = "<group>"; };
 		D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
+		D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,6 +262,7 @@
 			children = (
 				D80425ED1E1B6DEF009C9ED3 /* Format.swift */,
 				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
+				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
 			);
 			name = Utility;
@@ -464,6 +467,7 @@
 				D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */,
 				D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */,
 				D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */,
+				D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
