@@ -12,6 +12,7 @@ class MessageView: LimboView {
 	let axMaskView = MaskView()
 	let scrollView = UIScrollView()
 	let imageView = UIImageView()
+	var onTap: (()->())?
 
 	var key: String = ""
 	var text: String = ""
@@ -33,7 +34,7 @@ class MessageView: LimboView {
 		scrollView.frame = bounds.insetBy(dx: 10, dy: 10)
 		addSubview(axMaskView)
 		
-		let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+		let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
 		addGestureRecognizer(gesture)
 		
 	}
@@ -77,9 +78,7 @@ class MessageView: LimboView {
 	}
 	
 // Events ==========================================================================================
-	func onTap () {
-		UIView.animate(withDuration: 0.2) {
-			self.alpha = 0
-		}
+	func tap () {
+		if onTap != nil {onTap!()}
 	}
 }

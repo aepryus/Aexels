@@ -68,6 +68,12 @@ class NexusViewController: UIViewController {
 		view.addSubview(nexusLabel)
 		
 		messageView.alpha = 0
+		messageView.onTap = { ()->() in
+			UIView.animate(withDuration: 0.2) {
+				self.messageView.alpha = 0
+				self.exploreButton.alpha = 0
+			}
+		}
 		view.addSubview(messageView)
 		
 		let rect = messageView.bounds
