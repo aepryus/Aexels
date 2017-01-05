@@ -23,9 +23,9 @@ class NexusButton: UIButton {
 		
 		c.setFillColor(UIColor.black.cgColor)
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
-		let attributes = AEAttributes()
-		attributes.font = UIFont.aexelFont(size: 24)
-		attributes.color = UIColor.black
-		(text as NSString).draw(at: CGPoint(x: 5, y: 5), withAttributes: attributes.attributes)
+		let format = Format()
+		format.font = UIFont.aexelFont(size: 24)
+		format.color = UIColor.black
+		(text as NSString).draw(at: CGPoint(x: 5, y: 5), withAttributes: format.attributes)
     }
 }

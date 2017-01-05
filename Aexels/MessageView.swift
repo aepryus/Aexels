@@ -38,14 +38,14 @@ class MessageView: LimboView {
 		self.name = name
 		self.text = NSLocalizedString(name, comment: "")
 
-		let attributes = AEAttributes()
-		attributes.font = UIFont(name: "Verdana", size: 18)!
-		attributes.alignment = .left
+		let format = Format()
+		format.font = UIFont(name: "Verdana", size: 18)!
+		format.alignment = .left
 
 		let p: CGFloat = 10
 		let w = self.scrollView.bounds.size.width - p*2
 		
-		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attributes.attributes, context: nil).size
+		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: format.attributes, context: nil).size
 		
 		let h = size.height
 		
@@ -54,7 +54,7 @@ class MessageView: LimboView {
 		c.saveGState()
 		c.setShadow(offset: CGSize(width: 2, height: 2), blur: 2)
 		c.setFillColor(UIColor.white.cgColor)
-		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: attributes.attributes)
+		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: format.attributes)
 		c.restoreGState()
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()
