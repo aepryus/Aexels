@@ -37,6 +37,14 @@
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
 		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
+		D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C011E1E2ECF00E02E16 /* Explorer.swift */; };
+		D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */; };
+		D8B13C0D1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */; };
+		D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */; };
+		D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */; };
+		D8B13C151E1E3ED200E02E16 /* TimeDilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */; };
+		D8B13C171E1E3EF800E02E16 /* LengthContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */; };
+		D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +82,14 @@
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D8B13C011E1E2ECF00E02E16 /* Explorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
+		D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroExplorer.swift; sourceTree = "<group>"; };
+		D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularAutomataExplorer.swift; sourceTree = "<group>"; };
+		D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsExplorer.swift; sourceTree = "<group>"; };
+		D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
+		D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDilationExplorer.swift; sourceTree = "<group>"; };
+		D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthContractionExplorer.swift; sourceTree = "<group>"; };
+		D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +218,13 @@
 			children = (
 				D80425EC1E1B6DCC009C9ED3 /* Utility */,
 				D80425E71E1B5C43009C9ED3 /* Nexus */,
+				D8B13C091E1E3DF000E02E16 /* Intro */,
+				D8B13C031E1E2EDA00E02E16 /* Cellular Automata */,
+				D8B13C041E1E2EEB00E02E16 /* Kinematics */,
+				D8B13C051E1E2EF100E02E16 /* Gravity */,
+				D8B13C061E1E2F0000E02E16 /* Time Dilation */,
+				D8B13C071E1E2F0700E02E16 /* Length Contraction */,
+				D8B13C081E1E2F1200E02E16 /* Darkness */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -224,6 +247,7 @@
 		D80425E71E1B5C43009C9ED3 /* Nexus */ = {
 			isa = PBXGroup;
 			children = (
+				D8B13C011E1E2ECF00E02E16 /* Explorer.swift */,
 				D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */,
 				D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */,
 				D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */,
@@ -248,6 +272,62 @@
 				D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D8B13C031E1E2EDA00E02E16 /* Cellular Automata */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */,
+			);
+			name = "Cellular Automata";
+			sourceTree = "<group>";
+		};
+		D8B13C041E1E2EEB00E02E16 /* Kinematics */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */,
+			);
+			name = Kinematics;
+			sourceTree = "<group>";
+		};
+		D8B13C051E1E2EF100E02E16 /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */,
+			);
+			name = Gravity;
+			sourceTree = "<group>";
+		};
+		D8B13C061E1E2F0000E02E16 /* Time Dilation */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */,
+			);
+			name = "Time Dilation";
+			sourceTree = "<group>";
+		};
+		D8B13C071E1E2F0700E02E16 /* Length Contraction */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */,
+			);
+			name = "Length Contraction";
+			sourceTree = "<group>";
+		};
+		D8B13C081E1E2F1200E02E16 /* Darkness */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */,
+			);
+			name = Darkness;
+			sourceTree = "<group>";
+		};
+		D8B13C091E1E3DF000E02E16 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */,
+			);
+			name = Intro;
 			sourceTree = "<group>";
 		};
 		D8FD7E6C1E1E1FAD00325115 /* Frameworks */ = {
@@ -368,14 +448,22 @@
 			files = (
 				D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */,
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
+				D8B13C171E1E3EF800E02E16 /* LengthContractionExplorer.swift in Sources */,
 				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
 				D80425F71E1B8BCF009C9ED3 /* UIButton+AE.swift in Sources */,
+				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
 				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
+				D8B13C0D1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift in Sources */,
+				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
+				D8B13C151E1E3ED200E02E16 /* TimeDilationExplorer.swift in Sources */,
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
+				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
 				D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */,
+				D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */,
 				D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */,
+				D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
