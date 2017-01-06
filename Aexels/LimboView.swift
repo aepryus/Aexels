@@ -27,6 +27,22 @@ class LimboView: UIView {
 			return _limboPath
 		}
 	}
+	var _content: UIView?
+	var content: UIView? {
+		set {
+			_content?.removeFromSuperview()
+			_content = newValue
+			
+			if _content == nil {return}
+			
+			let p: CGFloat = 15
+			_content?.frame = CGRect(x: p, y: p, width: bounds.size.width-2*p, height: bounds.size.height-2*p)
+			addSubview(_content!)
+		}
+		get {
+			return _content
+		}
+	}
 	
 	init () {
 		super.init(frame: CGRect.zero)

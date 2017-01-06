@@ -10,10 +10,13 @@ import UIKit
 
 class Aexels {
 	static var window: UIWindow!
+	static var nexus: NexusViewController!
 	
 	static func start () {
+		nexus = NexusViewController()
+		
 		window = UIWindow()
-		window.rootViewController = NexusViewController()
+		window.rootViewController = nexus
 		window.makeKeyAndVisible()
 	}
 }

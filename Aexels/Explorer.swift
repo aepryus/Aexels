@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Explorer {
 	let name: String
@@ -18,4 +18,6 @@ class Explorer {
 		self.key = key
 		self.canExplore = canExplore
 	}
+	
+	func loadView (_ view: UIView) {}
 }

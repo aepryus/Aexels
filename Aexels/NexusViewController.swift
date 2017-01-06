@@ -17,19 +17,35 @@ class NexusViewController: UIViewController {
 	let cutoutPath = LimboPath()
 	let exploreButton = LimboView()
 
+	var nexusButtons: [NexusButton] = []
 	var explorers: [Explorer]!
+	var explorer: Explorer?
 
+	var busy = false
 	private func display (explorer: Explorer) {
 		messageView.load(key: explorer.key)
 		messageView.limboPath = explorer.canExplore ? cutoutPath : normalPath
-		UIView.animate(withDuration: 0.2) {
+		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
 			if explorer.canExplore {self.exploreButton.alpha = 1}
-		}
+			else {self.exploreButton.alpha = 0}
+		}, completion: { (Bool) in
+			self.busy = false
+		})
 	}
 	private func wantsToDisplay (explorer: Explorer) {
+		objc_sync_enter(self)
+		defer {objc_sync_exit(self)}
+		if busy {return}
+		busy = true
+		
+		self.explorer = explorer
+		
 		if self.messageView.alpha != 0 {
-			if explorer.key == messageView.key {return}
+			if explorer.key == messageView.key {
+				busy = false
+				return
+			}
 			UIView.animate(withDuration: 0.2, animations: { 
 				self.messageView.alpha = 0
 				self.exploreButton.alpha = 0
@@ -54,6 +70,25 @@ class NexusViewController: UIViewController {
 		path.closeSubpath()
 		
 		return path
+	}
+	
+	func dimNexus () {
+		UIView.animate(withDuration: 0.2) {
+			self.nexusLabel.alpha = 0.1
+			self.messageView.alpha = 0
+			self.exploreButton.alpha = 0
+			for button in self.nexusButtons {
+				button.alpha = 0
+			}
+		}
+	}
+	func brightenNexus () {
+		UIView.animate(withDuration: 0.2) {
+			self.nexusLabel.alpha = 1
+			for button in self.nexusButtons {
+				button.alpha = 1
+			}
+		}
 	}
 	
 // UIViewController ================================================================================
@@ -129,7 +164,8 @@ class NexusViewController: UIViewController {
 		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
 		button.addClosure({
-			print("Explorer!")
+			self.dimNexus()
+			self.explorer?.loadView(self.view)
 		}, controlEvents: .touchUpInside)
 		
 		exploreButton.addSubview(button)
@@ -152,6 +188,7 @@ class NexusViewController: UIViewController {
 				self.wantsToDisplay(explorer: explorer)
 			}, controlEvents: .touchUpInside)
 			view.addSubview(button)
+			nexusButtons.append(button)
 			i += 1
 		}
     }

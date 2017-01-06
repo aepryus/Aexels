@@ -81,4 +81,15 @@ class MessageView: LimboView {
 	func tap () {
 		if onTap != nil {onTap!()}
 	}
+	
+// UIView ==========================================================================================
+	override var frame: CGRect {
+		set {
+			super.frame = newValue
+			self.scrollView.frame = self.bounds.insetBy(dx: 10, dy: 10)
+		}
+		get {
+			return super.frame
+		}
+	}
 }
