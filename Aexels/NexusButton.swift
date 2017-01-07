@@ -15,7 +15,7 @@ class NexusButton: UIButton {
 		self.text = text
 		super.init(frame: CGRect.zero)
 	}
-	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
+	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 // UIView ==========================================================================================
     override func draw (_ rect: CGRect) {

@@ -16,7 +16,7 @@ class NexusLabel: UIView {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 	}
-	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
+	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {

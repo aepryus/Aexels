@@ -38,7 +38,7 @@ class MessageView: LimboView {
 		addGestureRecognizer(gesture)
 		
 	}
-	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
+	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 	func load (key: String) {
 		self.key = key

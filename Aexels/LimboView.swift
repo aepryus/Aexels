@@ -54,7 +54,7 @@ class LimboView: UIView {
 		layer.shadowRadius = 3
 		layer.shadowOpacity = 0.6
 	}
-	required init? (coder aDecoder: NSCoder) {super.init(coder: aDecoder)}
+	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 	func applyMask () {}
 	
