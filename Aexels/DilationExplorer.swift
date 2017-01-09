@@ -1,5 +1,5 @@
 //
-//  TimeDilationExplorer.swift
+//  DilationExplorer.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 1/5/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimeDilationExplorer: Explorer {
+class DilationExplorer: Explorer {
 	init () {
 		super.init(name: "Time Dilation", key: "TimeDilation", canExplore: false)
 	}

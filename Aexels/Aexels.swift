@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import OoviumLib
 import UIKit
 
 class Aexels {
@@ -13,6 +14,8 @@ class Aexels {
 	static var nexus: NexusViewController!
 	
 	static func start () {
+		Math.start()
+
 		nexus = NexusViewController()
 		
 		window = UIWindow()

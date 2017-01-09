@@ -1,5 +1,5 @@
 //
-//  CellularAutomataExplorer.swift
+//  CellularExplorer.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 1/5/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellularAutomataExplorer: Explorer {
+class CellularExplorer: Explorer {
 	var aether = LimboView()
 	var controls = LimboView()
 	var dilator = LimboView()
@@ -17,10 +17,12 @@ class CellularAutomataExplorer: Explorer {
 	var medium = LimboView()
 	var small = LimboView()
 	
+	var engine = CellularEngine(aetherName: "Game of Life", w: 432, h: 432)!
+	
 	init () {
 		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
-
+	
 	// Explorer ========================================================================================
 	override func loadView (_ view: UIView) {
 		
@@ -42,13 +44,32 @@ class CellularAutomataExplorer: Explorer {
 		limboViews.append(message)
 		
 		large.frame = CGRect(x: 1024-462-5, y: 20, width: x+30, height: x+30)
+		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: 432, height: 432))
+		engine.addView(largeCell)
+		large.content = largeCell
 		limboViews.append(large)
 		
 		medium.frame = CGRect(x: 1024-462-5, y: 20+462, width: 286, height: 286)
+		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 256, height: 256))
+		mediumCell.zoom = 2
+		engine.addView(mediumCell)
+		medium.content = mediumCell
 		limboViews.append(medium)
 		
 		small.frame = CGRect(x: 1024-462-5+286, y: 20+462, width: 176, height: 176)
+		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 144, height: 144))
+		smallCell.zoom = 4
+		engine.addView(smallCell)
+		small.content = smallCell
 		limboViews.append(small)
+		
+		// Controls ========================
+		let play = PlayButton(onPlay: {
+			self.engine.start()
+		}) {
+			self.engine.stop()
+		}
+		controls.content = play
 		
 		super.loadView(view)
 	}

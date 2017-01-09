@@ -1,5 +1,5 @@
 //
-//  LengthContractionExplorer.swift
+//  ContractionExplorer.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 1/5/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LengthContractionExplorer: Explorer {
+class ContractionExplorer: Explorer {
 	init () {
 		super.init(name: "Length Contraction", key: "LengthContraction", canExplore: false)
 	}

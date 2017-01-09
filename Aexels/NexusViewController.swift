@@ -172,11 +172,11 @@ class NexusViewController: UIViewController {
 		
 		explorers = [
 			IntroExplorer(),
-			CellularAutomataExplorer(),
+			CellularExplorer(),
 			KinematicsExplorer(),
 			GravityExplorer(),
-			TimeDilationExplorer(),
-			LengthContractionExplorer(),
+			DilationExplorer(),
+			ContractionExplorer(),
 			DarknessExplorer()
 		]
 		

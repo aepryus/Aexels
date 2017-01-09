@@ -7,32 +7,33 @@
 //
 
 import UIKit
+import OoviumLib
 
 class CellularView: UIView {
-	var cells = [Int]()
+	var engine: CellularEngine!
 	
 	var origin: CGPoint = CGPoint.zero
 	var zoom: Int = 1
+	var focus: CGRect = CGRect.zero
 	var guideOn: Bool = false
 	
-	let w: Int
-	let h: Int
-	let size: Int
+	private let w: Int
+	private let h: Int
+	private let size: Int
 	
-	var r: [Int8]!
-	var g: [Int8]!
-	var b: [Int8]!
-	var a: [Int8]!
-	
-	var data: [Int8]
-	
+	private var data: [UInt8]
 	private var image: UIImage?
+
+	private var r: [UInt8]!
+	private var g: [UInt8]!
+	private var b: [UInt8]!
+	private var a: [UInt8]!
 	
 	override init (frame: CGRect) {
 		w = Int(frame.size.width)
 		h = Int(frame.size.height)
-		size = w*h
-		data = [Int8](repeating: 0, count: size)
+		size = w*h*4
+		data = [UInt8](repeating: 0, count: size)
 
 		super.init(frame: frame)
 		backgroundColor = UIColor.clear
@@ -43,11 +44,23 @@ class CellularView: UIView {
 	func clear () {
 		image = nil
 	}
-	
+	func configure (auto: Auto) {
+		r = [UInt8](repeating: 0, count: auto.states.count)
+		g = [UInt8](repeating: 0, count: auto.states.count)
+		b = [UInt8](repeating: 0, count: auto.states.count)
+		a = [UInt8](repeating: 0, count: auto.states.count)
+		
+		for i in 0..<auto.states.count {
+			let color = OOColor(rawValue: auto.states[i].color)!.toUIColor()
+			let comps: [CGFloat] = color.cgColor.components!
+			r[i] = UInt8(comps[0] * 255)
+			g[i] = UInt8(comps[1] * 255)
+			b[i] = UInt8(comps[2] * 255)
+			a[i] = UInt8(comps[3] * 255)
+		}
+	}
 	func tic () {
-		
-		let cw: Int = 0
-		
+		let cw: Int = 432
 		let x: Int = Int(origin.x)
 		let y: Int = Int(origin.y)
 		let m: Int = w*4
@@ -57,7 +70,7 @@ class CellularView: UIView {
 			for i in x..<x+w/zoom {
 				for q in 0..<zoom {
 					for p in 0..<zoom {
-						let state = cells[i+j*cw]
+						let state = engine.cells[i+j*cw]
 						data[n+0+4*p+m*q] = r[state]
 						data[n+1+4*p+m*q] = g[state]
 						data[n+2+4*p+m*q] = b[state]
@@ -71,7 +84,7 @@ class CellularView: UIView {
 		
 		let provider: CGDataProvider = CGDataProvider(dataInfo: nil, data: &data, size: size, releaseData: {(info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) -> () in })!
 		let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-		let cgImage: CGImage = CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: w*4, space: space, bitmapInfo: [.byteOrder32Big,.alphaInfoMask], provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
+		let cgImage: CGImage = CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: w*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
 		
 		image = UIImage(cgImage: cgImage)
 		

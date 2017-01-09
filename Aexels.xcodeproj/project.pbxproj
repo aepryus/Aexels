@@ -37,19 +37,39 @@
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
 		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
+		D82BE4D41E22AB1100E8E710 /* IntObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D31E22AB1100E8E710 /* IntObj.swift */; };
+		D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
+		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
+		D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
+		D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */; };
 		D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C011E1E2ECF00E02E16 /* Explorer.swift */; };
 		D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */; };
-		D8B13C0D1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */; };
+		D8B13C0D1E1E3E3A00E02E16 /* CellularExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0C1E1E3E3A00E02E16 /* CellularExplorer.swift */; };
 		D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */; };
 		D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */; };
-		D8B13C151E1E3ED200E02E16 /* TimeDilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */; };
-		D8B13C171E1E3EF800E02E16 /* LengthContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */; };
+		D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C141E1E3ED200E02E16 /* DilationExplorer.swift */; };
+		D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C161E1E3EF800E02E16 /* ContractionExplorer.swift */; };
 		D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */; };
 		D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D8354B511E218EE500288C72 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D80425941E1B4A97009C9ED3 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,14 +104,19 @@
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D82BE4D31E22AB1100E8E710 /* IntObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntObj.swift; sourceTree = "<group>"; };
+		D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
+		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularEngine.swift; sourceTree = "<group>"; };
 		D8B13C011E1E2ECF00E02E16 /* Explorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
 		D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroExplorer.swift; sourceTree = "<group>"; };
-		D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularAutomataExplorer.swift; sourceTree = "<group>"; };
+		D8B13C0C1E1E3E3A00E02E16 /* CellularExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularExplorer.swift; sourceTree = "<group>"; };
 		D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsExplorer.swift; sourceTree = "<group>"; };
 		D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
-		D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDilationExplorer.swift; sourceTree = "<group>"; };
-		D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LengthContractionExplorer.swift; sourceTree = "<group>"; };
+		D8B13C141E1E3ED200E02E16 /* DilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilationExplorer.swift; sourceTree = "<group>"; };
+		D8B13C161E1E3EF800E02E16 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
@@ -104,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
+				D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +292,7 @@
 				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
 				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
+				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -283,7 +310,10 @@
 			isa = PBXGroup;
 			children = (
 				D8354B4A1E20D32700288C72 /* CellularView.swift */,
-				D8B13C0C1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift */,
+				D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */,
+				D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */,
+				D8B13C0C1E1E3E3A00E02E16 /* CellularExplorer.swift */,
+				D82BE4D31E22AB1100E8E710 /* IntObj.swift */,
 			);
 			name = "Cellular Automata";
 			sourceTree = "<group>";
@@ -307,7 +337,7 @@
 		D8B13C061E1E2F0000E02E16 /* Time Dilation */ = {
 			isa = PBXGroup;
 			children = (
-				D8B13C141E1E3ED200E02E16 /* TimeDilationExplorer.swift */,
+				D8B13C141E1E3ED200E02E16 /* DilationExplorer.swift */,
 			);
 			name = "Time Dilation";
 			sourceTree = "<group>";
@@ -315,7 +345,7 @@
 		D8B13C071E1E2F0700E02E16 /* Length Contraction */ = {
 			isa = PBXGroup;
 			children = (
-				D8B13C161E1E3EF800E02E16 /* LengthContractionExplorer.swift */,
+				D8B13C161E1E3EF800E02E16 /* ContractionExplorer.swift */,
 			);
 			name = "Length Contraction";
 			sourceTree = "<group>";
@@ -341,6 +371,7 @@
 			children = (
 				D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */,
 				D8FD7E6F1E1E20CD00325115 /* Fabric.framework */,
+				D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -356,6 +387,7 @@
 				D80425911E1B4A97009C9ED3 /* Frameworks */,
 				D80425921E1B4A97009C9ED3 /* Resources */,
 				D8FD7E6D1E1E1FDA00325115 /* ShellScript */,
+				D8354B511E218EE500288C72 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -454,16 +486,20 @@
 			files = (
 				D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */,
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
-				D8B13C171E1E3EF800E02E16 /* LengthContractionExplorer.swift in Sources */,
+				D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */,
 				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
 				D80425F71E1B8BCF009C9ED3 /* UIButton+AE.swift in Sources */,
+				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
 				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
-				D8B13C0D1E1E3E3A00E02E16 /* CellularAutomataExplorer.swift in Sources */,
+				D8B13C0D1E1E3E3A00E02E16 /* CellularExplorer.swift in Sources */,
+				D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */,
 				D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */,
+				D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */,
 				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
+				D82BE4D41E22AB1100E8E710 /* IntObj.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
-				D8B13C151E1E3ED200E02E16 /* TimeDilationExplorer.swift in Sources */,
+				D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */,
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
 				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
