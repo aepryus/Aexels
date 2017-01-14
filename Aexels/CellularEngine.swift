@@ -9,7 +9,7 @@
 import Foundation
 import OoviumLib
 
-class CellularEngine {
+final class CellularEngine {
 //	let aether: Aether
 	let auto: Auto
 	
@@ -124,7 +124,7 @@ class CellularEngine {
 				
 				web.execute(memory)
 				
-				next[i + j*w] = memory[index]!.asInt
+				next[i + j*w] = Int((memory[index]! as! RealObj).x)
 			}
 		}
 		

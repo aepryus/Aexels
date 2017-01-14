@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CellularTimer {
+final class CellularTimer {
 	var block: (()->())!
 	var interval: Double!
 	

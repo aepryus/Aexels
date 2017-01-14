@@ -9,7 +9,7 @@
 import UIKit
 import OoviumLib
 
-class CellularView: UIView {
+final class CellularView: UIView {
 	var engine: CellularEngine!
 	
 	var origin: CGPoint = CGPoint.zero

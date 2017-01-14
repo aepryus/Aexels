@@ -11,4 +11,17 @@ import OoviumLib
 
 class IntObj: Obj {
 	var n: Int = 0
+
+// Obj =============================================================================================
+//	public var def: Def {
+//		get {
+//			return RealDef.def
+//		}
+//	}
+//	func mimic (_ obj: Obj) {}
+//	public var description: String {
+//		get {
+//			return ""
+//		}
+//	}
 }

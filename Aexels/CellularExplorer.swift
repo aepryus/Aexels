@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellularExplorer: Explorer {
+final class CellularExplorer: Explorer {
 	var aether = LimboView()
 	var controls = LimboView()
 	var dilator = LimboView()
