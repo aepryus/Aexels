@@ -15,11 +15,11 @@ final class CellularEngine {
 	
 	let w: Int
 	let h: Int
-	var cells: [Int]
-	var next: [Int]
-	var xfer: [Int]!
+	var cells: [Obj]
+	var next: [Obj]
+	var xfer: [Obj]!
 	
-	let memory: Memory
+	var memory: Memory
 	let index: Int
 	let web: Web
 	
@@ -53,13 +53,13 @@ final class CellularEngine {
 		memory = aether.memory
 		index = memory.index(for: "ATN00001")
 		auto = aether.autos.first!
-		auto.foreshadow(memory)
-		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
-
+		auto.foreshadow(&memory)
+		web = Web(head: auto.headTower, tail: auto.resultTower, memory: &memory)
+		
 		self.w = w
 		self.h = h
-		cells = [Int](repeating: 0, count: w*h)
-		next = [Int](repeating: 0, count: w*h)
+		cells = [Obj](repeating: RealObj.zero, count: w*h)
+		next = [Obj](repeating: RealObj.zero, count: w*h)
 		
 		selfI = memory.index(for: "Auto1.Self")
 		aI = memory.index(for: "Auto1.A")
@@ -72,9 +72,9 @@ final class CellularEngine {
 		hI = memory.index(for: "Auto1.H")
 		
 		timer = CellularTimer()
-		timer.configure(block: { 
+		timer.configure(interval: 1.0/60.0, { 
 			self.tic()
-		}, interval: 1.0/60.0)
+		})
 		
 		populate(auto: auto)
 	}
@@ -88,18 +88,17 @@ final class CellularEngine {
 	private func populate (auto: Auto) {
 		for i in 0..<w {
 			for j in 0..<h {
-				cells[i+j*w] = Int(arc4random_uniform(UInt32(auto.states.count)))
+				cells[i+j*w] = RealObj(Double(arc4random_uniform(UInt32(auto.states.count))))
 			}
 		}
 	}
 
 	private func loadMemory (_ i: Int, x: Int, y: Int) {
 		if x < 0 || x >= w || y < 0 || y >= h {
-			memory.mimic(i, n: 0)
+			memory.mimic(i, obj: RealObj.zero)
 		} else {
-			memory.mimic(i, n: cells[x + y*w])
+			memory.mimic(i, obj: cells[x + y*w])
 		}
-//		(memory.slots[i].value as! IntObj).n = cells[x + y*w]
 	}
 	
 	var last: Date = Date()
@@ -122,22 +121,17 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
-				web.execute(memory)
+				web.execute(&memory)
 				
-				next[i + j*w] = Int((memory[index]! as! RealObj).x)
+				next[i + j*w] = memory[index]!
+//				next[i + j*w] = Int((memory[index]! as! RealObj).x)
 			}
 		}
 		
 		
-//		printCells(cells)
-//		if xfer != nil {printCells(xfer)}
-//		printCells(next)
 		xfer = cells
 		cells = next
 		next = xfer
-//		printCells(cells)
-//		printCells(xfer)
-//		printCells(next)
 		
 		for view in views {
 			view.tic()

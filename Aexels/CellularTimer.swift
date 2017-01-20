@@ -15,9 +15,9 @@ final class CellularTimer {
 	let queue: DispatchQueue = DispatchQueue(label: "cellular")
 	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()
 	
-	func configure (block: @escaping ()->(), interval: Double) {
-		self.block = block
+	func configure (interval: Double, _ block: @escaping ()->()) {
 		self.interval = interval
+		self.block = block
 		
 		timer.scheduleRepeating(deadline: .now(), interval: interval)
 		timer.setEventHandler {
