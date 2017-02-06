@@ -15,13 +15,16 @@ final class CellularEngine {
 	
 	let w: Int
 	let h: Int
-	var cells: [Obj]
-	var next: [Obj]
-	var xfer: [Obj]!
+	var cells: UnsafeMutablePointer<Obj>
+	var next: UnsafeMutablePointer<Obj>
+	var xfer: UnsafeMutablePointer<Obj>!
 	
-	var memory: Memory
+	var memory: UnsafeMutablePointer<Memory>!
+	var memoryS: MemoryS
 	let index: Int
 	let web: Web
+	let recipeS: RecipeS
+	let recipe: UnsafeMutablePointer<Recipe>
 	
 	let selfI: Int
 	let aI: Int
@@ -50,26 +53,29 @@ final class CellularEngine {
 		let aether: Aether = basket.inject(attributes: attributes) as! Aether
 		aether.wire()
 		aether.calculate()
-		memory = aether.memory
-		index = memory.index(for: "ATN00001")
+		memory = aether.memory!
+		memoryS = aether.memoryS!
+		index = memoryS.index(for: "ATN00001")
 		auto = aether.autos.first!
-		auto.foreshadow(&memory)
-		web = Web(head: auto.headTower, tail: auto.resultTower, memory: &memory)
+		auto.foreshadow(memory, memoryS: memoryS)
+		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory, memoryS: memoryS)
+		recipeS = web.recipeS
+		recipe = recipeS.compile()
 		
 		self.w = w
 		self.h = h
-		cells = [Obj](repeating: RealObj.zero, count: w*h)
-		next = [Obj](repeating: RealObj.zero, count: w*h)
+		cells = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
+		next = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
 		
-		selfI = memory.index(for: "Auto1.Self")
-		aI = memory.index(for: "Auto1.A")
-		bI = memory.index(for: "Auto1.B")
-		cI = memory.index(for: "Auto1.C")
-		dI = memory.index(for: "Auto1.D")
-		eI = memory.index(for: "Auto1.E")
-		fI = memory.index(for: "Auto1.F")
-		gI = memory.index(for: "Auto1.G")
-		hI = memory.index(for: "Auto1.H")
+		selfI = memoryS.index(for: "Auto1.Self")
+		aI = memoryS.index(for: "Auto1.A")
+		bI = memoryS.index(for: "Auto1.B")
+		cI = memoryS.index(for: "Auto1.C")
+		dI = memoryS.index(for: "Auto1.D")
+		eI = memoryS.index(for: "Auto1.E")
+		fI = memoryS.index(for: "Auto1.F")
+		gI = memoryS.index(for: "Auto1.G")
+		hI = memoryS.index(for: "Auto1.H")
 		
 		timer = CellularTimer()
 		timer.configure(interval: 1.0/60.0, { 
@@ -88,17 +94,18 @@ final class CellularEngine {
 	private func populate (auto: Auto) {
 		for i in 0..<w {
 			for j in 0..<h {
-				cells[i+j*w] = RealObj(Double(arc4random_uniform(UInt32(auto.states.count))))
+				cells[i+j*w].a.x = Double(arc4random_uniform(UInt32(auto.states.count)))
 			}
 		}
 	}
 
 	private func loadMemory (_ i: Int, x: Int, y: Int) {
 		if x < 0 || x >= w || y < 0 || y >= h {
-			memory.mimic(i, obj: RealObj.zero)
+			memory.pointee.slots[i].obj.a.x = 0
 		} else {
-			memory.mimic(i, obj: cells[x + y*w])
+			memory.pointee.slots[i].obj.a.x = cells[x + y*w].a.x
 		}
+		memory.pointee.slots[i].loaded = 1
 	}
 	
 	var last: Date = Date()
@@ -109,7 +116,7 @@ final class CellularEngine {
 		
 		for j in 0..<h {
 			for i in 0..<w {
-				memory.clear()
+				AEMemoryClear(memory);
 				
 				loadMemory(selfI, x: i, y: j)
 				loadMemory(aI, x: i-1, y: j-1)
@@ -121,10 +128,14 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
-				web.execute(&memory)
+//				print("\(web)")
+//				AEMemoryPrint(memory)
+				AERecipeExecute(recipe, memory)
+//				recipeS.execute(memory)
+//				AEMemoryPrint(memory)
+//				web.execute(&memoryS)
 				
-				next[i + j*w] = memory[index]!
-//				next[i + j*w] = Int((memory[index]! as! RealObj).x)
+				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}
 		

@@ -70,7 +70,7 @@ final class CellularView: UIView {
 			for i in x..<x+w/zoom {
 				for q in 0..<zoom {
 					for p in 0..<zoom {
-						let state = Int((engine.cells[i+j*cw] as! RealObj).x)
+						let state = Int(engine.cells[i+j*cw].a.x)
 						data[n+0+4*p+m*q] = r[state]
 						data[n+1+4*p+m*q] = g[state]
 						data[n+2+4*p+m*q] = b[state]

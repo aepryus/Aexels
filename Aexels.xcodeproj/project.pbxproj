@@ -37,7 +37,6 @@
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
 		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
-		D82BE4D41E22AB1100E8E710 /* IntObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D31E22AB1100E8E710 /* IntObj.swift */; };
 		D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
@@ -104,7 +103,6 @@
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D82BE4D31E22AB1100E8E710 /* IntObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntObj.swift; sourceTree = "<group>"; };
 		D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */,
 				D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */,
 				D8B13C0C1E1E3E3A00E02E16 /* CellularExplorer.swift */,
-				D82BE4D31E22AB1100E8E710 /* IntObj.swift */,
 			);
 			name = "Cellular Automata";
 			sourceTree = "<group>";
@@ -497,7 +494,6 @@
 				D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */,
 				D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */,
 				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
-				D82BE4D41E22AB1100E8E710 /* IntObj.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
 				D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */,
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,

@@ -9,6 +9,7 @@
 import Crashlytics
 import Fabric
 import UIKit
+import OoviumLib
 
 @UIApplicationMain
 class AexelsDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,8 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		
 		Fabric.with([Crashlytics.self])
 		Aexels.start()
+		
+		playAegean()
 		
 		return true
 	}
