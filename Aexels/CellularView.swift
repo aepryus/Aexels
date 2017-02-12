@@ -9,13 +9,48 @@
 import UIKit
 import OoviumLib
 
+struct Cell {
+	var x: Int
+	var y: Int
+	
+	init (_ x: Int, _ y: Int) {
+		self.x = x
+		self.y = y
+	}
+	static let zero = Cell(0,0)
+}
+
 final class CellularView: UIView {
 	var engine: CellularEngine!
+
+	var _origin: Cell = Cell.zero
+	var origin: Cell {
+		set {
+			_origin = newValue
+			focus = nil
+			if let zoomView = zoomView {
+				engine.removeView(zoomView)
+			}
+		}
+		get {return _origin}
+	}
 	
-	var origin: CGPoint = CGPoint.zero
 	var zoom: Int = 1
-	var focus: CGRect = CGRect.zero
-	var guideOn: Bool = false
+	var focus: CGRect?
+	
+	var _zoomView: CellularView?
+	var zoomView: CellularView? {
+		set {
+			_zoomView = newValue
+			let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+			addGestureRecognizer(gesture)
+		}
+		get {return _zoomView}
+	}
+	
+	var cellSize: Int {
+		return Int(frame.size.width) / zoom
+	}
 	
 	private let w: Int
 	private let h: Int
@@ -66,7 +101,7 @@ final class CellularView: UIView {
 		let m: Int = w*4
 		var n: Int = 0
 		
-		for j in y..<h/zoom {
+		for j in y..<y+h/zoom {
 			for i in x..<x+w/zoom {
 				for q in 0..<zoom {
 					for p in 0..<zoom {
@@ -88,8 +123,45 @@ final class CellularView: UIView {
 		
 		image = UIImage(cgImage: cgImage)
 		
+		if focus != nil && engine.guideOn {
+			UIGraphicsBeginImageContext(image!.size)
+			image?.draw(at: CGPoint.zero)
+			let c = UIGraphicsGetCurrentContext()
+			c?.setStrokeColor(UIColor.white.cgColor)
+			c?.stroke(focus!, width: 1)
+			self.image = UIGraphicsGetImageFromCurrentImageContext();
+			UIGraphicsEndImageContext();
+		}
+		
 		DispatchQueue.main.async {
 			self.setNeedsDisplay()
+		}
+	}
+	
+	func pointFrom (cell: Cell) -> CGPoint {
+		return CGPoint(x: (cell.x-origin.x)*zoom, y: (cell.y-origin.y)*zoom)
+	}
+	func cellFrom (point: CGPoint) -> Cell {
+		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
+	}
+	
+// Events ==========================================================================================
+	func onTap (gesture: UITapGestureRecognizer) {
+		let point = gesture.location(in: self)
+		let cell = cellFrom(point: point)
+
+		let cs = cellSize
+		let zcs = zoomView!.cellSize
+		
+		let x: Int = min(max(cell.x-zcs/2, self.origin.x) , self.origin.x+cs-zcs)
+		let y: Int = min(max(cell.y-zcs/2, self.origin.y) , self.origin.y+cs-zcs)
+		let origin = Cell(x, y)
+		let oP = pointFrom(cell: origin)
+		
+		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
+		zoomView!.origin = origin
+		if zoomView!.engine == nil {
+			engine.addView(zoomView!)
 		}
 	}
 	

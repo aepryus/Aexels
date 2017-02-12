@@ -13,6 +13,8 @@ final class CellularEngine {
 //	let aether: Aether
 	let auto: Auto
 	
+	var guideOn: Bool = true
+	
 	let w: Int
 	let h: Int
 	var cells: UnsafeMutablePointer<Obj>
@@ -86,9 +88,21 @@ final class CellularEngine {
 	}
 	
 	func addView (_ view: CellularView) {
-		views.append(view)
-		view.engine = self
-		view.configure(auto: auto)
+		DispatchQueue.main.async {
+			self.views.append(view)
+			view.engine = self
+			view.configure(auto: self.auto)
+		}
+	}
+	func removeView (_ view: CellularView) {
+		DispatchQueue.main.async {
+			view.engine = nil
+			if let index = self.views.index(of: view) {
+				self.views.remove(at: index)
+			}
+			view.clear()
+			view.setNeedsDisplay()
+		}
 	}
 	
 	private func populate (auto: Auto) {
@@ -112,8 +126,6 @@ final class CellularEngine {
 	var s: Int = 1
 	
 	func tic () {
-		let start = Date()
-		
 		for j in 0..<h {
 			for i in 0..<w {
 				AEMemoryClear(memory);
@@ -128,29 +140,21 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
-//				print("\(web)")
-//				AEMemoryPrint(memory)
 				AERecipeExecute(recipe, memory)
-//				recipeS.execute(memory)
-//				AEMemoryPrint(memory)
-//				web.execute(&memoryS)
-				
 				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}
-		
 		
 		xfer = cells
 		cells = next
 		next = xfer
 		
-		for view in views {
-			view.tic()
+		DispatchQueue.main.async {
+			for view in self.views {
+				view.tic()
+			}
 		}
 		
-		let x = Date().timeIntervalSince(start)
-		print("\(x)")
-
 		if s % 60 == 0 {
 			let now = Date()
 			let x = now.timeIntervalSince(last)
@@ -172,5 +176,11 @@ final class CellularEngine {
 	}
 	func stop () {
 		timer.stop()
+	}
+	func reset () {
+		populate(auto: auto)
+		for view in views {
+			view.tic()
+		}
 	}
 }

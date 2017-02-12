@@ -33,9 +33,24 @@ class PlayButton: UIButton {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
+	func play () {
+		if playing {return}
+		playing = true
+		self.setNeedsDisplay()
+		onPlay()
+	}
+	func stop () {
+		if !playing {return}
+		playing = false
+		self.setNeedsDisplay()
+		onStop()
+	}
+	
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
 		let ir: CGFloat = 11
+		
+		let path = CGMutablePath()
 		
 		if !playing {
 			let p: CGFloat = 3
@@ -53,21 +68,12 @@ class PlayButton: UIButton {
 			let iy7: CGFloat = iy6+ph*pl/(pr+pl)
 			let iy8: CGFloat = iy9-ph*pl/(pr+pl)
 			
-			let sym = CGMutablePath()
-			sym.move(to: CGPoint(x: ix10, y: iy2))
-			sym.addArc(tangent1End: CGPoint(x: ix10, y: iy6), tangent2End: CGPoint(x: x4, y: iy7), radius: 2, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix11, y: iy2), tangent2End: CGPoint(x: x4, y: iy8), radius: 2, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: 2, transform: .identity)
-			sym.closeSubpath()
+			path.move(to: CGPoint(x: ix10, y: iy2))
+			path.addArc(tangent1End: CGPoint(x: ix10, y: iy6), tangent2End: CGPoint(x: x4, y: iy7), radius: 2, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix11, y: iy2), tangent2End: CGPoint(x: x4, y: iy8), radius: 2, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: 2, transform: .identity)
+			path.closeSubpath()
 			
-			let c = UIGraphicsGetCurrentContext()!
-			c.addPath(sym)
-			c.setFillColor(color.cgColor)
-			c.drawPath(using: .fill)
-			c.setLineWidth(2)
-			c.setFillColor(color.cgColor)
-			c.drawPath(using: .stroke)
-
 		} else {
 			let p: CGFloat = 3
 			let ph: CGFloat = 9
@@ -86,29 +92,28 @@ class PlayButton: UIButton {
 			let iy9: CGFloat = iy2+ph
 			let r: CGFloat = 2
 			
-			let sym = CGMutablePath()
-			sym.move(to: CGPoint(x: ix10, y: iy2))
-			sym.addArc(tangent1End: CGPoint(x: ix10, y: iy6), tangent2End: CGPoint(x: ix11, y: iy6), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix12, y: iy6), tangent2End: CGPoint(x: ix12, y: iy2), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix12, y: iy9), tangent2End: CGPoint(x: ix11, y: iy9), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: r, transform: .identity)
-			sym.closeSubpath()
+			path.move(to: CGPoint(x: ix10, y: iy2))
+			path.addArc(tangent1End: CGPoint(x: ix10, y: iy6), tangent2End: CGPoint(x: ix11, y: iy6), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix12, y: iy6), tangent2End: CGPoint(x: ix12, y: iy2), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix12, y: iy9), tangent2End: CGPoint(x: ix11, y: iy9), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: r, transform: .identity)
+			path.closeSubpath()
 
-			sym.move(to: CGPoint(x: ix13, y: iy2))
-			sym.addArc(tangent1End: CGPoint(x: ix13, y: iy6), tangent2End: CGPoint(x: ix14, y: iy6), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix15, y: iy6), tangent2End: CGPoint(x: ix15, y: iy2), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix15, y: iy9), tangent2End: CGPoint(x: ix14, y: iy9), radius: r, transform: .identity)
-			sym.addArc(tangent1End: CGPoint(x: ix13, y: iy9), tangent2End: CGPoint(x: ix13, y: iy2), radius: r, transform: .identity)
-			sym.closeSubpath()
-
-			let c = UIGraphicsGetCurrentContext()!
-			c.addPath(sym)
-			c.setFillColor(color.cgColor)
-			c.drawPath(using: .fill)
-			c.setLineWidth(2)
-			c.setFillColor(color.cgColor)
-			c.drawPath(using: .stroke)
-
+			path.move(to: CGPoint(x: ix13, y: iy2))
+			path.addArc(tangent1End: CGPoint(x: ix13, y: iy6), tangent2End: CGPoint(x: ix14, y: iy6), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix15, y: iy6), tangent2End: CGPoint(x: ix15, y: iy2), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix15, y: iy9), tangent2End: CGPoint(x: ix14, y: iy9), radius: r, transform: .identity)
+			path.addArc(tangent1End: CGPoint(x: ix13, y: iy9), tangent2End: CGPoint(x: ix13, y: iy2), radius: r, transform: .identity)
+			path.closeSubpath()
 		}
+		
+		let stroke = UIColor.white
+		let fill = UIColor(white: 0.5, alpha: 1)
+		let c = UIGraphicsGetCurrentContext()!
+		c.addPath(path)
+		c.setFillColor(fill.cgColor)
+		c.setStrokeColor(stroke.cgColor)
+		c.setLineWidth(2)
+		c.drawPath(using: .fillStroke)
 	}
 }

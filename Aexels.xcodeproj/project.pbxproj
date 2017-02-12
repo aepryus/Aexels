@@ -40,6 +40,8 @@
 		D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
+		D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C131E4EF126001472FC /* ResetButton.swift */; };
+		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
 		D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */; };
@@ -106,6 +108,8 @@
 		D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		D84B0C131E4EF126001472FC /* ResetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
+		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
 		D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularEngine.swift; sourceTree = "<group>"; };
 		D8B13C011E1E2ECF00E02E16 /* Explorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
@@ -290,7 +294,6 @@
 				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
 				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
-				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -307,6 +310,9 @@
 		D8B13C031E1E2EDA00E02E16 /* Cellular Automata */ = {
 			isa = PBXGroup;
 			children = (
+				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
+				D84B0C131E4EF126001472FC /* ResetButton.swift */,
+				D84B0C151E4EF132001472FC /* GuideButton.swift */,
 				D8354B4A1E20D32700288C72 /* CellularView.swift */,
 				D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */,
 				D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */,
@@ -500,6 +506,8 @@
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
 				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
 				D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */,
+				D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */,
+				D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */,
 				D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */,
 				D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */,
 				D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */,

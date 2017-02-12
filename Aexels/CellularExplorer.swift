@@ -63,13 +63,37 @@ final class CellularExplorer: Explorer {
 		small.content = smallCell
 		limboViews.append(small)
 		
+		largeCell.zoomView = mediumCell
+		mediumCell.zoomView = smallCell
+		
 		// Controls ========================
+		let bw: CGFloat = 50
+		let q: CGFloat = 26
+		
 		let play = PlayButton(onPlay: {
 			self.engine.start()
 		}) {
 			self.engine.stop()
 		}
-		controls.content = play
+		play.frame = CGRect(x: 100-q-bw, y: 21, width: bw, height: 30)
+		controls.addSubview(play)
+		
+		let reset = ResetButton()
+		reset.frame = CGRect(x: 100-bw/2, y: 21, width: bw, height: 30)
+		controls.addSubview(reset)
+		reset.addClosure({
+			play.stop()
+			self.engine.reset()
+		}, controlEvents: .touchUpInside)
+
+		let guide = GuideButton()
+		guide.frame = CGRect(x: 100+q, y: 21, width: bw, height: 30)
+		controls.addSubview(guide)
+		guide.addClosure({
+			self.engine.guideOn = !self.engine.guideOn
+			guide.stateOn = self.engine.guideOn
+			guide.setNeedsDisplay()
+		}, controlEvents: .touchUpInside)
 		
 		super.loadView(view)
 	}

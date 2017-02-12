@@ -29,6 +29,6 @@ final class CellularTimer {
 		timer.resume()
 	}
 	func stop () {
-		timer.cancel()
+		timer.suspend()
 	}
 }
