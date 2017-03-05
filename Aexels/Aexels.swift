@@ -23,7 +23,7 @@ class Aexels {
 		return UIScreen.main.bounds.size == CGSize(width: 375, height: 667)
 	}
 	static func iPad () -> Bool {
-		return UIScreen.main.bounds.size == CGSize(width: 414, height: 736)
+		return UIScreen.main.bounds.size == CGSize(width: 1024, height: 768)
 	}
 	
 	static func backImage () -> UIImage {

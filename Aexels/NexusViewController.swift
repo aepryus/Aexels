@@ -41,7 +41,7 @@ class NexusViewController: UIViewController {
 		
 		self.explorer = explorer
 		
-		if !isDimmed() {dimNexus()}
+		if !Aexels.iPad() && !isDimmed() {dimNexus()}
 		
 		if self.messageView.alpha != 0 {
 			if explorer.key == messageView.key {
