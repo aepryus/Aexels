@@ -22,7 +22,7 @@
 		D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425C31E1B4FBD009C9ED3 /* Icon167.png */; };
 		D80425D01E1B4FBD009C9ED3 /* Icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425C41E1B4FBD009C9ED3 /* Icon180.png */; };
 		D80425D71E1B50D7009C9ED3 /* Aexels.txt in Resources */ = {isa = PBXBuildFile; fileRef = D80425D11E1B50D7009C9ED3 /* Aexels.txt */; };
-		D80425D81E1B50D7009C9ED3 /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425D21E1B50D7009C9ED3 /* Back.png */; };
+		D80425D81E1B50D7009C9ED3 /* BackiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425D21E1B50D7009C9ED3 /* BackiPad.png */; };
 		D80425D91E1B50D7009C9ED3 /* Demons.oo in Resources */ = {isa = PBXBuildFile; fileRef = D80425D31E1B50D7009C9ED3 /* Demons.oo */; };
 		D80425DA1E1B50D7009C9ED3 /* Game of Life.oo in Resources */ = {isa = PBXBuildFile; fileRef = D80425D41E1B50D7009C9ED3 /* Game of Life.oo */; };
 		D80425DB1E1B50D7009C9ED3 /* TrajanPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D80425D51E1B50D7009C9ED3 /* TrajanPro-Bold.ttf */; };
@@ -37,11 +37,21 @@
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
 		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
-		D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */; };
+		D828617A1E6B8666006E76F1 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D82861791E6B8666006E76F1 /* Back6.png */; };
+		D828617D1E6B87A4006E76F1 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617B1E6B87A4006E76F1 /* Back4.png */; };
+		D828617E1E6B87A4006E76F1 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617C1E6B87A4006E76F1 /* Back5.png */; };
+		D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* AXTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
 		D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C131E4EF126001472FC /* ResetButton.swift */; };
 		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
+		D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C171E5051DC001472FC /* DilatorView.swift */; };
+		D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C191E505549001472FC /* AEAttributes.swift */; };
+		D862F1B51E5939A900612627 /* UIView+AE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B41E5939A900612627 /* UIView+AE.swift */; };
+		D862F1B71E59842000612627 /* NewtonianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B61E59842000612627 /* NewtonianView.swift */; };
+		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
+		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
+		D862F1BD1E59856000612627 /* V2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BC1E59856000612627 /* V2.swift */; };
 		D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */; };
@@ -90,7 +100,7 @@
 		D80425C31E1B4FBD009C9ED3 /* Icon167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon167.png; path = Resources/Icon167.png; sourceTree = "<group>"; };
 		D80425C41E1B4FBD009C9ED3 /* Icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon180.png; path = Resources/Icon180.png; sourceTree = "<group>"; };
 		D80425D11E1B50D7009C9ED3 /* Aexels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Aexels.txt; path = Resources/Aexels.txt; sourceTree = "<group>"; };
-		D80425D21E1B50D7009C9ED3 /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back.png; path = Resources/Back.png; sourceTree = "<group>"; };
+		D80425D21E1B50D7009C9ED3 /* BackiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackiPad.png; path = Resources/BackiPad.png; sourceTree = "<group>"; };
 		D80425D31E1B50D7009C9ED3 /* Demons.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Demons.oo; path = Resources/Demons.oo; sourceTree = "<group>"; };
 		D80425D41E1B50D7009C9ED3 /* Game of Life.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Game of Life.oo"; path = "Resources/Game of Life.oo"; sourceTree = "<group>"; };
 		D80425D51E1B50D7009C9ED3 /* TrajanPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TrajanPro-Bold.ttf"; path = "Resources/TrajanPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -105,11 +115,21 @@
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularTimer.swift; sourceTree = "<group>"; };
+		D82861791E6B8666006E76F1 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back6.png; path = Resources/Back6.png; sourceTree = "<group>"; };
+		D828617B1E6B87A4006E76F1 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back4.png; path = Resources/Back4.png; sourceTree = "<group>"; };
+		D828617C1E6B87A4006E76F1 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back5.png; path = Resources/Back5.png; sourceTree = "<group>"; };
+		D82BE4D51E22C53B00E8E710 /* AXTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		D84B0C131E4EF126001472FC /* ResetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
+		D84B0C171E5051DC001472FC /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
+		D84B0C191E505549001472FC /* AEAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAttributes.swift; sourceTree = "<group>"; };
+		D862F1B41E5939A900612627 /* UIView+AE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AE.swift"; sourceTree = "<group>"; };
+		D862F1B61E59842000612627 /* NewtonianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonianView.swift; sourceTree = "<group>"; };
+		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
+		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
+		D862F1BC1E59856000612627 /* V2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = V2.swift; sourceTree = "<group>"; };
 		D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularEngine.swift; sourceTree = "<group>"; };
 		D8B13C011E1E2ECF00E02E16 /* Explorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
@@ -222,7 +242,10 @@
 		D80425DF1E1B50E9009C9ED3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D80425D21E1B50D7009C9ED3 /* Back.png */,
+				D828617B1E6B87A4006E76F1 /* Back4.png */,
+				D828617C1E6B87A4006E76F1 /* Back5.png */,
+				D82861791E6B8666006E76F1 /* Back6.png */,
+				D80425D21E1B50D7009C9ED3 /* BackiPad.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -231,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				D80425F31E1B8A8B009C9ED3 /* Extensions */,
+				D862F1BC1E59856000612627 /* V2.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -250,13 +274,7 @@
 			children = (
 				D80425EC1E1B6DCC009C9ED3 /* Utility */,
 				D80425E71E1B5C43009C9ED3 /* Nexus */,
-				D8B13C091E1E3DF000E02E16 /* Intro */,
-				D8B13C031E1E2EDA00E02E16 /* Cellular Automata */,
-				D8B13C041E1E2EEB00E02E16 /* Kinematics */,
-				D8B13C051E1E2EF100E02E16 /* Gravity */,
-				D8B13C061E1E2F0000E02E16 /* Time Dilation */,
-				D8B13C071E1E2F0700E02E16 /* Length Contraction */,
-				D8B13C081E1E2F1200E02E16 /* Darkness */,
+				D82861781E6B51EE006E76F1 /* Explorers */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -264,6 +282,8 @@
 		D80425E31E1B5465009C9ED3 /* Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				D82BE4D51E22C53B00E8E710 /* AXTimer.swift */,
+				D862F1BA1E5984C600612627 /* Simulation.swift */,
 			);
 			name = Simulation;
 			sourceTree = "<group>";
@@ -290,10 +310,12 @@
 		D80425EC1E1B6DCC009C9ED3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D84B0C191E505549001472FC /* AEAttributes.swift */,
 				D80425ED1E1B6DEF009C9ED3 /* Format.swift */,
 				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
 				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
+				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -303,18 +325,32 @@
 			children = (
 				D80425F61E1B8BCF009C9ED3 /* UIButton+AE.swift */,
 				D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */,
+				D862F1B41E5939A900612627 /* UIView+AE.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D82861781E6B51EE006E76F1 /* Explorers */ = {
+			isa = PBXGroup;
+			children = (
+				D8B13C091E1E3DF000E02E16 /* Intro */,
+				D8B13C031E1E2EDA00E02E16 /* Cellular Automata */,
+				D8B13C041E1E2EEB00E02E16 /* Kinematics */,
+				D8B13C051E1E2EF100E02E16 /* Gravity */,
+				D8B13C061E1E2F0000E02E16 /* Time Dilation */,
+				D8B13C071E1E2F0700E02E16 /* Length Contraction */,
+				D8B13C081E1E2F1200E02E16 /* Darkness */,
+			);
+			name = Explorers;
 			sourceTree = "<group>";
 		};
 		D8B13C031E1E2EDA00E02E16 /* Cellular Automata */ = {
 			isa = PBXGroup;
 			children = (
-				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 				D84B0C131E4EF126001472FC /* ResetButton.swift */,
 				D84B0C151E4EF132001472FC /* GuideButton.swift */,
+				D84B0C171E5051DC001472FC /* DilatorView.swift */,
 				D8354B4A1E20D32700288C72 /* CellularView.swift */,
-				D82BE4D51E22C53B00E8E710 /* CellularTimer.swift */,
 				D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */,
 				D8B13C0C1E1E3E3A00E02E16 /* CellularExplorer.swift */,
 			);
@@ -324,6 +360,8 @@
 		D8B13C041E1E2EEB00E02E16 /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
+				D862F1B61E59842000612627 /* NewtonianView.swift */,
+				D862F1B81E59844000612627 /* KinematicsView.swift */,
 				D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */,
 			);
 			name = Kinematics;
@@ -448,16 +486,19 @@
 				D80425C51E1B4FBD009C9ED3 /* Icon20.png in Resources */,
 				D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */,
 				D80425CD1E1B4FBD009C9ED3 /* Icon120.png in Resources */,
+				D828617D1E6B87A4006E76F1 /* Back4.png in Resources */,
 				D80425CC1E1B4FBD009C9ED3 /* Icon87.png in Resources */,
 				D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */,
+				D828617E1E6B87A4006E76F1 /* Back5.png in Resources */,
 				D80425C71E1B4FBD009C9ED3 /* Icon40.png in Resources */,
 				D80425CA1E1B4FBD009C9ED3 /* Icon76.png in Resources */,
 				D80425C81E1B4FBD009C9ED3 /* Icon58.png in Resources */,
 				D80425C91E1B4FBD009C9ED3 /* Icon60.png in Resources */,
+				D828617A1E6B8666006E76F1 /* Back6.png in Resources */,
 				D80425CB1E1B4FBD009C9ED3 /* Icon80.png in Resources */,
 				D80425D91E1B50D7009C9ED3 /* Demons.oo in Resources */,
 				D804259F1E1B4A97009C9ED3 /* Assets.xcassets in Resources */,
-				D80425D81E1B50D7009C9ED3 /* Back.png in Resources */,
+				D80425D81E1B50D7009C9ED3 /* BackiPad.png in Resources */,
 				D80425DB1E1B50D7009C9ED3 /* TrajanPro-Bold.ttf in Resources */,
 				D80425D71E1B50D7009C9ED3 /* Aexels.txt in Resources */,
 				D80425D01E1B4FBD009C9ED3 /* Icon180.png in Resources */,
@@ -487,18 +528,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D862F1B91E59844000612627 /* KinematicsView.swift in Sources */,
 				D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */,
+				D862F1BB1E5984C600612627 /* Simulation.swift in Sources */,
+				D862F1B71E59842000612627 /* NewtonianView.swift in Sources */,
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
 				D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */,
 				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
 				D80425F71E1B8BCF009C9ED3 /* UIButton+AE.swift in Sources */,
 				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
+				D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */,
+				D862F1BD1E59856000612627 /* V2.swift in Sources */,
 				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
 				D8B13C0D1E1E3E3A00E02E16 /* CellularExplorer.swift in Sources */,
 				D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */,
 				D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */,
-				D82BE4D61E22C53B00E8E710 /* CellularTimer.swift in Sources */,
+				D862F1B51E5939A900612627 /* UIView+AE.swift in Sources */,
+				D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */,
 				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
 				D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */,
@@ -509,6 +556,7 @@
 				D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */,
 				D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */,
 				D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */,
+				D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */,
 				D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */,
 				D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */,
 				D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */,
@@ -637,7 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -656,7 +704,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

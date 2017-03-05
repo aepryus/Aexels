@@ -9,10 +9,10 @@
 import UIKit
 
 class NexusViewController: UIViewController {
-	let imageView = UIImageView(image: UIImage(named: "Back.png"))
+	let imageView = UIImageView(image: Aexels.backImage())
 	var nexusLabel: NexusLabel!
 	
-	let messageView = MessageView()
+	var messageView: MessageView!
 	let normalPath = LimboPath()
 	let cutoutPath = LimboPath()
 	let exploreButton = LimboView()
@@ -40,6 +40,8 @@ class NexusViewController: UIViewController {
 		busy = true
 		
 		self.explorer = explorer
+		
+		if !isDimmed() {dimNexus()}
 		
 		if self.messageView.alpha != 0 {
 			if explorer.key == messageView.key {
@@ -72,6 +74,9 @@ class NexusViewController: UIViewController {
 		return path
 	}
 	
+	func isDimmed () -> Bool {
+		return self.nexusLabel.alpha == 0.1
+	}
 	func dimNexus () {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 0.1
@@ -91,17 +96,28 @@ class NexusViewController: UIViewController {
 		}
 	}
 	
-// UIViewController ================================================================================
-	override func viewDidLoad() {
-        super.viewDidLoad()
-
-		imageView.frame = view.frame
-		view.addSubview(imageView)
-
-		nexusLabel = NexusLabel(text: "Aexels")
+	func iPadLayout () {
+		// Title
+		nexusLabel = NexusLabel(text: "Aexels", size:72)
 		nexusLabel.frame = CGRect(x: 52, y: 52, width: 300, height: 96)
 		view.addSubview(nexusLabel)
-		
+
+		// Menu
+		var i: CGFloat = 0
+		for explorer in explorers {
+			let button = NexusButton(text: explorer.name)
+			button.frame = CGRect(x: 50, y: 170+i*70, width: 300, height: 32)
+			button.addClosure({
+				self.wantsToDisplay(explorer: explorer)
+			}, controlEvents: .touchUpInside)
+			view.addSubview(button)
+			nexusButtons.append(button)
+			i += 1
+		}
+
+		// Message
+		let w: CGFloat = 1024-340-52
+		messageView = MessageView(frame: CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20))
 		messageView.alpha = 0
 		messageView.onTap = { ()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -165,10 +181,50 @@ class NexusViewController: UIViewController {
 		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
 		button.addClosure({
 			self.dimNexus()
-			self.explorer?.loadView(self.view)
+			self.explorer!.openExplorer(view: self.view)
 		}, controlEvents: .touchUpInside)
 		
 		exploreButton.addSubview(button)
+		
+	}
+	func iPhoneLayout () {
+		// Title
+		nexusLabel = NexusLabel(text: "Aexels", size:60)
+		nexusLabel.frame = CGRect(x: 30, y: 52, width: 240, height: 64)
+		view.addSubview(nexusLabel)
+
+		// Menu
+		var i: CGFloat = 0
+		for explorer in explorers {
+			let button = NexusButton(text: explorer.name)
+			button.frame = CGRect(x: 36, y: 170+i*60, width: 300, height: 24)
+			button.addClosure({
+				self.wantsToDisplay(explorer: explorer)
+			}, controlEvents: .touchUpInside)
+			view.addSubview(button)
+			nexusButtons.append(button)
+			i += 1
+		}
+
+		// Message
+		messageView = MessageView(frame: CGRect(x: 5, y: 5+20, width: 375-10, height: 667-10-20))
+		messageView.alpha = 0
+		messageView.onTap = { ()->() in
+			UIView.animate(withDuration: 0.2, animations: { 
+				self.messageView.alpha = 0
+				self.exploreButton.alpha = 0
+			})
+			self.brightenNexus()
+		}
+		view.addSubview(messageView)
+	}
+	
+// UIViewController ================================================================================
+	override func viewDidLoad() {
+        super.viewDidLoad()
+
+		imageView.frame = view.frame
+		view.addSubview(imageView)
 		
 		explorers = [
 			IntroExplorer(),
@@ -179,17 +235,16 @@ class NexusViewController: UIViewController {
 			ContractionExplorer(),
 			DarknessExplorer()
 		]
-		
-		var i: CGFloat = 0
-		for explorer in explorers {
-			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50, y: 170+i*70, width: 300, height: 32)
-			button.addClosure({
-				self.wantsToDisplay(explorer: explorer)
-			}, controlEvents: .touchUpInside)
-			view.addSubview(button)
-			nexusButtons.append(button)
-			i += 1
+
+		if Aexels.iPad() {
+			iPadLayout()
+		} else {
+			iPhoneLayout()
 		}
-    }
+
+		let rect = messageView.bounds
+		normalPath.strokePath = CGPath(roundedRect: rect.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
+		normalPath.shadowPath = CGPath(roundedRect: rect.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
+		normalPath.maskPath = normalPath.strokePath
+	}
 }

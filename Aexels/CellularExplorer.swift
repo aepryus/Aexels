@@ -9,59 +9,70 @@
 import UIKit
 
 final class CellularExplorer: Explorer {
-	var aether = LimboView()
-	var controls = LimboView()
-	var dilator = LimboView()
-	var message = MessageView()
-	var large = LimboView()
-	var medium = LimboView()
-	var small = LimboView()
 	
 	var engine = CellularEngine(aetherName: "Game of Life", w: 432, h: 432)!
 	
 	init () {
-		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
+		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: Aexels.iPad())
 	}
 	
-	// Explorer ========================================================================================
-	override func loadView (_ view: UIView) {
+// Events ==========================================================================================
+	override func onClose () {
+		self.engine.stop()
+	}
+	
+// Explorer ========================================================================================
+	override func createLimbos () -> [LimboView] {
+		
+		var limbos = [LimboView]()
 		
 		let x: CGFloat = 432
 		let y: CGFloat = 400
 		let ch: CGFloat = 72
 
+		let aether = LimboView()
 		aether.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
-		limboViews.append(aether)
+		limbos.append(aether)
 		
+		let controls = LimboView()
 		controls.frame = CGRect(x: 5, y: 20+y, width: 200, height: ch)
-		limboViews.append(controls)
+		limbos.append(controls)
 		
+		let dilator = LimboView()
 		dilator.frame = CGRect(x: 205, y: 20+y, width: 1024-(x+30)-200-10, height: ch)
-		limboViews.append(dilator)
+		let dilatorView = DilatorView()
+		dilatorView.onChange = { (current: Double) in
+			self.engine.interval = 1/current
+		}
+		dilator.content = dilatorView
+		limbos.append(dilator)
 		
-		message.frame = CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch)
+		let message = MessageView(frame: CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch))
 		message.load(key: "GameOfLife")
-		limboViews.append(message)
+		limbos.append(message)
 		
+		let large = LimboView()
 		large.frame = CGRect(x: 1024-462-5, y: 20, width: x+30, height: x+30)
 		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: 432, height: 432))
 		engine.addView(largeCell)
 		large.content = largeCell
-		limboViews.append(large)
+		limbos.append(large)
 		
+		let medium = LimboView()
 		medium.frame = CGRect(x: 1024-462-5, y: 20+462, width: 286, height: 286)
 		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 256, height: 256))
 		mediumCell.zoom = 2
 		engine.addView(mediumCell)
 		medium.content = mediumCell
-		limboViews.append(medium)
+		limbos.append(medium)
 		
+		let small = LimboView()
 		small.frame = CGRect(x: 1024-462-5+286, y: 20+462, width: 176, height: 176)
 		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 144, height: 144))
 		smallCell.zoom = 4
 		engine.addView(smallCell)
 		small.content = smallCell
-		limboViews.append(small)
+		limbos.append(small)
 		
 		largeCell.zoomView = mediumCell
 		mediumCell.zoomView = smallCell
@@ -95,6 +106,6 @@ final class CellularExplorer: Explorer {
 			guide.setNeedsDisplay()
 		}, controlEvents: .touchUpInside)
 		
-		super.loadView(view)
+		return limbos
 	}
 }

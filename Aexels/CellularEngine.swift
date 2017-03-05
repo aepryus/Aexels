@@ -17,6 +17,13 @@ final class CellularEngine {
 	
 	let w: Int
 	let h: Int
+	var interval: Double {
+		set {
+			timer.interval = newValue
+		}
+		get {return timer.interval}
+	}
+	
 	var cells: UnsafeMutablePointer<Obj>
 	var next: UnsafeMutablePointer<Obj>
 	var xfer: UnsafeMutablePointer<Obj>!
@@ -39,7 +46,7 @@ final class CellularEngine {
 	let hI: Int
 	
 	private var views = [CellularView]()
-	private var timer: CellularTimer
+	private var timer: AXTimer
 	
 	init? (aetherName: String, w: Int, h: Int) {
 		var json: String
@@ -79,8 +86,8 @@ final class CellularEngine {
 		gI = memoryS.index(for: "Auto1.G")
 		hI = memoryS.index(for: "Auto1.H")
 		
-		timer = CellularTimer()
-		timer.configure(interval: 1.0/60.0, { 
+		timer = AXTimer()
+		timer.configure(interval: interval, {
 			self.tic()
 		})
 		
@@ -178,6 +185,7 @@ final class CellularEngine {
 		timer.stop()
 	}
 	func reset () {
+		stop()
 		populate(auto: auto)
 		for view in views {
 			view.tic()

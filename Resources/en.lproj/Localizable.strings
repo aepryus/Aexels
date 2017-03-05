@@ -60,7 +60,7 @@ As such, let our exploration begin…
 
 A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
 
-The system progresses, using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell’s neighbors.
+The system progresses using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell’s neighbors.
 
 For example, perhaps the most famous cellular automaton is Conway’s Game of Life.  In Conway’s game of life the world consists of a 2 dimensional square grid of cells.  Each cell can be either on or off.  The neighbors of a cell consist of the 8 cells directly surrounding it.  If exactly 2 neighbors are on, then the state of the cell will not change.  If exactly 3 neighbors are on then the state of the cell will be turned/remain on.  In all other cases the state of the cell will be turned/remain off.
 
@@ -82,7 +82,7 @@ Another somewhat speculative difference is that although the new states of our s
 
 In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  In Universe X this delay is called a ‘tic’.
 
-Each aexel in Universe X can only directly effect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels in Universe X is one aexel per tic.
+Each aexel in Universe X can only directly affect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels in Universe X is one aexel per tic.
 
 In Universe X, one aexel per tic is referred to as ‘the speed of light’.
 
@@ -130,7 +130,7 @@ But, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
 In Universe X there exists many different types of stable state loops.  These loops can be divided into three categories:
 
-- Loops that don’t effect aexels
+- Loops that don’t affect aexels
 - Loops that destroy aexels
 - Loops that create aexels
 
@@ -162,9 +162,9 @@ In Universe X, however, no such time dilation occurs.  There is however an analo
 
 Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
 
-In Universe X the interaction of matter (loops that destroy aexels) is mediated by ‘loops that don’t effect aexels’.  For now let’s refer to ‘loops that don’t effect aexels’ as photons.  These photons always travel at one aexel per tic, which is to say they always travel at ‘the speed of light’.
+In Universe X the interaction of matter (loops that destroy aexels) is mediated by ‘loops that don’t affect aexels’.  For now let’s refer to ‘loops that don’t affect aexels’ as photons.  These photons always travel at one aexel per tic, which is to say they always travel at ‘the speed of light’.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon effects that loops’s rate of translation across the aexel field.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon affects that loops’s rate of translation across the aexel field.
 
 For example, consider a loop that is stationary on a field of stationary aexels (ignore gravity for a moment).  A photon traveling from elsewhere is moving towards the loop.  When the photon hits the loop (and is absorbed) the loop begins to translate across the stationary field of aexels.
 
@@ -180,13 +180,13 @@ In Universe X, dilation is not an observational phenomena.  It is a real phenome
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
-Furthermore, in Universe X this dilation is not of time, but rather is in the animation rate of phenomena mediated by photons.  This dilation does not effect motion not mediated by photons.  Because of this one could imagine an experiment that could be run in both universes that would yield very different results.
+Furthermore, in Universe X this dilation is not of time, but rather is in the animation rate of phenomena mediated by photons.  This dilation does not affect motion not mediated by photons.  Because of this one could imagine an experiment that could be run in both universes that would yield very different results.
 
 Any clock or biological system is entirely mediated by photons and therefore will be subject to dilation.  However, one could imagine a gravity clock; for example a tank of water suspended above a sensor.  A drop of water is released and is calibrated to hit the sensor in exactly one second.  When the drop hits the center a photon pulse is sent up to the tank triggering the release of the next drop.  The time of the photon pulse is substantially smaller than the water travel time.
 
 In our universe, if we were to take one normal clock and one gravity clock, calibrate and synchronize both and place them on a levitating bullet train traveling due east at 300 mph for 100 miles and then observe both clocks, we would note that both clocks remain synchronized because in our universe time itself dilates.
 
-However, such an experiment in Universe X would yield very different results.  In Universe X dilation only effects the normal clock, not the gravity clock and consequently the two clocks will now be out of sync.
+However, such an experiment in Universe X would yield very different results.  In Universe X dilation only affects the normal clock, not the gravity clock and consequently the two clocks will now be out of sync.
 
 
 
@@ -230,17 +230,17 @@ Luckily, once again, Universe X isn’t nearly so magical.
 
 Previously, we have mentioned 3 types of stable state loops:
 
-- Loops that don’t effect aexels
+- Loops that don’t affect aexels
 - Loops that destroy aexels
 - Loops that create aexels
 
-Tentatively, we have named ‘loops that don’t effect aexels’ as photons and ‘loops that destroy aexels’ as matter.  Again, it is perhaps somewhat speculative, but let’s name ‘loops that create aexels’ as antimatter.
+Tentatively, we have named ‘loops that don’t affect aexels’ as photons and ‘loops that destroy aexels’ as matter.  Again, it is perhaps somewhat speculative, but let’s name ‘loops that create aexels’ as antimatter.
 
 In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  It has been observed that at times a particle and its antiparticle will be spontaneously created.  Similarly, if a particle and its antiparticle meet they will each be entirely destroyed.
 
-If we assume that this is also the case in Universe X, than perhaps all matter and antimatter was created through pair creation.  And perhaps the total matter in Universe X is equal to the total antimatter in the Universe X.  Alternatively, perhaps it is possible that Universe X was initially seeded with more matter or more antimatter.
+If we assume that this is also the case in Universe X, then perhaps all matter and antimatter was created through pair creation.  And perhaps the total matter in Universe X is equal to the total antimatter in the Universe X.  Alternatively, perhaps it is possible that Universe X was initially seeded with more matter or more antimatter.
 
-If the amount of matter and antimatter is equal in Universe X and always remains so because of pair creation and pair destruction.  And if antimatter creates aexels and creates them at the same rate at which matter destroys them, than perhaps the total amount of aexels in Universe X is a constant.
+If the amount of matter and antimatter is equal in Universe X and always remains so because of pair creation and pair destruction.  And if antimatter creates aexels and creates them at the same rate at which matter destroys them, then perhaps the total amount of aexels in Universe X is a constant.
 
 Matter in Universe X is continually destroying aexels drawing other matter towards it causing it to clump up.  Perhaps the antimatter of Universe X is continually creating aexels causing the antimatter to spread apart.
 
@@ -291,7 +291,7 @@ Another type of cellular automaton, is the cyclic cellular automaton devised by 
 
 A cyclic cellular automaton again makes use of a plane tiled with square cells.  Each cell can be in one of n possible states (in this case 12) and has 4 neighbors; the cells directly above, below, left and right of it.
 
-If any of the neighboring cells is in a state that is one more than the current cell (or 0 for a cell of state n-1), than the cell will be eaten and take on the state of the neighboring cell.  A cell can eat and be eaten in the same time step.  This allows loops to form that contain each of the n states.  These loops will create spirals called demons.
+If any of the neighboring cells is in a state that is one more than the current cell (or 0 for a cell of state n-1), then the cell will be eaten and take on the state of the neighboring cell.  A cell can eat and be eaten in the same time step.  This allows loops to form that contain each of the n states.  These loops will create spirals called demons.
 
 
 ";

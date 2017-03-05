@@ -17,13 +17,10 @@ class MessageView: LimboView {
 	var key: String = ""
 	var text: String = ""
 	
-	override init () {
+	init (frame: CGRect) {
 		super.init()
 
-		let x: CGFloat = 340
-		let m: CGFloat = 52
-		let w: CGFloat = 1024-x-m
-		frame = CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20)
+		self.frame = frame
 
 		imageView.isUserInteractionEnabled = false
 		
