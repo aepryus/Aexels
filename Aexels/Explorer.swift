@@ -25,9 +25,15 @@ class Explorer {
 		return []
 	}
 
+	func iPadLayout () {
+	}
 	func openExplorer (view: UIView) {
 		let close = LimboView()
-		close.frame = CGRect(x: 1024-462-5+286, y: 20+462+176, width: 176, height: 110)
+		if Aexels.iPad() {
+			close.frame = CGRect(x: 1024-176-5, y: 768-110, width: 176, height: 110)
+		} else {
+			close.frame = CGRect(x: 375-160-5, y: 667-60-5, width: 160, height: 60)
+		}
 		close.alpha = 0
 		
 		let button = UIButton(type: .custom)
@@ -55,10 +61,8 @@ class Explorer {
 	}
 	private func closeExplorer () {
 		UIView.animate(withDuration: 0.2, animations: {
-			UIView.animate(withDuration: 0.2) {
-				for view in self.limboViews {
-					view.alpha = 0
-				}
+			for view in self.limboViews {
+				view.alpha = 0
 			}
 		}) { (canceled) in
 			self.onClose()

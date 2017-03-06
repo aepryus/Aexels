@@ -95,7 +95,7 @@ final class CellularView: UIView {
 		}
 	}
 	func tic () {
-		let cw: Int = 432
+		let cw: Int = Aexels.iPad() ? 432 : 335
 		let x: Int = Int(origin.x)
 		let y: Int = Int(origin.y)
 		let m: Int = w*4
