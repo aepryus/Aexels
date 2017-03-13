@@ -9,16 +9,16 @@
 import UIKit
 
 class PlayButton: UIButton {
-	private let onPlay: ()->()
-	private let onStop: ()->()
+	var onPlay: ()->()
+	var onStop: ()->()
 	
 	private let color: UIColor
 	
 	private var playing: Bool = false
 	
-	init (onPlay: @escaping ()->(), onStop: @escaping ()->()) {
-		self.onPlay = onPlay
-		self.onStop = onStop
+	init () {
+		self.onPlay = {}
+		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
 		super.init(frame: CGRect.zero)
 		addClosure({

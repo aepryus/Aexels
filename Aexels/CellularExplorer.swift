@@ -82,9 +82,11 @@ final class CellularExplorer: Explorer {
 		let bw: CGFloat = 50
 		let q: CGFloat = 26
 		
-		let play = PlayButton(onPlay: {
+		let play = PlayButton()
+		play.onPlay = {
 			self.engine.start()
-		}) {
+		}
+		play.onStop = {
 			self.engine.stop()
 		}
 		play.frame = CGRect(x: 100-q-bw, y: 21, width: bw, height: 30)
@@ -111,44 +113,47 @@ final class CellularExplorer: Explorer {
 	}
 	func iPhoneLimbos () -> [LimboView] {
 		var limbos = [LimboView]()
-		
-		let w = 375-10
-		
-		// CellularViews
-		let large = LimboView()
-		large.frame = CGRect(x: 5, y: 20, width: w, height: w)
-		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: w-30, height: w-30))
-		engine.addView(largeCell)
-		large.content = largeCell
-		limbos.append(large)
 
+		let lw: CGFloat = 375-10
+		let mw: CGFloat = 221
+		let sw: CGFloat = lw-mw
+		
 		// Controls ========================
+		let bw: CGFloat = 40
 		let controls = LimboView()
-		controls.frame = CGRect(x: 5, y: 20+w, width: 150, height: 60)
+		controls.frame = CGRect(x: 5, y: 20, width: bw*3+30, height: 56)
 		limbos.append(controls)
 		
-		let bw: CGFloat = 50
-		let q: CGFloat = 26
-		
-		let play = PlayButton(onPlay: {
+		let play = PlayButton()
+		play.onPlay = {
 			self.engine.start()
-		}) {
+		}
+		play.onStop = {
 			self.engine.stop()
 		}
-		play.frame = CGRect(x: 100-q-bw, y: 15, width: bw, height: 30)
+		play.frame = CGRect(x: 15, y: 15, width: bw, height: 30)
 		controls.addSubview(play)
 		
 		let reset = ResetButton()
-		reset.frame = CGRect(x: 100-bw/2, y: 15, width: bw, height: 30)
+		reset.frame = CGRect(x: 15+bw, y: 15, width: bw, height: 30)
 		controls.addSubview(reset)
 		reset.addClosure({
 			play.stop()
 			self.engine.reset()
 		}, controlEvents: .touchUpInside)
 		
+		let guide = GuideButton()
+		guide.frame = CGRect(x: 15+2*bw, y: 15, width: bw, height: 30)
+		controls.addSubview(guide)
+		guide.addClosure({
+			self.engine.guideOn = !self.engine.guideOn
+			guide.stateOn = self.engine.guideOn
+			guide.setNeedsDisplay()
+		}, controlEvents: .touchUpInside)
+		
 		// Dilator =========================
 		let dilator = LimboView()
-		dilator.frame = CGRect(x: 155, y: 20+w, width: 375-150-10, height: 60)
+		dilator.frame = CGRect(x: controls.right, y: 20, width: lw-controls.width, height: controls.height)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
 			self.engine.interval = 1/current
@@ -156,10 +161,39 @@ final class CellularExplorer: Explorer {
 		dilator.content = dilatorView
 		limbos.append(dilator)
 		
+		// Large
+		let large = LimboView()
+		large.frame = CGRect(x: 5, y: controls.bottom, width: lw, height: lw)
+		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: lw-30, height: lw-30))
+		engine.addView(largeCell)
+		large.content = largeCell
+		limbos.append(large)
+		
+		// Medium
+		let medium = LimboView()
+		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
+		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 190, height: 190))
+		mediumCell.zoom = 2
+		engine.addView(mediumCell)
+		medium.content = mediumCell
+		limbos.append(medium)
+		
+		// Small
+		let small = LimboView()
+		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
+		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 112, height: 112))
+		smallCell.zoom = 4
+		engine.addView(smallCell)
+		small.content = smallCell
+		limbos.append(small)
+		
+		largeCell.zoomView = mediumCell
+		mediumCell.zoomView = smallCell
+
 		// Message
-		let message = MessageView(frame: CGRect(x: 5, y: 20+w+60, width: 375-10, height: 667-20-365-60-60-5))
-		message.load(key: "GameOfLife")
-		limbos.append(message)
+//		let message = MessageView(frame: CGRect(x: 5, y: 20+w+60, width: 375-10, height: 667-20-365-60-60-5))
+//		message.load(key: "GameOfLife")
+//		limbos.append(message)
 		
 		return limbos
 	}

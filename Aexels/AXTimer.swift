@@ -23,7 +23,7 @@ final class AXTimer {
 	}
 	
 	let queue: DispatchQueue = DispatchQueue(label: "cellular")
-	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()
+	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()			// CADisplayLink
 	
 	func configure (interval: Double, _ block: @escaping ()->()) {
 		timer.setEventHandler {

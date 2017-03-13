@@ -32,7 +32,7 @@ class Explorer {
 		if Aexels.iPad() {
 			close.frame = CGRect(x: 1024-176-5, y: 768-110, width: 176, height: 110)
 		} else {
-			close.frame = CGRect(x: 375-160-5, y: 667-60-5, width: 160, height: 60)
+			close.frame = CGRect(x: 375-139-5, y: 667-60-5, width: 139, height: 60)
 		}
 		close.alpha = 0
 		

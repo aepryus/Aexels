@@ -40,15 +40,16 @@ class NewtownianView: UIView, Simulation {
 		
 		if (x.x<r && v.x<0) || (x.x>w-r && v.x>0) {v.x = -v.x}
 		if (x.y<r && v.y<0) || (x.y>h-r && v.y>0) {v.y = -v.y}
+
+		onTic(v)
 		
-		DispatchQueue.main.sync {
-			setNeedsDisplay()
-			onTic(v)
+		DispatchQueue.main.async {
+			self.setNeedsDisplay()
 		}
-	}
+}
 	
 // UIView ==========================================================================================
-	override func draw(_ rect: CGRect) {
+	override func draw (_ rect: CGRect) {
 		let r: CGFloat = 26
 		
 		let path = CGMutablePath()
