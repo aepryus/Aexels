@@ -6,10 +6,10 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GravityExplorer: Explorer {
-	init () {
-		super.init(name: "Gravity", key: "Gravity", canExplore: false)
+	init (view: UIView) {
+		super.init(view: view, name: "Gravity", key: "Gravity", canExplore: false)
 	}
 }

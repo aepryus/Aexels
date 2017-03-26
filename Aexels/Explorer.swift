@@ -9,13 +9,15 @@
 import UIKit
 
 class Explorer {
+	let view: UIView
 	let name: String
 	let key: String
 	let canExplore: Bool
 
 	private var limboViews = [LimboView]()
 	
-	init (name: String, key: String, canExplore: Bool) {
+	init (view: UIView, name: String, key: String, canExplore: Bool) {
+		self.view = view
 		self.name = name
 		self.key = key
 		self.canExplore = canExplore
@@ -27,6 +29,29 @@ class Explorer {
 
 	func iPadLayout () {
 	}
+	
+	func dimLimbos (_ limbos: [LimboView]) {
+		UIView.animate(withDuration: 0.2, animations: { 
+			for limbo in limbos {
+				limbo.alpha = 0
+			}
+		}) { (canceled) in
+			for limbo in limbos {
+				limbo.removeFromSuperview()
+			}
+		}
+	}
+	func brightenLimbos (_ limbos: [LimboView]) {
+		for limbo in limbos {
+			view.addSubview(limbo)
+		}
+		UIView.animate(withDuration: 0.2) { 
+			for limbo in limbos {
+				limbo.alpha = 1
+			}
+		}
+	}
+	
 	func openExplorer (view: UIView) {
 		let close = LimboView()
 		if Aexels.iPad() {
@@ -39,10 +64,10 @@ class Explorer {
 		let button = UIButton(type: .custom)
 		button.setTitle("Close", for: .normal)
 		button.titleLabel!.font = UIFont.aexelFont(size: 24)
-		button.addClosure({
+		button.add(for: .touchUpInside) { 
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
-		}, controlEvents: .touchUpInside)
+		}
 		close.content = button
 		
 		self.limboViews.append(close)

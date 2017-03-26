@@ -29,7 +29,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 // Events ==========================================================================================
 	func onPan (gesture: UIPanGestureRecognizer) {
 		let p: CGFloat = 3
-		let dw: CGFloat = 30
+		let dw: CGFloat = 0
 
 		let x1: CGFloat = p
 		let x5: CGFloat = width - dw - 2*p
@@ -48,16 +48,17 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
 		let p: CGFloat = 3;
-		let dw: CGFloat = 50
-		let cr: CGFloat = 12
+		let dw: CGFloat = 0
+		let crx: CGFloat = 16
+		let cry: CGFloat = 12
 		
-		let x1: CGFloat = p+cr
-		let x5: CGFloat = width - dw - cr - p
+		let x1: CGFloat = p+crx
+		let x5: CGFloat = width - dw - crx - p
 		let x3: CGFloat = x1 + (x5-x1) * (currentSps - minimumSps) / (maximumSps - minimumSps)
-		let x2: CGFloat = x3 - cr
-		let x4: CGFloat = x3 + cr
+		let x2: CGFloat = x3 - crx
+		let x4: CGFloat = x3 + crx
 		let y2: CGFloat = height / 2
-		let y1: CGFloat = y2 - cr
+		let y1: CGFloat = y2 - cry
 		
 		let path = CGMutablePath()
 		
@@ -69,7 +70,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 			path.move(to: CGPoint(x: x4, y: y2))
 			path.addLine(to: CGPoint(x: x5, y: y2))
 		}
-		path.addEllipse(in: CGRect(x: x2, y: y1, width: 2*cr, height: 2*cr))
+		path.addEllipse(in: CGRect(x: x2, y: y1, width: 2*crx, height: 2*cry))
 		
 		let c = UIGraphicsGetCurrentContext();
 		c?.addPath(path)
@@ -78,15 +79,15 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		c?.setLineWidth(3)
 		c?.strokePath()
 
-		let x6 = rect.size.width - dw + p
-		let x7 = rect.size.width - p
+//		let x6 = rect.size.width - dw + p
+//		let x7 = rect.size.width - p
 
 		let attributes = AEAttributes()
-		attributes.font = UIFont(name: "Trajan Pro", size: 24)!
-		attributes.alignment = .right
-		("\(Int(currentSps))" as NSString).draw(in: CGRect(x: x6+6, y: 7, width: 36, height: 24), withAttributes: attributes.attributes)
-		attributes.font = UIFont(name: "GillSans-Italic", size: 10)!
-		("steps / second" as NSString).draw(in: CGRect(x: x7-90, y: 31, width: 90, height: 30), withAttributes: attributes.attributes)
+		attributes.font = UIFont(name: "Avenir-Heavy", size: 15)!
+		attributes.alignment = .center
+		("\(Int(currentSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: attributes.attributes)
+//		attributes.font = UIFont(name: "GillSans-Italic", size: 10)!
+//		("steps / second" as NSString).draw(in: CGRect(x: x7-90, y: 31, width: 90, height: 30), withAttributes: attributes.attributes)
 	}
 
 // UIGestureRecognizerDelegate =====================================================================
@@ -94,7 +95,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		if touch.phase != .began {return true}
 		
 		let p: CGFloat = 3
-		let dw: CGFloat = 50
+		let dw: CGFloat = 0
 		let cr: CGFloat = 12
 
 		let x1: CGFloat = p+cr

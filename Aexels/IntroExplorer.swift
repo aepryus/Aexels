@@ -6,10 +6,10 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class IntroExplorer: Explorer {
-	init () {
-		super.init(name: "Intro", key: "Intro", canExplore: false)
+	init (view: UIView) {
+		super.init(view: view, name: "Intro", key: "Intro", canExplore: false)
 	}
 }

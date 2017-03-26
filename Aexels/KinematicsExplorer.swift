@@ -19,7 +19,7 @@ class KinematicsExplorer: Explorer {
 	let universePicker: SliderView
 	let playButton: PlayButton
 	
-	init () {
+	init (view: UIView) {
 		
 		newtonianView = NewtownianView({ (momentum: V2) in
 		})
@@ -32,7 +32,7 @@ class KinematicsExplorer: Explorer {
 		}
 		playButton = PlayButton()
 		
-		super.init(name: "Kinematics", key: "Kinematics", canExplore: true)
+		super.init(view: view, name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
 
 	func iPadLimbos () -> [LimboView] {

@@ -15,6 +15,8 @@ class LimboPath {
 }
 
 class LimboView: UIView {
+	var p: CGFloat = 15
+	
 	var _limboPath = LimboPath()
 	var limboPath: LimboPath {
 		set {
@@ -35,7 +37,6 @@ class LimboView: UIView {
 			
 			if _content == nil {return}
 			
-			let p: CGFloat = 15
 			_content?.frame = CGRect(x: p, y: p, width: bounds.size.width-2*p, height: bounds.size.height-2*p)
 			addSubview(_content!)
 		}
@@ -53,6 +54,13 @@ class LimboView: UIView {
 		layer.shadowOffset = CGSize.zero
 		layer.shadowRadius = 3
 		layer.shadowOpacity = 0.6
+	}
+	convenience init (p: CGFloat) {
+		self.init()
+		self.p = p
+	}
+	convenience init (points: [(CGFloat, CGFloat)]) {
+		self.init()
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	

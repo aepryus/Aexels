@@ -21,7 +21,7 @@ class PlayButton: UIButton {
 		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
 		super.init(frame: CGRect.zero)
-		addClosure({
+		add(for: .touchUpInside) { 
 			self.playing = !self.playing
 			self.setNeedsDisplay()
 			if self.playing {
@@ -29,7 +29,7 @@ class PlayButton: UIButton {
 			} else {
 				self.onStop()
 			}
-		}, controlEvents: .touchUpInside)
+		}
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	

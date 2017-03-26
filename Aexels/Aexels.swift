@@ -26,6 +26,12 @@ class Aexels {
 		return UIScreen.main.bounds.size == CGSize(width: 1024, height: 768)
 	}
 	
+	static var size: CGSize {
+		get {
+			return UIScreen.main.bounds.size
+		}
+	}
+	
 	static func backImage () -> UIImage {
 		if iPhone4() {
 			return UIImage(named: "Back4")!

@@ -9,13 +9,16 @@
 import UIKit
 
 final class CellularExplorer: Explorer {
+	var first = [LimboView]()
+	var second = [LimboView]()
+	var isFirst: Bool = true
 
 	var engine: CellularEngine
 	
-	init () {
+	init (view: UIView) {
 		let s = Aexels.iPad() ?  432 : 335
 		engine = CellularEngine(aetherName: "Game of Life", w: s, h: s)!
-		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
+		super.init(view: view, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
 	
 // Events ==========================================================================================
@@ -95,19 +98,19 @@ final class CellularExplorer: Explorer {
 		let reset = ResetButton()
 		reset.frame = CGRect(x: 100-bw/2, y: 21, width: bw, height: 30)
 		controls.addSubview(reset)
-		reset.addClosure({
+		reset.add(for: .touchUpInside) { 
 			play.stop()
 			self.engine.reset()
-		}, controlEvents: .touchUpInside)
+		}
 		
 		let guide = GuideButton()
 		guide.frame = CGRect(x: 100+q, y: 21, width: bw, height: 30)
 		controls.addSubview(guide)
-		guide.addClosure({
+		guide.add(for: .touchUpInside) { 
 			self.engine.guideOn = !self.engine.guideOn
 			guide.stateOn = self.engine.guideOn
 			guide.setNeedsDisplay()
-		}, controlEvents: .touchUpInside)
+		}
 		
 		return limbos
 	}
@@ -137,29 +140,48 @@ final class CellularExplorer: Explorer {
 		let reset = ResetButton()
 		reset.frame = CGRect(x: 15+bw, y: 15, width: bw, height: 30)
 		controls.addSubview(reset)
-		reset.addClosure({
+		reset.add(for: .touchUpInside) { 
 			play.stop()
 			self.engine.reset()
-		}, controlEvents: .touchUpInside)
+		}
 		
 		let guide = GuideButton()
 		guide.frame = CGRect(x: 15+2*bw, y: 15, width: bw, height: 30)
 		controls.addSubview(guide)
-		guide.addClosure({
+		guide.add(for: .touchUpInside) { 
 			self.engine.guideOn = !self.engine.guideOn
 			guide.stateOn = self.engine.guideOn
 			guide.setNeedsDisplay()
-		}, controlEvents: .touchUpInside)
+		}
 		
 		// Dilator =========================
-		let dilator = LimboView()
-		dilator.frame = CGRect(x: controls.right, y: 20, width: lw-controls.width, height: controls.height)
+		let dilator = LimboView(p: 12)
+		dilator.frame = CGRect(x: controls.right, y: 20, width: lw-controls.width-controls.height, height: controls.height)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
 			self.engine.interval = 1/current
 		}
 		dilator.content = dilatorView
 		limbos.append(dilator)
+		
+		// Swapper =========================
+		let swapper = LimboView()
+		swapper.frame = CGRect(x: dilator.right, y: 20, width: controls.height, height: controls.height)
+		let button = UIButton()
+		button.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+		button.add(for: .touchUpInside) {
+			if self.isFirst {
+				self.isFirst = false
+				self.dimLimbos(self.first)
+				self.brightenLimbos(self.second)
+			} else {
+				self.isFirst = true
+				self.dimLimbos(self.second)
+				self.brightenLimbos(self.first)
+			}
+		}
+		swapper.content = button
+		limbos.append(swapper)
 		
 		// Large
 		let large = LimboView()
@@ -190,10 +212,16 @@ final class CellularExplorer: Explorer {
 		largeCell.zoomView = mediumCell
 		mediumCell.zoomView = smallCell
 
+		// Aether
+		let aether = LimboView()
+		aether.frame = CGRect(x: 5, y: controls.bottom, width: lw, height: lw)
+
 		// Message
-//		let message = MessageView(frame: CGRect(x: 5, y: 20+w+60, width: 375-10, height: 667-20-365-60-60-5))
-//		message.load(key: "GameOfLife")
-//		limbos.append(message)
+		let message = MessageView(frame: CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5))
+		message.load(key: "GameOfLife")
+		
+		first = [controls, dilator, large, medium, small]
+		second = [aether, message]
 		
 		return limbos
 	}

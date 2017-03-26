@@ -20,8 +20,8 @@ fileprivate class ClosureSleeve {
 	}
 }
 
-extension UIButton {
-	func addClosure (_ closure: @escaping ()->(), controlEvents: UIControlEvents) {
+extension UIControl {
+	func add (for controlEvents: UIControlEvents, _ closure: @escaping ()->()) {
 		let sleeve = ClosureSleeve(closure)
 		addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
 		objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)

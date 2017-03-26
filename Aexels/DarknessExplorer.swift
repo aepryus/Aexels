@@ -6,10 +6,10 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DarknessExplorer: Explorer {
-	init () {
-		super.init(name: "Darkness", key: "Darkness", canExplore: false)
+	init (view: UIView) {
+		super.init(view: view, name: "Darkness", key: "Darkness", canExplore: false)
 	}
 }

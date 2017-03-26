@@ -107,9 +107,9 @@ class NexusViewController: UIViewController {
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
 			button.frame = CGRect(x: 50, y: 170+i*70, width: 300, height: 40)
-			button.addClosure({
+			button.add(for: .touchUpInside, { 
 				self.wantsToDisplay(explorer: explorer)
-			}, controlEvents: .touchUpInside)
+			})
 			view.addSubview(button)
 			nexusButtons.append(button)
 			i += 1
@@ -177,10 +177,10 @@ class NexusViewController: UIViewController {
 		button.setTitle("Explore", for: .normal)
 		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
-		button.addClosure({
+		button.add(for: .touchUpInside) { 
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
-		}, controlEvents: .touchUpInside)
+		}
 		
 		exploreButton.addSubview(button)
 		
@@ -196,9 +196,9 @@ class NexusViewController: UIViewController {
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
 			button.frame = CGRect(x: 36, y: 170+i*60, width: 300, height: 32)
-			button.addClosure({
+			button.add(for: .touchUpInside, { 
 				self.wantsToDisplay(explorer: explorer)
-			}, controlEvents: .touchUpInside)
+			})
 			view.addSubview(button)
 			nexusButtons.append(button)
 			i += 1
@@ -269,10 +269,10 @@ class NexusViewController: UIViewController {
 		button.setTitle("Explore", for: .normal)
 		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.frame = CGRect(x: 15, y: 17, width: w-30, height: h-30)
-		button.addClosure({
+		button.add(for: .touchUpInside) { 
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
-		}, controlEvents: .touchUpInside)
+		}
 		exploreButton.addSubview(button)
 	}
 	
@@ -284,13 +284,13 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
 		
 		explorers = [
-			IntroExplorer(),
-			CellularExplorer(),
-			KinematicsExplorer(),
-			GravityExplorer(),
-			DilationExplorer(),
-			ContractionExplorer(),
-			DarknessExplorer()
+			IntroExplorer(view: view),
+			CellularExplorer(view: view),
+			KinematicsExplorer(view: view),
+			GravityExplorer(view: view),
+			DilationExplorer(view: view),
+			ContractionExplorer(view: view),
+			DarknessExplorer(view: view)
 		]
 
 		if Aexels.iPad() {

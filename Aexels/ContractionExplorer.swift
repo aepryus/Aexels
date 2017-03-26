@@ -6,10 +6,10 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ContractionExplorer: Explorer {
-	init () {
-		super.init(name: "Length Contraction", key: "LengthContraction", canExplore: false)
+	init (view: UIView) {
+		super.init(view: view, name: "Length Contraction", key: "LengthContraction", canExplore: false)
 	}
 }
