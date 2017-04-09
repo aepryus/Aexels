@@ -14,7 +14,7 @@ class Explorer {
 	let key: String
 	let canExplore: Bool
 
-	private var limboViews = [LimboView]()
+	var limboViews = [LimboView]()
 	
 	init (view: UIView, name: String, key: String, canExplore: Bool) {
 		self.view = view
@@ -23,6 +23,9 @@ class Explorer {
 		self.canExplore = canExplore
 	}
 	
+	func closeSize () -> CGSize {
+		return CGSize(width: 139, height: 60)
+	}
 	func createLimbos () -> [LimboView] {
 		return []
 	}
@@ -45,7 +48,7 @@ class Explorer {
 		for limbo in limbos {
 			view.addSubview(limbo)
 		}
-		UIView.animate(withDuration: 0.2) { 
+		UIView.animate(withDuration: 0.2) {
 			for limbo in limbos {
 				limbo.alpha = 1
 			}
@@ -53,24 +56,6 @@ class Explorer {
 	}
 	
 	func openExplorer (view: UIView) {
-		let close = LimboView()
-		if Aexels.iPad() {
-			close.frame = CGRect(x: 1024-176-5, y: 768-110, width: 176, height: 110)
-		} else {
-			close.frame = CGRect(x: 375-139-5, y: 667-60-5, width: 139, height: 60)
-		}
-		close.alpha = 0
-		
-		let button = UIButton(type: .custom)
-		button.setTitle("Close", for: .normal)
-		button.titleLabel!.font = UIFont.aexelFont(size: 24)
-		button.add(for: .touchUpInside) { 
-			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
-		}
-		close.content = button
-		
-		self.limboViews.append(close)
 		self.limboViews.append(contentsOf: createLimbos())
 
 		for limboView in limboViews {
@@ -84,7 +69,7 @@ class Explorer {
 			}
 		}
 	}
-	private func closeExplorer () {
+	func closeExplorer () {
 		UIView.animate(withDuration: 0.2, animations: {
 			for view in self.limboViews {
 				view.alpha = 0

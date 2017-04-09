@@ -18,7 +18,13 @@ class KinematicsExplorer: Explorer {
 	
 	let universePicker: SliderView
 	let playButton: PlayButton
-	
+	let aexelVector = VectorView()
+	let loopVector = VectorView()
+
+	var first = [LimboView]()
+	var second = [LimboView]()
+	var isFirst: Bool = true
+
 	init (view: UIView) {
 		
 		newtonianView = NewtownianView({ (momentum: V2) in
@@ -77,7 +83,10 @@ class KinematicsExplorer: Explorer {
 		limbos.append(universe)
 		
 		// Controls
-		controls.frame = CGRect(x: 5, y: universe.bottom, width: universe.width, height: 100)
+		controls.frame = CGRect(x: 5, y: universe.bottom, width: universe.width, height: 667-universe.bottom - 5)
+		controls.cutouts[AEPoint.bottomRight] = Cutout(width: 139, height: 60)
+		controls.cutouts[AEPoint.bottomLeft] = Cutout(width: 56, height: 56)
+		controls.renderPaths()
 		limbos.append(controls)
 
 		let ch = rect.size.height - 20 - h - 15*2 + 1
@@ -96,12 +105,63 @@ class KinematicsExplorer: Explorer {
 		controls.addSubview(playButton)
 		playButton.left(offset: UIOffset(horizontal: universePicker.right+14, vertical: 0), size: CGSize(width: 50, height: 30))
 		
-//		message = MessageView(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20))
-//		message.load(key: "KinematicsLab")
-//		limbos.append(message)
+		controls.addSubview(aexelVector)
+		controls.addSubview(loopVector)
+		
+		aexelVector.left(offset: UIOffset(horizontal: playButton.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
+		loopVector.left(offset: UIOffset(horizontal: aexelVector.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
 		
 		
+		// Message
+		message = MessageView(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20-5))
+		message.cutouts[AEPoint.bottomRight] = Cutout(width: 139, height: 60)
+		message.cutouts[AEPoint.bottomLeft] = Cutout(width: 56, height: 56)
+		message.renderPaths()
+		message.load(key: "KinematicsLab")
 		
+		// Close
+		let size = CGSize(width: 139, height: 60)
+		let close1 = LimboView()
+		close1.frame = CGRect(x: 375-5-size.width, y: 667-5-size.height, width: size.width, height: size.height)
+		close1.alpha = 0
+		let button1 = UIButton(type: .custom)
+		button1.setTitle("Close", for: .normal)
+		button1.titleLabel!.font = UIFont.aexelFont(size: 24)
+		button1.add(for: .touchUpInside) {
+			self.closeExplorer()
+			Aexels.nexus.brightenNexus()
+		}
+		close1.content = button1
+		limbos.append(close1)
+
+		// Swapper =========================
+		let swapper = LimboView()
+		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
+		let swapButton = SwapButton()
+		swapButton.add(for: .touchUpInside) {
+			swapButton.rotateView()
+			if self.isFirst {
+				self.isFirst = false
+				self.dimLimbos(self.first)
+				self.brightenLimbos(self.second)
+				self.limboViews = [swapper, close1] + self.second
+			} else {
+				self.isFirst = true
+				self.dimLimbos(self.second)
+				self.brightenLimbos(self.first)
+				self.limboViews = [swapper, close1] + self.first
+			}
+			swapper.removeFromSuperview()
+			self.view.addSubview(swapper)
+			close1.removeFromSuperview()
+			self.view.addSubview(close1)
+		}
+		swapper.content = swapButton
+		limbos.append(swapper)
+
+		first = [universe, controls]
+		second = [message]
+
 		return limbos
 	}
 	

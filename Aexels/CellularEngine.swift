@@ -48,6 +48,8 @@ final class CellularEngine {
 	private var views = [CellularView]()
 	private var timer: AXTimer
 	
+	var onMeasure: ((Double)->())?
+	
 	init? (aetherName: String, w: Int, h: Int) {
 		var json: String
 		do {
@@ -165,7 +167,9 @@ final class CellularEngine {
 		if s % 60 == 0 {
 			let now = Date()
 			let x = now.timeIntervalSince(last)
-			print(String(format: "%.1lf fps", 60.0/x))
+			if let onMeasure = onMeasure {
+				onMeasure(60.0/x)
+			}
 			last = now
 		}
 		s += 1

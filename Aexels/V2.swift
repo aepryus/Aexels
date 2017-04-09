@@ -30,6 +30,9 @@ struct V2 {
 	static func * (a: V2, b: Double) -> V2 {
 		return V2(a.x*b, a.y*b)
 	}
+	static func / (a: V2, b: Double) -> V2 {
+		return V2(a.x/b, a.y/b)
+	}
 	
 	static func dot (_ a: V2, _ b: V2) -> Double {
 		return a.x*b.x+a.y*b.y

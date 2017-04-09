@@ -70,8 +70,8 @@ class MessageView: LimboView {
 		scrollView.contentOffset = CGPoint.zero
 	}
 	
-	override func applyMask () {
-		axMaskView.path = limboPath.maskPath
+	override func applyMask (_ mask: CGPath) {
+		axMaskView.path = mask
 	}
 	
 // Events ==========================================================================================

@@ -13,6 +13,17 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	var minimumSps: CGFloat = 1
 	var maximumSps: CGFloat = 10
 	
+	var _actualSps: CGFloat = 10
+	var actualSps: CGFloat {
+		set {
+			_actualSps = newValue
+			DispatchQueue.main.async {
+				self.setNeedsDisplay()
+			}
+		}
+		get {return _actualSps}
+	}
+	
 	var onChange: ((Double)->())?
 	
 	init () {
@@ -39,6 +50,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		else if x > x5 {x = x5}
 		
 		currentSps = minimumSps + (maximumSps - minimumSps) * (x - x1) / (x5 - x1)
+		actualSps = currentSps
 		if let onChange = onChange {
 			onChange(currentSps == maximumSps ? 60 : Double(round(currentSps)))
 		}
@@ -63,12 +75,12 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		let path = CGMutablePath()
 		
 		if (x2 > x1) {
-			path.move(to: CGPoint(x: x1, y: y2))
+			path.move(to: CGPoint(x: x1-crx, y: y2))
 			path.addLine(to: CGPoint(x: x2, y: y2))
 		}
 		if (x4 < x5) {
 			path.move(to: CGPoint(x: x4, y: y2))
-			path.addLine(to: CGPoint(x: x5, y: y2))
+			path.addLine(to: CGPoint(x: x5+crx, y: y2))
 		}
 		path.addEllipse(in: CGRect(x: x2, y: y1, width: 2*crx, height: 2*cry))
 		
@@ -85,7 +97,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		let attributes = AEAttributes()
 		attributes.font = UIFont(name: "Avenir-Heavy", size: 15)!
 		attributes.alignment = .center
-		("\(Int(currentSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: attributes.attributes)
+		("\(Int(actualSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: attributes.attributes)
 //		attributes.font = UIFont(name: "GillSans-Italic", size: 10)!
 //		("steps / second" as NSString).draw(in: CGRect(x: x7-90, y: 31, width: 90, height: 30), withAttributes: attributes.attributes)
 	}

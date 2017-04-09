@@ -86,7 +86,7 @@ final class CellularView: UIView {
 		a = [UInt8](repeating: 0, count: auto.states.count)
 		
 		for i in 0..<auto.states.count {
-			let color = OOColor(rawValue: auto.states[i].color)!.toUIColor()
+			let color = OOColor(rawValue: auto.states[i].color)!.uiColor
 			let comps: [CGFloat] = color.cgColor.components!
 			r[i] = UInt8(comps[0] * 255)
 			g[i] = UInt8(comps[1] * 255)

@@ -13,8 +13,6 @@ class NexusViewController: UIViewController {
 	var nexusLabel: NexusLabel!
 	
 	var messageView: MessageView!
-	let normalPath = LimboPath()
-	let cutoutPath = LimboPath()
 	let exploreButton = LimboView()
 
 	var nexusButtons: [NexusButton] = []
@@ -23,8 +21,18 @@ class NexusViewController: UIViewController {
 
 	var busy = false
 	private func display (explorer: Explorer) {
+		if explorer.canExplore {
+			if Aexels.iPad() {
+				messageView.cutouts[AEPoint.bottomRight] = Cutout(width: 176, height: 110)
+			} else {
+				messageView.cutouts[AEPoint.bottomRight] = Cutout(width: 160, height: 60)
+			}
+		} else {
+			messageView.cutouts.removeAll()
+		}
+		messageView.renderPaths()
+		
 		messageView.load(key: explorer.key)
-		messageView.limboPath = explorer.canExplore ? cutoutPath : normalPath
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
 			if explorer.canExplore {self.exploreButton.alpha = 1}
@@ -127,47 +135,47 @@ class NexusViewController: UIViewController {
 		}
 		view.addSubview(messageView)
 		
-		let rect = messageView.bounds
+//		let rect = messageView.bounds
 		
-		// Cutout
-		var p: CGFloat = 6
-		var x1: CGFloat = p
-		var x3: CGFloat = x1 + rect.size.width-2*p
-		var x2: CGFloat = (x1+x3)/2
-		var x4: CGFloat = x3 - 176
-		var x5: CGFloat = (x3+x4)/2
-		var y1: CGFloat = p
-		var y3: CGFloat = y1 + rect.size.height-2*p
-		var y2: CGFloat = (y1+y3)/2
-		var y4: CGFloat = y3 - 110
-		var y5: CGFloat = (y3+y4)/2
-		cutoutPath.strokePath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
-		
-		p = 2
-		x1 = p
-		x3 = x1 + rect.size.width-2*p
-		x2 = (x1+x3)/2
-		x4 = x3 - 176
-		x5 = (x3+x4)/2
-		y1 = p
-		y3 = y1 + rect.size.height-2*p
-		y2 = (y1+y3)/2
-		y4 = y3 - 110
-		y5 = (y3+y4)/2
-		cutoutPath.shadowPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
-		
-		p = 6
-		x1 = p
-		x3 = x1 + rect.size.width-2*p
-		x2 = (x1+x3)/2
-		x4 = x3 - 176 - 4
-		x5 = (x3+x4)/2
-		y1 = p
-		y3 = y1 + rect.size.height-2*p
-		y2 = (y1+y3)/2
-		y4 = y3 - 110 - 4
-		y5 = (y3+y4)/2
-		cutoutPath.maskPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		// Cutout
+//		var p: CGFloat = 6
+//		var x1: CGFloat = p
+//		var x3: CGFloat = x1 + rect.size.width-2*p
+//		var x2: CGFloat = (x1+x3)/2
+//		var x4: CGFloat = x3 - 176
+//		var x5: CGFloat = (x3+x4)/2
+//		var y1: CGFloat = p
+//		var y3: CGFloat = y1 + rect.size.height-2*p
+//		var y2: CGFloat = (y1+y3)/2
+//		var y4: CGFloat = y3 - 110
+//		var y5: CGFloat = (y3+y4)/2
+//		cutoutPath.strokePath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		
+//		p = 2
+//		x1 = p
+//		x3 = x1 + rect.size.width-2*p
+//		x2 = (x1+x3)/2
+//		x4 = x3 - 176
+//		x5 = (x3+x4)/2
+//		y1 = p
+//		y3 = y1 + rect.size.height-2*p
+//		y2 = (y1+y3)/2
+//		y4 = y3 - 110
+//		y5 = (y3+y4)/2
+//		cutoutPath.shadowPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		
+//		p = 6
+//		x1 = p
+//		x3 = x1 + rect.size.width-2*p
+//		x2 = (x1+x3)/2
+//		x4 = x3 - 176 - 4
+//		x5 = (x3+x4)/2
+//		y1 = p
+//		y3 = y1 + rect.size.height-2*p
+//		y2 = (y1+y3)/2
+//		y4 = y3 - 110 - 4
+//		y5 = (y3+y4)/2
+//		cutoutPath.maskPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
 		
 		exploreButton.alpha = 0
 		exploreButton.frame = CGRect(x: 843, y: 658, width: 176, height: 110)
@@ -216,59 +224,59 @@ class NexusViewController: UIViewController {
 		}
 		view.addSubview(messageView)
 		
-		// Cutout
-		let w: CGFloat = 160
-		let h: CGFloat = 60
-		
-		let rect = messageView.bounds
-		var p: CGFloat = 6
-		var x1: CGFloat = p
-		var x3: CGFloat = x1 + rect.size.width-2*p
-		var x2: CGFloat = (x1+x3)/2
-		var x4: CGFloat = x3 - w
-		var x5: CGFloat = (x3+x4)/2
-		var y1: CGFloat = p
-		var y3: CGFloat = y1 + rect.size.height-2*p
-		var y2: CGFloat = (y1+y3)/2
-		var y4: CGFloat = y3 - h
-		var y5: CGFloat = (y3+y4)/2
-		cutoutPath.strokePath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
-		
-		p = 2
-		x1 = p
-		x3 = x1 + rect.size.width-2*p
-		x2 = (x1+x3)/2
-		x4 = x3 - w
-		x5 = (x3+x4)/2
-		y1 = p
-		y3 = y1 + rect.size.height-2*p
-		y2 = (y1+y3)/2
-		y4 = y3 - h
-		y5 = (y3+y4)/2
-		cutoutPath.shadowPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
-		
-		p = 6
-		x1 = p
-		x3 = x1 + rect.size.width-2*p
-		x2 = (x1+x3)/2
-		x4 = x3 - w - 4
-		x5 = (x3+x4)/2
-		y1 = p
-		y3 = y1 + rect.size.height-2*p
-		y2 = (y1+y3)/2
-		y4 = y3 - h - 4
-		y5 = (y3+y4)/2
-		cutoutPath.maskPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		// Cutout
+//		let w: CGFloat = 160
+//		let h: CGFloat = 60
+//		
+//		let rect = messageView.bounds
+//		var p: CGFloat = 6
+//		var x1: CGFloat = p
+//		var x3: CGFloat = x1 + rect.size.width-2*p
+//		var x2: CGFloat = (x1+x3)/2
+//		var x4: CGFloat = x3 - w
+//		var x5: CGFloat = (x3+x4)/2
+//		var y1: CGFloat = p
+//		var y3: CGFloat = y1 + rect.size.height-2*p
+//		var y2: CGFloat = (y1+y3)/2
+//		var y4: CGFloat = y3 - h
+//		var y5: CGFloat = (y3+y4)/2
+//		cutoutPath.strokePath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		
+//		p = 2
+//		x1 = p
+//		x3 = x1 + rect.size.width-2*p
+//		x2 = (x1+x3)/2
+//		x4 = x3 - w
+//		x5 = (x3+x4)/2
+//		y1 = p
+//		y3 = y1 + rect.size.height-2*p
+//		y2 = (y1+y3)/2
+//		y4 = y3 - h
+//		y5 = (y3+y4)/2
+//		cutoutPath.shadowPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
+//		
+//		p = 6
+//		x1 = p
+//		x3 = x1 + rect.size.width-2*p
+//		x2 = (x1+x3)/2
+//		x4 = x3 - w - 4
+//		x5 = (x3+x4)/2
+//		y1 = p
+//		y3 = y1 + rect.size.height-2*p
+//		y2 = (y1+y3)/2
+//		y4 = y3 - h - 4
+//		y5 = (y3+y4)/2
+//		cutoutPath.maskPath = buildCutoutPath(x: [x1,x2,x3,x4,x5], y: [y1,y2,y3,y4,y5], radius: 10)
 		
 		// Explore
 		exploreButton.alpha = 0
-		exploreButton.frame = CGRect(x: 375-w-5, y: 677-h-2*p-4, width: w, height: h)
+		exploreButton.frame = CGRect(x: 375-160-5, y: 677-60-2*6-4, width: 160, height: 60)
 		view.addSubview(exploreButton)
 
 		let button = UIButton(type: .custom)
 		button.setTitle("Explore", for: .normal)
 		button.titleLabel!.font = UIFont.aexelFont(size: 24)
-		button.frame = CGRect(x: 15, y: 17, width: w-30, height: h-30)
+		button.frame = CGRect(x: 15, y: 17, width: 160-30, height: 60-30)
 		button.add(for: .touchUpInside) { 
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
@@ -299,9 +307,9 @@ class NexusViewController: UIViewController {
 			iPhoneLayout()
 		}
 
-		let rect = messageView.bounds
-		normalPath.strokePath = CGPath(roundedRect: rect.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
-		normalPath.shadowPath = CGPath(roundedRect: rect.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
-		normalPath.maskPath = normalPath.strokePath
+//		let rect = messageView.bounds
+//		normalPath.strokePath = CGPath(roundedRect: rect.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
+//		normalPath.shadowPath = CGPath(roundedRect: rect.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
+//		normalPath.maskPath = normalPath.strokePath
 	}
 }

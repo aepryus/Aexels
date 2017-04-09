@@ -96,14 +96,6 @@
     },
     {
       "orientation" : "portrait",
-      "idiom" : "ipad",
-      "extent" : "full-screen",
-      "minimum-system-version" : "8.0",
-      "subtype" : "1366h",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "portrait",
       "idiom" : "iphone",
       "filename" : "Back4.png",
       "extent" : "full-screen",

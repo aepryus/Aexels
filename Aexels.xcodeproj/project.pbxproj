@@ -65,6 +65,8 @@
 		D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C161E1E3EF800E02E16 /* ContractionExplorer.swift */; };
 		D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */; };
 		D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */; };
+		D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FB81E90B2560052BF21 /* SwapButton.swift */; };
+		D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FBA1E9202080052BF21 /* VectorView.swift */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -143,6 +145,8 @@
 		D8B13C161E1E3EF800E02E16 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8B13C181E1E3F2900E02E16 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
+		D8B32FB81E90B2560052BF21 /* SwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapButton.swift; sourceTree = "<group>"; };
+		D8B32FBA1E9202080052BF21 /* VectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorView.swift; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,6 +323,7 @@
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
 				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 				D8ABB6F21E7537F1001FE14F /* SliderView.swift */,
+				D8B32FB81E90B2560052BF21 /* SwapButton.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 		D8B13C041E1E2EEB00E02E16 /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
+				D8B32FBA1E9202080052BF21 /* VectorView.swift */,
 				D862F1B61E59842000612627 /* NewtonianView.swift */,
 				D862F1B81E59844000612627 /* KinematicsView.swift */,
 				D8B13C0E1E1E3E7000E02E16 /* KinematicsExplorer.swift */,
@@ -555,6 +561,8 @@
 				D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */,
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
+				D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */,
+				D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */,
 				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
 				D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */,
 				D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */,

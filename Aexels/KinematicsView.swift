@@ -31,8 +31,8 @@ class KinematicsView: UIView, Simulation {
 	
 	init () {
 		let q = 0.3
-		let sn = sin(M_PI/6)
-		let cs = cos(M_PI/6)
+		let sn = sin(Double.pi/6)
+		let cs = cos(Double.pi/6)
 		
 		ord.append(V2(0, 1))
 		ord.append(V2(cs, sn))
@@ -58,8 +58,8 @@ class KinematicsView: UIView, Simulation {
 	
 	func render () {
 		let s: CGFloat = 30.0
-		let sn: CGFloat = s*CGFloat(sin(M_PI/6))
-		let cs: CGFloat = s*CGFloat(cos(M_PI/6))
+		let sn: CGFloat = s*CGFloat(sin(Double.pi/6))
+		let cs: CGFloat = s*CGFloat(cos(Double.pi/6))
 		
 		let w: CGFloat = width+2*(s+sn)
 		let h: CGFloat = height+2*cs
@@ -151,7 +151,7 @@ class KinematicsView: UIView, Simulation {
 		var A: Int = 0
 		
 		for i in 0..<6 {
-			if V2.innerAngle(ord[i], Vl) < M_PI/3 {
+			if V2.innerAngle(ord[i], Vl) < Double.pi/3 {
 				if i == 0 {
 					zero = true
 				} else if i == 1 && zero {
@@ -201,8 +201,8 @@ class KinematicsView: UIView, Simulation {
 	
 	func tic () {
 		let s: Double = 30.0
-		let sn: Double = s*sin(M_PI/6)
-		let cs: Double = s*cos(M_PI/6)
+		let sn: Double = s*sin(Double.pi/6)
+		let cs: Double = s*cos(Double.pi/6)
 
 		move()
 		
@@ -255,7 +255,7 @@ class KinematicsView: UIView, Simulation {
 		path.closeSubpath()
 		
 		c.addPath(path)
-		c.setFillColor(OOColor.lavender.toUIColor().withAlphaComponent(0.5).cgColor)
+		c.setFillColor(OOColor.lavender.uiColor.withAlphaComponent(0.5).cgColor)
 		if aetherVisible {
 			c.drawPath(using: .fill)
 		} else {
@@ -290,8 +290,8 @@ class KinematicsView: UIView, Simulation {
 	
 	func refresh () {
 		let s: Double = 30.0
-		let sn: Double = s*sin(M_PI/6)
-		let cs: Double = s*cos(M_PI/6)
+		let sn: Double = s*sin(Double.pi/6)
+		let cs: Double = s*cos(Double.pi/6)
 
 		let xL = 1 + (o==1 ? sn+s : 0) + Double(x)*3*s + Xa.x
 		let yL = 1 + (o==1 ? cs : 0) + Double(y)*2*cs + Xa.y
@@ -313,7 +313,7 @@ class KinematicsView: UIView, Simulation {
 		path.closeSubpath()
 		
 		c.addPath(path)
-		c.setFillColor(OOColor.lavender.toUIColor().withAlphaComponent(0.5).cgColor)
+		c.setFillColor(OOColor.lavender.uiColor.withAlphaComponent(0.5).cgColor)
 		if aetherVisible {
 			c.drawPath(using: .fill)
 		} else {
