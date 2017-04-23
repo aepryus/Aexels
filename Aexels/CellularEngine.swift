@@ -29,7 +29,6 @@ final class CellularEngine {
 	var xfer: UnsafeMutablePointer<Obj>!
 	
 	var memory: UnsafeMutablePointer<Memory>!
-	var memoryS: MemoryS
 	let index: Int
 	let web: Web
 	let recipeS: RecipeS
@@ -66,11 +65,10 @@ final class CellularEngine {
 		aether.calculate()
 		memory = aether.memory!
 		AEMemoryPrint(memory);
-		memoryS = aether.memoryS!
-		index = memoryS.index(for: "ATN00001")
+		index = Int(AEMemoryIndexForName(memory, "ATN00001".toInt8()))
 		auto = aether.autos.first!
-		auto.foreshadow(memory, memoryS: memoryS)
-		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory, memoryS: memoryS)
+		auto.foreshadow(memory)
+		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
 		recipeS = web.recipeS
 		recipe = recipeS.compile()
 		
@@ -79,15 +77,15 @@ final class CellularEngine {
 		cells = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
 		next = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
 		
-		selfI = memoryS.index(for: "Auto1.Self")
-		aI = memoryS.index(for: "Auto1.A")
-		bI = memoryS.index(for: "Auto1.B")
-		cI = memoryS.index(for: "Auto1.C")
-		dI = memoryS.index(for: "Auto1.D")
-		eI = memoryS.index(for: "Auto1.E")
-		fI = memoryS.index(for: "Auto1.F")
-		gI = memoryS.index(for: "Auto1.G")
-		hI = memoryS.index(for: "Auto1.H")
+		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
+		aI = Int(AEMemoryIndexForName(memory, "Auto1.A".toInt8()))
+		bI = Int(AEMemoryIndexForName(memory, "Auto1.B".toInt8()))
+		cI = Int(AEMemoryIndexForName(memory, "Auto1.C".toInt8()))
+		dI = Int(AEMemoryIndexForName(memory, "Auto1.D".toInt8()))
+		eI = Int(AEMemoryIndexForName(memory, "Auto1.E".toInt8()))
+		fI = Int(AEMemoryIndexForName(memory, "Auto1.F".toInt8()))
+		gI = Int(AEMemoryIndexForName(memory, "Auto1.G".toInt8()))
+		hI = Int(AEMemoryIndexForName(memory, "Auto1.H".toInt8()))
 		
 		timer = AXTimer()
 		timer.configure(interval: interval, {
