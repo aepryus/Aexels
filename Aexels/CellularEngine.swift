@@ -65,6 +65,7 @@ final class CellularEngine {
 		aether.wire()
 		aether.calculate()
 		memory = aether.memory!
+		AEMemoryPrint(memory);
 		memoryS = aether.memoryS!
 		index = memoryS.index(for: "ATN00001")
 		auto = aether.autos.first!

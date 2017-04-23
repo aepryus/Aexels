@@ -20,6 +20,8 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		Fabric.with([Crashlytics.self])
 		Aexels.start()
 		
+		startAegean()
+		
 		return true
 	}
 
