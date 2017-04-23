@@ -26,7 +26,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	
 	var onChange: ((Double)->())?
 	
-	init () {
+	init() {
 		super.init(frame: CGRect.zero)
 		
 		backgroundColor = UIColor.clear

@@ -33,7 +33,6 @@
 		D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425ED1E1B6DEF009C9ED3 /* Format.swift */; };
 		D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */; };
 		D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */; };
-		D80425F71E1B8BCF009C9ED3 /* UIControl+AE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F61E1B8BCF009C9ED3 /* UIControl+AE.swift */; };
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
 		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
@@ -114,7 +113,6 @@
 		D80425ED1E1B6DEF009C9ED3 /* Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AX.swift"; sourceTree = "<group>"; };
 		D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusLabel.swift; sourceTree = "<group>"; };
-		D80425F61E1B8BCF009C9ED3 /* UIControl+AE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+AE.swift"; sourceTree = "<group>"; };
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 		D80425F31E1B8A8B009C9ED3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D80425F61E1B8BCF009C9ED3 /* UIControl+AE.swift */,
 				D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */,
 				D862F1B41E5939A900612627 /* UIView+AE.swift */,
 			);
@@ -544,7 +541,6 @@
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
 				D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */,
 				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
-				D80425F71E1B8BCF009C9ED3 /* UIControl+AE.swift in Sources */,
 				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
 				D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */,

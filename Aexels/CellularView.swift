@@ -76,7 +76,7 @@ final class CellularView: UIView {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func clear () {
+	func clear() {
 		image = nil
 	}
 	func configure (auto: Auto) {
@@ -94,7 +94,7 @@ final class CellularView: UIView {
 			a[i] = UInt8(comps[3] * 255)
 		}
 	}
-	func tic () {
+	func tic() {
 		let cw: Int = Aexels.iPad() ? 432 : 335
 		let x: Int = Int(origin.x)
 		let y: Int = Int(origin.y)
@@ -117,7 +117,7 @@ final class CellularView: UIView {
 			n += m * (zoom - 1)
 		}
 		
-		let provider: CGDataProvider = CGDataProvider(dataInfo: nil, data: &data, size: size, releaseData: {(info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) -> () in })!
+		let provider: CGDataProvider = CGDataProvider(dataInfo: nil, data: &data, size: size, releaseData: {(info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) ->() in })!
 		let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
 		let cgImage: CGImage = CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: w*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
 		

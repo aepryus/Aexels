@@ -29,7 +29,7 @@ class KinematicsView: UIView, Simulation {
 	
 	var onTic: ((V2)->()) = {V2 in}
 	
-	init () {
+	init() {
 		let q = 0.3
 		let sn = sin(Double.pi/6)
 		let cs = cos(Double.pi/6)
@@ -56,7 +56,7 @@ class KinematicsView: UIView, Simulation {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func render () {
+	func render() {
 		let s: CGFloat = 30.0
 		let sn: CGFloat = s*CGFloat(sin(Double.pi/6))
 		let cs: CGFloat = s*CGFloat(cos(Double.pi/6))
@@ -146,7 +146,7 @@ class KinematicsView: UIView, Simulation {
 		}
 	}
 	
-	func move () {
+	func move() {
 		var zero: Bool = false
 		var A: Int = 0
 		
@@ -199,7 +199,7 @@ class KinematicsView: UIView, Simulation {
 		}
 	}
 	
-	func tic () {
+	func tic() {
 		let s: Double = 30.0
 		let sn: Double = s*sin(Double.pi/6)
 		let cs: Double = s*cos(Double.pi/6)
@@ -288,7 +288,7 @@ class KinematicsView: UIView, Simulation {
 		onTic(Vl)
 	}
 	
-	func refresh () {
+	func refresh() {
 		let s: Double = 30.0
 		let sn: Double = s*sin(Double.pi/6)
 		let cs: Double = s*cos(Double.pi/6)
@@ -355,13 +355,13 @@ class KinematicsView: UIView, Simulation {
 	}
 	
 // Simulation ======================================================================================
-	func play () {
+	func play() {
 		timer.start()
 	}
-	func stop () {
+	func stop() {
 		timer.stop()
 	}
-	func reset () {
+	func reset() {
 		x = 3
 		y = 3
 		o = 0

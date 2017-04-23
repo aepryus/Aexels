@@ -75,7 +75,7 @@ class MessageView: LimboView {
 	}
 	
 // Events ==========================================================================================
-	func tap () {
+	func tap() {
 		if onTap != nil {onTap!()}
 	}
 	

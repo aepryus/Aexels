@@ -134,7 +134,7 @@ final class CellularEngine {
 	var last: Date = Date()
 	var s: Int = 1
 	
-	func tic () {
+	func tic() {
 		for j in 0..<h {
 			for i in 0..<w {
 				AEMemoryClear(memory);
@@ -150,7 +150,9 @@ final class CellularEngine {
 				loadMemory(hI, x: i-1, y: j  )
 				
 				AERecipeExecute(recipe, memory)
-				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
+				let x: Double = memory.pointee.slots[index].obj.a.x
+				next[i + j*w].a.x = x
+//				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}
 		
@@ -182,13 +184,13 @@ final class CellularEngine {
 		print("")
 	}
 
-	func start () {
+	func start() {
 		timer.start()
 	}
-	func stop () {
+	func stop() {
 		timer.stop()
 	}
-	func reset () {
+	func reset() {
 		stop()
 		populate(auto: auto)
 		for view in views {

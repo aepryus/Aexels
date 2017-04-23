@@ -6,17 +6,18 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import OoviumLib
 import UIKit
 
 class PlayButton: UIButton {
-	var onPlay: ()->()
-	var onStop: ()->()
+	var onPlay:()->()
+	var onStop:()->()
 	
 	private let color: UIColor
 	
 	private var playing: Bool = false
 	
-	init () {
+	init() {
 		self.onPlay = {}
 		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
@@ -33,13 +34,13 @@ class PlayButton: UIButton {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func play () {
+	func play() {
 		if playing {return}
 		playing = true
 		self.setNeedsDisplay()
 		onPlay()
 	}
-	func stop () {
+	func stop() {
 		if !playing {return}
 		playing = false
 		self.setNeedsDisplay()

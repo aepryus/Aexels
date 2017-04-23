@@ -42,7 +42,7 @@ class KinematicsExplorer: Explorer {
 		super.init(view: view, name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
 
-	func iPadLimbos () -> [LimboView] {
+	func iPadLimbos() -> [LimboView] {
 		var limbos = [LimboView]()
 		
 		let rect = UIScreen.main.bounds
@@ -70,7 +70,7 @@ class KinematicsExplorer: Explorer {
 		
 		return limbos
 	}
-	func iPhoneLimbos () -> [LimboView] {
+	func iPhoneLimbos() -> [LimboView] {
 		var limbos = [LimboView]()
 		
 		let rect = UIScreen.main.bounds
@@ -167,7 +167,7 @@ class KinematicsExplorer: Explorer {
 	}
 	
 // Explorer ========================================================================================
-	override func createLimbos () -> [LimboView] {
+	override func createLimbos() -> [LimboView] {
 		if Aexels.iPad() {
 			return iPadLimbos()
 		} else {

@@ -23,12 +23,12 @@ final class CellularExplorer: Explorer {
 	}
 	
 // Events ==========================================================================================
-	override func onClose () {
+	override func onClose() {
 		self.engine.stop()
 	}
 	
 // Explorer ========================================================================================
-	func iPadLimbos () -> [LimboView] {
+	func iPadLimbos() -> [LimboView] {
 		var limbos = [LimboView]()
 		
 		let x: CGFloat = 432
@@ -133,7 +133,7 @@ final class CellularExplorer: Explorer {
 		
 		return limbos
 	}
-	func iPhoneLimbos () -> [LimboView] {
+	func iPhoneLimbos() -> [LimboView] {
 		var limbos = [LimboView]()
 
 		let lw: CGFloat = 375-10
@@ -297,7 +297,7 @@ final class CellularExplorer: Explorer {
 		return limbos
 	}
 	
-	override func createLimbos () -> [LimboView] {
+	override func createLimbos() -> [LimboView] {
 		if Aexels.iPad() {
 			return iPadLimbos()
 		} else {

@@ -75,7 +75,7 @@ class LimboView: UIView {
 //		get {return _limboPath}
 //	}
 	
-	init () {
+	init() {
 		super.init(frame: CGRect.zero)
 
 		backgroundColor = UIColor.clear
@@ -187,7 +187,7 @@ class LimboView: UIView {
 		return path
 	}
 	
-	func renderPaths () {
+	func renderPaths() {
 		
 		limboPath.strokePath = buildPath(p: a, q: 0)
 		limboPath.maskPath = buildPath(p: a, q: a-b)

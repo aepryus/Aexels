@@ -83,10 +83,10 @@ class NexusViewController: UIViewController {
 		return path
 	}
 	
-	func isDimmed () -> Bool {
+	func isDimmed() -> Bool {
 		return self.nexusLabel.alpha == 0.1
 	}
-	func dimNexus () {
+	func dimNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 0.1
 			self.messageView.alpha = 0
@@ -96,7 +96,7 @@ class NexusViewController: UIViewController {
 			}
 		}
 	}
-	func brightenNexus () {
+	func brightenNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 1
 			for button in self.nexusButtons {
@@ -105,7 +105,7 @@ class NexusViewController: UIViewController {
 		}
 	}
 	
-	func iPadLayout () {
+	func iPadLayout() {
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:72)
 		nexusLabel.frame = CGRect(x: 52, y: 52, width: 300, height: 96)
@@ -128,7 +128,7 @@ class NexusViewController: UIViewController {
 		let w: CGFloat = 1024-340-52
 		messageView = MessageView(frame: CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20))
 		messageView.alpha = 0
-		messageView.onTap = { ()->() in
+		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
 				self.messageView.alpha = 0
 				self.exploreButton.alpha = 0
@@ -194,7 +194,7 @@ class NexusViewController: UIViewController {
 		exploreButton.addSubview(button)
 		
 	}
-	func iPhoneLayout () {
+	func iPhoneLayout() {
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:60)
 		nexusLabel.frame = CGRect(x: 30, y: 52, width: 240, height: 64)
@@ -216,7 +216,7 @@ class NexusViewController: UIViewController {
 		// Message
 		messageView = MessageView(frame: CGRect(x: 5, y: 5+20, width: 375-10, height: 667-10-20))
 		messageView.alpha = 0
-		messageView.onTap = { ()->() in
+		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2, animations: { 
 				self.messageView.alpha = 0
 				self.exploreButton.alpha = 0

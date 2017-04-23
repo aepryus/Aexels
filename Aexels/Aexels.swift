@@ -13,16 +13,16 @@ class Aexels {
 	static var window: UIWindow!
 	static var nexus: NexusViewController!
 	
-	static func iPhone4 () -> Bool {
+	static func iPhone4() -> Bool {
 		return UIScreen.main.bounds.size == CGSize(width: 320, height: 480)
 	}
-	static func iPhone5 () -> Bool {
+	static func iPhone5() -> Bool {
 		return UIScreen.main.bounds.size == CGSize(width: 320, height: 568)
 	}
-	static func iPhone6 () -> Bool {
+	static func iPhone6() -> Bool {
 		return UIScreen.main.bounds.size == CGSize(width: 375, height: 667)
 	}
-	static func iPad () -> Bool {
+	static func iPad() -> Bool {
 		return UIScreen.main.bounds.size == CGSize(width: 1024, height: 768)
 	}
 	
@@ -32,7 +32,7 @@ class Aexels {
 		}
 	}
 	
-	static func backImage () -> UIImage {
+	static func backImage() -> UIImage {
 		if iPhone4() {
 			return UIImage(named: "Back4")!
 		} else if iPhone5() {
@@ -44,7 +44,7 @@ class Aexels {
 		return UIImage(named: "BackiPad")!
 	}
 	
-	static func start () {
+	static func start() {
 		Math.start()
 
 		nexus = NexusViewController()

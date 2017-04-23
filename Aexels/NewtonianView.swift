@@ -30,7 +30,7 @@ class NewtownianView: UIView, Simulation {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func tic () {
+	func tic() {
 		x.x += v.x
 		x.y += v.y
 		
@@ -66,12 +66,12 @@ class NewtownianView: UIView, Simulation {
 	}
 	
 // Simulation ======================================================================================
-	func play () {
+	func play() {
 		timer.start()
 	}
-	func stop () {
+	func stop() {
 		timer.stop()
 	}
-	func reset () {
+	func reset() {
 	}
 }
