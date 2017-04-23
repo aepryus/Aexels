@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Simulation {
-	func play ()
-	func stop ()
-	func reset ()
+	func play()
+	func stop()
+	func reset()
 }

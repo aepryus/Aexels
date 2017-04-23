@@ -25,7 +25,7 @@ final class AXTimer {
 	let queue: DispatchQueue = DispatchQueue(label: "cellular")
 	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()			// CADisplayLink
 	
-	func configure (interval: Double, _ block: @escaping ()->()) {
+	func configure (interval: Double, _ block: @escaping()->()) {
 		timer.setEventHandler {
 			self.semaphore.wait()
 			block()
@@ -35,19 +35,19 @@ final class AXTimer {
 		self.block = block
 	}
 	
-	func start () {
+	func start() {
 		guard !running else {return}
 		running = true
 		timer.resume()
 	}
-	func stop () {
+	func stop() {
 		guard running else {return}
 		running = false
 		timer.suspend()
 		semaphore.wait()
 		semaphore.signal()
 	}
-	func isRunning () -> Bool {
+	func isRunning() -> Bool {
 		return running
 	}
 }

@@ -30,7 +30,7 @@ class AEAttributes {
 		}
 	}
 	
-	init () {
+	init() {
 		attributes = [String:Any]()
 		
 		let style = NSMutableParagraphStyle()

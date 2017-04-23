@@ -36,7 +36,7 @@ class Format {
 		}
 	}
 	
-	init () {
+	init() {
 		self.font = UIFont.aexelFont(size: 12)
 		self.color = UIColor.white
 		

@@ -40,7 +40,7 @@ class SwapView: UIView {
 		return image!
 	}()
 
-	init () {
+	init() {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 	}
@@ -55,14 +55,14 @@ class SwapView: UIView {
 class SwapButton: UIButton {
 	let swapView = SwapView()
 
-	init () {
+	init() {
 		super.init(frame: CGRect.zero)
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func rotateView () {
+	func rotateView() {
 		UIView.animate(withDuration: 0.2) {
 			self.swapView.transform = self.swapView.transform.rotated(by: CGFloat(Double.pi))
 		}

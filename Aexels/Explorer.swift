@@ -23,14 +23,14 @@ class Explorer {
 		self.canExplore = canExplore
 	}
 	
-	func closeSize () -> CGSize {
+	func closeSize() -> CGSize {
 		return CGSize(width: 139, height: 60)
 	}
-	func createLimbos () -> [LimboView] {
+	func createLimbos() -> [LimboView] {
 		return []
 	}
 
-	func iPadLayout () {
+	func iPadLayout() {
 	}
 	
 	func dimLimbos (_ limbos: [LimboView]) {
@@ -69,7 +69,7 @@ class Explorer {
 			}
 		}
 	}
-	func closeExplorer () {
+	func closeExplorer() {
 		UIView.animate(withDuration: 0.2, animations: {
 			for view in self.limboViews {
 				view.alpha = 0
@@ -84,5 +84,5 @@ class Explorer {
 	}
 	
 // Events ==========================================================================================
-	func onClose () {}
+	func onClose() {}
 }

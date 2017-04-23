@@ -24,7 +24,7 @@ class VectorView: UIView {
 		get {return _vector}
 	}
 	
-	init () {
+	init() {
 		super.init(frame: CGRect.zero)
 		self.backgroundColor = UIColor.clear
 		

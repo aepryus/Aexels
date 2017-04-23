@@ -17,7 +17,7 @@ struct V2 {
 		self.y = y
 	}
 
-	func len () -> Double {
+	func len() -> Double {
 		return sqrt(x*x+y*y)
 	}
 
