@@ -31,7 +31,7 @@ final class CellularEngine {
 	var memory: UnsafeMutablePointer<Memory>!
 	let index: Int
 	let web: Web
-	let recipeS: RecipeS
+//	let recipeS: RecipeS
 	let recipe: UnsafeMutablePointer<Recipe>
 	
 	let selfI: Int
@@ -69,8 +69,10 @@ final class CellularEngine {
 		auto = aether.autos.first!
 		auto.foreshadow(memory)
 		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
-		recipeS = web.recipeS
-		recipe = recipeS.compile()
+//		recipeS = web.recipeS
+//		recipe = recipeS.compile()
+		recipe = web.recipe
+		
 		
 		self.w = w
 		self.h = h
