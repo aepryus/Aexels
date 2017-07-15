@@ -63,7 +63,7 @@ final class CellularEngine {
 		let aether: Aether = basket.inject(attributes: attributes) as! Aether
 		aether.wire()
 		aether.calculate()
-		memory = aether.memory!
+		memory = aether.memory
 		AEMemoryPrint(memory);
 		index = Int(AEMemoryIndexForName(memory, "ATN00001".toInt8()))
 		auto = aether.autos.first!
