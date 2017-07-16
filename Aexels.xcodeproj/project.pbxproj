@@ -103,8 +103,8 @@
 		D80425C41E1B4FBD009C9ED3 /* Icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon180.png; path = Resources/Icon180.png; sourceTree = "<group>"; };
 		D80425D11E1B50D7009C9ED3 /* Aexels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Aexels.txt; path = Resources/Aexels.txt; sourceTree = "<group>"; };
 		D80425D21E1B50D7009C9ED3 /* BackiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackiPad.png; path = Resources/BackiPad.png; sourceTree = "<group>"; };
-		D80425D31E1B50D7009C9ED3 /* Demons.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Demons.oo; path = Resources/Demons.oo; sourceTree = "<group>"; };
-		D80425D41E1B50D7009C9ED3 /* Game of Life.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Game of Life.oo"; path = "Resources/Game of Life.oo"; sourceTree = "<group>"; };
+		D80425D31E1B50D7009C9ED3 /* Demons.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = Demons.oo; path = Resources/Demons.oo; sourceTree = "<group>"; };
+		D80425D41E1B50D7009C9ED3 /* Game of Life.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; name = "Game of Life.oo"; path = "Resources/Game of Life.oo"; sourceTree = "<group>"; };
 		D80425D51E1B50D7009C9ED3 /* TrajanPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TrajanPro-Bold.ttf"; path = "Resources/TrajanPro-Bold.ttf"; sourceTree = "<group>"; };
 		D80425D61E1B50D7009C9ED3 /* TrajanPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "TrajanPro-Regular.otf"; path = "Resources/TrajanPro-Regular.otf"; sourceTree = "<group>"; };
 		D80425E41E1B5876009C9ED3 /* Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aexels.swift; sourceTree = "<group>"; };

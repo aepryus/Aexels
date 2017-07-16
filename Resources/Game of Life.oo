@@ -1,5 +1,5 @@
 {
-  "gates" : [
+  "aexels" : [
     {
       "name" : "IF00001",
       "iden" : 1,
@@ -19,45 +19,41 @@
       "type" : "gate",
       "y" : "434",
       "ifTokens" : "4:I00001;1:=;0:3"
-    }
+    },
+	{
+	  "name" : "",
+	  "states" : [
+        {
+		  "type" : "state",
+		  "iden" : 1,
+		  "color" : "19"
+        },
+        {
+		  "type" : "state",
+		  "iden" : 2,
+		  "color" : "9"
+        }
+      ],
+	  "iden" : 1,
+	  "resultTokens" : "4:IF00001",
+	  "statesTokens" : "0:2",
+	  "x" : "407",
+	  "type" : "auto",
+	  "y" : "309"
+	},
+    {
+	  "name" : "SUM",
+	  "x" : "732",
+	  "type" : "object",
+	  "iden" : 1,
+	  "y" : "383",
+	  "chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H"
+	}
   ],
   "name" : "Game of Life",
   "yOffset" : "262",
   "iden" : 1,
   "readOnly" : "1",
-  "autos" : [
-    {
-      "name" : "",
-      "states" : [
-        {
-          "type" : "state",
-          "iden" : 1,
-          "color" : "19"
-        },
-        {
-          "type" : "state",
-          "iden" : 2,
-          "color" : "9"
-        }
-      ],
-      "iden" : 1,
-      "resultTokens" : "4:IF00001",
-      "statesTokens" : "0:2",
-      "x" : "407",
-      "type" : "auto",
-      "y" : "309"
-    }
-  ],
-  "objects" : [
-    {
-      "name" : "SUM",
-      "x" : "732",
-      "type" : "object",
-      "iden" : 1,
-      "y" : "383",
-      "tokens" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H"
-    }
-  ],
   "type" : "aether",
   "xOffset" : "406"
 }

@@ -66,7 +66,7 @@ final class CellularEngine {
 		memory = aether.memory
 		AEMemoryPrint(memory);
 		index = Int(AEMemoryIndexForName(memory, "ATN00001".toInt8()))
-		auto = aether.autos.first!
+		auto = aether.autoFirst()!
 		auto.foreshadow(memory)
 		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
 //		recipeS = web.recipeS
