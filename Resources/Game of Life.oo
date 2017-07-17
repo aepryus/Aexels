@@ -3,22 +3,22 @@
     {
       "name" : "IF00001",
       "iden" : 1,
-      "thenTokens" : "4:Auto1.Self",
-      "elseTokens" : "4:IF00002",
+      "thenChain" : "4:Auto1.Self",
+      "elseChain" : "4:IF00002",
       "x" : "518",
       "type" : "gate",
       "y" : "518",
-      "ifTokens" : "4:I00001;1:=;0:2"
+      "ifChain" : "4:I00001;1:=;0:2"
     },
     {
       "name" : "IF00002",
       "iden" : 2,
-      "thenTokens" : "0:1",
-      "elseTokens" : "0:0",
+      "thenChain" : "0:1",
+      "elseChain" : "0:0",
       "x" : "728",
       "type" : "gate",
       "y" : "434",
-      "ifTokens" : "4:I00001;1:=;0:3"
+      "ifChain" : "4:I00001;1:=;0:3"
     },
 	{
 	  "name" : "",
@@ -35,8 +35,8 @@
         }
       ],
 	  "iden" : 1,
-	  "resultTokens" : "4:IF00001",
-	  "statesTokens" : "0:2",
+	  "resultChain" : "4:IF00001",
+	  "statesChain" : "0:2",
 	  "x" : "407",
 	  "type" : "auto",
 	  "y" : "309"
