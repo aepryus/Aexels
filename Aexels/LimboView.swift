@@ -15,7 +15,7 @@ class LimboPath {
 	var maskPath: CGPath!
 }
 
-//enum AEPoint {
+//enum Position {
 //	case center, top, bottom, left, right, topLeft, topRight, bottomLeft, bottomRight
 //	
 //	func isRight() -> Bool {
@@ -48,7 +48,7 @@ class LimboView: UIView {
 	var b: CGFloat = 2
 	var radius: CGFloat = 10
 
-	var cutouts: [AEPoint:Cutout] = [:]
+	var cutouts: [Position:Cutout] = [:]
 	
 	var _content: UIView?
 	var content: UIView? {
@@ -134,7 +134,7 @@ class LimboView: UIView {
 		
 		path.move(to: CGPoint(x: x1, y: y2))
 		
-		if let cutout = cutouts[AEPoint.topLeft] {
+		if let cutout = cutouts[Position.topLeft] {
 			let xe = x1 + cutout.width + q
 			let xc = (x1 + xe) / 2
 			let ye = y1 + cutout.height + q
@@ -146,7 +146,7 @@ class LimboView: UIView {
 			path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: radius)
 		}
 		
-		if let cutout = cutouts[AEPoint.topRight] {
+		if let cutout = cutouts[Position.topRight] {
 			let xe = x3 - cutout.width - q
 			let xc = (xe + x3) / 2
 			let ye = y1 + cutout.height + q
@@ -158,7 +158,7 @@ class LimboView: UIView {
 			path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: radius)
 		}
 		
-		if let cutout = cutouts[AEPoint.bottomRight] {
+		if let cutout = cutouts[Position.bottomRight] {
 			let xe = x3 - cutout.width - q
 			let xc = (xe + x3) / 2
 			let ye = y3 - cutout.height - q
@@ -170,7 +170,7 @@ class LimboView: UIView {
 			path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: radius)
 		}
 		
-		if let cutout = cutouts[AEPoint.bottomLeft] {
+		if let cutout = cutouts[Position.bottomLeft] {
 			let xe = x1 + cutout.width + q
 			let xc = (x1 + xe) / 2
 			let ye = y3 - cutout.height - q

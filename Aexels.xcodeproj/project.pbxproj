@@ -46,7 +46,6 @@
 		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
 		D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C171E5051DC001472FC /* DilatorView.swift */; };
 		D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C191E505549001472FC /* AEAttributes.swift */; };
-		D862F1B51E5939A900612627 /* UIView+AE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B41E5939A900612627 /* UIView+AE.swift */; };
 		D862F1B71E59842000612627 /* NewtonianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B61E59842000612627 /* NewtonianView.swift */; };
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
@@ -126,7 +125,6 @@
 		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
 		D84B0C171E5051DC001472FC /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
 		D84B0C191E505549001472FC /* AEAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAttributes.swift; sourceTree = "<group>"; };
-		D862F1B41E5939A900612627 /* UIView+AE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AE.swift"; sourceTree = "<group>"; };
 		D862F1B61E59842000612627 /* NewtonianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonianView.swift; sourceTree = "<group>"; };
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */,
-				D862F1B41E5939A900612627 /* UIView+AE.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -550,7 +547,6 @@
 				D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */,
 				D8ABB6F31E7537F1001FE14F /* SliderView.swift in Sources */,
 				D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */,
-				D862F1B51E5939A900612627 /* UIView+AE.swift in Sources */,
 				D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */,
 				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,

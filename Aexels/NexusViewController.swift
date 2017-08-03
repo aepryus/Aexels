@@ -24,9 +24,9 @@ class NexusViewController: UIViewController {
 	private func display (explorer: Explorer) {
 		if explorer.canExplore {
 			if Aexels.iPad() {
-				messageView.cutouts[AEPoint.bottomRight] = Cutout(width: 176, height: 110)
+				messageView.cutouts[Position.bottomRight] = Cutout(width: 176, height: 110)
 			} else {
-				messageView.cutouts[AEPoint.bottomRight] = Cutout(width: 160, height: 60)
+				messageView.cutouts[Position.bottomRight] = Cutout(width: 160, height: 60)
 			}
 		} else {
 			messageView.cutouts.removeAll()

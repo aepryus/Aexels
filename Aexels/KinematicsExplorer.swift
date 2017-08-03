@@ -85,8 +85,8 @@ class KinematicsExplorer: Explorer {
 		
 		// Controls
 		controls.frame = CGRect(x: 5, y: universe.bottom, width: universe.width, height: 667-universe.bottom - 5)
-		controls.cutouts[AEPoint.bottomRight] = Cutout(width: 139, height: 60)
-		controls.cutouts[AEPoint.bottomLeft] = Cutout(width: 56, height: 56)
+		controls.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
+		controls.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
 		controls.renderPaths()
 		limbos.append(controls)
 
@@ -115,8 +115,8 @@ class KinematicsExplorer: Explorer {
 		
 		// Message
 		message = MessageView(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20-5))
-		message.cutouts[AEPoint.bottomRight] = Cutout(width: 139, height: 60)
-		message.cutouts[AEPoint.bottomLeft] = Cutout(width: 56, height: 56)
+		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
+		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
 		message.renderPaths()
 		message.load(key: "KinematicsLab")
 		

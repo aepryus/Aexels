@@ -257,7 +257,7 @@ final class CellularExplorer: Explorer {
 
 		// Aether
 		let aether = LimboView()
-		aether.cutouts[AEPoint.topRight] = Cutout(width: controls.height, height: controls.height)
+		aether.cutouts[Position.topRight] = Cutout(width: controls.height, height: controls.height)
 		aether.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
 		aether.renderPaths()
 		
@@ -273,7 +273,7 @@ final class CellularExplorer: Explorer {
 
 		// Message
 		let message = MessageView(frame: CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5))
-		message.cutouts[AEPoint.bottomRight] = Cutout(width: 139, height: 60)
+		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
 		message.load(key: "GameOfLife")
 		message.renderPaths()
 		
