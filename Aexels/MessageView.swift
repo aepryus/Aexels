@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OoviumLib
 
 class MessageView: LimboView {
 	let axMaskView = MaskView()
@@ -41,14 +42,13 @@ class MessageView: LimboView {
 		self.key = key
 		self.text = NSLocalizedString(key, comment: "")
 
-		let format = Format()
-		format.font = UIFont(name: "Verdana", size: 18)!
-		format.alignment = .left
+		let pen = Pen(font: UIFont(name: "Verdana", size: 18)!)
+		pen.alignment = .left
 
 		let p: CGFloat = 10
 		let w = self.scrollView.bounds.size.width - p*2
 		
-		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: format.attributes, context: nil).size
+		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size
 		
 		let h = size.height
 		
@@ -57,7 +57,7 @@ class MessageView: LimboView {
 		c.saveGState()
 		c.setShadow(offset: CGSize(width: 2, height: 2), blur: 2)
 		c.setFillColor(UIColor.white.cgColor)
-		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: format.attributes)
+		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: pen.attributes)
 		c.restoreGState()
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -75,7 +75,7 @@ class MessageView: LimboView {
 	}
 	
 // Events ==========================================================================================
-	func tap() {
+	@objc func tap() {
 		if onTap != nil {onTap!()}
 	}
 	

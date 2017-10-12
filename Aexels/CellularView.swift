@@ -146,7 +146,7 @@ final class CellularView: UIView {
 	}
 	
 // Events ==========================================================================================
-	func onTap (gesture: UITapGestureRecognizer) {
+	@objc func onTap (gesture: UITapGestureRecognizer) {
 		let point = gesture.location(in: self)
 		let cell = cellFrom(point: point)
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OoviumLib
 
 class NexusButton: UIButton {
 	var text: String = ""
@@ -23,9 +24,8 @@ class NexusButton: UIButton {
 		
 		c.setFillColor(UIColor.black.cgColor)
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
-		let format = Format()
-		format.font = UIFont.aexelFont(size: 24)
-		format.color = UIColor.black
-		(text as NSString).draw(at: CGPoint(x: 5, y: 5), withAttributes: format.attributes)
+		let pen = Pen(font: UIFont.aexelFont(size: 24))
+		pen.color = UIColor.black
+		(text as NSString).draw(at: CGPoint(x: 5, y: 5), withAttributes: pen.attributes)
     }
 }

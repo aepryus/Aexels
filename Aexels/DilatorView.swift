@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OoviumLib
 
 class DilatorView: UIView, UIGestureRecognizerDelegate {
 	var currentSps: CGFloat = 10
@@ -38,7 +39,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 // Events ==========================================================================================
-	func onPan (gesture: UIPanGestureRecognizer) {
+	@objc func onPan (gesture: UIPanGestureRecognizer) {
 		let p: CGFloat = 3
 		let dw: CGFloat = 0
 
@@ -94,10 +95,9 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 //		let x6 = rect.size.width - dw + p
 //		let x7 = rect.size.width - p
 
-		let attributes = AEAttributes()
-		attributes.font = UIFont(name: "Avenir-Heavy", size: 15)!
-		attributes.alignment = .center
-		("\(Int(actualSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: attributes.attributes)
+		let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15)!)
+		pen.alignment = .center
+		("\(Int(actualSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: pen.attributes)
 //		attributes.font = UIFont(name: "GillSans-Italic", size: 10)!
 //		("steps / second" as NSString).draw(in: CGRect(x: x7-90, y: 31, width: 90, height: 30), withAttributes: attributes.attributes)
 	}

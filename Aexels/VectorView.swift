@@ -34,7 +34,7 @@ class VectorView: UIView {
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 // Events ==========================================================================================
-	func onTap (_ gesture: UITapGestureRecognizer) {
+	@objc func onTap (_ gesture: UITapGestureRecognizer) {
 		let lw: CGFloat = 3
 		let radius = (Double(frame.size.width-lw))/2
 		

@@ -17,7 +17,7 @@ final class AXTimer {
 	var interval: Double {
 		set {
 			_interval = newValue
-			timer.scheduleRepeating(deadline: .now(), interval: interval)
+			timer.schedule(deadline: .now(), repeating: interval)
 		}
 		get {return _interval}
 	}

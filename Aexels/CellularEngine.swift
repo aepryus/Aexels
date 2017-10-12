@@ -10,7 +10,7 @@ import Foundation
 import OoviumLib
 
 final class CellularEngine {
-//	let aether: Aether
+    let aether: Aether
 	let auto: Auto
 	
 	var guideOn: Bool = true
@@ -59,8 +59,8 @@ final class CellularEngine {
 		}
 	
 		let attributes = JSON.fromJSON(json: json)
-		let basket = Basket()
-		let aether: Aether = basket.inject(attributes: attributes) as! Aether
+		let basket = Basket(persist: iOSPersist())
+		aether = basket.inject(attributes: attributes) as! Aether
 		aether.wire()
 		aether.calculate()
 		memory = aether.memory

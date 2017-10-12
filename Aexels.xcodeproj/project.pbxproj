@@ -30,7 +30,6 @@
 		D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425E41E1B5876009C9ED3 /* Aexels.swift */; };
 		D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */; };
 		D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */; };
-		D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425ED1E1B6DEF009C9ED3 /* Format.swift */; };
 		D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */; };
 		D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */; };
 		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
@@ -45,14 +44,11 @@
 		D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C131E4EF126001472FC /* ResetButton.swift */; };
 		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
 		D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C171E5051DC001472FC /* DilatorView.swift */; };
-		D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C191E505549001472FC /* AEAttributes.swift */; };
 		D862F1B71E59842000612627 /* NewtonianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B61E59842000612627 /* NewtonianView.swift */; };
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
 		D862F1BD1E59856000612627 /* V2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BC1E59856000612627 /* V2.swift */; };
 		D8ABB6F31E7537F1001FE14F /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABB6F21E7537F1001FE14F /* SliderView.swift */; };
-		D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
-		D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */; };
 		D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C011E1E2ECF00E02E16 /* Explorer.swift */; };
 		D8B13C0B1E1E3E0400E02E16 /* IntroExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */; };
@@ -65,18 +61,20 @@
 		D8B13C1B1E1EBD5700E02E16 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */; };
 		D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FB81E90B2560052BF21 /* SwapButton.swift */; };
 		D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FBA1E9202080052BF21 /* VectorView.swift */; };
+		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
+		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D8354B511E218EE500288C72 /* Embed Frameworks */ = {
+		D8D42AC81F8F66BC004942E2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8ABF4B71E218F2500F7B4D6 /* OoviumLib.framework in Embed Frameworks */,
+				D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,7 +107,6 @@
 		D80425E41E1B5876009C9ED3 /* Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aexels.swift; sourceTree = "<group>"; };
 		D80425E81E1B5C74009C9ED3 /* NexusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusViewController.swift; sourceTree = "<group>"; };
 		D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusButton.swift; sourceTree = "<group>"; };
-		D80425ED1E1B6DEF009C9ED3 /* Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AX.swift"; sourceTree = "<group>"; };
 		D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusLabel.swift; sourceTree = "<group>"; };
 		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -124,7 +121,6 @@
 		D84B0C131E4EF126001472FC /* ResetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
 		D84B0C171E5051DC001472FC /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
-		D84B0C191E505549001472FC /* AEAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AEAttributes.swift; sourceTree = "<group>"; };
 		D862F1B61E59842000612627 /* NewtonianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonianView.swift; sourceTree = "<group>"; };
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
@@ -153,7 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
-				D8ABF4B61E218F2500F7B4D6 /* OoviumLib.framework in Frameworks */,
+				D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,8 +308,6 @@
 		D80425EC1E1B6DCC009C9ED3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				D84B0C191E505549001472FC /* AEAttributes.swift */,
-				D80425ED1E1B6DEF009C9ED3 /* Format.swift */,
 				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
 				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
 				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
@@ -431,7 +425,7 @@
 				D80425911E1B4A97009C9ED3 /* Frameworks */,
 				D80425921E1B4A97009C9ED3 /* Resources */,
 				D8FD7E6D1E1E1FDA00325115 /* ShellScript */,
-				D8354B511E218EE500288C72 /* Embed Frameworks */,
+				D8D42AC81F8F66BC004942E2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,7 +443,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D80425931E1B4A97009C9ED3 = {
@@ -540,7 +534,6 @@
 				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
 				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
-				D84B0C1A1E505549001472FC /* AEAttributes.swift in Sources */,
 				D862F1BD1E59856000612627 /* V2.swift in Sources */,
 				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
 				D8B13C0D1E1E3E3A00E02E16 /* CellularExplorer.swift in Sources */,
@@ -556,7 +549,6 @@
 				D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */,
 				D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */,
 				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
-				D80425EE1E1B6DEF009C9ED3 /* Format.swift in Sources */,
 				D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */,
 				D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */,
 				D8B13C191E1E3F2900E02E16 /* DarknessExplorer.swift in Sources */,
@@ -590,7 +582,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -598,7 +592,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -627,6 +625,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -640,7 +639,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -648,7 +649,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -669,6 +674,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -688,7 +694,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -707,7 +712,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.Aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

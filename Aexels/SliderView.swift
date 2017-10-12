@@ -82,11 +82,11 @@ class SliderView: UIView, UIScrollViewDelegate {
 	}
 	
 // Events ==========================================================================================
-	func onTap (_ gesture: UITapGestureRecognizer) {
+	@objc func onTap (_ gesture: UITapGestureRecognizer) {
 		pageNo = min(max(Int(gesture.location(in: self).y/ph),0),pages.count-1)
 	}
 	static var startY: CGFloat = 0
-	func onPan (_ gesture: UIPanGestureRecognizer) {
+	@objc func onPan (_ gesture: UIPanGestureRecognizer) {
 		if gesture.state == .began {
 			SliderView.startY = thumb.frame.origin.y
 		}

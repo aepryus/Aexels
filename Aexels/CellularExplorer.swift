@@ -268,7 +268,7 @@ final class CellularExplorer: Explorer {
 		label.font = UIFont(name: "Georgia", size: 36)
 		aether.addSubview(label)
 
-		let aetherView = AetherView()
+		let aetherView = AetherView(aether: engine.aether)
 		aether.content = aetherView
 
 		// Message
