@@ -15,23 +15,6 @@ class LimboPath {
 	var maskPath: CGPath!
 }
 
-//enum Position {
-//	case center, top, bottom, left, right, topLeft, topRight, bottomLeft, bottomRight
-//	
-//	func isRight() -> Bool {
-//		return self == .topRight || self == .right || self == .bottomRight
-//	}
-//	func isLeft() -> Bool {
-//		return self == .topLeft || self == .left || self == .bottomLeft
-//	}
-//	func isTop() -> Bool {
-//		return self == .topLeft || self == .top || self == .topRight
-//	}
-//	func isBottom() -> Bool {
-//		return self == .bottomLeft || self == .bottom || self == .bottomRight
-//	}
-//}
-
 class Cutout {
 	let width: CGFloat
 	let height: CGFloat
