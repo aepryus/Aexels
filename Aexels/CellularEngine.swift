@@ -61,11 +61,11 @@ final class CellularEngine {
 		let attributes = JSON.fromJSON(json: json)
 		let basket = Basket(persist: iOSPersist())
 		aether = basket.inject(attributes: attributes) as! Aether
-		aether.wire()
-		aether.calculate()
+//		aether.wire()
+//		aether.calculate()
 		memory = aether.memory
 		AEMemoryPrint(memory);
-		index = Int(AEMemoryIndexForName(memory, "ATN00001".toInt8()))
+		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
 		auto = aether.firstAuto()!
 		auto.foreshadow(memory)
 		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
