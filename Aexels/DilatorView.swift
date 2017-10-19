@@ -61,13 +61,12 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
 		let p: CGFloat = 3;
-		let dw: CGFloat = 0
 		let crx: CGFloat = 16
 		let cry: CGFloat = 12
 		
-		let x1: CGFloat = p+crx
-		let x5: CGFloat = width - dw - crx - p
-		let x3: CGFloat = x1 + (x5-x1) * (currentSps - minimumSps) / (maximumSps - minimumSps)
+		let x1: CGFloat = p
+		let x5: CGFloat = width - p
+		let x3: CGFloat = x1 + crx + (x5-x1-2*crx) * (currentSps - minimumSps) / (maximumSps - minimumSps)
 		let x2: CGFloat = x3 - crx
 		let x4: CGFloat = x3 + crx
 		let y2: CGFloat = height / 2
@@ -76,12 +75,12 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		let path = CGMutablePath()
 		
 		if (x2 > x1) {
-			path.move(to: CGPoint(x: x1-crx, y: y2))
+			path.move(to: CGPoint(x: x1, y: y2))
 			path.addLine(to: CGPoint(x: x2, y: y2))
 		}
 		if (x4 < x5) {
 			path.move(to: CGPoint(x: x4, y: y2))
-			path.addLine(to: CGPoint(x: x5+crx, y: y2))
+			path.addLine(to: CGPoint(x: x5, y: y2))
 		}
 		path.addEllipse(in: CGRect(x: x2, y: y1, width: 2*crx, height: 2*cry))
 		
@@ -107,11 +106,10 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		if touch.phase != .began {return true}
 		
 		let p: CGFloat = 3
-		let dw: CGFloat = 0
-		let cr: CGFloat = 12
+		let cr: CGFloat = 16
 
 		let x1: CGFloat = p+cr
-		let x5: CGFloat = frame.size.width - dw - cr - p
+		let x5: CGFloat = frame.size.width - cr - p
 		let x3 = x1 + (x5-x1) * (currentSps - minimumSps) / (maximumSps - minimumSps)
 		let x2 = x3 - cr
 		let x4 = x3 + cr

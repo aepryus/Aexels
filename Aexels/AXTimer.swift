@@ -9,7 +9,7 @@
 import Foundation
 
 final class AXTimer {
-	var block: (()->())!
+//	var block: (()->())!
 	var running: Bool = false
 	var semaphore = DispatchSemaphore(value: 1)
 	
@@ -32,7 +32,7 @@ final class AXTimer {
 			self.semaphore.signal()
 		}
 		self.interval = interval
-		self.block = block
+//		self.block = block
 	}
 	
 	func start() {
