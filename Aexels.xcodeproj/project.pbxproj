@@ -63,6 +63,7 @@
 		D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FBA1E9202080052BF21 /* VectorView.swift */; };
 		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -139,6 +140,7 @@
 		D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		D8B32FB81E90B2560052BF21 /* SwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapButton.swift; sourceTree = "<group>"; };
 		D8B32FBA1E9202080052BF21 /* VectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorView.swift; sourceTree = "<group>"; };
+		D8E666F61FB022A3009D136C /* Icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon1024.png; path = Resources/Icon1024.png; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 				D80425C21E1B4FBD009C9ED3 /* Icon152.png */,
 				D80425C31E1B4FBD009C9ED3 /* Icon167.png */,
 				D80425C41E1B4FBD009C9ED3 /* Icon180.png */,
+				D8E666F61FB022A3009D136C /* Icon1024.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				D80425CA1E1B4FBD009C9ED3 /* Icon76.png in Resources */,
 				D80425C81E1B4FBD009C9ED3 /* Icon58.png in Resources */,
 				D80425C91E1B4FBD009C9ED3 /* Icon60.png in Resources */,
+				D8E666F71FB022A3009D136C /* Icon1024.png in Resources */,
 				D828617A1E6B8666006E76F1 /* Back6.png in Resources */,
 				D80425CB1E1B4FBD009C9ED3 /* Icon80.png in Resources */,
 				D80425D91E1B50D7009C9ED3 /* Demons.oo in Resources */,
