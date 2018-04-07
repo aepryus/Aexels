@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Aepryus/Aepryus.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Loom/Loom.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:../Oovium/Oovium.xcodeproj">
    </FileRef>
    <FileRef

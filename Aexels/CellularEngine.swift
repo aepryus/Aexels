@@ -6,7 +6,9 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Aepryus
 import Foundation
+import Loom
 import OoviumLib
 
 final class CellularEngine {
@@ -59,8 +61,10 @@ final class CellularEngine {
 		}
 	
 		let attributes = JSON.fromJSON(json: json)
-		let basket = Basket(persist: iOSPersist())
-		aether = basket.inject(attributes: attributes) as! Aether
+//		let basket = Basket(iOSPersist(), forked: false)
+		aether = Aether()
+		aether.load(attributes: attributes)
+//		aether = basket.inject(attributes) as! Aether
 //		aether.wire()
 //		aether.calculate()
 		memory = aether.memory

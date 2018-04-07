@@ -2,7 +2,7 @@
 	"aexels" : [
     {
 				"name" : "IF00001",
-				"iden" : 1,
+				"iden" : "1",
 				"thenChain" : "4:I00003",
 				"elseChain" : "4:Auto1.Self",
 				"x" : "550",
@@ -15,84 +15,84 @@
 				"states" : [
 							{
 							"type" : "state",
-							"iden" : 1,
+							"iden" : "1",
 							"color" : "20"
 							},
 							{
 							"type" : "state",
-							"iden" : 2,
+							"iden" : "2",
 							"color" : "21"
 							},
 							{
 							"type" : "state",
-							"iden" : 3,
+							"iden" : "3",
 							"color" : "22"
 							},
 							{
 							"type" : "state",
-							"iden" : 4,
+							"iden" : "4",
 							"color" : "23"
 							},
 							{
 							"type" : "state",
-							"iden" : 5,
+							"iden" : "5",
 							"color" : "24"
 							},
 							{
 							"type" : "state",
-							"iden" : 6,
+							"iden" : "6",
 							"color" : "25"
 							},
 							{
 							"type" : "state",
-							"iden" : 7,
+							"iden" : "7",
 							"color" : "26"
 							},
 							{
 							"type" : "state",
-							"iden" : 8,
+							"iden" : "8",
 							"color" : "27"
 							},
 							{
 							"type" : "state",
-							"iden" : 9,
+							"iden" : "9",
 							"color" : "28"
 							},
 							{
 							"type" : "state",
-							"iden" : 10,
+							"iden" : "10",
 							"color" : "29"
 							},
 							{
 							"type" : "state",
-							"iden" : 11,
+							"iden" : "11",
 							"color" : "30"
 							},
 							{
 							"type" : "state",
-							"iden" : 12,
+							"iden" : "12",
 							"color" : "31"
-							},
-							{
-							"name" : "up",
-							"x" : "696",
-							"type" : "object",
-							"iden" : 3,
-							"y" : "352",
-							"chain" : "6:(;4:Auto1.Self;1:+;0:1;6:);1:%;0:1;0:2"
 							}
 							],
 				"name" : "Demons",
 				"yOffset" : "234",
-				"iden" : 1,
+				"iden" : "1",
 				"readOnly" : "1",
-				"iden" : 1,
 				"resultChain" : "4:IF00001",
 				"statesChain" : "",
 				"x" : "407",
 				"type" : "auto",
 				"y" : "309"
-    }
+				},
+				{
+				"name" : "up",
+				"x" : "696",
+				"type" : "object",
+				"iden" : "3",
+				"y" : "352",
+				"chain" : "6:(;4:Auto1.Self;1:+;0:1;6:);1:%;0:1;0:2"
+				}
+
 				],
 	"type" : "aether",
 	"xOffset" : "384.5"
