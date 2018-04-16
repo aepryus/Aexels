@@ -13,7 +13,7 @@ final class AXTimer {
 	var running: Bool = false
 	var semaphore = DispatchSemaphore(value: 1)
 	
-	private var _interval: Double = 0.1
+	private var _interval: Double = 1.0/60
 	var interval: Double {
 		set {
 			_interval = newValue
