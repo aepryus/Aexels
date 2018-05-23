@@ -10,7 +10,7 @@ import UIKit
 import OoviumLib
 
 class MessageView: LimboView {
-	let axMaskView = MaskView()
+	let axMaskView = AXMaskView()
 	let scrollView = UIScrollView()
 	let imageView = UIImageView()
 	var onTap: (()->())?

@@ -8,6 +8,47 @@
 
 import UIKit
 
+enum D {
+	case dim320x480, dim320x568, dim375x667, dim414x736, dim375x812, dim1024x768, dim1112x834, dim1366x1024, dimOther
+	
+	static func current() -> D {
+		let size = UIScreen.main.bounds.size
+		if size.width == 320 && size.height == 480 {return .dim320x480}
+		if size.width == 320 && size.height == 568 {return .dim320x568}
+		if size.width == 375 && size.height == 667 {return .dim375x667}
+		if size.width == 414 && size.height == 736 {return .dim414x736}
+		if size.width == 375 && size.height == 812 {return .dim375x812}
+		if size.width == 1024 && size.height == 768 {return .dim1024x768}
+		if size.width == 1112 && size.height == 834 {return .dim1112x834}
+		if size.width == 1366 && size.height == 1024 {return .dim1366x1024}
+		return .dimOther
+	}
+	static var width: CGFloat {
+		return UIScreen.main.bounds.size.width
+	}
+	static var height: CGFloat {
+		return UIScreen.main.bounds.size.height
+	}
+	static var s: CGFloat {
+		if D.current().iPhone {
+			return D.width / 375
+		} else {
+			return D.width / 1024
+		}
+	}
+	
+	var iPhone: Bool {
+		return self == .dim320x480
+			|| self == .dim320x568
+			|| self == .dim375x667
+			|| self == .dim414x736
+			|| self == .dim375x812
+	}
+	var iPad: Bool {
+		return !iPhone
+	}
+}
+
 class Explorer {
 	let view: UIView
 	let name: String

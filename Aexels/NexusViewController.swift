@@ -182,9 +182,8 @@ class NexusViewController: UIViewController {
 		exploreButton.frame = CGRect(x: 843, y: 658, width: 176, height: 110)
 		view.addSubview(exploreButton)
 		
-		let button = UIButton(type: .custom)
+		let button = AXButton()
 		button.setTitle("Explore", for: .normal)
-		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
 		button.add(for: .touchUpInside) { 
 			self.dimNexus()
@@ -204,7 +203,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 36, y: 170+i*60, width: 300, height: 32)
+			button.frame = CGRect(x: 16, y: 170+i*60, width: 300, height: 32)
 			button.add(for: .touchUpInside, { 
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -274,9 +273,8 @@ class NexusViewController: UIViewController {
 		exploreButton.frame = CGRect(x: 375-160-5, y: 677-60-2*6-4, width: 160, height: 60)
 		view.addSubview(exploreButton)
 
-		let button = UIButton(type: .custom)
+		let button = AXButton()
 		button.setTitle("Explore", for: .normal)
-		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.frame = CGRect(x: 15, y: 17, width: 160-30, height: 60-30)
 		button.add(for: .touchUpInside) { 
 			self.dimNexus()

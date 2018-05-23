@@ -19,6 +19,8 @@ class KinematicsView: UIView, Simulation {
 	var x: Int = 3
 	var y: Int = 3
 	var o: Int = 1
+	var w: Double = 0
+	var h: Double = 0
 	
 	let timer = AXTimer()
 	
@@ -57,6 +59,9 @@ class KinematicsView: UIView, Simulation {
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 	func render() {
+		self.w = Double(width)
+		self.h = Double(height)
+		
 		let s: CGFloat = 30.0
 		let sn: CGFloat = s*CGFloat(sin(Double.pi/6))
 		let cs: CGFloat = s*CGFloat(cos(Double.pi/6))
@@ -226,8 +231,6 @@ class KinematicsView: UIView, Simulation {
 		
 		let xL = 1 + (o==1 ? sn+s : 0) + Double(x)*3*s + Xa.x
 		let yL = 1 + (o==1 ? cs : 0) + Double(y)*2*cs + Xa.y
-		let w = Double(width)
-		let h = Double(height)
 		
 		// Bounce
 		Xl.x = xL+s

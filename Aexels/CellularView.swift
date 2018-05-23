@@ -21,14 +21,14 @@ struct Cell {
 }
 
 final class CellularView: UIView {
-	var engine: CellularEngine!
+	var engine: CellularEngine?
 
 	var _origin: Cell = Cell.zero
 	var origin: Cell {
 		set {
 			_origin = newValue
 			focus = nil
-			if let zoomView = zoomView {
+			if let zoomView = zoomView, let engine = engine {
 				engine.removeView(zoomView)
 			}
 		}
@@ -95,6 +95,8 @@ final class CellularView: UIView {
 		}
 	}
 	func tic() {
+		guard let engine = engine else {return}
+		
 		let cw: Int = Aexels.iPad() ? 432 : 335
 		let x: Int = Int(origin.x)
 		let y: Int = Int(origin.y)
@@ -160,7 +162,7 @@ final class CellularView: UIView {
 		
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomView!.origin = origin
-		if zoomView!.engine == nil {
+		if zoomView!.engine == nil, let engine = engine {
 			engine.addView(zoomView!)
 		}
 	}

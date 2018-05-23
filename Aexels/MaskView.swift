@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaskView: UIView {
+class AXMaskView: UIView {
 	var _content: UIView?
 	var content: UIView? {
 		set {

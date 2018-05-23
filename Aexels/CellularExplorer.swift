@@ -16,6 +16,8 @@ final class CellularExplorer: Explorer {
 
 	var engine: CellularEngine
 	
+	var aetherView: AetherView!
+	
 	init (view: UIView) {
 		let s = Aexels.iPad() ?  432 : 335
 		engine = CellularEngine(aetherName: "Game of Life", w: s, h: s)!
@@ -97,35 +99,35 @@ final class CellularExplorer: Explorer {
 		play.onStop = {
 			self.engine.stop()
 		}
-		play.frame = CGRect(x: 100-q-bw, y: 21, width: bw, height: 30)
 		controls.addSubview(play)
+		play.left(offset: UIOffset(horizontal: 100-q-bw, vertical: 0), size: CGSize(width: bw, height: 30))
 		
 		let reset = ResetButton()
-		reset.frame = CGRect(x: 100-bw/2, y: 21, width: bw, height: 30)
 		controls.addSubview(reset)
 		reset.add(for: .touchUpInside) { 
 			play.stop()
 			self.engine.reset()
 		}
-		
+		reset.left(offset: UIOffset(horizontal: 100-bw/2, vertical: 0), size: CGSize(width: bw, height: 30))
+
 		let guide = GuideButton()
-		guide.frame = CGRect(x: 100+q, y: 21, width: bw, height: 30)
 		controls.addSubview(guide)
 		guide.add(for: .touchUpInside) { 
 			self.engine.guideOn = !self.engine.guideOn
 			guide.stateOn = self.engine.guideOn
 			guide.setNeedsDisplay()
 		}
-		
+		guide.left(offset: UIOffset(horizontal: 100+q, vertical: 0), size: CGSize(width: bw, height: 30))
+
 		// Close
 		let size = CGSize(width: 144, height: 78)
 		let close = LimboView()
 		close.frame = CGRect(x: 1024-5-size.width, y: 768-size.height, width: size.width, height: size.height)
 		close.alpha = 0
-		let button = UIButton(type: .custom)
+		let button = AXButton()
 		button.setTitle("Close", for: .normal)
-		button.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button.add(for: .touchUpInside) {
+			self.aetherView.snuffToolBars()
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
@@ -140,10 +142,63 @@ final class CellularExplorer: Explorer {
 		let mw: CGFloat = 221
 		let sw: CGFloat = lw-mw
 		
+		// Large
+		let large = LimboView()
+		large.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
+		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: lw-30, height: lw-30))
+		engine.addView(largeCell)
+		large.content = largeCell
+		limbos.append(large)
+		
+		// Medium
+		let medium = LimboView()
+		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
+		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 190, height: 190))
+		mediumCell.zoom = 2
+		medium.content = mediumCell
+		limbos.append(medium)
+		
+		// Small
+		let small = LimboView()
+		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
+		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 112, height: 112))
+		smallCell.zoom = 4
+		small.content = smallCell
+		limbos.append(small)
+		
+		largeCell.zoomView = mediumCell
+		mediumCell.zoomView = smallCell
+		
+		// Swapper =========================
+		let swapper = LimboView()
+		swapper.frame = CGRect(x: 5, y: medium.bottom, width: 56, height: 56)
+		let swapButton = SwapButton()
+		//		button.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+		swapButton.add(for: .touchUpInside) {
+			swapButton.rotateView()
+			if self.isFirst {
+				self.isFirst = false
+				self.dimLimbos(self.first)
+				self.brightenLimbos(self.second)
+				self.limboViews = [swapper] + self.second
+				self.aetherView.showToolBars()
+			} else {
+				self.isFirst = true
+				self.dimLimbos(self.second)
+				self.brightenLimbos(self.first)
+				self.limboViews = [swapper] + self.first
+				self.aetherView.snuffToolBars()
+			}
+			swapper.removeFromSuperview()
+			self.view.addSubview(swapper)
+		}
+		swapper.content = swapButton
+		limbos.append(swapper)
+		
 		// Controls ========================
 		let bw: CGFloat = 40
 		let controls = LimboView()
-		controls.frame = CGRect(x: 5, y: 20, width: bw*3+30, height: 56)
+		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
 		limbos.append(controls)
 		
 		let play = PlayButton()
@@ -153,21 +208,21 @@ final class CellularExplorer: Explorer {
 		play.onStop = {
 			self.engine.stop()
 		}
-		play.frame = CGRect(x: 15, y: 15, width: bw, height: 30)
 		controls.addSubview(play)
-		
+		play.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: bw, height: 30))
+
 		let reset = ResetButton()
-		reset.frame = CGRect(x: 15+bw, y: 15, width: bw, height: 30)
 		controls.addSubview(reset)
-		reset.add(for: .touchUpInside) { 
+		reset.left(offset: UIOffset(horizontal: 15+bw, vertical: 0), size: CGSize(width: bw, height: 30))
+		reset.add(for: .touchUpInside) {
 			play.stop()
 			self.engine.reset()
 		}
 		
 		let guide = GuideButton()
-		guide.frame = CGRect(x: 15+2*bw, y: 15, width: bw, height: 30)
 		controls.addSubview(guide)
-		guide.add(for: .touchUpInside) { 
+		guide.left(offset: UIOffset(horizontal: 15+2*bw, vertical: 0), size: CGSize(width: bw, height: 30))
+		guide.add(for: .touchUpInside) {
 			self.engine.guideOn = !self.engine.guideOn
 			guide.stateOn = self.engine.guideOn
 			guide.setNeedsDisplay()
@@ -175,7 +230,7 @@ final class CellularExplorer: Explorer {
 		
 		// Dilator =========================
 		let dilator = LimboView(p: 12)
-		dilator.frame = CGRect(x: controls.right, y: 20, width: lw-controls.width-controls.height, height: controls.height)
+		dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
 			self.engine.interval = 1/current
@@ -187,67 +242,12 @@ final class CellularExplorer: Explorer {
 			dilatorView.actualSps = CGFloat(actualSps)
 		}
 
-		// Swapper =========================
-		let swapper = LimboView()
-		swapper.frame = CGRect(x: dilator.right, y: 20, width: controls.height, height: controls.height)
-		let swapButton = SwapButton()
-//		button.backgroundColor = UIColor.red.withAlphaComponent(0.5)
-		swapButton.add(for: .touchUpInside) {
-			swapButton.rotateView()
-			if self.isFirst {
-				self.isFirst = false
-				self.dimLimbos(self.first)
-				self.brightenLimbos(self.second)
-				self.limboViews = [swapper] + self.second
-			} else {
-				self.isFirst = true
-				self.dimLimbos(self.second)
-				self.brightenLimbos(self.first)
-				self.limboViews = [swapper] + self.first
-			}
-			swapper.removeFromSuperview()
-			self.view.addSubview(swapper)
-		}
-		swapper.content = swapButton
-		limbos.append(swapper)
-		
-		// Large
-		let large = LimboView()
-		large.frame = CGRect(x: 5, y: controls.bottom, width: lw, height: lw)
-		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: lw-30, height: lw-30))
-		engine.addView(largeCell)
-		large.content = largeCell
-		limbos.append(large)
-		
-		// Medium
-		let medium = LimboView()
-		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
-		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 190, height: 190))
-		mediumCell.zoom = 2
-		engine.addView(mediumCell)
-		medium.content = mediumCell
-		limbos.append(medium)
-		
-		// Small
-		let small = LimboView()
-		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
-		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 112, height: 112))
-		smallCell.zoom = 4
-		engine.addView(smallCell)
-		small.content = smallCell
-		limbos.append(small)
-		
-		largeCell.zoomView = mediumCell
-		mediumCell.zoomView = smallCell
-
 		// Close
-		let size = CGSize(width: 144, height: 78)
 		let close1 = LimboView()
-		close1.frame = CGRect(x: 375-5-size.width, y: 667-5-size.height, width: size.width, height: size.height)
+		close1.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
 		close1.alpha = 0
-		let button1 = UIButton(type: .custom)
+		let button1 = AXButton()
 		button1.setTitle("Close", for: .normal)
-		button1.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button1.add(for: .touchUpInside) {
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
@@ -256,10 +256,18 @@ final class CellularExplorer: Explorer {
 		limbos.append(close1)
 
 		// Aether
-		let aether = LimboView()
-		aether.cutouts[Position.topRight] = Cutout(width: controls.height, height: controls.height)
+		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
+		tools[0][0] = AetherView.objectTool
+		tools[1][0] = AetherView.gateTool
+		tools[0][1] = AetherView.mechTool
+		
+		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
+		aetherView.toolBarPadding = UIOffset(horizontal: -9, vertical: 9)
+
+		let aether = ContentLimbo(frame: CGRect(x: 5, y: 20, width: lw, height: lw), content: aetherView)
 		aether.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
 		aether.renderPaths()
+		aether.alpha = 0
 		
 		let label = UILabel(frame: CGRect(x: 209, y: 311, width: 144, height: 40))
 		label.text = "Oovium"
@@ -267,29 +275,33 @@ final class CellularExplorer: Explorer {
 		label.textColor = UIColor.white.withAlphaComponent(0.3)
 		label.font = UIFont(name: "Georgia", size: 36)
 		aether.addSubview(label)
-
-		let aetherView = AetherView(aether: engine.aether)
-		aether.content = aetherView
-
+		
+		aetherView.renderToolBars()
+		aetherView.placeToolBars()
+		aetherView.stretch()
+		
 		// Message
 		let message = MessageView(frame: CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5))
-		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
+		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
+		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
 		message.load(key: "GameOfLife")
 		message.renderPaths()
+		message.alpha = 0
 		
 		// Close
-		let size2 = CGSize(width: 139, height: 60)
 		let close2 = LimboView()
-		close2.frame = CGRect(x: 375-5-size2.width, y: 667-5-size2.height, width: size2.width, height: size2.height)
+		close2.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
 		close2.alpha = 0
-		let button2 = UIButton(type: .custom)
+		let button2 = AXButton()
 		button2.setTitle("Close", for: .normal)
-		button2.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button2.add(for: .touchUpInside) {
+			self.isFirst = true
+			self.aetherView.snuffToolBars()
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
 		close2.content = button2
+		close2.alpha = 0
 		
 		first = [controls, dilator, large, medium, small, close1]
 		second = [aether, message, close2]

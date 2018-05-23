@@ -9,7 +9,7 @@
 import UIKit
 
 class GuideButton: UIButton {
-	var stateOn: Bool = true
+	var stateOn: Bool = false
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {

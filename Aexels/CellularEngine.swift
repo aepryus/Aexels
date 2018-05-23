@@ -15,7 +15,7 @@ final class CellularEngine {
     let aether: Aether
 	let auto: Auto
 	
-	var guideOn: Bool = true
+	var guideOn: Bool = false
 	
 	let w: Int
 	let h: Int

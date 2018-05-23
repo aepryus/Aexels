@@ -119,15 +119,15 @@ class KinematicsExplorer: Explorer {
 		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
 		message.renderPaths()
 		message.load(key: "KinematicsLab")
+		message.alpha = 0
 		
 		// Close
 		let size = CGSize(width: 139, height: 60)
 		let close1 = LimboView()
 		close1.frame = CGRect(x: 375-5-size.width, y: 667-5-size.height, width: size.width, height: size.height)
 		close1.alpha = 0
-		let button1 = UIButton(type: .custom)
+		let button1 = AXButton()
 		button1.setTitle("Close", for: .normal)
-		button1.titleLabel!.font = UIFont.aexelFont(size: 24)
 		button1.add(for: .touchUpInside) {
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
