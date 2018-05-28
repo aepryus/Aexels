@@ -27,8 +27,9 @@ class NexusLabel: UIView {
 		
 		c.setFillColor(UIColor.black.cgColor)
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
-		let pen = Pen(font: UIFont.aexelFont(size: size))
+		let pen = Pen(font: UIFont.aexel(size: size))
 		pen.color = UIColor.black
-		(text as NSString).draw(at: CGPoint(x: 5, y: 5), withAttributes: pen.attributes)
+		pen.alignment = .right
+		(text as NSString).draw(in: rect, withAttributes: pen.attributes)
 	}
 }

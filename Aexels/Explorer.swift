@@ -55,7 +55,7 @@ class Explorer {
 	let key: String
 	let canExplore: Bool
 
-	var limboViews = [LimboView]()
+	var limbos = [Limbo]()
 	
 	init (view: UIView, name: String, key: String, canExplore: Bool) {
 		self.view = view
@@ -67,14 +67,14 @@ class Explorer {
 	func closeSize() -> CGSize {
 		return CGSize(width: 139, height: 60)
 	}
-	func createLimbos() -> [LimboView] {
+	func createLimbos() -> [Limbo] {
 		return []
 	}
 
 	func iPadLayout() {
 	}
 	
-	func dimLimbos (_ limbos: [LimboView]) {
+	func dimLimbos (_ limbos: [Limbo]) {
 		UIView.animate(withDuration: 0.2, animations: { 
 			for limbo in limbos {
 				limbo.alpha = 0
@@ -85,7 +85,7 @@ class Explorer {
 			}
 		}
 	}
-	func brightenLimbos (_ limbos: [LimboView]) {
+	func brightenLimbos (_ limbos: [Limbo]) {
 		for limbo in limbos {
 			view.addSubview(limbo)
 		}
@@ -97,30 +97,30 @@ class Explorer {
 	}
 	
 	func openExplorer (view: UIView) {
-		self.limboViews.append(contentsOf: createLimbos())
+		self.limbos.append(contentsOf: createLimbos())
 
-		for limboView in limboViews {
-			limboView.alpha = 0
-			view.addSubview(limboView)
+		for limbo in limbos {
+			limbo.alpha = 0
+			view.addSubview(limbo)
 		}
 
 		UIView.animate(withDuration: 0.2) {
-			for view in self.limboViews {
+			for view in self.limbos {
 				view.alpha = 1
 			}
 		}
 	}
 	func closeExplorer() {
 		UIView.animate(withDuration: 0.2, animations: {
-			for view in self.limboViews {
+			for view in self.limbos {
 				view.alpha = 0
 			}
 		}) { (canceled) in
 			self.onClose()
-			for view in self.limboViews {
+			for view in self.limbos {
 				view.removeFromSuperview()
 			}
-			self.limboViews.removeAll()
+			self.limbos.removeAll()
 		}
 	}
 	

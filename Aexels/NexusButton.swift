@@ -27,9 +27,8 @@ class NexusButton: UIButton {
     override func draw (_ rect: CGRect) {
 		let c = UIGraphicsGetCurrentContext()!
 		
-//		c.setFillColor(UIColor.black.cgColor)
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
-		let pen = Pen(font: UIFont.aexelFont(size: 24))
+		let pen = Pen(font: UIFont.aexel(size: 24))
 		pen.alignment = .right
 		
 		if state == .normal {

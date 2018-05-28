@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResetButton: UIButton {
+class ResetButton: AXButton {
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {

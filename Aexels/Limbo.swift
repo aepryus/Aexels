@@ -25,7 +25,7 @@ class Cutout {
 	}
 }
 
-class LimboView: UIView {
+class Limbo: UIView {
 	var path: CGPath? = nil
 	
 	var p: CGFloat = 15

@@ -9,10 +9,10 @@
 import UIKit
 
 extension UIFont {
-	static func aexelFont (size: CGFloat) -> UIFont {
+	static func aexel(size: CGFloat) -> UIFont {
 		return UIFont(name: "Trajan Pro", size: size)!
 	}
-	static func aexelFontBold (size: CGFloat) -> UIFont {
+	static func aexelBold(size: CGFloat) -> UIFont {
 		return UIFont(name: "TrajanPro-Bold", size: size)!
 	}
 }

@@ -9,7 +9,7 @@
 import UIKit
 import OoviumLib
 
-class ContentLimbo: LimboView {
+class ContentLimbo: Limbo {
 	let evMaskView: MaskView
 	
 	init(frame: CGRect, content: UIView) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GuideButton: UIButton {
+class GuideButton: AXButton {
 	var stateOn: Bool = false
 
 // UIView ==========================================================================================

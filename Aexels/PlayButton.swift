@@ -9,7 +9,7 @@
 import OoviumLib
 import UIKit
 
-class PlayButton: UIButton {
+class PlayButton: AXButton {
 	var onPlay:()->()
 	var onStop:()->()
 	
@@ -17,11 +17,11 @@ class PlayButton: UIButton {
 	
 	private var playing: Bool = false
 	
-	init() {
+	override init() {
 		self.onPlay = {}
 		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-		super.init(frame: CGRect.zero)
+		super.init()
 		add(for: .touchUpInside) { 
 			self.playing = !self.playing
 			self.setNeedsDisplay()

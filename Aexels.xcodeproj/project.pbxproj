@@ -32,8 +32,8 @@
 		D80425EB1E1B5EEE009C9ED3 /* NexusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */; };
 		D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */; };
 		D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */; };
-		D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageView.swift */; };
-		D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* LimboView.swift */; };
+		D80425F91E1B9157009C9ED3 /* MessageLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425F81E1B9157009C9ED3 /* MessageLimbo.swift */; };
+		D80425FB1E1B9172009C9ED3 /* Limbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425FA1E1B9172009C9ED3 /* Limbo.swift */; };
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
 		D828617A1E6B8666006E76F1 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D82861791E6B8666006E76F1 /* Back6.png */; };
 		D828617D1E6B87A4006E76F1 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617B1E6B87A4006E76F1 /* Back4.png */; };
@@ -118,8 +118,8 @@
 		D80425EA1E1B5EEE009C9ED3 /* NexusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusButton.swift; sourceTree = "<group>"; };
 		D80425EF1E1B70FA009C9ED3 /* UIFont+AX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AX.swift"; sourceTree = "<group>"; };
 		D80425F11E1B7A70009C9ED3 /* NexusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusLabel.swift; sourceTree = "<group>"; };
-		D80425F81E1B9157009C9ED3 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		D80425FA1E1B9172009C9ED3 /* LimboView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboView.swift; sourceTree = "<group>"; };
+		D80425F81E1B9157009C9ED3 /* MessageLimbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLimbo.swift; sourceTree = "<group>"; };
+		D80425FA1E1B9172009C9ED3 /* Limbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Limbo.swift; sourceTree = "<group>"; };
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D82861791E6B8666006E76F1 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back6.png; path = Resources/Back6.png; sourceTree = "<group>"; };
 		D828617B1E6B87A4006E76F1 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back4.png; path = Resources/Back4.png; sourceTree = "<group>"; };
@@ -325,14 +325,14 @@
 		D80425EC1E1B6DCC009C9ED3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				D80425FA1E1B9172009C9ED3 /* LimboView.swift */,
-				D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */,
 				D8B13C1A1E1EBD5700E02E16 /* MaskView.swift */,
-				D80425F81E1B9157009C9ED3 /* MessageView.swift */,
-				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
 				D8ABB6F21E7537F1001FE14F /* SliderView.swift */,
-				D8B32FB81E90B2560052BF21 /* SwapButton.swift */,
 				D8A19A9720B1ECCD002518F4 /* AXButton.swift */,
+				D8354B4C1E217CF300288C72 /* PlayButton.swift */,
+				D8B32FB81E90B2560052BF21 /* SwapButton.swift */,
+				D80425FA1E1B9172009C9ED3 /* Limbo.swift */,
+				D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */,
+				D80425F81E1B9157009C9ED3 /* MessageLimbo.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -553,11 +553,11 @@
 				D862F1B71E59842000612627 /* NewtonianView.swift in Sources */,
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
 				D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */,
-				D80425FB1E1B9172009C9ED3 /* LimboView.swift in Sources */,
+				D80425FB1E1B9172009C9ED3 /* Limbo.swift in Sources */,
 				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
 				D862F1BD1E59856000612627 /* V2.swift in Sources */,
-				D80425F91E1B9157009C9ED3 /* MessageView.swift in Sources */,
+				D80425F91E1B9157009C9ED3 /* MessageLimbo.swift in Sources */,
 				D8B13C0D1E1E3E3A00E02E16 /* CellularExplorer.swift in Sources */,
 				D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */,
 				D8ABB6F31E7537F1001FE14F /* SliderView.swift in Sources */,

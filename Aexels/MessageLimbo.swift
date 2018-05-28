@@ -9,7 +9,7 @@
 import UIKit
 import OoviumLib
 
-class MessageView: LimboView {
+class MessageLimbo: Limbo {
 	let axMaskView = AXMaskView()
 	let scrollView = UIScrollView()
 	let imageView = UIImageView()

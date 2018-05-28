@@ -66,7 +66,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 			for page in _pages {
 				let label = UILabel()
 				label.text = page
-				label.font = UIFont.aexelFont(size: 17)
+				label.font = UIFont.aexel(size: 17)
 				label.textColor = UIColor.white
 				label.textAlignment = .center
 				labelViews.append(label)

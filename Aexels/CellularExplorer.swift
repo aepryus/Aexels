@@ -10,8 +10,8 @@ import OoviumLib
 import UIKit
 
 final class CellularExplorer: Explorer {
-	var first = [LimboView]()
-	var second = [LimboView]()
+	var first = [Limbo]()
+	var second = [Limbo]()
 	var isFirst: Bool = true
 
 	var engine: CellularEngine
@@ -30,18 +30,18 @@ final class CellularExplorer: Explorer {
 	}
 	
 // Explorer ========================================================================================
-	func iPadLimbos() -> [LimboView] {
-		var limbos = [LimboView]()
+	func iPadLimbos() -> [Limbo] {
+		var limbos = [Limbo]()
 		
 		let x: CGFloat = 432
 		let y: CGFloat = 400
 		let ch: CGFloat = 72
 		
-		let aether = LimboView()
+		let aether = Limbo()
 		aether.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
 		limbos.append(aether)
 		
-		let dilator = LimboView()
+		let dilator = Limbo()
 		dilator.frame = CGRect(x: 205, y: 20+y, width: 1024-(x+30)-200-10, height: ch)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
@@ -54,18 +54,18 @@ final class CellularExplorer: Explorer {
 			dilatorView.actualSps = CGFloat(actualSps)
 		}
 		
-		let message = MessageView(frame: CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch))
+		let message = MessageLimbo(frame: CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch))
 		message.load(key: "GameOfLife")
 		limbos.append(message)
 		
-		let large = LimboView()
+		let large = Limbo()
 		large.frame = CGRect(x: 1024-462-5, y: 20, width: x+30, height: x+30)
 		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: 432, height: 432))
 		engine.addView(largeCell)
 		large.content = largeCell
 		limbos.append(large)
 		
-		let medium = LimboView()
+		let medium = Limbo()
 		medium.frame = CGRect(x: 1024-462-5, y: 20+462, width: 286, height: 286)
 		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 256, height: 256))
 		mediumCell.zoom = 2
@@ -73,7 +73,7 @@ final class CellularExplorer: Explorer {
 		medium.content = mediumCell
 		limbos.append(medium)
 		
-		let small = LimboView()
+		let small = Limbo()
 		small.frame = CGRect(x: 1024-462-5+286, y: 20+462, width: 176, height: 176)
 		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 144, height: 144))
 		smallCell.zoom = 4
@@ -85,7 +85,7 @@ final class CellularExplorer: Explorer {
 		mediumCell.zoomView = smallCell
 		
 		// Controls ========================
-		let controls = LimboView()
+		let controls = Limbo()
 		controls.frame = CGRect(x: 5, y: 20+y, width: 200, height: ch)
 		limbos.append(controls)
 		
@@ -121,7 +121,7 @@ final class CellularExplorer: Explorer {
 
 		// Close
 		let size = CGSize(width: 144, height: 78)
-		let close = LimboView()
+		let close = Limbo()
 		close.frame = CGRect(x: 1024-5-size.width, y: 768-size.height, width: size.width, height: size.height)
 		close.alpha = 0
 		let button = AXButton()
@@ -135,15 +135,15 @@ final class CellularExplorer: Explorer {
 		
 		return limbos
 	}
-	func iPhoneLimbos() -> [LimboView] {
-		var limbos = [LimboView]()
+	func iPhoneLimbos() -> [Limbo] {
+		var limbos = [Limbo]()
 
 		let lw: CGFloat = 375-10
 		let mw: CGFloat = 221
 		let sw: CGFloat = lw-mw
 		
 		// Large
-		let large = LimboView()
+		let large = Limbo()
 		large.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
 		let largeCell = CellularView(frame: CGRect(x: 15, y: 15, width: lw-30, height: lw-30))
 		engine.addView(largeCell)
@@ -151,7 +151,7 @@ final class CellularExplorer: Explorer {
 		limbos.append(large)
 		
 		// Medium
-		let medium = LimboView()
+		let medium = Limbo()
 		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
 		let mediumCell = CellularView(frame: CGRect(x: 15, y: 15, width: 190, height: 190))
 		mediumCell.zoom = 2
@@ -159,7 +159,7 @@ final class CellularExplorer: Explorer {
 		limbos.append(medium)
 		
 		// Small
-		let small = LimboView()
+		let small = Limbo()
 		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
 		let smallCell = CellularView(frame: CGRect(x: 16, y: 16, width: 112, height: 112))
 		smallCell.zoom = 4
@@ -170,7 +170,7 @@ final class CellularExplorer: Explorer {
 		mediumCell.zoomView = smallCell
 		
 		// Swapper =========================
-		let swapper = LimboView()
+		let swapper = Limbo()
 		swapper.frame = CGRect(x: 5, y: medium.bottom, width: 56, height: 56)
 		let swapButton = SwapButton()
 		//		button.backgroundColor = UIColor.red.withAlphaComponent(0.5)
@@ -180,13 +180,13 @@ final class CellularExplorer: Explorer {
 				self.isFirst = false
 				self.dimLimbos(self.first)
 				self.brightenLimbos(self.second)
-				self.limboViews = [swapper] + self.second
+				self.limbos = [swapper] + self.second
 				self.aetherView.showToolBars()
 			} else {
 				self.isFirst = true
 				self.dimLimbos(self.second)
 				self.brightenLimbos(self.first)
-				self.limboViews = [swapper] + self.first
+				self.limbos = [swapper] + self.first
 				self.aetherView.snuffToolBars()
 			}
 			swapper.removeFromSuperview()
@@ -197,7 +197,7 @@ final class CellularExplorer: Explorer {
 		
 		// Controls ========================
 		let bw: CGFloat = 40
-		let controls = LimboView()
+		let controls = Limbo()
 		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
 		limbos.append(controls)
 		
@@ -229,7 +229,7 @@ final class CellularExplorer: Explorer {
 		}
 		
 		// Dilator =========================
-		let dilator = LimboView(p: 12)
+		let dilator = Limbo(p: 12)
 		dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
@@ -243,7 +243,7 @@ final class CellularExplorer: Explorer {
 		}
 
 		// Close
-		let close1 = LimboView()
+		let close1 = Limbo()
 		close1.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
 		close1.alpha = 0
 		let button1 = AXButton()
@@ -281,7 +281,7 @@ final class CellularExplorer: Explorer {
 		aetherView.stretch()
 		
 		// Message
-		let message = MessageView(frame: CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5))
+		let message = MessageLimbo(frame: CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5))
 		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
 		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
 		message.load(key: "GameOfLife")
@@ -289,7 +289,7 @@ final class CellularExplorer: Explorer {
 		message.alpha = 0
 		
 		// Close
-		let close2 = LimboView()
+		let close2 = Limbo()
 		close2.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
 		close2.alpha = 0
 		let button2 = AXButton()
@@ -309,7 +309,7 @@ final class CellularExplorer: Explorer {
 		return limbos
 	}
 	
-	override func createLimbos() -> [LimboView] {
+	override func createLimbos() -> [Limbo] {
 		if Aexels.iPad() {
 			return iPadLimbos()
 		} else {

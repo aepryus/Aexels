@@ -10,9 +10,9 @@ import OoviumLib
 import UIKit
 
 class KinematicsExplorer: Explorer {
-	var message: MessageView!
-	let universe = LimboView()
-	let controls = LimboView()
+	var message: MessageLimbo!
+	let universe = Limbo()
+	let controls = Limbo()
 	
 	let newtonianView: NewtownianView
 	let kinematicsView: KinematicsView
@@ -22,8 +22,8 @@ class KinematicsExplorer: Explorer {
 	let aexelVector = VectorView()
 	let loopVector = VectorView()
 
-	var first = [LimboView]()
-	var second = [LimboView]()
+	var first = [Limbo]()
+	var second = [Limbo]()
 	var isFirst: Bool = true
 
 	init (view: UIView) {
@@ -42,15 +42,15 @@ class KinematicsExplorer: Explorer {
 		super.init(view: view, name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
 
-	func iPadLimbos() -> [LimboView] {
-		var limbos = [LimboView]()
+	func iPadLimbos() -> [Limbo] {
+		var limbos = [Limbo]()
 		
 		let rect = UIScreen.main.bounds
 		
 		let h = rect.size.height - 110 - 20
 		let w = rect.size.width - h - 10
 		
-		message = MessageView(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20))
+		message = MessageLimbo(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20))
 		message.load(key: "KinematicsLab")
 		limbos.append(message)
 		
@@ -70,8 +70,8 @@ class KinematicsExplorer: Explorer {
 		
 		return limbos
 	}
-	func iPhoneLimbos() -> [LimboView] {
-		var limbos = [LimboView]()
+	func iPhoneLimbos() -> [Limbo] {
+		var limbos = [Limbo]()
 		
 		let rect = UIScreen.main.bounds
 		
@@ -114,7 +114,7 @@ class KinematicsExplorer: Explorer {
 		
 		
 		// Message
-		message = MessageView(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20-5))
+		message = MessageLimbo(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20-5))
 		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
 		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
 		message.renderPaths()
@@ -123,7 +123,7 @@ class KinematicsExplorer: Explorer {
 		
 		// Close
 		let size = CGSize(width: 139, height: 60)
-		let close1 = LimboView()
+		let close1 = Limbo()
 		close1.frame = CGRect(x: 375-5-size.width, y: 667-5-size.height, width: size.width, height: size.height)
 		close1.alpha = 0
 		let button1 = AXButton()
@@ -136,7 +136,7 @@ class KinematicsExplorer: Explorer {
 		limbos.append(close1)
 
 		// Swapper =========================
-		let swapper = LimboView()
+		let swapper = Limbo()
 		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
 		let swapButton = SwapButton()
 		swapButton.add(for: .touchUpInside) {
@@ -145,12 +145,12 @@ class KinematicsExplorer: Explorer {
 				self.isFirst = false
 				self.dimLimbos(self.first)
 				self.brightenLimbos(self.second)
-				self.limboViews = [swapper, close1] + self.second
+				self.limbos = [swapper, close1] + self.second
 			} else {
 				self.isFirst = true
 				self.dimLimbos(self.second)
 				self.brightenLimbos(self.first)
-				self.limboViews = [swapper, close1] + self.first
+				self.limbos = [swapper, close1] + self.first
 			}
 			swapper.removeFromSuperview()
 			self.view.addSubview(swapper)
@@ -167,7 +167,7 @@ class KinematicsExplorer: Explorer {
 	}
 	
 // Explorer ========================================================================================
-	override func createLimbos() -> [LimboView] {
+	override func createLimbos() -> [Limbo] {
 		if Aexels.iPad() {
 			return iPadLimbos()
 		} else {

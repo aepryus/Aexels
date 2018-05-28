@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwapView: UIView {
+fileprivate class SwapView: UIView {
 	static let icon: UIImage = {
 		let s: CGFloat = 26
 		let w: CGFloat = 2
@@ -52,11 +52,11 @@ class SwapView: UIView {
 	}
 }
 
-class SwapButton: UIButton {
-	let swapView = SwapView()
+class SwapButton: AXButton {
+	fileprivate let swapView = SwapView()
 
-	init() {
-		super.init(frame: CGRect.zero)
+	override init() {
+		super.init()
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
 	}

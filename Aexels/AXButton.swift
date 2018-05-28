@@ -12,7 +12,7 @@ class AXButton: UIButton {
 	init() {
 		super.init(frame: CGRect.zero)
 		setTitleColor(UIColor.black, for: .highlighted)
-		titleLabel!.font = UIFont.aexelFont(size: 24)
+		titleLabel!.font = UIFont.aexel(size: 24)
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 
