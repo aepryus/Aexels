@@ -9,7 +9,7 @@
 import UIKit
 
 class ContractionExplorer: Explorer {
-	init (view: UIView) {
-		super.init(view: view, name: "Length Contraction", key: "LengthContraction", canExplore: false)
+	init(parent: UIView) {
+		super.init(parent: parent, name: "Length Contraction", key: "LengthContraction", canExplore: false)
 	}
 }

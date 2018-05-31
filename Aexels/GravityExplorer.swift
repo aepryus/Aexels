@@ -9,7 +9,7 @@
 import UIKit
 
 class GravityExplorer: Explorer {
-	init (view: UIView) {
-		super.init(view: view, name: "Gravity", key: "Gravity", canExplore: false)
+	init(parent: UIView) {
+		super.init(parent: parent, name: "Gravity", key: "Gravity", canExplore: false)
 	}
 }

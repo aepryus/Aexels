@@ -12,6 +12,11 @@ import OoviumLib
 class ContentLimbo: Limbo {
 	let evMaskView: MaskView
 	
+	init(content: UIView) {
+		evMaskView = MaskView(content: content)
+		super.init()
+		addSubview(self.evMaskView)
+	}
 	init(frame: CGRect, content: UIView) {
 		let rect = CGRect(origin: CGPoint.zero, size: frame.size)
 		evMaskView = MaskView(frame: rect, content: content, path: CGPath(roundedRect: rect.insetBy(dx: 7*D.s, dy: 7*D.s), cornerWidth: 10*D.s, cornerHeight: 10*D.s, transform: nil))

@@ -157,6 +157,8 @@ class Limbo: UIView {
 			self.layer.shadowPath = limboPath.shadowPath
 			
 			renderPaths()
+
+			_content?.frame = CGRect(x: p, y: p, width: frame.size.width-2*p, height: frame.size.height-2*p)
 		}
 	}
 	override func draw(_ rect: CGRect) {

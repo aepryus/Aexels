@@ -9,7 +9,7 @@
 import UIKit
 
 class DilationExplorer: Explorer {
-	init (view: UIView) {
-		super.init(view: view, name: "Time Dilation", key: "TimeDilation", canExplore: false)
+	init(parent: UIView) {
+		super.init(parent: parent, name: "Time Dilation", key: "TimeDilation", canExplore: false)
 	}
 }

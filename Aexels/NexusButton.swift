@@ -36,6 +36,6 @@ class NexusButton: UIButton {
 		} else {
 			pen.color = UIColor.white
 		}
-		(text as NSString).draw(in: rect, withAttributes: pen.attributes)
+		(text as NSString).draw(in: rect.insetBy(dx: 0, dy: (rect.height-24)/2), withAttributes: pen.attributes)
     }
 }

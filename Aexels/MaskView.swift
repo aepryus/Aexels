@@ -9,25 +9,18 @@
 import UIKit
 
 class AXMaskView: UIView {
-	var _content: UIView?
 	var content: UIView? {
-		set {
-			_content?.removeFromSuperview()
-			_content = newValue
-			_content!.frame = bounds
-			addSubview(_content!)
+		didSet {
+			oldValue?.removeFromSuperview()
+			content?.frame = bounds
+			if let content = content {addSubview(content)}
 		}
-		get {return _content}
-	}
-	
-	var _path: CGPath?
+	}	
 	var path: CGPath? {
-		set {
-			_path = newValue
+		didSet {
 			let mask = CAShapeLayer()
-			mask.path = _path
+			mask.path = path
 			layer.mask = mask
 		}
-		get {return _path}
 	}
 }

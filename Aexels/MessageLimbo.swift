@@ -18,28 +18,25 @@ class MessageLimbo: Limbo {
 	var key: String = ""
 	var text: String = ""
 	
-	init (frame: CGRect) {
+	override init() {
 		super.init()
-
-		self.frame = frame
 
 		imageView.isUserInteractionEnabled = false
 		
 		scrollView.addSubview(imageView)
+		
 		addSubview(scrollView)
+
 		axMaskView.frame = bounds
 		axMaskView.content = scrollView
-		scrollView.frame = bounds.insetBy(dx: 10, dy: 10)
 		addSubview(axMaskView)
 		
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
 		addGestureRecognizer(gesture)
-		
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
-	func load (key: String) {
-		self.key = key
+	func load() {
 		self.text = NSLocalizedString(key, comment: "")
 
 		let pen = Pen(font: UIFont(name: "Verdana", size: 18)!)
@@ -81,12 +78,10 @@ class MessageLimbo: Limbo {
 	
 // UIView ==========================================================================================
 	override var frame: CGRect {
-		set {
-			super.frame = newValue
-			self.scrollView.frame = self.bounds.insetBy(dx: 10, dy: 10)
-		}
-		get {
-			return super.frame
+		didSet {
+			axMaskView.frame = bounds
+			scrollView.frame = self.bounds.insetBy(dx: 10, dy: 10)
+			if frame.size != CGSize.zero {load()}
 		}
 	}
 }

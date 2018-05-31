@@ -33,7 +33,8 @@ class NexusViewController: UIViewController {
 		}
 		messageView.renderPaths()
 		
-		messageView.load(key: explorer.key)
+		messageView.key = explorer.key
+		messageView.load()
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
 			if explorer.canExplore {self.exploreButton.alpha = 1}
@@ -115,7 +116,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50, y: 170+i*70, width: 300, height: 40)
+			button.frame = CGRect(x: 50, y: 162+i*70, width: 300, height: 40)
 			button.add(for: .touchUpInside, { 
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -126,7 +127,8 @@ class NexusViewController: UIViewController {
 
 		// Message
 		let w: CGFloat = 1024-340-52
-		messageView = MessageLimbo(frame: CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20))
+		messageView = MessageLimbo()
+		messageView.frame = CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -161,7 +163,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16, y: 170+i*60, width: 300, height: 32)
+			button.frame = CGRect(x: 16, y: 166+i*60, width: 300, height: 32)
 			button.add(for: .touchUpInside, { 
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -171,7 +173,8 @@ class NexusViewController: UIViewController {
 		}
 
 		// Message
-		messageView = MessageLimbo(frame: CGRect(x: 5, y: 5+20, width: 375-10, height: 667-10-20))
+		messageView = MessageLimbo()
+		messageView.frame = CGRect(x: 5, y: 5+20, width: 375-10, height: 667-10-20)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2, animations: { 
@@ -205,13 +208,13 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
 		
 		explorers = [
-			IntroExplorer(view: view),
-			CellularExplorer(view: view),
-			KinematicsExplorer(view: view),
-			GravityExplorer(view: view),
-			DilationExplorer(view: view),
-			ContractionExplorer(view: view),
-			DarknessExplorer(view: view)
+			IntroExplorer(parent: view),
+			CellularExplorer(parent: view),
+			KinematicsExplorer(parent: view),
+			GravityExplorer(parent: view),
+			DilationExplorer(parent: view),
+			ContractionExplorer(parent: view),
+			DarknessExplorer(parent: view)
 		]
 
 		if Aexels.iPad() {

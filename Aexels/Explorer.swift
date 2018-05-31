@@ -50,15 +50,15 @@ enum D {
 }
 
 class Explorer {
-	let view: UIView
+	let parent: UIView
 	let name: String
 	let key: String
 	let canExplore: Bool
 
 	var limbos = [Limbo]()
 	
-	init (view: UIView, name: String, key: String, canExplore: Bool) {
-		self.view = view
+	init(parent: UIView, name: String, key: String, canExplore: Bool) {
+		self.parent = parent
 		self.name = name
 		self.key = key
 		self.canExplore = canExplore
@@ -67,13 +67,36 @@ class Explorer {
 	func closeSize() -> CGSize {
 		return CGSize(width: 139, height: 60)
 	}
-	func createLimbos() -> [Limbo] {
-		return []
-	}
+	
+	func createLimbos() {}
 
-	func iPadLayout() {
+	func layout() {
+		switch D.current() {
+			case .dim320x568:	layout320x568()
+			case .dim375x667:	layout375x667()
+			case .dim414x736:	layout414x736()
+			case .dim1024x768:	layout1024x768()
+			case .dim1112x834:	layout1112x834()
+			case .dim1366x1024:	layout1366x1024()
+			default:			layout375x667()
+		}
 	}
 	
+	func layout320x568() {
+		layout375x667()
+	}
+	func layout375x667() {}
+	func layout414x736() {
+		layout320x568()
+	}
+	func layout1024x768() {}
+	func layout1112x834() {
+		layout1024x768()
+	}
+	func layout1366x1024() {
+		layout1024x768()
+	}
+
 	func dimLimbos (_ limbos: [Limbo]) {
 		UIView.animate(withDuration: 0.2, animations: { 
 			for limbo in limbos {
@@ -87,7 +110,7 @@ class Explorer {
 	}
 	func brightenLimbos (_ limbos: [Limbo]) {
 		for limbo in limbos {
-			view.addSubview(limbo)
+			parent.addSubview(limbo)
 		}
 		UIView.animate(withDuration: 0.2) {
 			for limbo in limbos {
@@ -97,7 +120,8 @@ class Explorer {
 	}
 	
 	func openExplorer (view: UIView) {
-		self.limbos.append(contentsOf: createLimbos())
+		createLimbos()
+		layout()
 
 		for limbo in limbos {
 			limbo.alpha = 0

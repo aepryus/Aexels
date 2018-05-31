@@ -52,11 +52,20 @@ final class CellularView: UIView {
 		return Int(frame.size.width) / zoom
 	}
 	
-	private let w: Int
-	private let h: Int
-	private let size: Int
+	private var w: Int = 0
+	private var h: Int = 0
+	private var size: Int = 0
+	private var data: [UInt8] = []
+		
+	var cells: Int = 0 {
+		didSet {
+			w = cells
+			h = cells
+			size = w*h*4
+			data = [UInt8](repeating: 0, count: size)
+		}
+	}
 	
-	private var data: [UInt8]
 	private var image: UIImage?
 
 	private var r: [UInt8]!
@@ -64,6 +73,10 @@ final class CellularView: UIView {
 	private var b: [UInt8]!
 	private var a: [UInt8]!
 	
+	init() {
+		super.init(frame: CGRect.zero)
+		backgroundColor = UIColor.clear
+	}
 	override init (frame: CGRect) {
 		w = Int(frame.size.width)
 		h = Int(frame.size.height)

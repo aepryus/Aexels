@@ -21,12 +21,13 @@ class KinematicsExplorer: Explorer {
 	let playButton: PlayButton
 	let aexelVector = VectorView()
 	let loopVector = VectorView()
+	let swapper = Limbo()
 
 	var first = [Limbo]()
 	var second = [Limbo]()
 	var isFirst: Bool = true
 
-	init (view: UIView) {
+	init(parent: UIView) {
 		
 		newtonianView = NewtownianView({ (momentum: V2) in
 		})
@@ -39,47 +40,13 @@ class KinematicsExplorer: Explorer {
 		}
 		playButton = PlayButton()
 		
-		super.init(view: view, name: "Kinematics", key: "Kinematics", canExplore: true)
+		super.init(parent: parent, name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
-
-	func iPadLimbos() -> [Limbo] {
-		var limbos = [Limbo]()
+	
+// Explorer ========================================================================================
+	override func createLimbos() {
 		
-		let rect = UIScreen.main.bounds
-		
-		let h = rect.size.height - 110 - 20
-		let w = rect.size.width - h - 10
-		
-		message = MessageLimbo(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20))
-		message.load(key: "KinematicsLab")
-		limbos.append(message)
-		
-		universe.frame = CGRect(x: 5+w, y: 20, width: h, height: h)
-		let newtonianView = NewtownianView { (momentum: V2) in
-		}
-		universe.content = newtonianView
-		limbos.append(universe)
-		
-		controls.frame = CGRect(x: 5+w, y: 20+h, width: h-176, height: rect.size.height-20-h)
-		limbos.append(controls)
-
-		let ch = rect.size.height - 20 - h - 15*2 + 1
-		controls.addSubview(universePicker)
-		universePicker.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: 120, height: ch-12))
-		universePicker.pageNo = 1
-		
-		return limbos
-	}
-	func iPhoneLimbos() -> [Limbo] {
-		var limbos = [Limbo]()
-		
-		let rect = UIScreen.main.bounds
-		
-		let h = rect.size.height - 110 - 20
-		let w = rect.size.width - 10
-
 		// Universe
-		universe.frame = CGRect(x: 5, y: 20, width: w, height: w)
 		universe.content = kinematicsView
 		limbos.append(universe)
 		
@@ -89,13 +56,11 @@ class KinematicsExplorer: Explorer {
 		controls.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
 		controls.renderPaths()
 		limbos.append(controls)
-
-		let ch = rect.size.height - 20 - h - 15*2 + 1
+		
 		controls.addSubview(universePicker)
-		universePicker.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: 120, height: ch-12))
 		universePicker.pages = ["Universe", "Universe X"]
 		universePicker.snapToPageNo(1)
-
+		
 		playButton.play()
 		playButton.onPlay = {
 			self.kinematicsView.play()
@@ -104,21 +69,14 @@ class KinematicsExplorer: Explorer {
 			self.kinematicsView.stop()
 		}
 		controls.addSubview(playButton)
-		playButton.left(offset: UIOffset(horizontal: universePicker.right+14, vertical: 0), size: CGSize(width: 50, height: 30))
 		
 		controls.addSubview(aexelVector)
 		controls.addSubview(loopVector)
 		
-		aexelVector.left(offset: UIOffset(horizontal: playButton.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
-		loopVector.left(offset: UIOffset(horizontal: aexelVector.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
-		
-		
 		// Message
-		message = MessageLimbo(frame: CGRect(x: 5, y: 20, width: w, height: rect.size.height-20-5))
-		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
-		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
+		message = MessageLimbo()
 		message.renderPaths()
-		message.load(key: "KinematicsLab")
+		message.key = "KinematicsLab"
 		message.alpha = 0
 		
 		// Close
@@ -134,44 +92,80 @@ class KinematicsExplorer: Explorer {
 		}
 		close1.content = button1
 		limbos.append(close1)
-
+		
 		// Swapper =========================
-		let swapper = Limbo()
-		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
-		let swapButton = SwapButton()
-		swapButton.add(for: .touchUpInside) {
-			swapButton.rotateView()
-			if self.isFirst {
-				self.isFirst = false
-				self.dimLimbos(self.first)
-				self.brightenLimbos(self.second)
-				self.limbos = [swapper, close1] + self.second
-			} else {
-				self.isFirst = true
-				self.dimLimbos(self.second)
-				self.brightenLimbos(self.first)
-				self.limbos = [swapper, close1] + self.first
+		if D.current().iPhone {
+			let swapButton = SwapButton()
+			swapButton.add(for: .touchUpInside) { [weak self] in
+				guard let me = self else {return}
+				swapButton.rotateView()
+				if me.isFirst {
+					me.isFirst = false
+					me.dimLimbos(me.first)
+					me.brightenLimbos(me.second)
+					me.limbos = [me.swapper, close1] + me.second
+				} else {
+					me.isFirst = true
+					me.dimLimbos(me.second)
+					me.brightenLimbos(me.first)
+					me.limbos = [me.swapper, close1] + me.first
+				}
+				me.swapper.removeFromSuperview()
+				me.parent.addSubview(me.swapper)
+				close1.removeFromSuperview()
+				me.parent.addSubview(close1)
 			}
-			swapper.removeFromSuperview()
-			self.view.addSubview(swapper)
-			close1.removeFromSuperview()
-			self.view.addSubview(close1)
+			swapper.content = swapButton
+			limbos.append(swapper)
 		}
-		swapper.content = swapButton
-		limbos.append(swapper)
-
+		
 		first = [universe, controls]
 		second = [message]
-
-		return limbos
 	}
-	
-// Explorer ========================================================================================
-	override func createLimbos() -> [Limbo] {
-		if Aexels.iPad() {
-			return iPadLimbos()
-		} else {
-			return iPhoneLimbos()
+	override func layout375x667() {
+		let size = UIScreen.main.bounds.size
+		
+		let h = size.height - 110 - 20
+		let w = size.width - 10
+		
+		universe.frame = CGRect(x: 5, y: 20, width: w, height: w)
+		
+		let ch = size.height - 20 - h - 15*2 + 1
+
+		message.frame = CGRect(x: 5, y: 20, width: w, height: size.height-20-5)
+		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
+		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
+
+		universePicker.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: 120, height: ch-12))
+		playButton.left(offset: UIOffset(horizontal: universePicker.right+14, vertical: 0), size: CGSize(width: 50, height: 30))
+		aexelVector.left(offset: UIOffset(horizontal: playButton.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
+		loopVector.left(offset: UIOffset(horizontal: aexelVector.right+15, vertical: 0), size: CGSize(width: 48, height: 48))
+		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
+	}
+	override func layout1024x768() {
+		let size = UIScreen.main.bounds.size
+		
+		let h = size.height - 110 - 20
+		let w = size.width - h - 10
+		
+		message = MessageLimbo()
+		message.frame = CGRect(x: 5, y: 20, width: w, height: size.height-20)
+		message.key = "KinematicsLab"
+		limbos.append(message)
+		
+		universe.frame = CGRect(x: 5+w, y: 20, width: h, height: h)
+		let newtonianView = NewtownianView { (momentum: V2) in
 		}
+		universe.content = newtonianView
+		limbos.append(universe)
+		
+		controls.frame = CGRect(x: 5+w, y: 20+h, width: h-176, height: size.height-20-h)
+		limbos.append(controls)
+		
+		let ch = size.height - 20 - h - 15*2 + 1
+		controls.addSubview(universePicker)
+		universePicker.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: 120, height: ch-12))
+//		universePicker.pageNo = 1
+		
 	}
 }
