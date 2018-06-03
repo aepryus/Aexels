@@ -54,6 +54,7 @@ class Explorer {
 	let name: String
 	let key: String
 	let canExplore: Bool
+	var layedOut: Bool = false
 
 	var limbos = [Limbo]()
 	
@@ -120,8 +121,11 @@ class Explorer {
 	}
 	
 	func openExplorer (view: UIView) {
-		createLimbos()
-		layout()
+		if !layedOut {
+			createLimbos()
+			layout()
+			layedOut = true
+		}
 
 		for limbo in limbos {
 			limbo.alpha = 0
@@ -144,7 +148,6 @@ class Explorer {
 			for view in self.limbos {
 				view.removeFromSuperview()
 			}
-			self.limbos.removeAll()
 		}
 	}
 	

@@ -28,6 +28,11 @@ final class CellularExplorer: Explorer {
 	let close = Limbo()
 	let swapper = Limbo()
 	
+	let guide = GuideButton()
+	let reset = ResetButton()
+	let play = PlayButton()
+	let ooviumLabel = UILabel()
+	
 	init(parent: UIView) {
 		let s = Aexels.iPad() ?  432 : 335
 		engine = CellularEngine(aetherName: "Game of Life", w: s, h: s)!
@@ -36,7 +41,10 @@ final class CellularExplorer: Explorer {
 	
 // Events ==========================================================================================
 	override func onClose() {
-		self.engine.stop()
+		self.play.stop()
+		if D.current().iPhone {
+			limbos = [swapper] + first + [close]
+		}
 	}
 	
 // Explorer ========================================================================================
@@ -73,93 +81,7 @@ final class CellularExplorer: Explorer {
 			smallCell.cells = 144
 		}
 		
-		// Message =========================
-		message = MessageLimbo()
-		message.key = "GameOfLife"
-		message.renderPaths()
-		if D.current().iPhone {message.alpha = 0}
-		else {limbos.append(message)}
-
-		// Swapper =========================
-		if D.current().iPhone {
-			let swapButton = SwapButton()
-			swapButton.add(for: .touchUpInside) {
-				swapButton.rotateView()
-				if self.isFirst {
-					self.isFirst = false
-					self.dimLimbos(self.first)
-					self.brightenLimbos(self.second)
-					self.limbos = [self.swapper] + self.second
-					self.aetherView.showToolBars()
-				} else {
-					self.isFirst = true
-					self.dimLimbos(self.second)
-					self.brightenLimbos(self.first)
-					self.limbos = [self.swapper] + self.first
-					self.aetherView.snuffToolBars()
-				}
-				self.swapper.removeFromSuperview()
-				self.parent.addSubview(self.swapper)
-			}
-			swapper.content = swapButton
-			limbos.append(swapper)
-		}
-	}
-	override func layout375x667() {
-		let lw: CGFloat = 375-10
-		let mw: CGFloat = 221
-		let sw: CGFloat = lw-mw
-		
-		large.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
-		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
-		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
-
-		aether.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
-
-		swapper.frame = CGRect(x: 5, y: medium.bottom, width: 56, height: 56)
-
-		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
-		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
-		message.frame = CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5)
-
-		
-		
-		
-		// Controls ========================
-		let bw: CGFloat = 40
-		let controls = Limbo()
-		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
-		limbos.append(controls)
-		
-		let play = PlayButton()
-		play.onPlay = {
-			self.engine.start()
-		}
-		play.onStop = {
-			self.engine.stop()
-		}
-		controls.addSubview(play)
-		play.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: bw, height: 30))
-		
-		let reset = ResetButton()
-		controls.addSubview(reset)
-		reset.left(offset: UIOffset(horizontal: 15+bw, vertical: 0), size: CGSize(width: bw, height: 30))
-		reset.add(for: .touchUpInside) {
-			play.stop()
-			self.engine.reset()
-		}
-		
-		let guide = GuideButton()
-		controls.addSubview(guide)
-		guide.left(offset: UIOffset(horizontal: 15+2*bw, vertical: 0), size: CGSize(width: bw, height: 30))
-		guide.add(for: .touchUpInside) {
-			self.engine.guideOn = !self.engine.guideOn
-			guide.stateOn = self.engine.guideOn
-			guide.setNeedsDisplay()
-		}
-		
 		// Dilator =========================
-		dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
 			self.engine.interval = 1/current
@@ -171,20 +93,35 @@ final class CellularExplorer: Explorer {
 			dilatorView.actualSps = CGFloat(actualSps)
 		}
 		
-		// Close
-		let close1 = Limbo()
-		close1.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
-		close1.alpha = 0
-		let button1 = AXButton()
-		button1.setTitle("Close", for: .normal)
-		button1.add(for: .touchUpInside) {
-			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
-		}
-		close1.content = button1
-		limbos.append(close1)
+		// Controls ========================
+		limbos.append(controls)
 		
-		// Aether
+		play.onPlay = { [weak self] in
+			guard let me = self else {return}
+			me.engine.start()
+		}
+		play.onStop = { [weak self] in
+			guard let me = self else {return}
+			me.engine.stop()
+		}
+		controls.addSubview(play)
+		
+		controls.addSubview(reset)
+		reset.add(for: .touchUpInside) { [weak self] in
+			guard let me = self else {return}
+			me.play.stop()
+			me.engine.reset()
+		}
+		
+		controls.addSubview(guide)
+		guide.add(for: .touchUpInside) { [weak self] in
+			guard let me = self else {return}
+			me.engine.guideOn = !me.engine.guideOn
+			me.guide.stateOn = me.engine.guideOn
+			me.guide.setNeedsDisplay()
+		}
+
+		// Aether ==========================
 		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
 		tools[0][0] = AetherView.objectTool
 		tools[1][0] = AetherView.gateTool
@@ -192,112 +129,135 @@ final class CellularExplorer: Explorer {
 		
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
 		aetherView.toolBarPadding = UIOffset(horizontal: -9, vertical: 9)
+
+		aether = ContentLimbo(content: aetherView)
 		
-		aether = ContentLimbo(frame: CGRect(x: 5, y: 20, width: lw, height: lw), content: aetherView)
+		aether.addSubview(ooviumLabel)
+		ooviumLabel.text = "Oovium"
+		ooviumLabel.textAlignment = .center
+		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
+		ooviumLabel.font = UIFont(name: "Georgia", size: 36)
+
+		// Message =========================
+		message = MessageLimbo()
+		message.key = "GameOfLife"
+		message.renderPaths()
+		
+		// Close ===========================
+		close.alpha = 0
+		let button = AXButton()
+		button.setTitle("Close", for: .normal)
+		button.add(for: .touchUpInside) { [weak self] in
+			guard let me = self else {return}
+			me.isFirst = true
+			me.aetherView.snuffToolBars()
+			me.closeExplorer()
+			Aexels.nexus.brightenNexus()
+		}
+		close.content = button
+		limbos.append(close)
+
+		// Swapper =========================
+		if D.current().iPhone {
+			let swapButton = SwapButton()
+			swapButton.add(for: .touchUpInside) { [weak self] in
+				guard let me = self else {return}
+				swapButton.rotateView()
+				if me.isFirst {
+					me.isFirst = false
+					me.dimLimbos(me.first)
+					me.brightenLimbos(me.second)
+					me.limbos = [me.swapper] + me.second + [me.close]
+					me.aetherView.showToolBars()
+				} else {
+					me.isFirst = true
+					me.dimLimbos(me.second)
+					me.brightenLimbos(me.first)
+					me.limbos = [me.swapper] + me.first + [me.close]
+					me.aetherView.snuffToolBars()
+				}
+				me.swapper.removeFromSuperview()
+				me.parent.addSubview(me.swapper)
+				me.close.removeFromSuperview()
+				me.parent.addSubview(me.close)
+			}
+			swapper.content = swapButton
+			limbos.append(swapper)
+
+			first = [controls, dilator, large, medium, small]
+			second = [aether, message]
+		}
+		
+		if D.current().iPhone {
+			aether.alpha = 0
+			message.alpha = 0
+		} else {
+			limbos.append(aether)
+			limbos.append(message)
+		}
+	}
+	override func layout375x667() {
+		let lw: CGFloat = 375-10
+		let mw: CGFloat = 221
+		let sw: CGFloat = lw-mw
+		let bw: CGFloat = 40
+
+		large.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
+		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
+		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
+		swapper.frame = CGRect(x: 5, y: medium.bottom, width: 56, height: 56)
+		dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
+		close.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
+
+		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
+		play.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: bw, height: 30))
+		reset.left(offset: UIOffset(horizontal: 15+bw, vertical: 0), size: CGSize(width: bw, height: 30))
+		guide.left(offset: UIOffset(horizontal: 15+2*bw, vertical: 0), size: CGSize(width: bw, height: 30))
+		
+		// Aether
 		aether.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
 		aether.renderPaths()
 		aether.alpha = 0
 		
-		let label = UILabel(frame: CGRect(x: 209, y: 311, width: 144, height: 40))
-		label.text = "Oovium"
-		label.textAlignment = .center
-		label.textColor = UIColor.white.withAlphaComponent(0.3)
-		label.font = UIFont(name: "Georgia", size: 36)
-		aether.addSubview(label)
-		
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
 		aetherView.stretch()
-		
-		// Close
-		let close2 = Limbo()
-		close2.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
-		close2.alpha = 0
-		let button2 = AXButton()
-		button2.setTitle("Close", for: .normal)
-		button2.add(for: .touchUpInside) {
-			self.isFirst = true
-			self.aetherView.snuffToolBars()
-			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
-		}
-		close2.content = button2
-		close2.alpha = 0
-		
-		first = [controls, dilator, large, medium, small, close1]
-		second = [aether, message, close2]
+
+		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
+
+		// Message
+		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
+		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
+		message.frame = CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5)
 	}
 	override func layout1024x768() {
 		let x: CGFloat = 432
 		let y: CGFloat = 400
 		let ch: CGFloat = 72
+		let bw: CGFloat = 50
+		let q: CGFloat = 26
 
 		large.frame = CGRect(x: 1024-462-5, y: 20, width: x+30, height: x+30)
 		medium.frame = CGRect(x: 1024-462-5, y: 20+462, width: 286, height: 286)
 		small.frame = CGRect(x: 1024-462-5+286, y: 20+462, width: 176, height: 176)
-
-		message.frame = CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch)
-
-		aether.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
-		limbos.append(aether)
-		
 		dilator.frame = CGRect(x: 205, y: 20+y, width: 1024-(x+30)-200-10, height: ch)
-		let dilatorView = DilatorView()
-		dilatorView.onChange = { (current: Double) in
-			self.engine.interval = 1/current
-		}
-		dilator.content = dilatorView
-		limbos.append(dilator)
-		
-		engine.onMeasure = {(actualSps: Double)->() in
-			dilatorView.actualSps = CGFloat(actualSps)
-		}
-		
-		// Controls ========================
+		message.frame = CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch)
+		close.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
+
 		controls.frame = CGRect(x: 5, y: 20+y, width: 200, height: ch)
-		limbos.append(controls)
-		
-		let bw: CGFloat = 50
-		let q: CGFloat = 26
-		
-		let play = PlayButton()
-		play.onPlay = {
-			self.engine.start()
-		}
-		play.onStop = {
-			self.engine.stop()
-		}
-		controls.addSubview(play)
 		play.left(offset: UIOffset(horizontal: 100-q-bw, vertical: 0), size: CGSize(width: bw, height: 30))
-		
-		let reset = ResetButton()
-		controls.addSubview(reset)
-		reset.add(for: .touchUpInside) {
-			play.stop()
-			self.engine.reset()
-		}
 		reset.left(offset: UIOffset(horizontal: 100-bw/2, vertical: 0), size: CGSize(width: bw, height: 30))
-		
-		let guide = GuideButton()
-		controls.addSubview(guide)
-		guide.add(for: .touchUpInside) {
-			self.engine.guideOn = !self.engine.guideOn
-			guide.stateOn = self.engine.guideOn
-			guide.setNeedsDisplay()
-		}
 		guide.left(offset: UIOffset(horizontal: 100+q, vertical: 0), size: CGSize(width: bw, height: 30))
 		
-		// Close
-		let size = CGSize(width: 144, height: 78)
-		close.frame = CGRect(x: 1024-5-size.width, y: 768-size.height, width: size.width, height: size.height)
-		close.alpha = 0
-		let button = AXButton()
-		button.setTitle("Close", for: .normal)
-		button.add(for: .touchUpInside) {
-			self.aetherView.snuffToolBars()
-			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
-		}
-		close.content = button
+		// Aether
+		aether.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
+		aether.renderPaths()
+		aether.alpha = 0
+
+		aetherView.renderToolBars()
+		aetherView.placeToolBars()
+		aetherView.stretch()
+
+		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
 	}
 }

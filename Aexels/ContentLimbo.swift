@@ -28,10 +28,9 @@ class ContentLimbo: Limbo {
 	// UIView ==========================================================================================
 	override var frame: CGRect {
 		didSet {
+			guard bounds != CGRect.zero else {return}
 			evMaskView.frame = bounds
-			if bounds != CGRect.zero {
-				evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*D.s, dy: 7*D.s), cornerWidth: 10*D.s, cornerHeight: 10*D.s, transform: nil)
-			}
+			evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*D.s, dy: 7*D.s), cornerWidth: 10*D.s, cornerHeight: 10*D.s, transform: nil)
 		}
 	}
 }
