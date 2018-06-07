@@ -125,7 +125,7 @@ class KinematicsView: UIView, Simulation {
 		if n == 0 {
 			y -= 1
 		} else if n == 3 {
-			y += 3
+			y += 1
 		} else {
 			o = o==1 ? 0 : 1
 		}

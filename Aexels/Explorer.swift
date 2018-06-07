@@ -132,10 +132,12 @@ class Explorer {
 			view.addSubview(limbo)
 		}
 
-		UIView.animate(withDuration: 0.2) {
+		UIView.animate(withDuration: 0.2, animations: {
 			for view in self.limbos {
 				view.alpha = 1
 			}
+		}) { (canceled: Bool) in
+			self.onOpened()
 		}
 	}
 	func closeExplorer() {
@@ -152,5 +154,6 @@ class Explorer {
 	}
 	
 // Events ==========================================================================================
+	func onOpened() {}
 	func onClose() {}
 }

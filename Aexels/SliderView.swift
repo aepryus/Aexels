@@ -126,4 +126,13 @@ class SliderView: UIView, UIScrollViewDelegate {
 		numb = false
 	}
 //	func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {}
+	
+// UIView ==========================================================================================
+	override var frame: CGRect {
+		didSet {
+			guard height != 0 else {return}
+			ph = height / CGFloat(_pages.count)
+			thumb.frame = CGRect(x: 0, y: CGFloat(pageNo)*ph, width: width, height: ph)
+		}
+	}
 }

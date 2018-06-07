@@ -22,7 +22,7 @@ class PlayButton: AXButton {
 		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
 		super.init()
-		add(for: .touchUpInside) { 
+		addAction(for: .touchUpInside) { 
 			self.playing = !self.playing
 			self.setNeedsDisplay()
 			if self.playing {

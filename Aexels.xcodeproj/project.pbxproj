@@ -44,6 +44,7 @@
 		D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C131E4EF126001472FC /* ResetButton.swift */; };
 		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
 		D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C171E5051DC001472FC /* DilatorView.swift */; };
+		D85C82E520C6FE1300B0D931 /* NetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C82E420C6FE1300B0D931 /* NetButton.swift */; };
 		D862F1B71E59842000612627 /* NewtonianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B61E59842000612627 /* NewtonianView.swift */; };
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
@@ -130,6 +131,7 @@
 		D84B0C131E4EF126001472FC /* ResetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
 		D84B0C171E5051DC001472FC /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
+		D85C82E420C6FE1300B0D931 /* NetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetButton.swift; sourceTree = "<group>"; };
 		D862F1B61E59842000612627 /* NewtonianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonianView.swift; sourceTree = "<group>"; };
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		D8B13C041E1E2EEB00E02E16 /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
+				D85C82E420C6FE1300B0D931 /* NetButton.swift */,
 				D8B32FBA1E9202080052BF21 /* VectorView.swift */,
 				D862F1B61E59842000612627 /* NewtonianView.swift */,
 				D862F1B81E59844000612627 /* KinematicsView.swift */,
@@ -570,6 +573,7 @@
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
 				D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */,
+				D85C82E520C6FE1300B0D931 /* NetButton.swift in Sources */,
 				D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */,
 				D8B13C021E1E2ECF00E02E16 /* Explorer.swift in Sources */,
 				D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */,

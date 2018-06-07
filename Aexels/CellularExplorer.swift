@@ -107,14 +107,14 @@ final class CellularExplorer: Explorer {
 		controls.addSubview(play)
 		
 		controls.addSubview(reset)
-		reset.add(for: .touchUpInside) { [weak self] in
+		reset.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
 			me.play.stop()
 			me.engine.reset()
 		}
 		
 		controls.addSubview(guide)
-		guide.add(for: .touchUpInside) { [weak self] in
+		guide.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
 			me.engine.guideOn = !me.engine.guideOn
 			me.guide.stateOn = me.engine.guideOn
@@ -147,7 +147,7 @@ final class CellularExplorer: Explorer {
 		close.alpha = 0
 		let button = AXButton()
 		button.setTitle("Close", for: .normal)
-		button.add(for: .touchUpInside) { [weak self] in
+		button.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
 			me.isFirst = true
 			me.aetherView.snuffToolBars()
@@ -160,7 +160,7 @@ final class CellularExplorer: Explorer {
 		// Swapper =========================
 		if D.current().iPhone {
 			let swapButton = SwapButton()
-			swapButton.add(for: .touchUpInside) { [weak self] in
+			swapButton.addAction(for: .touchUpInside) { [weak self] in
 				guard let me = self else {return}
 				swapButton.rotateView()
 				if me.isFirst {

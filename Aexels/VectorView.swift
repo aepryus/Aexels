@@ -39,7 +39,7 @@ class VectorView: UIView {
 		let radius = (Double(frame.size.width-lw))/2
 		
 		var x = Double(gesture.location(in: self).x - frame.size.width/2) / radius
-		var y = Double(gesture.location(in: self).y - frame.size.height/2) / radius
+		var y = -Double(gesture.location(in: self).y - frame.size.height/2) / radius
 		
 		if x*x + y*y > 1 {
 			let q = sqrt(x*x + y*y)
@@ -72,7 +72,7 @@ class VectorView: UIView {
 		let radius = (Double(rect.size.width-lw))/2
 		let center = V2(Double(rect.size.width)/2, Double(rect.size.width)/2)
 		
-		let end = center + vector * radius/max
+		let end = center + V2(vector.x, -vector.y) * radius/max
 		
 		path.addEllipse(in: CGRect(x: center.x-2, y: center.y-2, width: 4, height: 4))
 		path.move(to: CGPoint(x: center.x, y: center.y))
