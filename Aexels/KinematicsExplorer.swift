@@ -17,7 +17,7 @@ class KinematicsExplorer: Explorer {
 	let newtonianView: NewtownianView
 	let kinematicsView: KinematicsView
 	
-	let universePicker: SliderView
+	var universePicker: SliderView!
 	let playButton: PlayButton
 	let aetherVector = VectorView()
 	let loopVector = VectorView()
@@ -38,11 +38,6 @@ class KinematicsExplorer: Explorer {
 		})
 		kinematicsView = KinematicsView()
 		
-		universePicker = SliderView { (page: String) in
-			if page == "Universe" {
-			} else {
-			}
-		}
 		playButton = PlayButton()
 		
 		super.init(parent: parent, name: "Kinematics", key: "Kinematics", canExplore: true)
@@ -68,6 +63,62 @@ class KinematicsExplorer: Explorer {
 		}
 		
 		// Universe
+		universePicker = SliderView { [weak self] (page: String) in
+			guard let me = self else {return}
+			
+			let cs: Double = 30*cos(Double.pi/6)
+			
+			if page == "Universe" {
+				me.kinematicsView.stop()
+				
+				me.newtonianView.x.x = me.kinematicsView.Xl.x
+				me.newtonianView.x.y = me.kinematicsView.Xl.y
+				me.newtonianView.v.x = me.kinematicsView.Va.x + me.kinematicsView.Vl.x*2*cs
+				me.newtonianView.v.y = -(me.kinematicsView.Va.y + me.kinematicsView.Vl.y*2*cs)
+				me.loopVector.max = 10
+				
+				me.newtonianView.setNeedsDisplay()
+				if me.playButton.playing {
+					me.newtonianView.play()
+				}
+			} else {
+				me.newtonianView.stop()
+				
+				me.kinematicsView.moveTo(v: me.newtonianView.x)
+				me.kinematicsView.Vl.x = (me.newtonianView.v.x - me.kinematicsView.Va.x)/(2*cs)
+				me.kinematicsView.Vl.y = (-me.newtonianView.v.y - me.kinematicsView.Va.y)/(2*cs)
+				me.loopVector.max = 10/(2*cs)
+				
+				me.kinematicsView.setNeedsDisplay()
+				if me.playButton.playing {
+					me.kinematicsView.play()
+				}
+			}
+			UIView.animate(withDuration: 0.2, animations: {
+				me.universe.content?.alpha = 0
+				if page == "Universe X" {
+					me.aetherLabel.alpha = 1
+					me.aetherVector.alpha = 1
+					me.netButton.alpha = 1
+					me.presetButton.alpha = 1
+				} else {
+					me.aetherLabel.alpha = 0
+					me.aetherVector.alpha = 0
+					me.netButton.alpha = 0
+					me.presetButton.alpha = 0
+				}
+			}, completion: { (canceled: Bool) in
+				if page == "Universe" {
+					me.universe.content = me.newtonianView
+				} else {
+					me.universe.content = me.kinematicsView
+				}
+				me.universe.content?.alpha = 0
+				UIView.animate(withDuration: 0.2, animations: {
+					me.universe.content?.alpha = 1
+				})
+			})
+		}
 		universe.content = kinematicsView
 		limbos.append(universe)
 		
@@ -222,7 +273,7 @@ class KinematicsExplorer: Explorer {
 		aetherVector.topRight(offset: UIOffset(horizontal: -20-vw-12, vertical: loopVector.top), size: CGSize(width: vw, height: vw))
 		loopLabel.topLeft(offset: UIOffset(horizontal: loopVector.left, vertical: loopVector.top-20), size: CGSize(width: vw, height: 16))
 		aetherLabel.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.top-20), size: CGSize(width: vw, height: 16))
-		presetButton.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.bottom+8), size: CGSize(width: vw*2, height: 24))
+		presetButton.topLeft(offset: UIOffset(horizontal: aetherVector.left+(2*aetherVector.width+12-96)/2, vertical: aetherVector.bottom+8), size: CGSize(width: 96, height: 36))
 
 		netButton.topLeft(offset: UIOffset(horizontal: playButton.left, vertical: playButton.bottom+12), size: CGSize(width: 48, height: 48))
 		universePicker.topLeft(offset: UIOffset(horizontal: 81, vertical: 191), size: CGSize(width: 120, height: ch-12))

@@ -11,6 +11,8 @@ import UIKit
 class NewtownianView: UIView, Simulation {
 	var x: V2
 	var v: V2
+	var w: Double = 0
+	var h: Double = 0
 	
 	var onTic: ((V2)->())
 	
@@ -23,6 +25,7 @@ class NewtownianView: UIView, Simulation {
 		v = V2(5 , 3)
 		self.onTic = onTic
 		super.init(frame: CGRect.zero)
+		
 		backgroundColor = UIColor.clear
 		timer.configure(interval: 1.0/60.0) {
 			self.tic()
@@ -34,8 +37,6 @@ class NewtownianView: UIView, Simulation {
 		x.x += v.x
 		x.y += v.y
 		
-		let w: Double = Double(width)
-		let h: Double = Double(height)
 		let r: Double = 31
 		
 		if (x.x<r && v.x<0) || (x.x>w-r && v.x>0) {v.x = -v.x}
@@ -49,6 +50,12 @@ class NewtownianView: UIView, Simulation {
 }
 	
 // UIView ==========================================================================================
+	override var frame: CGRect {
+		didSet {
+			w = Double(width)
+			h = Double(height)
+		}
+	}
 	override func draw (_ rect: CGRect) {
 		let r: CGFloat = 26
 		

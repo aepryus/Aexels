@@ -203,6 +203,17 @@ class KinematicsView: UIView, Simulation {
 			jump(B)
 		}
 	}
+	func moveTo(v: V2) {
+		let s: CGFloat = 30
+		let sn: CGFloat = s*sin(CGFloat.pi/6)
+		let cs: CGFloat = s*cos(CGFloat.pi/6)
+
+		let row: Int = Int(CGFloat(v.x)/(3*sn))
+		o = row % 2;
+		
+		x = Int((CGFloat(v.x) - 1.0 - (o == 1 ? sn+s : 0.0) - CGFloat(Xa.x))/(2*(sn+s)))
+		y = Int((CGFloat(v.y) - 1.0 - (o == 1 ? cs : 0.0) - CGFloat(Xa.y))/(2*cs))
+	}
 	
 	func tic() {
 		let s: Double = 30.0

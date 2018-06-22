@@ -15,7 +15,7 @@ class PlayButton: AXButton {
 	
 	private let color: UIColor
 	
-	private var playing: Bool = false
+	var playing: Bool = false
 	
 	override init() {
 		self.onPlay = {}
