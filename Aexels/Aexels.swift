@@ -46,6 +46,7 @@ class Aexels {
 	
 	static func start() {
 		Math.start()
+		Skin.skin = IvorySkin()
 
 		nexus = NexusViewController()
 		

@@ -48,6 +48,7 @@
 	},
     {
 	  "name" : "Ob_1",
+	  "label" : "SUM",
 	  "x" : "732",
 	  "type" : "object",
 	  "iden" : "1",
