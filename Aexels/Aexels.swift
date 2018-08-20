@@ -53,5 +53,10 @@ class Aexels {
 		window = UIWindow()
 		window.rootViewController = nexus
 		window.makeKeyAndVisible()
+		
+		if !Local.hasAether(name: "Game of Life") {
+			Local.installAetherFromBundle(name: "Game of Life")
+			Local.installAetherFromBundle(name: "Demons")
+		}
 	}
 }

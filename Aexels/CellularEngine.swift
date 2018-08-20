@@ -71,7 +71,7 @@ final class CellularEngine {
 //		aether.wire()
 //		aether.calculate()
 		memory = aether.memory
-		AEMemoryPrint(memory);
+//		AEMemoryPrint(memory);
 		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
 		auto = aether.firstAuto()!
 		auto.foreshadow(memory)
@@ -79,6 +79,7 @@ final class CellularEngine {
 //		recipeS = web.recipeS
 //		recipe = recipeS.compile()
 		recipe = web.recipe
+//		AERecipePrint(recipe)
 		
 		
 		self.w = w
@@ -167,7 +168,9 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
+//				AEMemoryPrint(memory)
 				AERecipeExecute(recipe, memory)
+//				AEMemoryPrint(memory)
 				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}

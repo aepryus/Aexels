@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Loom
 import OoviumLib
 import UIKit
 
@@ -36,6 +37,7 @@ final class CellularExplorer: Explorer {
 	init(parent: UIView) {
 		let s = Aexels.iPad() ?  432 : 335
 		engine = CellularEngine(aetherName: "Game of Life", w: s, h: s)!
+		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
 	
@@ -99,6 +101,12 @@ final class CellularExplorer: Explorer {
 		play.onPlay = { [weak self] in
 			guard let me = self else {return}
 			me.engine.start()
+			
+			self?.aetherView.markPositions()
+			let attributes = self?.aetherView.aether.unload()
+			if let attributes = attributes {
+				print(JSON.toJSON(attributes: attributes))
+			}
 		}
 		play.onStop = { [weak self] in
 			guard let me = self else {return}
@@ -128,7 +136,7 @@ final class CellularExplorer: Explorer {
 		tools[0][1] = AetherView.mechTool
 		
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
-		aetherView.toolBarPadding = UIOffset(horizontal: -9, vertical: 9)
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
 
 		aether = ContentLimbo(content: aetherView)
 		
@@ -221,6 +229,7 @@ final class CellularExplorer: Explorer {
 		
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
+		aetherView.showToolBars()
 		aetherView.stretch()
 
 		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
@@ -254,8 +263,13 @@ final class CellularExplorer: Explorer {
 		aether.renderPaths()
 		aether.alpha = 0
 
+		aetherView.toolBarOffset = UIOffset(horizontal: -7, vertical: 7)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
+		aetherView.showToolBars()
+		aetherView.invokeAetherPicker()
 		aetherView.stretch()
 
 		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
