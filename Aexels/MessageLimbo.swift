@@ -50,7 +50,7 @@ class MessageLimbo: Limbo {
 		let h = size.height
 		
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: h), false, UIScreen.main.scale)
-		let c = UIGraphicsGetCurrentContext()!
+		guard let c = UIGraphicsGetCurrentContext() else {return}
 		c.saveGState()
 		c.setShadow(offset: CGSize(width: 2, height: 2), blur: 2)
 		c.setFillColor(UIColor.white.cgColor)

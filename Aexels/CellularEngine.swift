@@ -12,8 +12,8 @@ import Loom
 import OoviumLib
 
 final class CellularEngine {
-    let aether: Aether
-	let auto: Auto
+    var aether: Aether!
+	var auto: Auto!
 	
 	var guideOn: Bool = false
 	
@@ -26,25 +26,26 @@ final class CellularEngine {
 		get {return timer.interval}
 	}
 	
+	var needsCompile: Bool = true
+	
 	var cells: UnsafeMutablePointer<Obj>
 	var next: UnsafeMutablePointer<Obj>
 	var xfer: UnsafeMutablePointer<Obj>!
 	
 	var memory: UnsafeMutablePointer<Memory>!
-	let index: Int
-	let web: Web
-//	let recipeS: RecipeS
-	let recipe: UnsafeMutablePointer<Recipe>
+	var index: Int = 0
+	var web: Web!
+	var recipe: UnsafeMutablePointer<Recipe>!
 	
-	let selfI: Int
-	let aI: Int
-	let bI: Int
-	let cI: Int
-	let dI: Int
-	let eI: Int
-	let fI: Int
-	let gI: Int
-	let hI: Int
+	var selfI: Int = 0
+	var aI: Int = 0
+	var bI: Int = 0
+	var cI: Int = 0
+	var dI: Int = 0
+	var eI: Int = 0
+	var fI: Int = 0
+	var gI: Int = 0
+	var hI: Int = 0
 	
 	private var views = [CellularView]()
 	private var timer: AXTimer
@@ -53,39 +54,30 @@ final class CellularEngine {
 	
 	var onMeasure: ((Double)->())?
 	
-	init? (aetherName: String, w: Int, h: Int) {
-		
-		var json: String
-		do {
-			json = try String(contentsOfFile: Bundle.main.path(forResource: aetherName, ofType: "oo")!)
-		} catch {
-			print("\(error)")
-			return nil
-		}
-	
-		let attributes = JSON.fromJSON(json: json)
-//		let basket = Basket(iOSPersist(), forked: false)
-		aether = Aether()
-		aether.load(attributes: attributes)
-//		aether = basket.inject(attributes) as! Aether
-//		aether.wire()
-//		aether.calculate()
-		memory = aether.memory
-//		AEMemoryPrint(memory);
-		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
-		auto = aether.firstAuto()!
-		auto.foreshadow(memory)
-		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
-//		recipeS = web.recipeS
-//		recipe = recipeS.compile()
-		recipe = web.recipe
-//		AERecipePrint(recipe)
-		
-		
+	init(w: Int, h: Int) {
 		self.w = w
 		self.h = h
 		cells = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
 		next = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
+		
+		timer = AXTimer()
+		timer.configure(interval: interval, {
+			self.tic()
+		})
+	}
+	
+	func compile(aether: Aether) {
+		self.aether = aether
+
+		memory = aether.memory
+		AEMemoryClear(memory)
+		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
+		auto = aether.firstAuto()!
+		auto.foreshadow(memory)
+		
+		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
+		recipe = web.recipe
+		AERecipePrint(recipe)
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
 		aI = Int(AEMemoryIndexForName(memory, "Auto1.A".toInt8()))
@@ -97,30 +89,41 @@ final class CellularEngine {
 		gI = Int(AEMemoryIndexForName(memory, "Auto1.G".toInt8()))
 		hI = Int(AEMemoryIndexForName(memory, "Auto1.H".toInt8()))
 		
-		timer = AXTimer()
-		timer.configure(interval: interval, {
-			self.tic()
-		})
-		
+		for view in views {
+			view.configure(auto: auto)
+		}
 		populate(auto: auto)
 	}
 	
-	func addView (_ view: CellularView) {
-		DispatchQueue.main.async {
+	func addView(_ view: CellularView) {
+//		DispatchQueue.main.async {
 			self.views.append(view)
 			view.engine = self
 			view.configure(auto: self.auto)
-		}
+//		}
 	}
-	func removeView (_ view: CellularView) {
-		DispatchQueue.main.async {
+	func removeView(_ view: CellularView) {
+//		DispatchQueue.main.async {
 			view.engine = nil
 			if let index = self.views.index(of: view) {
 				self.views.remove(at: index)
 			}
 			view.clear()
 			view.setNeedsDisplay()
-		}
+//		}
+	}
+	func removeAllViews() {
+//		DispatchQueue.main.async { [weak self] in
+//			guard let me = self else {return}
+			for view in views {
+				view.engine = nil
+				if let index = views.index(of: view) {
+					views.remove(at: index)
+				}
+				view.clear()
+				view.setNeedsDisplay()
+			}
+//		}
 	}
 	
 	private func populate (auto: Auto) {
@@ -168,9 +171,7 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
-//				AEMemoryPrint(memory)
 				AERecipeExecute(recipe, memory)
-//				AEMemoryPrint(memory)
 				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}
@@ -293,7 +294,11 @@ final class CellularEngine {
 		print("")
 	}
 
-	func start() {
+	func start(aether: Aether) {
+		if needsCompile {
+			compile(aether: aether)
+			needsCompile = false
+		}
 		timer.start()
 	}
 	func stop() {

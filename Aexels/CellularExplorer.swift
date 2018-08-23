@@ -18,8 +18,9 @@ final class CellularExplorer: Explorer {
 	var engine: CellularEngine
 	
 	var aetherView: AetherView!
+	let largeCell: CellularView = CellularView()
 	
-	var aether = Limbo()
+	var aetherLimbo = Limbo()
 	let controls = Limbo()
 	let dilator = Limbo(p: 12)
 	var message: MessageLimbo!
@@ -36,12 +37,37 @@ final class CellularExplorer: Explorer {
 	
 	init(parent: UIView) {
 		let s = Aexels.iPad() ?  432 : 335
-		engine = CellularEngine(aetherName: "Game of Life", w: s, h: s)!
+		engine = CellularEngine(w: s, h: s)
 		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
 	
+	func open(aether: Aether) {
+		play.stop()
+
+		engine.removeAllViews()
+
+		engine.compile(aether: aether)
+
+		engine.addView(largeCell)
+
+		engine.reset()
+		
+		if aether.name == "Game of Life" {
+			message.key = "GameOfLife"
+		} else if aether.name == "Demons" {
+			message.key = "Demons"
+		} else {
+			message.key = "Oovium"
+		}
+		message.load()
+	}
+	
 // Events ==========================================================================================
+	override func onOpened() {
+		aetherView.invokeAetherPicker()
+		aetherView.showToolBars()
+	}
 	override func onClose() {
 		self.play.stop()
 		if D.current().iPhone {
@@ -53,8 +79,6 @@ final class CellularExplorer: Explorer {
 	override func createLimbos() {
 		// Cellular Views ==================
 		// Large
-		let largeCell = CellularView()
-		engine.addView(largeCell)
 		large.content = largeCell
 		limbos.append(large)
 		
@@ -83,6 +107,38 @@ final class CellularExplorer: Explorer {
 			smallCell.cells = 144
 		}
 		
+		// Message =========================
+		message = MessageLimbo()
+		
+		// Aether ==========================
+		let aether = Local.loadAether(name: "Game of Life")
+		open(aether: aether)
+		
+		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
+		tools[0][0] = AetherView.objectTool
+		tools[1][0] = AetherView.gateTool
+		tools[0][1] = AetherView.mechTool
+		
+		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		
+		aetherView.aetherPicker!.onSwap = {[weak self](aether: Aether) in
+			guard let this = self else {return}
+			this.open(aether: aether)
+		}
+		
+		aetherLimbo = ContentLimbo(content: aetherView)
+		
+		aetherLimbo.addSubview(ooviumLabel)
+		ooviumLabel.text = "Oovium"
+		ooviumLabel.textAlignment = .center
+		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
+		ooviumLabel.font = UIFont(name: "Georgia", size: 36)
+		
+//		aetherView.swapToAether(aether: aether)
+		
+		engine.addView(largeCell)
+
 		// Dilator =========================
 		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
@@ -100,7 +156,8 @@ final class CellularExplorer: Explorer {
 		
 		play.onPlay = { [weak self] in
 			guard let me = self else {return}
-			me.engine.start()
+			
+			me.engine.start(aether: me.aetherView.aether)
 			
 			self?.aetherView.markPositions()
 			let attributes = self?.aetherView.aether.unload()
@@ -129,28 +186,6 @@ final class CellularExplorer: Explorer {
 			me.guide.setNeedsDisplay()
 		}
 
-		// Aether ==========================
-		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
-		tools[0][0] = AetherView.objectTool
-		tools[1][0] = AetherView.gateTool
-		tools[0][1] = AetherView.mechTool
-		
-		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
-		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-
-		aether = ContentLimbo(content: aetherView)
-		
-		aether.addSubview(ooviumLabel)
-		ooviumLabel.text = "Oovium"
-		ooviumLabel.textAlignment = .center
-		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
-		ooviumLabel.font = UIFont(name: "Georgia", size: 36)
-
-		// Message =========================
-		message = MessageLimbo()
-		message.key = "GameOfLife"
-		message.renderPaths()
-		
 		// Close ===========================
 		close.alpha = 0
 		let button = AXButton()
@@ -193,14 +228,14 @@ final class CellularExplorer: Explorer {
 			limbos.append(swapper)
 
 			first = [controls, dilator, large, medium, small]
-			second = [aether, message]
+			second = [aetherLimbo, message]
 		}
 		
 		if D.current().iPhone {
-			aether.alpha = 0
+			aetherLimbo.alpha = 0
 			message.alpha = 0
 		} else {
-			limbos.append(aether)
+			limbos.append(aetherLimbo)
 			limbos.append(message)
 		}
 	}
@@ -222,10 +257,10 @@ final class CellularExplorer: Explorer {
 		reset.left(offset: UIOffset(horizontal: 15+bw, vertical: 0), size: CGSize(width: bw, height: 30))
 		guide.left(offset: UIOffset(horizontal: 15+2*bw, vertical: 0), size: CGSize(width: bw, height: 30))
 		
-		// Aether
-		aether.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
-		aether.renderPaths()
-		aether.alpha = 0
+		// AetherLimbo
+		aetherLimbo.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
+		aetherLimbo.renderPaths()
+		aetherLimbo.alpha = 0
 		
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
@@ -237,7 +272,7 @@ final class CellularExplorer: Explorer {
 		// Message
 		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
 		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
-		message.frame = CGRect(x: 5, y: aether.bottom, width: lw, height: Aexels.size.height-aether.bottom-5)
+		message.frame = CGRect(x: 5, y: aetherLimbo.bottom, width: lw, height: Aexels.size.height-aetherLimbo.bottom-5)
 	}
 	override func layout1024x768() {
 		let x: CGFloat = 432
@@ -259,9 +294,9 @@ final class CellularExplorer: Explorer {
 		guide.left(offset: UIOffset(horizontal: 100+q, vertical: 0), size: CGSize(width: bw, height: 30))
 		
 		// Aether
-		aether.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
-		aether.renderPaths()
-		aether.alpha = 0
+		aetherLimbo.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
+		aetherLimbo.renderPaths()
+		aetherLimbo.alpha = 0
 
 		aetherView.toolBarOffset = UIOffset(horizontal: -7, vertical: 7)
 		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)

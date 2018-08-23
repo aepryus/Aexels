@@ -92,7 +92,7 @@ final class CellularView: UIView {
 	func clear() {
 		image = nil
 	}
-	func configure (auto: Auto) {
+	func configure(auto: Auto) {
 		r = [UInt8](repeating: 0, count: auto.states.count)
 		g = [UInt8](repeating: 0, count: auto.states.count)
 		b = [UInt8](repeating: 0, count: auto.states.count)
