@@ -1,23 +1,23 @@
 {
   "name" : "Game of Life",
-  "modified" : "2018-08-16T14:22:38+0900",
+  "modified" : "2018-08-24T09:10:46+0900",
   "height" : 400,
-  "yOffset" : 276,
+  "yOffset" : 274,
   "iden" : "1",
   "readOnly" : true,
   "width" : 552,
   "type" : "aether",
-  "xOffset" : 412,
+  "xOffset" : 416,
   "aexels" : [
     {
       "no" : 1,
       "name" : "GtR_1",
       "thenChain" : "4:Auto1.Self",
       "iden" : "1",
-      "x" : 628.5,
+      "x" : 649,
       "ifChain" : "4:Ob_1;1:=;0:2",
       "type" : "gate",
-      "y" : 590.5,
+      "y" : 588,
       "elseChain" : "4:GtR_2"
     },
     {
@@ -25,10 +25,10 @@
       "name" : "GtR_2",
       "thenChain" : "0:1",
       "iden" : "2",
-      "x" : 843.5,
+      "x" : 850.5,
       "ifChain" : "4:Ob_1;1:=;0:3",
       "type" : "gate",
-      "y" : 521,
+      "y" : 501.5,
       "elseChain" : "0:0"
     },
     {
@@ -46,13 +46,12 @@
           "type" : "state",
           "iden" : "2",
           "color" : 9
-
         }
       ],
       "iden" : "1",
-      "x" : 432,
+      "x" : 437.5,
       "type" : "auto",
-      "y" : 334
+      "y" : 341
     },
     {
       "no" : 1,
@@ -60,9 +59,9 @@
       "label" : "SUM",
       "iden" : "1",
       "chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-      "x" : 706,
+      "x" : 724,
       "type" : "object",
-      "y" : 415.5
+      "y" : 410
     }
   ]
 }

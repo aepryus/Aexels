@@ -1,23 +1,23 @@
 {
   "name" : "Demons",
-  "modified" : "2018-08-16T15:08:23+0900",
+  "modified" : "2018-08-24T09:16:58+0900",
   "height" : 400,
-  "yOffset" : 290,
+  "yOffset" : 274.5,
   "iden" : "B504C5F6-9FA3-45E4-8314-50F66B18ABE8",
-  "readOnly" : false,
+  "readOnly" : true,
   "width" : 552,
   "type" : "aether",
-  "xOffset" : 393,
+  "xOffset" : 387.5,
   "aexels" : [
     {
       "no" : 1,
       "name" : "GtR_1",
       "thenChain" : "4:Ob_1",
       "iden" : "1",
-      "x" : 659.25,
+      "x" : 683.5,
       "ifChain" : "2:(;4:Auto1.B;1:=;4:Ob_1;2:);1:||;2:(;4:Auto1.D;1:=;4:Ob_1;2:);1:||;2:(;4:Auto1.F;1:=;4:Ob_1;2:);1:||;2:(;4:Auto1.H;1:=;4:Ob_1;2:)",
       "type" : "gate",
-      "y" : 612,
+      "y" : 591.5,
       "elseChain" : "4:Auto1.Self"
     },
     {
@@ -88,7 +88,7 @@
         }
       ],
       "iden" : "1",
-      "x" : 446.75,
+      "x" : 432,
       "type" : "auto",
       "y" : 334
     },
@@ -98,9 +98,9 @@
       "label" : "up",
       "iden" : "3",
       "chain" : "2:(;4:Auto1.Self;1:+;0:1;2:);1:%;0:1;0:2",
-      "x" : 712.75,
+      "x" : 720,
       "type" : "object",
-      "y" : 455
+      "y" : 442.5
     }
   ]
 }

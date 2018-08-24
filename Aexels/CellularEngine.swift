@@ -92,7 +92,12 @@ final class CellularEngine {
 		for view in views {
 			view.configure(auto: auto)
 		}
-		populate(auto: auto)
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+//			self.populate(auto: self.auto)
+//			for view in self.views {
+//				view.tic()
+//			}
+//		}
 	}
 	
 	func addView(_ view: CellularView) {
@@ -180,12 +185,10 @@ final class CellularEngine {
 		cells = next
 		next = xfer
 		
-		DispatchQueue.main.async {
-			for view in self.views {
-				view.tic()
-			}
+		for view in self.views {
+			view.tic()
 		}
-		
+
 		if s % 60 == 0 {
 			let now = Date()
 			let x = now.timeIntervalSince(last)
@@ -305,7 +308,7 @@ final class CellularEngine {
 		timer.stop()
 	}
 	func reset() {
-		stop()
+//		stop()
 		populate(auto: auto)
 		for view in views {
 			view.tic()

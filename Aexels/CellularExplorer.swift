@@ -50,8 +50,10 @@ final class CellularExplorer: Explorer {
 		engine.compile(aether: aether)
 
 		engine.addView(largeCell)
-
-		engine.reset()
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+			self.engine.reset()
+		}
 		
 		if aether.name == "Game of Life" {
 			message.key = "GameOfLife"
@@ -298,7 +300,7 @@ final class CellularExplorer: Explorer {
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
-		aetherView.toolBarOffset = UIOffset(horizontal: -7, vertical: 7)
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
 		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
 
 		aetherView.renderToolBars()
