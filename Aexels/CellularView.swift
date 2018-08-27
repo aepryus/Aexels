@@ -177,6 +177,8 @@ final class CellularView: UIView {
 		zoomView!.origin = origin
 		if zoomView!.engine == nil, let engine = engine {
 			engine.addView(zoomView!)
+			zoomView?.configure(auto: engine.auto)
+
 		}
 	}
 	

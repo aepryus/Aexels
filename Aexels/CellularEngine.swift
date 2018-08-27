@@ -92,43 +92,29 @@ final class CellularEngine {
 		for view in views {
 			view.configure(auto: auto)
 		}
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-//			self.populate(auto: self.auto)
-//			for view in self.views {
-//				view.tic()
-//			}
-//		}
 	}
 	
 	func addView(_ view: CellularView) {
-//		DispatchQueue.main.async {
-			self.views.append(view)
-			view.engine = self
-			view.configure(auto: self.auto)
-//		}
+		self.views.append(view)
+		view.engine = self
 	}
 	func removeView(_ view: CellularView) {
-//		DispatchQueue.main.async {
+		view.engine = nil
+		if let index = self.views.index(of: view) {
+			self.views.remove(at: index)
+		}
+		view.clear()
+		view.setNeedsDisplay()
+	}
+	func removeAllViews() {
+		for view in views {
 			view.engine = nil
-			if let index = self.views.index(of: view) {
-				self.views.remove(at: index)
+			if let index = views.index(of: view) {
+				views.remove(at: index)
 			}
 			view.clear()
 			view.setNeedsDisplay()
-//		}
-	}
-	func removeAllViews() {
-//		DispatchQueue.main.async { [weak self] in
-//			guard let me = self else {return}
-			for view in views {
-				view.engine = nil
-				if let index = views.index(of: view) {
-					views.remove(at: index)
-				}
-				view.clear()
-				view.setNeedsDisplay()
-			}
-//		}
+		}
 	}
 	
 	private func populate (auto: Auto) {

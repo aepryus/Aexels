@@ -47,10 +47,10 @@ final class CellularExplorer: Explorer {
 
 		engine.removeAllViews()
 
+		engine.addView(largeCell)
+
 		engine.compile(aether: aether)
 
-		engine.addView(largeCell)
-		
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			self.engine.reset()
 		}
@@ -124,9 +124,13 @@ final class CellularExplorer: Explorer {
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
 		
-		aetherView.aetherPicker!.onSwap = {[weak self](aether: Aether) in
-			guard let this = self else {return}
-			this.open(aether: aether)
+		aetherView.onSwap = {[weak self](aether: Aether) in
+			guard let me = self else {return}
+			me.open(aether: aether)
+		}
+		aetherView.onNew = {(aether: Aether) in
+			let auto = aether.createAuto(at: V2(0, 0))
+			auto.statesChain = Chain("0:2")
 		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)
