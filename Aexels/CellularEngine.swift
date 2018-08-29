@@ -69,6 +69,8 @@ final class CellularEngine {
 	func compile(aether: Aether) {
 		self.aether = aether
 
+		aether.compile()
+		
 		memory = aether.memory
 		AEMemoryClear(memory)
 		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
@@ -162,7 +164,10 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
+//				AERecipePrint(recipe)
+//				AEMemoryPrint(memory)
 				AERecipeExecute(recipe, memory)
+//				AEMemoryPrint(memory)
 				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}

@@ -126,9 +126,12 @@ final class CellularExplorer: Explorer {
 		
 		aetherView.onSwap = {[weak self](aether: Aether) in
 			guard let me = self else {return}
+			me.engine.needsCompile = true
 			me.open(aether: aether)
 		}
-		aetherView.onNew = {(aether: Aether) in
+		aetherView.onNew = {[weak self](aether: Aether) in
+			guard let me = self else {return}
+			me.engine.needsCompile = true
 			let auto = aether.createAuto(at: V2(0, 0))
 			auto.statesChain = Chain("0:2")
 		}
@@ -140,8 +143,6 @@ final class CellularExplorer: Explorer {
 		ooviumLabel.textAlignment = .center
 		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
 		ooviumLabel.font = UIFont(name: "Georgia", size: 36)
-		
-//		aetherView.swapToAether(aether: aether)
 		
 		engine.addView(largeCell)
 
@@ -165,11 +166,11 @@ final class CellularExplorer: Explorer {
 			
 			me.engine.start(aether: me.aetherView.aether)
 			
-			self?.aetherView.markPositions()
-			let attributes = self?.aetherView.aether.unload()
-			if let attributes = attributes {
-				print(JSON.toJSON(attributes: attributes))
-			}
+//			self?.aetherView.markPositions()
+//			let attributes = self?.aetherView.aether.unload()
+//			if let attributes = attributes {
+//				print(JSON.toJSON(attributes: attributes))
+//			}
 		}
 		play.onStop = { [weak self] in
 			guard let me = self else {return}
