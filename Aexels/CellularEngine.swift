@@ -90,7 +90,10 @@ final class CellularEngine {
 		fI = Int(AEMemoryIndexForName(memory, "Auto1.F".toInt8()))
 		gI = Int(AEMemoryIndexForName(memory, "Auto1.G".toInt8()))
 		hI = Int(AEMemoryIndexForName(memory, "Auto1.H".toInt8()))
-		
+
+		configureViews()
+	}
+	func configureViews() {
 		for view in views {
 			view.configure(auto: auto)
 		}

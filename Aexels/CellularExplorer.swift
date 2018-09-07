@@ -182,6 +182,7 @@ final class CellularExplorer: Explorer {
 		reset.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
 			me.play.stop()
+			me.engine.configureViews()
 			me.engine.reset()
 		}
 		
