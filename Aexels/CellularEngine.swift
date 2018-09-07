@@ -179,8 +179,10 @@ final class CellularEngine {
 		cells = next
 		next = xfer
 		
-		for view in self.views {
-			view.tic()
+		DispatchQueue.main.async {
+			for view in self.views {
+				view.tic()
+			}
 		}
 
 		if s % 60 == 0 {
