@@ -27,7 +27,7 @@ final class CellularExplorer: Explorer {
 	let large = Limbo()
 	var medium = Limbo()
 	let small = Limbo()
-	let close = Limbo()
+	let close = LimboButton(title: "Close")
 	let swapper = Limbo()
 	
 	let guide = GuideButton()
@@ -196,16 +196,13 @@ final class CellularExplorer: Explorer {
 
 		// Close ===========================
 		close.alpha = 0
-		let button = AXButton()
-		button.setTitle("Close", for: .normal)
-		button.addAction(for: .touchUpInside) { [weak self] in
+		close.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
 			me.isFirst = true
 			me.aetherView.snuffToolBars()
 			me.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
-		close.content = button
 		limbos.append(close)
 
 		// Swapper =========================

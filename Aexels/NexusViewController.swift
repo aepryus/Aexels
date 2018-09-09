@@ -14,7 +14,7 @@ class NexusViewController: UIViewController {
 	var nexusLabel: NexusLabel!
 	
 	var messageView: MessageLimbo!
-	let exploreButton = Limbo()
+	let exploreButton = LimboButton(title: "Explore")
 
 	var nexusButtons: [NexusButton] = []
 	var explorers: [Explorer]!
@@ -141,16 +141,20 @@ class NexusViewController: UIViewController {
 		exploreButton.alpha = 0
 		exploreButton.frame = CGRect(x: 843, y: 658, width: 176, height: 110)
 		view.addSubview(exploreButton)
-		
-		let button = AXButton()
-		button.setTitle("Explore", for: .normal)
-		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
-		button.addAction(for: .touchUpInside) {
+		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
 		}
 		
-		exploreButton.addSubview(button)
+//		let button = AXButton()
+//		button.setTitle("Explore", for: .normal)
+//		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
+//		button.addAction(for: .touchUpInside) {
+//			self.dimNexus()
+//			self.explorer!.openExplorer(view: self.view)
+//		}
+//
+//		exploreButton.addSubview(button)
 		
 	}
 	func iPhoneLayout() {

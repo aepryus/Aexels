@@ -24,7 +24,7 @@ class KinematicsExplorer: Explorer {
 	let netButton = NetButton()
 	let presetButton = UIButton()
 	let swapper = Limbo()
-	let close = Limbo()
+	let close = LimboButton(title: "Close")
 	let aetherLabel = UILabel()
 	let loopLabel = UILabel()
 
@@ -214,16 +214,12 @@ class KinematicsExplorer: Explorer {
 
 		// Close
 		close.alpha = 0
-		let button1 = AXButton()
-		button1.setTitle("Close", for: .normal)
-		button1.addAction(for: .touchUpInside) {
+		close.addAction(for: .touchUpInside) {
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
-		close.content = button1
 		limbos.append(close)
 
-		
 		// Swapper =========================
 		if D.current().iPhone {
 			let swapButton = SwapButton()

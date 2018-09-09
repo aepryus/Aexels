@@ -151,10 +151,6 @@ class Limbo: UIView {
 	override var frame: CGRect {
 		didSet {
 			guard frame != CGRect.zero else {return}
-			limboPath.strokePath = CGPath(roundedRect: bounds.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
-			limboPath.shadowPath = CGPath(roundedRect: bounds.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
-			limboPath.maskPath = limboPath.strokePath
-			self.layer.shadowPath = limboPath.shadowPath
 			
 			renderPaths()
 

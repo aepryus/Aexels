@@ -56,7 +56,7 @@ class Explorer {
 	let canExplore: Bool
 	var layedOut: Bool = false
 
-	var limbos = [Limbo]()
+	var limbos = [UIView]()
 	
 	init(parent: UIView, name: String, key: String, canExplore: Bool) {
 		self.parent = parent
