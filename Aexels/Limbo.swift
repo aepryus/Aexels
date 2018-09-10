@@ -26,7 +26,7 @@ class Cutout {
 }
 
 class Limbo: UIView {
-	var path: CGPath? = nil
+//	var path: CGPath? = nil
 	
 	var p: CGFloat = 15
 	var a: CGFloat = 6
@@ -108,12 +108,13 @@ class Limbo: UIView {
 		
 		if let cutout = cutouts[.bottomRight] {
 			let xe = x3 - cutout.width - q
-			let xc = (xe + x3) / 2
+			let xcL = (xe + x1) / 2
+			let xcR = (xe + x3) / 2
 			let ye = y3 - cutout.height - q
 			let yc = (ye + y3) / 2
-			path.addArc(tangent1End: CGPoint(x: x3, y: ye), tangent2End: CGPoint(x: xc, y: ye), radius: radius)
+			path.addArc(tangent1End: CGPoint(x: x3, y: ye), tangent2End: CGPoint(x: xcR, y: ye), radius: radius)
 			path.addArc(tangent1End: CGPoint(x: xe, y: ye), tangent2End: CGPoint(x: xe, y: yc), radius: radius)
-			path.addArc(tangent1End: CGPoint(x: xe, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: radius)
+			path.addArc(tangent1End: CGPoint(x: xe, y: y3), tangent2End: CGPoint(x: xcL, y: y3), radius: radius)
 		} else {
 			path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: radius)
 		}
@@ -122,10 +123,11 @@ class Limbo: UIView {
 			let xe = x1 + cutout.width + q
 			let xc = (x1 + xe) / 2
 			let ye = y3 - cutout.height - q
-			let yc = (ye + y3) / 2
-			path.addArc(tangent1End: CGPoint(x: xe, y: y3), tangent2End: CGPoint(x: xe, y: yc), radius: radius)
+			let ycT = (ye + y1) / 2
+			let ycB = (ye + y3) / 2
+			path.addArc(tangent1End: CGPoint(x: xe, y: y3), tangent2End: CGPoint(x: xe, y: ycB), radius: radius)
 			path.addArc(tangent1End: CGPoint(x: xe, y: ye), tangent2End: CGPoint(x: xc, y: ye), radius: radius)
-			path.addArc(tangent1End: CGPoint(x: x1, y: ye), tangent2End: CGPoint(x: x1, y: y2), radius: radius)
+			path.addArc(tangent1End: CGPoint(x: x1, y: ye), tangent2End: CGPoint(x: x1, y: ycT), radius: radius)
 		} else {
 			path.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: radius)
 		}
@@ -148,6 +150,10 @@ class Limbo: UIView {
 	func applyMask (_ mask: CGPath) {}
 	
 // UIView ==========================================================================================
+	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+		if limboPath.strokePath.contains(point) {return super.hitTest(point, with: event)}
+		else {return nil}
+	}
 	override var frame: CGRect {
 		didSet {
 			guard frame != CGRect.zero else {return}

@@ -12,7 +12,11 @@ import UIKit
 class KinematicsExplorer: Explorer {
 	var message: MessageLimbo!
 	let universe = Limbo()
-	let controls = Limbo()
+	
+	let zoneA = Limbo()
+	let zoneB = Limbo()
+	let zoneC = Limbo()
+	let zoneD = Limbo()
 	
 	let newtonianView: NewtownianView
 	let kinematicsView: KinematicsView
@@ -22,7 +26,8 @@ class KinematicsExplorer: Explorer {
 	let aetherVector = VectorView()
 	let loopVector = VectorView()
 	let netButton = NetButton()
-	let presetButton = UIButton()
+	let expAButton = UIButton()
+	let expBButton = UIButton()
 	let swapper = Limbo()
 	let close = LimboButton(title: "Close")
 	let aetherLabel = UILabel()
@@ -100,12 +105,14 @@ class KinematicsExplorer: Explorer {
 					me.aetherLabel.alpha = 1
 					me.aetherVector.alpha = 1
 					me.netButton.alpha = 1
-					me.presetButton.alpha = 1
+					me.expAButton.alpha = 1
+					me.expBButton.alpha = 1
 				} else {
 					me.aetherLabel.alpha = 0
 					me.aetherVector.alpha = 0
 					me.netButton.alpha = 0
-					me.presetButton.alpha = 0
+					me.expAButton.alpha = 0
+					me.expBButton.alpha = 0
 				}
 			}, completion: { (canceled: Bool) in
 				if page == "Universe" {
@@ -123,9 +130,7 @@ class KinematicsExplorer: Explorer {
 		limbos.append(universe)
 		
 		// Controls
-		limbos.append(controls)
 		
-		controls.addSubview(universePicker)
 		universePicker.pages = ["Universe", "Universe X"]
 		universePicker.snapToPageNo(1)
 		
@@ -135,9 +140,7 @@ class KinematicsExplorer: Explorer {
 		playButton.onStop = {
 			self.kinematicsView.stop()
 		}
-		controls.addSubview(playButton)
 		
-		controls.addSubview(aetherVector)
 		aetherVector.max = 5
 		aetherVector.onTap = { [weak self] (vector: V2) in
 			print("\(vector)")
@@ -145,7 +148,6 @@ class KinematicsExplorer: Explorer {
 			me.kinematicsView.Va = vector
 		}
 		
-		controls.addSubview(loopVector)
 		loopVector.onTap = { [weak self] (vector: V2) in
 			guard let me = self else {return}
 			if me.universePicker.pageNo == 0 {
@@ -161,22 +163,46 @@ class KinematicsExplorer: Explorer {
 		aetherLabel.font = UIFont.aexel(size: 16)
 		aetherLabel.textColor = UIColor.white
 		aetherLabel.textAlignment = .center
-		controls.addSubview(aetherLabel)
 		
 		loopLabel.text = "Loop"
 		loopLabel.font = UIFont.aexel(size: 16)
 		loopLabel.textColor = UIColor.white
 		loopLabel.textAlignment = .center
-		controls.addSubview(loopLabel)
 		
-		presetButton.setTitle("Experiment\nA", for: .normal)
-		presetButton.titleLabel?.font = UIFont.aexel(size: 13)
-		presetButton.titleLabel?.numberOfLines = 2
-		presetButton.titleLabel?.textAlignment = .center
-		presetButton.layer.borderWidth = 1
-		presetButton.layer.borderColor = UIColor.white.cgColor
-		presetButton.layer.cornerRadius = 5
-		presetButton.addAction(for: .touchUpInside) {[weak self] in
+		expAButton.setTitle("Exp\nA", for: .normal)
+		expAButton.titleLabel?.font = UIFont.aexel(size: 13)
+		expAButton.titleLabel?.numberOfLines = 2
+		expAButton.titleLabel?.textAlignment = .center
+		expAButton.layer.borderWidth = 1
+		expAButton.layer.borderColor = UIColor.white.cgColor
+		expAButton.layer.cornerRadius = 5
+		expAButton.addAction(for: .touchUpInside) {[weak self] in
+			guard let me = self else {return}
+			
+			let q = 0.3
+			let sn = sin(Double.pi/6)
+			let cs = cos(Double.pi/6)
+			
+			me.kinematicsView.Xa = V2(0, 0)
+			me.kinematicsView.Va = V2(0.5, -1.5)
+			me.kinematicsView.Vl = V2(-cs*q/2, -sn*q/4)
+			
+			me.kinematicsView.x = 3
+			me.kinematicsView.y = 3
+			me.kinematicsView.o = 1
+
+			me.aetherVector.vector = me.kinematicsView.Va
+			me.loopVector.vector = me.kinematicsView.Vl
+		}
+		
+		expBButton.setTitle("Exp\nB", for: .normal)
+		expBButton.titleLabel?.font = UIFont.aexel(size: 13)
+		expBButton.titleLabel?.numberOfLines = 2
+		expBButton.titleLabel?.textAlignment = .center
+		expBButton.layer.borderWidth = 1
+		expBButton.layer.borderColor = UIColor.white.cgColor
+		expBButton.layer.cornerRadius = 5
+		expBButton.addAction(for: .touchUpInside) {[weak self] in
 			guard let me = self else {return}
 			me.kinematicsView.Xa = V2(0, 0)
 			me.kinematicsView.Va = V2(0, -1)
@@ -195,7 +221,6 @@ class KinematicsExplorer: Explorer {
 			me.aetherVector.vector = me.kinematicsView.Va
 			me.loopVector.vector = me.kinematicsView.Vl
 		}
-		controls.addSubview(presetButton)
 
 		netButton.addAction(for: .touchUpInside) { [weak self] in
 			guard let me = self else {return}
@@ -203,7 +228,6 @@ class KinematicsExplorer: Explorer {
 			me.netButton.on = me.kinematicsView.aetherVisible
 			me.netButton.setNeedsDisplay()
 		}
-		controls.addSubview(netButton)
 		
 		// Message
 		message = MessageLimbo()
@@ -246,7 +270,24 @@ class KinematicsExplorer: Explorer {
 			limbos.append(swapper)
 		}
 		
-		first = [universe, controls]
+		zoneA.addSubview(playButton)
+		zoneA.addSubview(netButton)
+		limbos.append(zoneA)
+		
+		zoneB.addSubview(universePicker)
+		limbos.append(zoneB)
+		
+		zoneC.addSubview(aetherVector)
+		zoneC.addSubview(loopVector)
+		zoneC.addSubview(aetherLabel)
+		zoneC.addSubview(loopLabel)
+		limbos.append(zoneC)
+		
+		zoneD.addSubview(expAButton)
+		zoneD.addSubview(expBButton)
+		limbos.append(zoneD)
+
+		first = [universe, zoneA, zoneB, zoneC, zoneD]
 		second = [message]
 	}
 	override func layout375x667() {
@@ -257,22 +298,37 @@ class KinematicsExplorer: Explorer {
 		let ch = size.height - 20 - h - 15*2 + 1
 		let vw: CGFloat = 72
 
+
 		universe.frame = CGRect(x: 5, y: 20, width: w, height: w)
 
-		controls.frame = CGRect(x: 5, y: universe.bottom, width: universe.width, height: 667-universe.bottom - 5)
-		controls.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
-		controls.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
-		controls.renderPaths()
+		zoneA.frame = CGRect(x: 5, y: universe.bottom, width: 144, height: 667-universe.bottom-60)
+		zoneB.frame = CGRect(x: 61, y: 667-108-5, width: 375-139-56-10, height: 108)
+		zoneC.frame = CGRect(x: 5+144, y: universe.bottom, width: 375-5-zoneA.right, height: 120)
+		zoneD.frame = CGRect(x: 5+144, y: zoneC.bottom, width: zoneC.width, height: 667-universe.bottom-5-zoneC.height-60)
 
-		playButton.topLeft(offset: UIOffset(horizontal: 32, vertical: 32), size: CGSize(width: 48, height: 30))
-		loopVector.topRight(offset: UIOffset(horizontal: -20, vertical: 32), size: CGSize(width: vw, height: vw))
-		aetherVector.topRight(offset: UIOffset(horizontal: -20-vw-12, vertical: loopVector.top), size: CGSize(width: vw, height: vw))
+		zoneA.cutouts[.bottomRight] = Cutout(width: zoneA.width-60+5, height: zoneB.height-60+5)
+		zoneA.renderPaths()
+		
+		zoneB.renderPaths()
+
+		zoneC.renderPaths()
+		
+		zoneD.cutouts[.bottomLeft] = Cutout(width: zoneD.width-139, height: zoneB.height-60)
+		zoneD.renderPaths()
+		
+		playButton.top(offset: UIOffset(horizontal: 0, vertical: 32), size: CGSize(width: 48, height: 30))
+		netButton.top(offset: UIOffset(horizontal: 0, vertical: playButton.bottom+20), size: CGSize(width: 48, height: 48))
+
+		let dx: CGFloat = 32
+		loopVector.topRight(offset: UIOffset(horizontal: -dx, vertical: 32), size: CGSize(width: vw, height: vw))
+		aetherVector.topLeft(offset: UIOffset(horizontal: dx, vertical: 32), size: CGSize(width: vw, height: vw))
 		loopLabel.topLeft(offset: UIOffset(horizontal: loopVector.left, vertical: loopVector.top-20), size: CGSize(width: vw, height: 16))
 		aetherLabel.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.top-20), size: CGSize(width: vw, height: 16))
-		presetButton.topLeft(offset: UIOffset(horizontal: aetherVector.left+(2*aetherVector.width+12-96)/2, vertical: aetherVector.bottom+8), size: CGSize(width: 96, height: 36))
+		
+		expAButton.left(offset: UIOffset(horizontal: 108, vertical: 0), size: CGSize(width: 40, height: 50))
+		expBButton.left(offset: UIOffset(horizontal: expAButton.right+10, vertical: 0), size: CGSize(width: 40, height: 50))
 
-		netButton.topLeft(offset: UIOffset(horizontal: playButton.left, vertical: playButton.bottom+12), size: CGSize(width: 48, height: 48))
-		universePicker.topLeft(offset: UIOffset(horizontal: 81, vertical: 191), size: CGSize(width: 120, height: ch-12))
+		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120, height: ch-12))
 
 		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
 
@@ -298,15 +354,23 @@ class KinematicsExplorer: Explorer {
 		message.renderPaths()
 		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
 
-		controls.frame = CGRect(x: p, y: universe.bottom, width: uw, height: ch)
-		universePicker.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: 120, height: 67))
-		playButton.left(offset: UIOffset(horizontal: universePicker.right+30, vertical: 0), size: CGSize(width: 50, height: 30))
-		netButton.left(offset: UIOffset(horizontal: playButton.right+30, vertical: 0), size: CGSize(width: 48, height: 48))
-		aetherVector.left(offset: UIOffset(horizontal: netButton.right+60, vertical: 10), size: CGSize(width: 63, height: 63))
+		zoneB.frame = CGRect(x: 5, y: universe.bottom, width: 160, height: ch)
+		zoneA.frame = CGRect(x: zoneB.right, y: universe.bottom, width: 150, height: ch)
+		zoneC.frame = CGRect(x: zoneA.right, y: universe.bottom, width: 180, height: ch)
+		zoneD.frame = CGRect(x: zoneC.right, y: universe.bottom, width: universe.width-zoneB.width-zoneA.width-zoneC.width, height: ch)
+
+		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120, height: 67))
+		
+		playButton.center(offset: UIOffset(horizontal: -35, vertical: 0), size: CGSize(width: 50, height: 30))
+		netButton.center(offset: UIOffset(horizontal: 27, vertical: 0), size: CGSize(width: 48, height: 48))
+
+		aetherVector.left(offset: UIOffset(horizontal: 23, vertical: 10), size: CGSize(width: 63, height: 63))
 		aetherLabel.left(offset: UIOffset(horizontal: aetherVector.left, vertical: -32), size: CGSize(width: aetherVector.width, height: 16))
-		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+20, vertical: 10), size: CGSize(width: 63, height: 63))
+		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+12, vertical: 10), size: CGSize(width: 63, height: 63))
 		loopLabel.left(offset: UIOffset(horizontal: loopVector.left, vertical: -32), size: CGSize(width: loopVector.width, height: 16))
-		presetButton.left(offset: UIOffset(horizontal: loopVector.right+20, vertical: 0), size: CGSize(width: 96, height: 36))
+
+		expAButton.center(offset: UIOffset(horizontal: -26, vertical: 0), size: CGSize(width: 40, height: 50))
+		expBButton.center(offset: UIOffset(horizontal: 26, vertical: 0), size: CGSize(width: 40, height: 50))
 
 		close.frame = CGRect(x: size.width-p-176, y: size.height-110, width: 176, height: 110)
 	}

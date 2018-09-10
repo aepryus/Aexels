@@ -315,8 +315,6 @@ More about learning how to use the Oovium visual programming language including 
 
 "KinematicsLab" = "Kinematics
 
-Kinematics is the study of motion absent a force.  In our universe such motion is fairly straightforward, but it is considerably more complicated in Universe X.
-
 Motion in our own universe can be described entirely by a vector which represents the velocity of a given object.  In Universe X, however there are two distinct forms of motion: translation across the aether and the flow of the aether itself.  In order to fully describe motion in Universe X, one must know both the translating vector and the aethereal flow vector, as well as the density and geometry of the aexels themselves.
 
 This lab allows us to compare the motion of our Universe with that of Universe X.  The lab models an object frictionlessly moving inside a 2 dimensional box, elastically bouncing off the walls.
@@ -325,7 +323,7 @@ For Universe X, the model uses a regular hexagonal tiling to represent the aethe
 
 Perhaps the first thing one might note when comparing the two models is that motion in the Universe X model is quite jerky as opposed to the smooth motion of the model for our Universe.  However, the Universe X model is a statistical model and we are looking at both large aexels and large time steps.  As the density of aexels and time steps increase the motion will continually get more and more smooth until it would become difficult to differentiate the motion of the two systems.
 
-In looking at the Universe X model there are two important things to note.  The first is that during collisions there can be a transfer between translating motion and flow motion.  For example, if we stop the translating motion entirely and point the aether directly downward (see Experiment A).  The particle will smoothly flow down along with the aether.  However, once the particle hits the bottom wall, the flow motion will be converted into twice the translating motion upwards, which when added to the flow motion will cause the object to move upwards at (statistically) the same velocity with which it moved downwards.
+In looking at the Universe X model there are two important things to note.  The first is that during collisions there can be a transfer between translating motion and flow motion.  For example, if we stop the translating motion entirely and point the aether directly downward (see Experiment B).  The particle will smoothly flow down along with the aether.  However, once the particle hits the bottom wall, the flow motion will be converted into twice the translating motion upwards, which when added to the flow motion will cause the object to move upwards at (statistically) the same velocity with which it moved downwards.
 
 The other thing to note then is that as the density of aexels and time steps increases, the flow of the aether is irrelevant to the dynamics of the system.  I.e., a system where there is no aethereal flow will behave statistically the same as one in which there is an aethereal flow.
 
