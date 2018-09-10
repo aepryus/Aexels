@@ -364,7 +364,7 @@ class KinematicsExplorer: Explorer {
 		playButton.center(offset: UIOffset(horizontal: -35, vertical: 0), size: CGSize(width: 50, height: 30))
 		netButton.center(offset: UIOffset(horizontal: 27, vertical: 0), size: CGSize(width: 48, height: 48))
 
-		aetherVector.left(offset: UIOffset(horizontal: 23, vertical: 10), size: CGSize(width: 63, height: 63))
+		aetherVector.left(offset: UIOffset(horizontal: 21, vertical: 10), size: CGSize(width: 63, height: 63))
 		aetherLabel.left(offset: UIOffset(horizontal: aetherVector.left, vertical: -32), size: CGSize(width: aetherVector.width, height: 16))
 		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+12, vertical: 10), size: CGSize(width: 63, height: 63))
 		loopLabel.left(offset: UIOffset(horizontal: loopVector.left, vertical: -32), size: CGSize(width: loopVector.width, height: 16))
