@@ -23,6 +23,7 @@ final class CellularExplorer: Explorer {
 	var aetherLimbo = Limbo()
 	let controls = Limbo()
 	let dilator = Limbo(p: 12)
+	let dilatorView = DilatorView()
 	var message: MessageLimbo!
 	let large = Limbo()
 	var medium = Limbo()
@@ -67,6 +68,9 @@ final class CellularExplorer: Explorer {
 	
 // Events ==========================================================================================
 	override func onOpen() {
+		Aexels.timer.configure(interval: dilatorView.interval, {
+			self.engine.tic()
+		})
 		aetherView.layoutAetherPicker()
 	}
 	override func onOpening() {
@@ -152,7 +156,6 @@ final class CellularExplorer: Explorer {
 		engine.addView(largeCell)
 
 		// Dilator =========================
-		let dilatorView = DilatorView()
 		dilatorView.onChange = { (current: Double) in
 			self.engine.interval = 1/current
 		}
@@ -160,7 +163,7 @@ final class CellularExplorer: Explorer {
 		limbos.append(dilator)
 		
 		engine.onMeasure = {(actualSps: Double)->() in
-			dilatorView.actualSps = CGFloat(actualSps)
+			self.dilatorView.actualSps = CGFloat(actualSps)
 		}
 		
 		// Controls ========================
@@ -248,7 +251,7 @@ final class CellularExplorer: Explorer {
 		} else {
 			limbos.append(aetherLimbo)
 			limbos.append(message)
-		}		
+		}
 	}
 	override func layout375x667() {
 		let lw: CGFloat = 375-10

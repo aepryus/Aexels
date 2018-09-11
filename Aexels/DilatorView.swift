@@ -38,6 +38,11 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
+	var interval: Double {
+		if currentSps == maximumSps {return 1.0/60}
+		else {return 1/Double(currentSps)}
+	}
+	
 // Events ==========================================================================================
 	@objc func onPan (gesture: UIPanGestureRecognizer) {
 		let p: CGFloat = 3

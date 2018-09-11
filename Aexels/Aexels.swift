@@ -12,6 +12,7 @@ import UIKit
 class Aexels {
 	static var window: UIWindow!
 	static var nexus: NexusViewController!
+	static var timer: AXTimer = AXTimer()
 	
 	static func iPhone4() -> Bool {
 		return UIScreen.main.bounds.size == CGSize(width: 320, height: 480)

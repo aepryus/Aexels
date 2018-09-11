@@ -17,8 +17,6 @@ class NewtownianView: UIView, Simulation {
 	
 	var onTic: ((V2)->())
 	
-	var timer = AXTimer()
-	
 	var image: UIImage?
 	
 	init (_ onTic: @escaping (V2)->()) {
@@ -28,9 +26,6 @@ class NewtownianView: UIView, Simulation {
 		super.init(frame: CGRect.zero)
 		
 		backgroundColor = UIColor.clear
-		timer.configure(interval: 1.0/60.0) {
-			self.tic()
-		}
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
@@ -75,10 +70,10 @@ class NewtownianView: UIView, Simulation {
 	
 // Simulation ======================================================================================
 	func play() {
-		timer.start()
+		Aexels.timer.start()
 	}
 	func stop() {
-		timer.stop()
+		Aexels.timer.stop()
 	}
 	func reset() {
 	}

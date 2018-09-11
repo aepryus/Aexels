@@ -9,17 +9,11 @@
 import Foundation
 
 final class AXTimer {
-//	var block: (()->())!
 	var running: Bool = false
 	var semaphore = DispatchSemaphore(value: 1)
 	
-	private var _interval: Double = 1.0/60
-	var interval: Double {
-		set {
-			_interval = newValue
-			timer.schedule(deadline: .now(), repeating: interval)
-		}
-		get {return _interval}
+	var interval: Double = 1.0/60 {
+		didSet {timer.schedule(deadline: .now(), repeating: interval)}
 	}
 	
 	let queue: DispatchQueue = DispatchQueue(label: "cellular")
@@ -32,7 +26,6 @@ final class AXTimer {
 			self.semaphore.signal()
 		}
 		self.interval = interval
-//		self.block = block
 	}
 	
 	func start() {

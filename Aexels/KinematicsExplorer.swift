@@ -51,8 +51,19 @@ class KinematicsExplorer: Explorer {
 	
 	
 // Events ==========================================================================================
+	override func onOpen() {
+		if universePicker.pageNo == 0 {
+			Aexels.timer.configure(interval: 1.0/60.0) {
+				self.newtonianView.tic()
+			}
+		} else {
+			Aexels.timer.configure(interval: 1.0/60.0) {
+				self.kinematicsView.tic()
+			}
+		}
+	}
 	override func onOpened() {
-//		playButton.play()
+		playButton.play()
 	}
 	override func onClose() {
 		playButton.stop()
@@ -78,6 +89,10 @@ class KinematicsExplorer: Explorer {
 			if page == "Universe" {
 				me.kinematicsView.stop()
 				
+				Aexels.timer.configure(interval: 1.0/60.0) {
+					self?.newtonianView.tic()
+				}
+				
 				me.newtonianView.x.x = me.kinematicsView.Xl.x
 				me.newtonianView.x.y = me.kinematicsView.Xl.y
 				me.newtonianView.v.x = me.kinematicsView.Va.x + me.kinematicsView.Vl.x*2*cs
@@ -90,6 +105,10 @@ class KinematicsExplorer: Explorer {
 				}
 			} else {
 				me.newtonianView.stop()
+				
+				Aexels.timer.configure(interval: 1.0/60.0) {
+					self?.kinematicsView.tic()
+				}
 				
 				me.kinematicsView.moveTo(v: me.newtonianView.x)
 				me.kinematicsView.Vl.x = (me.newtonianView.v.x - me.kinematicsView.Va.x)/(2*cs)

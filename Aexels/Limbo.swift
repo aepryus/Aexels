@@ -151,7 +151,8 @@ class Limbo: UIView {
 	
 // UIView ==========================================================================================
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-		if limboPath.strokePath.contains(point) {return super.hitTest(point, with: event)}
+		guard let path = limboPath.strokePath else {return super.hitTest(point, with: event)}
+		if path.contains(point) {return super.hitTest(point, with: event)}
 		else {return nil}
 	}
 	override var frame: CGRect {

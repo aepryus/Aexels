@@ -20,12 +20,10 @@ final class CellularEngine {
 	let w: Int
 	let h: Int
 	var interval: Double {
-		set {
-			timer.interval = newValue
-		}
-		get {return timer.interval}
+		set {Aexels.timer.interval = newValue}
+		get {return Aexels.timer.interval}
 	}
-	
+
 	var needsCompile: Bool = true
 	
 	var cells: UnsafeMutablePointer<Obj>
@@ -48,7 +46,6 @@ final class CellularEngine {
 	var hI: Int = 0
 	
 	private var views = [CellularView]()
-	private var timer: AXTimer
 	
 	private let conQue: DispatchQueue = DispatchQueue(label: "Aexels", attributes: .concurrent)
 	
@@ -58,12 +55,7 @@ final class CellularEngine {
 		self.w = w
 		self.h = h
 		cells = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
-		next = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)
-		
-		timer = AXTimer()
-		timer.configure(interval: interval, {
-			self.tic()
-		})
+		next = UnsafeMutablePointer<Obj>.allocate(capacity: w*h)		
 	}
 	
 	func compile(aether: Aether) {
@@ -298,10 +290,10 @@ final class CellularEngine {
 			compile(aether: aether)
 			needsCompile = false
 		}
-		timer.start()
+		Aexels.timer.start()
 	}
 	func stop() {
-		timer.stop()
+		Aexels.timer.stop()
 	}
 	func reset() {
 //		stop()

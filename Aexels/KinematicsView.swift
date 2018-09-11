@@ -22,8 +22,6 @@ class KinematicsView: UIView, Simulation {
 	var w: Double = 0
 	var h: Double = 0
 	
-	let timer = AXTimer()
-	
 	var image: UIImage?
 	var hexes: UIImage?
 	
@@ -52,9 +50,6 @@ class KinematicsView: UIView, Simulation {
 		super.init(frame: CGRect.zero)
 		
 		self.backgroundColor = UIColor.clear
-		timer.configure(interval: 1.0/60.0) {
-			self.tic()
-		}
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
@@ -256,7 +251,7 @@ class KinematicsView: UIView, Simulation {
 		
 		// Rendering
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: h), false, 0)
-		let c = UIGraphicsGetCurrentContext()!
+		guard let c = UIGraphicsGetCurrentContext() else {return}
 		
 		var path = CGMutablePath()
 		
@@ -370,10 +365,10 @@ class KinematicsView: UIView, Simulation {
 	
 // Simulation ======================================================================================
 	func play() {
-		timer.start()
+		Aexels.timer.start()
 	}
 	func stop() {
-		timer.stop()
+		Aexels.timer.stop()
 	}
 	func reset() {
 		x = 3
