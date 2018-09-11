@@ -39,8 +39,7 @@ class KinematicsExplorer: Explorer {
 
 	init(parent: UIView) {
 		
-		newtonianView = NewtownianView({ (momentum: V2) in
-		})
+		newtonianView = NewtownianView()
 		kinematicsView = KinematicsView()
 		
 		playButton = PlayButton()
@@ -76,6 +75,10 @@ class KinematicsExplorer: Explorer {
 	override func createLimbos() {
 		
 		kinematicsView.onTic = { [weak self] (velocity: V2) in
+			guard let me = self else {return}
+			me.loopVector.vector = velocity
+		}
+		newtonianView.onTic = { [weak self] (velocity: V2) in
 			guard let me = self else {return}
 			me.loopVector.vector = velocity
 		}
@@ -163,19 +166,18 @@ class KinematicsExplorer: Explorer {
 		
 		aetherVector.max = 5
 		aetherVector.onTap = { [weak self] (vector: V2) in
-			print("\(vector)")
 			guard let me = self else {return}
 			me.kinematicsView.Va = vector
 			me.expAButton.activated = false
 			me.expBButton.activated = false
 		}
 		
+		loopVector.max = 10/(2*30*cos(Double.pi/6))
 		loopVector.onTap = { [weak self] (vector: V2) in
 			guard let me = self else {return}
 			if me.universePicker.pageNo == 0 {
-				me.newtonianView.v = vector
+				me.newtonianView.v = V2(vector.x, -vector.y)
 			} else {
-				me.loopVector.max = 10/(2*30*cos(Double.pi/6))
 				me.kinematicsView.Vl = vector
 			}
 			me.expAButton.activated = false

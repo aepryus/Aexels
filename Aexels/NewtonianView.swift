@@ -15,14 +15,13 @@ class NewtownianView: UIView, Simulation {
 	var w: Double = 0
 	var h: Double = 0
 	
-	var onTic: ((V2)->())
+	var onTic: ((V2)->())  = {V2 in}
 	
 	var image: UIImage?
 	
-	init (_ onTic: @escaping (V2)->()) {
+	init () {
 		x = V2(100, 100)
 		v = V2(5 , 3)
-		self.onTic = onTic
 		super.init(frame: CGRect.zero)
 		
 		backgroundColor = UIColor.clear
@@ -38,7 +37,7 @@ class NewtownianView: UIView, Simulation {
 		if (x.x<r && v.x<0) || (x.x>w-r && v.x>0) {v.x = -v.x}
 		if (x.y<r && v.y<0) || (x.y>h-r && v.y>0) {v.y = -v.y}
 
-		onTic(v)
+		onTic(V2(v.x, -v.y))
 		
 		DispatchQueue.main.async {
 			self.setNeedsDisplay()
