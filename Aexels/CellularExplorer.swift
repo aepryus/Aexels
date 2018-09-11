@@ -66,11 +66,16 @@ final class CellularExplorer: Explorer {
 	}
 	
 // Events ==========================================================================================
-	override func onOpened() {
-		aetherView.invokeAetherPicker()
+	override func onOpen() {
+		aetherView.layoutAetherPicker()
+	}
+	override func onOpening() {
+		aetherView.snapAetherPicker()
 		aetherView.showToolBars()
 	}
 	override func onClose() {
+		aetherView.dismissAetherPicker()
+		aetherView.snuffToolBars()
 		self.play.stop()
 		if D.current().iPhone {
 			limbos = [swapper] + first + [close]
@@ -216,13 +221,14 @@ final class CellularExplorer: Explorer {
 					me.dimLimbos(me.first)
 					me.brightenLimbos(me.second)
 					me.limbos = [me.swapper] + me.second + [me.close]
-					me.aetherView.showToolBars()
+					me.aetherView.snuffToolBars()
 				} else {
 					me.isFirst = true
 					me.dimLimbos(me.second)
 					me.brightenLimbos(me.first)
 					me.limbos = [me.swapper] + me.first + [me.close]
-					me.aetherView.snuffToolBars()
+					me.aetherView.invokeAetherPicker()
+					me.aetherView.showToolBars()
 				}
 				me.swapper.removeFromSuperview()
 				me.parent.addSubview(me.swapper)
@@ -232,17 +238,17 @@ final class CellularExplorer: Explorer {
 			swapper.content = swapButton
 			limbos.append(swapper)
 
-			first = [controls, dilator, large, medium, small]
-			second = [aetherLimbo, message]
+			first = [aetherLimbo, message]
+			second = [controls, dilator, large, medium, small]
 		}
 		
 		if D.current().iPhone {
-			aetherLimbo.alpha = 0
-			message.alpha = 0
+			brightenLimbos(first)
+			limbos = [swapper] + first + [close]
 		} else {
 			limbos.append(aetherLimbo)
 			limbos.append(message)
-		}
+		}		
 	}
 	override func layout375x667() {
 		let lw: CGFloat = 375-10
@@ -267,6 +273,9 @@ final class CellularExplorer: Explorer {
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 		
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
 		aetherView.showToolBars()

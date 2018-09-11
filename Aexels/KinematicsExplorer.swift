@@ -26,8 +26,8 @@ class KinematicsExplorer: Explorer {
 	let aetherVector = VectorView()
 	let loopVector = VectorView()
 	let netButton = NetButton()
-	let expAButton = UIButton()
-	let expBButton = UIButton()
+	let expAButton = ExpButton(name: "Exp\nA")
+	let expBButton = ExpButton(name: "Exp\nB")
 	let swapper = Limbo()
 	let close = LimboButton(title: "Close")
 	let aetherLabel = UILabel()
@@ -48,9 +48,11 @@ class KinematicsExplorer: Explorer {
 		super.init(parent: parent, name: "Kinematics", key: "Kinematics", canExplore: true)
 	}
 	
+	
+	
 // Events ==========================================================================================
 	override func onOpened() {
-		playButton.play()
+//		playButton.play()
 	}
 	override func onClose() {
 		playButton.stop()
@@ -127,7 +129,6 @@ class KinematicsExplorer: Explorer {
 			})
 		}
 		universe.content = kinematicsView
-		limbos.append(universe)
 		
 		// Controls
 		
@@ -146,6 +147,8 @@ class KinematicsExplorer: Explorer {
 			print("\(vector)")
 			guard let me = self else {return}
 			me.kinematicsView.Va = vector
+			me.expAButton.activated = false
+			me.expBButton.activated = false
 		}
 		
 		loopVector.onTap = { [weak self] (vector: V2) in
@@ -156,8 +159,9 @@ class KinematicsExplorer: Explorer {
 				me.loopVector.max = 10/(2*30*cos(Double.pi/6))
 				me.kinematicsView.Vl = vector
 			}
-
-		}		
+			me.expAButton.activated = false
+			me.expBButton.activated = false
+		}
 		
 		aetherLabel.text = "Aether"
 		aetherLabel.font = UIFont.aexel(size: 16)
@@ -169,13 +173,7 @@ class KinematicsExplorer: Explorer {
 		loopLabel.textColor = UIColor.white
 		loopLabel.textAlignment = .center
 		
-		expAButton.setTitle("Exp\nA", for: .normal)
-		expAButton.titleLabel?.font = UIFont.aexel(size: 13)
-		expAButton.titleLabel?.numberOfLines = 2
-		expAButton.titleLabel?.textAlignment = .center
-		expAButton.layer.borderWidth = 1
-		expAButton.layer.borderColor = UIColor.white.cgColor
-		expAButton.layer.cornerRadius = 5
+		expAButton.activated = true
 		expAButton.addAction(for: .touchUpInside) {[weak self] in
 			guard let me = self else {return}
 			
@@ -193,15 +191,11 @@ class KinematicsExplorer: Explorer {
 
 			me.aetherVector.vector = me.kinematicsView.Va
 			me.loopVector.vector = me.kinematicsView.Vl
+			
+			me.expAButton.activated = true
+			me.expBButton.activated = false
 		}
 		
-		expBButton.setTitle("Exp\nB", for: .normal)
-		expBButton.titleLabel?.font = UIFont.aexel(size: 13)
-		expBButton.titleLabel?.numberOfLines = 2
-		expBButton.titleLabel?.textAlignment = .center
-		expBButton.layer.borderWidth = 1
-		expBButton.layer.borderColor = UIColor.white.cgColor
-		expBButton.layer.cornerRadius = 5
 		expBButton.addAction(for: .touchUpInside) {[weak self] in
 			guard let me = self else {return}
 			me.kinematicsView.Xa = V2(0, 0)
@@ -220,6 +214,9 @@ class KinematicsExplorer: Explorer {
 			
 			me.aetherVector.vector = me.kinematicsView.Va
 			me.loopVector.vector = me.kinematicsView.Vl
+			
+			me.expAButton.activated = false
+			me.expBButton.activated = true
 		}
 
 		netButton.addAction(for: .touchUpInside) { [weak self] in
@@ -233,16 +230,12 @@ class KinematicsExplorer: Explorer {
 		message = MessageLimbo()
 		message.key = "KinematicsLab"
 		
-		if D.current().iPhone {message.alpha = 0}
-		else {limbos.append(message)}
-
 		// Close
 		close.alpha = 0
 		close.addAction(for: .touchUpInside) {
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
-		limbos.append(close)
 
 		// Swapper =========================
 		if D.current().iPhone {
@@ -272,23 +265,26 @@ class KinematicsExplorer: Explorer {
 		
 		zoneA.addSubview(playButton)
 		zoneA.addSubview(netButton)
-		limbos.append(zoneA)
 		
 		zoneB.addSubview(universePicker)
-		limbos.append(zoneB)
 		
 		zoneC.addSubview(aetherVector)
 		zoneC.addSubview(loopVector)
 		zoneC.addSubview(aetherLabel)
 		zoneC.addSubview(loopLabel)
-		limbos.append(zoneC)
 		
 		zoneD.addSubview(expAButton)
 		zoneD.addSubview(expBButton)
-		limbos.append(zoneD)
 
-		first = [universe, zoneA, zoneB, zoneC, zoneD]
-		second = [message]
+		first = [message]
+		second = [universe, zoneA, zoneB, zoneC, zoneD]
+		
+		if D.current().iPhone {
+			brightenLimbos(first)
+			limbos = [swapper] + first + [close]
+		} else {
+			limbos = [swapper, universe, zoneA, zoneB, zoneC, zoneD, message, close]
+		}
 	}
 	override func layout375x667() {
 		let size = UIScreen.main.bounds.size
