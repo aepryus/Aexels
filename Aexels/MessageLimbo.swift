@@ -39,10 +39,10 @@ class MessageLimbo: Limbo {
 	func load() {
 		self.text = NSLocalizedString(key, comment: "")
 
-		let pen = Pen(font: UIFont(name: "Verdana", size: 18)!)
+		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!)
 		pen.alignment = .left
 
-		let p: CGFloat = 10
+		let p: CGFloat = 10*s
 		let w = self.scrollView.bounds.size.width - p*2
 		
 		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size
@@ -52,7 +52,7 @@ class MessageLimbo: Limbo {
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: h), false, UIScreen.main.scale)
 		guard let c = UIGraphicsGetCurrentContext() else {return}
 		c.saveGState()
-		c.setShadow(offset: CGSize(width: 2, height: 2), blur: 2)
+		c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
 		c.setFillColor(UIColor.white.cgColor)
 		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: pen.attributes)
 		c.restoreGState()
@@ -80,7 +80,7 @@ class MessageLimbo: Limbo {
 	override var frame: CGRect {
 		didSet {
 			axMaskView.frame = bounds
-			scrollView.frame = self.bounds.insetBy(dx: 10, dy: 10)
+			scrollView.frame = self.bounds.insetBy(dx: 10*s, dy: 10*s)
 			if frame.size != CGSize.zero {load()}
 		}
 	}

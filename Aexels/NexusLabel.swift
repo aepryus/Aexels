@@ -11,7 +11,7 @@ import OoviumLib
 
 class NexusLabel: UIView {
 	var text: String = ""
-	var size: CGFloat = 72
+	var size: CGFloat = 72*Screen.s
 	
 	init (text: String, size: CGFloat) {
 		self.text = text

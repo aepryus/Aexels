@@ -19,7 +19,7 @@ class ContentLimbo: Limbo {
 	}
 	init(frame: CGRect, content: UIView) {
 		let rect = CGRect(origin: CGPoint.zero, size: frame.size)
-		evMaskView = MaskView(frame: rect, content: content, path: CGPath(roundedRect: rect.insetBy(dx: 7*D.s, dy: 7*D.s), cornerWidth: 10*D.s, cornerHeight: 10*D.s, transform: nil))
+		evMaskView = MaskView(frame: rect, content: content, path: CGPath(roundedRect: rect.insetBy(dx: 7*Screen.s, dy: 7*Screen.s), cornerWidth: 10*Screen.s, cornerHeight: 10*Screen.s, transform: nil))
 		super.init()
 		addSubview(self.evMaskView)
 	}
@@ -30,7 +30,7 @@ class ContentLimbo: Limbo {
 		didSet {
 			guard bounds != CGRect.zero else {return}
 			evMaskView.frame = bounds
-			evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*D.s, dy: 7*D.s), cornerWidth: 10*D.s, cornerHeight: 10*D.s, transform: nil)
+			evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*s, dy: 7*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
 		}
 	}
 }

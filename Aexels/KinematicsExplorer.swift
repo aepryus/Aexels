@@ -67,7 +67,7 @@ class KinematicsExplorer: Explorer {
 	}
 	override func onClose() {
 		playButton.stop()
-		if D.current().iPhone {
+		if Screen.iPhone {
 			swapButton.resetView()
 			limbos = first + [swapper, close]
 		}
@@ -225,7 +225,7 @@ class KinematicsExplorer: Explorer {
 			me.kinematicsView.Va = V2(0, -1)
 			me.kinematicsView.Vl = V2(0, 0)
 			
-			if D.current().iPhone {
+			if Screen.iPhone {
 				me.kinematicsView.x = 1
 				me.kinematicsView.y = 0
 				me.kinematicsView.o = 1
@@ -263,7 +263,7 @@ class KinematicsExplorer: Explorer {
 		}
 
 		// Swapper =========================
-		if D.current().iPhone {
+		if Screen.iPhone {
 			swapButton.addAction(for: .touchUpInside) { [weak self] in
 				guard let me = self else {return}
 				me.swapButton.rotateView()
@@ -303,7 +303,7 @@ class KinematicsExplorer: Explorer {
 		first = [message]
 		second = [universe, zoneA, zoneB, zoneC, zoneD]
 		
-		if D.current().iPhone {
+		if Screen.iPhone {
 			brightenLimbos(first)
 			limbos = [swapper] + first + [close]
 		} else {

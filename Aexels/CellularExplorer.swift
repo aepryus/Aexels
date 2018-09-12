@@ -82,7 +82,7 @@ final class CellularExplorer: Explorer {
 		aetherView.dismissAetherPicker()
 		aetherView.snuffToolBars()
 		play.stop()
-		if D.current().iPhone {
+		if Screen.iPhone {
 			swapButton.resetView()
 			limbos = [swapper] + first + [close]
 		}
@@ -110,11 +110,11 @@ final class CellularExplorer: Explorer {
 		largeCell.zoomView = mediumCell
 		mediumCell.zoomView = smallCell
 		
-		if D.current().iPhone {
+		if Screen.iPhone {
 			largeCell.cells = 335
 			mediumCell.cells = 190
 			smallCell.cells = 112
-		} else /*if D.current().iPad*/{
+		} else /*if Screen.iPad*/{
 			largeCell.cells = 432
 			mediumCell.cells = 256
 			smallCell.cells = 144
@@ -217,7 +217,7 @@ final class CellularExplorer: Explorer {
 		limbos.append(close)
 
 		// Swapper =========================
-		if D.current().iPhone {
+		if Screen.iPhone {
 			swapButton.addAction(for: .touchUpInside) { [weak self] in
 				guard let me = self else {return}
 				me.swapButton.rotateView()
@@ -247,7 +247,7 @@ final class CellularExplorer: Explorer {
 			second = [controls, dilator, large, medium, small]
 		}
 		
-		if D.current().iPhone {
+		if Screen.iPhone {
 			brightenLimbos(first)
 			limbos = [swapper] + first + [close]
 		} else {

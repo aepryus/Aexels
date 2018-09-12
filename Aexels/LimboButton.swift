@@ -12,9 +12,9 @@ import UIKit
 class LimboButton: UIButton {
 	var path: CGPath!
 
-	let a: CGFloat = 6
-	let b: CGFloat = 2
-	let radius: CGFloat = 10
+	let a: CGFloat = 6*Screen.s
+	let b: CGFloat = 2*Screen.s
+	let radius: CGFloat = 10*Screen.s
 
 	init(title: String) {
 		super.init(frame: CGRect.zero)
@@ -23,12 +23,12 @@ class LimboButton: UIButton {
 		
 		layer.shadowColor = UIColor.black.cgColor
 		layer.shadowOffset = CGSize.zero
-		layer.shadowRadius = 3
+		layer.shadowRadius = 3*s
 		layer.shadowOpacity = 0.6
 		
 		setTitleColor(UIColor.black, for: .highlighted)
-		titleLabel!.font = UIFont.aexel(size: 24)
-		titleEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+		titleLabel!.font = UIFont.aexel(size: 24*s)
+		titleEdgeInsets = UIEdgeInsets(top: 4*s, left: 0, bottom: 0, right: 0)
 		
 		self.setTitle(title, for: .normal)
 	}
@@ -76,8 +76,8 @@ class LimboButton: UIButton {
 	override var frame: CGRect {
 		didSet {
 			guard frame != CGRect.zero else {return}
-			path = CGPath(roundedRect: bounds.insetBy(dx: 6, dy: 6), cornerWidth: 10, cornerHeight: 10, transform: nil)
-			let shadowPath = CGPath(roundedRect: bounds.insetBy(dx: 2, dy: 2), cornerWidth: 10, cornerHeight: 10, transform: nil)
+			path = CGPath(roundedRect: bounds.insetBy(dx: 6*s, dy: 6*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
+			let shadowPath = CGPath(roundedRect: bounds.insetBy(dx: 2*s, dy: 2*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
 			self.layer.shadowPath = shadowPath
 		}
 	}
@@ -86,7 +86,7 @@ class LimboButton: UIButton {
 		
 		c.addPath(path)
 		c.setStrokeColor(UIColor(white: 0.3, alpha: 1).cgColor)
-		c.setLineWidth(1.5)
+		c.setLineWidth(1.5*s)
 		c.strokePath()
 	}
 }

@@ -24,9 +24,9 @@ class NexusViewController: UIViewController {
 	private func display (explorer: Explorer) {
 		if explorer.canExplore {
 			if Aexels.iPad() {
-				messageView.cutouts[Position.bottomRight] = Cutout(width: 176, height: 110)
+				messageView.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 			} else {
-				messageView.cutouts[Position.bottomRight] = Cutout(width: 160, height: 60)
+				messageView.cutouts[Position.bottomRight] = Cutout(width: 160*s, height: 60*s)
 			}
 		} else {
 			messageView.cutouts.removeAll()
@@ -108,15 +108,15 @@ class NexusViewController: UIViewController {
 	
 	func iPadLayout() {
 		// Title
-		nexusLabel = NexusLabel(text: "Aexels", size:72)
-		nexusLabel.frame = CGRect(x: 52, y: 52, width: 300, height: 96)
+		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
+		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)
 		view.addSubview(nexusLabel)
 
 		// Menu
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50, y: 162+i*70, width: 300, height: 40)
+			button.frame = CGRect(x: 50*s, y: 162*s+i*70*s, width: 300*s, height: 40*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -126,9 +126,9 @@ class NexusViewController: UIViewController {
 		}
 
 		// Message
-		let w: CGFloat = 1024-340-52
+		let w: CGFloat = (1024-340-52)*s
 		messageView = MessageLimbo()
-		messageView.frame = CGRect(x: 1024-w-5, y: 20, width: w, height: 768-20)
+		messageView.frame = CGRect(x: 1024*s-w-5*s, y: 20*s, width: w, height: 768*s-20*s)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -139,7 +139,7 @@ class NexusViewController: UIViewController {
 		view.addSubview(messageView)
 		
 		exploreButton.alpha = 0
-		exploreButton.frame = CGRect(x: 843, y: 658, width: 176, height: 110)
+		exploreButton.frame = CGRect(x: 843*s, y: 658*s, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
 		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
@@ -159,15 +159,15 @@ class NexusViewController: UIViewController {
 	}
 	func iPhoneLayout() {
 		// Title
-		nexusLabel = NexusLabel(text: "Aexels", size:60)
-		nexusLabel.frame = CGRect(x: 16, y: 52, width: 300, height: 64)
+		nexusLabel = NexusLabel(text: "Aexels", size:60*s)
+		nexusLabel.frame = CGRect(x: 16*s, y: 52*s, width: 300*s, height: 64*s)
 		view.addSubview(nexusLabel)
 
 		// Menu
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16, y: 166+i*60, width: 300, height: 32)
+			button.frame = CGRect(x: 16*s, y: 166*s+i*60*s, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -178,7 +178,7 @@ class NexusViewController: UIViewController {
 
 		// Message
 		messageView = MessageLimbo()
-		messageView.frame = CGRect(x: 5, y: 5+20, width: 375-10, height: 667-10-20)
+		messageView.frame = CGRect(x: 5*s, y: (5+20)*s, width: (375-10)*s, height: (667-10-20)*s)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2, animations: { 
@@ -191,17 +191,12 @@ class NexusViewController: UIViewController {
 		
 		// Explore
 		exploreButton.alpha = 0
-		exploreButton.frame = CGRect(x: 375-160-5, y: 677-60-2*6-4, width: 160, height: 60)
-		view.addSubview(exploreButton)
-
-		let button = AXButton()
-		button.setTitle("Explore", for: .normal)
-		button.frame = CGRect(x: 15, y: 17, width: 160-30, height: 60-30)
-		button.addAction(for: .touchUpInside) { 
+		exploreButton.frame = CGRect(x: (375-160-5)*s, y: (677-60-2*6-4)*s, width: 160*s, height: 60*s)
+		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
 		}
-		exploreButton.addSubview(button)
+		view.addSubview(exploreButton)
 	}
 	
 // UIViewController ================================================================================
