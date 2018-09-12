@@ -44,6 +44,8 @@
 		D8378AD52122590F00D97C78 /* Loom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD02122590700D97C78 /* Loom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8378AD72122591200D97C78 /* Aepryus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD22122590A00D97C78 /* Aepryus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D841756D2147765D006C1C5B /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D841756C2147765D006C1C5B /* ExpButton.swift */; };
+		D84ABD0D2148DAF20036E909 /* Game of Life iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */; };
+		D84ABD0F2148DB090036E909 /* Demons iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0E2148DB090036E909 /* Demons iP.oo */; };
 		D84B0C141E4EF126001472FC /* ResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C131E4EF126001472FC /* ResetButton.swift */; };
 		D84B0C161E4EF132001472FC /* GuideButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C151E4EF132001472FC /* GuideButton.swift */; };
 		D84B0C181E5051DC001472FC /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B0C171E5051DC001472FC /* DilatorView.swift */; };
@@ -130,6 +132,8 @@
 		D8378AD02122590700D97C78 /* Loom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8378AD22122590A00D97C78 /* Aepryus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aepryus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D841756C2147765D006C1C5B /* ExpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpButton.swift; sourceTree = "<group>"; };
+		D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Game of Life iP.oo"; sourceTree = "<group>"; };
+		D84ABD0E2148DB090036E909 /* Demons iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Demons iP.oo"; sourceTree = "<group>"; };
 		D84B0C131E4EF126001472FC /* ResetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetButton.swift; sourceTree = "<group>"; };
 		D84B0C151E4EF132001472FC /* GuideButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideButton.swift; sourceTree = "<group>"; };
 		D84B0C171E5051DC001472FC /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
@@ -248,8 +252,10 @@
 		D80425DE1E1B50E3009C9ED3 /* Aethers */ = {
 			isa = PBXGroup;
 			children = (
-				D80425D41E1B50D7009C9ED3 /* Game of Life.oo */,
+				D84ABD0E2148DB090036E909 /* Demons iP.oo */,
 				D80425D31E1B50D7009C9ED3 /* Demons.oo */,
+				D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */,
+				D80425D41E1B50D7009C9ED3 /* Game of Life.oo */,
 			);
 			name = Aethers;
 			sourceTree = "<group>";
@@ -520,9 +526,11 @@
 				D80425D91E1B50D7009C9ED3 /* Demons.oo in Resources */,
 				D804259F1E1B4A97009C9ED3 /* Assets.xcassets in Resources */,
 				D80425D81E1B50D7009C9ED3 /* BackiPad.png in Resources */,
+				D84ABD0F2148DB090036E909 /* Demons iP.oo in Resources */,
 				D80425DB1E1B50D7009C9ED3 /* TrajanPro-Bold.ttf in Resources */,
 				D80425D71E1B50D7009C9ED3 /* Aexels.txt in Resources */,
 				D80425D01E1B4FBD009C9ED3 /* Icon180.png in Resources */,
+				D84ABD0D2148DAF20036E909 /* Game of Life iP.oo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

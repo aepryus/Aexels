@@ -29,6 +29,7 @@ class KinematicsExplorer: Explorer {
 	let expAButton = ExpButton(name: "Exp\nA")
 	let expBButton = ExpButton(name: "Exp\nB")
 	let swapper = Limbo()
+	let swapButton = SwapButton()
 	let close = LimboButton(title: "Close")
 	let aetherLabel = UILabel()
 	let loopLabel = UILabel()
@@ -67,10 +68,11 @@ class KinematicsExplorer: Explorer {
 	override func onClose() {
 		playButton.stop()
 		if D.current().iPhone {
+			swapButton.resetView()
 			limbos = first + [swapper, close]
 		}
 	}
-	
+
 // Explorer ========================================================================================
 	override func createLimbos() {
 		
@@ -253,17 +255,18 @@ class KinematicsExplorer: Explorer {
 		
 		// Close
 		close.alpha = 0
-		close.addAction(for: .touchUpInside) {
-			self.closeExplorer()
+		close.addAction(for: .touchUpInside) { [weak self] in
+			guard let me = self else {return}
+			me.isFirst = true
+			me.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
 
 		// Swapper =========================
 		if D.current().iPhone {
-			let swapButton = SwapButton()
 			swapButton.addAction(for: .touchUpInside) { [weak self] in
 				guard let me = self else {return}
-				swapButton.rotateView()
+				me.swapButton.rotateView()
 				if me.isFirst {
 					me.isFirst = false
 					me.dimLimbos(me.first)

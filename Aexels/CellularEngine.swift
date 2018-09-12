@@ -71,7 +71,6 @@ final class CellularEngine {
 		
 		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
 		recipe = web.recipe
-		AERecipePrint(recipe)
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
 		aI = Int(AEMemoryIndexForName(memory, "Auto1.A".toInt8()))
@@ -172,6 +171,7 @@ final class CellularEngine {
 		next = xfer
 		
 		DispatchQueue.main.async {
+			guard Aexels.timer.running else {return}
 			for view in self.views {
 				view.tic()
 			}
@@ -296,7 +296,6 @@ final class CellularEngine {
 		Aexels.timer.stop()
 	}
 	func reset() {
-//		stop()
 		populate(auto: auto)
 		for view in views {
 			view.tic()

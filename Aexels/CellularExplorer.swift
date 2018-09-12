@@ -30,6 +30,7 @@ final class CellularExplorer: Explorer {
 	let small = Limbo()
 	let close = LimboButton(title: "Close")
 	let swapper = Limbo()
+	let swapButton = SwapButton()
 	
 	let guide = GuideButton()
 	let reset = ResetButton()
@@ -80,8 +81,9 @@ final class CellularExplorer: Explorer {
 	override func onClose() {
 		aetherView.dismissAetherPicker()
 		aetherView.snuffToolBars()
-		self.play.stop()
+		play.stop()
 		if D.current().iPhone {
+			swapButton.resetView()
 			limbos = [swapper] + first + [close]
 		}
 	}
@@ -192,6 +194,7 @@ final class CellularExplorer: Explorer {
 			me.play.stop()
 			me.engine.configureViews()
 			me.engine.reset()
+			me.engine.needsCompile = true
 		}
 		
 		controls.addSubview(guide)
@@ -215,10 +218,9 @@ final class CellularExplorer: Explorer {
 
 		// Swapper =========================
 		if D.current().iPhone {
-			let swapButton = SwapButton()
 			swapButton.addAction(for: .touchUpInside) { [weak self] in
 				guard let me = self else {return}
-				swapButton.rotateView()
+				me.swapButton.rotateView()
 				if me.isFirst {
 					me.isFirst = false
 					me.dimLimbos(me.first)

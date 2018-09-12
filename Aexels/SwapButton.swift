@@ -67,6 +67,9 @@ class SwapButton: AXButton {
 			self.swapView.transform = self.swapView.transform.rotated(by: CGFloat(Double.pi))
 		}
 	}
+	func resetView() {
+		self.swapView.transform = CGAffineTransform.identity
+	}
 	
 // UIView ==========================================================================================
 	override func layoutSubviews() {
