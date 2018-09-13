@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import OoviumLib
 import UIKit
 
 class GuideButton: AXButton {
@@ -13,16 +14,16 @@ class GuideButton: AXButton {
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
-		let p: CGFloat = 3
-		let r: CGFloat = 2
-		let s: CGFloat = self.frame.size.height/2 - p - 3
+		let p: CGFloat = 3*s
+		let r: CGFloat = 2*s
+		let q: CGFloat = self.frame.size.height/2 - p - 3*s
 
 		let x2: CGFloat = self.frame.size.width/2
-		let x1 = x2 - s
-		let x3 = x2 + s
+		let x1 = x2 - q
+		let x3 = x2 + q
 		let y2 = self.frame.size.height/2
-		let y1 = y2 - s
-		let y3 = y2 + s
+		let y1 = y2 - q
+		let y3 = y2 + q
 		
 		let path = CGMutablePath()
 		
@@ -40,12 +41,12 @@ class GuideButton: AXButton {
 			c.addPath(path)
 			c.setFillColor(fill.cgColor)
 			c.setStrokeColor(stroke.cgColor)
-			c.setLineWidth(2)
+			c.setLineWidth(2*s)
 			c.drawPath(using: .fillStroke)
 		} else {
 			let c = UIGraphicsGetCurrentContext()!
 			c.addPath(path)
-			c.setLineWidth(2)
+			c.setLineWidth(2*s)
 			c.setStrokeColor(fill.cgColor)
 			c.drawPath(using: .stroke)
 		}

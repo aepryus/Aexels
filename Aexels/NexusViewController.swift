@@ -23,7 +23,7 @@ class NexusViewController: UIViewController {
 	var busy = false
 	private func display (explorer: Explorer) {
 		if explorer.canExplore {
-			if Aexels.iPad() {
+			if Screen.iPad {
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 			} else {
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 160*s, height: 60*s)
@@ -51,7 +51,7 @@ class NexusViewController: UIViewController {
 		
 		self.explorer = explorer
 		
-		if !Aexels.iPad() && !isDimmed() {dimNexus()}
+		if !Screen.iPad && !isDimmed() {dimNexus()}
 		
 		if self.messageView.alpha != 0 {
 			if explorer.key == messageView.key {
@@ -216,7 +216,7 @@ class NexusViewController: UIViewController {
 			DarknessExplorer(parent: view)
 		]
 
-		if Aexels.iPad() {
+		if Screen.iPad {
 			iPadLayout()
 		} else {
 			iPhoneLayout()

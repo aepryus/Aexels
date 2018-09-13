@@ -45,7 +45,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	
 // Events ==========================================================================================
 	@objc func onPan (gesture: UIPanGestureRecognizer) {
-		let p: CGFloat = 3
+		let p: CGFloat = 3*Screen.s
 		let dw: CGFloat = 0
 
 		let x1: CGFloat = p
@@ -65,9 +65,9 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
-		let p: CGFloat = 3;
-		let crx: CGFloat = 16
-		let cry: CGFloat = 12
+		let p: CGFloat = 3*s;
+		let crx: CGFloat = 16*s
+		let cry: CGFloat = 12*s
 		
 		let x1: CGFloat = p
 		let x5: CGFloat = width - p
@@ -99,9 +99,9 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 //		let x6 = rect.size.width - dw + p
 //		let x7 = rect.size.width - p
 
-		let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15)!)
+		let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s)!)
 		pen.alignment = .center
-		("\(Int(actualSps))" as NSString).draw(in: CGRect(x: x2+6, y: y1+2, width: 20, height: 16), withAttributes: pen.attributes)
+		("\(Int(actualSps))" as NSString).draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), withAttributes: pen.attributes)
 //		attributes.font = UIFont(name: "GillSans-Italic", size: 10)!
 //		("steps / second" as NSString).draw(in: CGRect(x: x7-90, y: 31, width: 90, height: 30), withAttributes: attributes.attributes)
 	}
@@ -110,8 +110,8 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
 		if touch.phase != .began {return true}
 		
-		let p: CGFloat = 3
-		let cr: CGFloat = 16
+		let p: CGFloat = 3*s
+		let cr: CGFloat = 16*s
 
 		let x1: CGFloat = p+cr
 		let x5: CGFloat = frame.size.width - cr - p
@@ -120,6 +120,6 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		let x4 = x3 + cr
 		
 		let x = touch.location(in: self).x
-		return x > x2-10 && x < x4+10;
+		return x > x2-10*s && x < x4+10*s;
 	}
 }

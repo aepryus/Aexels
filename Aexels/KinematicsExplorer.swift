@@ -187,12 +187,12 @@ class KinematicsExplorer: Explorer {
 		}
 		
 		aetherLabel.text = "Aether"
-		aetherLabel.font = UIFont.aexel(size: 16)
+		aetherLabel.font = UIFont.aexel(size: 16*s)
 		aetherLabel.textColor = UIColor.white
 		aetherLabel.textAlignment = .center
 		
-		loopLabel.text = "Loop"
-		loopLabel.font = UIFont.aexel(size: 16)
+		loopLabel.text = "Object"
+		loopLabel.font = UIFont.aexel(size: 16*s)
 		loopLabel.textColor = UIColor.white
 		loopLabel.textAlignment = .center
 		
@@ -313,85 +313,85 @@ class KinematicsExplorer: Explorer {
 	override func layout375x667() {
 		let size = UIScreen.main.bounds.size
 		
-		let h = size.height - 110 - 20
-		let w = size.width - 10
-		let ch = size.height - 20 - h - 15*2 + 1
-		let vw: CGFloat = 72
+		let h = size.height - 110*s - 20*s
+		let w = size.width - 10*s
+		let ch = size.height - 20*s - h - 15*2*s + 1*s
+		let vw: CGFloat = 72*s
 
 
-		universe.frame = CGRect(x: 5, y: 20, width: w, height: w)
+		universe.frame = CGRect(x: 5*s, y: 20*s, width: w, height: w)
 
-		zoneA.frame = CGRect(x: 5, y: universe.bottom, width: 144, height: 667-universe.bottom-60)
-		zoneB.frame = CGRect(x: 61, y: 667-108-5, width: 375-139-56-10, height: 108)
-		zoneC.frame = CGRect(x: 5+144, y: universe.bottom, width: 375-5-zoneA.right, height: 120)
-		zoneD.frame = CGRect(x: 5+144, y: zoneC.bottom, width: zoneC.width, height: 667-universe.bottom-5-zoneC.height-60)
+		zoneA.frame = CGRect(x: 5*s, y: universe.bottom, width: 144*s, height: 667*s-universe.bottom-60*s)
+		zoneB.frame = CGRect(x: 61*s, y: (667-108-5)*s, width: (375-139-56-10)*s, height: 108*s)
+		zoneC.frame = CGRect(x: 5*s+144*s, y: universe.bottom, width: 375*s-5*s-zoneA.right, height: 120*s)
+		zoneD.frame = CGRect(x: 5*s+144*s, y: zoneC.bottom, width: zoneC.width, height: 667*s-universe.bottom-5*s-zoneC.height-60*s)
 
-		zoneA.cutouts[.bottomRight] = Cutout(width: zoneA.width-60+5, height: zoneB.height-60+5)
+		zoneA.cutouts[.bottomRight] = Cutout(width: zoneA.width-60*s+5*s, height: zoneB.height-60*s+5*s)
 		zoneA.renderPaths()
 		
 		zoneB.renderPaths()
 
 		zoneC.renderPaths()
 		
-		zoneD.cutouts[.bottomLeft] = Cutout(width: zoneD.width-139, height: zoneB.height-60)
+		zoneD.cutouts[.bottomLeft] = Cutout(width: zoneD.width-139*s, height: zoneB.height-60*s)
 		zoneD.renderPaths()
 		
-		playButton.top(offset: UIOffset(horizontal: 0, vertical: 32), size: CGSize(width: 48, height: 30))
-		netButton.top(offset: UIOffset(horizontal: 0, vertical: playButton.bottom+20), size: CGSize(width: 48, height: 48))
+		playButton.top(offset: UIOffset(horizontal: 0, vertical: 32*s), size: CGSize(width: 48*s, height: 30*s))
+		netButton.top(offset: UIOffset(horizontal: 0, vertical: playButton.bottom+20*s), size: CGSize(width: 48*s, height: 48*s))
 
-		let dx: CGFloat = 32
-		loopVector.topRight(offset: UIOffset(horizontal: -dx, vertical: 32), size: CGSize(width: vw, height: vw))
-		aetherVector.topLeft(offset: UIOffset(horizontal: dx, vertical: 32), size: CGSize(width: vw, height: vw))
-		loopLabel.topLeft(offset: UIOffset(horizontal: loopVector.left, vertical: loopVector.top-20), size: CGSize(width: vw, height: 16))
-		aetherLabel.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.top-20), size: CGSize(width: vw, height: 16))
+		let dx: CGFloat = 32*s
+		loopVector.topRight(offset: UIOffset(horizontal: -dx, vertical: 32*s), size: CGSize(width: vw, height: vw))
+		aetherVector.topLeft(offset: UIOffset(horizontal: dx, vertical: 32*s), size: CGSize(width: vw, height: vw))
+		loopLabel.topLeft(offset: UIOffset(horizontal: loopVector.left, vertical: loopVector.top-20*s), size: CGSize(width: vw, height: 16*s))
+		aetherLabel.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.top-20*s), size: CGSize(width: vw, height: 16*s))
 		
-		expAButton.left(offset: UIOffset(horizontal: 108, vertical: 0), size: CGSize(width: 40, height: 50))
-		expBButton.left(offset: UIOffset(horizontal: expAButton.right+10, vertical: 0), size: CGSize(width: 40, height: 50))
+		expAButton.left(offset: UIOffset(horizontal: 108*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
+		expBButton.left(offset: UIOffset(horizontal: expAButton.right+10*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
 
-		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120, height: ch-12))
+		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120*s, height: ch-12*s))
 
-		swapper.frame = CGRect(x: 5, y: 667-56-5, width: 56, height: 56)
+		swapper.frame = CGRect(x: 5*s, y: (667-56-5)*s, width: 56*s, height: 56*s)
 
-		message.frame = CGRect(x: 5, y: 20, width: w, height: size.height-20-5)
-		message.cutouts[Position.bottomRight] = Cutout(width: 139, height: 60)
-		message.cutouts[Position.bottomLeft] = Cutout(width: 56, height: 56)
+		message.frame = CGRect(x: 5*s, y: 20*s, width: w, height: size.height-20*s-5*s)
+		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
 		message.renderPaths()
 
-		close.frame = CGRect(x: 375-5-139, y: 667-5-60, width: 139, height: 60)
+		close.frame = CGRect(x: (375-5-139)*s, y: (667-5-60)*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
 		let size = UIScreen.main.bounds.size
 		
-		let p: CGFloat = 5
-		let uw: CGFloat = size.height - 110 - 20
+		let p: CGFloat = 5*s
+		let uw: CGFloat = size.height - 110*s - 20*s
 		let mw: CGFloat = size.width - uw - 2*p
-		let ch: CGFloat = size.height - uw - 20
+		let ch: CGFloat = size.height - uw - 20*s
 		
-		universe.frame = CGRect(x: p, y: 20, width: uw, height: uw)
+		universe.frame = CGRect(x: p, y: 20*s, width: uw, height: uw)
 		
-		message.frame = CGRect(x: universe.right, y: 20, width: mw, height: size.height-20)
-		message.cutouts[.bottomRight] = Cutout(width: 176, height: 110)
+		message.frame = CGRect(x: universe.right, y: 20*s, width: mw, height: size.height-20*s)
+		message.cutouts[.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		message.renderPaths()
-		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70, right: 0)
+		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)
 
-		zoneB.frame = CGRect(x: 5, y: universe.bottom, width: 160, height: ch)
-		zoneA.frame = CGRect(x: zoneB.right, y: universe.bottom, width: 150, height: ch)
-		zoneC.frame = CGRect(x: zoneA.right, y: universe.bottom, width: 180, height: ch)
+		zoneB.frame = CGRect(x: 5*s, y: universe.bottom, width: 160*s, height: ch)
+		zoneA.frame = CGRect(x: zoneB.right, y: universe.bottom, width: 150*s, height: ch)
+		zoneC.frame = CGRect(x: zoneA.right, y: universe.bottom, width: 180*s, height: ch)
 		zoneD.frame = CGRect(x: zoneC.right, y: universe.bottom, width: universe.width-zoneB.width-zoneA.width-zoneC.width, height: ch)
 
-		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120, height: 67))
+		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120*s, height: 67*s))
 		
-		playButton.center(offset: UIOffset(horizontal: -35, vertical: 0), size: CGSize(width: 50, height: 30))
-		netButton.center(offset: UIOffset(horizontal: 27, vertical: 0), size: CGSize(width: 48, height: 48))
+		playButton.center(offset: UIOffset(horizontal: -35*s, vertical: 0), size: CGSize(width: 50*s, height: 30*s))
+		netButton.center(offset: UIOffset(horizontal: 27*s, vertical: 0), size: CGSize(width: 48*s, height: 48*s))
 
-		aetherVector.left(offset: UIOffset(horizontal: 21, vertical: 10), size: CGSize(width: 63, height: 63))
-		aetherLabel.left(offset: UIOffset(horizontal: aetherVector.left, vertical: -32), size: CGSize(width: aetherVector.width, height: 16))
-		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+12, vertical: 10), size: CGSize(width: 63, height: 63))
-		loopLabel.left(offset: UIOffset(horizontal: loopVector.left, vertical: -32), size: CGSize(width: loopVector.width, height: 16))
+		aetherVector.left(offset: UIOffset(horizontal: 21*s, vertical: 10*s), size: CGSize(width: 63*s, height: 63*s))
+		aetherLabel.left(offset: UIOffset(horizontal: aetherVector.left, vertical: -32*s), size: CGSize(width: aetherVector.width, height: 16*s))
+		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+12, vertical: 10*s), size: CGSize(width: 63*s, height: 63*s))
+		loopLabel.left(offset: UIOffset(horizontal: loopVector.left, vertical: -32*s), size: CGSize(width: loopVector.width, height: 16*s))
 
-		expAButton.center(offset: UIOffset(horizontal: -26, vertical: 0), size: CGSize(width: 40, height: 50))
-		expBButton.center(offset: UIOffset(horizontal: 26, vertical: 0), size: CGSize(width: 40, height: 50))
+		expAButton.center(offset: UIOffset(horizontal: -26*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
+		expBButton.center(offset: UIOffset(horizontal: 26*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
 
-		close.frame = CGRect(x: size.width-p-176, y: size.height-110, width: 176, height: 110)
+		close.frame = CGRect(x: size.width-p-176*s, y: size.height-110*s, width: 176*s, height: 110*s)
 	}
 }

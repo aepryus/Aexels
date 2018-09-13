@@ -14,35 +14,19 @@ class Aexels {
 	static var nexus: NexusViewController!
 	static var timer: AXTimer = AXTimer()
 	
-	static func iPhone4() -> Bool {
-		return UIScreen.main.bounds.size == CGSize(width: 320, height: 480)
-	}
-	static func iPhone5() -> Bool {
-		return UIScreen.main.bounds.size == CGSize(width: 320, height: 568)
-	}
-	static func iPhone6() -> Bool {
-		return UIScreen.main.bounds.size == CGSize(width: 375, height: 667)
-	}
-	static func iPad() -> Bool {
-		return UIScreen.main.bounds.size == CGSize(width: 1024, height: 768)
-	}
-	
-	static var size: CGSize {
-		get {
-			return UIScreen.main.bounds.size
-		}
-	}
-	
 	static func backImage() -> UIImage {
-		if iPhone4() {
-			return UIImage(named: "Back4")!
-		} else if iPhone5() {
-			return UIImage(named: "Back5")!
-		} else if iPhone6() {
-			return UIImage(named: "Back6")!
+		switch Screen.this  {
+			case .dim320x480:
+				return UIImage(named: "Back4")!
+			case .dim320x568, .dim375x667, .dim414x736:
+				return UIImage(named: "Back6")!
+			case .dim375x812:
+				return UIImage(named: "Back5")!
+			case .dim1024x768, .dim1112x834, .dim1366x1024:
+				return UIImage(named: "BackiPad")!
+			case .dimOther:
+				return UIImage(named: "Back5")!
 		}
-
-		return UIImage(named: "BackiPad")!
 	}
 	
 	static func start() {
@@ -59,5 +43,7 @@ class Aexels {
 			Local.installAetherFromBundle(name: "Game of Life")
 			Local.installAetherFromBundle(name: "Demons")
 		}
+		
+		print("\(Screen.this)")
 	}
 }

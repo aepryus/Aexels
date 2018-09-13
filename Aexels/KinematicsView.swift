@@ -57,13 +57,13 @@ class KinematicsView: UIView, Simulation {
 		self.w = Double(width)
 		self.h = Double(height)
 		
-		let s: CGFloat = 30.0
-		let sn: CGFloat = s*CGFloat(sin(Double.pi/6))
-		let cs: CGFloat = s*CGFloat(cos(Double.pi/6))
+		let d: CGFloat = 30.0*s
+		let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
+		let cs: CGFloat = d*CGFloat(cos(Double.pi/6))
 		
-		let w: CGFloat = width+2*(s+sn)
+		let w: CGFloat = width+2*(d+sn)
 		let h: CGFloat = height+2*cs
-		let n = (Int(w/(2*(s+sn))))+1
+		let n = (Int(w/(2*(d+sn))))+1
 		let m = (Int(h/(2*cs)))+1
 		var x: CGFloat = 1
 		var y: CGFloat = 1
@@ -76,9 +76,9 @@ class KinematicsView: UIView, Simulation {
 		for _ in 0..<n {
 			for _ in 0..<m {
 				path.move(to: CGPoint(x: x+sn, y: y))
-				path.addLine(to: CGPoint(x: x+sn+s, y: y))
-				path.addLine(to: CGPoint(x: x+2*sn+s, y: y+cs))
-				path.addLine(to: CGPoint(x: x+sn+s, y: y+2*cs))
+				path.addLine(to: CGPoint(x: x+sn+d, y: y))
+				path.addLine(to: CGPoint(x: x+2*sn+d, y: y+cs))
+				path.addLine(to: CGPoint(x: x+sn+d, y: y+2*cs))
 				path.addLine(to: CGPoint(x: x+sn, y: y+2*cs))
 				path.addLine(to: CGPoint(x: x, y: y+cs))
 				path.closeSubpath()
@@ -86,17 +86,17 @@ class KinematicsView: UIView, Simulation {
 				y += 2*cs;
 			}
 			
-			x += 3*s;
+			x += 3*d;
 			y = 1;
 		}
-		x = sn+s+1;
+		x = sn+d+1;
 		y = cs+1;
 		for _ in 0..<n {
 			for _ in 0..<m {
 				path.move(to: CGPoint(x: x+sn, y: y))
-				path.addLine(to: CGPoint(x: x+sn+s, y: y))
-				path.addLine(to: CGPoint(x: x+2*sn+s, y: y+cs))
-				path.addLine(to: CGPoint(x: x+sn+s, y: y+2*cs))
+				path.addLine(to: CGPoint(x: x+sn+d, y: y))
+				path.addLine(to: CGPoint(x: x+2*sn+d, y: y+cs))
+				path.addLine(to: CGPoint(x: x+sn+d, y: y+2*cs))
 				path.addLine(to: CGPoint(x: x+sn, y: y+2*cs))
 				path.addLine(to: CGPoint(x: x, y: y+cs))
 				path.closeSubpath()
@@ -104,7 +104,7 @@ class KinematicsView: UIView, Simulation {
 				y += 2*cs;
 			}
 			
-			x += 3*s;
+			x += 3*d;
 			y = cs+1;
 		}
 
@@ -199,30 +199,30 @@ class KinematicsView: UIView, Simulation {
 		}
 	}
 	func moveTo(v: V2) {
-		let s: CGFloat = 30
-		let sn: CGFloat = s*sin(CGFloat.pi/6)
-		let cs: CGFloat = s*cos(CGFloat.pi/6)
+		let d: CGFloat = 30*s
+		let sn: CGFloat = d*sin(CGFloat.pi/6)
+		let cs: CGFloat = d*cos(CGFloat.pi/6)
 
 		let row: Int = Int(CGFloat(v.x)/(3*sn))
 		o = row % 2;
 		
-		x = Int((CGFloat(v.x) - 1.0 - (o == 1 ? sn+s : 0.0) - CGFloat(Xa.x))/(2*(sn+s)))
+		x = Int((CGFloat(v.x) - 1.0 - (o == 1 ? sn+d : 0.0) - CGFloat(Xa.x))/(2*(sn+d)))
 		y = Int((CGFloat(v.y) - 1.0 - (o == 1 ? cs : 0.0) - CGFloat(Xa.y))/(2*cs))
 	}
 	
 	func tic() {
-		let s: Double = 30.0
-		let sn: Double = s*sin(Double.pi/6)
-		let cs: Double = s*cos(Double.pi/6)
+		let d: Double = 30.0*Double(s)
+		let sn: Double = d*sin(Double.pi/6)
+		let cs: Double = d*cos(Double.pi/6)
 
 		move()
 		
 		Xa.x += Va.x
 		if Xa.x > 0 {
-			Xa.x -= 2*(s+sn)
+			Xa.x -= 2*(d+sn)
 			x += 1
-		} else if Xa.x < -2*(s+sn) {
-			Xa.x += 2*(s+sn)
+		} else if Xa.x < -2*(d+sn) {
+			Xa.x += 2*(d+sn)
 			x -= 1
 		}
 		
@@ -235,11 +235,11 @@ class KinematicsView: UIView, Simulation {
 			y -= 1
 		}
 		
-		let xL = 1 + (o==1 ? sn+s : 0) + Double(x)*3*s + Xa.x
+		let xL = 1 + (o==1 ? sn+d : 0) + Double(x)*3*d + Xa.x
 		let yL = 1 + (o==1 ? cs : 0) + Double(y)*2*cs + Xa.y
 		
 		// Bounce
-		Xl.x = xL+s
+		Xl.x = xL+d
 		Xl.y = yL+cs
 		let V = V2(Vl.x+Va.x/(2*cs),Vl.y+Va.y/(2*cs))
 		if (Xl.x<0 && V.x<0) || (Xl.x>w && V.x>0) {
@@ -256,9 +256,9 @@ class KinematicsView: UIView, Simulation {
 		var path = CGMutablePath()
 		
 		path.move(to: CGPoint(x: xL+sn, y: yL))
-		path.addLine(to: CGPoint(x: xL+sn+s, y: yL))
-		path.addLine(to: CGPoint(x: xL+2*sn+s, y: yL+cs))
-		path.addLine(to: CGPoint(x: xL+sn+s, y: yL+2*cs))
+		path.addLine(to: CGPoint(x: xL+sn+d, y: yL))
+		path.addLine(to: CGPoint(x: xL+2*sn+d, y: yL+cs))
+		path.addLine(to: CGPoint(x: xL+sn+d, y: yL+2*cs))
 		path.addLine(to: CGPoint(x: xL+sn, y: yL+2*cs))
 		path.addLine(to: CGPoint(x: xL, y: yL+cs))
 		path.closeSubpath()
@@ -274,7 +274,7 @@ class KinematicsView: UIView, Simulation {
 		c.drawPath(using: .stroke)
 		
 		path = CGMutablePath()
-		path.addEllipse(in: CGRect(x: Xl.x-1.5, y: Xl.y-1.5, width: 3, height: 3))
+		path.addEllipse(in: CGRect(x: CGFloat(Xl.x)-1.5*s, y: CGFloat(Xl.y)-1.5*s, width: 3*s, height: 3*s))
 		path.move(to: CGPoint(x: Xl.x, y: Xl.y))
 		path.addLine(to: CGPoint(x: Xl.x+Vl.x*cs*cs/5, y: Xl.y-Vl.y*cs*cs/5))
 		
@@ -298,11 +298,11 @@ class KinematicsView: UIView, Simulation {
 	}
 	
 	func refresh() {
-		let s: Double = 30.0
-		let sn: Double = s*sin(Double.pi/6)
-		let cs: Double = s*cos(Double.pi/6)
+		let d: Double = 30.0*Double(s)
+		let sn: Double = d*sin(Double.pi/6)
+		let cs: Double = d*cos(Double.pi/6)
 
-		let xL = 1 + (o==1 ? sn+s : 0) + Double(x)*3*s + Xa.x
+		let xL = 1 + (o==1 ? sn+d : 0) + Double(x)*3*d + Xa.x
 		let yL = 1 + (o==1 ? cs : 0) + Double(y)*2*cs + Xa.y
 		let w = Double(width)
 		let h = Double(height)
@@ -314,9 +314,9 @@ class KinematicsView: UIView, Simulation {
 		var path = CGMutablePath()
 		
 		path.move(to: CGPoint(x: xL+sn, y: yL))
-		path.addLine(to: CGPoint(x: xL+sn+s, y: yL))
-		path.addLine(to: CGPoint(x: xL+2*sn+s, y: yL+cs))
-		path.addLine(to: CGPoint(x: xL+sn+s, y: yL+2*cs))
+		path.addLine(to: CGPoint(x: xL+sn+d, y: yL))
+		path.addLine(to: CGPoint(x: xL+2*sn+d, y: yL+cs))
+		path.addLine(to: CGPoint(x: xL+sn+d, y: yL+2*cs))
 		path.addLine(to: CGPoint(x: xL+sn, y: yL+2*cs))
 		path.addLine(to: CGPoint(x: xL, y: yL+cs))
 		path.closeSubpath()

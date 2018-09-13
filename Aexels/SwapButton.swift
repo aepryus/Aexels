@@ -6,12 +6,13 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import OoviumLib
 import UIKit
 
 fileprivate class SwapView: UIView {
 	static let icon: UIImage = {
-		let s: CGFloat = 26
-		let w: CGFloat = 2
+		let s: CGFloat = 26*Screen.s
+		let w: CGFloat = 2*Screen.s
 		
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: s, height: s), false, 0)
 		let c = UIGraphicsGetCurrentContext()!
@@ -76,7 +77,7 @@ class SwapButton: AXButton {
 		swapView.frame = bounds
 	}
 	override func point(inside point: CGPoint, with _: UIEvent?) -> Bool {
-		let margin: CGFloat = 15
+		let margin: CGFloat = 15*s
 		let area = self.bounds.insetBy(dx: -margin, dy: -margin)
 		return area.contains(point)
 	}

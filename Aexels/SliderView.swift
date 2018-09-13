@@ -22,15 +22,15 @@ class SliderView: UIView, UIScrollViewDelegate {
 	private var dragged: Bool = false
 	private var numb: Bool = true
 	
-	private var ph: CGFloat = 80
+	private var ph: CGFloat = 80*Screen.s
 	
 	init (_ onPageChange: @escaping (String)->()) {
 		self.onPageChange = onPageChange
 		
 		self.thumb = UIView()
 		self.thumb.backgroundColor = OOColor.lavender.uiColor.withAlphaComponent(0.5)
-		self.thumb.layer.cornerRadius = 8
-		self.thumb.layer.borderWidth = 1
+		self.thumb.layer.cornerRadius = 8*Screen.s
+		self.thumb.layer.borderWidth = 1*Screen.s
 		self.thumb.layer.borderColor = UIColor.white.cgColor
 		
 		self.labels = UIView()
@@ -66,7 +66,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 			for page in _pages {
 				let label = UILabel()
 				label.text = page
-				label.font = UIFont.aexel(size: 17)
+				label.font = UIFont.aexel(size: 17*s)
 				label.textColor = UIColor.white
 				label.textAlignment = .center
 				labelViews.append(label)

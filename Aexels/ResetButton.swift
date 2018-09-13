@@ -12,12 +12,12 @@ class ResetButton: AXButton {
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
-		let ir: CGFloat = 11
-		let p: CGFloat = 3
-		let ph: CGFloat = 12
-		let pl: CGFloat = 6
-		let pr: CGFloat = 11
-		let r: CGFloat = 2
+		let ir: CGFloat = 11*s
+		let p: CGFloat = 3*s
+		let ph: CGFloat = 12*s
+		let pl: CGFloat = 6*s
+		let pr: CGFloat = 11*s
+		let r: CGFloat = 2*s
 		
 		let x4: CGFloat = frame.size.width/2
 		let ix10: CGFloat = x4+pl
@@ -33,8 +33,8 @@ class ResetButton: AXButton {
 		let ix1: CGFloat = ix3
 		let ix2: CGFloat = (ix1+ix3)/2
 		
-		let iy3 = iy6+1.5
-		let iy5 = iy9-1.5
+		let iy3 = iy6+1.5*s
+		let iy5 = iy9-1.5*s
 		let iy4 = (iy3+iy5)/2
 		
 		let path = CGMutablePath()
@@ -58,7 +58,7 @@ class ResetButton: AXButton {
 		c.addPath(path)
 		c.setFillColor(fill.cgColor)
 		c.setStrokeColor(stroke.cgColor)
-		c.setLineWidth(2)
+		c.setLineWidth(2*s)
 		c.drawPath(using: .fillStroke)
 	}
 }

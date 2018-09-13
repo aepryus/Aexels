@@ -49,15 +49,15 @@ class PlayButton: AXButton {
 	
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
-		let ir: CGFloat = 11
+		let ir: CGFloat = 11*s
 		
 		let path = CGMutablePath()
 		
 		if !playing {
-			let p: CGFloat = 3
-			let ph: CGFloat = 12
-			let pl: CGFloat = 6
-			let pr: CGFloat = 11
+			let p: CGFloat = 3*s
+			let ph: CGFloat = 12*s
+			let pl: CGFloat = 6*s
+			let pr: CGFloat = 11*s
 			
 			let x4: CGFloat = frame.size.width/2
 			let ix10: CGFloat = CGFloat(x4-pl)
@@ -76,10 +76,10 @@ class PlayButton: AXButton {
 			path.closeSubpath()
 			
 		} else {
-			let p: CGFloat = 3
-			let ph: CGFloat = 9
-			let sp: CGFloat = 2
-			let pw: CGFloat = 3
+			let p: CGFloat = 3*s
+			let ph: CGFloat = 9*s
+			let sp: CGFloat = 2*s
+			let pw: CGFloat = 3*s
 			
 			let x4: CGFloat = frame.size.width/2
 			let ix12: CGFloat = x4-sp
@@ -91,7 +91,7 @@ class PlayButton: AXButton {
 			let iy2: CGFloat = p+ir
 			let iy6: CGFloat = iy2-ph
 			let iy9: CGFloat = iy2+ph
-			let r: CGFloat = 2
+			let r: CGFloat = 2*s
 			
 			path.move(to: CGPoint(x: ix10, y: iy2))
 			path.addArc(tangent1End: CGPoint(x: ix10, y: iy6), tangent2End: CGPoint(x: ix11, y: iy6), radius: r, transform: .identity)

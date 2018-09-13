@@ -28,10 +28,10 @@ class Cutout {
 class Limbo: UIView {
 //	var path: CGPath? = nil
 	
-	var p: CGFloat = 15
-	var a: CGFloat = 6
-	var b: CGFloat = 2
-	var radius: CGFloat = 10
+	var p: CGFloat = 15*Screen.s
+	var a: CGFloat = 6*Screen.s
+	var b: CGFloat = 2*Screen.s
+	var radius: CGFloat = 10*Screen.s
 
 	var cutouts: [Position:Cutout] = [:]
 	
@@ -58,7 +58,7 @@ class Limbo: UIView {
 		
 		layer.shadowColor = UIColor.black.cgColor
 		layer.shadowOffset = CGSize.zero
-		layer.shadowRadius = 3
+		layer.shadowRadius = 3*Screen.s
 		layer.shadowOpacity = 0.6
 	}
 	convenience init (p: CGFloat) {
@@ -80,7 +80,7 @@ class Limbo: UIView {
 		let y3 = height - p
 		let y2 = (y1 + y3) / 2
 		
-		path.move(to: CGPoint(x: x1, y: y2))
+		path.move(to: CGPoint(x: x1, y: y1+radius))
 		
 		if let cutout = cutouts[.topLeft] {
 			let xe = x1 + cutout.width + q
@@ -169,7 +169,7 @@ class Limbo: UIView {
 
 		c.addPath(limboPath.strokePath)
 		c.setStrokeColor(UIColor(white: 0.3, alpha: 1).cgColor)
-		c.setLineWidth(1.5)
+		c.setLineWidth(1.5*s)
 		c.strokePath()
 	}
 }

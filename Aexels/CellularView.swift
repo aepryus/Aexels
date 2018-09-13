@@ -110,7 +110,7 @@ final class CellularView: UIView {
 	func tic() {
 		guard let engine = engine else {return}
 		
-		let cw: Int = Aexels.iPad() ? 432 : 335
+		let cw: Int = Screen.iPad ? Int(432*s) : Int(335*s)
 		let x: Int = Int(origin.x)
 		let y: Int = Int(origin.y)
 		let m: Int = w*4

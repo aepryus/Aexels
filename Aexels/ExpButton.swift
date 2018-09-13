@@ -11,22 +11,11 @@ import UIKit
 
 class ExpButton: UIButton {
 	
-//	init() {
-//		super.init(frame: CGRect.zero)
-//		
-//		titleLabel?.font = UIFont.aexel(size: 13)
-//		titleLabel?.numberOfLines = 2
-//		titleLabel?.textAlignment = .center
-//		layer.borderWidth = 1
-//		layer.borderColor = UIColor.white.cgColor
-//		layer.cornerRadius = 5
-//	}
-	
 	var name: String
 	var color: UIColor
 	var backColor: UIColor? = nil
-	var size: CGFloat = 13
-	var radius: CGFloat = 5
+	var size: CGFloat = 13*Screen.s
+	var radius: CGFloat = 5*Screen.s
 	var activated: Bool = false {
 		didSet{setNeedsDisplay()}
 	}

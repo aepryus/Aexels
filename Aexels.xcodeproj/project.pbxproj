@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D800DD2C214A3CB90036D023 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D800DD2B214A3CB90036D023 /* Default-568h@2x.png */; };
 		D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80425971E1B4A97009C9ED3 /* AexelsDelegate.swift */; };
 		D804259F1E1B4A97009C9ED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D804259E1E1B4A97009C9ED3 /* Assets.xcassets */; };
 		D80425C51E1B4FBD009C9ED3 /* Icon20.png in Resources */ = {isa = PBXBuildFile; fileRef = D80425B91E1B4FBD009C9ED3 /* Icon20.png */; };
@@ -37,7 +38,6 @@
 		D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D80425FE1E1BA7C6009C9ED3 /* Localizable.strings */; };
 		D828617A1E6B8666006E76F1 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D82861791E6B8666006E76F1 /* Back6.png */; };
 		D828617D1E6B87A4006E76F1 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617B1E6B87A4006E76F1 /* Back4.png */; };
-		D828617E1E6B87A4006E76F1 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617C1E6B87A4006E76F1 /* Back5.png */; };
 		D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* AXTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
@@ -93,6 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D800DD2B214A3CB90036D023 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D80425941E1B4A97009C9ED3 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D80425971E1B4A97009C9ED3 /* AexelsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsDelegate.swift; sourceTree = "<group>"; };
 		D804259E1E1B4A97009C9ED3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Aexels/Assets.xcassets; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		D80425FF1E1BA7C6009C9ED3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D82861791E6B8666006E76F1 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back6.png; path = Resources/Back6.png; sourceTree = "<group>"; };
 		D828617B1E6B87A4006E76F1 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back4.png; path = Resources/Back4.png; sourceTree = "<group>"; };
-		D828617C1E6B87A4006E76F1 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Back5.png; path = Resources/Back5.png; sourceTree = "<group>"; };
 		D82BE4D51E22C53B00E8E710 /* AXTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -263,8 +263,8 @@
 		D80425DF1E1B50E9009C9ED3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D800DD2B214A3CB90036D023 /* Default-568h@2x.png */,
 				D828617B1E6B87A4006E76F1 /* Back4.png */,
-				D828617C1E6B87A4006E76F1 /* Back5.png */,
 				D82861791E6B8666006E76F1 /* Back6.png */,
 				D80425D21E1B50D7009C9ED3 /* BackiPad.png */,
 			);
@@ -515,7 +515,7 @@
 				D828617D1E6B87A4006E76F1 /* Back4.png in Resources */,
 				D80425CC1E1B4FBD009C9ED3 /* Icon87.png in Resources */,
 				D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */,
-				D828617E1E6B87A4006E76F1 /* Back5.png in Resources */,
+				D800DD2C214A3CB90036D023 /* Default-568h@2x.png in Resources */,
 				D80425C71E1B4FBD009C9ED3 /* Icon40.png in Resources */,
 				D80425CA1E1B4FBD009C9ED3 /* Icon76.png in Resources */,
 				D80425C81E1B4FBD009C9ED3 /* Icon58.png in Resources */,
@@ -724,7 +724,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -742,7 +741,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

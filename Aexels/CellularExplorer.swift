@@ -38,8 +38,8 @@ final class CellularExplorer: Explorer {
 	let ooviumLabel = UILabel()
 	
 	init(parent: UIView) {
-		let s = Aexels.iPad() ?  432 : 335
-		engine = CellularEngine(w: s, h: s)
+		let d = Screen.iPad ?  Int(432*Screen.s) : Int(335*Screen.s)
+		engine = CellularEngine(w: d, h: d)
 		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
@@ -65,6 +65,10 @@ final class CellularExplorer: Explorer {
 			message.key = "Oovium"
 		}
 		message.load()
+	}
+	
+	private func roundQ(x: CGFloat, to: Int) -> Int {
+		return Int(floor(x/CGFloat(to))*CGFloat(to))
 	}
 	
 // Events ==========================================================================================
@@ -111,13 +115,13 @@ final class CellularExplorer: Explorer {
 		mediumCell.zoomView = smallCell
 		
 		if Screen.iPhone {
-			largeCell.cells = 335
-			mediumCell.cells = 190
-			smallCell.cells = 112
+			largeCell.cells = roundQ(x: 335*s, to: 1)
+			mediumCell.cells = roundQ(x: 190*s, to: 2)
+			smallCell.cells = roundQ(x: 112*s, to: 4)
 		} else /*if Screen.iPad*/{
-			largeCell.cells = 432
-			mediumCell.cells = 256
-			smallCell.cells = 144
+			largeCell.cells = roundQ(x: 432*s, to: 1)
+			mediumCell.cells = roundQ(x: 256*s, to: 2)
+			smallCell.cells = roundQ(x: 144*s, to: 4)
 		}
 		
 		// Message =========================
@@ -153,7 +157,7 @@ final class CellularExplorer: Explorer {
 		ooviumLabel.text = "Oovium"
 		ooviumLabel.textAlignment = .center
 		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
-		ooviumLabel.font = UIFont(name: "Georgia", size: 36)
+		ooviumLabel.font = UIFont(name: "Georgia", size: 36*s)
 		
 		engine.addView(largeCell)
 
@@ -256,25 +260,25 @@ final class CellularExplorer: Explorer {
 		}
 	}
 	override func layout375x667() {
-		let lw: CGFloat = 375-10
-		let mw: CGFloat = 221
+		let lw: CGFloat = 375*s-10*s
+		let mw: CGFloat = 221*s
 		let sw: CGFloat = lw-mw
-		let bw: CGFloat = 40
+		let bw: CGFloat = 40*s
 
-		large.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
-		medium.frame = CGRect(x: 5, y: large.bottom, width: mw, height: mw)
+		large.frame = CGRect(x: 5*s, y: 20*s, width: lw, height: lw)
+		medium.frame = CGRect(x: 5*s, y: large.bottom, width: mw, height: mw)
 		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
-		swapper.frame = CGRect(x: 5, y: medium.bottom, width: 56, height: 56)
+		swapper.frame = CGRect(x: 5*s, y: medium.bottom, width: 56*s, height: 56*s)
 		dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
 		close.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
 
 		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
-		play.left(offset: UIOffset(horizontal: 15, vertical: 0), size: CGSize(width: bw, height: 30))
-		reset.left(offset: UIOffset(horizontal: 15+bw, vertical: 0), size: CGSize(width: bw, height: 30))
-		guide.left(offset: UIOffset(horizontal: 15+2*bw, vertical: 0), size: CGSize(width: bw, height: 30))
+		play.left(offset: UIOffset(horizontal: 15*s, vertical: 0), size: CGSize(width: bw, height: 30*s))
+		reset.left(offset: UIOffset(horizontal: 15*s+bw, vertical: 0), size: CGSize(width: bw, height: 30*s))
+		guide.left(offset: UIOffset(horizontal: 15*s+2*bw, vertical: 0), size: CGSize(width: bw, height: 30*s))
 		
 		// AetherLimbo
-		aetherLimbo.frame = CGRect(x: 5, y: 20, width: lw, height: lw)
+		aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: lw, height: lw)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 		
@@ -286,34 +290,34 @@ final class CellularExplorer: Explorer {
 		aetherView.showToolBars()
 		aetherView.stretch()
 
-		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
+		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12*s, vertical: -14*s), size: CGSize(width: 144*s, height: 40*s))
 
 		// Message
 		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
 		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
-		message.frame = CGRect(x: 5, y: aetherLimbo.bottom, width: lw, height: Aexels.size.height-aetherLimbo.bottom-5)
+		message.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-5*s)
 	}
 	override func layout1024x768() {
-		let x: CGFloat = 432
-		let y: CGFloat = 400
-		let ch: CGFloat = 72
-		let bw: CGFloat = 50
-		let q: CGFloat = 26
+		let x: CGFloat = 432*s
+		let y: CGFloat = 400*s
+		let ch: CGFloat = 72*s
+		let bw: CGFloat = 50*s
+		let q: CGFloat = 26*s
 
-		large.frame = CGRect(x: 1024-462-5, y: 20, width: x+30, height: x+30)
-		medium.frame = CGRect(x: 1024-462-5, y: 20+462, width: 286, height: 286)
-		small.frame = CGRect(x: 1024-462-5+286, y: 20+462, width: 176, height: 176)
-		dilator.frame = CGRect(x: 205, y: 20+y, width: 1024-(x+30)-200-10, height: ch)
-		message.frame = CGRect(x: 5, y: 20+y+ch, width: 1024-(x+30)-10, height: 768-20-y-ch)
+		large.frame = CGRect(x: (1024-462-5)*s, y: 20*s, width: x+30*s, height: x+30*s)
+		medium.frame = CGRect(x: (1024-462-5)*s, y: 20*s+462*s, width: 286*s, height: 286*s)
+		small.frame = CGRect(x: (1024-462-5+286)*s, y: 20*s+462*s, width: 176*s, height: 176*s)
+		dilator.frame = CGRect(x: 205*s, y: 20*s+y, width: 1024*s-(x+30*s)-200*s-10*s, height: ch)
+		message.frame = CGRect(x: 5*s, y: 20*s+y+ch, width: 1024*s-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
 		close.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
 
-		controls.frame = CGRect(x: 5, y: 20+y, width: 200, height: ch)
-		play.left(offset: UIOffset(horizontal: 100-q-bw, vertical: 0), size: CGSize(width: bw, height: 30))
-		reset.left(offset: UIOffset(horizontal: 100-bw/2, vertical: 0), size: CGSize(width: bw, height: 30))
-		guide.left(offset: UIOffset(horizontal: 100+q, vertical: 0), size: CGSize(width: bw, height: 30))
+		controls.frame = CGRect(x: 5*s, y: 20*s+y, width: 200*s, height: ch)
+		play.left(offset: UIOffset(horizontal: 100*s-q-bw, vertical: 0), size: CGSize(width: bw, height: 30*s))
+		reset.left(offset: UIOffset(horizontal: 100*s-bw/2, vertical: 0), size: CGSize(width: bw, height: 30*s))
+		guide.left(offset: UIOffset(horizontal: 100*s+q, vertical: 0), size: CGSize(width: bw, height: 30*s))
 		
 		// Aether
-		aetherLimbo.frame = CGRect(x: 5, y: 20, width: 1024-(x+30)-10, height: y)
+		aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: 1024*s-(x+30*s)-10*s, height: y)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
@@ -326,6 +330,6 @@ final class CellularExplorer: Explorer {
 		aetherView.invokeAetherPicker()
 		aetherView.stretch()
 
-		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12, vertical: -14), size: CGSize(width: 144, height: 40))
+		ooviumLabel.bottomRight(offset: UIOffset(horizontal: -12*s, vertical: -14*s), size: CGSize(width: 144*s, height: 40*s))
 	}
 }

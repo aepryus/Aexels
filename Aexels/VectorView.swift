@@ -35,7 +35,7 @@ class VectorView: UIView {
 	
 // Events ==========================================================================================
 	@objc func onTap (_ gesture: UITapGestureRecognizer) {
-		let lw: CGFloat = 3
+		let lw: CGFloat = 3*s
 		let radius = (Double(frame.size.width-lw))/2
 		
 		var x = Double(gesture.location(in: self).x - frame.size.width/2) / radius
@@ -57,7 +57,7 @@ class VectorView: UIView {
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
-		let lw: CGFloat = 3
+		let lw: CGFloat = 3*s
 		
 		let c = UIGraphicsGetCurrentContext()!
 		
@@ -79,7 +79,7 @@ class VectorView: UIView {
 		path.addLine(to: CGPoint(x: end.x, y: end.y))
 		
 		c.addPath(path)
-		c.setLineWidth(2)
+		c.setLineWidth(2*s)
 		c.setLineCap(.round)
 		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
 		c.drawPath(using: .fillStroke)

@@ -59,6 +59,10 @@ class Explorer {
 
 	var limbos = [UIView]()
 	
+	var s: CGFloat {
+		return Screen.s
+	}
+	
 	init(parent: UIView, name: String, key: String, canExplore: Bool) {
 		self.parent = parent
 		self.name = name

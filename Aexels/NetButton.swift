@@ -14,7 +14,7 @@ class NetButton: UIButton {
 	
 	init() {
 		super.init(frame: CGRect.zero)
-		layer.cornerRadius = 8
+		layer.cornerRadius = 8*s
 		clipsToBounds = true
 		backgroundColor = OOColor.lavender.uiColor.alpha(0.3)
 	}
@@ -24,16 +24,16 @@ class NetButton: UIButton {
 	override func draw(_ rect: CGRect) {
 		let color = on ? UIColor.white : UIColor(white: 0.5, alpha: 1)
 		
-		let s: CGFloat = 20
-		let sn: CGFloat = s*sin(CGFloat.pi/6)
-		let cs: CGFloat = s*cos(CGFloat.pi/6)
-		let x: CGFloat = (width-2*s)/2
+		let d: CGFloat = 20*s
+		let sn: CGFloat = d*sin(CGFloat.pi/6)
+		let cs: CGFloat = d*cos(CGFloat.pi/6)
+		let x: CGFloat = (width-2*d)/2
 		let y: CGFloat = (height-2*cs)/2
-		let r: CGFloat = 5
+		let r: CGFloat = 5*s
 		
 		let x1 = x
 		let x3 = x1+sn
-		let x5 = x3+s
+		let x5 = x3+d
 		let x7 = x5+sn
 		let x2 = (x1+x3)/2
 		let x4 = (x3+x5)/2
@@ -57,7 +57,7 @@ class NetButton: UIButton {
 
 		let c = UIGraphicsGetCurrentContext()!
 		c.setStrokeColor(color.cgColor)
-		c.setLineWidth(2)
+		c.setLineWidth(2*s)
 		c.addPath(path)
 		c.drawPath(using: .stroke)		
 	}
