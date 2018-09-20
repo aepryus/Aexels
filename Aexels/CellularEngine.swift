@@ -61,7 +61,7 @@ final class CellularEngine {
 	func compile(aether: Aether) {
 		self.aether = aether
 
-		aether.compile()
+		aether.prepare()
 		
 		memory = aether.memory
 		AEMemoryClear(memory)
@@ -69,8 +69,9 @@ final class CellularEngine {
 		auto = aether.firstAuto()!
 		auto.foreshadow(memory)
 		
-		web = Web(head: auto.headTower, tail: auto.resultTower, memory: memory)
+		web = Web(tail: auto.resultTower, memory: memory)
 		recipe = web.recipe
+		AERecipePrint(recipe)
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
 		aI = Int(AEMemoryIndexForName(memory, "Auto1.A".toInt8()))

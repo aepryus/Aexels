@@ -72,6 +72,8 @@
 		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
+		D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD22122590A00D97C78 /* Aepryus.framework */; };
+		D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD02122590700D97C78 /* Loom.framework */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -168,9 +170,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */,
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
-				D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
+				D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */,
+				D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
