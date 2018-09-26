@@ -71,7 +71,6 @@ final class CellularEngine {
 		
 		web = Web(tail: auto.resultTower, memory: memory)
 		recipe = web.recipe
-		AERecipePrint(recipe)
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
 		aI = Int(AEMemoryIndexForName(memory, "Auto1.A".toInt8()))
@@ -159,10 +158,7 @@ final class CellularEngine {
 				loadMemory(gI, x: i-1, y: j+1)
 				loadMemory(hI, x: i-1, y: j  )
 				
-//				AERecipePrint(recipe)
-//				AEMemoryPrint(memory)
 				AERecipeExecute(recipe, memory)
-//				AEMemoryPrint(memory)
 				next[i + j*w].a.x = memory.pointee.slots[index].obj.a.x
 			}
 		}
