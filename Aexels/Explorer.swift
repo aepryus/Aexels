@@ -143,7 +143,7 @@ class Explorer {
 			for view in self.limbos {
 				view.alpha = 1
 			}
-		}) { (canceled: Bool) in
+		}) { (finished: Bool) in
 			self.onOpened()
 		}
 	}
@@ -152,7 +152,7 @@ class Explorer {
 			for view in self.limbos {
 				view.alpha = 0
 			}
-		}) { (canceled) in
+		}) { (finished: Bool) in
 			self.onClose()
 			for view in self.limbos {
 				view.removeFromSuperview()

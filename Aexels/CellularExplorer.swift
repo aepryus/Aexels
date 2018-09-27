@@ -147,7 +147,7 @@ final class CellularExplorer: Explorer {
 		aetherView.onNew = {[weak self](aether: Aether) in
 			guard let me = self else {return}
 			me.engine.needsCompile = true
-			let auto = aether.createAuto(at: V2(0, 0))
+			_ = aether.createAuto(at: V2(0, 0))
 			if Screen.iPhone {
 				aether.xOffset = 230
 				aether.yOffset = 250
@@ -155,7 +155,6 @@ final class CellularExplorer: Explorer {
 				aether.xOffset = 400
 				aether.yOffset = 270
 			}
-			auto.statesChain = Chain("0:2")
 		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)

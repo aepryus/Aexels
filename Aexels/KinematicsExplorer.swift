@@ -140,7 +140,7 @@ class KinematicsExplorer: Explorer {
 					me.expAButton.alpha = 0
 					me.expBButton.alpha = 0
 				}
-			}, completion: { (canceled: Bool) in
+			}, completion: { (finished: Bool) in
 				if page == "Universe" {
 					me.universe.content = me.newtonianView
 				} else {
