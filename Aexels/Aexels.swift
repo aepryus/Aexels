@@ -37,9 +37,13 @@ class Aexels {
 		window.rootViewController = nexus
 		window.makeKeyAndVisible()
 		
-		if !Local.hasAether(name: "Game of Life") {
+		if !Local.hasAether(name: "WalledCities") {
+			Local.archiveXML()
 			Local.installAetherFromBundle(name: "Game of Life")
 			Local.installAetherFromBundle(name: "Demons")
+			Local.installAetherFromBundle(name: "Day & Night")
+			Local.installAetherFromBundle(name: "WalledCities")
+			Local.installAetherFromBundle(name: "Move")
 		}
 	}
 }

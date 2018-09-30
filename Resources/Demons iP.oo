@@ -1,0 +1,118 @@
+{
+  "height" : 365,
+  "iden" : "B504C5F6-9FA3-45E4-8314-50F66B18ABE8",
+  "modified" : "2018-10-01T00:57:17+0900",
+  "width" : 365,
+  "name" : "Demons",
+  "type" : "aether",
+  "xOffset" : 289.5,
+  "readOnly" : true,
+  "yOffset" : 255,
+  "aexels" : [
+    {
+      "y" : 559.5,
+      "iden" : "1",
+      "x" : 461.5,
+      "type" : "gate",
+      "name" : "GtR_1",
+      "no" : 1,
+      "elseChain" : "4:Auto1.Self",
+      "ifChain" : "4:Auto1.B;1:=;4:Ob_1;1:||;4:Auto1.D;1:=;4:Ob_1;1:||;4:Auto1.F;1:=;4:Ob_1;1:||;4:Auto1.H;1:=;4:Ob_1",
+      "thenChain" : "4:Ob_1"
+    },
+    {
+      "y" : 299,
+      "iden" : "1",
+      "x" : 301.5,
+      "type" : "auto",
+      "name" : "",
+      "no" : 1,
+      "statesChain" : "",
+      "resultChain" : "4:GtR_1",
+      "states" : [
+        {
+          "color" : 20,
+          "iden" : "1",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 21,
+          "iden" : "2",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 22,
+          "iden" : "3",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 23,
+          "iden" : "4",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 24,
+          "iden" : "5",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 25,
+          "iden" : "6",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 26,
+          "iden" : "7",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 27,
+          "iden" : "8",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 28,
+          "iden" : "9",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 29,
+          "iden" : "10",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 30,
+          "iden" : "11",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "color" : 31,
+          "iden" : "12",
+          "no" : 0,
+          "type" : "state"
+        }
+      ]
+    },
+    {
+      "y" : 407.5,
+      "iden" : "3",
+      "x" : 566.5,
+      "type" : "object",
+      "name" : "Ob_1",
+      "no" : 1,
+      "chain" : "2:(;4:Auto1.Self;1:+;0:1;2:);1:%;0:1;0:2",
+      "label" : "up"
+    }
+  ]
+}

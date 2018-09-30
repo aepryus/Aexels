@@ -14,7 +14,7 @@ import UIKit
 class AexelsDelegate: UIResponder, UIApplicationDelegate {
 	
 // UIApplicationDelegate ===========================================================================
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		print("==================== [ Aexels ] =============================================")
 		
 		Fabric.with([Crashlytics.self])

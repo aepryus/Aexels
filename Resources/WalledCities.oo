@@ -1,0 +1,82 @@
+{
+  "width" : 552,
+  "iden" : "12701A4E-8D1E-4566-8C37-4325DE3B97F7",
+  "aexels" : [
+    {
+      "x" : 432,
+      "iden" : "",
+      "y" : 334,
+      "resultChain" : "4:GtR_1",
+      "name" : "",
+      "states" : [
+        {
+          "no" : 0,
+          "type" : "state",
+          "color" : 19,
+          "iden" : "2409BEDF-DADB-4EB1-89D7-59CF362D269D",
+          "modified" : "2018-10-01T00:41:20+0900"
+        },
+        {
+          "no" : 1,
+          "type" : "state",
+          "color" : 10,
+          "iden" : "77C43523-B284-4FA6-98E9-2B6F719CA5EC",
+          "modified" : "2018-10-01T00:41:20+0900"
+        },
+        {
+          "no" : 2,
+          "type" : "state",
+          "color" : 2,
+          "iden" : "FE514349-D9BF-4766-B924-C542EFBBBB09",
+          "modified" : "2018-10-01T00:42:04+0900"
+        },
+        {
+          "no" : 3,
+          "type" : "state",
+          "color" : 3,
+          "iden" : "14D2CF2D-2C68-4FD1-88CA-E81346AEC3AB",
+          "modified" : "2018-10-01T00:42:04+0900"
+        },
+        {
+          "no" : 4,
+          "type" : "state",
+          "color" : 4,
+          "iden" : "4616A17C-C9A2-437C-BE15-045D48F19F4D",
+          "modified" : "2018-10-01T00:42:04+0900"
+        }
+      ],
+      "modified" : "2018-10-01T00:42:04+0900",
+      "type" : "auto",
+      "statesChain" : "0:5",
+      "no" : 1
+    },
+    {
+      "x" : 732,
+      "label" : "S",
+      "iden" : "",
+      "y" : 409.5,
+      "name" : "Ob_1",
+      "type" : "object",
+      "chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
+      "no" : 1
+    },
+    {
+      "x" : 736.5,
+      "ifChain" : "4:Auto1.Self",
+      "iden" : "",
+      "y" : 542,
+      "name" : "",
+      "elseChain" : "4:Ob_1;1:≥;0:4",
+      "type" : "gate",
+      "no" : 1,
+      "thenChain" : "4:Ob_1;1:≥;0:2;1:&&;4:Ob_1;1:≤;0:5"
+    }
+  ],
+  "height" : 400,
+  "name" : "WalledCities",
+  "xOffset" : 383,
+  "modified" : "2018-10-01T00:42:04+0900",
+  "type" : "aether",
+  "yOffset" : 256.5,
+  "readOnly" : true
+}
