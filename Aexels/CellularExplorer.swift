@@ -137,6 +137,7 @@ final class CellularExplorer: Explorer {
 		tools[0][1] = AetherView.mechTool
 		
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
+		Oovium.aetherView = aetherView
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
 		
 		aetherView.onSwap = {[weak self](aether: Aether) in
@@ -147,7 +148,7 @@ final class CellularExplorer: Explorer {
 		aetherView.onNew = {[weak self](aether: Aether) in
 			guard let me = self else {return}
 			me.engine.needsCompile = true
-			_ = aether.createAuto(at: V2(0, 0))
+			let auto = aether.createAuto(at: V2(0, 0))
 			if Screen.iPhone {
 				aether.xOffset = 230
 				aether.yOffset = 250
@@ -155,6 +156,7 @@ final class CellularExplorer: Explorer {
 				aether.xOffset = 400
 				aether.yOffset = 270
 			}
+			auto.statesChain = Chain("0:2")
 		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)
