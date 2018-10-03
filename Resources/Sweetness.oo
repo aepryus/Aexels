@@ -1,0 +1,68 @@
+{
+  "xOffset" : 358.5,
+  "type" : "aether",
+  "iden" : "8B9884FB-F02F-44D2-B4D8-ED3B02B3398F",
+  "width" : 552,
+  "yOffset" : 270.5,
+  "readOnly" : false,
+  "height" : 400,
+  "aexels" : [
+    {
+      "no" : 1,
+      "type" : "auto",
+      "iden" : "",
+      "x" : 432,
+      "y" : 334,
+      "states" : [
+        {
+          "color" : 19,
+          "type" : "state",
+          "iden" : "17BAC435-9A99-49E0-B5FE-C5A9E4B363D2",
+          "modified" : "2018-10-03T05:11:59-0700",
+          "no" : 0
+        },
+        {
+          "color" : 27,
+          "type" : "state",
+          "iden" : "D077B948-C10C-47C6-8EC8-F6363A9289F0",
+          "modified" : "2018-10-03T05:11:59-0700",
+          "no" : 1
+        },
+        {
+          "color" : 2,
+          "type" : "state",
+          "iden" : "C2DEB701-10A2-41C3-8B19-DED8383E450C",
+          "modified" : "2018-10-03T05:11:59-0700",
+          "no" : 2
+        }
+      ],
+      "statesChain" : "0:3",
+      "resultChain" : "4:GtR_1",
+      "name" : "",
+      "modified" : "2018-10-03T05:11:59-0700"
+    },
+    {
+      "no" : 1,
+      "type" : "object",
+      "iden" : "",
+      "x" : 726.5,
+      "y" : 444,
+      "chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
+      "label" : "S",
+      "name" : "Ob_1"
+    },
+    {
+      "ifChain" : "4:Auto1.Self",
+      "no" : 1,
+      "type" : "gate",
+      "iden" : "",
+      "x" : 666.5,
+      "y" : 593.5,
+      "thenChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:4",
+      "elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:4",
+      "name" : ""
+    }
+  ],
+  "name" : "Sweetness",
+  "modified" : "2018-10-03T05:11:59-0700"
+}

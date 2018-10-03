@@ -61,6 +61,8 @@
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
 		D865EC3C215E1774003A2570 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D865EC3B215E1774003A2570 /* Back5.png */; };
 		D8966ECB214535910002D6E8 /* LimboButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8966ECA214535910002D6E8 /* LimboButton.swift */; };
+		D897475B2164E88A0065FFAC /* Sweetness iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D897475A2164E88A0065FFAC /* Sweetness iP.oo */; };
+		D897475D2164E8B40065FFAC /* Sweetness.oo in Resources */ = {isa = PBXBuildFile; fileRef = D897475C2164E8B40065FFAC /* Sweetness.oo */; };
 		D8A19A9820B1ECCD002518F4 /* AXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A19A9720B1ECCD002518F4 /* AXButton.swift */; };
 		D8ABB6F31E7537F1001FE14F /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABB6F21E7537F1001FE14F /* SliderView.swift */; };
 		D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */; };
@@ -158,6 +160,8 @@
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D865EC3B215E1774003A2570 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
 		D8966ECA214535910002D6E8 /* LimboButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboButton.swift; sourceTree = "<group>"; };
+		D897475A2164E88A0065FFAC /* Sweetness iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
+		D897475C2164E8B40065FFAC /* Sweetness.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = Sweetness.oo; sourceTree = "<group>"; };
 		D8A19A9720B1ECCD002518F4 /* AXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXButton.swift; sourceTree = "<group>"; };
 		D8ABB6F21E7537F1001FE14F /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 		D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +282,8 @@
 				D80425D41E1B50D7009C9ED3 /* Game of Life.oo */,
 				D81D322B216120A7005959EE /* Move iP.oo */,
 				D81D3233216127A2005959EE /* Move.oo */,
+				D897475A2164E88A0065FFAC /* Sweetness iP.oo */,
+				D897475C2164E8B40065FFAC /* Sweetness.oo */,
 				D81D322921611EAA005959EE /* WalledCities iP.oo */,
 				D81D3231216126D3005959EE /* WalledCities.oo */,
 			);
@@ -615,6 +621,7 @@
 				D80425C51E1B4FBD009C9ED3 /* Icon20.png in Resources */,
 				D80426001E1BA7C6009C9ED3 /* Localizable.strings in Resources */,
 				D80425CD1E1B4FBD009C9ED3 /* Icon120.png in Resources */,
+				D897475B2164E88A0065FFAC /* Sweetness iP.oo in Resources */,
 				D828617D1E6B87A4006E76F1 /* Back4.png in Resources */,
 				D81D322821611DB9005959EE /* Day & Night iP.oo in Resources */,
 				D80425CC1E1B4FBD009C9ED3 /* Icon87.png in Resources */,
@@ -622,6 +629,7 @@
 				D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */,
 				D800DD2C214A3CB90036D023 /* Default-568h@2x.png in Resources */,
 				D80425C71E1B4FBD009C9ED3 /* Icon40.png in Resources */,
+				D897475D2164E8B40065FFAC /* Sweetness.oo in Resources */,
 				D80425CA1E1B4FBD009C9ED3 /* Icon76.png in Resources */,
 				D81D3234216127A2005959EE /* Move.oo in Resources */,
 				D80425C81E1B4FBD009C9ED3 /* Icon58.png in Resources */,
