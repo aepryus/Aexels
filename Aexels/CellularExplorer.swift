@@ -188,11 +188,11 @@ final class CellularExplorer: Explorer {
 			
 			me.engine.start(aether: me.aetherView.aether)
 			
-			self?.aetherView.markPositions()
-			let attributes = self?.aetherView.aether.unload()
-			if let attributes = attributes {
-				print(JSON.toJSON(attributes: attributes))
-			}
+//			self?.aetherView.markPositions()
+//			let attributes = self?.aetherView.aether.unload()
+//			if let attributes = attributes {
+//				print(JSON.toJSON(attributes: attributes))
+//			}
 		}
 		play.onStop = { [weak self] in
 			guard let me = self else {return}
