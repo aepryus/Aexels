@@ -63,7 +63,7 @@ final class CellularEngine {
 
 		aether.prepare()
 		
-		memory = aether.memory
+		memory = AEMemoryCreateClone(aether.memory)
 		AEMemoryClear(memory)
 		index = Int(AEMemoryIndexForName(memory, "AtR_1".toInt8()))
 		auto = aether.firstAuto()!
