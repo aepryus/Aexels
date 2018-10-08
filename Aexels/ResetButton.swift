@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import OoviumLib
 import UIKit
 
 class ResetButton: AXButton {
@@ -52,8 +53,8 @@ class ResetButton: AXButton {
 		path.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: r)
 		path.closeSubpath()
 
-		let stroke = UIColor.white
-		let fill = UIColor(white: 0.5, alpha: 1)
+		let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+		let fill = stroke.shade(0.5)
 		let c = UIGraphicsGetCurrentContext()!
 		c.addPath(path)
 		c.setFillColor(fill.cgColor)

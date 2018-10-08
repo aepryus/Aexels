@@ -65,6 +65,9 @@ final class CellularExplorer: Explorer {
 			message.key = "Oovium"
 		}
 		message.load()
+		
+		let a = largeCell.width/2
+		largeCell.zoom(at: CGPoint(x: a, y: a))
 	}
 	
 	private func roundQ(x: CGFloat, to: Int) -> Int {
@@ -81,6 +84,10 @@ final class CellularExplorer: Explorer {
 	override func onOpening() {
 		aetherView.snapAetherPicker()
 		aetherView.showToolBars()
+	}
+	override func onOpened() {
+		let a = largeCell.width/2
+		largeCell.zoom(at: CGPoint(x: a, y: a))
 	}
 	override func onClose() {
 		aetherView.dismissAetherPicker()
@@ -113,7 +120,7 @@ final class CellularExplorer: Explorer {
 		
 		largeCell.zoomView = mediumCell
 		mediumCell.zoomView = smallCell
-		
+
 		if Screen.iPhone {
 			largeCell.cells = roundQ(x: 335*s, to: 1)
 			mediumCell.cells = roundQ(x: 190*s, to: 2)
@@ -123,7 +130,7 @@ final class CellularExplorer: Explorer {
 			mediumCell.cells = roundQ(x: 256*s, to: 2)
 			smallCell.cells = roundQ(x: 144*s, to: 4)
 		}
-		
+
 		// Message =========================
 		message = MessageLimbo()
 		

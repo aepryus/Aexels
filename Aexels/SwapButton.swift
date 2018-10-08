@@ -10,7 +10,31 @@ import OoviumLib
 import UIKit
 
 fileprivate class SwapView: UIView {
-	static let icon: UIImage = {
+	static let icon: UIImage = SwapView.renderIcon(color: UIColor.white)
+	static let highlight: UIImage = SwapView.renderIcon(color: OOColor.lavender.uiColor)
+	
+	var isHighlighted: Bool = false {
+		didSet {setNeedsDisplay()}
+	}
+
+	init() {
+		super.init(frame: CGRect.zero)
+		backgroundColor = UIColor.clear
+		isUserInteractionEnabled = false
+	}
+	required init? (coder aDecoder: NSCoder) {fatalError()}
+
+// UIView ==========================================================================================
+	override func draw(_ rect: CGRect) {
+		if !isHighlighted {
+			SwapView.icon.draw(at: CGPoint.zero)
+		} else {
+			SwapView.highlight.draw(at: CGPoint.zero)
+		}
+	}
+	
+// Static ==========================================================================================
+	private static func renderIcon(color: UIColor) -> UIImage {
 		let s: CGFloat = 26*Screen.s
 		let w: CGFloat = 2*Screen.s
 		
@@ -22,7 +46,7 @@ fileprivate class SwapView: UIView {
 		path.addArc(center: CGPoint(x: s/2-0.5, y: s/2-0.5), radius: (s-w)/2, startAngle: -.pi/4, endAngle: -.pi*5/4, clockwise: true)
 		path.closeSubpath()
 		c.addPath(path)
-		c.setFillColor(UIColor.white.cgColor)
+		c.setFillColor(color.cgColor)
 		c.setLineWidth(0)
 		c.drawPath(using: .fill)
 		
@@ -32,24 +56,13 @@ fileprivate class SwapView: UIView {
 		
 		c.addPath(path)
 		c.setLineWidth(w)
-		c.setStrokeColor(UIColor.white.cgColor)
+		c.setStrokeColor(color.cgColor)
 		c.drawPath(using: .stroke)
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
-
+		
 		return image!
-	}()
-
-	init() {
-		super.init(frame: CGRect.zero)
-		backgroundColor = UIColor.clear
-	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
-
-// UIButton ========================================================================================
-	override func draw(_ rect: CGRect) {
-		SwapView.icon.draw(at: CGPoint.zero)
 	}
 }
 
@@ -60,6 +73,13 @@ class SwapButton: AXButton {
 		super.init()
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
+		
+//		addAction(for: [.touchDown, .touchDragEnter]) {
+//			self.swapView.highlighted = true
+//		}
+//		addAction(for: [.touchDragExit, .touchUpInside, .touchCancel]) {
+//			self.swapView.highlighted = false
+//		}
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
@@ -72,13 +92,27 @@ class SwapButton: AXButton {
 		self.swapView.transform = CGAffineTransform.identity
 	}
 	
+// UIButton ========================================================================================
+	override var isHighlighted: Bool {
+		didSet {
+			swapView.isHighlighted = isHighlighted
+			setNeedsDisplay()
+		}
+	}
+	
 // UIView ==========================================================================================
 	override func layoutSubviews() {
 		swapView.frame = bounds
 	}
-	override func point(inside point: CGPoint, with _: UIEvent?) -> Bool {
+	override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
 		let margin: CGFloat = 15*s
 		let area = self.bounds.insetBy(dx: -margin, dy: -margin)
-		return area.contains(point)
+		let inside = area.contains(point)
+
+		if inside && !isHighlighted && event?.type == .touches {
+			isHighlighted = true
+		}
+
+		return inside
 	}
 }

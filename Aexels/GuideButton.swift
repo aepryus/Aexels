@@ -34,8 +34,8 @@ class GuideButton: AXButton {
 		path.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: r)
 		path.closeSubpath()
 		
-		let stroke = UIColor.white
-		let fill = UIColor(white: 0.5, alpha: 1)
+		let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+		let fill = stroke.shade(0.5)
 		if (stateOn) {
 			let c = UIGraphicsGetCurrentContext()!
 			c.addPath(path)

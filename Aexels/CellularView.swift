@@ -23,29 +23,16 @@ struct Cell {
 final class CellularView: UIView {
 	var engine: CellularEngine?
 
-	var _origin: Cell = Cell.zero
-	var origin: Cell {
-		set {
-			_origin = newValue
-			focus = nil
-			if let zoomView = zoomView, let engine = engine {
-				engine.removeView(zoomView)
-			}
-		}
-		get {return _origin}
-	}
+	var origin: Cell = Cell.zero
 	
 	var zoom: Int = 1
 	var focus: CGRect?
 	
-	var _zoomView: CellularView?
 	var zoomView: CellularView? {
-		set {
-			_zoomView = newValue
+		didSet {
 			let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
 			addGestureRecognizer(gesture)
 		}
-		get {return _zoomView}
 	}
 	
 	var cellSize: Int {
@@ -159,12 +146,9 @@ final class CellularView: UIView {
 	func cellFrom (point: CGPoint) -> Cell {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
-	
-// Events ==========================================================================================
-	@objc func onTap (gesture: UITapGestureRecognizer) {
-		let point = gesture.location(in: self)
+	func zoom(at point: CGPoint) {
 		let cell = cellFrom(point: point)
-
+		
 		let cs = cellSize
 		let zcs = zoomView!.cellSize
 		
@@ -178,8 +162,17 @@ final class CellularView: UIView {
 		if zoomView!.engine == nil, let engine = engine {
 			engine.addView(zoomView!)
 			zoomView?.configure(auto: engine.auto)
-
 		}
+		if zoomView!.zoomView != nil {
+			let a = zoomView!.width/2
+			zoomView!.zoom(at: CGPoint(x: a, y: a))
+		}
+	}
+	
+// Events ==========================================================================================
+	@objc func onTap (gesture: UITapGestureRecognizer) {
+		let point = gesture.location(in: self)
+		zoom(at: point)
 	}
 	
 // UIView ==========================================================================================

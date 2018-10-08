@@ -108,8 +108,8 @@ class PlayButton: AXButton {
 			path.closeSubpath()
 		}
 		
-		let stroke = UIColor.white
-		let fill = UIColor(white: 0.5, alpha: 1)
+		let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+		let fill = stroke.shade(0.5)
 		let c = UIGraphicsGetCurrentContext()!
 		c.addPath(path)
 		c.setFillColor(fill.cgColor)
