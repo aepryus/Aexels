@@ -4,7 +4,7 @@
   "iden" : "8B9884FB-F02F-44D2-B4D8-ED3B02B3398F",
   "width" : 552,
   "yOffset" : 270.5,
-  "readOnly" : false,
+  "readOnly" : true,
   "height" : 400,
   "aexels" : [
     {

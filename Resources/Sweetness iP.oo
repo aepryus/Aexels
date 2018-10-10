@@ -7,7 +7,7 @@
   "yOffset" : 254,
   "modified" : "2018-10-03T05:07:01-0700",
   "height" : 365,
-  "readOnly" : false,
+  "readOnly" : true,
   "aexels" : [
     {
       "name" : "",
