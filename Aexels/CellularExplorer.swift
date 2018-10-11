@@ -163,7 +163,7 @@ final class CellularExplorer: Explorer {
 				aether.xOffset = 400
 				aether.yOffset = 270
 			}
-			auto.statesChain = Chain("0:2")
+			auto.statesChain.replaceWith(tokens: "0:2")
 		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)
