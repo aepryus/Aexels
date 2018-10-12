@@ -19,6 +19,7 @@ final class CellularExplorer: Explorer {
 	
 	var aetherView: AetherView!
 	let largeCell: CellularView = CellularView()
+	let mediumCell: CellularView = CellularView()
 	
 	var aetherLimbo = Limbo()
 	let controls = Limbo()
@@ -107,7 +108,6 @@ final class CellularExplorer: Explorer {
 		limbos.append(large)
 		
 		// Medium
-		let mediumCell = CellularView()
 		mediumCell.zoom = 2
 		medium.content = mediumCell
 		limbos.append(medium)
@@ -224,6 +224,8 @@ final class CellularExplorer: Explorer {
 			me.engine.guideOn = !me.engine.guideOn
 			me.guide.stateOn = me.engine.guideOn
 			me.guide.setNeedsDisplay()
+			me.largeCell.tic()
+			me.mediumCell.tic()
 		}
 
 		// Close ===========================

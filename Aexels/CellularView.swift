@@ -179,6 +179,11 @@ final class CellularView: UIView {
 			let a = zoomView!.width/2
 			zoomView!.zoom(at: CGPoint(x: a, y: a))
 		}
+		
+		if !Aexels.timer.running {
+			tic()
+			if zoomView!.zoomView == nil {zoomView!.tic()}
+		}
 	}
 	
 // Events ==========================================================================================
