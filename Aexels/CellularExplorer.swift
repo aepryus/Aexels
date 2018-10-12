@@ -119,7 +119,9 @@ final class CellularExplorer: Explorer {
 		limbos.append(small)
 		
 		largeCell.zoomView = mediumCell
+		mediumCell.parentView = largeCell
 		mediumCell.zoomView = smallCell
+		smallCell.parentView = mediumCell
 
 		if Screen.iPhone {
 			largeCell.cells = roundQ(x: 335*s, to: 1)

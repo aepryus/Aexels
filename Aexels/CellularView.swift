@@ -9,6 +9,11 @@
 import UIKit
 import OoviumLib
 
+enum PanMode {
+	case child
+	case parent
+}
+
 struct Cell {
 	var x: Int
 	var y: Int
@@ -27,11 +32,16 @@ final class CellularView: UIView {
 	
 	var zoom: Int = 1
 	var focus: CGRect?
+	var guideOnOverride: Bool = false
+	var zoomPoint: CGPoint? = nil
+	var startPoint: CGPoint? = nil
+	var panStart: CGPoint? = nil
+	var panMode: PanMode? = nil
 	
+	weak var parentView: CellularView? = nil
 	var zoomView: CellularView? {
 		didSet {
-			let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
-			addGestureRecognizer(gesture)
+			addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
 		}
 	}
 	
@@ -63,6 +73,7 @@ final class CellularView: UIView {
 	init() {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
+		addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan)))
 	}
 	override init (frame: CGRect) {
 		w = Int(frame.size.width)
@@ -72,7 +83,6 @@ final class CellularView: UIView {
 
 		super.init(frame: frame)
 		backgroundColor = UIColor.clear
-		
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
@@ -125,7 +135,7 @@ final class CellularView: UIView {
 		
 		image = UIImage(cgImage: cgImage)
 		
-		if focus != nil && engine.guideOn {
+		if focus != nil && (engine.guideOn || guideOnOverride) {
 			UIGraphicsBeginImageContext(image!.size)
 			image?.draw(at: CGPoint.zero)
 			let c = UIGraphicsGetCurrentContext()
@@ -147,6 +157,7 @@ final class CellularView: UIView {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
 	func zoom(at point: CGPoint) {
+		zoomPoint = point
 		let cell = cellFrom(point: point)
 		
 		let cs = cellSize
@@ -158,6 +169,7 @@ final class CellularView: UIView {
 		let oP = pointFrom(cell: origin)
 		
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
+		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
 		zoomView!.origin = origin
 		if zoomView!.engine == nil, let engine = engine {
 			engine.addView(zoomView!)
@@ -170,9 +182,36 @@ final class CellularView: UIView {
 	}
 	
 // Events ==========================================================================================
-	@objc func onTap (gesture: UITapGestureRecognizer) {
+	@objc func onTap(gesture: UITapGestureRecognizer) {
 		let point = gesture.location(in: self)
 		zoom(at: point)
+	}
+	@objc func onPan(gesture: UIPanGestureRecognizer) {
+		let point = gesture.location(in: self)
+		
+		if panMode == nil {
+			if parentView == nil || (zoomView != nil && engine!.guideOn && focus!.contains(point)) {
+				panMode = .child
+			} else if parentView != nil {
+				panMode = .parent
+			}
+		}
+		
+		if panMode! == .child {
+			if gesture.state == .began {guideOnOverride = true}
+			else if gesture.state == .ended {guideOnOverride = false}
+			zoom(at: point)
+		} else if let parentView = parentView {
+			if gesture.state == .began {
+				parentView.startPoint = parentView.zoomPoint
+				panStart = point
+				parentView.guideOnOverride = true
+			}
+			else if gesture.state == .ended {parentView.guideOnOverride = false}
+			parentView.zoom(at: (parentView.startPoint! - (point - panStart!)/2))
+		}
+		
+		if gesture.state == .ended {panMode = nil}
 	}
 	
 // UIView ==========================================================================================
