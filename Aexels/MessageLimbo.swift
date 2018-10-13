@@ -16,7 +16,7 @@ class MessageLimbo: Limbo {
 	var onTap: (()->())?
 
 	var key: String = ""
-	var text: String = ""
+	var text: NSAttributedString = NSAttributedString(string: "")
 	
 	override init() {
 		super.init()
@@ -37,15 +37,25 @@ class MessageLimbo: Limbo {
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 	func load() {
-		self.text = NSLocalizedString(key, comment: "")
-
 		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!)
 		pen.alignment = .left
+		
+		let sb = NSMutableAttributedString(string: NSLocalizedString(key, comment: ""), attributes: pen.attributes)
+		while let left = sb.string.loc(of: "<<"), let right = sb.string.loc(of: ">>") {
+			let file = sb.string[left+2...right-1]
+			let range = sb.string.range(of: "<<\(file)>>")!
+			let nsRange = NSRange(range, in: sb.string)
+			let attachment = NSTextAttachment()
+			attachment.image = UIImage(named: file)
+			let image = NSAttributedString(attachment: attachment)
+			sb.replaceCharacters(in: nsRange, with: image)
+		}
+		self.text = sb
 
 		let p: CGFloat = 10*s
 		let w = self.scrollView.bounds.size.width - p*2
 		
-		let size = (self.text as NSString).boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size
+		let size = self.text.boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size
 		
 		let h = size.height
 		
@@ -54,7 +64,7 @@ class MessageLimbo: Limbo {
 		c.saveGState()
 		c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
 		c.setFillColor(UIColor.white.cgColor)
-		(text as NSString).draw(in: CGRect(x: 0, y: 0, width: w, height: h), withAttributes: pen.attributes)
+		text.draw(in: CGRect(x: 0, y: 0, width: w, height: h))
 		c.restoreGState()
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()

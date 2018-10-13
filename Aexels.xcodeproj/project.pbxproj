@@ -78,6 +78,8 @@
 		D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FB81E90B2560052BF21 /* SwapButton.swift */; };
 		D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FBA1E9202080052BF21 /* VectorView.swift */; };
 		D8B6EBC820B16E4100852A48 /* ContentLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */; };
+		D8C2648E21713ABF00E03E77 /* OddsAndEndsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */; };
+		D8C64A7C2171D90800F56591 /* Dilation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C64A7B2171D90800F56591 /* Dilation@2x.png */; };
 		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
@@ -178,6 +180,8 @@
 		D8B32FB81E90B2560052BF21 /* SwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapButton.swift; sourceTree = "<group>"; };
 		D8B32FBA1E9202080052BF21 /* VectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorView.swift; sourceTree = "<group>"; };
 		D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLimbo.swift; sourceTree = "<group>"; };
+		D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
+		D8C64A7B2171D90800F56591 /* Dilation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dilation@2x.png"; sourceTree = "<group>"; };
 		D8E666F61FB022A3009D136C /* Icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon1024.png; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
@@ -293,11 +297,12 @@
 		D80425DF1E1B50E9009C9ED3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D800DD2B214A3CB90036D023 /* Default-568h@2x.png */,
 				D828617B1E6B87A4006E76F1 /* Back4.png */,
 				D865EC3B215E1774003A2570 /* Back5.png */,
 				D82861791E6B8666006E76F1 /* Back6.png */,
 				D80425D21E1B50D7009C9ED3 /* BackiPad.png */,
+				D800DD2B214A3CB90036D023 /* Default-568h@2x.png */,
+				D8C64A7B2171D90800F56591 /* Dilation@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 				D8B13C061E1E2F0000E02E16 /* Time Dilation */,
 				D8B13C071E1E2F0700E02E16 /* Length Contraction */,
 				D8B13C081E1E2F1200E02E16 /* Darkness */,
+				D8C2648A21713A7C00E03E77 /* Odds and Ends */,
 			);
 			name = Explorers;
 			sourceTree = "<group>";
@@ -460,6 +466,14 @@
 				D8B13C0A1E1E3E0400E02E16 /* IntroExplorer.swift */,
 			);
 			name = Intro;
+			sourceTree = "<group>";
+		};
+		D8C2648A21713A7C00E03E77 /* Odds and Ends */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */,
+			);
+			name = "Odds and Ends";
 			sourceTree = "<group>";
 		};
 		D8FD7E6C1E1E1FAD00325115 /* Frameworks */ = {
@@ -641,6 +655,7 @@
 				D81D3232216126D3005959EE /* WalledCities.oo in Resources */,
 				D80425D91E1B50D7009C9ED3 /* Demons.oo in Resources */,
 				D804259F1E1B4A97009C9ED3 /* Assets.xcassets in Resources */,
+				D8C64A7C2171D90800F56591 /* Dilation@2x.png in Resources */,
 				D80425D81E1B50D7009C9ED3 /* BackiPad.png in Resources */,
 				D84ABD0F2148DB090036E909 /* Demons iP.oo in Resources */,
 				D80425DB1E1B50D7009C9ED3 /* TrajanPro-Bold.ttf in Resources */,
@@ -695,6 +710,7 @@
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,
 				D8B13C151E1E3ED200E02E16 /* DilationExplorer.swift in Sources */,
 				D80425E51E1B5876009C9ED3 /* Aexels.swift in Sources */,
+				D8C2648E21713ABF00E03E77 /* OddsAndEndsExplorer.swift in Sources */,
 				D80425F21E1B7A70009C9ED3 /* NexusLabel.swift in Sources */,
 				D8B32FB91E90B2560052BF21 /* SwapButton.swift in Sources */,
 				D841756D2147765D006C1C5B /* ExpButton.swift in Sources */,

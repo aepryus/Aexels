@@ -254,6 +254,37 @@ And just as the destruction of aexels in Universe X looks like a pull.  The crea
 
 ";
 
+"OddsAndEnds" = "Odds and Ends
+
+The following is a handful of calculations and smaller discussions about Universe X.
+
+
+Dilation in Universe X
+
+As discussed in the Dilation section, dilation in Universe X is not of time, but rather is of the rate of animation, i.e., the rate that a systems of loops progresses.  This rate of animation is entirely dependent on the amount of time it takes signals traveling at one aexel per tic (i.e., the speed of light, which we'll call 'c') to complete a round trip journey between two given loops.
+
+Imagine a spaceship in Universe X traveling at a rate of v aexels per tic where v is less than c.  This spaceship has a flashlight pointed at a mirror arranged perpendicular to the direction of travel.  A pulse of light is transmitted from the flashlight, bounced off the mirror and returned the flashlight.
+
+<<Dilation.png>>
+
+The question is how long does this roundtrip journey take?
+
+First, let's look at the case where v = 0, the spaceship is not moving at all relative to the aexel field.
+
+
+Dilation at the Surface of a Sphere
+
+Dilation of a Clock Falling from Infinity
+
+Does Antimatter Fall?
+
+LIGO
+
+
+
+
+";
+
 "GameOfLife" = "This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 
 In the upper left is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  In this case, Conway’s Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the ‘new’ button.

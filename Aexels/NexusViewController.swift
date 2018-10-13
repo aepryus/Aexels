@@ -213,7 +213,8 @@ class NexusViewController: UIViewController {
 			GravityExplorer(parent: view),
 			DilationExplorer(parent: view),
 			ContractionExplorer(parent: view),
-			DarknessExplorer(parent: view)
+			DarknessExplorer(parent: view),
+			OddsAndEndsExplorer(parent: view)
 		]
 
 		if Screen.iPad {
