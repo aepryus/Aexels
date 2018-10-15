@@ -10,6 +10,6 @@ import UIKit
 
 class ContractionExplorer: Explorer {
 	init(parent: UIView) {
-		super.init(parent: parent, name: "Length Contraction", key: "LengthContraction", canExplore: false)
+		super.init(parent: parent, name: "Contraction", key: "LengthContraction", canExplore: false)
 	}
 }
