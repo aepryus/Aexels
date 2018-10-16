@@ -12,6 +12,7 @@ import UIKit
 class NexusViewController: UIViewController {
 	let imageView = UIImageView(image: Aexels.backImage())
 	var nexusLabel: NexusLabel!
+	var versionLabel: NexusLabel!
 	
 	var messageView: MessageLimbo!
 	let exploreButton = LimboButton(title: "Explore")
@@ -90,6 +91,7 @@ class NexusViewController: UIViewController {
 	func dimNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 0.1
+			self.versionLabel.alpha = 0
 			self.messageView.alpha = 0
 			self.exploreButton.alpha = 0
 			for button in self.nexusButtons {
@@ -100,6 +102,7 @@ class NexusViewController: UIViewController {
 	func brightenNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 1
+			self.versionLabel.alpha = 1
 			for button in self.nexusButtons {
 				button.alpha = 1
 			}
@@ -111,6 +114,11 @@ class NexusViewController: UIViewController {
 		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
 		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)
 		view.addSubview(nexusLabel)
+		
+		// Version
+		versionLabel = NexusLabel(text: "v\(Aexels.version())", size:20*s)
+		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 20*s)
+		view.addSubview(versionLabel)
 
 		// Menu
 		var i: CGFloat = 0
@@ -163,11 +171,16 @@ class NexusViewController: UIViewController {
 		nexusLabel.frame = CGRect(x: 16*s, y: 52*s, width: 300*s, height: 64*s)
 		view.addSubview(nexusLabel)
 
+		// Version
+		versionLabel = NexusLabel(text: "v\(Aexels.version())", size:18*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 18*s)
+		view.addSubview(versionLabel)
+		
 		// Menu
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 166*s+i*60*s, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: 164*s+i*58*s, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})

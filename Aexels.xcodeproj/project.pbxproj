@@ -60,6 +60,7 @@
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
 		D865EC3C215E1774003A2570 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D865EC3B215E1774003A2570 /* Back5.png */; };
+		D88C3F0521751FCE005B2EB0 /* Gravity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */; };
 		D8966ECB214535910002D6E8 /* LimboButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8966ECA214535910002D6E8 /* LimboButton.swift */; };
 		D897475B2164E88A0065FFAC /* Sweetness iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D897475A2164E88A0065FFAC /* Sweetness iP.oo */; };
 		D897475D2164E8B40065FFAC /* Sweetness.oo in Resources */ = {isa = PBXBuildFile; fileRef = D897475C2164E8B40065FFAC /* Sweetness.oo */; };
@@ -165,6 +166,7 @@
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D865EC3B215E1774003A2570 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
+		D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
 		D8966ECA214535910002D6E8 /* LimboButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboButton.swift; sourceTree = "<group>"; };
 		D897475A2164E88A0065FFAC /* Sweetness iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
 		D897475C2164E8B40065FFAC /* Sweetness.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = Sweetness.oo; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				D8AEA9132172FE4300303E1F /* DilaDeriv@2x.png */,
 				D8C64A7B2171D90800F56591 /* Dilation@2x.png */,
 				D8AEA91521737D4300303E1F /* Escape@2x.png */,
+				D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */,
 				D8AEA919217420D700303E1F /* InfinDila@2x.png */,
 				D8AEA9172173A7AF00303E1F /* SurfDila@2x.png */,
 			);
@@ -652,6 +655,7 @@
 				D81D322821611DB9005959EE /* Day & Night iP.oo in Resources */,
 				D80425CC1E1B4FBD009C9ED3 /* Icon87.png in Resources */,
 				D81D322C216120A7005959EE /* Move iP.oo in Resources */,
+				D88C3F0521751FCE005B2EB0 /* Gravity@2x.png in Resources */,
 				D80425CF1E1B4FBD009C9ED3 /* Icon167.png in Resources */,
 				D800DD2C214A3CB90036D023 /* Default-568h@2x.png in Resources */,
 				D80425C71E1B4FBD009C9ED3 /* Icon40.png in Resources */,

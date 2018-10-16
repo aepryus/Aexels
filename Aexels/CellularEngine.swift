@@ -70,6 +70,9 @@ final class CellularEngine {
 		auto.foreshadow(memory)
 		
 		web = Web(tail: auto.resultTower, memory: memory)
+		for tower in auto.spaceTowers {
+			tower.web = web
+		}
 		recipe = web.recipe
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))

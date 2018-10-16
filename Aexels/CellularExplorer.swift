@@ -20,6 +20,7 @@ final class CellularExplorer: Explorer {
 	var aetherView: AetherView!
 	let largeCell: CellularView = CellularView()
 	let mediumCell: CellularView = CellularView()
+	let smallCell: CellularView = CellularView()
 	
 	var aetherLimbo = Limbo()
 	let controls = Limbo()
@@ -51,11 +52,15 @@ final class CellularExplorer: Explorer {
 		engine.removeAllViews()
 
 		engine.addView(largeCell)
+		engine.addView(mediumCell)
+		engine.addView(smallCell)
 
 		engine.compile(aether: aether)
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			self.engine.reset()
+			let a = self.largeCell.width/2
+			self.largeCell.zoom(at: CGPoint(x: a, y: a))
 		}
 		
 		if aether.name == "Game of Life" {
@@ -66,9 +71,6 @@ final class CellularExplorer: Explorer {
 			message.key = "Oovium"
 		}
 		message.load()
-		
-		let a = largeCell.width/2
-		largeCell.zoom(at: CGPoint(x: a, y: a))
 	}
 	
 	private func roundQ(x: CGFloat, to: Int) -> Int {
@@ -113,7 +115,6 @@ final class CellularExplorer: Explorer {
 		limbos.append(medium)
 		
 		// Small
-		let smallCell = CellularView()
 		smallCell.zoom = 4
 		small.content = smallCell
 		limbos.append(small)

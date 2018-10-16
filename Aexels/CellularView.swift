@@ -171,10 +171,10 @@ final class CellularView: UIView {
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
 		zoomView!.origin = origin
-		if zoomView!.engine == nil, let engine = engine {
-			engine.addView(zoomView!)
-			zoomView?.configure(auto: engine.auto)
-		}
+//		if zoomView!.engine == nil, let engine = engine {
+//			engine.addView(zoomView!)
+//			zoomView?.configure(auto: engine.auto)
+//		}
 		if zoomView!.zoomView != nil {
 			let a = zoomView!.width/2
 			zoomView!.zoom(at: CGPoint(x: a, y: a))

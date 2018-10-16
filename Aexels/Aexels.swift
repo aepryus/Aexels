@@ -14,6 +14,11 @@ class Aexels {
 	static var nexus: NexusViewController!
 	static var timer: AXTimer = AXTimer()
 	
+	static func version() -> String {
+		guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {return "0.0"}
+		return version
+	}
+	
 	static func backImage() -> UIImage {
 		switch Screen.this  {
 			case .dim320x480:

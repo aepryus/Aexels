@@ -256,7 +256,7 @@ And just as the destruction of aexels in Universe X looks like a pull.  The crea
 
 "OddsAndEnds" = "Odds and Ends
 
-The following is a handful of calculations and smaller discussions about Universe X, including:
+The following is a handful of calculations and smaller discussions about Universe X; topics include:
 
 - Dilation in Universe X
 - Dilation: Surface of a Sphere
@@ -269,68 +269,77 @@ Dilation in Universe X
 
 As discussed in the Dilation section, dilation in Universe X is not of time, but rather is of the rate of animation, i.e., the rate that a system of loops progresses.  This rate of animation is entirely dependent on the amount of time it takes signals traveling at one aexel per tic (i.e., the speed of light, which we'll call 'c') to complete a round trip journey between two given loops.
 
-Imagine a spaceship in Universe X traveling at a rate of v aexels per tic where v is less than c.  This spaceship has a flashlight pointed at a mirror arranged perpendicular to the direction of travel.  A pulse of light is transmitted from the flashlight, bounced off the mirror and returned to the flashlight.
+Let's look at two loops arranged perpendicular to the aexial flow.  A signal traveling at c is sent out from one to the other and back.
 
-<<Dilation.png>>
+<<Dilation>>
 
 The question is how long does this roundtrip journey take?
 
-First, let's look at the case where v = 0, the spaceship is not moving at all relative to the aexel field.  In this case, d = ct; or t = d/c.
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case, d = ct; or t = d/c.
 
-In the second case, the spaceship is moving at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the spaceship moves vt' and the signal moves ct'.  Using the Pathagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the spaceship moves vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
 
-<<DilaDeriv.png>>
+<<DilaDeriv>>
 
-So, for a system of loops translating across an aexial field the signals between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / tic) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
+So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / time) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
 
 
 Dilation at the Surface of a Sphere
 
-Now that we know what the time dilation will be as a function of the translation rate across the aexels, it is perhaps possible to calculate what the dilation would be at the surface of a non-rotating sphere.
+Now that we know what the dilation will be as a function of the translation rate across the aexels; let's now calculate what the dilation would be at the surface of a non-rotating sphere.
 
-In Universe X, as mentioned in the gravity section, Gravity is not a force.  Gravity is the pulling in of aexels because of the matter loops' destruction of aexels and the pulling in of other aexels to replace them.  'Gravity', therefore, cannot directly cause a loop to translate across an aexial field.  All it can do is pull on the aexial field itself.
+As discussed in the Gravity section, gravity in Universe X is not a force, but rather is a result of the destruction and creation of aexels and the pulling and pushing that that causes on the aethereal fabric.  Gravity alone, therefore, cannot directly initiate the translation of a loop across an aexial field.  All it can do is pull on the aexial field itself.
 
-Let's take an empty universe and place a planet, P and a tennis ball, B in it, infinitly far apart, both of which are not translating across the aexial field at all.  If we assume Newton's law of gravitation to be empirically true of Universe X, we can calculate the velocity of the tennis ball once it hits the surface of the planet.  Since gravity can not directly cause a translation across the aexels, the velocity of the tennis ball must equal the velocity of the aexels upon which it is sitting.
+Let's take an empty universe and place a planet, P and a tennis ball, B in it, infinitely far apart, both of which are not translating across the aexial field at all.  If we assume Newton's law of gravitation to be empirically true of Universe X, we can calculate the velocity of the tennis ball once it hits the surface of the planet.  Since gravity can not directly cause a translation across the aexels, the velocity of the tennis ball must equal the velocity of the aexels upon which it is sitting.
 
-<<Escape.png>>
+<<Escape>>
 
-Which gives us the velocity of the aexels flowing into the planet at its surface.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the previous dilation equation in order to get the dilation at the surface.
+This gives us the velocity of the aexels flowing into the planet at its surface.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the previous dilation equation in order to get the dilation at the surface.
 
-<<SurfDila.png>>
+<<SurfDila>>
 
-Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as the time dilation in our Universe.
+Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
 
 
 Dilation while Falling from Infinity
 
-In the previous calculation we dropped a tennis ball from infinity in order to calculate the velocity of the aexels flowing into the planet at the surface in order to calculate the dilation for a system at rest on that surface.  But, what about the dilation for the tennis ball itself?
+In the previous calculation we dropped a tennis ball from infinity in order to calculate the velocity of the aexels flowing into the planet at the surface so that we could calculate the dilation for a system at rest on that surface.  But, what about the dilation for the tennis ball itself?
 
 In our Universe, this calculation might be pretty challenging, since time dilation is both a function of velocity and gravity and since both the velocity and gravity is constantly changing throughout the tennis ball's journey.
 
 However, in Universe X, this calculation is quite easy.  Dilation in Universe X is solely a function of the translating velocity over the aexial field.  In Universe X, throughout the journey from infinity down to the planet's surface, the tennis ball's translation velocity remains zero; it is simply flowing down along with the aexels.  And since, throughout the journey, there is never any translating velocity, there is therefore never any dilation.
 
-<<InfinDila.png>>
+<<InfinDila>>
 
 
 Does Antimatter Fall?
 
-In our Universe, it is an open question and a matter of much speculation of how an antimatter tennis ball would behave in the Earth's gravitational field.  Perhaps, matter and antimatter are akin to positive and negative charges and antimatter will rocket up into the sky, falling upwards due to a negative mass.  Or perhaps its mass is no different than a matter tennis ball's mass and it will fall down normally.
+In our Universe, it is an open question and a topic of much speculation of how an antimatter tennis ball would behave in the Earth's gravitational field.  Perhaps, matter and antimatter are akin to positive and negative charges and antimatter will rocket up into the sky, falling upwards due to a negative mass.  Or perhaps its mass is no different than a matter tennis ball's mass and it will fall down normally.
 
-But, let's perhaps look at this question in Universe X.  In Universe X, gravity is not a force but rather is a result of the drawing in of the aether towards objects with mass.
+As for matter tennis balls, Galileo famously explained that all objects regardless of their mass fall at the same rate.  A recent satellite called MICROSCOPE ran an experiment that found no difference in the acceleration of objects of different masses to an accuracy of 10^14.
 
-Galileo famously explained that all objects regardless of their mass fall at the same rate.  A recent satelite called MICROSCOPE ran an experiment that found no difference in the acceleration of objects of different masses to an accuracy of 10^14.
+But, let's perhaps look at this question in Universe X.  In Universe X, gravity is not a force, but rather it is the pulling on the aether by things with mass or the pushing on the aether by things with antimass.  For Universe X, Newton's law of gravitation would be better rendered as:
 
+<<Gravity>>
+
+which is an acceleration not a force.  If we consider a matter tennis ball (mass), antimatter tennis ball (antimass) and photon tennis ball (no mass) in the strong gravitational field of a large planet; all would be sitting on the same aether, all being pulled in at the same rate.
+
+However, while the planet is doing by far, most of the pulling, the tennis balls themselves can also affect the aether; the matter tennis ball pulling; the antimatter tennis ball pushing and the photon tennis ball doing neither.  Given the mass of the Earth and the mass of a tennis ball the amount of pulling or pushing a tennis ball would do is on the order of 10^24 less than that of the planet; 10 orders of magnitude less than our most sensitive test to date.
+
+So, while if we could use our current tests in Universe X, the 3 tennis balls would seem to fall at the same rate, there would perhaps come a time where the very slight differences could be measured; with the matter tennis ball falling the fastest, the photon tennis ball coming next and the antimatter tennis ball falling the slowest.
 
 
 LIGO
 
-In the current understanding of Universe X there are really two seperate realms.  There is the aexels themselves and their dymanics and there is the loops which live on top of the aexels.  The aexels generally deal with the gravity of Universe X, where as the loops generally deal with the 'standard model' of Universe X.
+In the current understanding of Universe X there are really two separate realms.  There are the aexels themselves and there are the loops which live on top of the aexels.  The aexels generally deal with the gravity of Universe X, where as the loops generally deal with the 'standard model' of Universe X.
 
-And in this current understanding of Universe X, the only interplay between the two realms is the creation and destruction of the aexels by the loops.  Since the aexels can move and vary in their density, it is possible for compression waves to travel through the aether.  In our Universe, compression waves, such as sound waves, move through various materials at various speeds.  And depending on the dynamics of aexels themselves, it seems that any arbitrary velocity could be possible for such compression waves in the Universe X aether.
+And in this current understanding of Universe X, the only interplay between the two realms is the creation and destruction of the aexels by the loops.  Since the aexels can move and vary in their density, it is possible for compression waves to travel through the aether.
 
-The LIGO experiment recently announced that they were not only able to detect gravity waves in our universe, but they were able to measure the velocity of the wave because it was paired with an e/m phenomena due to two neutron stars coliding.  And while the gravity wave didn't hit precisely at the same time as the e/m wave, it hit close enough to strongly indicate that the speed of light played a significant part in the dynamics of gravity waves.
+In our Universe, compression waves, such as sound waves, move through various materials at various speeds.  And depending on the dynamics of aexels themselves, it seems that any arbitrary velocity could be possible for such compression waves traveling through the aether of Universe X.
 
-Admittedly, I was a bit surprised by this result.  Certainly, there is nothing in Universe X that says that an aexial compression wave can't move at the speed of light, but there is also nothing that says that it must.  The fact that it does, seems to indicate that the tic time delay in transferring a signal from one aexel to the next must somehow be relevent in the dynamics of the aexels themselves, not just for the loops set on top of them.
+The LIGO experiment recently announced that they were not only able to detect gravity waves in our universe, but they were able to measure the velocity of the wave because it was paired with an e/m phenomena due to two neutron stars colliding.  And while the gravity wave didn't hit precisely at the same time as the e/m wave, it hit close enough to strongly indicate that the speed of light played a significant part in the dynamics of gravity waves.
+
+Admittedly, I was a bit surprised by this result.  Certainly, there is nothing in Universe X that says that an aexial compression wave can't move at the speed of light, but there is also nothing that says that it must.  The fact that it does, seems to indicate that the tic time delay in transferring a signal from one aexel to the next must somehow be relevant in the dynamics of the aexels themselves, not solely for the loops set on top of them.
 
 As a result, this seriously calls into question the idea that a gravity clock in Universe X (as described in the Dilation section) would not undergo dilation.
 
