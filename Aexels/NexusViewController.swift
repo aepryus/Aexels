@@ -91,7 +91,6 @@ class NexusViewController: UIViewController {
 	func dimNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 0.1
-			self.versionLabel.alpha = 0
 			self.messageView.alpha = 0
 			self.exploreButton.alpha = 0
 			for button in self.nexusButtons {
@@ -102,7 +101,6 @@ class NexusViewController: UIViewController {
 	func brightenNexus() {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 1
-			self.versionLabel.alpha = 1
 			for button in self.nexusButtons {
 				button.alpha = 1
 			}
@@ -114,10 +112,12 @@ class NexusViewController: UIViewController {
 		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
 		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)
 		view.addSubview(nexusLabel)
+		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 		
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version())", size:20*s)
 		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 20*s)
+		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 
 		// Menu
@@ -170,10 +170,12 @@ class NexusViewController: UIViewController {
 		nexusLabel = NexusLabel(text: "Aexels", size:60*s)
 		nexusLabel.frame = CGRect(x: 16*s, y: 52*s, width: 300*s, height: 64*s)
 		view.addSubview(nexusLabel)
+		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version())", size:18*s)
 		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 18*s)
+		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		
 		// Menu
@@ -210,6 +212,19 @@ class NexusViewController: UIViewController {
 			self.explorer!.openExplorer(view: self.view)
 		}
 		view.addSubview(exploreButton)
+	}
+	
+// Events ==========================================================================================
+	@objc func onTouch(gesture: TouchingGesture) {
+		if gesture.state == .began {
+			UIView.animate(withDuration: 0.2) {
+				self.versionLabel.alpha = 1
+			}
+		} else if gesture.state == .ended {
+			UIView.animate(withDuration: 0.2) {
+				self.versionLabel.alpha = 0
+			}
+		}
 	}
 	
 // UIViewController ================================================================================
