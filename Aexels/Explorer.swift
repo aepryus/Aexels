@@ -108,7 +108,8 @@ class Explorer {
 			for limbo in limbos {
 				limbo.alpha = 0
 			}
-		}) { (canceled) in
+		}) { (finished: Bool) in
+			guard finished else {return}
 			for limbo in limbos {
 				limbo.removeFromSuperview()
 			}
