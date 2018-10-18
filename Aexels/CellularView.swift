@@ -30,6 +30,7 @@ final class CellularView: UIView {
 
 	var origin: Cell = Cell.zero
 	
+	var states: Int = 2
 	var zoom: Int = 1
 	var focus: CGRect?
 	var guideOnOverride: Bool = false
@@ -90,12 +91,14 @@ final class CellularView: UIView {
 		image = nil
 	}
 	func configure(auto: Auto) {
-		r = [UInt8](repeating: 0, count: auto.states.count)
-		g = [UInt8](repeating: 0, count: auto.states.count)
-		b = [UInt8](repeating: 0, count: auto.states.count)
-		a = [UInt8](repeating: 0, count: auto.states.count)
+		states = auto.states.count
 		
-		for i in 0..<auto.states.count {
+		r = [UInt8](repeating: 0, count: states+1)
+		g = [UInt8](repeating: 0, count: states+1)
+		b = [UInt8](repeating: 0, count: states+1)
+		a = [UInt8](repeating: 0, count: states+1)
+		
+		for i in 0..<states {
 			let color = OOColor(rawValue: auto.states[i].color)!.uiColor
 			let comps: [CGFloat] = color.cgColor.components!
 			r[i] = UInt8(comps[0] * 255)
@@ -103,6 +106,14 @@ final class CellularView: UIView {
 			b[i] = UInt8(comps[2] * 255)
 			a[i] = UInt8(comps[3] * 255)
 		}
+		
+		// Out of Bounds
+		let color = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+		let comps: [CGFloat] = color.cgColor.components!
+		r[states] = UInt8(comps[0] * 255)
+		g[states] = UInt8(comps[1] * 255)
+		b[states] = UInt8(comps[2] * 255)
+		a[states] = UInt8(comps[3] * 255)
 	}
 	func tic() {
 		guard let engine = engine else {return}
@@ -117,7 +128,8 @@ final class CellularView: UIView {
 			for i in x..<x+w/zoom {
 				for q in 0..<zoom {
 					for p in 0..<zoom {
-						let state = Int(engine.cells[i+j*cw].a.x)
+						var state = Int(engine.cells[i+j*cw].a.x)
+						if state < 0 || state >= states {state = states}
 						data[n+0+4*p+m*q] = r[state]
 						data[n+1+4*p+m*q] = g[state]
 						data[n+2+4*p+m*q] = b[state]
