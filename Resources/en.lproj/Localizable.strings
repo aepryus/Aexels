@@ -277,7 +277,7 @@ The question is how long does this roundtrip journey take?
 
 First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case, d = ct; or t = d/c.
 
-In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the spaceship moves vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the loops move vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
 
 <<DilaDeriv>>
 
