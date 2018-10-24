@@ -119,8 +119,8 @@ final class CellularView: UIView {
 		guard let engine = engine else {return}
 		
 		let cw: Int = Screen.iPad ? Int(432*s) : Int(335*s)
-		let x: Int = Int(origin.x)
-		let y: Int = Int(origin.y)
+		let x: Int = origin.x
+		let y: Int = origin.y
 		let m: Int = w*4
 		var n: Int = 0
 		
@@ -128,8 +128,8 @@ final class CellularView: UIView {
 			for i in x..<x+w/zoom {
 				for q in 0..<zoom {
 					for p in 0..<zoom {
-						var state = Int(engine.cells[i+j*cw].a.x)
-						if state < 0 || state >= states {state = states}
+						let value: Double = engine.cells[i+j*cw+1].a.x
+						let state: Int = value.isFinite && value >= 0 && value <= Double(states) ? Int(value) : states
 						data[n+0+4*p+m*q] = r[state]
 						data[n+1+4*p+m*q] = g[state]
 						data[n+2+4*p+m*q] = b[state]
@@ -183,10 +183,6 @@ final class CellularView: UIView {
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
 		zoomView!.origin = origin
-//		if zoomView!.engine == nil, let engine = engine {
-//			engine.addView(zoomView!)
-//			zoomView?.configure(auto: engine.auto)
-//		}
 		if zoomView!.zoomView != nil {
 			let a = zoomView!.width/2
 			zoomView!.zoom(at: CGPoint(x: a, y: a))
