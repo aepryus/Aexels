@@ -1,61 +1,61 @@
 {
-	"width" : 552,
 	"iden" : "3D256FC7-5B8C-4DA4-AABA-94E55E2904FC",
+	"name" : "Day & Night",
+	"width" : 552,
+	"height" : 400,
+	"xOffset" : 380.5,
+	"type" : "aether",
+	"readOnly" : true,
+	"yOffset" : 237.5,
 	"aexels" : [
 		{
-			"x" : 432,
+			"x" : 393,
 			"iden" : "",
-			"y" : 334,
-			"resultChain" : "4:GtR_1",
 			"name" : "",
+			"statesChain" : "0:2",
+			"resultChain" : "4:GtR_1",
+			"type" : "auto",
+			"no" : 1,
+			"y" : 296.5,
 			"states" : [
 				{
-					"no" : 0,
-					"type" : "state",
-					"color" : 19,
 					"iden" : "B5569703-21F5-4F70-9A97-40B5AB063708",
-					"modified" : "2018-10-01T00:38:35+0900"
+					"modified" : "2018-10-01T00:38:35+0900",
+					"type" : "state",
+					"no" : 0,
+					"color" : 19
 				},
 				{
-					"no" : 1,
-					"type" : "state",
-					"color" : 14,
 					"iden" : "BF19E2B7-4060-45B1-A163-18F4A344C8ED",
-					"modified" : "2018-10-01T00:38:35+0900"
+					"modified" : "2018-10-01T00:38:35+0900",
+					"type" : "state",
+					"no" : 1,
+					"color" : 14
 				}
 			],
-			"modified" : "2018-10-01T00:38:35+0900",
-			"type" : "auto",
-			"statesChain" : "0:2",
-			"no" : 1
+			"modified" : "2018-10-01T00:38:35+0900"
 		},
 		{
-			"x" : 749.5,
-			"label" : "S",
 			"iden" : "",
-			"y" : 406.5,
 			"name" : "Ob_1",
-			"type" : "object",
+			"x" : 615.5,
+			"label" : "S",
 			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-			"no" : 1
+			"type" : "object",
+			"no" : 1,
+			"y" : 340
 		},
 		{
-			"x" : 730,
-			"ifChain" : "4:Auto1.Self",
 			"iden" : "",
-			"y" : 573,
 			"name" : "",
-			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:≥;0:6",
+			"x" : 596,
+			"thenChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:≥;0:6",
 			"type" : "gate",
+			"ifChain" : "4:Auto1.Self",
+			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:≥;0:6",
 			"no" : 1,
-			"thenChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:≥;0:6"
+			"y" : 506.5
 		}
 	],
-	"height" : 400,
-	"name" : "Day & Night",
-	"xOffset" : 386,
-	"modified" : "2018-10-01T00:39:16+0900",
-	"type" : "aether",
-	"yOffset" : 267,
-	"readOnly" : true
+	"modified" : "2019-02-08T12:35:47+0900"
 }

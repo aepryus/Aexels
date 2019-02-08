@@ -1,61 +1,61 @@
 {
-  "width" : 552,
-  "iden" : "65464A01-0688-4A41-98F4-3D3CE23A93CF",
-  "aexels" : [
-    {
-      "x" : 432,
-      "iden" : "",
-      "y" : 334,
-      "resultChain" : "4:GtR_1",
-      "name" : "",
-      "states" : [
-        {
-          "no" : 0,
-          "type" : "state",
-          "color" : 19,
-          "iden" : "D69479CE-7167-4139-97BB-6FAA8BB4DB27",
-          "modified" : "2018-10-01T00:45:15+0900"
-        },
-        {
-          "no" : 1,
-          "type" : "state",
-          "color" : 5,
-          "iden" : "2C6B8899-9B23-448E-A418-44B04C245E83",
-          "modified" : "2018-10-01T00:45:15+0900"
-        }
-      ],
-      "modified" : "2018-10-01T00:45:15+0900",
-      "type" : "auto",
-      "statesChain" : "0:2",
-      "no" : 1
-    },
-    {
-      "x" : 753.5,
-      "label" : "S",
-      "iden" : "",
-      "y" : 407.5,
-      "name" : "Ob_1",
-      "type" : "object",
-      "chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-      "no" : 1
-    },
-    {
-      "x" : 721.5,
-      "ifChain" : "4:Auto1.Self",
-      "iden" : "",
-      "y" : 571.5,
-      "name" : "",
-      "elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:6;1:||;4:Ob_1;1:=;0:8",
-      "type" : "gate",
-      "no" : 1,
-      "thenChain" : "4:Ob_1;1:=;0:2;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:=;0:5"
-    }
-  ],
-  "height" : 400,
-  "name" : "Move",
-  "xOffset" : 387.5,
-  "modified" : "2018-10-01T00:45:31+0900",
-  "type" : "aether",
-  "yOffset" : 262,
-  "readOnly" : true
+	"iden" : "65464A01-0688-4A41-98F4-3D3CE23A93CF",
+	"name" : "Move",
+	"width" : 552,
+	"height" : 400,
+	"xOffset" : 364.5,
+	"type" : "aether",
+	"readOnly" : true,
+	"yOffset" : 233.5,
+	"aexels" : [
+		{
+			"x" : 393,
+			"iden" : "",
+			"name" : "",
+			"statesChain" : "0:2",
+			"resultChain" : "4:GtR_1",
+			"type" : "auto",
+			"no" : 1,
+			"y" : 295.5,
+			"states" : [
+				{
+					"iden" : "D69479CE-7167-4139-97BB-6FAA8BB4DB27",
+					"modified" : "2018-10-01T00:45:15+0900",
+					"type" : "state",
+					"no" : 0,
+					"color" : 19
+				},
+				{
+					"iden" : "2C6B8899-9B23-448E-A418-44B04C245E83",
+					"modified" : "2018-10-01T00:45:15+0900",
+					"type" : "state",
+					"no" : 1,
+					"color" : 5
+				}
+			],
+			"modified" : "2018-10-01T00:45:15+0900"
+		},
+		{
+			"iden" : "",
+			"name" : "Ob_1",
+			"x" : 592,
+			"label" : "S",
+			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
+			"type" : "object",
+			"no" : 1,
+			"y" : 340
+		},
+		{
+			"iden" : "",
+			"name" : "",
+			"x" : 560,
+			"thenChain" : "4:Ob_1;1:=;0:2;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:=;0:5",
+			"type" : "gate",
+			"ifChain" : "4:Auto1.Self",
+			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:6;1:||;4:Ob_1;1:=;0:8",
+			"no" : 1,
+			"y" : 504
+		}
+	],
+	"modified" : "2019-02-08T12:36:40+0900"
 }

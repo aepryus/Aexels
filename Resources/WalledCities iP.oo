@@ -1,82 +1,82 @@
 {
 	"name" : "WalledCities",
-	"type" : "aether",
-	"readOnly" : true,
 	"iden" : "A943A396-B463-4AFB-A8BF-C6D37631635D",
+	"type" : "aether",
+	"width" : 365,
+	"modified" : "2019-02-08T12:49:40+0900",
 	"height" : 365,
-	"yOffset" : 247.5,
-	"xOffset" : 236,
-	"modified" : "2018-10-01T00:08:35+0900",
+	"yOffset" : 216.5,
+	"readOnly" : true,
+	"xOffset" : 193.5,
 	"aexels" : [
 		{
-			"x" : 245,
-			"no" : 1,
 			"name" : "",
-			"type" : "auto",
-			"y" : 299,
 			"iden" : "",
+			"type" : "auto",
+			"modified" : "2018-10-01T00:08:35+0900",
+			"x" : 206,
+			"y" : 260.5,
 			"resultChain" : "4:GtR_1",
 			"states" : [
 				{
-					"no" : 0,
-					"iden" : "FFB061E2-DB50-48CC-90A1-0AD3B5FC1009",
 					"color" : 19,
 					"modified" : "2018-10-01T00:06:52+0900",
+					"iden" : "FFB061E2-DB50-48CC-90A1-0AD3B5FC1009",
+					"no" : 0,
 					"type" : "state"
 				},
 				{
-					"no" : 1,
-					"iden" : "FA757873-E54B-4ACA-B5D1-DE0CE86B1750",
 					"color" : 10,
 					"modified" : "2018-10-01T00:06:52+0900",
+					"iden" : "FA757873-E54B-4ACA-B5D1-DE0CE86B1750",
+					"no" : 1,
 					"type" : "state"
 				},
 				{
-					"no" : 2,
-					"iden" : "ED35EF61-F857-4CF7-BB7E-CD760B3EC447",
 					"color" : 2,
 					"modified" : "2018-10-01T00:08:35+0900",
+					"iden" : "ED35EF61-F857-4CF7-BB7E-CD760B3EC447",
+					"no" : 2,
 					"type" : "state"
 				},
 				{
-					"no" : 3,
-					"iden" : "6ABB92C3-DF0F-4CA0-BC08-BD8B9FBD3E10",
 					"color" : 3,
 					"modified" : "2018-10-01T00:08:35+0900",
+					"iden" : "6ABB92C3-DF0F-4CA0-BC08-BD8B9FBD3E10",
+					"no" : 3,
 					"type" : "state"
 				},
 				{
-					"no" : 4,
-					"iden" : "783A9524-EEE9-4CBA-A06D-BD9579C6E199",
 					"color" : 4,
 					"modified" : "2018-10-01T00:08:35+0900",
+					"iden" : "783A9524-EEE9-4CBA-A06D-BD9579C6E199",
+					"no" : 4,
 					"type" : "state"
 				}
 			],
-			"modified" : "2018-10-01T00:08:35+0900",
+			"no" : 1,
 			"statesChain" : "0:5"
 		},
 		{
-			"x" : 500.5,
-			"no" : 1,
+			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
 			"name" : "Ob_1",
-			"label" : "S",
-			"type" : "object",
-			"y" : 372,
 			"iden" : "",
-			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H"
+			"type" : "object",
+			"y" : 305,
+			"x" : 372.5,
+			"label" : "S",
+			"no" : 1
 		},
 		{
-			"x" : 460.5,
-			"no" : 1,
 			"name" : "",
-			"ifChain" : "4:Auto1.Self",
-			"type" : "gate",
-			"y" : 542.5,
 			"iden" : "",
+			"type" : "gate",
+			"y" : 454.5,
+			"x" : 279,
+			"ifChain" : "4:Auto1.Self",
 			"thenChain" : "4:Ob_1;1:≥;0:2;1:&&;4:Ob_1;1:≤;0:5",
+			"no" : 1,
 			"elseChain" : "4:Ob_1;1:≥;0:4"
 		}
-	],
-	"width" : 365
+	]
 }

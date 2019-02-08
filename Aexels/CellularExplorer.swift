@@ -160,11 +160,11 @@ final class CellularExplorer: Explorer {
 			me.engine.needsCompile = true
 			let auto = aether.createAuto(at: V2(0, 0))
 			if Screen.iPhone {
-				aether.xOffset = 230
-				aether.yOffset = 250
+				aether.xOffset = 196
+				aether.yOffset = 90
 			} else {
-				aether.xOffset = 400
-				aether.yOffset = 270
+				aether.xOffset = 366
+				aether.yOffset = 110
 			}
 			auto.statesChain.replaceWith(tokens: "0:2")
 		}
