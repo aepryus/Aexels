@@ -14,7 +14,7 @@ class Aexels {
 	static var nexus: NexusViewController!
 	static var timer: AXTimer = AXTimer()
 	
-	static func version() -> String {
+	static var version: String {
 		guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {return "0.0"}
 		return version
 	}
