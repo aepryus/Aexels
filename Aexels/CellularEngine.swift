@@ -69,10 +69,6 @@ final class CellularEngine {
 		auto = aether.firstAuto()!
 		auto.foreshadow(memory)
 		
-		web = Web()
-		for tower in auto.spaceTowers {
-			tower.web = web
-		}
 		recipe = Web.compile(tail: auto.resultTower, memory: memory)
 		
 		selfI = Int(AEMemoryIndexForName(memory, "Auto1.Self".toInt8()))
