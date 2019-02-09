@@ -42,8 +42,9 @@ class Aexels {
 		window.rootViewController = nexus
 		window.makeKeyAndVisible()
 		
-		if Storage.get(key: "version") != Aexels.version {
-			Local.archiveXML()
+		let oldVersion: String? = Storage.get(key: "version")
+		if oldVersion == nil {Local.archiveXML()}
+		if  oldVersion != Aexels.version {
 			Local.installAetherFromBundle(name: "Day & Night")
 			Local.installAetherFromBundle(name: "Demons")
 			Local.installAetherFromBundle(name: "Game of Life")
