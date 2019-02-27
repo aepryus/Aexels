@@ -9,15 +9,18 @@
 import Foundation
 
 final class AXTimer {
-	var running: Bool = false
-	var semaphore = DispatchSemaphore(value: 1)
-	
+	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()			// CADisplayLink
+
+	deinit {
+		if !running {timer.resume()}
+	}
+
 	var interval: Double = 1.0/60 {
 		didSet {timer.schedule(deadline: .now(), repeating: interval)}
 	}
-	
-	let queue: DispatchQueue = DispatchQueue(label: "cellular")
-	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()			// CADisplayLink
+
+	var running: Bool = false
+	private var semaphore = DispatchSemaphore(value: 1)
 	
 	func configure (interval: Double, _ block: @escaping()->()) {
 		timer.setEventHandler {
@@ -39,8 +42,5 @@ final class AXTimer {
 		timer.suspend()
 		semaphore.wait()
 		semaphore.signal()
-	}
-	func isRunning() -> Bool {
-		return running
 	}
 }
