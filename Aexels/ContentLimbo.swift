@@ -6,6 +6,7 @@
 //  Copyright © 2018 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 import OoviumLib
 
@@ -25,7 +26,11 @@ class ContentLimbo: Limbo {
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
-	// UIView ==========================================================================================
+	func bringContentToFront() {
+		bringSubviewToFront(evMaskView)
+	}
+	
+// UIView ==========================================================================================
 	override var frame: CGRect {
 		didSet {
 			guard bounds != CGRect.zero else {return}

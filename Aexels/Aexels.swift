@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import OoviumLib
 import UIKit
 
@@ -53,5 +54,12 @@ class Aexels {
 			Local.installAetherFromBundle(name: "WalledCities")
 			Storage.set(key: "version", value: Aexels.version)
 		}
+		
+		Hovers.chainEditor = ChainEditor(schematics: [
+			EvoNumSchematic(),
+			ScientificSchematic(),
+			EvoDevSchematic(),
+			Hovers.customSchematic
+		])
 	}
 }

@@ -88,6 +88,8 @@
 		D8C64A7C2171D90800F56591 /* Dilation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C64A7B2171D90800F56591 /* Dilation@2x.png */; };
 		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8E604F92234811F000E8AEA /* Acheron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E604F82234810D000E8AEA /* Acheron.framework */; };
+		D8E604FA2234811F000E8AEA /* Acheron.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8E604F82234810D000E8AEA /* Acheron.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
 		D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD22122590A00D97C78 /* Aepryus.framework */; };
 		D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD02122590700D97C78 /* Loom.framework */; };
@@ -103,6 +105,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */,
+				D8E604FA2234811F000E8AEA /* Acheron.framework in Embed Frameworks */,
 				D8378AD72122591200D97C78 /* Aepryus.framework in Embed Frameworks */,
 				D8378AD52122590F00D97C78 /* Loom.framework in Embed Frameworks */,
 			);
@@ -194,6 +197,7 @@
 		D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLimbo.swift; sourceTree = "<group>"; };
 		D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
 		D8C64A7B2171D90800F56591 /* Dilation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dilation@2x.png"; sourceTree = "<group>"; };
+		D8E604F82234810D000E8AEA /* Acheron.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Acheron.framework; path = "../../Library/Developer/Xcode/DerivedData/Aexels-eclocnhkkedenfaiykhkdktjkjtx/Build/Products/Debug-iphoneos/Acheron.framework"; sourceTree = "<group>"; };
 		D8E666F61FB022A3009D136C /* Icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon1024.png; sourceTree = "<group>"; };
 		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */,
+				D8E604F92234811F000E8AEA /* Acheron.framework in Frameworks */,
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
 				D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */,
@@ -497,6 +502,7 @@
 		D8FD7E6C1E1E1FAD00325115 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8E604F82234810D000E8AEA /* Acheron.framework */,
 				D8378AD22122590A00D97C78 /* Aepryus.framework */,
 				D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */,
 				D8FD7E6F1E1E20CD00325115 /* Fabric.framework */,

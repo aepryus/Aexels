@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import Loom
 import OoviumLib
 import UIKit
@@ -22,7 +23,7 @@ final class CellularExplorer: Explorer {
 	let mediumCell: CellularView = CellularView()
 	let smallCell: CellularView = CellularView()
 	
-	var aetherLimbo = Limbo()
+	var aetherLimbo: ContentLimbo!
 	let controls = Limbo()
 	let dilator = Limbo(p: 12)
 	let dilatorView = DilatorView()
@@ -160,23 +161,24 @@ final class CellularExplorer: Explorer {
 			me.engine.needsCompile = true
 			let auto = aether.createAuto(at: V2(0, 0))
 			if Screen.iPhone {
-				aether.xOffset = 196
-				aether.yOffset = 90
+				aether.xOffset = 250
+				aether.yOffset = 280
 			} else {
-				aether.xOffset = 366
-				aether.yOffset = 110
+				aether.xOffset = 410
+				aether.yOffset = 290
 			}
 			auto.statesChain.replaceWith(tokens: "0:2")
 		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)
 		
-		aetherLimbo.addSubview(ooviumLabel)
 		ooviumLabel.text = "Oovium"
 		ooviumLabel.textAlignment = .center
 		ooviumLabel.textColor = UIColor.white.withAlphaComponent(0.3)
 		ooviumLabel.font = UIFont(name: "Georgia", size: 36*s)
-		
+		aetherLimbo.addSubview(ooviumLabel)
+		aetherLimbo.bringContentToFront()
+
 		engine.addView(largeCell)
 
 		// Dilator =========================
@@ -198,11 +200,11 @@ final class CellularExplorer: Explorer {
 			
 			me.engine.start(aether: me.aetherView.aether)
 			
-//			self?.aetherView.markPositions()
-//			let attributes = self?.aetherView.aether.unload()
-//			if let attributes = attributes {
-//				print(JSON.toJSON(attributes: attributes))
-//			}
+			self?.aetherView.markPositions()
+			let attributes = self?.aetherView.aether.unload()
+			if let attributes = attributes {
+				print(JSON.toJSON(attributes: attributes))
+			}
 		}
 		play.onStop = { [weak self] in
 			guard let me = self else {return}

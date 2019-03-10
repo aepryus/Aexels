@@ -1,61 +1,61 @@
 {
-	"name" : "Move",
-	"iden" : "6FF9981A-E74B-46B7-A743-C7AF615AEFDF",
-	"type" : "aether",
-	"width" : 365,
-	"modified" : "2019-02-08T12:47:21+0900",
 	"height" : 365,
-	"yOffset" : 219.5,
+	"iden" : "6FF9981A-E74B-46B7-A743-C7AF615AEFDF",
+	"yOffset" : 289.5,
 	"readOnly" : true,
-	"xOffset" : 197.5,
 	"aexels" : [
 		{
-			"name" : "",
+			"x" : 265,
 			"iden" : "",
-			"type" : "auto",
-			"modified" : "2018-10-01T00:16:57+0900",
-			"x" : 206,
-			"y" : 260.5,
-			"resultChain" : "4:GtR_1",
+			"y" : 329,
 			"states" : [
 				{
-					"color" : 19,
+					"type" : "state",
+					"no" : 0,
 					"modified" : "2018-10-01T00:15:17+0900",
 					"iden" : "DDB7C537-4E94-497F-A9C9-075D220C469C",
-					"no" : 0,
-					"type" : "state"
+					"color" : 19
 				},
 				{
-					"color" : 5,
+					"type" : "state",
+					"no" : 1,
 					"modified" : "2018-10-01T00:15:17+0900",
 					"iden" : "9FBB4BC0-BC3F-4FEF-B999-051AD4FBDF00",
-					"no" : 1,
-					"type" : "state"
+					"color" : 5
 				}
 			],
 			"no" : 1,
-			"statesChain" : "0:2"
-		},
-		{
-			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-			"name" : "Ob_1",
-			"iden" : "",
-			"type" : "object",
-			"y" : 305,
-			"x" : 369.5,
-			"label" : "S",
-			"no" : 1
-		},
-		{
 			"name" : "",
+			"statesChain" : "0:2",
+			"resultChain" : "4:GtR_1",
+			"modified" : "2018-10-01T00:16:57+0900",
+			"type" : "auto"
+		},
+		{
+			"x" : 424.5,
 			"iden" : "",
-			"type" : "gate",
-			"y" : 462.5,
-			"x" : 222.5,
-			"ifChain" : "4:Auto1.Self",
-			"thenChain" : "4:Ob_1;1:=;0:2;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:=;0:5",
+			"y" : 373.5,
+			"label" : "S",
+			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
 			"no" : 1,
+			"name" : "Ob_1",
+			"type" : "object"
+		},
+		{
+			"x" : 266.5,
+			"iden" : "",
+			"y" : 533,
+			"no" : 1,
+			"ifChain" : "4:Auto1.Self",
+			"name" : "",
+			"thenChain" : "4:Ob_1;1:=;0:2;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:=;0:5",
+			"type" : "gate",
 			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:6;1:||;4:Ob_1;1:=;0:8"
 		}
-	]
+	],
+	"xOffset" : 250.5,
+	"name" : "Move",
+	"width" : 365,
+	"modified" : "2019-03-10T09:41:07+0900",
+	"type" : "aether"
 }
