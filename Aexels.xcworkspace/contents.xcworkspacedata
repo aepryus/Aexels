@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Aepryus/Aepryus.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../Loom/Loom.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:../Acheron/Acheron.xcodeproj">
    </FileRef>
    <FileRef

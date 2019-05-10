@@ -337,19 +337,19 @@ class KinematicsExplorer: Explorer {
 		zoneD.cutouts[.bottomLeft] = Cutout(width: zoneD.width-139*s, height: zoneB.height-60*s)
 		zoneD.renderPaths()
 		
-		playButton.top(offset: UIOffset(horizontal: 0, vertical: 32*s), size: CGSize(width: 48*s, height: 30*s))
-		netButton.top(offset: UIOffset(horizontal: 0, vertical: playButton.bottom+20*s), size: CGSize(width: 48*s, height: 48*s))
+		playButton.top(dy: 32*s, size: CGSize(width: 48*s, height: 30*s))
+		netButton.top(dy: playButton.bottom+20*s, size: CGSize(width: 48*s, height: 48*s))
 
 		let dx: CGFloat = 32*s
-		loopVector.topRight(offset: UIOffset(horizontal: -dx, vertical: 32*s), size: CGSize(width: vw, height: vw))
-		aetherVector.topLeft(offset: UIOffset(horizontal: dx, vertical: 32*s), size: CGSize(width: vw, height: vw))
-		loopLabel.topLeft(offset: UIOffset(horizontal: loopVector.left, vertical: loopVector.top-20*s), size: CGSize(width: vw, height: 16*s))
-		aetherLabel.topLeft(offset: UIOffset(horizontal: aetherVector.left, vertical: aetherVector.top-20*s), size: CGSize(width: vw, height: 16*s))
+		loopVector.topRight(dx: -dx, dy: 32*s, size: CGSize(width: vw, height: vw))
+		aetherVector.topLeft(dx: dx, dy: 32*s, size: CGSize(width: vw, height: vw))
+		loopLabel.topLeft(dx: loopVector.left, dy: loopVector.top-20*s, size: CGSize(width: vw, height: 16*s))
+		aetherLabel.topLeft(dx: aetherVector.left, dy: aetherVector.top-20*s, size: CGSize(width: vw, height: 16*s))
 		
-		expAButton.left(offset: UIOffset(horizontal: 108*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
-		expBButton.left(offset: UIOffset(horizontal: expAButton.right+10*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
+		expAButton.left(dx: 108*s, size: CGSize(width: 40*s, height: 50*s))
+		expBButton.left(dx: expAButton.right+10*s, size: CGSize(width: 40*s, height: 50*s))
 
-		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120*s, height: ch-12*s))
+		universePicker.center(size: CGSize(width: 120*s, height: ch-12*s))
 
 		swapper.frame = CGRect(x: 5*s, y: (667-56-5)*s, width: 56*s, height: 56*s)
 
@@ -380,18 +380,18 @@ class KinematicsExplorer: Explorer {
 		zoneC.frame = CGRect(x: zoneA.right, y: universe.bottom, width: 180*s, height: ch)
 		zoneD.frame = CGRect(x: zoneC.right, y: universe.bottom, width: universe.width-zoneB.width-zoneA.width-zoneC.width, height: ch)
 
-		universePicker.center(offset: UIOffset.zero, size: CGSize(width: 120*s, height: 67*s))
+		universePicker.center(size: CGSize(width: 120*s, height: 67*s))
 		
-		playButton.center(offset: UIOffset(horizontal: -35*s, vertical: 0), size: CGSize(width: 50*s, height: 30*s))
-		netButton.center(offset: UIOffset(horizontal: 27*s, vertical: 0), size: CGSize(width: 48*s, height: 48*s))
+		playButton.center(dx: -35*s, size: CGSize(width: 50*s, height: 30*s))
+		netButton.center(dx: 27*s, size: CGSize(width: 48*s, height: 48*s))
 
-		aetherVector.left(offset: UIOffset(horizontal: 21*s, vertical: 10*s), size: CGSize(width: 63*s, height: 63*s))
-		aetherLabel.left(offset: UIOffset(horizontal: aetherVector.left, vertical: -32*s), size: CGSize(width: aetherVector.width, height: 16*s))
-		loopVector.left(offset: UIOffset(horizontal: aetherVector.right+12, vertical: 10*s), size: CGSize(width: 63*s, height: 63*s))
-		loopLabel.left(offset: UIOffset(horizontal: loopVector.left, vertical: -32*s), size: CGSize(width: loopVector.width, height: 16*s))
+		aetherVector.left(dx: 21*s, dy: 10*s, size: CGSize(width: 63*s, height: 63*s))
+		aetherLabel.left(dx: aetherVector.left, dy: -32*s, size: CGSize(width: aetherVector.width, height: 16*s))
+		loopVector.left(dx: aetherVector.right+12, dy: 10*s, size: CGSize(width: 63*s, height: 63*s))
+		loopLabel.left(dx: loopVector.left, dy: -32*s, size: CGSize(width: loopVector.width, height: 16*s))
 
-		expAButton.center(offset: UIOffset(horizontal: -26*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
-		expBButton.center(offset: UIOffset(horizontal: 26*s, vertical: 0), size: CGSize(width: 40*s, height: 50*s))
+		expAButton.center(dx: -26*s, size: CGSize(width: 40*s, height: 50*s))
+		expBButton.center(dx: 26*s, size: CGSize(width: 40*s, height: 50*s))
 
 		close.frame = CGRect(x: size.width-p-176*s, y: size.height-110*s, width: 176*s, height: 110*s)
 	}

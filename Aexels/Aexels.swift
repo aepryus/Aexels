@@ -28,6 +28,8 @@ class Aexels {
 				return UIImage(named: "Back6")!
 			case .dim1024x768, .dim1112x834, .dim1366x1024:
 				return UIImage(named: "BackiPad")!
+			case .dim1194x834:
+				return UIImage(named: "BackiPad")!
 			case .dimOther:
 				return UIImage(named: "Back5")!
 		}

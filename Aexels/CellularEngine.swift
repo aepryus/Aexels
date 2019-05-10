@@ -6,9 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Aepryus
 import Foundation
-import Loom
 import OoviumLib
 
 final class CellularEngine {
@@ -95,7 +93,7 @@ final class CellularEngine {
 	}
 	func removeView(_ view: CellularView) {
 		view.engine = nil
-		if let index = self.views.index(of: view) {
+		if let index = self.views.firstIndex(of: view) {
 			self.views.remove(at: index)
 		}
 		view.clear()
@@ -104,7 +102,7 @@ final class CellularEngine {
 	func removeAllViews() {
 		for view in views {
 			view.engine = nil
-			if let index = views.index(of: view) {
+			if let index = views.firstIndex(of: view) {
 				views.remove(at: index)
 			}
 			view.clear()

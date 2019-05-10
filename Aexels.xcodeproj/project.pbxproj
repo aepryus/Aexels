@@ -47,8 +47,6 @@
 		D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* AXTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
-		D8378AD52122590F00D97C78 /* Loom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD02122590700D97C78 /* Loom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D8378AD72122591200D97C78 /* Aepryus.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD22122590A00D97C78 /* Aepryus.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D841756D2147765D006C1C5B /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D841756C2147765D006C1C5B /* ExpButton.swift */; };
 		D84ABD0D2148DAF20036E909 /* Game of Life iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */; };
 		D84ABD0F2148DB090036E909 /* Demons iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0E2148DB090036E909 /* Demons iP.oo */; };
@@ -91,8 +89,6 @@
 		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
 		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
-		D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD22122590A00D97C78 /* Aepryus.framework */; };
-		D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8378AD02122590700D97C78 /* Loom.framework */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
@@ -106,8 +102,6 @@
 			files = (
 				D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */,
 				D8C4554F2234D13E004D971E /* Acheron.framework in Embed Frameworks */,
-				D8378AD72122591200D97C78 /* Aepryus.framework in Embed Frameworks */,
-				D8378AD52122590F00D97C78 /* Loom.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,8 +151,6 @@
 		D82BE4D51E22C53B00E8E710 /* AXTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
-		D8378AD02122590700D97C78 /* Loom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8378AD22122590A00D97C78 /* Aepryus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Aepryus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D841756C2147765D006C1C5B /* ExpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpButton.swift; sourceTree = "<group>"; };
 		D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Game of Life iP.oo"; sourceTree = "<group>"; };
 		D84ABD0E2148DB090036E909 /* Demons iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Demons iP.oo"; sourceTree = "<group>"; };
@@ -208,10 +200,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8EF391E21529AA4009256EF /* Aepryus.framework in Frameworks */,
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
-				D8EF391F21529AB9009256EF /* Loom.framework in Frameworks */,
 				D8C4554E2234D13E004D971E /* Acheron.framework in Frameworks */,
 				D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */,
 			);
@@ -503,10 +493,8 @@
 			isa = PBXGroup;
 			children = (
 				D8C4554C2234D134004D971E /* Acheron.framework */,
-				D8378AD22122590A00D97C78 /* Aepryus.framework */,
 				D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */,
 				D8FD7E6F1E1E20CD00325115 /* Fabric.framework */,
-				D8378AD02122590700D97C78 /* Loom.framework */,
 				D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */,
 			);
 			name = Frameworks;
@@ -541,13 +529,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D80425931E1B4A97009C9ED3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Z6PFG8RC6V;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.AccessWiFi = {
@@ -631,7 +619,7 @@
 			};
 			buildConfigurationList = D804258F1E1B4A97009C9ED3 /* Build configuration list for PBXProject "Aexels" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -778,6 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -837,6 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -902,7 +892,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -924,7 +914,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b9334b21-cf6c-4c4c-866c-b9a86bbd0b24";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
