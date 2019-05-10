@@ -114,6 +114,16 @@
 			<key>UILaunchImageOrientation</key>
 			<string>Landscape</string>
 			<key>UILaunchImageSize</key>
+			<string>{834, 1194}</string>
+		</dict>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>BackiPad</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Landscape</string>
+			<key>UILaunchImageSize</key>
 			<string>{1024, 1366}</string>
 		</dict>
 	</array>
