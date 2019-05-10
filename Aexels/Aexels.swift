@@ -37,6 +37,7 @@ class Aexels {
 	
 	static func start() {
 		Math.start()
+		Loom.start(basket: Storage.basket, namespaces: ["Aexels", "OoviumLib"])
 		Skin.skin = IvorySkin()
 
 		nexus = NexusViewController()
