@@ -58,6 +58,7 @@
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
 		D865EC3C215E1774003A2570 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D865EC3B215E1774003A2570 /* Back5.png */; };
+		D87E1C9422873C23003608EB /* AXSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87E1C9322873C23003608EB /* AXSync.swift */; };
 		D88C3F0521751FCE005B2EB0 /* Gravity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */; };
 		D8966ECB214535910002D6E8 /* LimboButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8966ECA214535910002D6E8 /* LimboButton.swift */; };
 		D897475B2164E88A0065FFAC /* Sweetness iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D897475A2164E88A0065FFAC /* Sweetness iP.oo */; };
@@ -162,6 +163,7 @@
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D865EC3B215E1774003A2570 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
+		D87E1C9322873C23003608EB /* AXSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXSync.swift; sourceTree = "<group>"; };
 		D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
 		D8966ECA214535910002D6E8 /* LimboButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboButton.swift; sourceTree = "<group>"; };
 		D897475A2164E88A0065FFAC /* Sweetness iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 		D80425E31E1B5465009C9ED3 /* Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				D87E1C9322873C23003608EB /* AXSync.swift */,
 				D82BE4D51E22C53B00E8E710 /* AXTimer.swift */,
 				D862F1BA1E5984C600612627 /* Simulation.swift */,
 			);
@@ -714,6 +717,7 @@
 				D80425F01E1B70FA009C9ED3 /* UIFont+AX.swift in Sources */,
 				D8B13C171E1E3EF800E02E16 /* ContractionExplorer.swift in Sources */,
 				D80425FB1E1B9172009C9ED3 /* Limbo.swift in Sources */,
+				D87E1C9422873C23003608EB /* AXSync.swift in Sources */,
 				D8ABF4B91E21925400F7B4D6 /* CellularEngine.swift in Sources */,
 				D8B13C131E1E3EA800E02E16 /* GravityExplorer.swift in Sources */,
 				D80425F91E1B9157009C9ED3 /* MessageLimbo.swift in Sources */,
@@ -811,7 +815,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -865,7 +869,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

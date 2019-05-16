@@ -41,7 +41,7 @@ final class CellularExplorer: Explorer {
 	
 	init(parent: UIView) {
 		let d = Screen.iPad ?  Int(432*Screen.s) : Int(335*Screen.s)
-		engine = CellularEngine(w: d, h: d)
+		engine = CellularEngine(size: d)
 		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
@@ -73,15 +73,13 @@ final class CellularExplorer: Explorer {
 		message.load()
 	}
 	
-	private func roundQ(x: CGFloat, to: Int) -> Int {
+	private func floorQ(x: CGFloat, to: Int) -> Int {
 		return Int(floor(x/CGFloat(to))*CGFloat(to))
 	}
 	
 // Events ==========================================================================================
 	override func onOpen() {
-		Aexels.timer.configure(interval: dilatorView.interval, {
-			self.engine.tic()
-		})
+		Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
 		aetherView.layoutAetherPicker()
 	}
 	override func onOpening() {
@@ -125,13 +123,13 @@ final class CellularExplorer: Explorer {
 		smallCell.parentView = mediumCell
 
 		if Screen.iPhone {
-			largeCell.cells = roundQ(x: 335*s, to: 1)
-			mediumCell.cells = roundQ(x: 190*s, to: 2)
-			smallCell.cells = roundQ(x: 112*s, to: 4)
+			largeCell.points = floorQ(x: 335*s, to: 1)
+			mediumCell.points = floorQ(x: 190*s, to: 2)
+			smallCell.points = floorQ(x: 112*s, to: 4)
 		} else /*if Screen.iPad*/{
-			largeCell.cells = roundQ(x: 432*s, to: 1)
-			mediumCell.cells = roundQ(x: 256*s, to: 2)
-			smallCell.cells = roundQ(x: 144*s, to: 4)
+			largeCell.points = floorQ(x: 432*s, to: 1)
+			mediumCell.points = floorQ(x: 256*s, to: 2)
+			smallCell.points = floorQ(x: 144*s, to: 4)
 		}
 
 		// Message =========================
@@ -178,17 +176,14 @@ final class CellularExplorer: Explorer {
 		aetherLimbo.addSubview(ooviumLabel)
 		aetherLimbo.bringContentToFront()
 
-		engine.addView(largeCell)
-
 		// Dilator =========================
-		dilatorView.onChange = { (current: Double) in
-			self.engine.interval = 1/current
+		dilatorView.onChange = { (frameRate: Int) in
+			self.engine.frameRate = frameRate
 		}
 		dilator.content = dilatorView
 		limbos.append(dilator)
 		
 		engine.onMeasure = {(actualSps: Double)->() in
-			self.dilatorView.actualSps = CGFloat(actualSps)
 		}
 		
 		// Controls ========================
@@ -226,8 +221,8 @@ final class CellularExplorer: Explorer {
 			me.engine.guideOn = !me.engine.guideOn
 			me.guide.stateOn = me.engine.guideOn
 			me.guide.setNeedsDisplay()
-			me.largeCell.tic()
-			me.mediumCell.tic()
+			me.largeCell.flash()
+			me.mediumCell.flash()
 		}
 
 		// Close ===========================
@@ -325,12 +320,12 @@ final class CellularExplorer: Explorer {
 		let bw: CGFloat = 50*s
 		let q: CGFloat = 26*s
 
-		large.frame = CGRect(x: (1024-462-5)*s, y: 20*s, width: x+30*s, height: x+30*s)
-		medium.frame = CGRect(x: (1024-462-5)*s, y: 20*s+462*s, width: 286*s, height: 286*s)
-		small.frame = CGRect(x: (1024-462-5+286)*s, y: 20*s+462*s, width: 176*s, height: 176*s)
-		dilator.frame = CGRect(x: 205*s, y: 20*s+y, width: 1024*s-(x+30*s)-200*s-10*s, height: ch)
-		message.frame = CGRect(x: 5*s, y: 20*s+y+ch, width: 1024*s-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
-		close.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
+		large.topRight(dx: -5*s, dy: 20*s, width: x+30*s, height: x+30*s)
+		medium.topLeft(dx: large.left, dy: 20*s+462*s, width: 286*s, height: 286*s)
+		small.topRight(dx: -5*s, dy: 20*s+462*s, width: 176*s, height: 176*s)
+		dilator.frame = CGRect(x: 205*s, y: 20*s+y, width: Screen.width-(x+30*s)-200*s-10*s, height: ch)
+		message.frame = CGRect(x: 5*s, y: 20*s+y+ch, width: Screen.width-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
+		close.bottomRight(dx: -5*s, width: small.width, height: medium.height-small.height)
 
 		controls.frame = CGRect(x: 5*s, y: 20*s+y, width: 200*s, height: ch)
 		play.left(dx: 100*s-q-bw, size: CGSize(width: bw, height: 30*s))
@@ -338,7 +333,7 @@ final class CellularExplorer: Explorer {
 		guide.left(dx: 100*s+q, size: CGSize(width: bw, height: 30*s))
 		
 		// Aether
-		aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: 1024*s-(x+30*s)-10*s, height: y)
+		aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: Screen.width-(x+30*s)-10*s, height: y)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 

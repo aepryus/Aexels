@@ -14,6 +14,12 @@ enum PanMode {
 	case child
 	case parent
 }
+enum RenderMode {
+	case started
+	case rendering
+	case rendered
+	case displayed
+}
 
 struct Cell {
 	var x: Int
@@ -39,6 +45,7 @@ final class CellularView: UIView {
 	var startPoint: CGPoint? = nil
 	var panStart: CGPoint? = nil
 	var panMode: PanMode? = nil
+	var renderMode: RenderMode = .started
 	
 	weak var parentView: CellularView? = nil
 	var zoomView: CellularView? {
@@ -51,20 +58,24 @@ final class CellularView: UIView {
 		return Int(frame.size.width) / zoom
 	}
 	
-	private var w: Int = 0
-	private var h: Int = 0
+	private var vw: Int = 0
+	private var cw: Int = 0
+	private var dw: Int = 0
 	private var size: Int = 0
 	private var data: [UInt8] = []
-		
-	var cells: Int = 0 {
+
+	var points: Int = 0 {
 		didSet {
-			w = cells
-			h = cells
-			size = w*h*4
+			vw = points
+			cw = Screen.iPad ? Int(432*Screen.s) : Int(335*Screen.s)
+			dw = vw*4
+			size = vw*vw*4
 			data = [UInt8](repeating: 0, count: size)
 		}
 	}
 	
+	private let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+	private var cgImage: CGImage?
 	private var image: UIImage?
 
 	private var r: [UInt8]!
@@ -72,19 +83,13 @@ final class CellularView: UIView {
 	private var b: [UInt8]!
 	private var a: [UInt8]!
 	
+//	let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
+	
 	init() {
 		super.init(frame: CGRect.zero)
+		
 		backgroundColor = UIColor.clear
 		addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan)))
-	}
-	override init (frame: CGRect) {
-		w = Int(frame.size.width)
-		h = Int(frame.size.height)
-		size = w*h*4
-		data = [UInt8](repeating: 0, count: size)
-
-		super.init(frame: frame)
-		backgroundColor = UIColor.clear
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
@@ -116,51 +121,55 @@ final class CellularView: UIView {
 		b[states] = UInt8(comps[2] * 255)
 		a[states] = UInt8(comps[3] * 255)
 	}
-	func tic() {
+	func start() {
+		renderMode = .started
+	}
+	func renderImage() {
 		guard let engine = engine else {return}
+		guard renderMode == .started else {print("render skipped");return}
+		renderMode = .rendering
 		
-		let cw: Int = Screen.iPad ? Int(432*s) : Int(335*s)
-		let x: Int = origin.x
-		let y: Int = origin.y
-		let m: Int = w*4
-		var n: Int = 0
+		let sY = origin.y
+		let eY = origin.y+vw/zoom
+		let sX = origin.x
+		let eX = origin.x+vw/zoom
 		
-		for j in y..<y+h/zoom {
-			for i in x..<x+w/zoom {
-				for q in 0..<zoom {
-					for p in 0..<zoom {
-						let value: Double = engine.cells[i+j*cw+1].a.x
-						let state: Int = value.isFinite && value >= 0 && value <= Double(states) ? Int(value) : states
-						data[n+0+4*p+m*q] = r[state]
-						data[n+1+4*p+m*q] = g[state]
-						data[n+2+4*p+m*q] = b[state]
-						data[n+3+4*p+m*q] = a[state]
-					}
-				}
-				n += 4 * zoom
-			}
-			n += m * (zoom - 1)
-		}
+		let dnX = 4*zoom
+		let dnY = dw * (zoom - 1)
+
+		AXDataLoad(&data, engine.cells, sX, eX, dnX, sY, eY, dnY, zoom, Double(states), &r, &g, &b, &a, cw, dw)
+
+		let provider: CGDataProvider = CGDataProvider(data: CFDataCreate(nil, data, size))!
+		cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
+		self.image = UIImage(cgImage: cgImage!)
 		
-		let provider: CGDataProvider = CGDataProvider(dataInfo: nil, data: &data, size: size, releaseData: {(info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) ->() in })!
-		let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-		let cgImage: CGImage = CGImage(width: w, height: h, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: w*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
-		
-		image = UIImage(cgImage: cgImage)
+//		let yoyo = UIImage(named: "Dilation")!
+//		let yo: CGImage = yoyo.cgImage!
 		
 		if focus != nil && (engine.guideOn || guideOnOverride) {
 			UIGraphicsBeginImageContext(image!.size)
-			image?.draw(at: CGPoint.zero)
-			let c = UIGraphicsGetCurrentContext()
-			c?.setStrokeColor(UIColor.white.cgColor)
-			c?.stroke(focus!, width: 1)
-			self.image = UIGraphicsGetImageFromCurrentImageContext();
-			UIGraphicsEndImageContext();
+			image!.draw(at: CGPoint.zero)
+			let c = UIGraphicsGetCurrentContext()!
+//			c.saveGState()
+//			c.translateBy(x: 0, y: CGFloat(vw))
+//			c.scaleBy(x: 1, y: -1)
+//			c.draw(cgImage!, in: bounds)
+//			c.restoreGState()
+
+			c.setStrokeColor(UIColor.white.cgColor)
+			c.stroke(focus!, width: 1)
+//			self.cgImage = c.makeImage()
+			self.image = UIGraphicsGetImageFromCurrentImageContext()
+			UIGraphicsEndImageContext()
 		}
-		
-		DispatchQueue.main.async {
-			self.setNeedsDisplay()
-		}
+//		self.image = UIImage(cgImage: cgImage!)
+//		self.cgImage = self.image!.cgImage
+		renderMode = .rendered
+	}
+	func flash() {
+		start()
+		renderImage()
+		setNeedsDisplay()
 	}
 	
 	func pointFrom (cell: Cell) -> CGPoint {
@@ -189,9 +198,9 @@ final class CellularView: UIView {
 			zoomView!.zoom(at: CGPoint(x: a, y: a))
 		}
 		
-		if !Aexels.timer.running {
-			tic()
-			if zoomView!.zoomView == nil {zoomView!.tic()}
+		if !Aexels.sync.running {
+			flash()
+			if zoomView!.zoomView == nil {zoomView!.flash()}
 		}
 	}
 	
@@ -230,8 +239,12 @@ final class CellularView: UIView {
 	
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
-		if let image = image {
-			image.draw(at: CGPoint.zero)
-		}
+		guard renderMode == .rendered, let image = image?.cgImage else {print("draw skipped");return}
+//		image.draw(in: rect)
+		let c = UIGraphicsGetCurrentContext()!
+		c.translateBy(x: 0, y: CGFloat(vw))
+		c.scaleBy(x: 1, y: -1)
+		c.draw(image, in: rect)
+		renderMode = .displayed
 	}
 }

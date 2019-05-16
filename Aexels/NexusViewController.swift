@@ -135,9 +135,9 @@ class NexusViewController: UIViewController {
 		}
 
 		// Message
-		let w: CGFloat = (1024-340-52)*s
+		let w: CGFloat = Screen.width-(340+52)*s
 		messageView = MessageLimbo()
-		messageView.frame = CGRect(x: 1024*s-w-5*s, y: 20*s, width: w, height: 768*s-20*s)
+		messageView.frame = CGRect(x: Screen.width-w-5*s, y: 20*s, width: w, height: 768*s-20*s)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -148,7 +148,7 @@ class NexusViewController: UIViewController {
 		view.addSubview(messageView)
 		
 		exploreButton.alpha = 0
-		exploreButton.frame = CGRect(x: 843*s, y: 658*s, width: 176*s, height: 110*s)
+		exploreButton.bottomRight(dx: -5*s, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
 		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()

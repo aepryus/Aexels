@@ -22,7 +22,7 @@ final class AXTimer {
 	var running: Bool = false
 	private var semaphore = DispatchSemaphore(value: 1)
 	
-	func configure (interval: Double, _ block: @escaping()->()) {
+	func configure(interval: Double, _ block: @escaping()->()) {
 		timer.setEventHandler {
 			self.semaphore.wait()
 			block()

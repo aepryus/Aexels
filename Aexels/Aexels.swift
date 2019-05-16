@@ -14,10 +14,10 @@ class Aexels {
 	static var window: UIWindow!
 	static var nexus: NexusViewController!
 	static var timer: AXTimer = AXTimer()
+	static var sync: AXSync = AXSync()
 	
 	static var version: String {
-		guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {return "0.0"}
-		return version
+		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
 	}
 	
 	static func backImage() -> UIImage {
