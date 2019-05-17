@@ -126,7 +126,7 @@ final class CellularView: UIView {
 	}
 	func renderImage() {
 		guard let engine = engine else {return}
-		guard renderMode == .started else {print("render skipped");return}
+		guard renderMode == .started else {/*print("render skipped");*/return}
 		renderMode = .rendering
 		
 		let sY = origin.y
@@ -143,27 +143,15 @@ final class CellularView: UIView {
 		cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
 		self.image = UIImage(cgImage: cgImage!)
 		
-//		let yoyo = UIImage(named: "Dilation")!
-//		let yo: CGImage = yoyo.cgImage!
-		
 		if focus != nil && (engine.guideOn || guideOnOverride) {
 			UIGraphicsBeginImageContext(image!.size)
 			image!.draw(at: CGPoint.zero)
 			let c = UIGraphicsGetCurrentContext()!
-//			c.saveGState()
-//			c.translateBy(x: 0, y: CGFloat(vw))
-//			c.scaleBy(x: 1, y: -1)
-//			c.draw(cgImage!, in: bounds)
-//			c.restoreGState()
-
 			c.setStrokeColor(UIColor.white.cgColor)
 			c.stroke(focus!, width: 1)
-//			self.cgImage = c.makeImage()
 			self.image = UIGraphicsGetImageFromCurrentImageContext()
 			UIGraphicsEndImageContext()
 		}
-//		self.image = UIImage(cgImage: cgImage!)
-//		self.cgImage = self.image!.cgImage
 		renderMode = .rendered
 	}
 	func flash() {
@@ -239,8 +227,7 @@ final class CellularView: UIView {
 	
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
-		guard renderMode == .rendered, let image = image?.cgImage else {print("draw skipped");return}
-//		image.draw(in: rect)
+		guard renderMode == .rendered, let image = image?.cgImage else {/*print("draw skipped");*/return}
 		let c = UIGraphicsGetCurrentContext()!
 		c.translateBy(x: 0, y: CGFloat(vw))
 		c.scaleBy(x: 1, y: -1)
