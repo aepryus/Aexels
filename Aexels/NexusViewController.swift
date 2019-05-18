@@ -25,9 +25,9 @@ class NexusViewController: UIViewController {
 	var busy = false
 	private func display (explorer: Explorer) {
 		if explorer.canExplore {
-			let height = Screen.height - Screen.safeTop - Screen.safeBottom
-			let s = height / 748
 			if Screen.iPad {
+				let height = Screen.height - Screen.safeTop - Screen.safeBottom
+				let s = height / 748
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 			} else {
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 160*s, height: 60*s)

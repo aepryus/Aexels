@@ -187,6 +187,9 @@ class KinematicsExplorer: Explorer {
 			me.expBButton.activated = false
 		}
 		
+		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let s = Screen.iPad ? height / 748 : Screen.s
+
 		aetherLabel.text = "Aether"
 		aetherLabel.font = UIFont.aexel(size: 16*s)
 		aetherLabel.textColor = UIColor.white
