@@ -12,7 +12,7 @@ import OoviumLib
 
 class NexusLabel: UIView {
 	var text: String = ""
-	var size: CGFloat = 72*Screen.s
+	var size: CGFloat
 	var color: UIColor = UIColor.black
 	
 	init (text: String, size: CGFloat) {
@@ -32,6 +32,6 @@ class NexusLabel: UIView {
 		let pen = Pen(font: UIFont.aexel(size: size))
 		pen.color = color
 		pen.alignment = .right
-		(text as NSString).draw(in: rect, withAttributes: pen.attributes)
+		(text as NSString).draw(in: rect.insetBy(dx: 4, dy: 4), withAttributes: pen.attributes)
 	}
 }

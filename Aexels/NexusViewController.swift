@@ -117,7 +117,7 @@ class NexusViewController: UIViewController {
 		
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:20*s)
-		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 20*s)
+		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 24*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 
@@ -137,7 +137,7 @@ class NexusViewController: UIViewController {
 		// Message
 		let w: CGFloat = Screen.width-(340+52)*s
 		messageView = MessageLimbo()
-		messageView.frame = CGRect(x: Screen.width-w-5*s, y: 20*s, width: w, height: 768*s-20*s)
+		messageView.frame = CGRect(x: Screen.width-w-5*s, y: safeTop, width: w, height: Screen.height-safeTop-safeBottom)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -148,23 +148,12 @@ class NexusViewController: UIViewController {
 		view.addSubview(messageView)
 		
 		exploreButton.alpha = 0
-		exploreButton.bottomRight(dx: -5*s, width: 176*s, height: 110*s)
+		exploreButton.bottomRight(dx: -5*s, dy: -safeBottom, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
 		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
 			self.explorer!.openExplorer(view: self.view)
 		}
-		
-//		let button = AXButton()
-//		button.setTitle("Explore", for: .normal)
-//		button.frame = CGRect(x: 15, y: 17, width: 146, height: 80)
-//		button.addAction(for: .touchUpInside) {
-//			self.dimNexus()
-//			self.explorer!.openExplorer(view: self.view)
-//		}
-//
-//		exploreButton.addSubview(button)
-		
 	}
 	func iPhoneLayout() {
 		// Title
@@ -175,7 +164,7 @@ class NexusViewController: UIViewController {
 
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
-		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 18*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 26*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		
@@ -229,6 +218,9 @@ class NexusViewController: UIViewController {
 	}
 	
 // UIViewController ================================================================================
+	override var prefersHomeIndicatorAutoHidden: Bool {
+		return true
+	}
 	override func viewDidLoad() {
         super.viewDidLoad()
 

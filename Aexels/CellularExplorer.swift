@@ -40,8 +40,10 @@ final class CellularExplorer: Explorer {
 	let ooviumLabel = UILabel()
 	
 	init(parent: UIView) {
-		let d = Screen.iPad ?  Int(432*Screen.s) : Int(335*Screen.s)
-		engine = CellularEngine(size: d)
+		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let s = height / 748
+		let d = Screen.iPad ?  Int(432*s) : Int(335*Screen.s)
+		engine = CellularEngine(side: d)
 		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
@@ -127,6 +129,8 @@ final class CellularExplorer: Explorer {
 			mediumCell.points = floorQ(x: 190*s, to: 2)
 			smallCell.points = floorQ(x: 112*s, to: 4)
 		} else /*if Screen.iPad*/{
+			let height = Screen.height - Screen.safeTop - Screen.safeBottom
+			let s = height / 748
 			largeCell.points = floorQ(x: 432*s, to: 1)
 			mediumCell.points = floorQ(x: 256*s, to: 2)
 			smallCell.points = floorQ(x: 144*s, to: 4)
@@ -184,21 +188,17 @@ final class CellularExplorer: Explorer {
 		limbos.append(dilator)
 		
 		engine.onMeasure = {(actualSps: Double)->() in
+			print("actual frame rate: \(actualSps)")
 		}
 		
 		// Controls ========================
 		limbos.append(controls)
 		
-		play.onPlay = { [weak self] in
-			guard let me = self else {return}
+		play.onPlay = { [unowned self] in
+			self.engine.start(aether: self.aetherView.aether)
 			
-			me.engine.start(aether: me.aetherView.aether)
-			
-//			self?.aetherView.markPositions()
-//			let attributes = self?.aetherView.aether.unload()
-//			if let attributes = attributes {
-//				print(JSON.toJSON(attributes: attributes))
-//			}
+//			self.aetherView.markPositions()
+//			print(self.aetherView.aether.unload().toJSON())
 		}
 		play.onStop = { [weak self] in
 			guard let me = self else {return}
@@ -314,26 +314,28 @@ final class CellularExplorer: Explorer {
 		message.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-5*s)
 	}
 	override func layout1024x768() {
+		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let s = height / 748
 		let x: CGFloat = 432*s
 		let y: CGFloat = 400*s
 		let ch: CGFloat = 72*s
 		let bw: CGFloat = 50*s
 		let q: CGFloat = 26*s
 
-		large.topRight(dx: -5*s, dy: 20*s, width: x+30*s, height: x+30*s)
-		medium.topLeft(dx: large.left, dy: 20*s+462*s, width: 286*s, height: 286*s)
-		small.topRight(dx: -5*s, dy: 20*s+462*s, width: 176*s, height: 176*s)
-		dilator.frame = CGRect(x: 205*s, y: 20*s+y, width: Screen.width-(x+30*s)-200*s-10*s, height: ch)
-		message.frame = CGRect(x: 5*s, y: 20*s+y+ch, width: Screen.width-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
-		close.bottomRight(dx: -5*s, width: small.width, height: medium.height-small.height)
+		large.topRight(dx: -5*s, dy: Screen.safeTop, width: x+30*s, height: x+30*s)
+		medium.topLeft(dx: large.left, dy: Screen.safeTop+462*s, width: 286*s, height: 286*s)
+		small.topRight(dx: -5*s, dy: Screen.safeTop+462*s, width: 176*s, height: 176*s)
+		dilator.frame = CGRect(x: 205*s, y: Screen.safeTop+y, width: Screen.width-(x+30*s)-200*s-10*s, height: ch)
+		message.frame = CGRect(x: 5*s, y: Screen.safeTop+y+ch, width: Screen.width-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
+		close.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: small.width, height: medium.height-small.height)
 
-		controls.frame = CGRect(x: 5*s, y: 20*s+y, width: 200*s, height: ch)
+		controls.frame = CGRect(x: 5*s, y: Screen.safeTop+y, width: 200*s, height: ch)
 		play.left(dx: 100*s-q-bw, size: CGSize(width: bw, height: 30*s))
 		reset.left(dx: 100*s-bw/2, size: CGSize(width: bw, height: 30*s))
 		guide.left(dx: 100*s+q, size: CGSize(width: bw, height: 30*s))
 		
 		// Aether
-		aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: Screen.width-(x+30*s)-10*s, height: y)
+		aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-(x+30*s)-10*s, height: y)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 

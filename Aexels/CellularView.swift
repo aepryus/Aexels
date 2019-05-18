@@ -33,7 +33,7 @@ struct Cell {
 }
 
 final class CellularView: UIView {
-	var engine: CellularEngine?
+	var engine: CellularEngine!
 
 	var origin: Cell = Cell.zero
 	
@@ -63,11 +63,15 @@ final class CellularView: UIView {
 	private var dw: Int = 0
 	private var size: Int = 0
 	private var data: [UInt8] = []
+	
+	private var queue: DispatchQueue = DispatchQueue(label: "cellularView")
 
 	var points: Int = 0 {
 		didSet {
 			vw = points
-			cw = Screen.iPad ? Int(432*Screen.s) : Int(335*Screen.s)
+			let height = Screen.height - Screen.safeTop - Screen.safeBottom
+			let s = height / 748
+			cw = Screen.iPad ? Int(432*s) : Int(335*Screen.s)
 			dw = vw*4
 			size = vw*vw*4
 			data = [UInt8](repeating: 0, count: size)
@@ -75,15 +79,12 @@ final class CellularView: UIView {
 	}
 	
 	private let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
-	private var cgImage: CGImage?
 	private var image: UIImage?
 
 	private var r: [UInt8]!
 	private var g: [UInt8]!
 	private var b: [UInt8]!
 	private var a: [UInt8]!
-	
-//	let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
 	
 	init() {
 		super.init(frame: CGRect.zero)
@@ -125,34 +126,37 @@ final class CellularView: UIView {
 		renderMode = .started
 	}
 	func renderImage() {
-		guard let engine = engine else {return}
-		guard renderMode == .started else {/*print("render skipped");*/return}
-		renderMode = .rendering
-		
-		let sY = origin.y
-		let eY = origin.y+vw/zoom
-		let sX = origin.x
-		let eX = origin.x+vw/zoom
-		
-		let dnX = 4*zoom
-		let dnY = dw * (zoom - 1)
-
-		AXDataLoad(&data, engine.cells, sX, eX, dnX, sY, eY, dnY, zoom, Double(states), &r, &g, &b, &a, cw, dw)
-
-		let provider: CGDataProvider = CGDataProvider(data: CFDataCreate(nil, data, size))!
-		cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
-		self.image = UIImage(cgImage: cgImage!)
-		
-		if focus != nil && (engine.guideOn || guideOnOverride) {
-			UIGraphicsBeginImageContext(image!.size)
-			image!.draw(at: CGPoint.zero)
-			let c = UIGraphicsGetCurrentContext()!
-			c.setStrokeColor(UIColor.white.cgColor)
-			c.stroke(focus!, width: 1)
-			self.image = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
+		queue.sync {
+			guard renderMode == .started else {return}
+			renderMode = .rendering
+			
+			let sY = origin.y
+			let eY = origin.y+vw/zoom
+			let sX = origin.x
+			let eX = origin.x+vw/zoom
+			
+			let dnX = 4*zoom
+			let dnY = dw * (zoom - 1)
+			
+			AXDataLoad(&data, engine.cells, sX, eX, dnX, sY, eY, dnY, zoom, Double(states), &r, &g, &b, &a, cw, dw)
+			
+			let a: CFData? = CFDataCreate(nil, data, size)
+			let b: CFData = a!
+			let provider: CGDataProvider = CGDataProvider(data: b)!
+			let cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
+			self.image = UIImage(cgImage: cgImage)
+			
+			if focus != nil && (engine.guideOn || guideOnOverride) {
+				UIGraphicsBeginImageContext(image!.size)
+				image!.draw(at: CGPoint.zero)
+				let c = UIGraphicsGetCurrentContext()!
+				c.setStrokeColor(UIColor.white.cgColor)
+				c.stroke(focus!, width: 1)
+				self.image = UIGraphicsGetImageFromCurrentImageContext()
+				UIGraphicsEndImageContext()
+			}
+			renderMode = .rendered
 		}
-		renderMode = .rendered
 	}
 	func flash() {
 		start()
@@ -186,10 +190,8 @@ final class CellularView: UIView {
 			zoomView!.zoom(at: CGPoint(x: a, y: a))
 		}
 		
-		if !Aexels.sync.running {
-			flash()
-			if zoomView!.zoomView == nil {zoomView!.flash()}
-		}
+		flash()
+		if zoomView!.zoomView == nil {zoomView!.flash()}
 	}
 	
 // Events ==========================================================================================
@@ -227,7 +229,7 @@ final class CellularView: UIView {
 	
 // UIView ==========================================================================================
 	override func draw (_ rect: CGRect) {
-		guard renderMode == .rendered, let image = image?.cgImage else {/*print("draw skipped");*/return}
+		guard let image = image?.cgImage else {return}
 		let c = UIGraphicsGetCurrentContext()!
 		c.translateBy(x: 0, y: CGFloat(vw))
 		c.scaleBy(x: 1, y: -1)

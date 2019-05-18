@@ -9,7 +9,7 @@
 import Foundation
 
 final class AXTimer {
-	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()			// CADisplayLink
+	let timer: DispatchSourceTimer = DispatchSource.makeTimerSource()
 
 	deinit {
 		if !running {timer.resume()}

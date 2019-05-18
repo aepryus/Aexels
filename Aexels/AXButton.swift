@@ -8,11 +8,11 @@
 
 import UIKit
 
-class AXButton: UIButton {
+class AXButton: UIControl {
+	
 	init() {
 		super.init(frame: CGRect.zero)
-		setTitleColor(UIColor.black, for: .highlighted)
-		titleLabel!.font = UIFont.aexel(size: 24)
+		backgroundColor = UIColor.clear
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 

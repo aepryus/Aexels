@@ -1,24 +1,26 @@
 {
-	"iden" : "3D256FC7-5B8C-4DA4-AABA-94E55E2904FC",
-	"width" : 552,
-	"xOffset" : 431.5,
 	"type" : "aether",
-	"yOffset" : 306,
-	"name" : "Day & Night",
+	"xOffset" : 476,
+	"iden" : "3D256FC7-5B8C-4DA4-AABA-94E55E2904FC",
+	"readOnly" : true,
+	"yOffset" : 304,
+	"width" : 695.49732620320856,
 	"aexels" : [
 		{
-			"iden" : "",
-			"x" : 452,
-			"no" : 1,
 			"type" : "auto",
+			"resultChain" : "4:GtR_1",
+			"y" : 386.45989304812832,
+			"name" : "",
+			"no" : 1,
 			"statesChain" : "0:2",
+			"x" : 595.49732620320856,
 			"states" : [
 				{
-					"color" : 19,
 					"iden" : "B5569703-21F5-4F70-9A97-40B5AB063708",
 					"modified" : "2018-10-01T00:38:35+0900",
-					"type" : "state",
-					"no" : 0
+					"no" : 0,
+					"color" : 19,
+					"type" : "state"
 				},
 				{
 					"color" : 14,
@@ -28,34 +30,34 @@
 					"no" : 1
 				}
 			],
-			"name" : "",
-			"resultChain" : "4:GtR_1",
-			"modified" : "2018-10-01T00:38:35+0900",
-			"y" : 364
+			"iden" : "",
+			"modified" : "2019-05-18T15:17:29+0900"
 		},
 		{
-			"iden" : "",
-			"x" : 678.5,
-			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
 			"no" : 1,
+			"name" : "Ob_1",
+			"y" : 430.45989304812832,
+			"iden" : "",
 			"type" : "object",
 			"label" : "S",
-			"name" : "Ob_1",
-			"y" : 408
+			"modified" : "2019-05-18T15:17:29+0900",
+			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
+			"x" : 821.99732620320856
 		},
 		{
 			"ifChain" : "4:Auto1.Self",
-			"iden" : "",
-			"x" : 655,
 			"no" : 1,
-			"type" : "gate",
+			"iden" : "",
 			"name" : "",
+			"type" : "gate",
+			"modified" : "2019-05-18T15:17:29+0900",
+			"x" : 727.99732620320856,
 			"thenChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:≥;0:6",
-			"y" : 574,
-			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:≥;0:6"
+			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:≥;0:6",
+			"y" : 567.45989304812838
 		}
 	],
-	"height" : 400,
-	"modified" : "2019-03-10T10:03:01+0900",
-	"readOnly" : true
+	"modified" : "2019-05-18T15:18:04+0900",
+	"height" : 422.45989304812832,
+	"name" : "Day & Night"
 }

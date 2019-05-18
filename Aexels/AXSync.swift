@@ -6,6 +6,7 @@
 //  Copyright © 2019 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import Foundation
 import QuartzCore
 
@@ -28,12 +29,12 @@ class AXSync {
 	func start() {
 		guard !running else {return}
 		running = true
-		link.add(to: .main, forMode: .common)
+		link.add(to: .main, forMode: Screen.iPad ? .common : .default)
 	}
 	func stop() {
 		guard running else {return}
 		running = false
-		link.remove(from: .main, forMode: .common)
+		link.remove(from: .main, forMode: Screen.iPad ? .common : .default)
 		semaphore.wait()
 		semaphore.signal()
 	}

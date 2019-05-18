@@ -343,8 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				D80425EC1E1B6DCC009C9ED3 /* Utility */,
-				D80425E71E1B5C43009C9ED3 /* Nexus */,
 				D82861781E6B51EE006E76F1 /* Explorers */,
+				D80425E71E1B5C43009C9ED3 /* Nexus */,
 			);
 			name = Interface;
 			sourceTree = "<group>";

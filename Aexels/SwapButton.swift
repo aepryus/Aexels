@@ -74,13 +74,6 @@ class SwapButton: AXButton {
 		super.init()
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
-		
-//		addAction(for: [.touchDown, .touchDragEnter]) {
-//			self.swapView.highlighted = true
-//		}
-//		addAction(for: [.touchDragExit, .touchUpInside, .touchCancel]) {
-//			self.swapView.highlighted = false
-//		}
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	

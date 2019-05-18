@@ -1,34 +1,32 @@
 {
-	"iden" : "B504C5F6-9FA3-45E4-8314-50F66B18ABE8",
-	"width" : 552,
-	"xOffset" : 404,
-	"type" : "aether",
-	"yOffset" : 300.5,
-	"name" : "Demons",
+	"yOffset" : 319.5,
+	"readOnly" : true,
+	"height" : 422.45989304812832,
+	"width" : 695.49732620320856,
+	"modified" : "2019-05-18T15:19:04+0900",
+	"xOffset" : 485.5,
 	"aexels" : [
 		{
+			"y" : 587.45989304812838,
+			"x" : 628.99732620320856,
+			"modified" : "2019-05-18T15:18:38+0900",
 			"ifChain" : "4:Auto1.B;1:=;4:Ob_1;1:||;4:Auto1.D;1:=;4:Ob_1;1:||;4:Auto1.F;1:=;4:Ob_1;1:||;4:Auto1.H;1:=;4:Ob_1",
-			"iden" : "1",
-			"x" : 495,
 			"no" : 1,
-			"type" : "gate",
-			"name" : "GtR_1",
 			"thenChain" : "4:Ob_1",
-			"y" : 572,
-			"elseChain" : "4:Auto1.Self"
+			"iden" : "1",
+			"type" : "gate",
+			"elseChain" : "4:Auto1.Self",
+			"name" : "GtR_1"
 		},
 		{
-			"iden" : "1",
-			"x" : 452,
-			"no" : 1,
 			"type" : "auto",
-			"statesChain" : "",
+			"modified" : "2019-05-18T15:18:38+0900",
 			"states" : [
 				{
-					"color" : 20,
-					"iden" : "1",
+					"type" : "state",
 					"no" : 0,
-					"type" : "state"
+					"iden" : "1",
+					"color" : 20
 				},
 				{
 					"color" : 21,
@@ -38,81 +36,86 @@
 				},
 				{
 					"color" : 22,
-					"iden" : "3",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"iden" : "3"
 				},
 				{
 					"color" : 23,
-					"iden" : "4",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"iden" : "4"
 				},
 				{
-					"color" : 24,
-					"iden" : "5",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"color" : 24,
+					"iden" : "5"
 				},
 				{
 					"color" : 25,
-					"iden" : "6",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"iden" : "6"
 				},
 				{
 					"color" : 26,
-					"iden" : "7",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"iden" : "7"
 				},
 				{
+					"type" : "state",
 					"color" : 27,
-					"iden" : "8",
 					"no" : 0,
-					"type" : "state"
+					"iden" : "8"
 				},
 				{
 					"color" : 28,
-					"iden" : "9",
 					"no" : 0,
-					"type" : "state"
+					"type" : "state",
+					"iden" : "9"
 				},
 				{
-					"color" : 29,
+					"no" : 0,
+					"type" : "state",
 					"iden" : "10",
-					"no" : 0,
-					"type" : "state"
+					"color" : 29
 				},
 				{
+					"type" : "state",
+					"no" : 0,
 					"color" : 30,
-					"iden" : "11",
-					"no" : 0,
-					"type" : "state"
+					"iden" : "11"
 				},
 				{
-					"color" : 31,
+					"type" : "state",
 					"iden" : "12",
 					"no" : 0,
-					"type" : "state"
+					"color" : 31
 				}
 			],
+			"iden" : "1",
+			"y" : 386.45989304812832,
+			"no" : 1,
 			"name" : "",
 			"resultChain" : "4:GtR_1",
-			"y" : 364
+			"x" : 595.49732620320856,
+			"statesChain" : ""
 		},
 		{
-			"iden" : "3",
-			"x" : 723.5,
-			"chain" : "2:(;4:Auto1.Self;1:+;0:1;2:);1:%;0:1;0:2",
-			"no" : 1,
-			"type" : "object",
-			"label" : "up",
 			"name" : "Ob_1",
-			"y" : 428.5
+			"no" : 1,
+			"modified" : "2019-05-18T15:18:38+0900",
+			"x" : 866.99732620320856,
+			"chain" : "2:(;4:Auto1.Self;1:+;0:1;2:);1:%;0:1;0:2",
+			"type" : "object",
+			"y" : 450.95989304812832,
+			"label" : "up",
+			"iden" : "3"
 		}
 	],
-	"height" : 400,
-	"modified" : "2019-03-10T10:03:58+0900",
-	"readOnly" : true
+	"iden" : "B504C5F6-9FA3-45E4-8314-50F66B18ABE8",
+	"type" : "aether",
+	"name" : "Demons"
 }

@@ -10,69 +10,53 @@ import Foundation
 import OoviumLib
 
 final class CellularEngine {
-    var aether: Aether!
-	var auto: Auto!
-	
-	var guideOn: Bool = false
-	
-	let size: Int
+	var aether: Aether!
+	private var auto: Auto!
 
-	var frameRate: Int {
-		set {Aexels.sync.link.preferredFramesPerSecond = newValue}
-		get {return Aexels.sync.link.preferredFramesPerSecond}
+	var guideOn: Bool = false
+	var frameRate: Int = 60 {
+		didSet {
+			guard frameRate != oldValue else {return}
+			Aexels.sync.link.preferredFramesPerSecond = frameRate
+		}
 	}
 
 	var needsCompile: Bool = true
-	
-	var cells: UnsafeMutablePointer<Double>
-	var next: UnsafeMutablePointer<Double>
 
-	let iterations: Int = 3
-	let stride: Int
-	var automatas: [UnsafeMutablePointer<Automata>] = []
-	
+	var cells: UnsafeMutablePointer<Double>
+	private var next: UnsafeMutablePointer<Double>
+
+	private let side: Int
+
 	private var views = [CellularView]()
+
+	private let iterations: Int = 3
+	private let stride: Int
+	private var automatas: [UnsafeMutablePointer<Automata>] = []
 	
-	var onMeasure: ((Double)->())?
-	
-	init(size: Int) {
-		self.size = size
-		stride = size/iterations
-		cells = UnsafeMutablePointer<Double>.allocate(capacity: size*size)
-		next = UnsafeMutablePointer<Double>.allocate(capacity: size*size)
+	init(side: Int) {
+		self.side = side
+		stride = side/iterations
+		cells = UnsafeMutablePointer<Double>.allocate(capacity: side*side)
+		next = UnsafeMutablePointer<Double>.allocate(capacity: side*side)
 		
-//		var last: DispatchTime = DispatchTime.now()
-		
-		Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-//			let current = DispatchTime.now()
-//			let delta = Double(current.uptimeNanoseconds - last.uptimeNanoseconds)/1000000000
-//			print("=====================================================")
-//			print("    total:\t\t\(delta) or \(round(1/delta)) SPS")
-//			last = current
-			self.step {
-				DispatchQueue.global(qos: .userInitiated).async {
-//					let start = DispatchTime.now()
-					DispatchQueue.concurrentPerform(iterations: self.views.count, execute: { (i: Int) in
-						self.views[i].start()
-						self.views[i].renderImage()
-					})
-//					let current = DispatchTime.now()
-//					let delta = Double(current.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
-//					print("    render:\t\t\(delta) or \(round(1/delta)) SPS")
-					complete()
-					DispatchQueue.main.async {
-						self.views.forEach {$0.setNeedsDisplay()}
-					}
-				}
-			}
-		}
+		defineOnFire()
 	}
 	deinit {
 		automatas.forEach {AXAutomataRelease($0)}
 	}
 	
+	private func populate () {
+		for i in 0..<side {
+			for j in 0..<side {
+				cells[i+j*side] = Double(arc4random_uniform(UInt32(auto.states.count)))
+			}
+		}
+	}
+	
 	func compile(aether: Aether) {
 		self.aether = aether
+		
 		aether.prepare()
 
 		let sI = AEMemoryIndexForName(aether.memory, "Auto1.Self".toInt8())
@@ -97,7 +81,7 @@ final class CellularEngine {
 		automatas.forEach {AXAutomataRelease($0)}
 		automatas.removeAll()
 
-		let automata = AXAutomataCreate(recipe, memory, Int32(size), sI, aI, bI, cI, dI, eI, fI, gI, hI, rI);
+		let automata = AXAutomataCreate(recipe, memory, Int32(side), sI, aI, bI, cI, dI, eI, fI, gI, hI, rI);
 		for _ in 0..<iterations {
 			automatas.append(AXAutomataCreateClone(automata))
 		}
@@ -108,10 +92,8 @@ final class CellularEngine {
 		
 		configureViews()
 	}
-	func configureViews() {
-		views.forEach {$0.configure(auto: auto)}
-	}
 	
+	// Views
 	func addView(_ view: CellularView) {
 		self.views.append(view)
 		view.engine = self
@@ -134,36 +116,11 @@ final class CellularEngine {
 			view.setNeedsDisplay()
 		}
 	}
+	func configureViews() {
+		views.forEach {$0.configure(auto: auto)}
+	}
 	
-	private func populate () {
-		for i in 0..<size {
-			for j in 0..<size {
-				cells[i+j*size] = Double(arc4random_uniform(UInt32(auto.states.count)))
-			}
-		}
-	}
-
-	var working: Bool = false
-	func step(_ complete: @escaping ()->()) {
-		guard !working else {/*print("step skipped");*/return}
-		working = true
-//		let start = DispatchTime.now()
-
-		DispatchQueue.global(qos: .userInitiated).async {
-			DispatchQueue.concurrentPerform(iterations: self.iterations, execute: { (i: Int) in
-				AXAutomataStep(self.automatas[i], self.cells, self.next, Int32(i*self.stride), Int32(i == self.iterations-1 ? self.size : (i+1)*self.stride))
-			})
-
-			(self.cells, self.next) = (self.next, self.cells)
-
-//			let end = DispatchTime.now()
-//			let delta = Double(end.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
-//			print("    calculate:\t\(delta) or \(round(1/delta)) SPS")
-			self.working = false
-			complete()
-		}
-	}
-
+	// Timer
 	func start(aether: Aether) {
 		if needsCompile {
 			compile(aether: aether)
@@ -177,5 +134,75 @@ final class CellularEngine {
 	func reset() {
 		populate()
 		views.forEach {$0.flash()}
+	}
+	
+	private var last: Date = Date()
+	private var s: Int = 1
+	var onMeasure: ((Double)->())?
+	func sampleFrameRate() {
+		if self.s % 60 == 0 {
+			let now = Date()
+			let x = now.timeIntervalSince(self.last)
+			if let onMeasure = self.onMeasure {
+				onMeasure(60.0/x)
+			}
+			self.last = now
+		}
+		self.s += 1
+	}
+
+	private var working: Bool = false
+	func step(_ complete: @escaping ()->()) {
+//		guard !working else {print("step skipped");return}
+		guard !working else {return}
+		working = true
+//		let start = DispatchTime.now()
+
+		DispatchQueue.global(qos: .userInitiated).async {
+			DispatchQueue.concurrentPerform(iterations: self.iterations, execute: { (i: Int) in
+				AXAutomataStep(self.automatas[i], self.cells, self.next, Int32(i*self.stride), Int32(i == self.iterations-1 ? self.side : (i+1)*self.stride))
+			})
+
+			(self.cells, self.next) = (self.next, self.cells)
+
+//			let end = DispatchTime.now()
+//			let delta = Double(end.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
+//			print("    calculate:\t\(delta) or \(round(1/delta)) SPS")
+			self.working = false
+			complete()
+		}
+	}
+	func defineOnFire() {
+//		var last: DispatchTime = DispatchTime.now()
+		
+		Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+//			let current = DispatchTime.now()
+//			let delta = Double(current.uptimeNanoseconds - last.uptimeNanoseconds)/1000000000
+//			print("=====================================================")
+//			print("    total:\t\t\(delta) or \(round(1/delta)) SPS")
+//			last = current
+			self.step {
+				DispatchQueue.global(qos: .userInitiated).async {
+//					let start = DispatchTime.now()
+					DispatchQueue.concurrentPerform(iterations: self.views.count, execute: { (i: Int) in
+						self.views[i].start()
+						self.views[i].renderImage()
+					})
+//					let current = DispatchTime.now()
+//					let delta = Double(current.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
+//					print("    render:\t\t\(delta) or \(round(1/delta)) SPS")
+					complete()
+					DispatchQueue.main.async {
+						self.views.forEach {
+//							guard $0.renderMode == .rendered else {print("draw skipped");return}
+							guard $0.renderMode == .rendered else {return}
+							$0.setNeedsDisplay()
+						}
+//						guard self.views[0].renderMode == .rendered else {return}
+//						self.sampleFrameRate()
+					}
+				}
+			}
+		}
 	}
 }

@@ -10,20 +10,19 @@ import Acheron
 import UIKit
 import OoviumLib
 
-class NexusButton: UIButton {
+class NexusButton: UIControl {
 	var text: String = ""
 	
 	init (text: String) {
 		self.text = text
 		super.init(frame: CGRect.zero)
+		backgroundColor = UIColor.clear
 	}
 	required init? (coder aDecoder: NSCoder) {fatalError()}
 	
 // UIView ==========================================================================================
 	override var isHighlighted: Bool {
-		didSet {
-			setNeedsDisplay()
-		}
+		didSet {setNeedsDisplay()}
 	}
     override func draw (_ rect: CGRect) {
 		let c = UIGraphicsGetCurrentContext()!
