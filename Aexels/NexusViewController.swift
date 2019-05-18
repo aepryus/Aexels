@@ -25,6 +25,8 @@ class NexusViewController: UIViewController {
 	var busy = false
 	private func display (explorer: Explorer) {
 		if explorer.canExplore {
+			let height = Screen.height - Screen.safeTop - Screen.safeBottom
+			let s = height / 748
 			if Screen.iPad {
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 			} else {
@@ -109,6 +111,9 @@ class NexusViewController: UIViewController {
 	}
 	
 	func iPadLayout() {
+		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let s = height / 748
+
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
 		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)

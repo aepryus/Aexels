@@ -369,9 +369,9 @@ class KinematicsExplorer: Explorer {
 		let mw: CGFloat = Screen.width - uw - 2*p
 		let ch: CGFloat = height - uw
 		
-		universe.frame = CGRect(x: p, y: 20*s, width: uw, height: uw)
+		universe.frame = CGRect(x: p, y: Screen.safeTop, width: uw, height: uw)
 		
-		message.frame = CGRect(x: universe.right, y: 20*s, width: mw, height: height)
+		message.frame = CGRect(x: universe.right, y: Screen.safeTop, width: mw, height: height)
 		message.cutouts[.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		message.renderPaths()
 		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)
@@ -394,6 +394,6 @@ class KinematicsExplorer: Explorer {
 		expAButton.center(dx: -26*s, size: CGSize(width: 40*s, height: 50*s))
 		expBButton.center(dx: 26*s, size: CGSize(width: 40*s, height: 50*s))
 
-		close.bottomRight(dy: -Screen.safeBottom, width: 176*s, height: 110*s)
+		close.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: 176*s, height: 110*s)
 	}
 }
