@@ -8,6 +8,7 @@
 
 import Crashlytics
 import Fabric
+import OoviumLib
 import UIKit
 
 @UIApplicationMain
@@ -21,5 +22,8 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		Aexels.start()
 		
 		return true
+	}
+	func applicationDidEnterBackground(_ application: UIApplication) {
+		if !Oovium.aetherView.aether.readOnly {Oovium.aetherView.saveAether()}
 	}
 }

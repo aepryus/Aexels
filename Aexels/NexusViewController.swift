@@ -153,7 +153,7 @@ class NexusViewController: UIViewController {
 		view.addSubview(messageView)
 		
 		exploreButton.alpha = 0
-		exploreButton.bottomRight(dx: -5*s, dy: -safeBottom, width: 176*s, height: 110*s)
+		exploreButton.topLeft(dx: Screen.width-5*s-176*s, dy: Screen.height-safeBottom-110*s, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
 		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
@@ -208,6 +208,54 @@ class NexusViewController: UIViewController {
 		}
 		view.addSubview(exploreButton)
 	}
+	func iPhoneXLayout() {
+		// Title
+		nexusLabel = NexusLabel(text: "Aexels", size:60*s)
+		nexusLabel.frame = CGRect(x: 16*s, y: 102*s, width: 300*s, height: 64*s)
+		view.addSubview(nexusLabel)
+		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
+		
+		// Version
+		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 155*s, width: 300*s, height: 26*s)
+		versionLabel.alpha = 0
+		view.addSubview(versionLabel)
+		
+		// Menu
+		var i: CGFloat = 0
+		for explorer in explorers {
+			let button = NexusButton(text: explorer.name)
+			button.frame = CGRect(x: 16*s, y: 244*s+i*58*s, width: 300*s, height: 32*s)
+			button.addAction(for: .touchUpInside, {
+				self.wantsToDisplay(explorer: explorer)
+			})
+			view.addSubview(button)
+			nexusButtons.append(button)
+			i += 1
+		}
+		
+		// Message
+		messageView = MessageLimbo()
+		messageView.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-10*s, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+		messageView.alpha = 0
+		messageView.onTap = {()->() in
+			UIView.animate(withDuration: 0.2, animations: {
+				self.messageView.alpha = 0
+				self.exploreButton.alpha = 0
+			})
+			self.brightenNexus()
+		}
+		view.addSubview(messageView)
+		
+		// Explore
+		exploreButton.alpha = 0
+		exploreButton.frame = CGRect(x: messageView.right-160*s, y: messageView.bottom-60*s, width: 160*s, height: 60*s)
+		exploreButton.addAction(for: .touchUpInside) {
+			self.dimNexus()
+			self.explorer!.openExplorer(view: self.view)
+		}
+		view.addSubview(exploreButton)
+	}
 	
 // Events ==========================================================================================
 	@objc func onTouch(gesture: TouchingGesture) {
@@ -245,6 +293,8 @@ class NexusViewController: UIViewController {
 
 		if Screen.iPad {
 			iPadLayout()
+		} else if Screen.this == Screen.dim375x812 || Screen.this == Screen.dim414x896 {
+			iPhoneXLayout()
 		} else {
 			iPhoneLayout()
 		}

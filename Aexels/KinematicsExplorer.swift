@@ -361,7 +361,56 @@ class KinematicsExplorer: Explorer {
 		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
 		message.renderPaths()
 
-		close.frame = CGRect(x: (375-5-139)*s, y: (667-5-60)*s, width: 139*s, height: 60*s)
+		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
+	}
+	override func layout375x812() {
+		let size = UIScreen.main.bounds.size
+		
+		let h = size.height - 110*s - 20*s
+		let w = size.width - 10*s
+		let ch = size.height - 20*s - h - 15*2*s + 1*s
+		let vw: CGFloat = 72*s
+		let sh: CGFloat = 56*s
+		
+		zoneA.frame = CGRect(x: 5*s, y: Screen.height-Screen.safeBottom-sh-222*s, width: 144*s, height: 222*s)
+		
+		universe.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: zoneA.top-Screen.safeTop)
+
+		zoneB.frame = CGRect(x: 61*s, y: Screen.height-Screen.safeBottom-108*s, width: Screen.width-(139+56+10)*s, height: 108*s)
+		zoneC.frame = CGRect(x: 5*s+144*s, y: universe.bottom, width: Screen.width-5*s-zoneA.right, height: 120*s)
+		zoneD.frame = CGRect(x: 5*s+144*s, y: zoneC.bottom, width: zoneC.width, height: Screen.height-universe.bottom-Screen.safeBottom-zoneC.height-60*s)
+		
+		zoneA.cutouts[.bottomRight] = Cutout(width: zoneA.width-60*s+5*s, height: zoneB.height-60*s+5*s)
+		zoneA.renderPaths()
+		
+		zoneB.renderPaths()
+		
+		zoneC.renderPaths()
+		
+		zoneD.cutouts[.bottomLeft] = Cutout(width: zoneD.width-139*s, height: zoneB.height-60*s)
+		zoneD.renderPaths()
+		
+		playButton.top(dy: 32*s, size: CGSize(width: 48*s, height: 30*s))
+		netButton.top(dy: playButton.bottom+20*s, size: CGSize(width: 48*s, height: 48*s))
+		
+		let dx: CGFloat = 32*s
+		loopVector.topRight(dx: -dx, dy: 32*s, size: CGSize(width: vw, height: vw))
+		aetherVector.topLeft(dx: dx, dy: 32*s, size: CGSize(width: vw, height: vw))
+		loopLabel.topLeft(dx: loopVector.left, dy: loopVector.top-20*s, size: CGSize(width: vw, height: 16*s))
+		aetherLabel.topLeft(dx: aetherVector.left, dy: aetherVector.top-20*s, size: CGSize(width: vw, height: 16*s))
+		
+		expAButton.left(dx: 108*s, size: CGSize(width: 40*s, height: 50*s))
+		expBButton.left(dx: expAButton.right+10*s, size: CGSize(width: 40*s, height: 50*s))
+		
+		universePicker.center(size: CGSize(width: 120*s, height: ch-12*s))
+		
+		message.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+		message.renderPaths()
+		
+		swapper.topLeft(dx: 5*s, dy: message.bottom-56*s, width: 56*s, height: 56*s)
+		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -397,6 +446,6 @@ class KinematicsExplorer: Explorer {
 		expAButton.center(dx: -26*s, size: CGSize(width: 40*s, height: 50*s))
 		expBButton.center(dx: 26*s, size: CGSize(width: 40*s, height: 50*s))
 
-		close.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: 176*s, height: 110*s)
+		close.topRight(dx: message.right-176*s, dy: message.bottom-110*s, width: 176*s, height: 110*s)
 	}
 }

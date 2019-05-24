@@ -30,6 +30,7 @@ final class CellularExplorer: Explorer {
 	let large = Limbo()
 	var medium = Limbo()
 	let small = Limbo()
+	let empty = Limbo()
 	let close = LimboButton(title: "Close")
 	let swapper = Limbo()
 	let swapButton = SwapButton()
@@ -88,10 +89,7 @@ final class CellularExplorer: Explorer {
 		aetherView.snapAetherPicker()
 		aetherView.showToolBars()
 	}
-	override func onOpened() {
-		let a = largeCell.width/2
-		largeCell.zoom(at: CGPoint(x: a, y: a))
-	}
+	override func onOpened() {}
 	override func onClose() {
 		aetherView.dismissAetherPicker()
 		aetherView.snuffToolBars()
@@ -264,7 +262,11 @@ final class CellularExplorer: Explorer {
 			limbos.append(swapper)
 
 			first = [aetherLimbo, message]
-			second = [controls, dilator, large, medium, small]
+			if Screen.this == Screen.dim375x812 || Screen.this == Screen.dim414x896 {
+				second = [empty, controls, dilator, large, medium, small]
+			} else {
+				second = [controls, dilator, large, medium, small]
+			}
 		}
 		
 		if Screen.iPhone {
@@ -313,6 +315,50 @@ final class CellularExplorer: Explorer {
 		message.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
 		message.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-5*s)
 	}
+	override func layout375x812() {
+		let lw: CGFloat = Screen.width-10*s
+		let mw: CGFloat = 221*s
+		let sw: CGFloat = lw-mw
+		let bw: CGFloat = 40*s
+		let sh: CGFloat = 56*s
+		
+		large.frame = CGRect(x: 5*s, y: Screen.safeTop, width: lw, height: lw)
+		medium.frame = CGRect(x: 5*s, y: large.bottom, width: mw, height: mw)
+		small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
+		
+		controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
+		play.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
+		reset.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
+		guide.left(dx: 15*s+2*bw, size: CGSize(width: bw, height: 30*s))
+		
+		// AetherLimbo
+		aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: lw, height: lw)
+		aetherLimbo.renderPaths()
+		aetherLimbo.alpha = 0
+		
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+		
+		aetherView.renderToolBars()
+		aetherView.placeToolBars()
+		aetherView.showToolBars()
+		aetherView.stretch()
+		
+		ooviumLabel.bottomRight(dx: -12*s, dy: -14*s, size: CGSize(width: 144*s, height: 40*s))
+		
+		// Message
+		message.cutouts[Position.bottomRight] = Cutout(width: small.width, height: sh)
+		message.cutouts[Position.bottomLeft] = Cutout(width: sh, height: sh)
+		message.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-Screen.safeBottom)
+		
+		swapper.frame = CGRect(x: 5*s, y: message.bottom-sh, width: sh, height: sh)
+		dilator.frame = CGRect(x: 5*s, y: medium.bottom, width: Screen.width-10*s, height: sh)
+		close.frame = CGRect(x: message.right-small.width, y: message.bottom-sh, width: small.width, height: sh)
+		
+		empty.cutouts[Position.bottomRight] = Cutout(width: small.width, height: sh)
+		empty.cutouts[Position.bottomLeft] = Cutout(width: sh, height: sh)
+		empty.frame = CGRect(x: 5*s, y: dilator.bottom, width: Screen.width-10*s, height: Screen.height-dilator.bottom-Screen.safeBottom)
+	}
 	override func layout1024x768() {
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
@@ -327,7 +373,7 @@ final class CellularExplorer: Explorer {
 		small.topRight(dx: -5*s, dy: Screen.safeTop+462*s, width: 176*s, height: 176*s)
 		dilator.frame = CGRect(x: 205*s, y: Screen.safeTop+y, width: Screen.width-(x+30*s)-200*s-10*s, height: ch)
 		message.frame = CGRect(x: 5*s, y: Screen.safeTop+y+ch, width: Screen.width-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
-		close.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: small.width, height: medium.height-small.height)
+		close.topLeft(dx: Screen.width-5*s-small.width, dy: medium.bottom-(medium.height-small.height), width: small.width, height: medium.height-small.height)
 
 		controls.frame = CGRect(x: 5*s, y: Screen.safeTop+y, width: 200*s, height: ch)
 		play.left(dx: 100*s-q-bw, size: CGSize(width: bw, height: 30*s))

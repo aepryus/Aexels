@@ -349,13 +349,13 @@ As a result, this seriously calls into question the idea that a gravity clock in
 
 "GameOfLife" = "This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 
-In the upper left is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  In this case, Conway’s Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the ‘new’ button.
+Above is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  Here, Conway’s Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the ‘new’ button.
 
-Below the aether definition panel are the play / pause, reset, and guide lines buttons.  The play / pause button will put the automaton into motion (or pause it).  The reset button will reinitialize the cells.  The guide lines button will turn on and off the zoom indicator boxes.
+The play / pause button will put the automaton into motion (or pause it).  The reset button will stop the automaton and reinitialize the cells.  The guide lines button will turn on and off the zoom indicator boxes.
 
-To the right of the buttons is the time dilator slider.  One can adjust the step rate, speeding or slowing the system between 1 step per second up to 10 steps per second.
+There is a time dilator slider, which allows the steps per second to be adjusted, speeding or slowing the system between 1 step per second up to 60 steps per second.
 
-The right side of the screen contains the 3 world view panels.  The top large view is the main world view panel.  Tapping this panel will cause a 2x zoomed section of the world to appear in the second panel.  Tapping the second panel will cause a 4x zoomed section to appear in the third panel.
+The automata itself is displayed via 3 world views.  The top large view is the main world view panel.  Tapping this panel will cause a 2x zoomed section of the world to appear in the second panel.  Tapping the second panel will cause a 4x zoomed section to appear in the third panel.
 
 Game of Life
 
