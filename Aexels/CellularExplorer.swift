@@ -104,17 +104,14 @@ final class CellularExplorer: Explorer {
 	override func createLimbos() {
 		// Cellular Views ==================
 		// Large
-		large.content = largeCell
 		limbos.append(large)
 		
 		// Medium
 		mediumCell.zoom = 2
-		medium.content = mediumCell
 		limbos.append(medium)
 		
 		// Small
 		smallCell.zoom = 4
-		small.content = smallCell
 		limbos.append(small)
 		
 		largeCell.zoomView = mediumCell
@@ -132,7 +129,12 @@ final class CellularExplorer: Explorer {
 			largeCell.points = floorQ(x: 432*s, to: 1)
 			mediumCell.points = floorQ(x: 256*s, to: 2)
 			smallCell.points = floorQ(x: 144*s, to: 4)
+			print("A: [\(floorQ(x: 432*s, to: 1)):\(floorQ(x: 256*s, to: 1)):\(floorQ(x: 144*s, to: 1))]")
 		}
+		
+		var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))
+		length = CGFloat(mediumCell.points); medium.set(content: mediumCell, size: CGSize(width: length, height: length))
+		length = CGFloat(smallCell.points); small.set(content: smallCell, size: CGSize(width: length, height: length))
 
 		// Message =========================
 		message = MessageLimbo()
@@ -362,17 +364,18 @@ final class CellularExplorer: Explorer {
 	override func layout1024x768() {
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
-		let x: CGFloat = 432*s
 		let y: CGFloat = 400*s
 		let ch: CGFloat = 72*s
 		let bw: CGFloat = 50*s
 		let q: CGFloat = 26*s
+		
+		let lW: CGFloat = 462*s
 
-		large.topRight(dx: -5*s, dy: Screen.safeTop, width: x+30*s, height: x+30*s)
-		medium.topLeft(dx: large.left, dy: Screen.safeTop+462*s, width: 286*s, height: 286*s)
-		small.topRight(dx: -5*s, dy: Screen.safeTop+462*s, width: 176*s, height: 176*s)
-		dilator.frame = CGRect(x: 205*s, y: Screen.safeTop+y, width: Screen.width-(x+30*s)-200*s-10*s, height: ch)
-		message.frame = CGRect(x: 5*s, y: Screen.safeTop+y+ch, width: Screen.width-(x+30*s)-10*s, height: 768*s-20*s-y-ch)
+		large.topRight(dx: -5*s, dy: Screen.safeTop, width: lW, height: lW)
+		medium.topLeft(dx: large.left, dy: large.bottom, width: 286*s, height: 286*s)
+		small.topRight(dx: -5*s, dy: large.bottom, width: 176*s, height: 176*s)
+		dilator.frame = CGRect(x: 205*s, y: Screen.safeTop+y, width: Screen.width-lW-200*s-10*s, height: ch)
+		message.frame = CGRect(x: 5*s, y: Screen.safeTop+y+ch, width: Screen.width-lW-10*s, height: 768*s-20*s-y-ch)
 		close.topLeft(dx: Screen.width-5*s-small.width, dy: medium.bottom-(medium.height-small.height), width: small.width, height: medium.height-small.height)
 
 		controls.frame = CGRect(x: 5*s, y: Screen.safeTop+y, width: 200*s, height: ch)
@@ -381,7 +384,7 @@ final class CellularExplorer: Explorer {
 		guide.left(dx: 100*s+q, size: CGSize(width: bw, height: 30*s))
 		
 		// Aether
-		aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-(x+30*s)-10*s, height: y)
+		aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-lW-10*s, height: y)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 

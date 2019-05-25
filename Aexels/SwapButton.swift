@@ -23,7 +23,7 @@ fileprivate class SwapView: UIView {
 		backgroundColor = UIColor.clear
 		isUserInteractionEnabled = false
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
@@ -75,7 +75,7 @@ class SwapButton: AXButton {
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func rotateView() {
 		UIView.animate(withDuration: 0.2) {

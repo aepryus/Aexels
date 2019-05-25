@@ -51,7 +51,7 @@ class KinematicsView: UIView, Simulation {
 		
 		self.backgroundColor = UIColor.clear
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func render() {
 		self.w = Double(width)
@@ -116,7 +116,7 @@ class KinematicsView: UIView, Simulation {
 		UIGraphicsEndImageContext();
 	}
 	
-	func jump (_ n: Int) {
+	func jump(_ n: Int) {
 		if n == 0 {
 			y -= 1
 		} else if n == 3 {

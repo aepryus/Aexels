@@ -20,7 +20,7 @@ class Cutout {
 	let width: CGFloat
 	let height: CGFloat
 	
-	init (width: CGFloat, height: CGFloat) {
+	init(width: CGFloat, height: CGFloat) {
 		self.width = width
 		self.height = height
 	}
@@ -34,18 +34,25 @@ class Limbo: UIView {
 
 	var cutouts: [Position:Cutout] = [:]
 	
+	var size: CGSize? = nil
 	var _content: UIView?
 	var content: UIView? {
 		set {
 			_content?.removeFromSuperview()
 			_content = newValue
-			
-			if _content == nil {return}
-			
-			_content?.frame = CGRect(x: p, y: p, width: bounds.size.width-2*p, height: bounds.size.height-2*p)
-			addSubview(_content!)
+			guard let _content = _content else {return}
+			addSubview(_content)
+			layoutContent()
 		}
 		get {return _content}
+	}
+	func set(content: UIView, size: CGSize) {
+		_content?.removeFromSuperview()
+		_content = content
+		self.size = size
+		guard let _content = _content else {return}
+		addSubview(_content)
+		layoutContent()
 	}
 
 	var limboPath = LimboPath()
@@ -60,14 +67,14 @@ class Limbo: UIView {
 		layer.shadowRadius = 3*Screen.s
 		layer.shadowOpacity = 0.6
 	}
-	convenience init (p: CGFloat) {
+	convenience init(p: CGFloat) {
 		self.init()
 		self.p = p
 	}
-	convenience init (points: [(CGFloat, CGFloat)]) {
+	convenience init(points: [(CGFloat, CGFloat)]) {
 		self.init()
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	private func buildPath (p: CGFloat, q: CGFloat) -> CGPath {
 		let path = CGMutablePath()
@@ -146,7 +153,15 @@ class Limbo: UIView {
 		setNeedsDisplay()
 	}
 	
-	func applyMask (_ mask: CGPath) {}
+	func applyMask(_ mask: CGPath) {}
+	
+	func layoutContent() {
+		if let size = size {
+			_content?.center(size: size)
+		} else {
+			_content?.center(size: CGSize(width: width-2*p, height: height-2*p))
+		}
+	}
 	
 // UIView ==========================================================================================
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -159,8 +174,7 @@ class Limbo: UIView {
 			guard frame != CGRect.zero else {return}
 			
 			renderPaths()
-
-			_content?.frame = CGRect(x: p, y: p, width: frame.size.width-2*p, height: frame.size.height-2*p)
+			layoutContent()
 		}
 	}
 	override func draw(_ rect: CGRect) {

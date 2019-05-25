@@ -24,6 +24,8 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	func applicationDidEnterBackground(_ application: UIApplication) {
-		if !Oovium.aetherView.aether.readOnly {Oovium.aetherView.saveAether()}
+		if let aetherView = Oovium.aetherView, aetherView.aether.readOnly {
+			aetherView.saveAether()
+		}
 	}
 }

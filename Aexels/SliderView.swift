@@ -25,7 +25,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 	
 	private var ph: CGFloat = 80*Screen.s
 	
-	init (_ onPageChange: @escaping (String)->()) {
+	init(_ onPageChange: @escaping (String)->()) {
 		self.onPageChange = onPageChange
 		
 		self.thumb = UIView()
@@ -45,7 +45,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
 		thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan)))
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	var pageNo: Int {
 		set {
@@ -77,17 +77,17 @@ class SliderView: UIView, UIScrollViewDelegate {
 		get {return _pages}
 	}
 	
-	func snapToPageNo (_ pageNo: Int) {
+	func snapToPageNo(_ pageNo: Int) {
 		_pageNo = pageNo
 		thumb.frame = CGRect(x: 0, y: CGFloat(pageNo)*ph, width: width, height: ph)
 	}
 	
 // Events ==========================================================================================
-	@objc func onTap (_ gesture: UITapGestureRecognizer) {
+	@objc func onTap(_ gesture: UITapGestureRecognizer) {
 		pageNo = min(max(Int(gesture.location(in: self).y/ph),0),pages.count-1)
 	}
 	static var startY: CGFloat = 0
-	@objc func onPan (_ gesture: UIPanGestureRecognizer) {
+	@objc func onPan(_ gesture: UIPanGestureRecognizer) {
 		if gesture.state == .began {
 			SliderView.startY = thumb.frame.origin.y
 		}
@@ -110,7 +110,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 	}
 	
 // UIScrollViewDelegate ============================================================================
-	func scrollViewDidScroll (_ scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		guard !numb else {return}
 		let y: CGFloat = scrollView.contentOffset.y / scrollView.contentSize.height * height
 		thumb.frame = CGRect(x: thumb.left, y: y, width: thumb.width, height: thumb.height)

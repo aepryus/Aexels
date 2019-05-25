@@ -15,16 +15,16 @@ class NexusLabel: UIView {
 	var size: CGFloat
 	var color: UIColor = UIColor.black
 	
-	init (text: String, size: CGFloat) {
+	init(text: String, size: CGFloat) {
 		self.text = text
 		self.size = size
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 // UIView ==========================================================================================
-	override func draw (_ rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		let c = UIGraphicsGetCurrentContext()!
 		
 		c.setFillColor(UIColor.black.cgColor)

@@ -19,14 +19,14 @@ class NewtownianView: UIView, Simulation {
 	
 	var image: UIImage?
 	
-	init () {
+	init() {
 		x = V2(100, 100)
 		v = V2(5 , 3)
 		super.init(frame: CGRect.zero)
 		
 		backgroundColor = UIColor.clear
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func tic() {
 		x.x += v.x
@@ -51,7 +51,7 @@ class NewtownianView: UIView, Simulation {
 			h = Double(height)
 		}
 	}
-	override func draw (_ rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		let r: CGFloat = 26
 		
 		let path = CGMutablePath()

@@ -67,7 +67,7 @@ class Explorer {
 
 	func layout1194x834() {layout1024x768()}
 
-	func dimLimbos (_ limbos: [Limbo]) {
+	func dimLimbos(_ limbos: [Limbo]) {
 		UIView.animate(withDuration: 0.2, animations: { 
 			for limbo in limbos {
 				limbo.alpha = 0
@@ -79,7 +79,7 @@ class Explorer {
 			}
 		}
 	}
-	func brightenLimbos (_ limbos: [Limbo]) {
+	func brightenLimbos(_ limbos: [Limbo]) {
 		for limbo in limbos {
 			parent.addSubview(limbo)
 		}

@@ -38,10 +38,10 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		gesture.delegate = self
 		addGestureRecognizer(gesture)
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 // Events ==========================================================================================
-	@objc func onPan (gesture: UIPanGestureRecognizer) {
+	@objc func onPan(gesture: UIPanGestureRecognizer) {
 		let p: CGFloat = 3*Screen.s
 		let dw: CGFloat = 0
 
@@ -62,7 +62,7 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 	}
 	
 // UIView ==========================================================================================
-	override func draw (_ rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		let p: CGFloat = 3*s;
 		let crx: CGFloat = 16*s
 		let cry: CGFloat = 12*s

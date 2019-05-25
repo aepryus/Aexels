@@ -23,7 +23,7 @@ class NexusViewController: UIViewController {
 	var explorer: Explorer?
 
 	var busy = false
-	private func display (explorer: Explorer) {
+	private func display(explorer: Explorer) {
 		if explorer.canExplore {
 			if Screen.iPad {
 				let height = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -47,7 +47,7 @@ class NexusViewController: UIViewController {
 			self.busy = false
 		})
 	}
-	private func wantsToDisplay (explorer: Explorer) {
+	private func wantsToDisplay(explorer: Explorer) {
 		objc_sync_enter(self)
 		defer {objc_sync_exit(self)}
 		if busy {return}
@@ -73,7 +73,7 @@ class NexusViewController: UIViewController {
 		}
 	}
 	
-	private func buildCutoutPath (x: [CGFloat], y: [CGFloat], radius: CGFloat) -> CGPath {
+	private func buildCutoutPath(x: [CGFloat], y: [CGFloat], radius: CGFloat) -> CGPath {
 		let path = CGMutablePath()
 		
 		path.move(to: CGPoint(x: x[0], y: y[1]))

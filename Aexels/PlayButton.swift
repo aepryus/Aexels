@@ -32,7 +32,7 @@ class PlayButton: AXButton {
 			}
 		}
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func play() {
 		if playing {return}

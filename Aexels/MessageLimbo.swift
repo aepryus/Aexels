@@ -35,7 +35,7 @@ class MessageLimbo: Limbo {
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(tap))
 		addGestureRecognizer(gesture)
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func load() {
 		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!)
@@ -78,7 +78,7 @@ class MessageLimbo: Limbo {
 		scrollView.contentOffset = CGPoint.zero
 	}
 	
-	override func applyMask (_ mask: CGPath) {
+	override func applyMask(_ mask: CGPath) {
 		axMaskView.path = mask
 	}
 	

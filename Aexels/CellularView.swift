@@ -25,7 +25,7 @@ struct Cell {
 	var x: Int
 	var y: Int
 	
-	init (_ x: Int, _ y: Int) {
+	init(_ x: Int, _ y: Int) {
 		self.x = x
 		self.y = y
 	}
@@ -92,7 +92,7 @@ final class CellularView: UIView {
 		backgroundColor = UIColor.clear
 		addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan)))
 	}
-	required init? (coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func clear() {
 		image = nil
@@ -164,10 +164,10 @@ final class CellularView: UIView {
 		setNeedsDisplay()
 	}
 	
-	func pointFrom (cell: Cell) -> CGPoint {
+	func pointFrom(cell: Cell) -> CGPoint {
 		return CGPoint(x: (cell.x-origin.x)*zoom, y: (cell.y-origin.y)*zoom)
 	}
-	func cellFrom (point: CGPoint) -> Cell {
+	func cellFrom(point: CGPoint) -> Cell {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
 	func zoom(at point: CGPoint) {
@@ -228,7 +228,7 @@ final class CellularView: UIView {
 	}
 	
 // UIView ==========================================================================================
-	override func draw (_ rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		guard let image = image?.cgImage else {return}
 		let c = UIGraphicsGetCurrentContext()!
 		c.translateBy(x: 0, y: CGFloat(vw))
