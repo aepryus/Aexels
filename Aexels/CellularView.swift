@@ -171,11 +171,13 @@ final class CellularView: UIView {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
 	func zoom(at point: CGPoint) {
+		guard let zoomView = zoomView else {fatalError()}
+		
 		zoomPoint = point
 		let cell = cellFrom(point: point)
 		
 		let cs = cellSize
-		let zcs = zoomView!.cellSize
+		let zcs = zoomView.cellSize
 		
 		let x: Int = min(max(cell.x-zcs/2, self.origin.x) , self.origin.x+cs-zcs)
 		let y: Int = min(max(cell.y-zcs/2, self.origin.y) , self.origin.y+cs-zcs)
@@ -184,14 +186,14 @@ final class CellularView: UIView {
 		
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
-		zoomView!.origin = origin
-		if zoomView!.zoomView != nil {
-			let a = zoomView!.width/2
-			zoomView!.zoom(at: CGPoint(x: a, y: a))
+		zoomView.origin = origin
+		if zoomView.zoomView != nil {
+			let a = zoomView.width/2
+			zoomView.zoom(at: CGPoint(x: a, y: a))
 		}
 		
 		flash()
-		if zoomView!.zoomView == nil {zoomView!.flash()}
+		if zoomView.zoomView == nil {zoomView.flash()}
 	}
 	
 // Events ==========================================================================================
