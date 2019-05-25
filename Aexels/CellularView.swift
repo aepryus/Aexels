@@ -170,7 +170,7 @@ final class CellularView: UIView {
 	func cellFrom(point: CGPoint) -> Cell {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
-	func zoom(at point: CGPoint) {
+	@discardableResult func zoom(at point: CGPoint, cascade: Bool = true, pushable: Bool = false) -> Bool {
 		guard let zoomView = zoomView else {fatalError()}
 		
 		zoomPoint = point
@@ -178,6 +178,22 @@ final class CellularView: UIView {
 		
 		let cs = cellSize
 		let zcs = zoomView.cellSize
+		
+		var pushed: Bool = false
+		if pushable, let parentView = parentView {
+			var newX: Int = self.origin.x
+			newX = min(newX, cell.x-zcs/2)
+			newX = max(newX, cell.x+zcs/2-cs)
+			var newY: Int = self.origin.y
+			newY = min(newY, cell.y-zcs/2)
+			newY = max(newY, cell.y+zcs/2-cs)
+			
+			if self.origin.x != newX || self.origin.y != newY {
+				let point = parentView.pointFrom(cell: Cell(newX+cs/2, newY+cs/2))
+				parentView.zoom(at: point, cascade: false)
+				pushed = true
+			}
+		}
 		
 		let x: Int = min(max(cell.x-zcs/2, self.origin.x) , self.origin.x+cs-zcs)
 		let y: Int = min(max(cell.y-zcs/2, self.origin.y) , self.origin.y+cs-zcs)
@@ -187,13 +203,15 @@ final class CellularView: UIView {
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
 		zoomView.origin = origin
-		if zoomView.zoomView != nil {
+		if cascade && zoomView.zoomView != nil {
 			let a = zoomView.width/2
 			zoomView.zoom(at: CGPoint(x: a, y: a))
 		}
 		
 		flash()
 		if zoomView.zoomView == nil {zoomView.flash()}
+		
+		return pushed
 	}
 	
 // Events ==========================================================================================
@@ -223,7 +241,10 @@ final class CellularView: UIView {
 				parentView.guideOnOverride = true
 			}
 			else if gesture.state == .ended {parentView.guideOnOverride = false}
-			parentView.zoom(at: (parentView.startPoint! - (point - panStart!)/2))
+			if parentView.zoom(at: (parentView.startPoint! - (point - panStart!)/2), pushable: true) {
+				parentView.startPoint = parentView.zoomPoint
+				panStart = point
+			}
 		}
 		
 		if gesture.state == .ended {panMode = nil}
