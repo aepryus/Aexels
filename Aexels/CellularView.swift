@@ -170,16 +170,15 @@ final class CellularView: UIView {
 	func cellFrom(point: CGPoint) -> Cell {
 		return Cell(Int(point.x)/zoom+origin.x, Int(point.y)/zoom+origin.y)
 	}
-	@discardableResult func zoom(at point: CGPoint, cascade: Bool = true, pushable: Bool = false) -> Bool {
+	@discardableResult func zoom(at point: CGPoint, cascade: Bool = true, pushable: Bool = false) -> Cell? {
 		guard let zoomView = zoomView else {fatalError()}
 		
-		zoomPoint = point
 		let cell = cellFrom(point: point)
 		
 		let cs = cellSize
 		let zcs = zoomView.cellSize
 		
-		var pushed: Bool = false
+		var pushed: Cell? = nil
 		if pushable, let parentView = parentView {
 			var newX: Int = self.origin.x
 			newX = min(newX, cell.x-zcs/2)
@@ -189,9 +188,9 @@ final class CellularView: UIView {
 			newY = max(newY, cell.y+zcs/2-cs)
 			
 			if self.origin.x != newX || self.origin.y != newY {
+				pushed = Cell(newX-self.origin.x, newY-self.origin.y)
 				let point = parentView.pointFrom(cell: Cell(newX+cs/2, newY+cs/2))
 				parentView.zoom(at: point, cascade: false)
-				pushed = true
 			}
 		}
 		
@@ -203,9 +202,13 @@ final class CellularView: UIView {
 		focus = CGRect(x: oP.x, y: oP.y, width: CGFloat(zcs*zoom), height: CGFloat(zcs*zoom))
 		zoomPoint = CGPoint(x: focus!.midX, y: focus!.midY)
 		zoomView.origin = origin
-		if cascade && zoomView.zoomView != nil {
-			let a = zoomView.width/2
-			zoomView.zoom(at: CGPoint(x: a, y: a))
+		if zoomView.zoomView != nil {
+			if cascade {
+				let a = zoomView.width/2
+				zoomView.zoom(at: CGPoint(x: a, y: a))
+			} else {
+				zoomView.flash()
+			}
 		}
 		
 		flash()
@@ -240,10 +243,14 @@ final class CellularView: UIView {
 				panStart = point
 				parentView.guideOnOverride = true
 			}
-			else if gesture.state == .ended {parentView.guideOnOverride = false}
-			if parentView.zoom(at: (parentView.startPoint! - (point - panStart!)/2), pushable: true) {
+			else if gesture.state == .ended {
+				parentView.guideOnOverride = false
+				parentView.parentView?.guideOnOverride = false
+			}
+			if let delta = parentView.zoom(at: (parentView.startPoint! - (point - panStart!)/2), pushable: true) {
+				parentView.parentView!.guideOnOverride = true
 				parentView.startPoint = parentView.zoomPoint
-				panStart = point
+				panStart = CGPoint(x: point.x-CGFloat(delta.x*2), y: point.y-CGFloat(delta.y*2))
 			}
 		}
 		

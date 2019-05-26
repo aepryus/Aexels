@@ -152,22 +152,15 @@ final class CellularExplorer: Explorer {
 		Oovium.aetherView = aetherView
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
 		
-		aetherView.onSwap = {[weak self](aether: Aether) in
-			guard let me = self else {return}
-			me.engine.needsCompile = true
-			me.open(aether: aether)
+		aetherView.onSwap = {[unowned self](aether: Aether) in
+			self.engine.needsCompile = true
+			self.open(aether: aether)
 		}
-		aetherView.onNew = {[weak self](aether: Aether) in
-			guard let me = self else {return}
-			me.engine.needsCompile = true
+		aetherView.onNew = {[unowned self](aether: Aether) in
+			self.engine.needsCompile = true
 			let auto = aether.createAuto(at: V2(0, 0))
-			if Screen.iPhone {
-				aether.xOffset = 250
-				aether.yOffset = 280
-			} else {
-				aether.xOffset = 410
-				aether.yOffset = 290
-			}
+			aether.xOffset = Double(self.aetherView.width) - 130
+			aether.yOffset = Double(self.aetherView.height) - 100
 			auto.statesChain.replaceWith(tokens: "0:2")
 		}
 		
@@ -200,65 +193,60 @@ final class CellularExplorer: Explorer {
 //			self.aetherView.markPositions()
 //			print(self.aetherView.aether.unload().toJSON())
 		}
-		play.onStop = { [weak self] in
-			guard let me = self else {return}
-			me.engine.stop()
+		play.onStop = { [unowned self] in
+			self.engine.stop()
 		}
 		controls.addSubview(play)
 		
 		controls.addSubview(reset)
-		reset.addAction(for: .touchUpInside) { [weak self] in
-			guard let me = self else {return}
-			me.play.stop()
-			me.engine.configureViews()
-			me.engine.reset()
-			me.engine.needsCompile = true
+		reset.addAction(for: .touchUpInside) { [unowned self] in
+			self.play.stop()
+			self.engine.configureViews()
+			self.engine.reset()
+			self.engine.needsCompile = true
 		}
 		
 		controls.addSubview(guide)
-		guide.addAction(for: .touchUpInside) { [weak self] in
-			guard let me = self else {return}
-			me.engine.guideOn = !me.engine.guideOn
-			me.guide.stateOn = me.engine.guideOn
-			me.guide.setNeedsDisplay()
-			me.largeCell.flash()
-			me.mediumCell.flash()
+		guide.addAction(for: .touchUpInside) { [unowned self] in
+			self.engine.guideOn = !self.engine.guideOn
+			self.guide.stateOn = self.engine.guideOn
+			self.guide.setNeedsDisplay()
+			self.largeCell.flash()
+			self.mediumCell.flash()
 		}
 
 		// Close ===========================
 		close.alpha = 0
-		close.addAction(for: .touchUpInside) { [weak self] in
-			guard let me = self else {return}
-			me.isFirst = true
-			me.aetherView.snuffToolBars()
-			me.closeExplorer()
+		close.addAction(for: .touchUpInside) { [unowned self] in
+			self.isFirst = true
+			self.aetherView.snuffToolBars()
+			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
 		limbos.append(close)
 
 		// Swapper =========================
 		if Screen.iPhone {
-			swapButton.addAction(for: .touchUpInside) { [weak self] in
-				guard let me = self else {return}
-				me.swapButton.rotateView()
-				if me.isFirst {
-					me.isFirst = false
-					me.dimLimbos(me.first)
-					me.brightenLimbos(me.second)
-					me.limbos = [me.swapper] + me.second + [me.close]
-					me.aetherView.snuffToolBars()
+			swapButton.addAction(for: .touchUpInside) { [unowned self] in
+				self.swapButton.rotateView()
+				if self.isFirst {
+					self.isFirst = false
+					self.dimLimbos(self.first)
+					self.brightenLimbos(self.second)
+					self.limbos = [self.swapper] + self.second + [self.close]
+					self.aetherView.snuffToolBars()
 				} else {
-					me.isFirst = true
-					me.dimLimbos(me.second)
-					me.brightenLimbos(me.first)
-					me.limbos = [me.swapper] + me.first + [me.close]
-					me.aetherView.invokeAetherPicker()
-					me.aetherView.showToolBars()
+					self.isFirst = true
+					self.dimLimbos(self.second)
+					self.brightenLimbos(self.first)
+					self.limbos = [self.swapper] + self.first + [self.close]
+					self.aetherView.invokeAetherPicker()
+					self.aetherView.showToolBars()
 				}
-				me.swapper.removeFromSuperview()
-				me.parent.addSubview(me.swapper)
-				me.close.removeFromSuperview()
-				me.parent.addSubview(me.close)
+				self.swapper.removeFromSuperview()
+				self.parent.addSubview(self.swapper)
+				self.close.removeFromSuperview()
+				self.parent.addSubview(self.close)
 			}
 			swapper.content = swapButton
 			limbos.append(swapper)

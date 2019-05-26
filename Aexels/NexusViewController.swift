@@ -225,7 +225,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 244*s+i*58*s, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: 224*s+i*58*s, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
