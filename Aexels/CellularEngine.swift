@@ -39,8 +39,6 @@ final class CellularEngine {
 		stride = side/iterations
 		cells = UnsafeMutablePointer<Double>.allocate(capacity: side*side)
 		next = UnsafeMutablePointer<Double>.allocate(capacity: side*side)
-		
-		defineOnFire()
 	}
 	deinit {
 		automatas.forEach {AXAutomataRelease($0)}

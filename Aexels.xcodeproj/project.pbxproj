@@ -44,7 +44,6 @@
 		D81D3234216127A2005959EE /* Move.oo in Resources */ = {isa = PBXBuildFile; fileRef = D81D3233216127A2005959EE /* Move.oo */; };
 		D828617A1E6B8666006E76F1 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D82861791E6B8666006E76F1 /* Back6.png */; };
 		D828617D1E6B87A4006E76F1 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617B1E6B87A4006E76F1 /* Back4.png */; };
-		D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82BE4D51E22C53B00E8E710 /* AXTimer.swift */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
 		D841756D2147765D006C1C5B /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D841756C2147765D006C1C5B /* ExpButton.swift */; };
@@ -149,7 +148,6 @@
 		D81D3233216127A2005959EE /* Move.oo */ = {isa = PBXFileReference; explicitFileType = text.json; path = Move.oo; sourceTree = "<group>"; };
 		D82861791E6B8666006E76F1 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
 		D828617B1E6B87A4006E76F1 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back4.png; sourceTree = "<group>"; };
-		D82BE4D51E22C53B00E8E710 /* AXTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXTimer.swift; sourceTree = "<group>"; };
 		D8354B4A1E20D32700288C72 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8354B4C1E217CF300288C72 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		D841756C2147765D006C1C5B /* ExpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpButton.swift; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				D87E1C9322873C23003608EB /* AXSync.swift */,
-				D82BE4D51E22C53B00E8E710 /* AXTimer.swift */,
 				D862F1BA1E5984C600612627 /* Simulation.swift */,
 			);
 			name = Simulation;
@@ -726,7 +723,6 @@
 				D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */,
 				D8ABB6F31E7537F1001FE14F /* SliderView.swift in Sources */,
 				D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */,
-				D82BE4D61E22C53B00E8E710 /* AXTimer.swift in Sources */,
 				D8B13C0F1E1E3E7000E02E16 /* KinematicsExplorer.swift in Sources */,
 				D8A19A9820B1ECCD002518F4 /* AXButton.swift in Sources */,
 				D80425E91E1B5C74009C9ED3 /* NexusViewController.swift in Sources */,

@@ -83,6 +83,7 @@ final class CellularExplorer: Explorer {
 // Events ==========================================================================================
 	override func onOpen() {
 		Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
+		engine.defineOnFire()
 		aetherView.layoutAetherPicker()
 	}
 	override func onOpening() {
@@ -129,7 +130,6 @@ final class CellularExplorer: Explorer {
 			largeCell.points = floorQ(x: 432*s, to: 1)
 			mediumCell.points = floorQ(x: 256*s, to: 2)
 			smallCell.points = floorQ(x: 144*s, to: 4)
-			print("A: [\(floorQ(x: 432*s, to: 1)):\(floorQ(x: 256*s, to: 1)):\(floorQ(x: 144*s, to: 1))]")
 		}
 		
 		var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))

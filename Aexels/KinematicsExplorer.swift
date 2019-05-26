@@ -54,14 +54,17 @@ class KinematicsExplorer: Explorer {
 // Events ==========================================================================================
 	override func onOpen() {
 		if universePicker.pageNo == 0 {
-			Aexels.timer.configure(interval: 1.0/60.0) {
+			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
 				self.newtonianView.tic()
+				complete()
 			}
 		} else {
-			Aexels.timer.configure(interval: 1.0/60.0) {
+			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
 				self.kinematicsView.tic()
+				complete()
 			}
 		}
+		Aexels.sync.link.preferredFramesPerSecond = 60
 	}
 	override func onOpened() {
 		playButton.play()
@@ -77,79 +80,77 @@ class KinematicsExplorer: Explorer {
 // Explorer ========================================================================================
 	override func createLimbos() {
 		
-		kinematicsView.onTic = { [weak self] (velocity: V2) in
-			guard let me = self else {return}
-			me.loopVector.vector = velocity
+		kinematicsView.onTic = { [unowned self] (velocity: V2) in
+			self.loopVector.vector = velocity
 		}
-		newtonianView.onTic = { [weak self] (velocity: V2) in
-			guard let me = self else {return}
-			me.loopVector.vector = velocity
+		newtonianView.onTic = { [unowned self] (velocity: V2) in
+			self.loopVector.vector = velocity
 		}
 		
 		// Universe
-		universePicker = SliderView { [weak self] (page: String) in
-			guard let me = self else {return}
-			
+		universePicker = SliderView { [unowned self] (page: String) in
 			let cs: Double = 30*cos(Double.pi/6)
 			
 			if page == "Universe" {
-				me.kinematicsView.stop()
+				self.kinematicsView.stop()
 				
-				Aexels.timer.configure(interval: 1.0/60.0) {
-					self?.newtonianView.tic()
+				Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+					self.newtonianView.tic()
+					complete()
 				}
+
+				self.newtonianView.x.x = self.kinematicsView.Xl.x
+				self.newtonianView.x.y = self.kinematicsView.Xl.y
+				self.newtonianView.v.x = self.kinematicsView.Va.x + self.kinematicsView.Vl.x*2*cs
+				self.newtonianView.v.y = -(self.kinematicsView.Va.y + self.kinematicsView.Vl.y*2*cs)
+				self.loopVector.max = 10
 				
-				me.newtonianView.x.x = me.kinematicsView.Xl.x
-				me.newtonianView.x.y = me.kinematicsView.Xl.y
-				me.newtonianView.v.x = me.kinematicsView.Va.x + me.kinematicsView.Vl.x*2*cs
-				me.newtonianView.v.y = -(me.kinematicsView.Va.y + me.kinematicsView.Vl.y*2*cs)
-				me.loopVector.max = 10
-				
-				me.newtonianView.setNeedsDisplay()
-				if me.playButton.playing {
-					me.newtonianView.play()
+				self.newtonianView.setNeedsDisplay()
+				if self.playButton.playing {
+					self.newtonianView.play()
 				}
 			} else {
-				me.newtonianView.stop()
+				self.newtonianView.stop()
 				
-				Aexels.timer.configure(interval: 1.0/60.0) {
-					self?.kinematicsView.tic()
+				Aexels.sync.onFire = { [unowned self] (link: CADisplayLink, complete: @escaping ()->()) in
+					self.kinematicsView.tic()
+					complete()
 				}
+
+				self.kinematicsView.moveTo(v: self.newtonianView.x)
+				self.kinematicsView.Vl.x = (self.newtonianView.v.x - self.kinematicsView.Va.x)/(2*cs)
+				self.kinematicsView.Vl.y = (-self.newtonianView.v.y - self.kinematicsView.Va.y)/(2*cs)
+				self.loopVector.max = 10/(2*cs)
 				
-				me.kinematicsView.moveTo(v: me.newtonianView.x)
-				me.kinematicsView.Vl.x = (me.newtonianView.v.x - me.kinematicsView.Va.x)/(2*cs)
-				me.kinematicsView.Vl.y = (-me.newtonianView.v.y - me.kinematicsView.Va.y)/(2*cs)
-				me.loopVector.max = 10/(2*cs)
-				
-				me.kinematicsView.setNeedsDisplay()
-				if me.playButton.playing {
-					me.kinematicsView.play()
+				self.kinematicsView.setNeedsDisplay()
+				if self.playButton.playing {
+					self.kinematicsView.play()
 				}
 			}
 			UIView.animate(withDuration: 0.2, animations: {
-				me.universe.content?.alpha = 0
+				self.universe.content?.alpha = 0
 				if page == "Universe X" {
-					me.aetherLabel.alpha = 1
-					me.aetherVector.alpha = 1
-					me.netButton.alpha = 1
-					me.expAButton.alpha = 1
-					me.expBButton.alpha = 1
+					self.aetherLabel.alpha = 1
+					self.aetherVector.alpha = 1
+					self.netButton.alpha = 1
+					self.expAButton.alpha = 1
+					self.expBButton.alpha = 1
 				} else {
-					me.aetherLabel.alpha = 0
-					me.aetherVector.alpha = 0
-					me.netButton.alpha = 0
-					me.expAButton.alpha = 0
-					me.expBButton.alpha = 0
+					self.aetherLabel.alpha = 0
+					self.aetherVector.alpha = 0
+					self.netButton.alpha = 0
+					self.expAButton.alpha = 0
+					self.expBButton.alpha = 0
 				}
 			}, completion: { (finished: Bool) in
 				if page == "Universe" {
-					me.universe.content = me.newtonianView
+					self.universe.content = self.newtonianView
 				} else {
-					me.universe.content = me.kinematicsView
+					self.universe.content = self.kinematicsView
 				}
-				me.universe.content?.alpha = 0
+				self.universe.content?.alpha = 0
 				UIView.animate(withDuration: 0.2, animations: {
-					me.universe.content?.alpha = 1
+					self.universe.content?.alpha = 1
 				})
 			})
 		}
@@ -168,23 +169,21 @@ class KinematicsExplorer: Explorer {
 		}
 		
 		aetherVector.max = 5
-		aetherVector.onTap = { [weak self] (vector: V2) in
-			guard let me = self else {return}
-			me.kinematicsView.Va = vector
-			me.expAButton.activated = false
-			me.expBButton.activated = false
+		aetherVector.onTap = { [unowned self] (vector: V2) in
+			self.kinematicsView.Va = vector
+			self.expAButton.activated = false
+			self.expBButton.activated = false
 		}
 		
 		loopVector.max = 10/(2*30*cos(Double.pi/6))
-		loopVector.onTap = { [weak self] (vector: V2) in
-			guard let me = self else {return}
-			if me.universePicker.pageNo == 0 {
-				me.newtonianView.v = V2(vector.x, -vector.y)
+		loopVector.onTap = { [unowned self] (vector: V2) in
+			if self.universePicker.pageNo == 0 {
+				self.newtonianView.v = V2(vector.x, -vector.y)
 			} else {
-				me.kinematicsView.Vl = vector
+				self.kinematicsView.Vl = vector
 			}
-			me.expAButton.activated = false
-			me.expBButton.activated = false
+			self.expAButton.activated = false
+			self.expBButton.activated = false
 		}
 		
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -201,56 +200,52 @@ class KinematicsExplorer: Explorer {
 		loopLabel.textAlignment = .center
 		
 		expAButton.activated = true
-		expAButton.addAction(for: .touchUpInside) {[weak self] in
-			guard let me = self else {return}
-			
+		expAButton.addAction(for: .touchUpInside) {[unowned self] in
 			let q = 0.3
 			let sn = sin(Double.pi/6)
 			let cs = cos(Double.pi/6)
 			
-			me.kinematicsView.Xa = V2(0, 0)
-			me.kinematicsView.Va = V2(0.5, -1.5)
-			me.kinematicsView.Vl = V2(-cs*q/2, -sn*q/4)
+			self.kinematicsView.Xa = V2(0, 0)
+			self.kinematicsView.Va = V2(0.5, -1.5)
+			self.kinematicsView.Vl = V2(-cs*q/2, -sn*q/4)
 			
-			me.kinematicsView.x = 3
-			me.kinematicsView.y = 3
-			me.kinematicsView.o = 1
+			self.kinematicsView.x = 3
+			self.kinematicsView.y = 3
+			self.kinematicsView.o = 1
 
-			me.aetherVector.vector = me.kinematicsView.Va
-			me.loopVector.vector = me.kinematicsView.Vl
+			self.aetherVector.vector = self.kinematicsView.Va
+			self.loopVector.vector = self.kinematicsView.Vl
 			
-			me.expAButton.activated = true
-			me.expBButton.activated = false
+			self.expAButton.activated = true
+			self.expBButton.activated = false
 		}
 		
-		expBButton.addAction(for: .touchUpInside) {[weak self] in
-			guard let me = self else {return}
-			me.kinematicsView.Xa = V2(0, 0)
-			me.kinematicsView.Va = V2(0, -1)
-			me.kinematicsView.Vl = V2(0, 0)
+		expBButton.addAction(for: .touchUpInside) {[unowned self] in
+			self.kinematicsView.Xa = V2(0, 0)
+			self.kinematicsView.Va = V2(0, -1)
+			self.kinematicsView.Vl = V2(0, 0)
 			
 			if Screen.iPhone {
-				me.kinematicsView.x = 1
-				me.kinematicsView.y = 0
-				me.kinematicsView.o = 1
+				self.kinematicsView.x = 1
+				self.kinematicsView.y = 0
+				self.kinematicsView.o = 1
 			} else {
-				me.kinematicsView.x = 3
-				me.kinematicsView.y = 0
-				me.kinematicsView.o = 0
+				self.kinematicsView.x = 3
+				self.kinematicsView.y = 0
+				self.kinematicsView.o = 0
 			}
 			
-			me.aetherVector.vector = me.kinematicsView.Va
-			me.loopVector.vector = me.kinematicsView.Vl
+			self.aetherVector.vector = self.kinematicsView.Va
+			self.loopVector.vector = self.kinematicsView.Vl
 			
-			me.expAButton.activated = false
-			me.expBButton.activated = true
+			self.expAButton.activated = false
+			self.expBButton.activated = true
 		}
 
-		netButton.addAction(for: .touchUpInside) { [weak self] in
-			guard let me = self else {return}
-			me.kinematicsView.aetherVisible = !me.kinematicsView.aetherVisible
-			me.netButton.on = me.kinematicsView.aetherVisible
-			me.netButton.setNeedsDisplay()
+		netButton.addAction(for: .touchUpInside) { [unowned self] in
+			self.kinematicsView.aetherVisible = !self.kinematicsView.aetherVisible
+			self.netButton.on = self.kinematicsView.aetherVisible
+			self.netButton.setNeedsDisplay()
 		}
 		
 		// Message
@@ -259,33 +254,31 @@ class KinematicsExplorer: Explorer {
 		
 		// Close
 		close.alpha = 0
-		close.addAction(for: .touchUpInside) { [weak self] in
-			guard let me = self else {return}
-			me.isFirst = true
-			me.closeExplorer()
+		close.addAction(for: .touchUpInside) { [unowned self] in
+			self.isFirst = true
+			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
 
 		// Swapper =========================
 		if Screen.iPhone {
-			swapButton.addAction(for: .touchUpInside) { [weak self] in
-				guard let me = self else {return}
-				me.swapButton.rotateView()
-				if me.isFirst {
-					me.isFirst = false
-					me.dimLimbos(me.first)
-					me.brightenLimbos(me.second)
-					me.limbos = [me.swapper] + me.second + [me.close]
+			swapButton.addAction(for: .touchUpInside) { [unowned self] in
+				self.swapButton.rotateView()
+				if self.isFirst {
+					self.isFirst = false
+					self.dimLimbos(self.first)
+					self.brightenLimbos(self.second)
+					self.limbos = [self.swapper] + self.second + [self.close]
 				} else {
-					me.isFirst = true
-					me.dimLimbos(me.second)
-					me.brightenLimbos(me.first)
-					me.limbos = [me.swapper] + me.first + [me.close]
+					self.isFirst = true
+					self.dimLimbos(self.second)
+					self.brightenLimbos(self.first)
+					self.limbos = [self.swapper] + self.first + [self.close]
 				}
-				me.swapper.removeFromSuperview()
-				me.parent.addSubview(me.swapper)
-				me.close.removeFromSuperview()
-				me.parent.addSubview(me.close)
+				self.swapper.removeFromSuperview()
+				self.parent.addSubview(self.swapper)
+				self.close.removeFromSuperview()
+				self.parent.addSubview(self.close)
 			}
 			swapper.content = swapButton
 			limbos.append(swapper)
@@ -446,6 +439,6 @@ class KinematicsExplorer: Explorer {
 		expAButton.center(dx: -26*s, size: CGSize(width: 40*s, height: 50*s))
 		expBButton.center(dx: 26*s, size: CGSize(width: 40*s, height: 50*s))
 
-		close.topRight(dx: message.right-176*s, dy: message.bottom-110*s, width: 176*s, height: 110*s)
+		close.topLeft(dx: message.right-176*s, dy: message.bottom-110*s, width: 176*s, height: 110*s)
 	}
 }

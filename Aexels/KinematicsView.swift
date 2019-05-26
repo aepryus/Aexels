@@ -365,10 +365,10 @@ class KinematicsView: UIView, Simulation {
 	
 // Simulation ======================================================================================
 	func play() {
-		Aexels.timer.start()
+		Aexels.sync.start()
 	}
 	func stop() {
-		Aexels.timer.stop()
+		Aexels.sync.stop()
 	}
 	func reset() {
 		x = 3

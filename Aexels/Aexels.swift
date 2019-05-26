@@ -13,7 +13,6 @@ import UIKit
 class Aexels {
 	static var window: UIWindow!
 	static var nexus: NexusViewController!
-	static var timer: AXTimer = AXTimer()
 	static var sync: AXSync = AXSync()
 	
 	static var version: String {
