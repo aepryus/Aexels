@@ -1,0 +1,3 @@
+[submodule "Oovium"]
+	path = Oovium
+	url = https://github.com/aepryus/Oovium.git

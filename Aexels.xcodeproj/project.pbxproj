@@ -46,6 +46,10 @@
 		D828617D1E6B87A4006E76F1 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D828617B1E6B87A4006E76F1 /* Back4.png */; };
 		D8354B4B1E20D32700288C72 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4A1E20D32700288C72 /* CellularView.swift */; };
 		D8354B4D1E217CF300288C72 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8354B4C1E217CF300288C72 /* PlayButton.swift */; };
+		D83BB807229B9ABF0010D4D0 /* Acheron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C4554C2234D134004D971E /* Acheron.framework */; };
+		D83BB808229B9ABF0010D4D0 /* Acheron.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8C4554C2234D134004D971E /* Acheron.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D83BB80A229B9AC40010D4D0 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
+		D83BB80B229B9AC40010D4D0 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D841756D2147765D006C1C5B /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D841756C2147765D006C1C5B /* ExpButton.swift */; };
 		D84ABD0D2148DAF20036E909 /* Game of Life iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0C2148DAF20036E909 /* Game of Life iP.oo */; };
 		D84ABD0F2148DB090036E909 /* Demons iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D84ABD0E2148DB090036E909 /* Demons iP.oo */; };
@@ -83,25 +87,21 @@
 		D8B32FBB1E9202080052BF21 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B32FBA1E9202080052BF21 /* VectorView.swift */; };
 		D8B6EBC820B16E4100852A48 /* ContentLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6EBC720B16E4100852A48 /* ContentLimbo.swift */; };
 		D8C2648E21713ABF00E03E77 /* OddsAndEndsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */; };
-		D8C4554E2234D13E004D971E /* Acheron.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C4554C2234D134004D971E /* Acheron.framework */; };
-		D8C4554F2234D13E004D971E /* Acheron.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8C4554C2234D134004D971E /* Acheron.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8C64A7C2171D90800F56591 /* Dilation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C64A7B2171D90800F56591 /* Dilation@2x.png */; };
-		D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; };
-		D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8E666F71FB022A3009D136C /* Icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E666F61FB022A3009D136C /* Icon1024.png */; };
 		D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */; };
 		D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FD7E6F1E1E20CD00325115 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D8D42AC81F8F66BC004942E2 /* Embed Frameworks */ = {
+		D83BB809229B9ABF0010D4D0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8D42AC71F8F66BB004942E2 /* OoviumLib.framework in Embed Frameworks */,
-				D8C4554F2234D13E004D971E /* Acheron.framework in Embed Frameworks */,
+				D83BB808229B9ABF0010D4D0 /* Acheron.framework in Embed Frameworks */,
+				D83BB80B229B9AC40010D4D0 /* OoviumLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,9 +201,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FD7E701E1E20CD00325115 /* Crashlytics.framework in Frameworks */,
+				D83BB80A229B9AC40010D4D0 /* OoviumLib.framework in Frameworks */,
+				D83BB807229B9ABF0010D4D0 /* Acheron.framework in Frameworks */,
 				D8FD7E711E1E20CD00325115 /* Fabric.framework in Frameworks */,
-				D8C4554E2234D13E004D971E /* Acheron.framework in Frameworks */,
-				D8D42AC61F8F66BB004942E2 /* OoviumLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +511,7 @@
 				D80425911E1B4A97009C9ED3 /* Frameworks */,
 				D80425921E1B4A97009C9ED3 /* Resources */,
 				D8FD7E6D1E1E1FDA00325115 /* ShellScript */,
-				D8D42AC81F8F66BC004942E2 /* Embed Frameworks */,
+				D83BB809229B9ABF0010D4D0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Acheron/Acheron.xcodeproj">
+      location = "group:Oovium/Acheron/Acheron.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../Oovium/Oovium.xcodeproj">
+      location = "group:Oovium/Oovium.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Aexels.xcodeproj">
