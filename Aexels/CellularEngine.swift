@@ -74,7 +74,7 @@ final class CellularEngine {
 		auto = aether.firstAuto()!
 		auto.foreshadow(memory)
 		
-		let recipe: UnsafeMutablePointer<Recipe> = Web.compile(result: auto.resultTower, memory: memory)
+		let recipe: UnsafeMutablePointer<Recipe> = Math.compile(result: auto.resultTower, memory: memory)
 
 		automatas.forEach {AXAutomataRelease($0)}
 		automatas.removeAll()
