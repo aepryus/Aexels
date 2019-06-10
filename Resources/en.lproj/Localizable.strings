@@ -70,7 +70,7 @@ For example, if a closed subset of cells has a certain state at time t and that 
 
 Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loops back creating stable state loops.
 
-In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all "matter" in Universe X.
+In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all \"matter\" in Universe X.
 
 The matter of Universe X is not fundamental.  It is an artifact of the properties of aexels. It is not made up of particles; it is not made up of waves; it does not displace the aether.  Matter is made up of stable state loops that exist on top of the aether.
 
@@ -98,7 +98,7 @@ Kinematics is the study of motion absent of force.  In our universe, such motion
 
 In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at some later time.  However, this definition is perhaps unnecessarily restrictive.
 
-If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it "moves".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it \"moves\".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
 
 Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the 'tic' time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the 'speed of light' (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
 
@@ -412,7 +412,7 @@ Motion in our own universe can be described entirely by a vector which represent
 
 This lab allows us to compare the motion of our Universe with that of Universe X.  The lab models an object frictionlessly moving inside a 2 dimensional box, elastically bouncing off the walls.
 
-For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational "velocity" vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
+For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational \"velocity\" vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
 
 Perhaps the first thing one might note when comparing the two models is that motion in the Universe X model is quite jerky as opposed to the smooth motion of the model for our Universe.  However, the Universe X model is a statistical model and we are looking at both large aexels and large time steps.  As the density of aexels and time steps increase the motion will continually get more and more smooth until it would become difficult to differentiate the motion of the two systems.
 
