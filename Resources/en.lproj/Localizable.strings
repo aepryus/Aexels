@@ -34,7 +34,7 @@ In 1887, Michelson and Morley performed their famous experiment looking for the 
 
 In Universe X, the aether is not a substance that is displaced by planets and stars.  Rather, in Universe X, the aether is a substance upon which the matter of the universe sits.  It is the canvas upon which the painting appears; it is the game board upon which the chess pieces move.  The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
 
-And like a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from ‘picture elements’ or ‘picture cells’), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from ‘aether elements’ or ‘aether cells’).
+And like a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from 'picture elements' or 'picture cells'), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from 'aether elements' or 'aether cells').
 
 Currently, there are a few things we know about these aexels.  Like the atoms of a liquid, they can move and flow.  Like the atoms of a crystal lattice, they repulse when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
 
@@ -60,9 +60,9 @@ As such, let our exploration begin…
 
 A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
 
-The system progresses using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell’s neighbors.
+The system progresses using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell's neighbors.
 
-For example, perhaps the most famous cellular automaton is Conway’s Game of Life.  In Conway’s game of life the world consists of a 2 dimensional square grid of cells.  Each cell can be either on or off.  The neighbors of a cell consist of the 8 cells directly surrounding it.  If exactly 2 neighbors are on, then the state of the cell will not change.  If exactly 3 neighbors are on then the state of the cell will be turned/remain on.  In all other cases the state of the cell will be turned/remain off.
+For example, perhaps the most famous cellular automaton is Conway's Game of Life.  In Conway's game of life the world consists of a 2 dimensional square grid of cells.  Each cell can be either on or off.  The neighbors of a cell consist of the 8 cells directly surrounding it.  If exactly 2 neighbors are on, then the state of the cell will not change.  If exactly 3 neighbors are on then the state of the cell will be turned/remain on.  In all other cases the state of the cell will be turned/remain off.
 
 This simple set of rules is able to exhibit an amazing amount of complexity.  Initially, when the cells of such a system are randomly populated the progression of state will be quite chaotic.  However, over time, patterns will automatically arise.
 
@@ -70,21 +70,21 @@ For example, if a closed subset of cells has a certain state at time t and that 
 
 Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loops back creating stable state loops.
 
-In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all “matter” in Universe X.
+In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all "matter" in Universe X.
 
 The matter of Universe X is not fundamental.  It is an artifact of the properties of aexels. It is not made up of particles; it is not made up of waves; it does not displace the aether.  Matter is made up of stable state loops that exist on top of the aether.
 
-However, there are also some differences between Universe X and most cellular automata.  Unlike the static cells of Conway’s game of life, the cells of Universe X are dynamic; they can move, they can be created and they can be destroyed.
+However, there are also some differences between Universe X and most cellular automata.  Unlike the static cells of Conway's game of life, the cells of Universe X are dynamic; they can move, they can be created and they can be destroyed.
 
 The aexels of Universe X are created and destroyed as a direct result of the state changes of the aexels themselves.  The aexels move because they exert a force on one another, but ultimately this motion is first initiated by the creation and destruction of the aexels themselves.
 
 Another somewhat speculative difference is that although the new states of our simple cellular automata are usually based on the current states of the cell and their neighbors, it is probably the case that the state change of an aexel is a function of the change of state rather than just the absolute state of the neighborhood.
 
-In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  In Universe X this delay is called a ‘tic’.
+In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  In Universe X this delay is called a 'tic'.
 
 Each aexel in Universe X can only directly affect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels in Universe X is one aexel per tic.
 
-In Universe X, one aexel per tic is referred to as ‘the speed of light’.
+In Universe X, one aexel per tic is referred to as 'the speed of light'.
 
 
 
@@ -98,9 +98,9 @@ Kinematics is the study of motion absent of force.  In our universe, such motion
 
 In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at some later time.  However, this definition is perhaps unnecessarily restrictive.
 
-If one observes Conway’s Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it “moves”.  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it "moves".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
 
-Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the ‘tic’ time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the ‘speed of light’ (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
+Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the 'tic' time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the 'speed of light' (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
 
 But there is another entirely different way in which a stable state loop can move.  Since the aexels themselves can move, it is possible for a stable state loop that is not translating across an aexel field at all, to simply move along with aexels it is sitting upon, like a leaf floating down a stream.  And since this motion is not dependent on the signal delay between neighboring aexels, its speed is in no way bounded.
 
@@ -120,29 +120,29 @@ Gravity is the tendency of objects with mass to move towards one another.
 
 Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledge some discomfort with this idea:
 
-\“That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\”
+\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
 
 When Albert Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
 
-But, even with Newton and Einstein’s contributions to Gravity we still really don’t understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
+But, even with Newton and Einstein's contributions to Gravity we still really don't understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
 
 But, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
 In Universe X there exists many different types of stable state loops.  These loops can be divided into three categories:
 
-- Loops that don’t affect aexels
+- Loops that don't affect aexels
 - Loops that destroy aexels
 - Loops that create aexels
 
-That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  But for this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called ‘matter’.
+That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  But for this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called 'matter'.
 
-Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called ‘mass’.  As matter destroys the aexels, more aexels get pulled in because the aether’s crystalline nature does not allow the aexels to ever get too far apart.
+Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the aexels to ever get too far apart.
 
-Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dish ware sitting on the table cloth will appear to be ‘attracted’ to the center.
+Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
 
 In Universe X as various concentrations of matter continually destroy the aether between one another they will continually tend to clump together.  As a clump of matter gets bigger and bigger the velocity at which the aether is pulled towards the clump will continually increase.
 
-At some point, certain clumps in Universe X get so big and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic (‘the speed of light’) will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+At some point, certain clumps in Universe X get so big and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
 
 
 
@@ -156,15 +156,15 @@ Perhaps one of the most magical aspects of our universe is the phenomenon of tim
 
 In our universe time dilation is the variation in the perceived rate of time of various frames of reference based on their relative velocity to one another as well as the relative difference in their gravitational field strength.  That the rate of time itself can vary in our universe is severely magical in and of itself.
 
-But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite direction near the speed of light will both note that their clocks are running at a different rate than the other ship’s clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ships clocks moving slower.  One truly shocking ramification of this is that simultaneous events in one frame will not necessarily be simultaneous in another frame.
+But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite direction near the speed of light will both note that their clocks are running at a different rate than the other ship's clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ships clocks moving slower.  One truly shocking ramification of this is that simultaneous events in one frame will not necessarily be simultaneous in another frame.
 
-In Universe X, however, no such time dilation occurs.  There is however an analogous phenomenon, which is perhaps better described as ‘animation dilation’.
+In Universe X, however, no such time dilation occurs.  There is however an analogous phenomenon, which is perhaps better described as 'animation dilation'.
 
 Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
 
-In Universe X the interaction of matter (loops that destroy aexels) is mediated by ‘loops that don’t affect aexels’.  For now let’s refer to ‘loops that don’t affect aexels’ as photons.  These photons always travel at one aexel per tic, which is to say they always travel at ‘the speed of light’.
+In Universe X the interaction of matter (loops that destroy aexels) is mediated by 'loops that don't affect aexels'.  For now let's refer to 'loops that don't affect aexels' as photons.  These photons always travel at one aexel per tic, which is to say they always travel at 'the speed of light'.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon affects that loops’s rate of translation across the aexel field.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon affects that loop's rate of translation across the aexel field.
 
 For example, consider a loop that is stationary on a field of stationary aexels (ignore gravity for a moment).  A photon traveling from elsewhere is moving towards the loop.  When the photon hits the loop (and is absorbed) the loop begins to translate across the stationary field of aexels.
 
@@ -176,7 +176,7 @@ In some cases the time will be less in others the time will be more, but in all 
 
 This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the photons to move most quickly between the loops.
 
-In Universe X, dilation is not an observational phenomena.  It is a real phenomena that is entirely dependent on a system’s rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
+In Universe X, dilation is not an observational phenomena.  It is a real phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
@@ -208,9 +208,9 @@ In Universe X this concept would appear to break down quickly.  For any system t
 
 Certainly, in Universe X, the speed of light is always one aexel per tic.  But, since the aexels themselves can move and since they can vary in density it would seem it might be easy to detect variations in the distance traveled per time.
 
-However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.  The flow of aexels through a system causes the distance that the loops sit from one another to become closer in the direction of flow.  This smaller distance between the loops shrinks every object that’s structure is dependent on the transmission of mediating photons.
+However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.  The flow of aexels through a system causes the distance that the loops sit from one another to become closer in the direction of flow.  This smaller distance between the loops shrinks every object thats structure is dependent on the transmission of mediating photons.
 
-And this amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick’s length itself is a function of the speed of light.  As the speed of light changes; the meter stick’s length changes.
+And this amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
 
 Essentially, a meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
 
@@ -226,15 +226,15 @@ Astronomers observing our own universe have noticed some problems with our curre
 
 From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
 
-Luckily, once again, Universe X isn’t nearly so magical.
+Luckily, once again, Universe X isn't nearly so magical.
 
 Previously, we have mentioned 3 types of stable state loops:
 
-- Loops that don’t affect aexels
+- Loops that don't affect aexels
 - Loops that destroy aexels
 - Loops that create aexels
 
-Tentatively, we have named ‘loops that don’t affect aexels’ as photons and ‘loops that destroy aexels’ as matter.  Again, it is perhaps somewhat speculative, but let’s name ‘loops that create aexels’ as antimatter.
+Tentatively, we have named 'loops that don't affect aexels' as photons and 'loops that destroy aexels' as matter.  Again, it is perhaps somewhat speculative, but let's name 'loops that create aexels' as antimatter.
 
 In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  It has been observed that at times a particle and its antiparticle will be spontaneously created.  Similarly, if a particle and its antiparticle meet they will each be entirely destroyed.
 
@@ -349,7 +349,7 @@ As a result, this seriously calls into question the idea that a gravity clock in
 
 "GameOfLife" = "This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 
-Above is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  Here, Conway’s Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the ‘new’ button.
+Above is the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  Here, Conway's Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the 'new' button.
 
 The play / pause button will put the automaton into motion (or pause it).  The reset button will stop the automaton and reinitialize the cells.  The guide lines button will turn on and off the zoom indicator boxes.
 
@@ -361,19 +361,19 @@ Game of Life
 
 In 1970, British Mathematician, John Conway devised the cellular automaton known as the Game of Life.  Conway was attempting to create a much simpler version of a system previously devised by John von Neumann in the 1940s.
 
-The rules to Conway’s Game of Life are fairly straightforward: Take a plane made up of square cells.  Each cell can either be on or off.  Each cell has 8 neighbors, the 8 cells directly surrounding it.  If two of a cell’s neighbors are ‘on’ then the cell’s state is unchanged.  If three of the cell’s neighbors are ‘on’ then the cell’s state is turned / remains on.  In all other cases the cell’s state is turned / remains off.
+The rules to Conway's Game of Life are fairly straightforward: Take a plane made up of square cells.  Each cell can either be on or off.  Each cell has 8 neighbors, the 8 cells directly surrounding it.  If two of a cell's neighbors are 'on' then the cell's state is unchanged.  If three of the cell's neighbors are 'on' then the cell's state is turned / remains on.  In all other cases the cell's state is turned / remains off.
 
 Some things to look for:
 
-- Look for static patterns (called still lifes).  These are any shapes that repeat each step, i.e., stay exactly the same each step.  One common still life is the ‘block’, which is 4 pixels situated in a square.
+- Look for static patterns (called still lifes).  These are any shapes that repeat each step, i.e., stay exactly the same each step.  One common still life is the 'block', which is 4 pixels situated in a square.
 
-- Look for any dynamic patterns.  The most common dynamic pattern is a bar 3 cells long.  It will continually iterate between horizontal and vertical.  This loop is called a ‘blinker’.  The blinker is by far the most common dynamic pattern.  There are a handful of other relatively common 2 step loops, such as ‘beacons’ and ‘frogs’.
+- Look for any dynamic patterns.  The most common dynamic pattern is a bar 3 cells long.  It will continually iterate between horizontal and vertical.  This loop is called a 'blinker'.  The blinker is by far the most common dynamic pattern.  There are a handful of other relatively common 2 step loops, such as 'beacons' and 'frogs'.
 
-- About once every few runs a rather large 3 step loop called a ‘pulsar’ will develop.  In some cases a half pulsar will develop on the edge of the world.
+- About once every few runs a rather large 3 step loop called a 'pulsar' will develop.  In some cases a half pulsar will develop on the edge of the world.
 
-- Perhaps the most famous loop is called the ‘glider’.  The glider is a fairly common 4 step pattern, that has one important distinction from the above loops.  The glider is a translating pattern, which is to say it moves across the plane.
+- Perhaps the most famous loop is called the 'glider'.  The glider is a fairly common 4 step pattern, that has one important distinction from the above loops.  The glider is a translating pattern, which is to say it moves across the plane.
 
-For the purpose of Universe X there are a number of important qualitative concepts illustrated by Conway’s Game of Life that can be gleaned fairly quickly.  However, a shockingly large amount of research has been done into Conway’s Game of Life and a few minutes with Google can open up this massive body of work to enable further research, if so desired.
+For the purpose of Universe X there are a number of important qualitative concepts illustrated by Conway's Game of Life that can be gleaned fairly quickly.  However, a shockingly large amount of research has been done into Conway's Game of Life and a few minutes with Google can open up this massive body of work to enable further research, if so desired.
 
 
 ";
@@ -395,9 +395,9 @@ Using the Oovium visual programming language it is possible to define custom cel
 
 Double tapping on an empty area of the Oovium panel will create a new bubble.  By default an instance bubble will be created that allows the user to enter in a number or a calculation.  Using the bubble maker in the upper right of the Oovium panel, one can also create an IfBub which is a visual conditional or a MechBub which enables the creation of custom functions.
 
-The workspace of Oovium is called an ‘aether’ (Oovium was created well before Universe X was discovered and the usage of the term aether is just a coincidence).  By default, each of the aethers in the automata lab are pre populated with an AutoBub, which allows one to define their own cellular automata.
+The workspace of Oovium is called an 'aether' (Oovium was created well before Universe X was discovered and the usage of the term aether is just a coincidence).  By default, each of the aethers in the automata lab are pre populated with an AutoBub, which allows one to define their own cellular automata.
 
-The top area of the AutoBub represents a cell and its neighbors’ current state: the neighborhood.  The bottom area represents the cell’s new state which should be a calculation based on the current state of the neighborhood.
+The top area of the AutoBub represents a cell and its neighbors' current state: the neighborhood.  The bottom area represents the cell's new state which should be a calculation based on the current state of the neighborhood.
 
 There is also a properties button which will allow for the number of states to be defined (between 2 and 32) and also allow for various colors to be selected for the different states.
 
@@ -412,7 +412,7 @@ Motion in our own universe can be described entirely by a vector which represent
 
 This lab allows us to compare the motion of our Universe with that of Universe X.  The lab models an object frictionlessly moving inside a 2 dimensional box, elastically bouncing off the walls.
 
-For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational “velocity” vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
+For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational "velocity" vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
 
 Perhaps the first thing one might note when comparing the two models is that motion in the Universe X model is quite jerky as opposed to the smooth motion of the model for our Universe.  However, the Universe X model is a statistical model and we are looking at both large aexels and large time steps.  As the density of aexels and time steps increase the motion will continually get more and more smooth until it would become difficult to differentiate the motion of the two systems.
 
