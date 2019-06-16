@@ -161,10 +161,10 @@ class KinematicsExplorer: Explorer {
 		universePicker.pages = ["Universe", "Universe X"]
 		universePicker.snapToPageNo(1)
 		
-		playButton.onPlay = {
+		playButton.onPlay = { [unowned self] in
 			self.kinematicsView.play()
 		}
-		playButton.onStop = {
+		playButton.onStop = { [unowned self] in
 			self.kinematicsView.stop()
 		}
 		

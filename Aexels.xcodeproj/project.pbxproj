@@ -61,6 +61,7 @@
 		D862F1B91E59844000612627 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1B81E59844000612627 /* KinematicsView.swift */; };
 		D862F1BB1E5984C600612627 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D862F1BA1E5984C600612627 /* Simulation.swift */; };
 		D865EC3C215E1774003A2570 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D865EC3B215E1774003A2570 /* Back5.png */; };
+		D879EA1922B5BE81003B9B47 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D879EA1822B5BE81003B9B47 /* GravityView.swift */; };
 		D87E1C9422873C23003608EB /* AXSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87E1C9322873C23003608EB /* AXSync.swift */; };
 		D88C3F0521751FCE005B2EB0 /* Gravity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */; };
 		D8966ECB214535910002D6E8 /* LimboButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8966ECA214535910002D6E8 /* LimboButton.swift */; };
@@ -161,6 +162,7 @@
 		D862F1B81E59844000612627 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
 		D862F1BA1E5984C600612627 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D865EC3B215E1774003A2570 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
+		D879EA1822B5BE81003B9B47 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
 		D87E1C9322873C23003608EB /* AXSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXSync.swift; sourceTree = "<group>"; };
 		D88C3F0421751FCE005B2EB0 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
 		D8966ECA214535910002D6E8 /* LimboButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboButton.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 		D8B13C051E1E2EF100E02E16 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
+				D879EA1822B5BE81003B9B47 /* GravityView.swift */,
 				D8B13C121E1E3EA800E02E16 /* GravityExplorer.swift */,
 			);
 			name = Gravity;
@@ -708,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D862F1B91E59844000612627 /* KinematicsView.swift in Sources */,
+				D879EA1922B5BE81003B9B47 /* GravityView.swift in Sources */,
 				D80425981E1B4A97009C9ED3 /* AexelsDelegate.swift in Sources */,
 				D862F1BB1E5984C600612627 /* Simulation.swift in Sources */,
 				D862F1B71E59842000612627 /* NewtonianView.swift in Sources */,

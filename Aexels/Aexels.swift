@@ -61,5 +61,41 @@ class Aexels {
 			EvoDevSchematic(),
 			Hovers.customSchematic
 		])
+//		
+//		
+//		var bondA = AXBondCreate(Vector(x: 0, y: 0), Vector(x: 10, y: 0));
+//		var bondB = AXBondCreate(Vector(x: 10, y: 1), Vector(x: 10, y: 0.1));
+//		var result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 0")
+//
+//		bondA = AXBondCreate(Vector(x: 0, y: 0), Vector(x: 10, y: 0));
+//		bondB = AXBondCreate(Vector(x: 10, y: 1), Vector(x: 10, y: -0.1));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 1 ")
+//
+//		bondA = AXBondCreate(Vector(x: 0, y: 0), Vector(x: 10, y: 0));
+//		bondB = AXBondCreate(Vector(x: 10, y: 1), Vector(x: 10, y: 0));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 1 ")
+//
+//		bondA = AXBondCreate(Vector(x: 3, y: 5), Vector(x: 6, y: 2));
+//		bondB = AXBondCreate(Vector(x: 1, y: 1), Vector(x: 2, y: 2));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 0")
+//		
+//		bondA = AXBondCreate(Vector(x: 3, y: 5), Vector(x: 6, y: 2));
+//		bondB = AXBondCreate(Vector(x: 1, y: 1), Vector(x: 6, y: 6));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 1")
+//
+//		bondA = AXBondCreate(Vector(x: 2, y: 4), Vector(x: 4, y: 2));
+//		bondB = AXBondCreate(Vector(x: 1, y: 1), Vector(x: 3, y: 3));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 1")
+//
+//		bondA = AXBondCreate(Vector(x: 2, y: 4), Vector(x: 4, y: 2));
+//		bondB = AXBondCreate(Vector(x: 1, y: 1), Vector(x: 2.9999, y: 2.9999));
+//		result = AXBondCross(bondA, bondB);
+//		print("result: \(result) == 0")
 	}
 }
