@@ -17,7 +17,7 @@ class GravityView: UIView {
 		let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
 		let side = Double(height - 30*s)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 500)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1000)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 
@@ -27,6 +27,9 @@ class GravityView: UIView {
 		addGestureRecognizer(gesture)
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
+	deinit {
+		AXUniverseRelease(universe)
+	}
 	
 	func play() {
 		Aexels.sync.start()
@@ -38,7 +41,8 @@ class GravityView: UIView {
 		let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
 		let side = Double(height - 30*s)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 500)
+		AXUniverseRelease(universe)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1000)
 		AXUniverseBind(universe)
 		setNeedsDisplay()
 	}
@@ -46,6 +50,25 @@ class GravityView: UIView {
 		AXUniverseJump(universe)
 		AXUniverseBind(universe)
 		setNeedsDisplay()
+		sampleFrameRate()
+	}
+	
+// Sample Frame Rate ===============================================================================
+	private var last: Date = Date()
+	private var step: Int = 1
+	var onMeasure: ((Double)->())? = { (sps: Double)  in
+		print("SPS: \(sps)")
+	}
+	func sampleFrameRate() {
+		if self.step % 60 == 0 {
+			let now = Date()
+			let x = now.timeIntervalSince(self.last)
+			if let onMeasure = self.onMeasure {
+				onMeasure(60.0/x)
+			}
+			self.last = now
+		}
+		self.step += 1
 	}
 	
 // Events ==========================================================================================
@@ -59,13 +82,13 @@ class GravityView: UIView {
 
 		let c = UIGraphicsGetCurrentContext()!
 		
-		let relaxed: Double = universe.pointee.relaxed;
+//		let relaxed: Double = universe.pointee.relaxed;
 
 		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
 
 		for i in 0..<Int(universe.pointee.noOfAexels) {
 			let aexel = universe.pointee.aexels![i]!
-			
+
 			for j in 0..<6 {
 				guard let neighbor = aexel.pointee.neighbors[j] else {continue}
 				var shouldRender: Bool = false
@@ -80,14 +103,14 @@ class GravityView: UIView {
 		}
 		c.drawPath(using: .stroke)
 
-		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
-		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
-		
-		for i in 0..<Int(universe.pointee.noOfAexels) {
-			let aexel = universe.pointee.aexels![i]!
-			
-			c.addEllipse(in: CGRect(x: aexel.pointee.curP.x-relaxed/2, y: aexel.pointee.curP.y-relaxed/2, width: relaxed, height: relaxed))
-		}
-		c.drawPath(using: .fillStroke)
+//		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
+//		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
+//
+//		for i in 0..<Int(universe.pointee.noOfAexels) {
+//			let aexel = universe.pointee.aexels![i]!
+//
+//			c.addEllipse(in: CGRect(x: aexel.pointee.curP.x-relaxed/2, y: aexel.pointee.curP.y-relaxed/2, width: relaxed, height: relaxed))
+//		}
+//		c.drawPath(using: .fillStroke)
 	}
 }
