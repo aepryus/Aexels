@@ -56,7 +56,7 @@ class GravityExplorer: Explorer {
 		resetButton.addAction(for: .touchUpInside) { [unowned self] in
 			self.playButton.stop()
 			self.gravityView.reset()
-			self.playButton.play()
+//			self.playButton.play()
 		}
 		resetLimbo.content = resetButton
 		

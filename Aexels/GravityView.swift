@@ -23,8 +23,8 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		vw = Int(side)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672)
-//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 0)
+//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 
@@ -49,15 +49,18 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		AXUniverseRelease(universe)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672)
-//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 0)
+//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
 		AXUniverseBind(universe)
+		self.renderMode = .started
+		self.renderImage()
 		setNeedsDisplay()
 	}
 	func tic() {
 		queue.sync {
 			AXUniverseJump(self.universe)
 			AXUniverseBind(self.universe)
+			AXUniverseStep(self.universe)
 			self.renderMode = .started
 			self.renderImage()
 			self.sampleFrameRate()
@@ -68,32 +71,31 @@ class GravityView: UIView {
 	}
 	
 	func renderImage() {
-//		queue.sync {
-			guard renderMode == .started else {return}
-			renderMode = .rendering
+		guard renderMode == .started else {return}
+		renderMode = .rendering
+		
+		UIGraphicsBeginImageContext(bounds.size)
+		let c = UIGraphicsGetCurrentContext()!
+		
+		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
+		
+		for i in 0..<Int(universe.pointee.aexelCount) {
+			let aexel = universe.pointee.aexels![i]!
 			
-			UIGraphicsBeginImageContext(bounds.size)
-			let c = UIGraphicsGetCurrentContext()!
-
-			c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
-			
-			for i in 0..<Int(universe.pointee.noOfAexels) {
-				let aexel = universe.pointee.aexels![i]!
-				
-				for j in 0..<6 {
-					guard let neighbor = aexel.pointee.neighbors[j] else {continue}
-					var shouldRender: Bool = false
-					if neighbor.pointee.curP.x > aexel.pointee.curP.x {shouldRender = true}
-					if neighbor.pointee.curP.x == aexel.pointee.curP.x {
-						if neighbor.pointee.curP.y > aexel.pointee.curP.y {shouldRender = true}
-					}
-					guard shouldRender else {continue}
-					c.move(to: CGPoint(x: aexel.pointee.curP.x, y: aexel.pointee.curP.y))
-					c.addLine(to: CGPoint(x: neighbor.pointee.curP.x, y: neighbor.pointee.curP.y))
+			for j in 0..<6 {
+				guard let neighbor = aexel.pointee.neighbors[j] else {continue}
+				var shouldRender: Bool = false
+				if neighbor.pointee.s.x > aexel.pointee.s.x {shouldRender = true}
+				if neighbor.pointee.s.x == aexel.pointee.s.x {
+					if neighbor.pointee.s.y > aexel.pointee.s.y {shouldRender = true}
 				}
+				guard shouldRender else {continue}
+				c.move(to: CGPoint(x: aexel.pointee.s.x, y: aexel.pointee.s.y))
+				c.addLine(to: CGPoint(x: neighbor.pointee.s.x, y: neighbor.pointee.s.y))
 			}
-			c.drawPath(using: .stroke)
-			
+		}
+		c.drawPath(using: .stroke)
+
 //			let relaxed: Double = universe.pointee.relaxed;
 //
 //			c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
@@ -107,11 +109,23 @@ class GravityView: UIView {
 //			}
 //			c.drawPath(using: .fillStroke)
 		
-			self.image = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
+		let radius: Double = 3
+		for i in 0..<Int(universe.pointee.photonCount) {
+			let photon = universe.pointee.photons![i]!
+			
+			c.setStrokeColor(UIColor.white.cgColor);
+			c.setFillColor(UIColor(rgb: 0x00FF00).cgColor);
+			c.addEllipse(in: CGRect(x: photon.pointee.aexel.pointee.s.x-radius, y: photon.pointee.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
+			c.move(to: CGPoint(x: photon.pointee.aexel.pointee.s.x, y: photon.pointee.aexel.pointee.s.y))
+			c.addLine(to: CGPoint(x: photon.pointee.aexel.pointee.s.x+photon.pointee.v.x*7, y: photon.pointee.aexel.pointee.s.y+photon.pointee.v.y*7))
+		}
+		c.drawPath(using: .fillStroke)
 
-			renderMode = .rendered
-//		}
+		
+		self.image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		renderMode = .rendered
 	}
 	
 // Sample Frame Rate ===============================================================================
