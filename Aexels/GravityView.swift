@@ -23,7 +23,7 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		vw = Int(side)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 0)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 1)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
@@ -49,7 +49,7 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		AXUniverseRelease(universe)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 0)
+		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 1)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
 		AXUniverseBind(universe)
 		self.renderMode = .started
@@ -63,7 +63,7 @@ class GravityView: UIView {
 			AXUniverseStep(self.universe)
 			self.renderMode = .started
 			self.renderImage()
-			self.sampleFrameRate()
+//			self.sampleFrameRate()
 			DispatchQueue.main.async {
 				self.setNeedsDisplay()
 			}
@@ -96,31 +96,52 @@ class GravityView: UIView {
 		}
 		c.drawPath(using: .stroke)
 
-//			let relaxed: Double = universe.pointee.relaxed;
-//
-//			c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
-//			c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
-//			c.setLineWidth(0.5)
-//
-//			for i in 0..<Int(universe.pointee.noOfAexels) {
-//				let aexel = universe.pointee.aexels![i]!
-//
-//				c.addEllipse(in: CGRect(x: aexel.pointee.curP.x-relaxed/2, y: aexel.pointee.curP.y-relaxed/2, width: relaxed, height: relaxed))
-//			}
-//			c.drawPath(using: .fillStroke)
-		
-		let radius: Double = 3
+//		let relaxed: Double = universe.pointee.relaxed;
+//		
+//		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
+//		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
+//		c.setLineWidth(0.5)
+//		
+//		for i in 0..<Int(universe.pointee.aexelCount) {
+//			let aexel = universe.pointee.aexels![i]!
+//			c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
+//		}
+//		c.drawPath(using: .fillStroke)
+
+		// Momentum Vectors
+		c.setStrokeColor(UIColor.white.cgColor);
 		for i in 0..<Int(universe.pointee.photonCount) {
 			let photon = universe.pointee.photons![i]!
-			
-			c.setStrokeColor(UIColor.white.cgColor);
-			c.setFillColor(UIColor(rgb: 0x00FF00).cgColor);
-			c.addEllipse(in: CGRect(x: photon.pointee.aexel.pointee.s.x-radius, y: photon.pointee.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
 			c.move(to: CGPoint(x: photon.pointee.aexel.pointee.s.x, y: photon.pointee.aexel.pointee.s.y))
 			c.addLine(to: CGPoint(x: photon.pointee.aexel.pointee.s.x+photon.pointee.v.x*7, y: photon.pointee.aexel.pointee.s.y+photon.pointee.v.y*7))
 		}
-		c.drawPath(using: .fillStroke)
+		
+		for i in 0..<Int(universe.pointee.hadronCount) {
+			let hadron = universe.pointee.hadrons![i]!
+			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
+				c.move(to: CGPoint(x: quark.aexel.pointee.s.x, y: quark.aexel.pointee.s.y))
+				c.addLine(to: CGPoint(x: quark.aexel.pointee.s.x+quark.hadron.pointee.v.x*7*10/3, y: quark.aexel.pointee.s.y+quark.hadron.pointee.v.y*7*10/3))
+			}
+		}
+		c.drawPath(using: .stroke)
 
+		// Particles
+		let radius: Double = 3
+		c.setFillColor(UIColor(rgb: 0x00FF00).cgColor);
+		for i in 0..<Int(universe.pointee.photonCount) {
+			let photon = universe.pointee.photons![i]!
+			c.addEllipse(in: CGRect(x: photon.pointee.aexel.pointee.s.x-radius, y: photon.pointee.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
+		}
+		c.drawPath(using: .fill)
+		
+		for i in 0..<Int(universe.pointee.hadronCount) {
+			let hadron = universe.pointee.hadrons![i]!
+			c.setFillColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).cgColor);
+			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
+				c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
+			}
+		}
+		c.drawPath(using: .fill)
 		
 		self.image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
