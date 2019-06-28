@@ -23,8 +23,10 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		vw = Int(side)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 1)
-//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
+		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 6)
+//		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
+//		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 6)
+//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 
@@ -49,8 +51,10 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		AXUniverseRelease(universe)
-		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 1)
-//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 1, 0)
+		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 6)
+//		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
+//		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 6)
+//		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
 		AXUniverseBind(universe)
 		self.renderMode = .started
 		self.renderImage()
@@ -58,12 +62,13 @@ class GravityView: UIView {
 	}
 	func tic() {
 		queue.sync {
-			AXUniverseJump(self.universe)
-			AXUniverseBind(self.universe)
 			AXUniverseStep(self.universe)
+			AXUniverseJump(self.universe)
+			if (step % 27 == 0) {AXUniverseWarp(self.universe)}
+			AXUniverseBind(self.universe)
 			self.renderMode = .started
 			self.renderImage()
-//			self.sampleFrameRate()
+			self.sampleFrameRate()
 			DispatchQueue.main.async {
 				self.setNeedsDisplay()
 			}
@@ -78,35 +83,43 @@ class GravityView: UIView {
 		let c = UIGraphicsGetCurrentContext()!
 		
 		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
-		
-		for i in 0..<Int(universe.pointee.aexelCount) {
-			let aexel = universe.pointee.aexels![i]!
-			
-			for j in 0..<6 {
-				guard let neighbor = aexel.pointee.neighbors[j] else {continue}
-				var shouldRender: Bool = false
-				if neighbor.pointee.s.x > aexel.pointee.s.x {shouldRender = true}
-				if neighbor.pointee.s.x == aexel.pointee.s.x {
-					if neighbor.pointee.s.y > aexel.pointee.s.y {shouldRender = true}
-				}
-				guard shouldRender else {continue}
-				c.move(to: CGPoint(x: aexel.pointee.s.x, y: aexel.pointee.s.y))
-				c.addLine(to: CGPoint(x: neighbor.pointee.s.x, y: neighbor.pointee.s.y))
-			}
+
+		for i in 0..<Int(universe.pointee.bondCount) {
+			let bond = universe.pointee.bonds[i]
+			c.move(to: CGPoint(x: bond.a.pointee.s.x, y: bond.a.pointee.s.y))
+			c.addLine(to: CGPoint(x: bond.b.pointee.s.x, y: bond.b.pointee.s.y))
 		}
 		c.drawPath(using: .stroke)
 
-//		let relaxed: Double = universe.pointee.relaxed;
-//		
-//		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
-//		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
-//		c.setLineWidth(0.5)
-//		
 //		for i in 0..<Int(universe.pointee.aexelCount) {
 //			let aexel = universe.pointee.aexels![i]!
-//			c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
+//
+//			for j in 0..<6 {
+//				guard let neighbor = aexel.pointee.neighbors[j] else {continue}
+//				var shouldRender: Bool = false
+//				if neighbor.pointee.s.x > aexel.pointee.s.x {shouldRender = true}
+//				if neighbor.pointee.s.x == aexel.pointee.s.x {
+//					if neighbor.pointee.s.y > aexel.pointee.s.y {shouldRender = true}
+//				}
+//				guard shouldRender else {continue}
+//				c.move(to: CGPoint(x: aexel.pointee.s.x, y: aexel.pointee.s.y))
+//				c.addLine(to: CGPoint(x: neighbor.pointee.s.x, y: neighbor.pointee.s.y))
+//			}
 //		}
-//		c.drawPath(using: .fillStroke)
+//		c.drawPath(using: .stroke)
+
+//		let relaxed: Double = universe.pointee.relaxed;
+		let relaxed: Double = 12;
+
+		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
+		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
+		c.setLineWidth(0.5)
+
+		for i in 0..<Int(universe.pointee.aexelCount) {
+			let aexel = universe.pointee.aexels![i]!
+			c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
+		}
+		c.drawPath(using: .fillStroke)
 
 		// Momentum Vectors
 		c.setStrokeColor(UIColor.white.cgColor);
@@ -140,8 +153,8 @@ class GravityView: UIView {
 			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
 				c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
 			}
+			c.drawPath(using: .fill)
 		}
-		c.drawPath(using: .fill)
 		
 		self.image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
