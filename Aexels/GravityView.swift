@@ -23,7 +23,7 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		vw = Int(side)
-		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 6)
+		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 12)
 //		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
 //		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 6)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
@@ -51,7 +51,7 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		AXUniverseRelease(universe)
-		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 6)
+		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 12)
 //		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
 //		universe = AXUniverseCreate(side, side, 20, 0.1, 1672, 9, 6)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
@@ -64,7 +64,7 @@ class GravityView: UIView {
 		queue.sync {
 			AXUniverseStep(self.universe)
 			AXUniverseJump(self.universe)
-			if (step % 27 == 0) {AXUniverseWarp(self.universe)}
+			if (step % 18 == 0) {AXUniverseWarp(self.universe)}
 			AXUniverseBind(self.universe)
 			self.renderMode = .started
 			self.renderImage()
@@ -82,6 +82,21 @@ class GravityView: UIView {
 		UIGraphicsBeginImageContext(bounds.size)
 		let c = UIGraphicsGetCurrentContext()!
 		
+		for i in 0..<Int(universe.pointee.hadronCount) {
+			let hadron = universe.pointee.hadrons![i]!
+			let q1: CGPoint = CGPoint(x: hadron.pointee.quarks.0.aexel.pointee.s.x, y: hadron.pointee.quarks.0.aexel.pointee.s.y)
+			let q2: CGPoint = CGPoint(x: hadron.pointee.quarks.1.aexel.pointee.s.x, y: hadron.pointee.quarks.1.aexel.pointee.s.y)
+			let q3: CGPoint = CGPoint(x: hadron.pointee.quarks.2.aexel.pointee.s.x, y: hadron.pointee.quarks.2.aexel.pointee.s.y)
+			let center = (q1 + q2 + q3)/3
+			c.move(to: center+(q1-center)*1.3)
+			c.addLine(to: center+(q2-center)*1.3)
+			c.addLine(to: center+(q3-center)*1.3)
+			c.closePath()
+			c.setFillColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).tint(0.5).alpha(0.5).cgColor);
+			c.setStrokeColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).tint(0.5).cgColor);
+			c.drawPath(using: .fillStroke)
+		}
+		
 		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
 
 		for i in 0..<Int(universe.pointee.bondCount) {
@@ -90,23 +105,6 @@ class GravityView: UIView {
 			c.addLine(to: CGPoint(x: bond.b.pointee.s.x, y: bond.b.pointee.s.y))
 		}
 		c.drawPath(using: .stroke)
-
-//		for i in 0..<Int(universe.pointee.aexelCount) {
-//			let aexel = universe.pointee.aexels![i]!
-//
-//			for j in 0..<6 {
-//				guard let neighbor = aexel.pointee.neighbors[j] else {continue}
-//				var shouldRender: Bool = false
-//				if neighbor.pointee.s.x > aexel.pointee.s.x {shouldRender = true}
-//				if neighbor.pointee.s.x == aexel.pointee.s.x {
-//					if neighbor.pointee.s.y > aexel.pointee.s.y {shouldRender = true}
-//				}
-//				guard shouldRender else {continue}
-//				c.move(to: CGPoint(x: aexel.pointee.s.x, y: aexel.pointee.s.y))
-//				c.addLine(to: CGPoint(x: neighbor.pointee.s.x, y: neighbor.pointee.s.y))
-//			}
-//		}
-//		c.drawPath(using: .stroke)
 
 //		let relaxed: Double = universe.pointee.relaxed;
 		let relaxed: Double = 12;
@@ -154,6 +152,11 @@ class GravityView: UIView {
 				c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
 			}
 			c.drawPath(using: .fill)
+			if hadron.pointee.anti == 0 && hadron.pointee.center != nil {
+				c.setFillColor(UIColor(rgb: 0xFF00FF).tint(0.2).cgColor);
+				c.addEllipse(in: CGRect(x: hadron.pointee.center.pointee.s.x-radius, y: hadron.pointee.center.pointee.s.y-radius, width: 2*radius, height: 2*radius))
+				c.drawPath(using: .fill)
+			}
 		}
 		
 		self.image = UIGraphicsGetImageFromCurrentImageContext()
