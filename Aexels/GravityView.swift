@@ -41,6 +41,7 @@ class GravityView: UIView {
 	}
 	
 	func play() {
+		Aexels.sync.link.preferredFramesPerSecond = 1
 		Aexels.sync.start()
 	}
 	func stop() {
@@ -62,13 +63,16 @@ class GravityView: UIView {
 	}
 	func tic() {
 		queue.sync {
-			AXUniverseStep(self.universe)
-			AXUniverseJump(self.universe)
-			if (step % 18 == 0) {AXUniverseWarp(self.universe)}
-			AXUniverseBind(self.universe)
+			let start = CFAbsoluteTimeGetCurrent()
+			AXUniverseTest(self.universe)
+			print("elapsed: \(CFAbsoluteTimeGetCurrent()-start)")
+//			AXUniverseStep(self.universe)
+//			AXUniverseJump(self.universe)
+//			if (step % 18 == 0) {AXUniverseWarp(self.universe)}
+//			AXUniverseBind(self.universe)
 			self.renderMode = .started
 			self.renderImage()
-			self.sampleFrameRate()
+//			self.sampleFrameRate()
 			DispatchQueue.main.async {
 				self.setNeedsDisplay()
 			}
