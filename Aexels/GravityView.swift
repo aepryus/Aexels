@@ -25,13 +25,11 @@ class GravityView: UIView {
 		vw = Int(side)
 //		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 12)
 //		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
-		universe = AXUniverseCreate(side, side, 36, 72, 0.1, 1672/4, 0, 0)
+		universe = AXUniverseCreate(side, side, 24, 24*2, 0.1, 872, 9, 6)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 
-		AXUniverseBind(universe)
-		
 		let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
 		addGestureRecognizer(gesture)
 	}
@@ -51,48 +49,19 @@ class GravityView: UIView {
 		let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
 		let side = Double(height - 30*s)
-		print("\(side)")
 		AXUniverseRelease(universe)
 //		universe = AXUniverseCreate(side, side, 40, 0.1, 360, 9, 12)
 //		universe = AXUniverseCreateSmooth(side, side, 40, 0.1, 9, 6)
-		universe = AXUniverseCreate(side, side, 36, 72, 0.1, 1672/4, 0, 0)
+		universe = AXUniverseCreate(side, side, 24, 24*2, 0.1, 872, 9, 6)
 //		universe = AXUniverseCreate(side, side, 20, 72, 0.1, 100, 0, 0)
 //		universe = AXUniverseCreateSmooth(side, side, 20, 0.1, 9, 6)
-		AXUniverseBind(universe)
 		self.renderMode = .started
 		self.renderImage()
 		setNeedsDisplay()
 	}
 	func yo(_ n: UInt) -> Int {
-		guard n != 0 else {return 0}
+		guard n != 0 else {return -1}
 		return Int(1/(Double(n)/Double(CLOCKS_PER_SEC)))
-	}
-	func tic() {
-		queue.sync {
-//			let a = clock()
-//			print("a:\(a)")
-//			AXUniverseTest(self.universe)
-//			print("elapsed: \(CFAbsoluteTimeGetCurrent()-start)")
-			AXUniverseStep(self.universe)
-//			let b = clock()
-//			print("b:\(b)")
-			AXUniverseJump(self.universe)
-//			let c = clock()
-//			print("c:\(c)")
-//			if (step % 18 == 0) {AXUniverseWarp(self.universe)}
-//			let d = clock()
-//			print("d:\(d)")
-			AXUniverseBind(self.universe)
-//			let e = clock()
-//			print("e:\(e)")
-//			print("step: \(yo(b-a)), jump: \(yo(c-b)), warp: \(yo(d-c)), bind: \(yo(e-d))")
-			self.renderMode = .started
-			self.renderImage()
-			self.sampleFrameRate()
-			DispatchQueue.main.async {
-				self.setNeedsDisplay()
-			}
-		}
 	}
 	
 	func renderImage() {
@@ -121,17 +90,18 @@ class GravityView: UIView {
 
 		for i in 0..<Int(universe.pointee.bondCount) {
 			let bond = universe.pointee.bonds[i]
+			guard bond.hot == 1 else {continue}
 			c.move(to: CGPoint(x: bond.a.pointee.s.x, y: bond.a.pointee.s.y))
 			c.addLine(to: CGPoint(x: bond.b.pointee.s.x, y: bond.b.pointee.s.y))
 		}
 		c.drawPath(using: .stroke)
-
+		
 //		let relaxed: Double = universe.pointee.relaxed;
 //		let relaxed: Double = 12;
 //
-		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
-		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
-		c.setLineWidth(0.5)
+//		c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
+//		c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
+//		c.setLineWidth(0.5)
 //
 //		for i in 0..<Int(universe.pointee.aexelCount) {
 //			let aexel = universe.pointee.aexels![i]!
@@ -151,13 +121,13 @@ class GravityView: UIView {
 //		c.drawPath(using: .stroke)
 
 		// Momentum Vectors
-		c.setStrokeColor(UIColor.white.cgColor);
-		for i in 0..<Int(universe.pointee.photonCount) {
-			let photon = universe.pointee.photons![i]!
-			c.move(to: CGPoint(x: photon.pointee.aexel.pointee.s.x, y: photon.pointee.aexel.pointee.s.y))
-			c.addLine(to: CGPoint(x: photon.pointee.aexel.pointee.s.x+photon.pointee.v.x*7, y: photon.pointee.aexel.pointee.s.y+photon.pointee.v.y*7))
-		}
-		
+//		c.setStrokeColor(UIColor.white.cgColor);
+//		for i in 0..<Int(universe.pointee.photonCount) {
+//			let photon = universe.pointee.photons![i]!
+//			c.move(to: CGPoint(x: photon.pointee.aexel.pointee.s.x, y: photon.pointee.aexel.pointee.s.y))
+//			c.addLine(to: CGPoint(x: photon.pointee.aexel.pointee.s.x+photon.pointee.v.x*7, y: photon.pointee.aexel.pointee.s.y+photon.pointee.v.y*7))
+//		}
+//
 //		for i in 0..<Int(universe.pointee.hadronCount) {
 //			let hadron = universe.pointee.hadrons![i]!
 //			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
@@ -175,20 +145,20 @@ class GravityView: UIView {
 			c.addEllipse(in: CGRect(x: photon.pointee.aexel.pointee.s.x-radius, y: photon.pointee.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
 		}
 		c.drawPath(using: .fill)
-//
-//		for i in 0..<Int(universe.pointee.hadronCount) {
-//			let hadron = universe.pointee.hadrons![i]!
-//			c.setFillColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).cgColor);
-//			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
-//				c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
-//			}
-//			c.drawPath(using: .fill)
+
+		for i in 0..<Int(universe.pointee.hadronCount) {
+			let hadron = universe.pointee.hadrons![i]!
+			c.setFillColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).cgColor);
+			for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
+				c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
+			}
+			c.drawPath(using: .fill)
 //			if hadron.pointee.anti == 0 && hadron.pointee.center != nil {
 //				c.setFillColor(UIColor(rgb: 0xFF00FF).tint(0.2).cgColor);
 //				c.addEllipse(in: CGRect(x: hadron.pointee.center.pointee.s.x-radius, y: hadron.pointee.center.pointee.s.y-radius, width: 2*radius, height: 2*radius))
 //				c.drawPath(using: .fill)
 //			}
-//		}
+		}
 		
 		self.image = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
@@ -214,7 +184,17 @@ class GravityView: UIView {
 		self.step += 1
 	}
 	
-	
+	func tic() {
+		queue.sync {
+			AXUniverseTic(self.universe)
+			self.renderMode = .started
+			self.renderImage()
+			self.sampleFrameRate()
+			DispatchQueue.main.async {
+				self.setNeedsDisplay()
+			}
+		}
+	}
 	
 // Events ==========================================================================================
 	@objc func onTap(_ gesture: UITapGestureRecognizer) {
