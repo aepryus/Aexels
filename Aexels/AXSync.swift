@@ -11,7 +11,7 @@ import Foundation
 import QuartzCore
 
 class AXSync {
-	var onFire: (CADisplayLink,@escaping ()->())->() = {(CADisplayLink,()->()) in}
+	var onFire: (CADisplayLink,@escaping ()->())->() = {(link: CADisplayLink,complete: ()->()) in}
 	
 	lazy var link: CADisplayLink = {
 		let link = CADisplayLink(target: self, selector: #selector(fire))

@@ -34,16 +34,16 @@ class Aexels {
 	
 	static func start() {
 		Math.start()
-		Loom.start(basket: Storage.basket, namespaces: ["Aexels", "OoviumLib"])
+		Loom.start(basket: Local.basket, namespaces: ["Aexels", "OoviumLib"])
 		Skin.skin = IvorySkin()
 
 		nexus = NexusViewController()
 		
 		window = UIWindow()
-		window.rootViewController = nexus
 		window.makeKeyAndVisible()
+		window.rootViewController = nexus
 		
-		let oldVersion: String? = Storage.get(key: "version")
+		let oldVersion: String? = Local.get(key: "version")
 		if oldVersion == nil {Local.archiveXML()}
 		if  oldVersion != Aexels.version {
 			Local.installAetherFromBundle(name: "Day & Night")
@@ -52,7 +52,7 @@ class Aexels {
 			Local.installAetherFromBundle(name: "Move")
 			Local.installAetherFromBundle(name: "Sweetness")
 			Local.installAetherFromBundle(name: "WalledCities")
-			Storage.set(key: "version", value: Aexels.version)
+			Local.set(key: "version", value: Aexels.version)
 		}
 		
 		Hovers.chainEditor = ChainEditor(schematics: [

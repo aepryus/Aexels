@@ -64,14 +64,8 @@ class ExpButton: UIButton {
 			c.drawPath(using: .fillStroke)
 		}
 		
-		let pen: Pen = Pen(font: UIFont.aexelBold(size: self.size))
-		if !activated {
-			pen.color = color
-		} else {
-			pen.color = UIColor.black
-		}
+		let pen: Pen = Pen(font: UIFont.aexelBold(size: self.size), color: (activated ? UIColor.black : color), alignment: .center)
 		let size = (name as NSString).size(withAttributes: pen.attributes)
-		pen.alignment = .center
 		name.draw(in: CGRect(x: rect.origin.x, y: (rect.size.height-size.height)/2, width: rect.size.width, height: size.height), withAttributes: pen.attributes)
 	}
 }

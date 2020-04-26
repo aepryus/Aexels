@@ -38,8 +38,7 @@ class MessageLimbo: Limbo {
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func load() {
-		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!)
-		pen.alignment = .left
+		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!, color: .white, alignment: .left)
 		
 		let sb = NSMutableAttributedString(string: NSLocalizedString(key, comment: ""), attributes: pen.attributes)
 		while let left = sb.string.loc(of: "<<"), let right = sb.string.loc(of: ">>") {

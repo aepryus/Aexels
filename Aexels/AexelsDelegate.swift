@@ -6,8 +6,6 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import Crashlytics
-import Fabric
 import OoviumLib
 import UIKit
 
@@ -18,7 +16,6 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		print("==================== [ Aexels ] =============================================")
 		
-		Fabric.with([Crashlytics.self])
 		Aexels.start()
 		
 		return true

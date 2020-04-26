@@ -10,7 +10,7 @@ import Acheron
 import OoviumLib
 import UIKit
 
-final class CellularExplorer: Explorer {
+final class CellularExplorer: Explorer, AetherViewDelegate {
 	var first = [Limbo]()
 	var second = [Limbo]()
 	var isFirst: Bool = true
@@ -101,6 +101,21 @@ final class CellularExplorer: Explorer {
 		}
 	}
 	
+// AetherViewDelegate ==============================================================================
+	func onNew(aetherView: AetherView, aether: Aether) {
+		self.engine.needsCompile = true
+		let auto = aether.createAuto(at: V2(0, 0))
+		aether.xOffset = Double(self.aetherView.width) - 130
+		aether.yOffset = Double(self.aetherView.height) - 100
+		auto.statesChain.replaceWith(tokens: "0:2")
+	}
+	func onClose(aetherView: AetherView, aether: Aether) {}
+	func onOpen(aetherView: AetherView, aether: Aether) {
+		self.engine.needsCompile = true
+		self.open(aether: aether)
+	}
+	func onSave(aetherView: AetherView, aether: Aether) {}
+
 // Explorer ========================================================================================
 	override func createLimbos() {
 		// Cellular Views ==================
@@ -149,20 +164,9 @@ final class CellularExplorer: Explorer {
 		tools[0][1] = AetherView.mechTool
 		
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
+		aetherView.aetherViewDelegate = self
 		Oovium.aetherView = aetherView
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		
-		aetherView.onSwap = {[unowned self](aether: Aether) in
-			self.engine.needsCompile = true
-			self.open(aether: aether)
-		}
-		aetherView.onNew = {[unowned self](aether: Aether) in
-			self.engine.needsCompile = true
-			let auto = aether.createAuto(at: V2(0, 0))
-			aether.xOffset = Double(self.aetherView.width) - 130
-			aether.yOffset = Double(self.aetherView.height) - 100
-			auto.statesChain.replaceWith(tokens: "0:2")
-		}
 		
 		aetherLimbo = ContentLimbo(content: aetherView)
 		
@@ -376,8 +380,8 @@ final class CellularExplorer: Explorer {
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
-		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9-24)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12-24)
 
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()

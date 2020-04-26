@@ -94,9 +94,8 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		c?.setLineWidth(3)
 		c?.strokePath()
 
-		let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s)!)
-		pen.alignment = .center
-		("\(Int(frameRate))" as NSString).draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), withAttributes: pen.attributes)
+		let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s)!, color: .white, alignment: .center)
+		("\(Int(frameRate))" as NSString).draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), pen: pen)
 	}
 
 // UIGestureRecognizerDelegate =====================================================================
