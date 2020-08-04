@@ -130,7 +130,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50*s, y: 162*s+i*70*s, width: 300*s, height: 40*s)
+			button.frame = CGRect(x: 50*s, y: 162*s+i*64*s, width: 300*s, height: 40*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -177,7 +177,7 @@ class NexusViewController: UIViewController {
 		var i: CGFloat = 0
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 164*s+i*58*s, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: 164*s+i*52*s, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -288,6 +288,7 @@ class NexusViewController: UIViewController {
 			DilationExplorer(parent: view),
 			ContractionExplorer(parent: view),
 			DarknessExplorer(parent: view),
+			EquivalenceExplorer(parent: view),
 			OddsAndEndsExplorer(parent: view)
 		]
 

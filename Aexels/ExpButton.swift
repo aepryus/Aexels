@@ -10,7 +10,7 @@ import Acheron
 import OoviumLib
 import UIKit
 
-class ExpButton: UIButton {
+class ExpButton: UIControl {
 	
 	var name: String
 	var color: UIColor
@@ -18,18 +18,20 @@ class ExpButton: UIButton {
 	var size: CGFloat = 13*Screen.s
 	var radius: CGFloat = 5*Screen.s
 	var activated: Bool = false {
-		didSet{setNeedsDisplay()}
+		didSet{ setNeedsDisplay() }
 	}
 	
 	init(name: String) {
 		self.name = name
 		color = UIColor.white
 		super.init(frame: CGRect.zero)
+		backgroundColor = .clear
 	}
 	init(name: String, color: UIColor) {
 		self.name = name
 		self.color = color
 		super.init(frame: CGRect.zero)
+		backgroundColor = .clear
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	

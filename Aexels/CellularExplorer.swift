@@ -380,8 +380,8 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
-		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9-24)
-		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12-24)
+		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
 
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()

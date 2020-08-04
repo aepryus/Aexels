@@ -11,7 +11,7 @@ import OoviumLib
 import UIKit
 
 class KinematicsExplorer: Explorer {
-	var message: MessageLimbo!
+	let message: MessageLimbo = MessageLimbo()
 	let universe = Limbo()
 	
 	let zoneA = Limbo()
@@ -249,7 +249,6 @@ class KinematicsExplorer: Explorer {
 		}
 		
 		// Message
-		message = MessageLimbo()
 		message.key = "KinematicsLab"
 		
 		// Close
