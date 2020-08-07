@@ -23,7 +23,7 @@ class GravityView: UIView {
 		let s = height / 748
 		let side = Double(height - 30*s)
 		vw = Int(side)
-		let q: Double = Double(Screen.iPhone ? 100*s : 170*s)
+		let q: Double = Double(Screen.iPhone ? 100*s : 150*s)
 		universe = AXUniverseCreate(Double(vw), Double(vw), q, q*2, 0.1, 12, 0, 0)
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
@@ -51,19 +51,19 @@ class GravityView: UIView {
 		setNeedsDisplay()
 	}
 	func experimentA() {
-		let q: Double = Double(Screen.iPhone ? 100*s : 170*s)
+		let q: Double = Double(Screen.iPhone ? 100*s : 150*s)
 		reset(next: AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 12, 0, 0))
 	}
 	func experimentB() {
-		let q: Double = Double(Screen.iPhone ? 50*s : 90*s)
+		let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
 		reset(next: AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 60, 0, 0))
 	}
 	func experimentC() {
-		let q: Double = Double(Screen.iPhone ? 24*s : 40*s)
+		let q: Double = Double(Screen.iPhone ? 24*s : 32*s)
 		reset(next: AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 360, 0, 0))
 	}
 	func experimentD() {
-		let q: Double = Double(Screen.iPhone ? 24*s : 40*s)
+		let q: Double = Double(Screen.iPhone ? 24*s : 32*s)
 		let universe: UnsafeMutablePointer<Universe> = AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 360, 0, 0)
 		universe.pointee.gol = 1
 		reset(next: universe)
@@ -223,12 +223,15 @@ class GravityView: UIView {
 	
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
-		if image == nil { renderImage() }
-		guard let image = image?.cgImage else { return }
-		let c = UIGraphicsGetCurrentContext()!
-		c.translateBy(x: 0, y: CGFloat(rect.size.height))
-		c.scaleBy(x: 1, y: -1)
-		c.draw(image, in: rect)
+		guard let image = image else {return}
+		image.draw(at: CGPoint.zero)
+
+//		if image == nil { renderImage() }
+//		guard let image = image?.cgImage else { return }
+//		let c = UIGraphicsGetCurrentContext()!
+//		c.translateBy(x: 0, y: CGFloat(rect.size.height))
+//		c.scaleBy(x: 1, y: -1)
+//		c.draw(image, in: rect)
 		renderMode = .displayed
 	}
 }

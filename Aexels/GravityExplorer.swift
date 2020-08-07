@@ -173,14 +173,14 @@ class GravityExplorer: Explorer {
 		let s = height / 748
 		
 		let p: CGFloat = 5*s
-		let uw: CGFloat = height
+		let uw: CGFloat = height - 110*s
 
 		gravityLimbo.topLeft(dx: p, dy: Screen.safeTop, width: uw, height: uw)
 		closeLimbo.bottomRight(dx: -p, dy: -Screen.safeBottom, width: 176*s, height: 110*s)
-		expLimbo.topRight(dx: -p, dy: Screen.safeTop, width: Screen.width-2*p-gravityLimbo.width, height: 80*s)
+		expLimbo.topLeft(dx: p, dy: gravityLimbo.bottom, width: gravityLimbo.width, height: Screen.height-Screen.safeBottom-gravityLimbo.bottom)
 
-		let om = 15*s
-		let im = 9*s
+		let om = 24*s
+		let im = 15*s
 		let bw = (expLimbo.width-2*om-3*im)/4
 		let bh = (expLimbo.height-2*om)/1
 		expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
@@ -188,7 +188,7 @@ class GravityExplorer: Explorer {
 		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
 		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
 		
-		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: expLimbo.bottom, width: expLimbo.width, height: Screen.height-expLimbo.bottom-Screen.safeBottom)
+		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: Screen.safeTop, width: Screen.width-2*p-gravityLimbo.width, height: Screen.height-Screen.safeBottom-Screen.safeTop)
 		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		messageLimbo.renderPaths()
 	}

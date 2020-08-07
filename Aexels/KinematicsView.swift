@@ -344,8 +344,8 @@ class KinematicsView: UIView, Simulation {
 			hexes?.draw(at: CGPoint(x: Xa.x, y: Xa.y))
 		}
 		
-		self.image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
+		self.image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
 		
 		DispatchQueue.main.async {
 			self.setNeedsDisplay()
