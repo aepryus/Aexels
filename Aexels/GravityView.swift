@@ -208,7 +208,7 @@ class GravityView: UIView {
 			AXUniverseTic(self.universe)
 			self.renderMode = .started
 			self.renderImage()
-			self.sampleFrameRate()
+//			self.sampleFrameRate()
 			DispatchQueue.main.async {
 				self.setNeedsDisplay()
 			}

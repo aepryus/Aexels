@@ -258,13 +258,15 @@ And just as the destruction of aexels in Universe X looks like a pull.  The crea
 
 One topic that has been conspicuously missing from this discussion of Universe X is the mass-energy equivalence principle.  Sometimes, E=mc² is incorrectly thought of as a conversion formula; representing the ability to convert energy into mass or mass into energy at the stipulated rate.  However, the mass-energy equivalence principle says something dramatically more bold: It says that the total mass of a system and the total energy of a system are always related to one another by the c² factor.  This strongly implies that mass and energy arise from the same phenomenon.
 
-In our universe both mass and energy are conserved quantities.  Our own sun loses about 4 x 10^9 kg every second through the fusion process which radiates about 3.6 x 10^26 joules of photons.  If mass is a conserved quantity and if photons are massless, where did that mass go?  It is argued that a box with massless mirrored interior walls with light bouncing around inside will have a mass equal to the energy of the photons inside divided by c².
+In our universe both mass and energy are conserved quantities.  Our own sun loses about 4 x 10^9 kg every second through the fusion process which radiates about 3.6 x 10^26 joules of photons.  If mass is a conserved quantity and if photons are massless, where did that mass go?  It is argued that a box with massless mirrored interior walls with light bouncing around inside will have a mass equal to the energy of the photons inside divided by c².  It seems that somehow massless photons do in fact have mass in some manner of thinking.
 
-So, if we assume that all of this also holds true of Universe X, what’s going on?  Previously, in the Gravity section the loops of Universe X where divided into 3 categories: loops that destroy aexels, loops that create them and loops that do neither.  For the loops that destroy and create aexels they have a property known as ‘mass’ which describes the rate at which the loop destroys or creates aexels.  In Universe X gravitational mass is the destruction of aexels (anti-mass is their creation).
+So, if we assume that all of this also holds true of Universe X, what’s going on?  Previously, in the Gravity section the loops of Universe X where divided into 3 categories: loops that destroy aexels, loops that create them and loops that do neither.  For the loops that destroy and create aexels they have a property known as ‘mass’ which describes the rate at which the loop destroys or creates aexels.  In Universe X the concept of gravitational mass, really is just the measure of the rate of the destruction of aexels (anti-mass is the measure of the rate of their creation).
 
-Additionally, the phenomenon of gravity can not directly cause a loop to translate across the aexels.  Only electric / magnetic phenomenon can cause a loop to translate.  Energy is motion; it is the translation of loops across the aexels.
+As mentioned before, the phenomenon of gravity can not directly cause a loop to translate across the aexels.  Only electric / magnetic phenomenon can cause a loop to translate.  So what is energy?  Energy is that which allows a loop to translate across the aexeal field.  Energy is motion.
 
 If energy and mass are the same phenomenon then perhaps its not some magical mass / anti-mass property that determines the rate of aexeal destruction / creation, but rather it is motion itself which destroys / creates aexels.  And as such perhaps the set of “loops that don’t affect aexels” is null.  Some loops have internal rotational motion that allows them to destroy / create aexels in place.  While other loops (photons) have entirely linear motion, destroying aexels along the way, but not destroying / creating any aexels internally.
+
+And as such photons which don’t appear to have mass (i.e., don’t destroy aexels internally), do still contribute to the destruction of aexels, which is to say do still contribute to the mass of a system.
 
 
 
@@ -447,15 +449,15 @@ In this case the aether is modeled simplistically with regular 2 dimensional hex
 
 "GravityLab" = "Gravity
 
-This is the long overdue first attempt to model the Aexels themselves.  Certainly, the ideal will be to create a quantitative model, however there are way too many open questions to attempt that currently.  As such the goal at this point is to create a qualitative model of Universe X and its Aexels.  The hope being to create a visceral picture of Universe X; a thousand words per frame at 60 frames per second.
+This is the long overdue first attempt to model the Aexels themselves.  Certainly, the ideal will be to create a quantitative model, however there are way too many open questions to attempt that currently.  As such the goal at this point is to create a qualitative model of Universe X and its aexels.  The hope being to create a visceral picture of Universe X; a thousand words per frame at 60 frames per second.
 
 This first modest model attempts to recreate the dynamics of the aexeal fabric itself, the aether.  In this case the aexels can create bonds between each other.  The bonds have a relaxation distance; if they are too close they will push apart, too far they will pull together.  However, aexels that are double the relaxation distance from one another can not create bonds and if a bond already exists between them it will snap.
 
-This model is entirely two dimensional.  One constraint is that bonds can not cross one another.  If two bonds were to cross the shorter bond will take precedence and snap the longer bond.  The aexels themselves have no concept of momentum; each bond creates a push or pull in the direction of the bond proportional to the distance from relaxation.
+This model is entirely two dimensional and bonds can not cross one another.  When two bonds cross, the shorter bond will take precedence and snap the longer bond.  The aexels themselves have no concept of momentum; each bond creates a push or pull in the direction of the bond proportional to the distance from relaxation.  The aexel then jumps slightly in the direction of the sum of the pushes and pulls.
 
 In this lab there are four preset experiments; the first three differ only in the number of aexels and the relaxation distance.  The last experiment implements Conway’s Game of Life on top of the dynamic lattice, giving a flavor of the possible interplay between the aexels and the loops sitting upon them.
 
-Currently, this model does a respectable job of healing holes in the aethereal fabric.  The next step of this model is to attempt to model gravity itself.  This will require a mechanism for creating and destroying aexels based on the loops on top.  In order to succeed the fabric probably needs to be even better at healing itself and realistically there will need to be a lot more aexels.  The key to adding more aexels will be continually increasing the performance of the algorithms being used here.
+Currently, this model does a respectable job of healing holes in the aethereal fabric.  The next step is to attempt to model gravity itself.  This will require a mechanism for creating and destroying aexels based on the loops on top.  In order to succeed the fabric probably needs to be even better at healing itself and realistically there will need to be a lot more aexels.  The key to adding more aexels will be continually increasing the performance of the algorithms being used here.
 
 
 
