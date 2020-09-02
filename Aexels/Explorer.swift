@@ -45,6 +45,7 @@ class Explorer {
 			case .dim414x736:	layout414x736()
 			case .dim414x896:	layout414x896()
 			case .dim1024x768:	layout1024x768()
+			case .dim1080x810:	layout1080x810()
 			case .dim1112x834:	layout1112x834()
 			case .dim1194x834:	layout1194x834()
 			case .dim1366x1024:	layout1366x1024()
@@ -52,20 +53,21 @@ class Explorer {
 		}
 	}
 	
-	func layout320x480() {layout375x667()}
+	func layout320x480() { layout375x667() }
 
-	func layout320x568() {layout375x667()}
+	func layout320x568() { layout375x667() }
 	func layout375x667() {}
-	func layout414x736() {layout375x667()}
+	func layout414x736() { layout375x667() }
 
-	func layout375x812() {layout375x667()}
-	func layout414x896() {layout375x812()}
+	func layout375x812() { layout375x667() }
+	func layout414x896() { layout375x812() }
 
 	func layout1024x768() {}
-	func layout1112x834() {layout1024x768()}
-	func layout1366x1024() {layout1024x768()}
+	func layout1080x810() { layout1024x768() }
+	func layout1112x834() { layout1024x768() }
+	func layout1366x1024() { layout1024x768() }
 
-	func layout1194x834() {layout1024x768()}
+	func layout1194x834() { layout1024x768() }
 
 	func dimLimbos(_ limbos: [Limbo]) {
 		UIView.animate(withDuration: 0.2, animations: { 
