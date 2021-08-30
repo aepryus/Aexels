@@ -256,7 +256,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 			limbos.append(swapper)
 
 			first = [aetherLimbo, message]
-			if Screen.this == Screen.dim375x812 || Screen.this == Screen.dim414x896 {
+			if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 {
 				second = [empty, controls, dilator, large, medium, small]
 			} else {
 				second = [controls, dilator, large, medium, small]

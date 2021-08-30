@@ -294,7 +294,7 @@ class NexusViewController: UIViewController {
 
 		if Screen.iPad {
 			iPadLayout()
-		} else if Screen.this == Screen.dim375x812 || Screen.this == Screen.dim414x896 {
+		} else if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 {
 			iPhoneXLayout()
 		} else {
 			iPhoneLayout()

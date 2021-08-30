@@ -20,10 +20,10 @@ class Aexels {
 	}
 	
 	static func backImage() -> UIImage {
-		switch Screen.this  {
+		switch Screen.dimensions  {
 			case .dim320x480:
 				return UIImage(named: "Back4")!
-			case .dim320x568, .dim375x667, .dim414x736, .dim375x812, .dim414x896:
+			case .dim320x568, .dim375x667, .dim414x736, .dim375x812, .dim414x896, .dim360x780, .dim390x844, .dim428x926:
 				return UIImage(named: "Back6")!
 			case .dim1024x768, .dim1080x810, .dim1112x834, .dim1194x834, .dim1366x1024:
 				return UIImage(named: "BackiPad")!
