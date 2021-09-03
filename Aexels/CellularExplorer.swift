@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 final class CellularExplorer: Explorer, AetherViewDelegate {
@@ -43,9 +43,11 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 	init(parent: UIView) {
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
 		let s = height / 748
-		let d = Screen.iPad ?  Int(432*s) : Int(335*Screen.s)
+		let d: Int
+		if Screen.iPhone { d = Int(335*Screen.s) }
+		else if Screen.iPad { d = Int(432*s) }
+		else /*if Screen.mac*/ { d = 609 }
 		engine = CellularEngine(side: d)
-		Hovers.initialize()
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}
 	
@@ -114,7 +116,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		self.engine.needsCompile = true
 		self.open(aether: aether)
 	}
-	func onSave(aetherView: AetherView, aether: Aether) {}
+	func onSave(aetherView: AetherView, aether: Aether, complete: @escaping (Bool)->()) {}
 
 // Explorer ========================================================================================
 	override func createLimbos() {
@@ -155,9 +157,11 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		message = MessageLimbo()
 		
 		// Aether ==========================
-		let aether = Local.loadAether(name: "Game of Life")
-		open(aether: aether)
-		
+		Space.local.loadAether(name: "Game of Life") { (aether: Aether?) in
+			guard let aether = aether else { return }
+			self.open(aether: aether)
+		}
+
 		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
 		tools[0][0] = AetherView.objectTool
 		tools[1][0] = AetherView.gateTool

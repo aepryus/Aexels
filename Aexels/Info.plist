@@ -34,6 +34,8 @@
 	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.entertainment</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -45,6 +47,7 @@
 	<array>
 		<string>TrajanPro-Regular.otf</string>
 		<string>TrajanPro-Bold.ttf</string>
+		<string>ChicagoFLF.ttf</string>
 	</array>
 	<key>UILaunchImages</key>
 	<array>

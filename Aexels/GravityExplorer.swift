@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class GravityExplorer: Explorer {
@@ -169,15 +169,17 @@ class GravityExplorer: Explorer {
 		closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
-		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+		let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+		let height = Screen.height - topY - botY
 		let s = height / 748
 		
 		let p: CGFloat = 5*s
 		let uw: CGFloat = height - 110*s
 
-		gravityLimbo.topLeft(dx: p, dy: Screen.safeTop, width: uw, height: uw)
-		closeLimbo.bottomRight(dx: -p, dy: -Screen.safeBottom, width: 176*s, height: 110*s)
-		expLimbo.topLeft(dx: p, dy: gravityLimbo.bottom, width: gravityLimbo.width, height: Screen.height-Screen.safeBottom-gravityLimbo.bottom)
+		gravityLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
+		closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
+		expLimbo.topLeft(dx: p, dy: gravityLimbo.bottom, width: gravityLimbo.width, height: Screen.height-botY-gravityLimbo.bottom)
 
 		let om = 24*s
 		let im = 15*s
@@ -188,7 +190,7 @@ class GravityExplorer: Explorer {
 		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
 		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
 		
-		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: Screen.safeTop, width: Screen.width-2*p-gravityLimbo.width, height: Screen.height-Screen.safeBottom-Screen.safeTop)
+		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: topY, width: Screen.width-2*p-gravityLimbo.width, height: Screen.height-botY-topY)
 		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		messageLimbo.renderPaths()
 	}

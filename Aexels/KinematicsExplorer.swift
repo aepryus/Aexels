@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class KinematicsExplorer: Explorer {
@@ -187,7 +187,7 @@ class KinematicsExplorer: Explorer {
 		}
 		
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
-		let s = Screen.iPad ? height / 748 : Screen.s
+		let s = (Screen.iPad || Screen.mac) ? height / 748 : Screen.s
 
 		aetherLabel.text = "Aether"
 		aetherLabel.font = UIFont.aexel(size: 16*s)
@@ -405,17 +405,19 @@ class KinematicsExplorer: Explorer {
 		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
-		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+		let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+		let height = Screen.height - topY - botY
 		let s = height / 748
 		
 		let p: CGFloat = 5*s
 		let uw: CGFloat = height - 110*s
 		let mw: CGFloat = Screen.width - uw - 2*p
 		let ch: CGFloat = height - uw
+
+		universe.frame = CGRect(x: p, y: topY, width: uw, height: uw)
 		
-		universe.frame = CGRect(x: p, y: Screen.safeTop, width: uw, height: uw)
-		
-		message.frame = CGRect(x: universe.right, y: Screen.safeTop, width: mw, height: height)
+		message.frame = CGRect(x: universe.right, y: topY, width: mw, height: height)
 		message.cutouts[.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		message.renderPaths()
 		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)

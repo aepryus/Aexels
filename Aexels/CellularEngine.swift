@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import OoviumLib
+import OoviumKit
 
 final class CellularEngine {
 	var aether: Aether!

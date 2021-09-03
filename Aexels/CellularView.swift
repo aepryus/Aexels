@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 enum PanMode {
@@ -58,10 +58,10 @@ final class CellularView: UIView {
 		return Int(frame.size.width) / zoom
 	}
 	
-	private var vw: Int = 0
-	private var cw: Int = 0
-	private var dw: Int = 0
-	private var size: Int = 0
+	private var vw: Int = 0					// view width
+	private var cw: Int = 0					// cell width
+	private var dw: Int = 0					// data width
+	private var size: Int = 0				// total bytes = vw^2*4
 	private var data: [UInt8] = []
 	
 	private var queue: DispatchQueue = DispatchQueue(label: "cellularView")
@@ -71,7 +71,9 @@ final class CellularView: UIView {
 			vw = points
 			let height = Screen.height - Screen.safeTop - Screen.safeBottom
 			let s = height / 748
-			cw = Screen.iPad ? Int(432*s) : Int(335*Screen.s)
+			if Screen.iPad { cw = Int(432*s) }
+			else if Screen.iPhone { cw = Int(335*s) }
+			else if Screen.mac { cw = Int(432*s) }
 			dw = vw*4
 			size = vw*vw*4
 			data = [UInt8](repeating: 0, count: size)
