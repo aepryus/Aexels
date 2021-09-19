@@ -110,13 +110,15 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aether.xOffset = Double(self.aetherView.width) - 130
 		aether.yOffset = Double(self.aetherView.height) - 100
 		auto.statesChain.replaceWith(tokens: "0:2")
+		aether.prepare()
+		aether.evaluate()
 	}
 	func onClose(aetherView: AetherView, aether: Aether) {}
 	func onOpen(aetherView: AetherView, aether: Aether) {
 		self.engine.needsCompile = true
 		self.open(aether: aether)
 	}
-	func onSave(aetherView: AetherView, aether: Aether, complete: @escaping (Bool)->()) {}
+	func onSave(aetherView: AetherView, aether: Aether) {}
 
 // Explorer ========================================================================================
 	override func createLimbos() {
@@ -167,11 +169,11 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		tools[1][0] = AetherView.gateTool
 		tools[0][1] = AetherView.mechTool
 		
-		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools))
+		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, redDotOn: false, oldPicker: true)
 		aetherView.aetherViewDelegate = self
 		Oovium.aetherView = aetherView
-		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		
+//		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+
 		aetherLimbo = ContentLimbo(content: aetherView)
 		
 		ooviumLabel.text = "Oovium"
@@ -299,7 +301,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherLimbo.alpha = 0
 		
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+		aetherView.aetherPickerOffset = UIOffset(horizontal: -10, vertical: -4)
 
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
@@ -335,8 +337,8 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherLimbo.alpha = 0
 		
 		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
-		
+		aetherView.aetherPickerOffset = UIOffset(horizontal: -10, vertical: -4)
+
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()
 		aetherView.showToolBars()
@@ -358,7 +360,9 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		empty.frame = CGRect(x: 5*s, y: dilator.bottom, width: Screen.width-10*s, height: Screen.height-dilator.bottom-Screen.safeBottom)
 	}
 	override func layout1024x768() {
-		let height = Screen.height - Screen.safeTop - Screen.safeBottom
+		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+		let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+		let height = Screen.height - topY - botY
 		let s = height / 748
 		let y: CGFloat = 400*s
 		let ch: CGFloat = 72*s
@@ -367,25 +371,30 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		
 		let lW: CGFloat = 462*s
 
-		large.topRight(dx: -5*s, dy: Screen.safeTop, width: lW, height: lW)
+		large.topRight(dx: -5*s, dy: topY, width: lW, height: lW)
 		medium.topLeft(dx: large.left, dy: large.bottom, width: 286*s, height: 286*s)
 		small.topRight(dx: -5*s, dy: large.bottom, width: 176*s, height: 176*s)
-		dilator.frame = CGRect(x: 205*s, y: Screen.safeTop+y, width: Screen.width-lW-200*s-10*s, height: ch)
-		message.frame = CGRect(x: 5*s, y: Screen.safeTop+y+ch, width: Screen.width-lW-10*s, height: 768*s-20*s-y-ch)
+		dilator.frame = CGRect(x: 205*s, y: topY+y, width: Screen.width-lW-200*s-10*s, height: ch)
+		message.frame = CGRect(x: 5*s, y: topY+y+ch, width: Screen.width-lW-10*s, height: 768*s-20*s-y-ch)
 		close.topLeft(dx: Screen.width-5*s-small.width, dy: medium.bottom-(medium.height-small.height), width: small.width, height: medium.height-small.height)
 
-		controls.frame = CGRect(x: 5*s, y: Screen.safeTop+y, width: 200*s, height: ch)
+		controls.frame = CGRect(x: 5*s, y: topY+y, width: 200*s, height: ch)
 		play.left(dx: 100*s-q-bw, size: CGSize(width: bw, height: 30*s))
 		reset.left(dx: 100*s-bw/2, size: CGSize(width: bw, height: 30*s))
 		guide.left(dx: 100*s+q, size: CGSize(width: bw, height: 30*s))
 		
 		// Aether
-		aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-lW-10*s, height: y)
+		aetherLimbo.frame = CGRect(x: 5*s, y: topY, width: Screen.width-lW-10*s, height: y)
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
-		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		aetherView.aetherPickerOffset = UIOffset(horizontal: 7, vertical: 12)
+		if Screen.mac {
+			aetherView.aetherPickerOffset = UIOffset(horizontal: -12, vertical: -10)
+		}
+		else {
+			aetherView.aetherPickerOffset = UIOffset(horizontal: -12, vertical: -6)
+//			aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		}
 
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()

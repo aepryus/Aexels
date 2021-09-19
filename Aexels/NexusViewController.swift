@@ -121,7 +121,7 @@ class NexusViewController: UIViewController {
 
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
-		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)
+		nexusLabel.frame = CGRect(x: 52*s+15*s, y: 52*s, width: 300*s, height: 96*s)
 		view.addSubview(nexusLabel)
 		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 

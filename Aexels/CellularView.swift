@@ -72,7 +72,7 @@ final class CellularView: UIView {
 			let height = Screen.height - Screen.safeTop - Screen.safeBottom
 			let s = height / 748
 			if Screen.iPad { cw = Int(432*s) }
-			else if Screen.iPhone { cw = Int(335*s) }
+			else if Screen.iPhone { cw = Int(335*Screen.s) }
 			else if Screen.mac { cw = Int(432*s) }
 			dw = vw*4
 			size = vw*vw*4

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import Foundation
 import OoviumKit
 
@@ -30,7 +31,7 @@ final class CellularEngine {
 
 	private var views = [CellularView]()
 
-	private let iterations: Int = 3
+	private let iterations: Int = ProcessInfo.processInfo.activeProcessorCount + 1
 	private let stride: Int
 	private var automatas: [UnsafeMutablePointer<Automata>] = []
 	

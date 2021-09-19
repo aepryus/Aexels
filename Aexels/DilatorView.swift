@@ -12,8 +12,7 @@ import OoviumKit
 
 class DilatorView: UIView, UIGestureRecognizerDelegate {
 	var position: CGFloat = 1
-	var frameRate: Int = 60
-	static var maxFrameRate: Int = 60
+	static var maxFrameRate: Int = Screen.mac ? 60 : 60;
 	var availableFrameRates: [Int] = {
 		var frameRates: [Int] = []
 		let max = UIScreen.main.maximumFramesPerSecond
@@ -22,8 +21,9 @@ class DilatorView: UIView, UIGestureRecognizerDelegate {
 		}
 		return frameRates
 	}()
+	lazy var frameRate: Int = { availableFrameRates.last ?? 60 }()
 
-	var actualFrameRate: Int = 60 {
+	var actualFrameRate: Int = maxFrameRate {
 		didSet {setNeedsDisplay()}
 	}
 	

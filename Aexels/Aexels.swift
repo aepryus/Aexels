@@ -14,6 +14,7 @@ class Aexels {
 	static var window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 	static var nexus: NexusViewController!
 	static var sync: AXSync = AXSync()
+	static var shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 	
 	static var version: String {
 		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
@@ -47,12 +48,7 @@ class Aexels {
 		let oldVersion: String? = Local.get(key: "version")
 		if oldVersion == nil {Local.archiveXML()}
 		if  oldVersion != Aexels.version {
-			Local.installAetherFromBundle(name: "Day & Night")
-			Local.installAetherFromBundle(name: "Demons")
-			Local.installAetherFromBundle(name: "Game of Life")
-			Local.installAetherFromBundle(name: "Move")
-			Local.installAetherFromBundle(name: "Sweetness")
-			Local.installAetherFromBundle(name: "WalledCities")
+			Aexels.shippedAethers.forEach { Local.installAetherFromBundle(name: $0) }
 			Local.set(key: "version", value: Aexels.version)
 		}
 
