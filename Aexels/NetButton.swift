@@ -6,7 +6,7 @@
 //  Copyright © 2018 Aepryus Software. All rights reserved.
 //
 
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class NetButton: UIButton {

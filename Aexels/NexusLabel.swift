@@ -8,7 +8,7 @@
 
 import Acheron
 import UIKit
-import OoviumLib
+import OoviumKit
 
 class NexusLabel: UIView {
 	var text: String = ""

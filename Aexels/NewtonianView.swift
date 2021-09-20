@@ -6,7 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class NewtownianView: UIView, Simulation {

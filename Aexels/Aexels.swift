@@ -7,13 +7,14 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class Aexels {
-	static var window: UIWindow!
+	static var window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 	static var nexus: NexusViewController!
 	static var sync: AXSync = AXSync()
+	static var shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 	
 	static var version: String {
 		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
@@ -34,34 +35,29 @@ class Aexels {
 	
 	static func start() {
 		Math.start()
-		Loom.start(basket: Local.basket, namespaces: ["Aexels", "OoviumLib"])
+		Loom.start(basket: Pequod.basket, namespaces: ["Aexels", "OoviumKit"])
 		Skin.skin = IvorySkin()
+		Oovium.screenBurn = false
 
 		nexus = NexusViewController()
 		
-		window = UIWindow()
+		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()
 		window.rootViewController = nexus
-		
+
 		let oldVersion: String? = Local.get(key: "version")
 		if oldVersion == nil {Local.archiveXML()}
 		if  oldVersion != Aexels.version {
-			Local.installAetherFromBundle(name: "Day & Night")
-			Local.installAetherFromBundle(name: "Demons")
-			Local.installAetherFromBundle(name: "Game of Life")
-			Local.installAetherFromBundle(name: "Move")
-			Local.installAetherFromBundle(name: "Sweetness")
-			Local.installAetherFromBundle(name: "WalledCities")
+			Aexels.shippedAethers.forEach { Local.installAetherFromBundle(name: $0) }
 			Local.set(key: "version", value: Aexels.version)
 		}
-		
-		Hovers.chainEditor = ChainEditor(schematics: [
-			EvoNumSchematic(),
-			ScientificSchematic(),
-			EvoDevSchematic(),
-			Hovers.customSchematic
-		])
 
-//		AXVectorTest();
+		if Screen.mac, #available(iOS 13.0, *) {
+			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
+				let size: CGSize = CGSize(width: 1194/0.77, height: 834/0.77)
+				windowScene.sizeRestrictions?.minimumSize = size
+				windowScene.sizeRestrictions?.maximumSize = size
+			}
+		}
 	}
 }

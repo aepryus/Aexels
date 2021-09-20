@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class NexusViewController: UIViewController {
@@ -24,10 +24,13 @@ class NexusViewController: UIViewController {
 
 	var busy = false
 	private func display(explorer: Explorer) {
+//		let w: CGFloat = Screen.width-(340+52)*s
+//		messageView.frame = CGRect(x: Screen.width-w-5*s, y: Screen.safeTop+5*s, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom-10*s)
+
 		if explorer.canExplore {
-			if Screen.iPad {
+			if Screen.iPad || Screen.mac {
 				let height = Screen.height - Screen.safeTop - Screen.safeBottom
-				let s = height / 748
+				let s = Screen.iPad ? height / 748 : self.s
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 			} else {
 				messageView.cutouts[Position.bottomRight] = Cutout(width: 160*s, height: 60*s)
@@ -55,7 +58,7 @@ class NexusViewController: UIViewController {
 		
 		self.explorer = explorer
 		
-		if !Screen.iPad && !isDimmed() {dimNexus()}
+		if Screen.iPhone && !isDimmed() {dimNexus()}
 		
 		if self.messageView.alpha != 0 {
 			if explorer.key == messageView.key {
@@ -111,15 +114,17 @@ class NexusViewController: UIViewController {
 	}
 	
 	func iPadLayout() {
+		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+		let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
 		let height = Screen.height - Screen.safeTop - Screen.safeBottom
-		let s = height / 748
+		let s = Screen.iPad ? height / 748 : self.s
 
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:72*s)
-		nexusLabel.frame = CGRect(x: 52*s, y: 52*s, width: 300*s, height: 96*s)
+		nexusLabel.frame = CGRect(x: 52*s+15*s, y: 52*s, width: 300*s, height: 96*s)
 		view.addSubview(nexusLabel)
 		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
-		
+
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:20*s)
 		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 24*s)
@@ -142,7 +147,7 @@ class NexusViewController: UIViewController {
 		// Message
 		let w: CGFloat = Screen.width-(340+52)*s
 		messageView = MessageLimbo()
-		messageView.frame = CGRect(x: Screen.width-w-5*s, y: safeTop, width: w, height: Screen.height-safeTop-safeBottom)
+		messageView.frame = CGRect(x: Screen.width-w-5*s, y: topY, width: w, height: Screen.height-topY-botY)
 		messageView.alpha = 0
 		messageView.onTap = {()->() in
 			UIView.animate(withDuration: 0.2) {
@@ -151,9 +156,9 @@ class NexusViewController: UIViewController {
 			}
 		}
 		view.addSubview(messageView)
-		
+
 		exploreButton.alpha = 0
-		exploreButton.topLeft(dx: Screen.width-5*s-176*s, dy: Screen.height-safeBottom-110*s, width: 176*s, height: 110*s)
+		exploreButton.topLeft(dx: Screen.width-5*s-176*s, dy: Screen.height-botY-110*s, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
 		exploreButton.addAction(for: .touchUpInside) {
 			self.dimNexus()
@@ -291,8 +296,10 @@ class NexusViewController: UIViewController {
 			EquivalenceExplorer(parent: view),
 			OddsAndEndsExplorer(parent: view)
 		]
-
-		if Screen.iPad {
+	}
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if Screen.mac || Screen.iPad {
 			iPadLayout()
 		} else if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 {
 			iPhoneXLayout()

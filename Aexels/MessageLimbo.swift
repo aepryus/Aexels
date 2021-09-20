@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 class MessageLimbo: Limbo {

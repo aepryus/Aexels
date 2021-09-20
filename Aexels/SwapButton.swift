@@ -7,7 +7,7 @@
 //
 
 import Acheron
-import OoviumLib
+import OoviumKit
 import UIKit
 
 fileprivate class SwapView: UIView {
