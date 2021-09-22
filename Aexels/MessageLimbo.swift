@@ -38,33 +38,58 @@ class MessageLimbo: Limbo {
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func load() {
-		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!, color: .white, alignment: .left)
-		
-		let sb = NSMutableAttributedString(string: NSLocalizedString(key, comment: ""), attributes: pen.attributes)
-		while let left = sb.string.loc(of: "<<"), let right = sb.string.loc(of: ">>") {
-			let file = sb.string[left+2...right-1]
-			let range = sb.string.range(of: "<<\(file)>>")!
-			let nsRange = NSRange(range, in: sb.string)
-			let attachment = NSTextAttachment()
-			attachment.image = UIImage(named: file)
-			let image = NSAttributedString(attachment: attachment)
-			sb.replaceCharacters(in: nsRange, with: image)
+		let template = key.localized
+		var texts: [String] = []
+		var images: [UIImage] = []
+
+		var i: Int = 0
+		while i < template.count {
+			if let left: Int = template.loc(of: "<<", after: i), let right: Int = template.loc(of: ">>", after: left) {
+				texts.append(template[i...left-1])
+				images.append(UIImage(named: template[left+2...right-1])!)
+				i = right+2
+			} else {
+				texts.append(template[i...template.count-1])
+				i = template.count
+			}
 		}
-		self.text = sb
 
 		let p: CGFloat = 10*s
 		let w = self.scrollView.bounds.size.width - p*2
-		
-		let size = self.text.boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil).size
-		
-		let h = size.height
-		
+		var y: CGFloat = 0
+		var tHs: [CGFloat] = []
+		var iHs: [CGFloat] = []
+
+		var h: CGFloat = 0
+
+		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!, color: .white, alignment: .left)
+
+		for i in 0..<texts.count {
+			let height: CGFloat = texts[i].boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size.height
+			h += height
+			tHs.append(height)
+			if i < images.count {
+				let height: CGFloat = images[i].size.height
+				h += height
+				iHs.append(height)
+			}
+		}
+
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: h), false, UIScreen.main.scale)
 		guard let c = UIGraphicsGetCurrentContext() else {return}
 		c.saveGState()
 		c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
 		c.setFillColor(UIColor.white.cgColor)
-		text.draw(in: CGRect(x: 0, y: 0, width: w, height: h))
+
+		for i in 0..<texts.count {
+			(texts[i] as NSString).draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
+			y += tHs[i]
+			if i < images.count {
+				images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: images[i].size))
+				y += iHs[i]
+			}
+		}
+
 		c.restoreGState()
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()
