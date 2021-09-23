@@ -135,14 +135,7 @@ class GravityExplorer: Explorer {
 	override func layout375x667() {
 		let size = UIScreen.main.bounds.size
 		
-//		let h = size.height - 110*s - 20*s
 		let w = size.width - 10*s
-//		let ch = size.height - 20*s - h - 15*2*s + 1*s
-//		let vw: CGFloat = 72*s
-//		let sh: CGFloat = 56*s
-//
-//
-//		let dx: CGFloat = 32*s
 
 		expLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
 		expLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)

@@ -172,7 +172,6 @@
 		D8A09D5626E0D8B500A7BB5C /* ChicagoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChicagoFLF.ttf; sourceTree = "<group>"; };
 		D8A19A9720B1ECCD002518F4 /* AXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AXButton.swift; sourceTree = "<group>"; };
 		D8ABB6F21E7537F1001FE14F /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
-		D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8ABF4B81E21925400F7B4D6 /* CellularEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularEngine.swift; sourceTree = "<group>"; };
 		D8AC412A24D66EF6003D14B0 /* EquivalenceExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquivalenceExplorer.swift; sourceTree = "<group>"; };
 		D8ACCCEA217657FC00B2C1A6 /* TouchingGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchingGesture.swift; sourceTree = "<group>"; };
@@ -196,11 +195,7 @@
 		D8C2648D21713ABF00E03E77 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
 		D8C4554C2234D134004D971E /* Acheron.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Acheron.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C64A7B2171D90800F56591 /* Dilation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dilation@2x.png"; sourceTree = "<group>"; };
-		D8CB605624550B82006B5B1F /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CB605924550C3E006B5B1F /* OoviumLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OoviumLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E666F61FB022A3009D136C /* Icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon1024.png; sourceTree = "<group>"; };
-		D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
-		D8FD7E6F1E1E20CD00325115 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Frameworks/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -511,12 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A09D5326E0CDF900A7BB5C /* OoviumKit.framework */,
-				D8CB605924550C3E006B5B1F /* OoviumLib.framework */,
-				D8CB605624550B82006B5B1F /* OoviumLib.framework */,
 				D8C4554C2234D134004D971E /* Acheron.framework */,
-				D8FD7E6E1E1E20CD00325115 /* Crashlytics.framework */,
-				D8FD7E6F1E1E20CD00325115 /* Fabric.framework */,
-				D8ABF4B51E218F2500F7B4D6 /* OoviumLib.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -901,7 +891,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -930,7 +920,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b9334b21-cf6c-4c4c-866c-b9a86bbd0b24";

@@ -24,9 +24,6 @@ class NexusViewController: UIViewController {
 
 	var busy = false
 	private func display(explorer: Explorer) {
-//		let w: CGFloat = Screen.width-(340+52)*s
-//		messageView.frame = CGRect(x: Screen.width-w-5*s, y: Screen.safeTop+5*s, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom-10*s)
-
 		if explorer.canExplore {
 			if Screen.iPad || Screen.mac {
 				let height = Screen.height - Screen.safeTop - Screen.safeBottom
