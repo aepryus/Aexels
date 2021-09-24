@@ -74,7 +74,6 @@ final class CellularView: UIView {
 			if Screen.iPad { cw = Int(432*s) }
 			else if Screen.iPhone { cw = Int(335*Screen.s) }
 			else if Screen.mac { cw = Int(432*s) }
-			print("cw:\(cw)")
 			dw = vw*4
 			size = vw*vw*4
 			data = [UInt8](repeating: 0, count: size)
