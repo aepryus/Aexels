@@ -304,4 +304,9 @@ class NexusViewController: UIViewController {
 			iPhoneLayout()
 		}
 	}
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		print("A")
+		imageView.frame = view.frame
+	}
 }
