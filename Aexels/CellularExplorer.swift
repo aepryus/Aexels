@@ -46,7 +46,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		let d: Int
 		if Screen.iPhone { d = Int(335*Screen.s) }
 		else if Screen.iPad { d = Int(432*s) }
-		else /*if Screen.mac*/ { d = 609 }
+		else /*if Screen.mac*/ { d = Int(Screen.scaler == 1 ? 465 : 609) }
 		engine = CellularEngine(side: d)
 		super.init(parent: parent, name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
 	}

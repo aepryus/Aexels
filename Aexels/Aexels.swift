@@ -54,7 +54,7 @@ class Aexels {
 
 		if Screen.mac, #available(iOS 13.0, *) {
 			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in
-				let size: CGSize = CGSize(width: 1194/0.77, height: 834/0.77)
+				let size: CGSize = CGSize(width: 1194/Screen.scaler, height: 834/Screen.scaler)
 				windowScene.sizeRestrictions?.minimumSize = size
 				windowScene.sizeRestrictions?.maximumSize = size
 			}
