@@ -32,7 +32,6 @@
 		D8AE17A52814F0D300E74CB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */; };
 		D8AE17A62814F0D300E74CB8 /* Move.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177D2814F0D300E74CB8 /* Move.oo */; };
 		D8AE17A72814F0D300E74CB8 /* Escape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177E2814F0D300E74CB8 /* Escape@2x.png */; };
-		D8AE17AA2814F0D300E74CB8 /* Aexels.txt in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17812814F0D300E74CB8 /* Aexels.txt */; };
 		D8AE17AB2814F0D300E74CB8 /* Gravity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17822814F0D300E74CB8 /* Gravity@2x.png */; };
 		D8AE17AC2814F0D300E74CB8 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17832814F0D300E74CB8 /* Back6.png */; };
 		D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */; };
@@ -105,7 +104,6 @@
 		D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D8AE177D2814F0D300E74CB8 /* Move.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Move.oo; sourceTree = "<group>"; };
 		D8AE177E2814F0D300E74CB8 /* Escape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Escape@2x.png"; sourceTree = "<group>"; };
-		D8AE17812814F0D300E74CB8 /* Aexels.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Aexels.txt; sourceTree = "<group>"; };
 		D8AE17822814F0D300E74CB8 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
 		D8AE17832814F0D300E74CB8 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
 		D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Day & Night iP.oo"; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 				D8AE17BC2814F13F00E74CB8 /* Images */,
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
-				D8AE17812814F0D300E74CB8 /* Aexels.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -549,7 +546,6 @@
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,
 				D8AE179F2814F0D300E74CB8 /* BackiPad.png in Resources */,
 				D8AE17A72814F0D300E74CB8 /* Escape@2x.png in Resources */,
-				D8AE17AA2814F0D300E74CB8 /* Aexels.txt in Resources */,
 				D8AE17A22814F0D300E74CB8 /* DilaDeriv@2x.png in Resources */,
 				D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */,
 				D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */,
