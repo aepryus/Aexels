@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "acheron",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aepryus/Acheron.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ca1df0e199ecdc3fc3c4f71d0ba18a383d7d6d5a"
+      }
+    },
+    {
+      "identity" : "ooviumengine",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aepryus/OoviumEngine.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a0e3369b3ea298737829f3968b2def584ada5462"
+      }
+    },
+    {
+      "identity" : "ooviumkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/aepryus/OoviumKit",
+      "state" : {
+        "branch" : "master",
+        "revision" : "297c7923c763db0f04b96234c0c83ed410a47743"
+      }
+    }
+  ],
+  "version" : 2
+}
