@@ -124,7 +124,7 @@ class NexusViewController: UIViewController {
 
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:20*s)
-		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 24*s)
+		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 
@@ -171,7 +171,7 @@ class NexusViewController: UIViewController {
 
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
-		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 26*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		
@@ -219,7 +219,7 @@ class NexusViewController: UIViewController {
 		
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
-		versionLabel.frame = CGRect(x: 16*s, y: 155*s, width: 300*s, height: 26*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 155*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		

@@ -88,31 +88,31 @@
 		D8AE17632814F08400E74CB8 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D8AE17682814F0D300E74CB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		D8AE17692814F0D300E74CB8 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
-		D8AE176A2814F0D300E74CB8 /* Day & Night.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Day & Night.oo"; sourceTree = "<group>"; };
-		D8AE176B2814F0D300E74CB8 /* Sweetness.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sweetness.oo; sourceTree = "<group>"; };
+		D8AE176A2814F0D300E74CB8 /* Day & Night.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Day & Night.oo"; sourceTree = "<group>"; };
+		D8AE176B2814F0D300E74CB8 /* Sweetness.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Sweetness.oo; sourceTree = "<group>"; };
 		D8AE176D2814F0D300E74CB8 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back4.png; sourceTree = "<group>"; };
-		D8AE176E2814F0D300E74CB8 /* Game of Life.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Game of Life.oo"; sourceTree = "<group>"; };
-		D8AE176F2814F0D300E74CB8 /* Demons.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Demons.oo; sourceTree = "<group>"; };
+		D8AE176E2814F0D300E74CB8 /* Game of Life.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Game of Life.oo"; sourceTree = "<group>"; };
+		D8AE176F2814F0D300E74CB8 /* Demons.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Demons.oo; sourceTree = "<group>"; };
 		D8AE17702814F0D300E74CB8 /* ChicagoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChicagoFLF.ttf; sourceTree = "<group>"; };
-		D8AE17732814F0D300E74CB8 /* WalledCities iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "WalledCities iP.oo"; sourceTree = "<group>"; };
-		D8AE17752814F0D300E74CB8 /* WalledCities.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WalledCities.oo; sourceTree = "<group>"; };
+		D8AE17732814F0D300E74CB8 /* WalledCities iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "WalledCities iP.oo"; sourceTree = "<group>"; };
+		D8AE17752814F0D300E74CB8 /* WalledCities.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = WalledCities.oo; sourceTree = "<group>"; };
 		D8AE17762814F0D300E74CB8 /* BackiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackiPad.png; sourceTree = "<group>"; };
 		D8AE17772814F0D300E74CB8 /* SurfDila@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SurfDila@2x.png"; sourceTree = "<group>"; };
 		D8AE17782814F0D300E74CB8 /* Dilation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dilation@2x.png"; sourceTree = "<group>"; };
 		D8AE17792814F0D300E74CB8 /* DilaDeriv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DilaDeriv@2x.png"; sourceTree = "<group>"; };
-		D8AE177B2814F0D300E74CB8 /* Sweetness iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
+		D8AE177B2814F0D300E74CB8 /* Sweetness iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
 		D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D8AE177D2814F0D300E74CB8 /* Move.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Move.oo; sourceTree = "<group>"; };
+		D8AE177D2814F0D300E74CB8 /* Move.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Move.oo; sourceTree = "<group>"; };
 		D8AE177E2814F0D300E74CB8 /* Escape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Escape@2x.png"; sourceTree = "<group>"; };
 		D8AE17822814F0D300E74CB8 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
 		D8AE17832814F0D300E74CB8 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
-		D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Day & Night iP.oo"; sourceTree = "<group>"; };
-		D8AE17882814F0D300E74CB8 /* Demons iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Demons iP.oo"; sourceTree = "<group>"; };
+		D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Day & Night iP.oo"; sourceTree = "<group>"; };
+		D8AE17882814F0D300E74CB8 /* Demons iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Demons iP.oo"; sourceTree = "<group>"; };
 		D8AE178A2814F0D300E74CB8 /* InfinDila@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfinDila@2x.png"; sourceTree = "<group>"; };
 		D8AE178B2814F0D300E74CB8 /* TrajanPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Regular.otf"; sourceTree = "<group>"; };
-		D8AE178C2814F0D300E74CB8 /* Move iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Move iP.oo"; sourceTree = "<group>"; };
+		D8AE178C2814F0D300E74CB8 /* Move iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Move iP.oo"; sourceTree = "<group>"; };
 		D8AE178E2814F0D300E74CB8 /* TrajanPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Bold.ttf"; sourceTree = "<group>"; };
-		D8AE178F2814F0D300E74CB8 /* Game of Life iP.oo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Game of Life iP.oo"; sourceTree = "<group>"; };
+		D8AE178F2814F0D300E74CB8 /* Game of Life iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Game of Life iP.oo"; sourceTree = "<group>"; };
 		D8AE17BD2814F1A600E74CB8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8AE17BF2814F1AF00E74CB8 /* Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aexels.swift; sourceTree = "<group>"; };
 		D8AE17C02814F1AF00E74CB8 /* AexelsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsDelegate.swift; sourceTree = "<group>"; };
@@ -170,20 +170,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D804561A281534BF0018223B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		D8AE172E2814E97200E74CB8 = {
 			isa = PBXGroup;
 			children = (
 				D8AE17392814E97200E74CB8 /* Aexels */,
 				D8AE174E2814EA5A00E74CB8 /* Resources */,
 				D8AE17382814E97200E74CB8 /* Products */,
-				D804561A281534BF0018223B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
