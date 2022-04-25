@@ -150,10 +150,10 @@
 		D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquivalenceExplorer.swift; sourceTree = "<group>"; };
 		D8AE18052814F23D00E74CB8 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
-		D8AE18072814F27C00E74CB8 /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
+		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,8 +378,8 @@
 		D8AE175F2814F00E00E74CB8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				D8E154D028162E650074A59B /* Aexels.entitlements */,
 				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
-				D8AE18072814F27C00E74CB8 /* Aexels.entitlements */,
 				D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */,
 			);
 			name = "Support Files";
@@ -739,9 +739,9 @@
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -775,9 +775,9 @@
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
