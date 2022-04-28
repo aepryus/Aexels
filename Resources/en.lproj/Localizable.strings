@@ -16,11 +16,11 @@ There are things we know for certain about Universe X; there are things we can s
 
 This app is divided into sections that each describe a different aspect of Universe X.  Eventually each of these sections will also contain an exploration screen that will allow the user to see each aspect modeled visually.
 
-The first exploration screen is for the Cellular Automata section.  This explorer will allow the user to view a number of famous Cellular Automata and will also allow the user to define and execute their own Cellular Automata using the Oovium visual programming language.
+Currently there are explorers for Cellular Automata, Kinematics and Gravity.  The Cellular Automata explorer will allow the user to view a number of famous Cellular Automata and will also allow users to define and execute their own Cellular Automata using the Oovium visual programming language.  The Kinematics explorer compares simple motion in our Universe to that in Universe X.  The Gravity explorer attempts to qualitatively model the crystalline nature of Aexels themselves.
 
 So what is Universe X?
 
-Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates, length contracts; God plays dice with our universe.  Our universe contains dark matter and dark energy; our universe is expanding and expanding at an increasing rate.
+Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates and both are intertwined with one another; it contains dark matter and dark energy; it is expanding and expanding at an increasing rate; God plays dice with our universe.
 
 In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
 
@@ -128,13 +128,15 @@ But, even with Newton and Einstein's contributions to Gravity we still really do
 
 But, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
-In Universe X there exists many different types of stable state loops.  These loops can be divided into three categories:
+In Universe X there exists many different types of stable state loops.  There are potentially three ways these loops could interact with the aexels:
 
-- Loops that don't affect aexels
-- Loops that destroy aexels
-- Loops that create aexels
+- they could destroy the aexels
+- they could create more aexels
+- they could leave the aexels alone
 
-That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  But for this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called 'matter'.
+It is quite certain that there are loops that destroy aexels in Universe X.  That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  Initially, it seemed certain that there must be loops that left the aexels alone, but as the understanding of Universe X has increased this has been called into question.
+
+But for the purposes of this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called 'matter'.
 
 Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the aexels to ever get too far apart.
 
