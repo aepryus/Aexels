@@ -107,11 +107,11 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 // AetherViewDelegate ==============================================================================
 	func onNew(aetherView: AetherView, aether: Aether) {
 		self.engine.needsCompile = true
-		let auto = aether.createAuto(at: V2(0, 0))
+        let auto: Auto = aether.create(at: .zero)
 		aether.xOffset = Double(self.aetherView.width) - 130
 		aether.yOffset = Double(self.aetherView.height) - 100
 		auto.statesChain.replaceWith(tokens: "0:2")
-		aether.prepare()
+//		aether.prepare()
 		aether.evaluate()
 	}
 	func onClose(aetherView: AetherView, aether: Aether) {}
@@ -160,7 +160,10 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		message = MessageLimbo()
 		
 		// Aether ==========================
-		Space.local.loadAether(name: "Game of Life") { (json: String?) in
+//        let localFacade: SpaceFacade = Facade.create(space: Space.local) as! SpaceFacade
+        _ = Facade.create(space: Space.local) as! SpaceFacade
+        let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
+        facade.load { (json: String?) in
 			guard let json = json else { return }
 			self.open(aether: Aether(json: json))
 		}
@@ -171,6 +174,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		tools[0][1] = AetherView.mechTool
 		
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
+        aetherView.backgroundColor = .clear
 		aetherView.aetherViewDelegate = self
 		Aexels.aetherView = aetherView
 //		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)

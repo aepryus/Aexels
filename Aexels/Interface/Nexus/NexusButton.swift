@@ -28,6 +28,6 @@ class NexusButton: UIControl {
 		let c = UIGraphicsGetCurrentContext()!
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
 		let pen = Pen(font: UIFont.aexel(size: 24*s), color: (state == .normal ? UIColor.black : UIColor.white), alignment: .right)
-		(text as NSString).draw(in: rect.offsetBy(dx: 0, dy: (rect.height-24*s)/2), pen: pen)
+		text.draw(in: rect.offsetBy(dx: 0, dy: (rect.height-24*s)/2), pen: pen)
     }
 }

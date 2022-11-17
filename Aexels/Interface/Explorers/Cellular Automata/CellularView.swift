@@ -146,7 +146,21 @@ final class CellularView: UIView {
 			let a: CFData? = CFDataCreate(nil, data, size)
 			let b: CFData = a!
 			let provider: CGDataProvider = CGDataProvider(data: b)!
-			let cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
+			let cgImage = CGImage(
+                width: vw, height: vw,
+                bitsPerComponent: 8,
+                bitsPerPixel: 32,
+                bytesPerRow: vw*4,
+                space: space,
+                bitmapInfo: CGBitmapInfo(
+                    rawValue: CGBitmapInfo.byteOrderDefault.rawValue
+//                    rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+                ),
+                provider: provider,
+                decode: nil,
+                shouldInterpolate: false,
+                intent: .defaultIntent
+            )!
 			self.image = UIImage(cgImage: cgImage)
 			
 			if focus != nil && (engine.guideOn || guideOnOverride) {

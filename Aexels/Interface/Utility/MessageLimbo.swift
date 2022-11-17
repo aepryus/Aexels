@@ -82,7 +82,7 @@ class MessageLimbo: Limbo {
 		c.setFillColor(UIColor.white.cgColor)
 
 		for i in 0..<texts.count {
-			(texts[i] as NSString).draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
+			texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
 			y += tHs[i]
 			if i < images.count {
 				images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: images[i].size))
