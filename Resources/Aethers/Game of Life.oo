@@ -1,62 +1,62 @@
 {
-  "xOffset" : 2008,
-  "readOnly" : true,
-  "modified" : "2022-11-17T17:25:58+0900",
   "name" : "Game of Life",
-  "height" : 1537,
-  "yOffset" : 1333.5,
-  "version" : "3.0",
+  "modified" : "2019-05-18T15:22:04+0900",
+  "xOffset" : 465,
+  "iden" : "1",
   "aexels" : [
     {
+      "x" : 595.49732620320856,
+      "no" : 1,
+      "name" : "",
+      "resultChain" : "va:Gt3",
+      "iden" : "1",
+      "y" : 386.45989304812832,
       "states" : [
         {
-          "iden" : "1",
-          "type" : "state",
+          "color" : 19,
           "no" : 0,
-          "color" : 19
+          "iden" : "1",
+          "type" : "state"
         },
         {
-          "color" : 9,
-          "no" : 0,
           "iden" : "2",
-          "type" : "state"
+          "no" : 0,
+          "type" : "state",
+          "color" : 9
         }
       ],
-      "no" : 1,
-      "y" : 1501,
-      "type" : "auto",
-      "modified" : "2022-11-17T16:15:31+0900",
-      "x" : 2181,
-      "iden" : "1",
-      "resultChain" : "va:Gt3",
       "statesChain" : "dg:2",
-      "name" : ""
+      "modified" : "2019-05-18T15:21:41+0900",
+      "type" : "auto"
     },
     {
-      "x" : 2418.8054046630859,
-      "type" : "object",
       "name" : "Ob_1",
-      "y" : 1538.0460510253906,
-      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
-      "label" : "S",
       "no" : 1,
+      "label" : "S",
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
+      "iden" : "1",
       "modified" : "2019-05-18T15:21:41+0900",
-      "iden" : "1"
+      "x" : 792.99732620320856,
+      "y" : 432.45989304812832,
+      "type" : "object"
     },
     {
-      "y" : 1648.8713226318359,
+      "y" : 531.45989304812838,
       "no" : 3,
-      "thenChain" : "va:Ob1;op:=;dg:2;op:||;va:Ob1;op:=;dg:3",
-      "name" : "",
-      "x" : 2396.0452575683594,
       "modified" : "2019-05-18T15:21:41+0900",
-      "iden" : "",
-      "elseChain" : "va:Ob1;op:=;dg:3",
+      "x" : 776.49732620320856,
+      "thenChain" : "va:Ob1;op:=;dg:2;op:||;va:Ob1;op:=;dg:3",
       "ifChain" : "va:Au1.Self",
+      "elseChain" : "va:Ob1;op:=;dg:3",
+      "iden" : "",
+      "name" : "",
       "type" : "gate"
     }
   ],
-  "iden" : "1",
   "type" : "aether",
-  "width" : 2281
+  "yOffset" : 289,
+  "height" : 422.45989304812832,
+  "width" : 695.49732620320856,
+  "readOnly" : true,
+  "version" : "3.0"
 }

@@ -110,7 +110,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
         let auto: Auto = aether.create(at: .zero)
 		aether.xOffset = Double(self.aetherView.width) - 130
 		aether.yOffset = Double(self.aetherView.height) - 100
-		auto.statesChain.replaceWith(tokens: "0:2")
+		auto.statesChain.replaceWith(tokens: "dg:2")
 //		aether.prepare()
 		aether.evaluate()
 	}
@@ -160,7 +160,6 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		message = MessageLimbo()
 		
 		// Aether ==========================
-//        let localFacade: SpaceFacade = Facade.create(space: Space.local) as! SpaceFacade
         _ = Facade.create(space: Space.local) as! SpaceFacade
         let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
         facade.load { (json: String?) in
@@ -204,9 +203,6 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		
 		play.onPlay = { [unowned self] in
 			self.engine.start(aether: self.aetherView.aether)
-			
-//			self.aetherView.markPositions()
-//			print(self.aetherView.aether.unload().toJSON())
 		}
 		play.onStop = { [unowned self] in
 			self.engine.stop()
@@ -393,13 +389,8 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherLimbo.renderPaths()
 		aetherLimbo.alpha = 0
 
-		if Screen.mac {
-			aetherView.aetherPickerOffset = UIOffset(horizontal: -12, vertical: -10)
-		}
-		else {
-			aetherView.aetherPickerOffset = UIOffset(horizontal: -12, vertical: -6)
-//			aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-		}
+		if Screen.mac { aetherView.aetherPickerOffset = UIOffset(horizontal: -20, vertical: -20) }
+		else { aetherView.aetherPickerOffset = UIOffset(horizontal: -12, vertical: -6) }
 
 		aetherView.renderToolBars()
 		aetherView.placeToolBars()

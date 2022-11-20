@@ -1,61 +1,62 @@
 {
-	"height" : 365,
-	"iden" : "6FF9981A-E74B-46B7-A743-C7AF615AEFDF",
-	"yOffset" : 289.5,
-	"readOnly" : true,
-	"aexels" : [
-		{
-			"x" : 265,
-			"iden" : "",
-			"y" : 329,
-			"states" : [
-				{
-					"type" : "state",
-					"no" : 0,
-					"modified" : "2018-10-01T00:15:17+0900",
-					"iden" : "DDB7C537-4E94-497F-A9C9-075D220C469C",
-					"color" : 19
-				},
-				{
-					"type" : "state",
-					"no" : 1,
-					"modified" : "2018-10-01T00:15:17+0900",
-					"iden" : "9FBB4BC0-BC3F-4FEF-B999-051AD4FBDF00",
-					"color" : 5
-				}
-			],
-			"no" : 1,
-			"name" : "",
-			"statesChain" : "0:2",
-			"resultChain" : "4:GtR_1",
-			"modified" : "2018-10-01T00:16:57+0900",
-			"type" : "auto"
-		},
-		{
-			"x" : 424.5,
-			"iden" : "",
-			"y" : 373.5,
-			"label" : "S",
-			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-			"no" : 1,
-			"name" : "Ob_1",
-			"type" : "object"
-		},
-		{
-			"x" : 266.5,
-			"iden" : "",
-			"y" : 533,
-			"no" : 1,
-			"ifChain" : "4:Auto1.Self",
-			"name" : "",
-			"thenChain" : "4:Ob_1;1:=;0:2;1:||;4:Ob_1;1:=;0:4;1:||;4:Ob_1;1:=;0:5",
-			"type" : "gate",
-			"elseChain" : "4:Ob_1;1:=;0:3;1:||;4:Ob_1;1:=;0:6;1:||;4:Ob_1;1:=;0:8"
-		}
-	],
-	"xOffset" : 250.5,
-	"name" : "Move",
-	"width" : 365,
-	"modified" : "2019-03-10T09:41:07+0900",
-	"type" : "aether"
+  "aexels" : [
+    {
+      "no" : 1,
+      "name" : "",
+      "x" : 265,
+      "type" : "auto",
+      "statesChain" : "dg:2",
+      "y" : 329,
+      "states" : [
+        {
+          "iden" : "DDB7C537-4E94-497F-A9C9-075D220C469C",
+          "no" : 0,
+          "type" : "state",
+          "modified" : "2018-10-01T00:15:17+0900",
+          "color" : 19
+        },
+        {
+          "color" : 5,
+          "modified" : "2018-10-01T00:15:17+0900",
+          "iden" : "9FBB4BC0-BC3F-4FEF-B999-051AD4FBDF00",
+          "no" : 1,
+          "type" : "state"
+        }
+      ],
+      "resultChain" : "va:Gt1",
+      "iden" : "",
+      "modified" : "2018-10-01T00:16:57+0900"
+    },
+    {
+      "name" : "Ob_1",
+      "y" : 373.5,
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
+      "label" : "S",
+      "no" : 1,
+      "iden" : "",
+      "x" : 424.5,
+      "type" : "object"
+    },
+    {
+      "name" : "",
+      "no" : 1,
+      "x" : 266.5,
+      "thenChain" : "va:Ob1;op:=;dg:2;op:||;va:Ob1;op:=;dg:4;op:||;va:Ob1;op:=;dg:5",
+      "type" : "gate",
+      "y" : 533,
+      "ifChain" : "va:Au1.Self",
+      "elseChain" : "va:Ob1;op:=;dg:3;op:||;va:Ob1;op:=;dg:6;op:||;va:Ob1;op:=;dg:8",
+      "iden" : ""
+    }
+  ],
+  "iden" : "6FF9981A-E74B-46B7-A743-C7AF615AEFDF",
+  "height" : 365,
+  "width" : 365,
+  "yOffset" : 289.5,
+  "version" : "3.0",
+  "type" : "aether",
+  "xOffset" : 250.5,
+  "readOnly" : true,
+  "name" : "Move",
+  "modified" : "2019-03-10T09:41:07+0900"
 }

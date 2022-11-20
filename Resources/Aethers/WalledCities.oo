@@ -1,84 +1,85 @@
 {
-	"name" : "WalledCities",
-	"aexels" : [
-		{
-			"no" : 1,
-			"y" : 386.45989304812832,
-			"statesChain" : "0:5",
-			"states" : [
-				{
-					"color" : 19,
-					"type" : "state",
-					"iden" : "2409BEDF-DADB-4EB1-89D7-59CF362D269D",
-					"no" : 0,
-					"modified" : "2018-10-01T00:41:20+0900"
-				},
-				{
-					"no" : 1,
-					"iden" : "77C43523-B284-4FA6-98E9-2B6F719CA5EC",
-					"type" : "state",
-					"modified" : "2018-10-01T00:41:20+0900",
-					"color" : 10
-				},
-				{
-					"modified" : "2018-10-01T00:42:04+0900",
-					"type" : "state",
-					"iden" : "FE514349-D9BF-4766-B924-C542EFBBBB09",
-					"no" : 2,
-					"color" : 2
-				},
-				{
-					"iden" : "14D2CF2D-2C68-4FD1-88CA-E81346AEC3AB",
-					"no" : 3,
-					"modified" : "2018-10-01T00:42:04+0900",
-					"type" : "state",
-					"color" : 3
-				},
-				{
-					"iden" : "4616A17C-C9A2-437C-BE15-045D48F19F4D",
-					"type" : "state",
-					"no" : 4,
-					"color" : 4,
-					"modified" : "2018-10-01T00:42:04+0900"
-				}
-			],
-			"resultChain" : "4:GtR_1",
-			"x" : 595.49732620320856,
-			"modified" : "2019-05-18T15:36:41+0900",
-			"iden" : "",
-			"type" : "auto",
-			"name" : ""
-		},
-		{
-			"label" : "S",
-			"iden" : "",
-			"y" : 430.45989304812832,
-			"no" : 1,
-			"name" : "Ob_1",
-			"chain" : "4:Auto1.A;1:+;4:Auto1.B;1:+;4:Auto1.C;1:+;4:Auto1.D;1:+;4:Auto1.E;1:+;4:Auto1.F;1:+;4:Auto1.G;1:+;4:Auto1.H",
-			"x" : 816.49732620320856,
-			"type" : "object",
-			"modified" : "2019-05-18T15:36:41+0900"
-		},
-		{
-			"iden" : "",
-			"name" : "",
-			"type" : "gate",
-			"ifChain" : "4:Auto1.Self",
-			"x" : 758.99732620320856,
-			"modified" : "2019-05-18T15:36:41+0900",
-			"y" : 573.45989304812838,
-			"elseChain" : "4:Ob_1;1:≥;0:4",
-			"no" : 1,
-			"thenChain" : "4:Ob_1;1:≥;0:2;1:&&;4:Ob_1;1:≤;0:5"
-		}
-	],
-	"width" : 695.49732620320856,
-	"type" : "aether",
-	"xOffset" : 467,
-	"yOffset" : 308.5,
-	"iden" : "12701A4E-8D1E-4566-8C37-4325DE3B97F7",
-	"readOnly" : true,
-	"modified" : "2019-05-18T15:36:53+0900",
-	"height" : 422.45989304812832
+  "aexels" : [
+    {
+      "iden" : "",
+      "x" : 595.49732620320856,
+      "resultChain" : "va:Gt1",
+      "name" : "",
+      "modified" : "2019-05-18T15:36:41+0900",
+      "type" : "auto",
+      "y" : 386.45989304812832,
+      "statesChain" : "dg:5",
+      "no" : 1,
+      "states" : [
+        {
+          "no" : 0,
+          "modified" : "2018-10-01T00:41:20+0900",
+          "color" : 19,
+          "iden" : "2409BEDF-DADB-4EB1-89D7-59CF362D269D",
+          "type" : "state"
+        },
+        {
+          "modified" : "2018-10-01T00:41:20+0900",
+          "iden" : "77C43523-B284-4FA6-98E9-2B6F719CA5EC",
+          "no" : 1,
+          "type" : "state",
+          "color" : 10
+        },
+        {
+          "type" : "state",
+          "color" : 2,
+          "iden" : "FE514349-D9BF-4766-B924-C542EFBBBB09",
+          "modified" : "2018-10-01T00:42:04+0900",
+          "no" : 2
+        },
+        {
+          "iden" : "14D2CF2D-2C68-4FD1-88CA-E81346AEC3AB",
+          "no" : 3,
+          "type" : "state",
+          "color" : 3,
+          "modified" : "2018-10-01T00:42:04+0900"
+        },
+        {
+          "iden" : "4616A17C-C9A2-437C-BE15-045D48F19F4D",
+          "type" : "state",
+          "no" : 4,
+          "modified" : "2018-10-01T00:42:04+0900",
+          "color" : 4
+        }
+      ]
+    },
+    {
+      "name" : "Ob_1",
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
+      "y" : 430.45989304812832,
+      "no" : 1,
+      "modified" : "2019-05-18T15:36:41+0900",
+      "type" : "object",
+      "iden" : "",
+      "x" : 816.49732620320856,
+      "label" : "S"
+    },
+    {
+      "modified" : "2019-05-18T15:36:41+0900",
+      "y" : 573.45989304812838,
+      "ifChain" : "va:Au1.Self",
+      "thenChain" : "va:Ob1;op:≥;dg:2;op:&&;va:Ob1;op:≤;dg:5",
+      "type" : "gate",
+      "name" : "",
+      "no" : 1,
+      "iden" : "",
+      "elseChain" : "va:Ob1;op:≥;dg:4",
+      "x" : 758.99732620320856
+    }
+  ],
+  "name" : "WalledCities",
+  "yOffset" : 308.5,
+  "type" : "aether",
+  "height" : 422.45989304812832,
+  "readOnly" : true,
+  "xOffset" : 467,
+  "width" : 695.49732620320856,
+  "modified" : "2019-05-18T15:36:53+0900",
+  "iden" : "12701A4E-8D1E-4566-8C37-4325DE3B97F7",
+  "version" : "3.0"
 }

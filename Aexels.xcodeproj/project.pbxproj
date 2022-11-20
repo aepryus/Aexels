@@ -15,28 +15,17 @@
 		D8AE17642814F08400E74CB8 /* AXSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17622814F08400E74CB8 /* AXSync.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
 		D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17672814F0D300E74CB8 /* Localizable.strings */; };
-		D8AE17922814F0D300E74CB8 /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17692814F0D300E74CB8 /* Back5.png */; };
 		D8AE17932814F0D300E74CB8 /* Day & Night.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE176A2814F0D300E74CB8 /* Day & Night.oo */; };
 		D8AE17942814F0D300E74CB8 /* Sweetness.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE176B2814F0D300E74CB8 /* Sweetness.oo */; };
-		D8AE17962814F0D300E74CB8 /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE176D2814F0D300E74CB8 /* Back4.png */; };
 		D8AE17972814F0D300E74CB8 /* Game of Life.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE176E2814F0D300E74CB8 /* Game of Life.oo */; };
 		D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE176F2814F0D300E74CB8 /* Demons.oo */; };
 		D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17702814F0D300E74CB8 /* ChicagoFLF.ttf */; };
 		D8AE179C2814F0D300E74CB8 /* WalledCities iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17732814F0D300E74CB8 /* WalledCities iP.oo */; };
 		D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17752814F0D300E74CB8 /* WalledCities.oo */; };
-		D8AE179F2814F0D300E74CB8 /* BackiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17762814F0D300E74CB8 /* BackiPad.png */; };
-		D8AE17A02814F0D300E74CB8 /* SurfDila@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17772814F0D300E74CB8 /* SurfDila@2x.png */; };
-		D8AE17A12814F0D300E74CB8 /* Dilation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17782814F0D300E74CB8 /* Dilation@2x.png */; };
-		D8AE17A22814F0D300E74CB8 /* DilaDeriv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17792814F0D300E74CB8 /* DilaDeriv@2x.png */; };
 		D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177B2814F0D300E74CB8 /* Sweetness iP.oo */; };
-		D8AE17A52814F0D300E74CB8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */; };
 		D8AE17A62814F0D300E74CB8 /* Move.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177D2814F0D300E74CB8 /* Move.oo */; };
-		D8AE17A72814F0D300E74CB8 /* Escape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE177E2814F0D300E74CB8 /* Escape@2x.png */; };
-		D8AE17AB2814F0D300E74CB8 /* Gravity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17822814F0D300E74CB8 /* Gravity@2x.png */; };
-		D8AE17AC2814F0D300E74CB8 /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17832814F0D300E74CB8 /* Back6.png */; };
 		D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */; };
 		D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17882814F0D300E74CB8 /* Demons iP.oo */; };
-		D8AE17B32814F0D300E74CB8 /* InfinDila@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8AE178A2814F0D300E74CB8 /* InfinDila@2x.png */; };
 		D8AE17B42814F0D300E74CB8 /* TrajanPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8AE178B2814F0D300E74CB8 /* TrajanPro-Regular.otf */; };
 		D8AE17B52814F0D300E74CB8 /* Move iP.oo in Resources */ = {isa = PBXBuildFile; fileRef = D8AE178C2814F0D300E74CB8 /* Move iP.oo */; };
 		D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8AE178E2814F0D300E74CB8 /* TrajanPro-Bold.ttf */; };
@@ -87,28 +76,17 @@
 		D8AE17622814F08400E74CB8 /* AXSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXSync.swift; sourceTree = "<group>"; };
 		D8AE17632814F08400E74CB8 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D8AE17682814F0D300E74CB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
-		D8AE17692814F0D300E74CB8 /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
 		D8AE176A2814F0D300E74CB8 /* Day & Night.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Day & Night.oo"; sourceTree = "<group>"; };
 		D8AE176B2814F0D300E74CB8 /* Sweetness.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Sweetness.oo; sourceTree = "<group>"; };
-		D8AE176D2814F0D300E74CB8 /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back4.png; sourceTree = "<group>"; };
 		D8AE176E2814F0D300E74CB8 /* Game of Life.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Game of Life.oo"; sourceTree = "<group>"; };
 		D8AE176F2814F0D300E74CB8 /* Demons.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Demons.oo; sourceTree = "<group>"; };
 		D8AE17702814F0D300E74CB8 /* ChicagoFLF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChicagoFLF.ttf; sourceTree = "<group>"; };
 		D8AE17732814F0D300E74CB8 /* WalledCities iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "WalledCities iP.oo"; sourceTree = "<group>"; };
 		D8AE17752814F0D300E74CB8 /* WalledCities.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = WalledCities.oo; sourceTree = "<group>"; };
-		D8AE17762814F0D300E74CB8 /* BackiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackiPad.png; sourceTree = "<group>"; };
-		D8AE17772814F0D300E74CB8 /* SurfDila@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SurfDila@2x.png"; sourceTree = "<group>"; };
-		D8AE17782814F0D300E74CB8 /* Dilation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dilation@2x.png"; sourceTree = "<group>"; };
-		D8AE17792814F0D300E74CB8 /* DilaDeriv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DilaDeriv@2x.png"; sourceTree = "<group>"; };
 		D8AE177B2814F0D300E74CB8 /* Sweetness iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Sweetness iP.oo"; sourceTree = "<group>"; };
-		D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D8AE177D2814F0D300E74CB8 /* Move.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = Move.oo; sourceTree = "<group>"; };
-		D8AE177E2814F0D300E74CB8 /* Escape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Escape@2x.png"; sourceTree = "<group>"; };
-		D8AE17822814F0D300E74CB8 /* Gravity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gravity@2x.png"; sourceTree = "<group>"; };
-		D8AE17832814F0D300E74CB8 /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
 		D8AE17852814F0D300E74CB8 /* Day & Night iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Day & Night iP.oo"; sourceTree = "<group>"; };
 		D8AE17882814F0D300E74CB8 /* Demons iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Demons iP.oo"; sourceTree = "<group>"; };
-		D8AE178A2814F0D300E74CB8 /* InfinDila@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "InfinDila@2x.png"; sourceTree = "<group>"; };
 		D8AE178B2814F0D300E74CB8 /* TrajanPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Regular.otf"; sourceTree = "<group>"; };
 		D8AE178C2814F0D300E74CB8 /* Move iP.oo */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "Move iP.oo"; sourceTree = "<group>"; };
 		D8AE178E2814F0D300E74CB8 /* TrajanPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -203,7 +181,6 @@
 			children = (
 				D8AE17432814E97300E74CB8 /* Assets.xcassets */,
 				D8AE17662814F0D300E74CB8 /* en.lproj */,
-				D8AE17BC2814F13F00E74CB8 /* Images */,
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
 			);
@@ -422,24 +399,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		D8AE17BC2814F13F00E74CB8 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				D8AE176D2814F0D300E74CB8 /* Back4.png */,
-				D8AE17692814F0D300E74CB8 /* Back5.png */,
-				D8AE17832814F0D300E74CB8 /* Back6.png */,
-				D8AE17762814F0D300E74CB8 /* BackiPad.png */,
-				D8AE177C2814F0D300E74CB8 /* Default-568h@2x.png */,
-				D8AE17792814F0D300E74CB8 /* DilaDeriv@2x.png */,
-				D8AE17782814F0D300E74CB8 /* Dilation@2x.png */,
-				D8AE177E2814F0D300E74CB8 /* Escape@2x.png */,
-				D8AE17822814F0D300E74CB8 /* Gravity@2x.png */,
-				D8AE178A2814F0D300E74CB8 /* InfinDila@2x.png */,
-				D8AE17772814F0D300E74CB8 /* SurfDila@2x.png */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 		D8AE18162814F61E00E74CB8 /* Ionian */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,27 +477,16 @@
 			files = (
 				D8AE17942814F0D300E74CB8 /* Sweetness.oo in Resources */,
 				D8AE17B82814F0D300E74CB8 /* Game of Life iP.oo in Resources */,
-				D8AE17AB2814F0D300E74CB8 /* Gravity@2x.png in Resources */,
-				D8AE17A52814F0D300E74CB8 /* Default-568h@2x.png in Resources */,
 				D8AE179C2814F0D300E74CB8 /* WalledCities iP.oo in Resources */,
 				D8AE17932814F0D300E74CB8 /* Day & Night.oo in Resources */,
 				D8AE17A62814F0D300E74CB8 /* Move.oo in Resources */,
-				D8AE17AC2814F0D300E74CB8 /* Back6.png in Resources */,
 				D8AE17972814F0D300E74CB8 /* Game of Life.oo in Resources */,
 				D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */,
-				D8AE17922814F0D300E74CB8 /* Back5.png in Resources */,
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
-				D8AE17A02814F0D300E74CB8 /* SurfDila@2x.png in Resources */,
-				D8AE17A12814F0D300E74CB8 /* Dilation@2x.png in Resources */,
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
-				D8AE17962814F0D300E74CB8 /* Back4.png in Resources */,
-				D8AE17B32814F0D300E74CB8 /* InfinDila@2x.png in Resources */,
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,
-				D8AE179F2814F0D300E74CB8 /* BackiPad.png in Resources */,
-				D8AE17A72814F0D300E74CB8 /* Escape@2x.png in Resources */,
-				D8AE17A22814F0D300E74CB8 /* DilaDeriv@2x.png in Resources */,
 				D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */,
 				D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */,
 				D8AE17B42814F0D300E74CB8 /* TrajanPro-Regular.otf in Resources */,
