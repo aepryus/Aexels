@@ -37,7 +37,9 @@ class Aexels {
 	}
 	
 	static func start() {
-		Math.start()
+        _ = ChainResponder.hasExternalKeyboard
+
+        Math.start()
 		Loom.start(basket: Aexels.basket, namespaces: ["Aexels", "OoviumEngine"])
 		Skin.skin = IvorySkin()
 

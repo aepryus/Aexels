@@ -176,7 +176,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
         aetherView.backgroundColor = .clear
 		aetherView.aetherViewDelegate = self
 		Aexels.aetherView = aetherView
-//		aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
+		aetherView.toolBarOffset = UIOffset(horizontal: -3, vertical: 6)
 
 		aetherLimbo = ContentLimbo(content: aetherView)
 		
