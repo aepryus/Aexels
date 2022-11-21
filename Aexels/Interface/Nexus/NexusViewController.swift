@@ -41,8 +41,8 @@ class NexusViewController: UIViewController {
 		messageView.load()
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
-			if explorer.canExplore {self.exploreButton.alpha = 1}
-			else {self.exploreButton.alpha = 0}
+			if explorer.canExplore { self.exploreButton.alpha = 1 }
+			else { self.exploreButton.alpha = 0 }
 		}, completion: { (Bool) in
 			self.busy = false
 		})

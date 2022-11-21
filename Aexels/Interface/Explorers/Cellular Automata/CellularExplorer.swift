@@ -79,9 +79,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		message.load()
 	}
 	
-	private func floorQ(x: CGFloat, to: Int) -> Int {
-		return Int(floor(x/CGFloat(to))*CGFloat(to))
-	}
+	private func floorQ(x: CGFloat, to: Int) -> Int { Int(floor(x/CGFloat(to))*CGFloat(to)) }
 	
 // Events ==========================================================================================
 	override func onOpen() {
@@ -111,7 +109,6 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aether.xOffset = Double(self.aetherView.width) - 130
 		aether.yOffset = Double(self.aetherView.height) - 100
 		auto.statesChain.replaceWith(tokens: "dg:2")
-//		aether.prepare()
 		aether.evaluate()
 	}
 	func onClose(aetherView: AetherView, aether: Aether) {}
@@ -175,6 +172,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
         aetherView.backgroundColor = .clear
 		aetherView.aetherViewDelegate = self
+        aetherView.orb = Orb(aetherView: aetherView, view: Aexels.nexus.view, dx: 0, dy: 0)
 		Aexels.aetherView = aetherView
 		aetherView.toolBarOffset = UIOffset(horizontal: -3, vertical: 6)
 

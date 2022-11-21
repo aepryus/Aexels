@@ -58,7 +58,8 @@ final class CellularEngine {
 	
 	func compile(aether: Aether) {
 		self.aether = aether
-		
+        aether.evaluate()
+
 		let sI = AEMemoryIndexForName(aether.memory, "Au1.Self".toInt8())
 		let aI = AEMemoryIndexForName(aether.memory, "Au1.A".toInt8())
 		let bI = AEMemoryIndexForName(aether.memory, "Au1.B".toInt8())
@@ -117,7 +118,7 @@ final class CellularEngine {
 		}
 	}
 	func configureViews() {
-		views.forEach {$0.configure(auto: auto)}
+		views.forEach { $0.configure(auto: auto) }
 	}
 	
 	// Timer
