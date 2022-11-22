@@ -9,7 +9,5 @@
 import UIKit
 
 class EquivalenceExplorer: Explorer {
-	init(parent: UIView) {
-		super.init(parent: parent, name: "Equivalence", key: "Equivalence", canExplore: false)
-	}
+	init(parent: UIView) { super.init(parent: parent, name: "Equivalence", key: "Equivalence", canExplore: false) }
 }

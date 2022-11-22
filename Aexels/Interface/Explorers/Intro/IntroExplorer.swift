@@ -9,7 +9,5 @@
 import UIKit
 
 class IntroExplorer: Explorer {
-	init(parent: UIView) {
-		super.init(parent: parent, name: "Intro", key: "Intro", canExplore: false)
-	}
+	init(parent: UIView) { super.init(parent: parent, name: "Intro", key: "Intro", canExplore: false) }
 }

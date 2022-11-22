@@ -10,8 +10,10 @@
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */; };
+		D86FD6CE292B808500A6CA7A /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* Questions.swift */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
-		D8AE17612814F06E00E74CB8 /* UIFont+AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+AX.swift */; };
+		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17642814F08400E74CB8 /* AXSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17622814F08400E74CB8 /* AXSync.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
 		D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17672814F0D300E74CB8 /* Localizable.strings */; };
@@ -70,9 +72,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
+		D86FD6CD292B808500A6CA7A /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D8AE17602814F06E00E74CB8 /* UIFont+AX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AX.swift"; sourceTree = "<group>"; };
+		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
 		D8AE17622814F08400E74CB8 /* AXSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXSync.swift; sourceTree = "<group>"; };
 		D8AE17632814F08400E74CB8 /* Simulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		D8AE17682814F0D300E74CB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
@@ -148,6 +152,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D86FD6C7292B7D0700A6CA7A /* Forward */ = {
+			isa = PBXGroup;
+			children = (
+				D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */,
+			);
+			path = Forward;
+			sourceTree = "<group>";
+		};
+		D86FD6CA292B804500A6CA7A /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				D86FD6CD292B808500A6CA7A /* Questions.swift */,
+			);
+			path = Questions;
+			sourceTree = "<group>";
+		};
 		D8AE172E2814E97200E74CB8 = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +210,7 @@
 		D8AE174F2814EACC00E74CB8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE17602814F06E00E74CB8 /* UIFont+AX.swift */,
+				D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -243,6 +263,7 @@
 		D8AE17542814EB0400E74CB8 /* Explorers */ = {
 			isa = PBXGroup;
 			children = (
+				D86FD6C7292B7D0700A6CA7A /* Forward */,
 				D8AE17562814EB1D00E74CB8 /* Intro */,
 				D8AE17572814EB2300E74CB8 /* Cellular Automata */,
 				D8AE17582814EB2F00E74CB8 /* Kinematics */,
@@ -252,6 +273,7 @@
 				D8AE175C2814EB4A00E74CB8 /* Darkness */,
 				D8AE175D2814EB5400E74CB8 /* Equivalence */,
 				D8AE175E2814EB5C00E74CB8 /* Odds and Ends */,
+				D86FD6CA292B804500A6CA7A /* Questions */,
 			);
 			path = Explorers;
 			sourceTree = "<group>";
@@ -440,8 +462,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = AX;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
+				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D8AE17362814E97200E74CB8 = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -505,7 +529,8 @@
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
 				D8AE18062814F23D00E74CB8 /* OddsAndEndsExplorer.swift in Sources */,
-				D8AE17612814F06E00E74CB8 /* UIFont+AX.swift in Sources */,
+				D86FD6CE292B808500A6CA7A /* Questions.swift in Sources */,
+				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
 				D8AE17FB2814F21700E74CB8 /* GravityExplorer.swift in Sources */,
@@ -531,6 +556,7 @@
 				D8AE17EA2814F20500E74CB8 /* CellularEngine.swift in Sources */,
 				D8AE17E02814F1FA00E74CB8 /* IntroExplorer.swift in Sources */,
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
+				D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,

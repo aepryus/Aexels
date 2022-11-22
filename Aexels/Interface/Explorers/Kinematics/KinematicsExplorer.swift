@@ -191,12 +191,12 @@ class KinematicsExplorer: Explorer {
 		let s = (Screen.iPad || Screen.mac) ? height / 748 : Screen.s
 
 		aetherLabel.text = "Aether"
-		aetherLabel.font = UIFont.aexel(size: 16*s)
+		aetherLabel.font = UIFont.ax(size: 16*s)
 		aetherLabel.textColor = UIColor.white
 		aetherLabel.textAlignment = .center
 		
 		loopLabel.text = "Object"
-		loopLabel.font = UIFont.aexel(size: 16*s)
+		loopLabel.font = UIFont.ax(size: 16*s)
 		loopLabel.textColor = UIColor.white
 		loopLabel.textAlignment = .center
 		
