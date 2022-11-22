@@ -9,7 +9,5 @@
 import UIKit
 
 class OddsAndEndsExplorer: Explorer {
-	init(parent: UIView) {
-		super.init(parent: parent, name: "Odds and Ends", key: "OddsAndEnds", canExplore: false)
-	}
+	init(parent: UIView) { super.init(parent: parent, name: "Odds and Ends", key: "OddsAndEnds", canExplore: false) }
 }

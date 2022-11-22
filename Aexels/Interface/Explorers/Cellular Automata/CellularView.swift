@@ -63,7 +63,7 @@ final class CellularView: UIView {
 	private var cw: Int = 0					// cell width
 	private var dw: Int = 0					// data width
 	private var size: Int = 0				// total bytes = vw^2*4
-	private var data: [UInt8] = []
+    private var data: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
 	
 	private var queue: DispatchQueue = DispatchQueue(label: "cellularView")
 
@@ -77,17 +77,18 @@ final class CellularView: UIView {
 			else if Screen.mac { cw = Int(432*s) }
 			dw = vw*4
 			size = vw*vw*4
-			data = [UInt8](repeating: 0, count: size)
+            data.deallocate()
+			data = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
 		}
 	}
 	
 	private let space: CGColorSpace = CGColorSpaceCreateDeviceRGB()
 	private var image: UIImage?
 
-	private var r: [UInt8]!
-	private var g: [UInt8]!
-	private var b: [UInt8]!
-	private var a: [UInt8]!
+    private var r: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
+	private var g: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
+	private var b: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
+	private var a: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
 	
 	init() {
 		super.init(frame: CGRect.zero)
@@ -96,18 +97,27 @@ final class CellularView: UIView {
 		addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan)))
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
-	
-	func clear() {
-		image = nil
-	}
+    deinit {
+        r.deallocate()
+        g.deallocate()
+        b.deallocate()
+        a.deallocate()
+        data.deallocate()
+    }
+    
+	func clear() { image = nil }
 	func configure(auto: Auto) {
 		states = auto.states.count
 		
-		r = [UInt8](repeating: 0, count: states+1)
-		g = [UInt8](repeating: 0, count: states+1)
-		b = [UInt8](repeating: 0, count: states+1)
-		a = [UInt8](repeating: 0, count: states+1)
-		
+        r.deallocate()
+        g.deallocate()
+        b.deallocate()
+        a.deallocate()
+        r = UnsafeMutablePointer<UInt8>.allocate(capacity: states+1)
+        g = UnsafeMutablePointer<UInt8>.allocate(capacity: states+1)
+        b = UnsafeMutablePointer<UInt8>.allocate(capacity: states+1)
+        a = UnsafeMutablePointer<UInt8>.allocate(capacity: states+1)
+
 		for i in 0..<states {
 			let color = OOColor(rawValue: auto.states[i].color)!.uiColor
 			let comps: [CGFloat] = color.cgColor.components!
@@ -141,7 +151,7 @@ final class CellularView: UIView {
 			let dnX = 4*zoom
 			let dnY = dw * (zoom - 1)
 			
-			AXDataLoad(&data, engine.cells, sX, eX, dnX, sY, eY, dnY, zoom, Double(states), &r, &g, &b, &a, cw, dw)
+			AXDataLoad(data, engine.cells, sX, eX, dnX, sY, eY, dnY, zoom, Double(states), r, g, b, a, cw, dw)
 			
 			let a: CFData? = CFDataCreate(nil, data, size)
 			let b: CFData = a!

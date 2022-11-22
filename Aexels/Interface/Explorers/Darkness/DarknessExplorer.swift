@@ -9,7 +9,5 @@
 import UIKit
 
 class DarknessExplorer: Explorer {
-	init(parent: UIView) {
-		super.init(parent: parent, name: "Darkness", key: "Darkness", canExplore: false)
-	}
+	init(parent: UIView) { super.init(parent: parent, name: "Darkness", key: "Darkness", canExplore: false) }
 }

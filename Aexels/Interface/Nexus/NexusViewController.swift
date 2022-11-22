@@ -41,8 +41,8 @@ class NexusViewController: UIViewController {
 		messageView.load()
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
-			if explorer.canExplore {self.exploreButton.alpha = 1}
-			else {self.exploreButton.alpha = 0}
+			if explorer.canExplore { self.exploreButton.alpha = 1 }
+			else { self.exploreButton.alpha = 0 }
 		}, completion: { (Bool) in
 			self.busy = false
 		})
@@ -130,9 +130,10 @@ class NexusViewController: UIViewController {
 
 		// Menu
 		var i: CGFloat = 0
+        let dy: CGFloat = 9*64*s/CGFloat(explorers.count)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50*s, y: 162*s+i*64*s, width: 300*s, height: 40*s)
+			button.frame = CGRect(x: 50*s, y: 162*s+i*dy, width: 300*s, height: 40*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -177,9 +178,10 @@ class NexusViewController: UIViewController {
 		
 		// Menu
 		var i: CGFloat = 0
+        let dy: CGFloat = 9*52*s/CGFloat(explorers.count)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 164*s+i*52*s, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: 164*s+i*dy, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -225,9 +227,10 @@ class NexusViewController: UIViewController {
 		
 		// Menu
 		var i: CGFloat = 0
+        let dy: CGFloat = 9*58*s/CGFloat(explorers.count)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 224*s+i*58*s, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: 224*s+i*dy, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -283,6 +286,7 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
 
 		explorers = [
+            ForwardExplorer(parent: view),
 			IntroExplorer(parent: view),
 			CellularExplorer(parent: view),
 			KinematicsExplorer(parent: view),
@@ -291,7 +295,7 @@ class NexusViewController: UIViewController {
 			ContractionExplorer(parent: view),
 			DarknessExplorer(parent: view),
 			EquivalenceExplorer(parent: view),
-			OddsAndEndsExplorer(parent: view)
+            QuestionsExplorer(parent: view)
 		]
 	}
 	override func viewDidAppear(_ animated: Bool) {

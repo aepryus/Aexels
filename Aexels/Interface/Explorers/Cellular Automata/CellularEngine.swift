@@ -7,6 +7,7 @@
 //
 
 import Acheron
+import Aegean
 import Foundation
 import OoviumEngine
 import OoviumKit
@@ -57,29 +58,28 @@ final class CellularEngine {
 	
 	func compile(aether: Aether) {
 		self.aether = aether
-		
-		aether.prepare()
+        aether.evaluate()
 
-		let sI = AEMemoryIndexForName(aether.memory, "Auto1.Self".toInt8())
-		let aI = AEMemoryIndexForName(aether.memory, "Auto1.A".toInt8())
-		let bI = AEMemoryIndexForName(aether.memory, "Auto1.B".toInt8())
-		let cI = AEMemoryIndexForName(aether.memory, "Auto1.C".toInt8())
-		let dI = AEMemoryIndexForName(aether.memory, "Auto1.D".toInt8())
-		let eI = AEMemoryIndexForName(aether.memory, "Auto1.E".toInt8())
-		let fI = AEMemoryIndexForName(aether.memory, "Auto1.F".toInt8())
-		let gI = AEMemoryIndexForName(aether.memory, "Auto1.G".toInt8())
-		let hI = AEMemoryIndexForName(aether.memory, "Auto1.H".toInt8())
-		let rI = AEMemoryIndexForName(aether.memory, "AtR_1".toInt8())
+		let sI = AEMemoryIndexForName(aether.memory, "Au1.Self".toInt8())
+		let aI = AEMemoryIndexForName(aether.memory, "Au1.A".toInt8())
+		let bI = AEMemoryIndexForName(aether.memory, "Au1.B".toInt8())
+		let cI = AEMemoryIndexForName(aether.memory, "Au1.C".toInt8())
+		let dI = AEMemoryIndexForName(aether.memory, "Au1.D".toInt8())
+		let eI = AEMemoryIndexForName(aether.memory, "Au1.E".toInt8())
+		let fI = AEMemoryIndexForName(aether.memory, "Au1.F".toInt8())
+		let gI = AEMemoryIndexForName(aether.memory, "Au1.G".toInt8())
+		let hI = AEMemoryIndexForName(aether.memory, "Au1.H".toInt8())
+		let rI = AEMemoryIndexForName(aether.memory, "Au1.result".toInt8())
 
 		let memory: UnsafeMutablePointer<Memory> = AEMemoryCreateClone(aether.memory)
 		
 		AEMemoryClear(memory)
-		auto = aether.firstAuto()!
+		auto = aether.first()!
 		auto.foreshadow(memory)
 		
 		let recipe: UnsafeMutablePointer<Recipe> = Math.compile(result: auto.resultTower, memory: memory)
 
-		automatas.forEach {AXAutomataRelease($0)}
+		automatas.forEach { AXAutomataRelease($0) }
 		automatas.removeAll()
 
 		let automata = AXAutomataCreate(recipe, memory, Int32(side), sI, aI, bI, cI, dI, eI, fI, gI, hI, rI);
@@ -118,7 +118,7 @@ final class CellularEngine {
 		}
 	}
 	func configureViews() {
-		views.forEach {$0.configure(auto: auto)}
+		views.forEach { $0.configure(auto: auto) }
 	}
 	
 	// Timer

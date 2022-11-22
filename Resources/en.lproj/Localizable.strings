@@ -6,6 +6,8 @@
   Copyright (c) 2014 Aepryus Software. All rights reserved.
 */
 
+"Forward" = "Forward";
+
 "Intro" = "A universe is discovered…
 
 Universe X
@@ -367,6 +369,8 @@ As a result, this seriously calls into question the idea that a gravity clock in
 
 
 ";
+
+"Questions" = "Questions";
 
 "GameOfLife" = "This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 

@@ -28,7 +28,7 @@ class LimboButton: UIButton {
 		layer.shadowOpacity = 0.6
 		
 		setTitleColor(UIColor.black, for: .highlighted)
-		titleLabel!.font = UIFont.aexel(size: 24*s)
+		titleLabel!.font = UIFont.ax(size: 24*s)
 		titleEdgeInsets = UIEdgeInsets(top: 4*s, left: 0, bottom: 0, right: 0)
 		
 		self.setTitle(title, for: .normal)
