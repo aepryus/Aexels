@@ -11,7 +11,8 @@
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
 		D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */; };
-		D86FD6CE292B808500A6CA7A /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* Questions.swift */; };
+		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
+		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17642814F08400E74CB8 /* AXSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17622814F08400E74CB8 /* AXSync.swift */; };
@@ -67,13 +68,13 @@
 		D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */; };
 		D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */; };
 		D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */; };
-		D8AE18062814F23D00E74CB8 /* OddsAndEndsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18052814F23D00E74CB8 /* OddsAndEndsExplorer.swift */; };
 		D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18132814F59D00E74CB8 /* Ionian.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
-		D86FD6CD292B808500A6CA7A /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
+		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquivalenceExplorer.swift; sourceTree = "<group>"; };
-		D8AE18052814F23D00E74CB8 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
@@ -160,12 +160,20 @@
 			path = Forward;
 			sourceTree = "<group>";
 		};
-		D86FD6CA292B804500A6CA7A /* Questions */ = {
+		D86FD6CA292B804500A6CA7A /* Epilogue */ = {
 			isa = PBXGroup;
 			children = (
-				D86FD6CD292B808500A6CA7A /* Questions.swift */,
+				D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */,
 			);
-			path = Questions;
+			path = Epilogue;
+			sourceTree = "<group>";
+		};
+		D86FD6CF292C83BE00A6CA7A /* Discrepancy */ = {
+			isa = PBXGroup;
+			children = (
+				D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */,
+			);
+			path = Discrepancy;
 			sourceTree = "<group>";
 		};
 		D8AE172E2814E97200E74CB8 = {
@@ -272,8 +280,8 @@
 				D8AE175B2814EB4400E74CB8 /* Contraction */,
 				D8AE175C2814EB4A00E74CB8 /* Darkness */,
 				D8AE175D2814EB5400E74CB8 /* Equivalence */,
-				D8AE175E2814EB5C00E74CB8 /* Odds and Ends */,
-				D86FD6CA292B804500A6CA7A /* Questions */,
+				D86FD6CF292C83BE00A6CA7A /* Discrepancy */,
+				D86FD6CA292B804500A6CA7A /* Epilogue */,
 			);
 			path = Explorers;
 			sourceTree = "<group>";
@@ -364,14 +372,6 @@
 				D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */,
 			);
 			path = Equivalence;
-			sourceTree = "<group>";
-		};
-		D8AE175E2814EB5C00E74CB8 /* Odds and Ends */ = {
-			isa = PBXGroup;
-			children = (
-				D8AE18052814F23D00E74CB8 /* OddsAndEndsExplorer.swift */,
-			);
-			path = "Odds and Ends";
 			sourceTree = "<group>";
 		};
 		D8AE175F2814F00E00E74CB8 /* Support Files */ = {
@@ -528,8 +528,7 @@
 			files = (
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
-				D8AE18062814F23D00E74CB8 /* OddsAndEndsExplorer.swift in Sources */,
-				D86FD6CE292B808500A6CA7A /* Questions.swift in Sources */,
+				D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
@@ -564,6 +563,7 @@
 				D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */,
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,
 				D8AE17EC2814F20500E74CB8 /* GuideButton.swift in Sources */,
+				D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */,
 				D8AE17F52814F20E00E74CB8 /* KinematicsView.swift in Sources */,
 				D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */,
 				D8AE17DE2814F1EC00E74CB8 /* SliderView.swift in Sources */,

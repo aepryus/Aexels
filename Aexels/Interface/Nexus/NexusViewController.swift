@@ -295,18 +295,15 @@ class NexusViewController: UIViewController {
 			ContractionExplorer(parent: view),
 			DarknessExplorer(parent: view),
 			EquivalenceExplorer(parent: view),
-            QuestionsExplorer(parent: view)
+            DiscrepancyExplorer(parent: view),
+            EpilogueExplorer(parent: view)
 		]
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if Screen.mac || Screen.iPad {
-			iPadLayout()
-		} else if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 {
-			iPhoneXLayout()
-		} else {
-			iPhoneLayout()
-		}
+        if Screen.mac || Screen.iPad { iPadLayout() }
+        else if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 { iPhoneXLayout() }
+        else { iPhoneLayout() }
 	}
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
