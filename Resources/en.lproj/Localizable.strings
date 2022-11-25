@@ -237,9 +237,9 @@ So, for a system of loops translating across an aexial field the signals traveli
 
 Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
 
-In our universe, length contraction is analogous to time dilation in that there are no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
+In our universe, length contraction, similar to time dilation, has no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
 
-In Universe X, however, length contraction is a real phenomenon and like dilation, is entirely a function of the translation rate of a system.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
+In Universe X, however, length contraction is a physical phenomenon and like dilation, is entirely a function of the rate of translation of a system across an aexel field.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
 
 In our universe there is a feature of nature called Lorentz covariance which indicates that the speed of light is constant across all frames of reference.
 
@@ -247,9 +247,35 @@ In Universe X this concept would appear to break down quickly.  For any system t
 
 Certainly, in Universe X, the speed of light is always one aexel per tic.  But, since the aexels themselves can move and since they can vary in density it would seem it might be easy to detect variations in the distance traveled per time.
 
-However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.  The flow of aexels through a system causes the distance that the loops sit from one another to become closer in the direction of flow.  This smaller distance between the loops shrinks every object thats structure is dependent on the transmission of mediating photons.
+However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.
 
-And this amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
+In the Dilation article we calculated the increased amount of time needed to bounce a signal moving at the speed of light off a mirror and back when the signal is sent out orthogonal to the direction of translation.
+
+For this article let's now repeat the same calculation but for a signal sent out parallel to the direction of translation.  Let's start by calculating when the velocity of translation is zero.
+
+<<ContractStatic>>
+
+In this case the signal travels 2d (the distance to the mirror) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.  Now let's start translating the same system over the aexel field.
+
+<<ContractTranslate>>
+
+While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_r, v being the velocity of translation and t_r being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_r:
+
+<<ContractRight>>
+
+Once the signal bounces off the mirror back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_l, the translation velocity times the time needed to return to the source.  Let's calculate that time t_l:
+
+<<ContractLeft>>
+
+The total time, t' is equal to the sum of t_r and t_l.  Let's compare it to the time when the system is not translating at all.
+
+<<Contract>>
+
+For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two signals sent out at the same time, both bounced off a mirror 1 meter away one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
+
+Length Contraction occurs and the length of things in the direction of translation are reduced by a factor of gamma.  In that case both signals would return at the exact same moment and the 'speed of light' would appear to be the same in both directions.
+
+The amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
 
 Essentially, a meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
 
