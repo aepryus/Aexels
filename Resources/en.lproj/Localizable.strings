@@ -6,15 +6,13 @@
   Copyright (c) 2014 Aepryus Software. All rights reserved.
 */
 
-"Forward" = "Forward
+"Forward" = "Forward to v3.0
 
-Forward to v3.0
+Since the discovery of Universe X in 2013, there have been 7 light bulb moments including that first.  This app was started in 2014 after 4 of the light bulb moments.  A 5th light bulb moment occurred while it was being worked on; it was released a few days before the start of 2015.
 
-Since the discovery of Universe X in 2013, there have been 7 light bulb moments, including that first.  This app was started in 2014 after 4 of the light bulb moments.  A 5th light bulb moment occurred while it was being worked on.  The first version of Aexels was released a few days before the start of 2015.
+Since that time 2 additional light bulb moments have occurred, the first of which had sizable implications for many of the original articles.  But, I chose to leave them largely untouched and just tacked on an additional article in order to show the path of discovery.
 
-Since that time 2 additional light bulb moments have occurred, the first of which had sizable implications for many of the original articles.  But, I chose to leave them largely untouched and just tack on an additional article, in order to show the path of discovery.
-
-However, with this version I am choosing to rewrite the articles based on the complete current understanding of Universe X.  I'm also going to integrate the paragraphs in the old 'Odds and Ends' into their relevant articles (mainly Dilation).
+However, with this version I am choosing to rewrite all of the articles based on the complete current understanding of Universe X.  I'm also going to integrate the paragraphs in the old 'Odds and Ends' into their relevant articles (mainly Dilation).
 
 There are also two new articles in version 3.0:
 - Discrepancy, which discusses the 7th light bulb moment, the discovery of a substantial difference between Universe X and our Universe.
@@ -92,7 +90,7 @@ This simple set of rules is able to exhibit an amazing amount of complexity.  In
 
 For example, if a closed subset of cells has a certain state at time t and that subset of cells returns to that same state at a later time, the cells will be in a stable state loop and continue that loop into perpetuity (or until it is disrupted somehow, i.e., stops being a closed subset).  Perhaps the cells remain in the same state each time step giving the loop a period of 1.  Or perhaps the cells loop back after 2, 3 or more steps, giving their loop a period of 2, 3 or more steps.
 
-Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loops back creating stable state loops.
+Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loop back creating stable state loops.
 
 In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all \"matter\" in Universe X.
 
@@ -130,7 +128,7 @@ But there is another entirely different way in which a stable state loop can mov
 
 And of course a stable state loop could be (and most of the time probably is) experiencing both of these forms of motion simultaneously.
 
-There are some rather sticky ramifications to all of this.  In our universe a single particle moving in the absence of force can be described entirely by a velocity vector (ignoring quantum effects for the time being).  In Universe X, in order to accurately understand the motion of stable state loop it is necessary to know the translating velocity of the loop measured in aexels per time as well as both the velocity of the aexels measured in distance per time and density of those same aexels, which in a simple system could be constant, but in more complex situations could vary from place to place.
+There are some rather sticky ramifications to all of this.  In our universe a single particle moving in the absence of force can be described entirely by a velocity vector (ignoring quantum effects for the time being).  In Universe X, in order to accurately understand the motion of a stable state loop it is necessary to know the translating velocity of the loop measured in aexels per time as well as both the velocity of the aexels measured in distance per time and density of those same aexels, which in a simple system could be constant, but in more complex situations could vary from place to place.
 
 
 
@@ -142,7 +140,7 @@ There are some rather sticky ramifications to all of this.  In our universe a si
 
 Gravity is the tendency of objects with mass to move towards one another.
 
-Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledge some discomfort with this idea:
+Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledged some discomfort with this idea:
 
 \"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
 
@@ -154,21 +152,22 @@ But, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
 In Universe X there exists many different types of stable state loops.  There are potentially three ways these loops could interact with the aexels:
 
-- they could destroy the aexels
-- they could create more aexels
-- they could leave the aexels alone
+- they could destroy aexels:
+It is quite certain that there are loops that destroy aexels in Universe X.  In Universe X these loops are referred to as 'matter'.  This article, 'Gravity', pertains to these types of loops.
 
-It is quite certain that there are loops that destroy aexels in Universe X.  That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  Initially, it seemed certain that there must be loops that left the aexels alone, but as the understanding of Universe X has increased this has been called into question.
+- they could create aexels:
+That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  In Universe X these loops are referred to as 'antimatter'.  The article 'Darkness' pertains to these type of loops.
 
-But for the purposes of this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called 'matter'.
+- they could do neither:
+Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that no such loops exist or at least they are less prevalent than one might initially assume.  The 'Equivalence' article discusses these possibilities further.
 
-Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the aexels to ever get too far apart.
+Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which they destroy.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
 
 Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
 
-In Universe X as various concentrations of matter continually destroy the aether between one another they will continually tend to clump together.  As a clump of matter gets bigger and bigger the velocity at which the aether is pulled towards the clump will continually increase.
+In Universe X as various concentrations of matter continually destroy the aether between one another that matter itself will continually tend to clump together.  As that clump of matter gets bigger and bigger (or perhaps more precisely, more and more dense) the velocity at which the aether is pulled towards the clump will increase.
 
-At some point, certain clumps in Universe X get so big and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+At some point, certain clumps in Universe X get so big (dense) and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
 
 
 
@@ -176,43 +175,57 @@ At some point, certain clumps in Universe X get so big and the velocity of the a
 
 ";
 
-"TimeDilation" = "Dilation
+"Dilation" = "Dilation
 
 Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
 
 In our universe time dilation is the variation in the perceived rate of time of various frames of reference based on their relative velocity to one another as well as the relative difference in their gravitational field strength.  That the rate of time itself can vary in our universe is severely magical in and of itself.
 
-But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite direction near the speed of light will both note that their clocks are running at a different rate than the other ship's clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ships clocks moving slower.  One truly shocking ramification of this is that simultaneous events in one frame will not necessarily be simultaneous in another frame.
+But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite directions near the speed of light will both note that their clocks are running at a different rate than the other ship's clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ship's clocks moving slower.
 
 In Universe X, however, no such time dilation occurs.  There is however an analogous phenomenon, which is perhaps better described as 'animation dilation'.
 
 Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
 
-In Universe X the interaction of matter (loops that destroy aexels) is mediated by 'loops that don't affect aexels'.  For now let's refer to 'loops that don't affect aexels' as photons.  These photons always travel at one aexel per tic, which is to say they always travel at 'the speed of light'.
+In the Gravity article a classification of loops was created based on whether the loops created aexels (matter), destroyed aexels (antimatter) or did neither.  For the purposes of the Dilation and Contraction articles let's create a second classification: loops that translate at the speed of light (one aexel per tic) and loops that translate at less than the speed of light.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon affects that loop's rate of translation across the aexel field.
+It would be nice to give names to these two classes, but there aren't great analogous names from our Universe that can be used.  One could almost use the term 'boson' for speed of light travelers and 'fermion' for sub-light travelers, but some bosons (such as W, Z and Higgs) move at less than the speed of light.  Still, perhaps, they can be a model for new names in Universe X.
 
-For example, consider a loop that is stationary on a field of stationary aexels (ignore gravity for a moment).  A photon traveling from elsewhere is moving towards the loop.  When the photon hits the loop (and is absorbed) the loop begins to translate across the stationary field of aexels.
+It may be the case that all translation in Universe X is at one aexel per tic.  But, that some loops move directly in a straight line and therefore the loop itself translates at the speed of light and other loops have internal motion that alternates back and forth in some manner causing the net speed of translation to be less than the speed of light.
 
-In this way, complex static or dynamic systems of loops can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes photons to travel from loop to loop.
+As such, let's refer to those loops that translate directly in a straight line (at the speed of light) as 'edisons' (ed-i-sans) and those loops that translate in some sort of alternating fashion (at less than the speed of light) as 'teslons' (tes-lans).
 
-For two stationary loops separated by a fixed number of aexels the photon will travel between them at one aexel per tic.  However, if the loops are both translating across the aexel field, the amount of time it takes photons to move between them will vary based on the direction of the photon relative to the translating motion of the loops across the aexel field.
+In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be a dependent on the the amount of time it takes the edisons to move back and forth between them.
 
-In some cases the time will be less in others the time will be more, but in all cases the round trip time of a photon between the loops will increase as the rate of translation increases.  This increased round trip time will result in a slow down of the rate of the animation of the dynamic system of loops.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons hits another teslon, the edison affects that teslon's rate of translation across the aexel field.
 
-This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the photons to move most quickly between the loops.
+For example, consider a teslon that is stationary on a field of stationary aexels (ignore gravity for a moment).  An edison traveling from elsewhere is moving towards the teslon.  When the edison hits the teslon (and is absorbed) the teslon begins to translate across the stationary field of aexels.
 
-In Universe X, dilation is not an observational phenomena.  It is a real phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
+In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth from teslon to teslon.
+
+For two stationary teslons separated by a fixed number of aexels the edisons will travel between them at one aexel per tic.  However, if the teslons are both translating across the aexel field, the amount of time it takes edisons to move between them will vary based on the direction of motion of the edisons relative to the translating motion of the teslons across the aexel field.
+
+In some cases the time will be less, in others the time will be more, but in all cases the round trip time of an edison between the teslons will increase as the rate of translation increases.  This increased round trip time will result in a slow down of the rate of the animation of the dynamic system of loops.
+
+This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the edisons to move most quickly between the teslons.
+
+In Universe X dilation is not an observational phenomena.  It is a real physical phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
-Furthermore, in Universe X this dilation is not of time, but rather is in the animation rate of phenomena mediated by photons.  This dilation does not affect motion not mediated by photons.  Because of this one could imagine an experiment that could be run in both universes that would yield very different results.
+Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow.  A signal traveling at c is sent out from one to the other and back.
 
-Any clock or biological system is entirely mediated by photons and therefore will be subject to dilation.  However, one could imagine a gravity clock; for example a tank of water suspended above a sensor.  A drop of water is released and is calibrated to hit the sensor in exactly one second.  When the drop hits the center a photon pulse is sent up to the tank triggering the release of the next drop.  The time of the photon pulse is substantially smaller than the water travel time.
+<<Dilation>>
 
-In our universe, if we were to take one normal clock and one gravity clock, calibrate and synchronize both and place them on a levitating bullet train traveling due east at 300 mph for 100 miles and then observe both clocks, we would note that both clocks remain synchronized because in our universe time itself dilates.
+The question is how long does this roundtrip journey take?
 
-However, such an experiment in Universe X would yield very different results.  In Universe X dilation only affects the normal clock, not the gravity clock and consequently the two clocks will now be out of sync.
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case, d = ct; or t = d/c.
+
+In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the loops move vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
+
+<<DilaDeriv>>
+
+So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / time) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
 
 
 
@@ -220,7 +233,7 @@ However, such an experiment in Universe X would yield very different results.  I
 
 ";
 
-"LengthContraction" = "Contraction
+"Contraction" = "Contraction
 
 Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
 

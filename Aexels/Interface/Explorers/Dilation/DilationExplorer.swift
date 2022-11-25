@@ -9,5 +9,5 @@
 import UIKit
 
 class DilationExplorer: Explorer {
-	init(parent: UIView) { super.init(parent: parent, name: "Dilation", key: "TimeDilation", canExplore: false) }
+	init(parent: UIView) { super.init(parent: parent, name: "Dilation", key: "Dilation", canExplore: false) }
 }
