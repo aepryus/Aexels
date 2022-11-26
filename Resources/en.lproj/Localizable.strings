@@ -161,7 +161,7 @@ That there exists loops that create aexels in Universe X is somewhat speculative
 - they could do neither:
 Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that no such loops exist or at least they are less prevalent than one might initially assume.  The 'Equivalence' article discusses these possibilities further.
 
-Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which they destroy.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
+Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
 
 Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
 
@@ -213,17 +213,17 @@ In Universe X dilation is not an observational phenomena.  It is a real physical
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
-Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow.  A signal traveling at c is sent out from one to the other and back.
+Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow (north / south).  A signal traveling at c is sent out from one to the other and back.
 
-<<Dilation>>
+<<DilaSketch>>
 
 The question is how long does this roundtrip journey take?
 
-First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case, d = ct; or t = d/c.
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
 
-In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the loops move vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t_n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
 
-<<DilaDeriv>>
+<<Dilation>>
 
 So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / time) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
 
@@ -249,27 +249,25 @@ Certainly, in Universe X, the speed of light is always one aexel per tic.  But, 
 
 However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.
 
-In the Dilation article we calculated the increased amount of time needed to bounce a signal moving at the speed of light off a mirror and back when the signal is sent out orthogonal to the direction of translation.
+In the Dilation article we calculated the increased amount of time needed to bounce a signal moving at the speed of light off a mirror and back when the signal is sent out orthogonal to the direction of translation (north / south).
 
-For this article let's now repeat the same calculation but for a signal sent out parallel to the direction of translation.  Let's start by calculating when the velocity of translation is zero.
+For this article let's now repeat the same calculation but for a signal sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
 
-<<ContractStatic>>
+<<ContraSketch>>
 
 In this case the signal travels 2d (the distance to the mirror) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.  Now let's start translating the same system over the aexel field.
 
-<<ContractTranslate>>
+While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_e:
 
-While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_r, v being the velocity of translation and t_r being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_r:
+<<ContraEast>>
 
-<<ContractRight>>
+Once the signal bounces off the mirror back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
 
-Once the signal bounces off the mirror back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_l, the translation velocity times the time needed to return to the source.  Let's calculate that time t_l:
+<<ContraWest>>
 
-<<ContractLeft>>
+The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the time when the system is not translating at all.
 
-The total time, t' is equal to the sum of t_r and t_l.  Let's compare it to the time when the system is not translating at all.
-
-<<Contract>>
+<<Contra>>
 
 For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two signals sent out at the same time, both bounced off a mirror 1 meter away one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
 
@@ -277,7 +275,11 @@ Length Contraction occurs and the length of things in the direction of translati
 
 The amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
 
-Essentially, a meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
+Measuring the speed of light with a meter stick is essentially a tautological exercise.  A meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
+
+One other important thing to note, is that this contraction only applies to the physical items in the system that is translating, not to the rest of the non-translating universe that happens to lie along the direction of translation.
+
+If a ship is heading towards some distant star, the amount of meter sticks that will fit between the ship and the star will increase as the translation speed of the ship increases.  The distance to the star itself will not contract and therefore the distance to the star will appear to increase as the ship's speed increases.
 
 
 

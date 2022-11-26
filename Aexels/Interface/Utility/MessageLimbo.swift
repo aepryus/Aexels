@@ -69,7 +69,9 @@ class MessageLimbo: Limbo {
 			h += height
 			tHs.append(height)
 			if i < images.count {
-				let height: CGFloat = images[i].size.height
+                let w: CGFloat = min(images[i].size.width, width * 0.84)
+                let r: CGFloat = w / images[i].size.width
+				let height: CGFloat = images[i].size.height * r
 				h += height
 				iHs.append(height)
 			}
@@ -85,7 +87,10 @@ class MessageLimbo: Limbo {
 			texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
 			y += tHs[i]
 			if i < images.count {
-				images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: images[i].size))
+                let w: CGFloat = min(images[i].size.width, width * 0.84)
+                let r: CGFloat = w / images[i].size.width
+                let size: CGSize = CGSize(width: images[i].size.width * r, height: images[i].size.height * r)
+                images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: size))
 				y += iHs[i]
 			}
 		}
