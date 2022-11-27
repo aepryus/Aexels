@@ -239,12 +239,12 @@
 		D8AE174E2814EA5A00E74CB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D87C0DCF2931A7720005B44D /* LaTeX */,
-				D8AE17BA2814F10000E74CB8 /* Aethers */,
 				D8AE17432814E97300E74CB8 /* Assets.xcassets */,
 				D8AE17662814F0D300E74CB8 /* en.lproj */,
-				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D87C0DC6293102730005B44D /* Images */,
+				D8AE17BB2814F11900E74CB8 /* Fonts */,
+				D8AE17BA2814F10000E74CB8 /* Aethers */,
+				D87C0DCF2931A7720005B44D /* LaTeX */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
