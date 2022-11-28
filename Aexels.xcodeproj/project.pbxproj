@@ -10,6 +10,7 @@
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */; };
 		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
 		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
 		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
@@ -202,8 +204,9 @@
 		D87C0DCF2931A7720005B44D /* LaTeX */ = {
 			isa = PBXGroup;
 			children = (
-				D87C0DD02931A7AE0005B44D /* Dilation.latex */,
 				D87C0DD22931A8250005B44D /* Contraction.latex */,
+				D87C0DD02931A7AE0005B44D /* Dilation.latex */,
+				D849E0532934E4250012D0AC /* Discrepancy.latex */,
 			);
 			path = LaTeX;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
 				D87C0DCC2931029B0005B44D /* BackiPad.png in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
+				D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */,
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,

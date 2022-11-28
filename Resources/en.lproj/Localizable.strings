@@ -375,7 +375,44 @@ In Universe X potential energy is actually just kinetic energy.
 
 ";
 
-"Discrepancy" = "Discrepancy";
+"Discrepancy" = "Discrepancy
+
+Since the beginning of Universe X it was uncertain whether there were any experimentally verifiable differences between our Universe and Universe X.  It's possible that Universe X was just a different way of achieving the same results as our Universe.  However, finally a verifiable difference has been uncovered.
+
+Dilation at the Surface of a Sphere
+
+Now that we know what the dilation will be as a function of the translation rate across the aexels; let's now calculate what the dilation would be at the surface of a non-rotating sphere.
+
+As discussed in the Gravity section, gravity in Universe X is not a force, but rather is a result of the destruction and creation of aexels and the pulling and pushing that that causes on the aethereal fabric.  Gravity alone, therefore, cannot directly initiate the translation of a loop across an aexial field.  All it can do is pull on the aexial field itself.
+
+Let's take an empty universe and place a planet P and a tennis ball B in it, infinitely far apart, both of which are not translating across the aexial field at all.  If we assume Newton's law of gravitation to be empirically true of Universe X, we can calculate the velocity of the tennis ball once it hits the surface of the planet.  Since gravity can not directly cause a translation across the aexels, the velocity of the tennis ball must equal the velocity of the aexels upon which it is sitting.
+
+<<DiscrA>>
+
+This gives us the velocity of the aexels flowing into the planet at its surface.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the previous dilation equation in order to get the dilation at the surface.
+
+<<DiscrB>>
+
+Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
+
+
+Dilation while Falling from Infinity
+
+In the previous calculation we dropped a tennis ball from infinity in order to calculate the velocity of the aexels flowing into the planet at the surface so that we could calculate the dilation for a system at rest on that surface.  What about the dilation for the tennis ball itself?
+
+In our Universe, this calculation might be pretty challenging, since time dilation is both a function of velocity and gravity and since both the velocity and gravity is constantly changing throughout the tennis ball's journey.
+
+However, in Universe X, this calculation is quite easy.  Dilation in Universe X is solely a function of the translating velocity over the aexial field.  In Universe X, throughout the journey from infinity down to the planet's surface, the tennis ball's translation velocity remains zero; it is simply flowing down along with the aexels.  And since, throughout the journey, there is never any translating velocity, there is therefore never any dilation.
+
+<<DiscrC>>
+
+<<DiscrD>>
+
+
+
+
+
+";
 
 "Epilogue" = "Epilogue
 

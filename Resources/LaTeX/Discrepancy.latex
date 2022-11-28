@@ -1,0 +1,26 @@
+ 
+\begin{align*}
+PE&=Fs\\
+\\
+F&=G\frac{M_pM_b}{r^2}\\
+\\
+PE&=\int_{r_p}^{\infty}G\frac{M_pM_b}{r^2}\,ds\\
+\\
+PE&=-HM_pM_b\frac{1}{r}\bigg|_{r_p}^{\infty}=G\frac{M_pM_b}{r_p}\\
+\\
+KE&=\frac{1}{2}mv^2=\frac{1}{2}M_bv^2\\
+\\
+KE=PE&\implies\frac{1}{2}M_bv^2=G\frac{M_pM_b}{r_p}\\
+\\
+v&=\sqrt{\frac{2GM_p}{r_p}}\\
+\\
+\frac{t'}{t}&=\frac{1}{\sqrt{1-\frac{2GM_p}{r_pc^2}}}\\
+\\
+\frac{t'}{t}&=1\\
+\\
+\frac{t'}{t}&=\frac{1}{\sqrt{1-\frac{8GM_p}{r_pc^2}}}\\
+\\
+\left(1 - \frac{r_s}{r}\right)\frac{dt}{d\tau} = \frac{E}{mc^2}\\
+\\
+d\tau = \left(1 - \frac{r_s}{r}\right) dt\\
+\end{align*}
