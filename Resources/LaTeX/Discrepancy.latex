@@ -20,7 +20,13 @@ v&=\sqrt{\frac{2GM_p}{r_p}}\\
 \\
 \frac{t'}{t}&=\frac{1}{\sqrt{1-\frac{8GM_p}{r_pc^2}}}\\
 \\
-\left(1 - \frac{r_s}{r}\right)\frac{dt}{d\tau} = \frac{E}{mc^2}\\
+left(1 - \frac{r_s}{r}\right)\frac{dt}{d\tau} &= \frac{E}{mc^2}\\
 \\
-d\tau = \left(1 - \frac{r_s}{r}\right) dt\\
+E &= mc^2\\
+\\
+\frac{dt}{d\tau} &= \frac{1}{\left(1 - \frac{r_s}{r}\right)} \\
+\\
+r_s &= \frac{2GM}{c^2}\\
+\\
+\frac{t'}{t} = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
 \end{align*}
