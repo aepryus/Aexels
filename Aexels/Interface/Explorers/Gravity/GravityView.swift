@@ -29,9 +29,11 @@ class GravityView: UIView {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 
-		let gesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
-		addGestureRecognizer(gesture)
-	}
+		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
+
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        addGestureRecognizer(gesture)
+    }
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	deinit {
 		AXUniverseRelease(universe)
@@ -112,9 +114,22 @@ class GravityView: UIView {
 			
 			for i in 0..<Int(universe.pointee.aexelCount) {
 				let aexel = universe.pointee.aexels![i]!
+                guard aexel.pointee.stateC == 0 else { continue }
 				c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
 			}
 			c.drawPath(using: .fillStroke)
+            
+            let color1: UIColor = UIColor(rgb: 0x5CFF74).tint(0.2)
+            c.setStrokeColor(color1.shade(0.7).cgColor)
+            c.setFillColor(color1.cgColor);
+
+            for i in 0..<Int(universe.pointee.aexelCount) {
+                let aexel = universe.pointee.aexels![i]!
+                guard aexel.pointee.stateC == 1 else { continue }
+                c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
+            }
+            c.drawPath(using: .fillStroke)
+
 
 		} else {
 			let color1: UIColor = UIColor(rgb: 0x5CFF74).tint(0.2)
@@ -220,7 +235,28 @@ class GravityView: UIView {
 	@objc func onTap(_ gesture: UITapGestureRecognizer) {
 		let x = gesture.location(in: self)
 		print("tap: \(x)")
+        if let aexel = AXUniverseAexelNear(universe, Vector(x: x.x, y: x.y)) {
+            aexel.pointee.stateC = 1
+            print("aexel: \(aexel.pointee)")
+        }
 	}
+    var holding: UnsafeMutablePointer<AXAexel>? = nil
+    @objc func onPan(_ gesture: UIPanGestureRecognizer) {
+        let x = gesture.location(in: self)
+        let v = Vector(x: x.x, y: x.y)
+        switch gesture.state {
+            case .began:
+                holding = AXUniverseAexelNear(universe, v)
+                holding?.pointee.stateC = 1
+            case .ended:
+                holding?.pointee.stateC = 0
+                holding = nil
+            case .changed:
+                guard let holding else { break }
+                holding.pointee.s = v
+            default: break
+        }
+    }
 	
 // UIView ==========================================================================================
 	override func draw(_ rect: CGRect) {
