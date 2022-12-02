@@ -76,6 +76,7 @@
 		D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */; };
 		D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */; };
 		D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18132814F59D00E74CB8 /* Ionian.c */; };
+		D8DA023E2939F1FB009054D7 /* OddsAndEndsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA023D2939F1FB009054D7 /* OddsAndEndsExplorer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +150,7 @@
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
+		D8DA023D2939F1FB009054D7 /* OddsAndEndsExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OddsAndEndsExplorer.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,6 +321,7 @@
 				D8AE175D2814EB5400E74CB8 /* Equivalence */,
 				D86FD6CF292C83BE00A6CA7A /* Discrepancy */,
 				D86FD6CA292B804500A6CA7A /* Epilogue */,
+				D8DA023C2939F1E6009054D7 /* OddsAndEnds */,
 			);
 			path = Explorers;
 			sourceTree = "<group>";
@@ -467,6 +470,14 @@
 			name = Ionian;
 			sourceTree = "<group>";
 		};
+		D8DA023C2939F1E6009054D7 /* OddsAndEnds */ = {
+			isa = PBXGroup;
+			children = (
+				D8DA023D2939F1FB009054D7 /* OddsAndEndsExplorer.swift */,
+			);
+			path = OddsAndEnds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -575,6 +586,7 @@
 				D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */,
+				D8DA023E2939F1FB009054D7 /* OddsAndEndsExplorer.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
 				D8AE17FB2814F21700E74CB8 /* GravityExplorer.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,

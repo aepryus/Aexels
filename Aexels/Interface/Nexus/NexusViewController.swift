@@ -286,7 +286,6 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
 
 		explorers = [
-            ForwardExplorer(parent: view),
 			IntroExplorer(parent: view),
 			CellularExplorer(parent: view),
 			KinematicsExplorer(parent: view),
@@ -295,8 +294,7 @@ class NexusViewController: UIViewController {
 			ContractionExplorer(parent: view),
 			DarknessExplorer(parent: view),
 			EquivalenceExplorer(parent: view),
-            DiscrepancyExplorer(parent: view),
-            EpilogueExplorer(parent: view)
+			OddsAndEndsExplorer(parent: view)
 		]
 	}
 	override func viewDidAppear(_ animated: Bool) {

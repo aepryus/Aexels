@@ -6,28 +6,6 @@
   Copyright (c) 2014 Aepryus Software. All rights reserved.
 */
 
-"Forward" = "Forward to 3.0
-
-Since the discovery of Universe X, there have been 7 light bulb moments, including that first.  This app was started after 4 of the light bulb moments.  A 5th light bulb moment occurred while that first version was being worked on.
-
-Since that first version was released two additional light bulb moments have occurred, the first of which had sizable implications for many of the original articles.  But, I chose to leave them largely untouched and just tack on an additional article, in order to show the path of discovery.
-
-However, with this version I am choosing to rewrite the articles based on the complete current understanding of Universe X.  I'm also going to integrate the information in the old 'Odds and Ends' article into their relevant articles (mainly Dilation).
-
-There are also two new articles in version 3.0:
-- Discrepancy - which discusses the 7th light bulb moment, the discovery of a substantial difference between Universe X and our Universe.
-- Epilogue - where I will give short answers to a number of questions that are very difficult to answer for our Universe, but quite easy to answer for Universe X.
-
-Unfortunately, there are no new explorers in version 3.0.  I am working on about 10 mid sized projects related to Oovium, Aexels, Evolizer and others that I'd like to get out as quickly as possible.  After, I complete those projects I will try to implement the Dilation and Contraction explorers.
-
-    - Joe
-
-
-
-
-
-";
-
 "Intro" = "A universe is discovered…
 
 Universe X
@@ -152,22 +130,21 @@ But, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
 In Universe X there exists many different types of stable state loops.  There are potentially three ways these loops could interact with the aexels:
 
-- they could destroy aexels:
-It is quite certain that there are loops that destroy aexels in Universe X.  In Universe X these loops are referred to as 'matter'.  This article, 'Gravity', pertains to these types of loops.
+- they could destroy the aexels
+- they could create more aexels
+- they could leave the aexels alone
 
-- they could create aexels:
-That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  In Universe X these loops are referred to as 'antimatter'.  The article 'Darkness' pertains to these type of loops.
+It is quite certain that there are loops that destroy aexels in Universe X.  That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  Initially, it seemed certain that there must be loops that left the aexels alone, but as the understanding of Universe X has increased this has been called into question.
 
-- they could do neither:
-Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that no such loops exist or at least they are less prevalent than one might initially assume.  The 'Equivalence' article discusses these possibilities further.
+But for the purposes of this topic we are most interested in the loops that destroy aexels.  In Universe X the loops that destroy aexels are called 'matter'.
 
-Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
+Each of these loops have a destruction coefficient.  The rate at which they destroy aexels is proportional to this destruction coefficient.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the aexels to ever get too far apart.
 
 Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
 
-In Universe X as various concentrations of matter continually destroy the aether between one another that matter itself will continually tend to clump together.  As that clump of matter gets bigger and bigger (or perhaps more precisely, more and more dense) the velocity at which the aether is pulled towards the clump will increase.
+In Universe X as various concentrations of matter continually destroy the aether between one another they will continually tend to clump together.  As a clump of matter gets bigger and bigger the velocity at which the aether is pulled towards the clump will continually increase.
 
-At some point, certain clumps in Universe X get so big (dense) and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+At some point, certain clumps in Universe X get so big and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
 
 
 
@@ -187,45 +164,31 @@ In Universe X, however, no such time dilation occurs.  There is however an analo
 
 Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
 
-In the Gravity article a classification of loops was created based on whether the loops created aexels (matter), destroyed aexels (antimatter) or did neither.  For the purposes of the Dilation and Contraction articles let's create a second classification: loops that translate at the speed of light (one aexel per tic) and loops that translate at less than the speed of light.
+In Universe X the interaction of matter (loops that destroy aexels) is mediated by 'loops that don't affect aexels'.  For now let's refer to 'loops that don't affect aexels' as photons.  These photons always travel at one aexel per tic, which is to say they always travel at 'the speed of light'.
 
-It would be nice to give names to these two classes, but there aren't great analogous names from our Universe that can be used.  One could almost use the term 'boson' for speed of light travelers and 'fermion' for sub-light travelers, but some bosons (such as W, Z and Higgs) move at less than the speed of light.  Still, perhaps, they can be a model for new names in Universe X.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, some loops continually generate photons.  When one of these photons hits another such loop, the photon affects that loop's rate of translation across the aexel field.
 
-It may be the case that all translation in Universe X is at one aexel per tic.  But, that some loops move directly in a straight line and therefore the loop itself translates at the speed of light and other loops have internal motion that alternates back and forth in some manner causing the net speed of translation to be less than the speed of light.
+For example, consider a loop that is stationary on a field of stationary aexels (ignore gravity for a moment).  A photon traveling from elsewhere is moving towards the loop.  When the photon hits the loop (and is absorbed) the loop begins to translate across the stationary field of aexels.
 
-As such, let's refer to those loops that translate directly in a straight line (at the speed of light) as 'edisons' (ed-i-sans) and those loops that translate in some sort of alternating fashion (at less than the speed of light) as 'teslons' (tes-lans).
+In this way, complex static or dynamic systems of loops can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes photons to travel from loop to loop.
 
-In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be a dependent on the the amount of time it takes the edisons to move back and forth between them.
+For two stationary loops separated by a fixed number of aexels the photon will travel between them at one aexel per tic.  However, if the loops are both translating across the aexel field, the amount of time it takes photons to move between them will vary based on the direction of the photon relative to the translating motion of the loops across the aexel field.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons hits another teslon, the edison affects that teslon's rate of translation across the aexel field.
+In some cases the time will be less in others the time will be more, but in all cases the round trip time of a photon between the loops will increase as the rate of translation increases.  This increased round trip time will result in a slow down of the rate of the animation of the dynamic system of loops.
 
-For example, consider a teslon that is stationary on a field of stationary aexels (ignore gravity for a moment).  An edison traveling from elsewhere is moving towards the teslon.  When the edison hits the teslon (and is absorbed) the teslon begins to translate across the stationary field of aexels.
+This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the photons to move most quickly between the loops.
 
-In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth from teslon to teslon.
-
-For two stationary teslons separated by a fixed number of aexels the edisons will travel between them at one aexel per tic.  However, if the teslons are both translating across the aexel field, the amount of time it takes edisons to move between them will vary based on the direction of motion of the edisons relative to the translating motion of the teslons across the aexel field.
-
-In some cases the time will be less, in others the time will be more, but in all cases the round trip time of an edison between the teslons will increase as the rate of translation increases.  This increased round trip time will result in a slow down of the rate of the animation of the dynamic system of loops.
-
-This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the edisons to move most quickly between the teslons.
-
-In Universe X dilation is not an observational phenomena.  It is a real physical phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
+In Universe X, dilation is not an observational phenomena.  It is a real phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
-Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow (north / south).  A signal traveling at c is sent out from one to the other and back.
+Furthermore, in Universe X this dilation is not of time, but rather is in the animation rate of phenomena mediated by photons.  This dilation does not affect motion not mediated by photons.  Because of this one could imagine an experiment that could be run in both universes that would yield very different results.
 
-<<DilaSketch>>
+Any clock or biological system is entirely mediated by photons and therefore will be subject to dilation.  However, one could imagine a gravity clock; for example a tank of water suspended above a sensor.  A drop of water is released and is calibrated to hit the sensor in exactly one second.  When the drop hits the center a photon pulse is sent up to the tank triggering the release of the next drop.  The time of the photon pulse is substantially smaller than the water travel time.
 
-The question is how long does this roundtrip journey take?
+In our universe, if we were to take one normal clock and one gravity clock, calibrate and synchronize both and place them on a levitating bullet train traveling due east at 300 mph for 100 miles and then observe both clocks, we would note that both clocks remain synchronized because in our universe time itself dilates.
 
-First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
-
-In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t_n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
-
-<<Dilation>>
-
-So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / time) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
+However, such an experiment in Universe X would yield very different results.  In Universe X dilation only affects the normal clock, not the gravity clock and consequently the two clocks will now be out of sync.
 
 
 
@@ -237,9 +200,9 @@ So, for a system of loops translating across an aexial field the signals traveli
 
 Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
 
-In our universe, length contraction, similar to time dilation, has no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
+In our universe, length contraction is analogous to time dilation in that there are no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
 
-In Universe X, however, length contraction is a physical phenomenon and like dilation, is entirely a function of the rate of translation of a system across an aexel field.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
+In Universe X, however, length contraction is a real phenomenon and like dilation, is entirely a function of the translation rate of a system.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
 
 In our universe there is a feature of nature called Lorentz covariance which indicates that the speed of light is constant across all frames of reference.
 
@@ -247,39 +210,11 @@ In Universe X this concept would appear to break down quickly.  For any system t
 
 Certainly, in Universe X, the speed of light is always one aexel per tic.  But, since the aexels themselves can move and since they can vary in density it would seem it might be easy to detect variations in the distance traveled per time.
 
-However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.
+However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.  The flow of aexels through a system causes the distance that the loops sit from one another to become closer in the direction of flow.  This smaller distance between the loops shrinks every object thats structure is dependent on the transmission of mediating photons.
 
-In the Dilation article we calculated the increased amount of time needed to bounce a signal moving at the speed of light off a mirror and back when the signal is sent out orthogonal to the direction of translation (north / south).
+And this amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
 
-For this article let's now repeat the same calculation but for a signal sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
-
-<<ContraSketch>>
-
-In this case the signal travels 2d (the distance to the mirror) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.  Now let's start translating the same system over the aexel field.
-
-While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_e:
-
-<<ContraEast>>
-
-Once the signal bounces off the mirror back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
-
-<<ContraWest>>
-
-The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the time when the system is not translating at all.
-
-<<Contra>>
-
-For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two signals sent out at the same time, both bounced off a mirror 1 meter away one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
-
-Length Contraction occurs and the length of things in the direction of translation are reduced by a factor of gamma.  In that case both signals would return at the exact same moment and the 'speed of light' would appear to be the same in both directions.
-
-The amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
-
-Measuring the speed of light with a meter stick is essentially a tautological exercise.  A meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
-
-One other important thing to note, is that this contraction only applies to the physical items in the system that is translating, not to the rest of the non-translating universe that happens to lie along the direction of translation.
-
-If a ship is heading towards some distant star, the amount of meter sticks that will fit between the ship and the star will increase as the translation speed of the ship increases.  The distance to the star itself will not contract and therefore the distance to the star will appear to increase as the ship's speed increases.
+Essentially, a meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
 
 
 
@@ -297,29 +232,23 @@ Luckily, once again, Universe X isn't nearly so magical.
 
 Previously, we have mentioned 3 types of stable state loops:
 
+- Loops that don't affect aexels
 - Loops that destroy aexels
 - Loops that create aexels
-- Loops that do neither
 
-This article concerns the 'loops that create aexels'.  Let's call those loops 'antimatter'.
+Tentatively, we have named 'loops that don't affect aexels' as photons and 'loops that destroy aexels' as matter.  Again, it is perhaps somewhat speculative, but let's name 'loops that create aexels' as antimatter.
 
-In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If a matter loop destroys aexels then perhaps it's the case that an antimatter loop creates them.
+In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  It has been observed that at times a particle and its antiparticle will be spontaneously created.  Similarly, if a particle and its antiparticle meet they will each be entirely destroyed.
+
+If we assume that this is also the case in Universe X, then perhaps all matter and antimatter was created through pair creation.  And perhaps the total matter in Universe X is equal to the total antimatter in Universe X.  Alternatively, perhaps it is possible that Universe X was initially seeded with more matter or more antimatter.
+
+If the amount of matter and antimatter is equal in Universe X and always remains so because of pair creation and pair destruction.  And if antimatter creates aexels and creates them at the same rate at which matter destroys them, then perhaps the total amount of aexels in Universe X is a constant.
+
+Matter in Universe X is continually destroying aexels drawing other matter towards it causing it to clump up.  Perhaps the antimatter of Universe X is continually creating aexels causing the antimatter to spread apart.
 
 And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
 
-It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.  And if a matter loop destroys aexels at the same rate that an antimatter loop creates them then perhaps the total number of aexels is always in balance.
-
-This net teleportation of aexels from inside of galaxies to outside of galaxies could then account for a red shift of photons traveling through the antimatter dust; making a steady state universe appear to be expanding.
-
-Alternatively, Universe X may have been initially seeded with more antimatter loops or perhaps the rate that antimatter loops create aexels is greater than the rate the matter loops destroy them and Universe X really is expanding.
-
-If this explains the 'Dark Energy' of Universe X, what about the 'Dark Matter'?
-
-The aexels of Universe X form a crystal like lattice.  They sit in a potential well not wanting to get too far away from one another, but also not wanting to get too close.  It can be difficult to tell the difference between a pull and a push.
-
-The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
-
-As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
+And just as the destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X looks like a push.  The antigravity of the antimatter pushing on the galaxies from the outside making it appear as if they have more mass than they actually do.
 
 
 
@@ -329,55 +258,52 @@ As such the antimatter dust of Universe X both causing the 'expansion' of the ae
 
 "Equivalence" = "Equivalence
 
-E=mc²
+One topic that has been conspicuously missing from this discussion of Universe X is the mass-energy equivalence principle.  Sometimes, E=mc² is incorrectly thought of as a conversion formula; representing the ability to convert energy into mass or mass into energy at the stipulated rate.  However, the mass-energy equivalence principle says something dramatically more bold: It says that the total mass of a system and the total energy of a system are always related to one another by the c² factor.  This strongly implies that mass and energy arise from the same phenomenon.
 
-Often times the mass-energy equivalence principle is incorrectly described to be a conversion formula; representing the ability to convert energy into mass or mass into energy at the stipulated rate.  However, the mass-energy equivalence principle says something dramatically more bold: It says that the total mass of a system and the total energy of a system are always related to one another by the c² factor.
+In our universe both mass and energy are conserved quantities.  Our own sun loses about 4 x 10^9 kg every second through the fusion process which radiates about 3.6 x 10^26 joules of photons.  If mass is a conserved quantity and if photons are massless, where did that mass go?  It is argued that a box with massless mirrored interior walls with light bouncing around inside will have a mass equal to the energy of the photons inside divided by c².  It seems that somehow massless photons do in fact have mass in some manner of thinking.
 
-But, how could this possibly be true?  What is mass really?  What is energy really?  This equation strongly implies that mass and energy are two sides of the same coin.
+So, if we assume that all of this also holds true of Universe X, what’s going on?  Previously, in the Gravity section the loops of Universe X where divided into 3 categories: loops that destroy aexels, loops that create them and loops that do neither.  For the loops that destroy and create aexels they have a property known as ‘mass’ which describes the rate at which the loop destroys or creates aexels.  In Universe X the concept of gravitational mass, really is just the measure of the rate of the destruction of aexels (anti-mass is the measure of the rate of their creation).
 
-In our universe both mass and energy are conserved quantities.  Our own sun loses about 4 x 10^9 kg of mass every second through the fusion process which radiates about 3.6 x 10^26 joules of photons.  If mass is a conserved quantity and if photons are massless, where did that mass go?  Theoretically, a box with massless mirrored interior walls with light bouncing around inside will have a mass equal to the energy of the photons inside divided by c².  Could it be that massless photons do in fact have mass in some manner of thinking?
+As mentioned before, the phenomenon of gravity can not directly cause a loop to translate across the aexels.  Only electric / magnetic phenomenon can cause a loop to translate.  So what is energy?  Energy is that which allows a loop to translate across the aexeal field.  Energy is motion.
 
-When initially thinking about Gravity in Universe X, it was hypothesized that 'mass' destroys aexels; it was also hypothesized that energy was the translation of that mass across an aexel field.  Thinking back to the classification of Universe X's loops between those that move at the speed of light, edisons and those that move less than the speed of light, teslons; it was easy to imagine teslons being the destroyers and creators of aexels because they have mass while perhaps the edisons, such as photons, doing neither because they don't have mass.
+If energy and mass are the same phenomenon then perhaps its not some magical mass / anti-mass property that determines the rate of aexeal destruction / creation, but rather it is motion itself which destroys / creates aexels.  And as such perhaps the set of “loops that don’t affect aexels” is null.  Some loops have internal rotational motion that allows them to destroy / create aexels in place.  While other loops (photons) have entirely linear motion, destroying aexels along the way, but not destroying / creating any aexels internally.
 
-But, thinking about a star radiating photons and losing mass, perhaps it's not 'mass' that destroys aexels, but rather translation that destroys aexels.  Perhaps the 'mass' of teslons is simply the internal translations of the components of the loop.  And photons while translating also destroy aexels, but always in its wake, never internal to itself, explaining why the 'mass' of photons is so ambiguous.
-
-- loops that do neither
-
-If all teslons have 'mass' and therefore destroy aexels and if edisons, such as photons, also destroy aexels as they translate across the aexel field then the question is do all edisons destroy aexels while they translate or just some?  Are there no loops that neither destroy or create aexels?
-
-Let's consider the mechanism of Coulomb's law in Universe X.  From the Dilation article we know that the one way time of transit between two teslons doesn't matter, but rather only the round trip time.  There must be some sort of bounce that occurs.
-
-In our Universe photons are described as the force carriers of the Coulomb's force.  Let's consider that possibility in Universe X.  Let's take an empty universe with a lone non translating proton sitting on a static aexel field.  Perhaps the proton radiates photons, which then look for other charge carriers to interact with.
-
-However, there are two issues with this model, one, protons have energy and would be radiating that energy away from the proton similar to our star from before.  And two, a photon being sent out hypothetically would interact with any other charged loop that it encounters, not necessitating any bounce.
-
-Let's try again; this time let's have our proton radiate non aexel destroying edisons.  Right away this solves the conservation of energy and mass issues, since the edisons being sent out aren't destroying aexels as they translate; they have no mass, they have no energy.
-
-Perhaps this non aexel destroying edison now encounters another charged loop causing that second charged loop to pass an aexel destroying photon back towards the original.  Once that photon hits the originating loop it interacts with it affecting its translational velocity.  In this way the time delay between sending out a non aexel destroying edison and receiving the aexel destroying photon back IS a function of the round trip time.
-
-This second model conserves mass/energy and explains the importance of the roundtrip duration.  It also strongly hints at the existence of non aexel destroying / creating edisons.
-
-- potential energy
-
-Consider two protons in Universe X on a static aexel field directly translating towards one another.  We know there is a single quantity that can be called mass or energy (m:e) that is always conserved.
-
-Each of the protons has a fixed amount of m:e coming from some sort of internal translation of edisons inside of themselves.  They also have an amount of m:e 'stored' in the kinetic energy of the moving protons.
-
-As the protons approach one another their speeds begin to slow until finally for an instant, both protons come to a complete stop.  At that point they still have their internal m:e, but the protons' kinetic m:e is now zero.  Has the quantity been conserved; where has it gone?
-
-The quantity has been conserved because it is now stored in the photons that are being passed back and forth between the two protons.  The amount of m:e in those photons is exactly equal to the kinetic energy of the photons when they were infinitely far apart.
-
-In Universe X potential energy is actually just kinetic energy.
-
+And as such photons which don’t appear to have mass (i.e., don’t destroy aexels internally), do still contribute to the destruction of aexels, which is to say do still contribute to the mass of a system.
 
 
 
 
 ";
 
-"Discrepancy" = "Discrepancy
+"OddsAndEnds" = "Odds and Ends
 
-Since the beginning of Universe X it was uncertain whether there were any experimentally verifiable differences between our Universe and Universe X.  It's possible that Universe X was just a different way of achieving the same results as our Universe.  However, finally a verifiable difference has been uncovered.
+The following is a handful of calculations and smaller discussions about Universe X; topics include:
+
+- Dilation in Universe X
+- Dilation: Surface of a Sphere
+- Dilation: Falling from Infinity
+- Does Antimatter Fall?
+- LIGO
+
+
+Dilation in Universe X
+
+As discussed in the Dilation section, dilation in Universe X is not of time, but rather is of the rate of animation, i.e., the rate that a system of loops progresses.  This rate of animation is entirely dependent on the amount of time it takes signals traveling at one aexel per tic (i.e., the speed of light, which we'll call 'c') to complete a round trip journey between two given loops.
+
+Let's look at two loops arranged perpendicular to the aexial flow.  A signal traveling at c is sent out from one to the other and back.
+
+<<DilaSketch>>
+
+The question is how long does this roundtrip journey take?
+
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case, d = ct; or t = d/c.
+
+In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  If the one way journey takes t', then the loops move vt' and the signal moves ct'.  Using the Pythagorean theorem we then get:
+
+<<Dilation>>
+
+So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation (aexels / time) across the aexels and that slowing down will be by the (perhaps familiar) equation above.
+
 
 Dilation at the Surface of a Sphere
 
@@ -406,214 +332,37 @@ However, in Universe X, this calculation is quite easy.  Dilation in Universe X 
 
 <<DiscrC>>
 
-<<DiscrD>>
 
-<<Clock>>
+Does Antimatter Fall?
 
+In our Universe, it is an open question and a topic of much speculation of how an antimatter tennis ball would behave in the Earth's gravitational field.  Perhaps, matter and antimatter are akin to positive and negative charges and antimatter will rocket up into the sky, falling upwards due to a negative mass.  Or perhaps its mass is no different than a matter tennis ball's mass and it will fall down normally.
 
+As for matter tennis balls, Galileo famously explained that all objects regardless of their mass fall at the same rate.  A recent satellite called MICROSCOPE ran an experiment that found no difference in the acceleration of objects of different masses to an accuracy of 10^14.
 
+But, let's perhaps look at this question in Universe X.  In Universe X, gravity is not a force, but rather it is the pulling on the aether by things with mass or the pushing on the aether by things with antimass.  For Universe X, Newton's law of gravitation would be better rendered as:
 
+<<Gravity>>
 
-";
+which is an acceleration not a force.  If we consider a matter tennis ball (mass), antimatter tennis ball (antimass) and photon tennis ball (no mass) in the strong gravitational field of a large planet; all would be sitting on the same aether, all being pulled in at the same rate.
 
-"Epilogue" = "Epilogue
+However, while the planet, by far is doing most of the pulling, the tennis balls themselves can also affect the aether; the matter tennis ball pulling; the antimatter tennis ball pushing and the photon tennis ball doing neither.  Given the mass of the Earth and the mass of a tennis ball the amount of pulling or pushing a tennis ball would do is on the order of 10^24 less than that of the planet; 10 orders of magnitude less than our most sensitive test to date.
 
-Knowing, is not, understanding.
+So, while if we could use our current tests in Universe X, the 3 tennis balls would seem to fall at the same rate, there would perhaps come a time where the very slight differences could be measured; with the matter tennis ball falling the fastest, the photon tennis ball coming next and the antimatter tennis ball falling the slowest.
 
-When learning about the physics of our Universe for the first time there are a number of questions that might occur to oneself; questions that they might put forth to their professor.
 
-What follows is a list of about 30 of these questions.  After the questions will be a list of answers; first answers pertaining to Universe X and next answers pertaining to our Universe.
+LIGO
 
-Questions
+In the current understanding of Universe X there are really two separate realms.  There are the aexels themselves and there are the loops which live on top of the aexels.  The aexels generally deal with the gravity of Universe X, where as the loops generally deal with the 'standard model' of Universe X.
 
-\[1a\] What is the speed of light?
-\[1b\] Why does light travel at that speed?
-\[1c\] Why is it not possible to go faster than the speed of light?
-\[1d\] Why can't things with mass move at light speed?
+And in this current understanding of Universe X, the only interplay between the two realms is the creation and destruction of the aexels by the loops.  Since the aexels can move and vary in their density, it is possible for compression waves to travel through the aether.
 
-\[2a\] Does God play dice with the Universe?
-\[2b\] Is matter a particle?  Is matter a wave?
+In our Universe, compression waves, such as sound waves, move through various materials at various speeds.  Depending on the dynamics of aexels themselves, it seems that any arbitrary velocity could be possible for such compression waves traveling through the aether of Universe X.
 
-\[3a\] Is space 4D? 11D?
-\[3b\] What does it mean for space to warp?
+The LIGO experiment recently announced that they were not only able to detect gravity waves in our universe, but they were able to measure the velocity of the wave because it was paired with an e/m phenomena due to two neutron stars colliding.  And while the gravity wave didn't hit precisely at the same time as the e/m wave, it hit close enough to strongly indicate that the speed of light played a significant part in the dynamics of gravity waves.
 
-\[4a\] What is a black hole?
-\[4b\] What happens inside of a black hole?
-\[4c\] Why can't light escape?
-\[4d\] What is gravity?  What is its mechanism?
-\[4e\] How can a star attract a photon?
-\[4f\] What is a gravity wave?  What is waving?
+Admittedly, I was a bit surprised by this result.  Certainly, there is nothing in Universe X that says that an aexial compression wave can't move at the speed of light, but there is also nothing that says that it must.  The fact that it does, seems to indicate that the tic time delay in transferring a signal from one aexel to the next must somehow be relevant in the dynamics of the aexels themselves, not solely for the loops set on top of them.
 
-\[5a\] What is time dilation?
-\[5b\] Is there really no special frame of reference?
-\[5c\] Do two observers both consider their own clocks to be faster?
-\[5d\] How does one resolve the twin paradox?
-\[5e\] What is the relationship between Special and General relativity?
-
-\[6a\] What is Length Contraction?
-\[6b\] Why is the speed of light always invariant?
-\[6c\] Do two observers both consider their meter sticks are longer?
-\[6d\] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
-
-\[7a\] What is the expansion of the universe?
-\[7b\] What causes it?
-\[7c\] What is Dark Energy?
-\[7d\] What is Dark Matter?
-\[7e\] Why does there appear to be more matter than antimatter in the Universe?
-
-\[8a\] What does E=mc^2 really mean?
-\[8b\] What is its mechanism?
-\[8c\] Does a photon have mass?  Where does the mass a star radiates go?
-
-
-Universe X Answers
-
-\[1a\] What is the speed of light?
-
-Universe X is filled with a quantized crystalline fluid called 'aether'.  Each element of the aether is called an 'aexel'.  Each aexel can communicate with its neighbors.  It takes exactly one 'tic' of time for a signal to move from an aexel to its neighbor.  The 'speed of light' is the translation of a signal at one aexel per tic.
-
-\[1b\] Why is it not possible to go faster than the speed of light?
-
-It's not possible to go faster than the speed of light because signal can't move between two aexels faster than a tic and its not possible for an aexel to directly signal aexels that aren't its own neighbors; it can't skip over aexels.
-
-\[1c\] Why does light travel at light speed?
-
-Light travels at light speed because it translates in a straight line, moving a full aexel each tic.
-
-\[1d\] Why can't things with mass move at light speed?
-
-Things with mass have internal structure and translation internal to itself.  While a massful loop translates as a whole, its internal components are also translating.  In order for the loop as a whole to translate at the speed of light it would be necessary for at least some of its internal components to travel at more than the speed of light.  Since the internal components can't travel at greater than light speed, the loop as a whole must travel at less than light speed.
-
-\[2a\] Does God play dice with the Universe?
-
-No.  The seemingly random behavior observed in certain experiments is caused by the (un)known hidden geometry of the aexels at any given point.  The precise location of the aexels at any instance can have an impact in the translation of loops crossing over them.  The observed behavior is statistical not probabilistic.
-
-\[2b\] Is matter a particle?  Is matter a wave?
-
-Matter is neither a particle or a wave.  It is a stable state loop iterating across a field of aexels.
-
-\[3a\] Is space 4D? 11D?
-
-Space is 3D.  The aether is a crystalline compressible fluid.  The aexels can flow; they can bunch up; they can spread out.  Arguably, the density of the aexels at any point could be considered a 4th dimension.  But, calling space or the aether itself 4 dimensional because it's compressible really doesn't make any more sense than calling any compressible gas 4D or for that matter any gas that varies in temperature, humidity or any other imaginable property from point to point as 4D.
-
-\[3b\] What does it mean for space to warp?
-
-Space does not warp.  However, the Aether does squish; the aether does stretch.
-
-\[4a\] What is a black hole?
-
-A black hole is any concentration of matter dense enough to have a shell surrounding it with an escape velocity equal to the speed of light.
-
-\[4b\] What happens inside of a black hole?
-
-Nothing particularly interesting.  A black hole must be filled with matter all the way to its horizon, because the escape velocity will always be greatest at the surface.  Both above and below the surface the escape velocity will continually drop.  That shell where the escape velocity is equal to c simply can not have any mass because mass can't travel at c (see above).
-
-If a star existed with an escape velocity just below being a black a hole and a tennis ball got tossed into it causing it to cross the line of being a black hole, would anything particularly dramatic happen to the interior of that star?
-
-\[4c\] Why can't light escape?
-
-Light can't escape a black hole because the aexels are flowing into it at the speed of light.  Light can't go faster than light speed and therefore will never be able to cross the boundary of that shell, like a runner running on a treadmill that is turned up past their max speed.
-
-\[4d\] What is gravity?  What is its mechanism?
-
-Universe X is made up of a quantized crystalline fabric called the aether made up of aexels.  Crystalline in that the aexels are bound to their neighbors and sit in a potential well from their neighbors, never letting themselves and their neighbors get too close or too far apart.
-
-Some state loops in Universe X cause the destruction of these aexels.  This causes the aether to get pulled in.  As the aether gets closer and closer to the matter it accelerates at an increasing rate.
-
-\[4e\] How can a star attract a photon?
-
-It has been stated that Gravity is a force that is proportional to the product of the masses of two objects.  If a photon has no mass doesn't it follow that it will be unaffected by Gravity?
-
-A Photon (and any loop in Universe X whether it destroys or creates aexels or not) will be affected by gravity because gravity is in fact not a force.  It is an emergent phenomenon better described as an acceleration caused by the pulling in of the aether and everything sitting on top of that aether.
-
-And as Galileo point out long ago that affect is in no way a function of the mass of objects being 'pulled' on.
-
-\[4f\] What is a gravity wave?  What is waving?
-
-A gravity wave is a compression wave of the density of aexels.  Just as a sound wave is a compression wave of air.
-
-\[5a\] What is time dilation?
-
-In Universe X, 'time' does not dilate.  The rate at which physical system animate dilates and it does so because of the delayed round trip time of light speed traveling loops between objects when translating across the aexel field.
-
-\[5b\] Is there really no special frame of reference?
-
-There IS a special frame of reference; the frame of reference that is not translating across the aexel field at all will animate the fastest and experience no length contraction.  Any other frame will animate slower and experience length contraction entirely as a function of its rate of translation.
-
-\[5c\] Do two observers both consider their own clocks to be faster?
-
-No.  There will be an observer with a fast clock, an observer with a slow clock and each will know which is which.  And it will entirely be a function of each observer's current rate of translation across the aexel field.
-
-\[5d\] How does one resolve the twin paradox?
-
-One twin will be translating slower than the other twin on the aexel field.  The twin that is translating slower will age more rapidly.
-
-\[5e\] What is the relationship between Special and General relativity?
-
-Special and general relativity are the exact same phenomena; the translation of systems across an aexel field.  In the case of special relativity a moving system is translating across a static aexel field and in general relativity a static system is translating across a moving aexel field.  But, in both cases the affect simply concerns the translation of a system over an aexel field.
-
-\[6a\] What is Length Contraction?
-
-Length Contraction is an actual physical phenomena causing loops to sit closer to one another along the direction of translation entirely a function of the rate of translation.
-
-\[6b\] Why is the speed of light always invariant?
-
-It is always invariant because length contraction masks changes in the speed of light.  The length of things in the direction of translation is a function of that speed of translation and that change of length will cancel out the change of the speed of light causing the speed of light to always appear to be invariant.
-
-\[6c\] Do two observers both consider their meter sticks are longer?
-
-No.  Just like in Dilation above, both observers will see a long stick and a short stick and will no which is which.  And it will be based entirely on each observers current rate of translation across the aexel field.
-
-\[6d\] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
-
-No.  Length contraction only affects systems that are actually translating.  The length between any other non translating systems in Universe X will be unaffected.
-
-\[7a\] What is the expansion of the universe?
-
-The expansion of the universe is the creation of aexels.
-
-\[7b\] What causes it?
-
-Every loop has an anti loop that is equal and opposite in every way.  Matter loops destroy aexels and as such antimatter loops create them.
-
-\[7c\] What is Dark Energy?
-
-Dark energy is the antimatter loops creating aexels there by causing the \"expansion of the universe\"
-
-\[7d\] What is Dark Matter?
-
-Dark Matter does not exist.  The phenomena that hints at dark matter is caused by the same entity that causes the phenomena hinted at by dark energy, namely the antimatter particles that are creating aexels.  Those new aexels pushing on galaxies from the outside.  That push from the outside appearing to be a pulling from the inside, but is not.
-
-\[7e\] Why does there appear to be more matter than antimatter in the Universe?
-
-Matter destroys aexels constantly bringing things towards itself.  Antimatter creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
-
-\[8a\] What does E=mc^2 really mean?
-
-E=mc^2 means that mass and energy are two affects of the exact same phenomenon.
-
-\[8b\] What is its mechanism?
-
-The translation of certain loops (but not all) cause the destruction (or creation) of aexels.  Some of this translation occurs internal to a loop such as in a proton, neutron or electron.  The mass of those objects being a measure of the amount of translation occurring internally.  Other translation occurs in the movement of the loops as a whole.
-
-The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc^2 points out that both are the exact same phenomenon.
-
-\[8c\] Does a photon have mass?  Where does the mass a star radiates go?
-
-Unlike a proton, a photon does not have internal translation.  Its translation is in a straight-line.  The destruction or creation of aexels by a photon always occurs in its wake never internal to itself.
-
-So, if mass is the destruction of aexels then yes it does have mass.  Alternatively if one were to define mass as only the destruction of aexels caused by internal motion then no it does not.
-
-The mass of a star radiated out leaves with the photons being spewed by that star.
-
-
-Our Universe Answers
-
-Answering the above questions in our Universe is actually quite a bit easier than answer them for Universe X.  It's easier because each of the questions has the exact same answer:
-
-    I have no idea.
-
-
+As a result, this seriously calls into question the idea that a gravity clock in Universe X (as described in the Dilation section) would not undergo dilation.
 
 
 
