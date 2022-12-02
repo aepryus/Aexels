@@ -700,7 +700,14 @@ In this case the aether is modeled simplistically with regular 2 dimensional hex
 
 ";
 
-"GravityLab" = "Gravity
+"GravityLab" = "Gravity Lab
+
+Note: In addition to the new experiments a number of interactive abilities have been added:
+    - Aexels can now be dragged around.
+    - An Aexel can be locked in place by tapping on it.
+    - A new Aexel can be created by tapping on empty space.
+    - An Aexel can be destroyed by double tapping on it.
+
 
 This is the long overdue first attempt to model the Aexels themselves.  Certainly, the ideal will be to create a quantitative model, however there are way too many open questions to attempt that currently.  As such the goal at this point is to create a qualitative model of Universe X and its aexels.  The hope being to create a visceral picture of Universe X; a thousand words per frame at 60 frames per second.
 
