@@ -12,7 +12,7 @@ import OoviumKit
 import UIKit
 
 class ExpButton: UIControl {
-    enum Shape { case line, rectangle, box, ring, circle }
+    enum Shape { case line, rectangle, box, ring, circle, nothing }
 	
 	var name: String?
     var shape: Shape?
@@ -98,6 +98,8 @@ class ExpButton: UIControl {
                     let r: CGFloat = width*0.3
                     path = CGMutablePath(ellipseIn: CGRect(x: width/2-r, y: height/2-r, width: 2*r, height: 2*r), transform: nil)
                     mode = .fillStroke
+                case .nothing:
+                    path = CGMutablePath()
             }
             c.setLineWidth(3)
             c.addPath(path)

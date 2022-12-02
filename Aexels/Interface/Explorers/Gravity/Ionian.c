@@ -775,6 +775,9 @@ Universe* AXUniverseCreateI(double width, double height, double relaxed) {
     
     return universe;
 }
+Universe* AXUniverseCreateJ(double width, double height, double relaxed) {
+    return AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, 0, 0, 0);
+}
 void AXUniverseRelease(Universe* universe) {
 	for (int i=0;i<universe->sectorCount;i++) {AXSectorRelease(universe->sectors[i]);}
 	free(universe->sectors);
@@ -1094,6 +1097,29 @@ void AXUniverseTic(Universe* universe) {
 	if (tic % 17 == 0)
 		AXUniverseGOLStep(universe);
 	tic++;
+}
+
+void AXUniverseAddAexel(Universe* universe, double x, double y) {
+    universe->aexelCount++;
+    universe->aexels = (AXAexel**)realloc(universe->aexels, sizeof(AXAexel*)*universe->aexelCount);
+    universe->bonds = (Bond*)realloc(universe->bonds, sizeof(Bond)*universe->aexelCount*universe->aexelCount);
+    universe->aexels[universe->aexelCount-1] = AXAexelCreate(x, y);
+}
+
+void AXUniverseRemoveAexel(Universe* universe, AXAexel* aexel) {
+    int i = 0;
+    while (i < universe->aexelCount) {
+        if (universe->aexels[i] == aexel) break;
+        i++;
+    }
+    AXUniverseWipeBondsFor(universe, universe->aexels[i]);
+    while (i+1 < universe->aexelCount) {
+        universe->aexels[i] = universe->aexels[i+1];
+        i++;
+    }
+    universe->aexelCount--;
+    universe->aexels = (AXAexel**)realloc(universe->aexels, sizeof(AXAexel*)*universe->aexelCount);
+    universe->bonds = (Bond*)realloc(universe->bonds, sizeof(Bond)*universe->aexelCount*universe->aexelCount);
 }
 
 void test() {

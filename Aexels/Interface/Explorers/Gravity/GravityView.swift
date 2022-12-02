@@ -30,8 +30,10 @@ class GravityView: UIView {
 		backgroundColor = UIColor.clear
 
 		addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan(_:))))
 
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(_:)))
+        gesture.numberOfTapsRequired = 2
         addGestureRecognizer(gesture)
     }
 	required init?(coder aDecoder: NSCoder) {fatalError()}
@@ -90,6 +92,10 @@ class GravityView: UIView {
     func experimentI() {
         let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
         reset(next: AXUniverseCreateI(Double(width), Double(height), q))
+    }
+    func experimentJ() {
+        let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
+        reset(next: AXUniverseCreateJ(Double(width), Double(height), q))
     }
 
 	func renderImage() {
@@ -254,18 +260,33 @@ class GravityView: UIView {
 // Events ==========================================================================================
 	@objc func onTap(_ gesture: UITapGestureRecognizer) {
 		let x = gesture.location(in: self)
-//		print("tap: \(x)")
-        if let aexel = AXUniverseAexelNear(universe, Vector(x: x.x, y: x.y)) {
-            aexel.pointee.stateC = (aexel.pointee.stateC + 1) % 2
+        let v = Vector(x: x.x, y: x.y)
+        let nearest: UnsafeMutablePointer<AXAexel>? = AXUniverseAexelNear(universe, v)
+        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*s {
+            nearest.pointee.stateC = (nearest.pointee.stateC + 1) % 2
+        } else {
+            AXUniverseAddAexel(universe, v.x, v.y)
         }
 	}
+
+    @objc func onDoubleTap(_ gesture: UITapGestureRecognizer) {
+        let x = gesture.location(in: self)
+        let v = Vector(x: x.x, y: x.y)
+        let nearest: UnsafeMutablePointer<AXAexel>? = AXUniverseAexelNear(universe, v)
+        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*s {
+            AXUniverseRemoveAexel(universe, nearest)
+        }
+    }
+
     var holding: UnsafeMutablePointer<AXAexel>? = nil
     @objc func onPan(_ gesture: UIPanGestureRecognizer) {
         let x = gesture.location(in: self)
         let v = Vector(x: x.x, y: x.y)
         switch gesture.state {
             case .began:
-                holding = AXUniverseAexelNear(universe, v)
+                guard let nearest: UnsafeMutablePointer<AXAexel> = AXUniverseAexelNear(universe, v) else { break }
+                guard AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 30*s else { break }
+                holding = nearest
                 holding?.pointee.stateC = 1
             case .ended:
                 holding?.pointee.stateC = 0
@@ -281,13 +302,6 @@ class GravityView: UIView {
 	override func draw(_ rect: CGRect) {
 		guard let image = image else {return}
 		image.draw(at: CGPoint.zero)
-
-//		if image == nil { renderImage() }
-//		guard let image = image?.cgImage else { return }
-//		let c = UIGraphicsGetCurrentContext()!
-//		c.translateBy(x: 0, y: CGFloat(rect.size.height))
-//		c.scaleBy(x: 1, y: -1)
-//		c.draw(image, in: rect)
 		renderMode = .displayed
 	}
 }
