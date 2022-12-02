@@ -12,8 +12,10 @@ import OoviumKit
 import UIKit
 
 class ExpButton: UIControl {
+    enum Shape { case line, rectangle, box, ring, circle }
 	
-	var name: String
+	var name: String?
+    var shape: Shape?
 	var color: UIColor
 	var backColor: UIColor? = nil
 	var size: CGFloat = 13*Screen.s
@@ -22,13 +24,14 @@ class ExpButton: UIControl {
 		didSet{ setNeedsDisplay() }
 	}
 	
-	init(name: String) {
+    init(name: String? = nil, shape: Shape? = nil) {
 		self.name = name
+        self.shape = shape
 		color = UIColor.white
 		super.init(frame: CGRect.zero)
 		backgroundColor = .clear
 	}
-	init(name: String, color: UIColor) {
+	init(name: String? = nil, color: UIColor) {
 		self.name = name
 		self.color = color
 		super.init(frame: CGRect.zero)
@@ -66,9 +69,39 @@ class ExpButton: UIControl {
 			color.setFill()
 			c.drawPath(using: .fillStroke)
 		}
-		
-		let pen: Pen = Pen(font: UIFont.axBold(size: self.size), color: (activated ? UIColor.black : color), alignment: .center)
-		let size = (name as NSString).size(withAttributes: pen.attributes)
-		name.draw(in: CGRect(x: rect.origin.x, y: (rect.size.height-size.height)/2, width: rect.size.width, height: size.height), withAttributes: pen.attributes)
+        
+        if let name {
+            let pen: Pen = Pen(font: UIFont.axBold(size: self.size), color: (activated ? .black : color), alignment: .center)
+            let size = (name as NSString).size(withAttributes: pen.attributes)
+            name.draw(in: CGRect(x: rect.origin.x, y: (rect.size.height-size.height)/2, width: rect.size.width, height: size.height), withAttributes: pen.attributes)
+        }
+        if let shape {
+            let path: CGMutablePath
+            var mode: CGPathDrawingMode = .stroke
+            let activatedColor: UIColor = .black.tint(0.4)
+            (activated ? activatedColor : color).setStroke()
+            (activated ? activatedColor : color).setFill()
+            switch shape {
+                case .line:
+                    path = CGMutablePath()
+                    path.move(to: CGPoint(x: rect.width*0.5, y: rect.height*0.2))
+                    path.addLine(to: CGPoint(x: rect.width*0.5, y: rect.height*0.8))
+                case .rectangle:
+                    path = CGMutablePath(rect: CGRect(x: rect.width*0.3, y: rect.height*0.2, width: rect.width*0.4, height: rect.height*0.6), transform: nil)
+                case .box:
+                    path = CGMutablePath(rect: CGRect(x: rect.width*0.3, y: rect.height*0.2, width: rect.width*0.4, height: rect.height*0.6), transform: nil)
+                    mode = .fillStroke
+                case .ring:
+                    let r: CGFloat = width*0.3
+                    path = CGMutablePath(ellipseIn: CGRect(x: width/2-r, y: height/2-r, width: 2*r, height: 2*r), transform: nil)
+                case .circle:
+                    let r: CGFloat = width*0.3
+                    path = CGMutablePath(ellipseIn: CGRect(x: width/2-r, y: height/2-r, width: 2*r, height: 2*r), transform: nil)
+                    mode = .fillStroke
+            }
+            c.setLineWidth(3)
+            c.addPath(path)
+            c.drawPath(using: mode)
+        }
 	}
 }

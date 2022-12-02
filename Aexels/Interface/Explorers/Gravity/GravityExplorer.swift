@@ -13,13 +13,29 @@ import UIKit
 class GravityExplorer: Explorer {
 	let gravityView = GravityView()
 	let gravityLimbo = Limbo()
-	let expAButton = ExpButton(name: "12\nAexels")
-	let expBButton = ExpButton(name: "60\nAexels")
-	let expCButton = ExpButton(name: "360\nAexels")
-	let expDButton = ExpButton(name: "Game\nof\nLife")
+    let expAButton = ExpButton(name: Screen.iPhone ? "12" : "12\nAexels")
+	let expBButton = ExpButton(name: Screen.iPhone ? "60" : "60\nAexels")
+	let expCButton = ExpButton(name: Screen.iPhone ? "360" : "360\nAexels")
+	let expDButton = ExpButton(name: Screen.iPhone ? "G\no\nL" : "Game\nof\nLife")
+    let expEButton = ExpButton(shape: .line)
+    let expFButton = ExpButton(shape: .rectangle)
+    let expGButton = ExpButton(shape: .box)
+    let expHButton = ExpButton(shape: .ring)
+    let expIButton = ExpButton(shape: .circle)
 	let expLimbo = Limbo()
 	let messageLimbo: MessageLimbo = MessageLimbo()
 	let closeLimbo = LimboButton(title: "Close")
+    lazy var experiments: [ExpButton] = { [
+        expAButton,
+        expBButton,
+        expCButton,
+        expDButton,
+        expEButton,
+        expFButton,
+        expGButton,
+        expHButton,
+        expIButton
+    ] }()
 	
 	let swapper: Limbo = Limbo()
 	let swapButton: SwapButton = SwapButton()
@@ -53,42 +69,69 @@ class GravityExplorer: Explorer {
 		gravityLimbo.content = gravityView
 		
 		expAButton.addAction {
+            self.experiments.forEach { $0.activated = false }
 			self.gravityView.experimentA()
 			self.expAButton.activated = true
-			self.expBButton.activated = false
-			self.expCButton.activated = false
-			self.expDButton.activated = false
 		}
 		self.expAButton.activated = true
 		expLimbo.addSubview(expAButton)
 
 		expBButton.addAction {
+            self.experiments.forEach { $0.activated = false }
 			self.gravityView.experimentB()
-			self.expAButton.activated = false
 			self.expBButton.activated = true
-			self.expCButton.activated = false
-			self.expDButton.activated = false
 		}
 		expLimbo.addSubview(expBButton)
 
 		expCButton.addAction {
+            self.experiments.forEach { $0.activated = false }
 			self.gravityView.experimentC()
-			self.expAButton.activated = false
-			self.expBButton.activated = false
 			self.expCButton.activated = true
-			self.expDButton.activated = false
 		}
 		expLimbo.addSubview(expCButton)
 
 		expDButton.addAction {
+            self.experiments.forEach { $0.activated = false }
 			self.gravityView.experimentD()
-			self.expAButton.activated = false
-			self.expBButton.activated = false
-			self.expCButton.activated = false
 			self.expDButton.activated = true
 		}
 		expLimbo.addSubview(expDButton)
-		
+
+        expEButton.addAction {
+            self.experiments.forEach { $0.activated = false }
+            self.gravityView.experimentE()
+            self.expEButton.activated = true
+        }
+        expLimbo.addSubview(expEButton)
+
+        expFButton.addAction {
+            self.experiments.forEach { $0.activated = false }
+            self.gravityView.experimentF()
+            self.expFButton.activated = true
+        }
+        expLimbo.addSubview(expFButton)
+
+        expGButton.addAction {
+            self.experiments.forEach { $0.activated = false }
+            self.gravityView.experimentG()
+            self.expGButton.activated = true
+        }
+        expLimbo.addSubview(expGButton)
+
+        expHButton.addAction {
+            self.experiments.forEach { $0.activated = false }
+            self.gravityView.experimentH()
+            self.expHButton.activated = true
+        }
+        expLimbo.addSubview(expHButton)
+
+        expIButton.addAction {
+            self.experiments.forEach { $0.activated = false }
+            self.gravityView.experimentI()
+            self.expIButton.activated = true
+        }
+        expLimbo.addSubview(expIButton)
+
 		// MessageLimbo
 		messageLimbo.key = "GravityLab"
 		
@@ -145,13 +188,18 @@ class GravityExplorer: Explorer {
 		gravityLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expLimbo.top-Screen.safeTop)
 
 		let om = 15*s
-		let im = 9*s
-		let bw = (expLimbo.width-2*om-3*im)/4
+		let im = 6*s
+		let bw = (expLimbo.width-2*om-8*im)/9
 		let bh = (expLimbo.height-2*om)/1-60*s
 		expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
 		expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
 		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
 		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
+        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
+        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
+        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
+        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
+        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
 
 		messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
 		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
@@ -175,14 +223,19 @@ class GravityExplorer: Explorer {
 		expLimbo.topLeft(dx: p, dy: gravityLimbo.bottom, width: gravityLimbo.width, height: Screen.height-botY-gravityLimbo.bottom)
 
 		let om = 24*s
-		let im = 15*s
-		let bw = (expLimbo.width-2*om-3*im)/4
+		let im = 8*s
+		let bw = (expLimbo.width-2*om-8*im)/9
 		let bh = (expLimbo.height-2*om)/1
 		expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
 		expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
 		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
 		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
-		
+        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
+        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
+        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
+        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
+        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
+
 		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: topY, width: Screen.width-2*p-gravityLimbo.width, height: Screen.height-botY-topY)
 		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
 		messageLimbo.renderPaths()

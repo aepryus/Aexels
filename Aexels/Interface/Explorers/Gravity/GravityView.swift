@@ -58,7 +58,7 @@ class GravityView: UIView {
 		reset(next: AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 12, 0, 0))
 	}
 	func experimentB() {
-		let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
+		let q: Double = Double(Screen.iPhone ? 60*s : 80*s)
 		reset(next: AXUniverseCreate(Double(width), Double(height), q, q*2, 0.1, 60, 0, 0))
 	}
 	func experimentC() {
@@ -71,6 +71,26 @@ class GravityView: UIView {
 		universe.pointee.gol = 1
 		reset(next: universe)
 	}
+    func experimentE() {
+        let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
+        reset(next: AXUniverseCreateE(Double(width), Double(height), q))
+    }
+    func experimentF() {
+        let q: Double = Double(Screen.iPhone ? 100*s : 150*s)
+        reset(next: AXUniverseCreateF(Double(width), Double(height), q))
+    }
+    func experimentG() {
+        let q: Double = Double(Screen.iPhone ? 100*s : 150*s)
+        reset(next: AXUniverseCreateG(Double(width), Double(height), q))
+    }
+    func experimentH() {
+        let q: Double = Double(Screen.iPhone ? 100*s : 150*s)
+        reset(next: AXUniverseCreateH(Double(width), Double(height), q))
+    }
+    func experimentI() {
+        let q: Double = Double(Screen.iPhone ? 50*s : 72*s)
+        reset(next: AXUniverseCreateI(Double(width), Double(height), q))
+    }
 
 	func renderImage() {
 		guard renderMode == .started else {return}
@@ -234,10 +254,9 @@ class GravityView: UIView {
 // Events ==========================================================================================
 	@objc func onTap(_ gesture: UITapGestureRecognizer) {
 		let x = gesture.location(in: self)
-		print("tap: \(x)")
+//		print("tap: \(x)")
         if let aexel = AXUniverseAexelNear(universe, Vector(x: x.x, y: x.y)) {
-            aexel.pointee.stateC = 1
-            print("aexel: \(aexel.pointee)")
+            aexel.pointee.stateC = (aexel.pointee.stateC + 1) % 2
         }
 	}
     var holding: UnsafeMutablePointer<AXAexel>? = nil

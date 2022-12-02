@@ -148,6 +148,11 @@ typedef struct Universe {
 } Universe;
 
 Universe* AXUniverseCreate(double width, double height, double relaxed, double snapped, double jump, int aexelCount, int photonCount, int hadronCount);
+Universe* AXUniverseCreateE(double width, double height, double relaxed);
+Universe* AXUniverseCreateF(double width, double height, double relaxed);
+Universe* AXUniverseCreateG(double width, double height, double relaxed);
+Universe* AXUniverseCreateH(double width, double height, double relaxed);
+Universe* AXUniverseCreateI(double width, double height, double relaxed);
 void AXUniverseRelease(Universe* universe);
 void AXUniverseDemarcate(Universe* universe);
 void AXUniverseHadronFindCenter(Universe* universe, Hadron* hadron);

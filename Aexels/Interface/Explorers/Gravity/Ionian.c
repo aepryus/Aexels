@@ -643,6 +643,138 @@ Universe* AXUniverseCreate(double width, double height, double relaxed, double s
 	
 	return universe;
 }
+Universe* AXUniverseCreateE(double width, double height, double relaxed) {
+    Universe* universe = AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, 9, 0, 0);
+    
+    double dx = 0;
+    for (int i=0;i<9;i++) {
+        universe->aexels[i] = AXAexelCreate(width/2, height*0.25+dx);
+        dx += height*0.5 / 8.0;
+    }
+
+    AXUniverseBind(universe);
+    
+    return universe;
+}
+Universe* AXUniverseCreateF(double width, double height, double relaxed) {
+    int n = 4;
+    int m = 5;
+    
+    Universe* universe = AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, n*m-((n-2)*(m-2)), 0, 0);
+    
+    double x0 = width * 0.25;
+    double dx = width * 0.5 / ((double)n - 1);
+    double x = x0;
+    
+    double y0 = height * 0.2;
+    double dy = height * 0.6 / ((double)m - 1);
+    double y = y0;
+    
+    int k=0;
+    
+    x = x0;
+    for (int i=0; i<n; i++) {
+        universe->aexels[k] = AXAexelCreate(x, y);
+        x += dx;
+        k++;
+    }
+    
+    for (int j=1; j<m-1; j++) {
+        y += dy;
+        universe->aexels[k] = AXAexelCreate(x0, y);
+        k++;
+        universe->aexels[k] = AXAexelCreate(x0+((double)n-1)*dx, y);
+        k++;
+    }
+    
+    x = x0;
+    y += dy;
+    for (int i=0; i<n; i++) {
+        universe->aexels[k] = AXAexelCreate(x, y);
+        x += dx;
+        k++;
+    }
+
+    AXUniverseBind(universe);
+    
+    return universe;
+}
+Universe* AXUniverseCreateG(double width, double height, double relaxed) {
+    int n = 4;
+    int m = 5;
+
+    Universe* universe = AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, n*m, 0, 0);
+    
+    double x0 = width * 0.25;
+    double dx = width * 0.5 / ((double)n - 1);
+    double x = x0;
+    
+    double y0 = height * 0.2;
+    double dy = height * 0.6 / ((double)m - 1);
+    double y = y0;
+    
+    for (int j=0; j<m; j++) {
+        for (int i=0; i<n; i++) {
+            universe->aexels[j*n+i] = AXAexelCreate(x, y);
+            x += dx;
+        }
+        x = x0;
+        y += dy;
+    }
+
+    AXUniverseBind(universe);
+    
+    return universe;
+}
+Universe* AXUniverseCreateH(double width, double height, double relaxed) {
+    int n = 20;
+
+    Universe* universe = AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, n, 0, 0);
+    
+    double r = width * 0.3;
+    double dq = 2*M_PI/((double)n-1);
+    double q = 0;
+    
+    for (int i=0;i<n;i++) {
+        double x = width/2 + r*sin(q);
+        double y = height/2 + r*cos(q);
+        universe->aexels[i] = AXAexelCreate(x, y);
+        q += dq;
+    }
+
+    AXUniverseBind(universe);
+    
+    return universe;
+}
+Universe* AXUniverseCreateI(double width, double height, double relaxed) {
+    int n = 16;
+    int m = 5;
+
+    Universe* universe = AXUniverseCreateAll(width, height, relaxed, relaxed*2, 0.1, n*m, 0, 0);
+    
+    double r0 = width * 0.5;
+    double dr = -r0/((double)m-0);
+    double r = r0;
+    
+    double q0 = 0;
+    double dq = 2*M_PI/((double)n-1);
+    double q = 0;
+    
+    for (int j=0;j<m;j++) {
+        for (int i=0;i<n;i++) {
+            double x = width/2 + r*sin(q);
+            double y = height/2 + r*cos(q);
+            universe->aexels[j*n+i] = AXAexelCreate(x, y);
+            q += dq;
+        }
+        q = q0;
+        r += dr;
+    }
+
+    AXUniverseBind(universe);
+    
+    return universe;
+}
 void AXUniverseRelease(Universe* universe) {
 	for (int i=0;i<universe->sectorCount;i++) {AXSectorRelease(universe->sectors[i]);}
 	free(universe->sectors);
