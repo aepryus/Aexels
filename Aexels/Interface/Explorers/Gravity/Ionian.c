@@ -238,8 +238,8 @@ byte AXVectorCrosses2(Vector a1, Vector a2, Vector b1, Vector b2) {
 
 #define MAXNEIGHBOR 6
 // Aexel ====
-AXAexel* AXAexelCreate(double x, double y) {
-	AXAexel* aexel = (AXAexel*)malloc(sizeof(AXAexel));
+ICAexel* ICAexelCreate(double x, double y) {
+	ICAexel* aexel = (ICAexel*)malloc(sizeof(ICAexel));
 	
 	aexel->s.x = x;
 	aexel->s.y = y;
@@ -256,56 +256,56 @@ AXAexel* AXAexelCreate(double x, double y) {
 
 	return aexel;
 }
-void AXAexelRelease(AXAexel* aexel) {
+void ICAexelRelease(ICAexel* aexel) {
 	free(aexel->bonds);
 	free(aexel);
 }
-byte AXAexelWithin(AXAexel* a, AXAexel* b, int within) {
+byte ICAexelWithin(ICAexel* a, ICAexel* b, int within) {
 	if (a == 0 || b == 0) return 0;
 	if (a == b) return 1;
 	if (within == 0) return 0;
 	for (int i=0;i<a->bondCount;i++) {
-		if (AXAexelWithin(AXBondOtherAexel(a->bonds[i], a), b, within-1)) return 1;
+		if (ICAexelWithin(AXBondOtherAexel(a->bonds[i], a), b, within-1)) return 1;
 	}
 	return 0;
 }
-int AXAexelJumps(AXAexel* a, AXAexel* b) {
+int ICAexelJumps(ICAexel* a, ICAexel* b) {
 	for (int i=0;i<8;i++) {
-		if (AXAexelWithin(a, b, i)) return i;
+		if (ICAexelWithin(a, b, i)) return i;
 	}
 	return -1;
 }
-//byte AXAexelNeighborCount(Aexel* aexel) {
+//byte ICAexelNeighborCount(Aexel* aexel) {
 //	int count = 0;
 //	for (int i=0;i<MAXNEIGHBOR;i++) {
 //		if (aexel->neighbors[i] != 0) count++;
 //	}
 //	return count;
 //}
-//byte AXAexelIsNeighbor(Aexel* aexel, Aexel* other) {
+//byte ICAexelIsNeighbor(Aexel* aexel, Aexel* other) {
 //	for (int i=0;i<MAXNEIGHBOR;i++) {
 //		if (aexel->neighbors[i] == other) return 1;
 //	}
 //	return 0;
 //}
-//void AXAexelDetach(Aexel* aexel, Aexel* from) {
+//void ICAexelDetach(Aexel* aexel, Aexel* from) {
 //	for (int i=0;i<MAXNEIGHBOR;i++) {
 //		if (aexel->neighbors[i] == 0) continue;
 //		if (aexel->neighbors[i] == from) aexel->neighbors[i] = 0;
 //	}
 //}
-//void AXAexelUnbind(Aexel* aexel) {
+//void ICAexelUnbind(Aexel* aexel) {
 //	for (int i=0;i<MAXNEIGHBOR;i++) {
 //		if (aexel->neighbors[i] == 0) continue;
-//		AXAexelDetach(aexel->neighbors[i], aexel);
+//		ICAexelDetach(aexel->neighbors[i], aexel);
 //		aexel->neighbors[i] = 0;
 //	}
 //}
-//int AXAexelClearFurthestNeighbor(Aexel* aexel) {
+//int ICAexelClearFurthestNeighbor(Aexel* aexel) {
 //	int farIndex = -1;
 //	double furthestSquared = 0;
 //	for (int i=0;i<MAXNEIGHBOR;i++) {
-//		AXAexel* neighbor = aexel->neighbors[i];
+//		ICAexel* neighbor = aexel->neighbors[i];
 //		if (!neighbor) return i;
 //		double dx = neighbor->s.x - aexel->s.x;
 //		double dy = neighbor->s.y - aexel->s.y;
@@ -318,15 +318,15 @@ int AXAexelJumps(AXAexel* a, AXAexel* b) {
 //	aexel->neighbors[farIndex] = 0;
 //	return farIndex;
 //}
-//void AXAexelForceBind(Aexel* aexel, Aexel* other) {
-//	int a = AXAexelClearFurthestNeighbor(aexel);
-//	int b = AXAexelClearFurthestNeighbor(other);
+//void ICAexelForceBind(Aexel* aexel, Aexel* other) {
+//	int a = ICAexelClearFurthestNeighbor(aexel);
+//	int b = ICAexelClearFurthestNeighbor(other);
 //	aexel->neighbors[a] = other;
 //	other->neighbors[b] = aexel;
 //}
 
 // Bond =====
-Bond* AXBondCreate(AXAexel* a, AXAexel* b) {
+Bond* AXBondCreate(ICAexel* a, ICAexel* b) {
 	Bond* bond = (Bond*)malloc(sizeof(Bond));
 	bond->a = a;
 	bond->b = b;
@@ -345,7 +345,7 @@ Bond* AXBondCreateClone(Bond* bond) {
 void AXBondRelease(Bond* bond) {
 	free(bond);
 }
-AXAexel* AXBondOtherAexel(Bond bond, AXAexel* aexel) {
+ICAexel* AXBondOtherAexel(Bond bond, ICAexel* aexel) {
 	return bond.a == aexel ? bond.b : bond.a;
 }
 byte AXBondCrosses(Bond a, Bond b) {
@@ -367,7 +367,7 @@ byte AXBondCrosses(Bond a, Bond b) {
 }
 
 // Photon ===
-Photon* AXPhotonCreate(AXAexel* aexel) {
+Photon* AXPhotonCreate(ICAexel* aexel) {
 	Photon* photon = (Photon*)malloc(sizeof(Photon));
 	photon->aexel = aexel;
 	double theta = ((double)(arc4random() % 10000))/10000*2*M_PI;
@@ -380,10 +380,10 @@ void AXPhotonRelease(Photon* photon) {
 }
 byte AXPhotonAttempt(Photon* photon) {
 	double minAngle = M_PI;
-	AXAexel* aexel = photon->aexel;
-	AXAexel* next = 0;
+	ICAexel* aexel = photon->aexel;
+	ICAexel* next = 0;
 	for (int i=0;i<aexel->bondCount;i++) {
-		AXAexel* neighbor = AXBondOtherAexel(aexel->bonds[i], aexel);
+		ICAexel* neighbor = AXBondOtherAexel(aexel->bonds[i], aexel);
 		Vector nV = AXVectorSub(neighbor->s, aexel->s);
 		double angle = fabs(AXVectorAngle(photon->v, nV));
 		if (angle < minAngle) {
@@ -402,12 +402,12 @@ void AXPhotonStep(Photon* photon) {
 	photon->v.y = -photon->v.y;
 	AXPhotonAttempt(photon);
 }
-byte AXPhotonUsing(Photon* photon, AXAexel* aexel) {
+byte AXPhotonUsing(Photon* photon, ICAexel* aexel) {
 	return photon->aexel == aexel;
 }
 
 // Quark ====
-Quark* AXQuarkCreate(Hadron* hadron, AXAexel* aexel) {
+Quark* AXQuarkCreate(Hadron* hadron, ICAexel* aexel) {
 	Quark* quark = (Quark*)malloc(sizeof(Quark));
 	quark->hadron = hadron;
 	quark->aexel = aexel;
@@ -418,7 +418,7 @@ Quark* AXQuarkCreate(Hadron* hadron, AXAexel* aexel) {
 void AXQuarkRelease(Quark* quark) {
 	free(quark);
 }
-double AXQuarkPressure(Quark* quark, AXAexel* aexel) {
+double AXQuarkPressure(Quark* quark, ICAexel* aexel) {
 	Vector pressure = {.x = quark->pressure.x + quark->hadron->v.x, .y = quark->pressure.y + quark->hadron->v.y};
 	if (quark->aexel != aexel) {
 		Vector t = AXVectorUnit(AXVectorSub(aexel->s, quark->aexel->s));
@@ -427,7 +427,7 @@ double AXQuarkPressure(Quark* quark, AXAexel* aexel) {
 	}
 	return AXVectorLength(pressure);
 }
-void AXQuarkMoveTo(Quark* quark, AXAexel* aexel) {
+void AXQuarkMoveTo(Quark* quark, ICAexel* aexel) {
 	quark->pressure.x += quark->hadron->v.x;
 	quark->pressure.y += quark->hadron->v.y;
 	if (quark->aexel != aexel) {
@@ -439,7 +439,7 @@ void AXQuarkMoveTo(Quark* quark, AXAexel* aexel) {
 }
 
 // Hadron ===
-Hadron* AXHadronCreate(AXAexel* aexel, byte anti) {
+Hadron* AXHadronCreate(ICAexel* aexel, byte anti) {
 	Hadron* hadron = (Hadron*)malloc(sizeof(Hadron));
 	
 	hadron->anti = anti;
@@ -469,7 +469,7 @@ Hadron* AXHadronCreate(AXAexel* aexel, byte anti) {
 void AXHadronRelease(Hadron* hadron) {
 	free(hadron);
 }
-double AXHadronPressure(Hadron* hadron, AXAexel* a, AXAexel* b, AXAexel* c) {
+double AXHadronPressure(Hadron* hadron, ICAexel* a, ICAexel* b, ICAexel* c) {
 	return	AXQuarkPressure(&hadron->quarks[0], a) +
 			AXQuarkPressure(&hadron->quarks[1], b) +
 			AXQuarkPressure(&hadron->quarks[2], c);
@@ -477,25 +477,25 @@ double AXHadronPressure(Hadron* hadron, AXAexel* a, AXAexel* b, AXAexel* c) {
 void AXHadronStep(Universe* universe, Hadron* hadron) {
 	int min = -1;
 	double pressure = 0;
-	AXAexel* mA = 0;
-	AXAexel* mB = 0;
-	AXAexel* mC = 0;
+	ICAexel* mA = 0;
+	ICAexel* mB = 0;
+	ICAexel* mC = 0;
 
 	for (int i=0;i<hadron->quarks[0].aexel->bondCount+1;i++) {
-		AXAexel* a = i<hadron->quarks[0].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[0].aexel->bonds[i], hadron->quarks[0].aexel) : hadron->quarks[0].aexel;
+		ICAexel* a = i<hadron->quarks[0].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[0].aexel->bonds[i], hadron->quarks[0].aexel) : hadron->quarks[0].aexel;
 //		if (AXUniverseUsing(universe, a) && !AXHadronUsing(hadron, a)) continue;
 		
 		for (int j=0;j<hadron->quarks[1].aexel->bondCount+1;j++) {
-			AXAexel* b = j<hadron->quarks[1].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[1].aexel->bonds[j], hadron->quarks[1].aexel) : hadron->quarks[1].aexel;
+			ICAexel* b = j<hadron->quarks[1].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[1].aexel->bonds[j], hadron->quarks[1].aexel) : hadron->quarks[1].aexel;
 //			if (AXUniverseUsing(universe, b) && !AXHadronUsing(hadron, b)) continue;
 
 			for (int k=0;k<hadron->quarks[2].aexel->bondCount+1;k++) {
-				AXAexel* c = k<hadron->quarks[2].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[2].aexel->bonds[k], hadron->quarks[2].aexel) : hadron->quarks[2].aexel;
+				ICAexel* c = k<hadron->quarks[2].aexel->bondCount ? AXBondOtherAexel(hadron->quarks[2].aexel->bonds[k], hadron->quarks[2].aexel) : hadron->quarks[2].aexel;
 //				if (AXUniverseUsing(universe, c) && !AXHadronUsing(hadron, c)) continue;
 
-				int ab = AXAexelJumps(a, b);
-				int bc = AXAexelJumps(b, c);
-				int ca = AXAexelJumps(c, a);
+				int ab = ICAexelJumps(a, b);
+				int bc = ICAexelJumps(b, c);
+				int ca = ICAexelJumps(c, a);
 
 				if (ab != -1 && bc != -1 && ca != -1) {
 					int score = abs(ab-2)+abs(bc-2)+abs(ca-2);
@@ -530,7 +530,7 @@ void AXHadronStep(Universe* universe, Hadron* hadron) {
 //		hadron->quarks[2].pressure.y = 0;
 //	}
 }
-byte AXHadronUsing(Hadron* hadron, AXAexel* aexel) {
+byte AXHadronUsing(Hadron* hadron, ICAexel* aexel) {
 	return hadron->quarks[0].aexel == aexel || hadron->quarks[1].aexel == aexel || hadron->quarks[2].aexel == aexel || hadron->center == aexel;
 }
 // Sector ===
@@ -538,7 +538,7 @@ Sector* AXSectorCreate(void) {
 	Sector* sector = (Sector*)malloc(sizeof(Sector));
 	
 	sector->aexelCount = 0;
-	sector->aexels = (AXAexel**)malloc(sizeof(AXAexel*)*400);
+	sector->aexels = (ICAexel**)malloc(sizeof(ICAexel*)*400);
 	
 	return sector;
 }
@@ -557,7 +557,7 @@ Universe* AXUniverseCreateAll(double width, double height, double relaxed, doubl
 	universe->snapped = snapped;
 	universe->jump = jump;
 	universe->aexelCount = aexelCount;
-	universe->aexels = (AXAexel**)malloc(sizeof(AXAexel*)*aexelCount);
+	universe->aexels = (ICAexel**)malloc(sizeof(ICAexel*)*aexelCount);
 	universe->photonCount = photonCount;
 	universe->photons = (Photon**)malloc(sizeof(Photon*)*photonCount);
 	universe->hadronCount = hadronCount;
@@ -588,7 +588,7 @@ Universe* AXUniverseCreate(double width, double height, double relaxed, double s
 			double chance = (int)aexelsLeft/spacesLeft*resolution;
 			double roll = arc4random() % (int)resolution;
 			if (roll < chance) {
-				universe->aexels[i++] = AXAexelCreate(p, q);
+				universe->aexels[i++] = ICAexelCreate(p, q);
 				aexelsLeft--;
 			}
 			spacesLeft--;
@@ -648,7 +648,7 @@ Universe* AXUniverseCreateE(double width, double height, double relaxed) {
     
     double dx = 0;
     for (int i=0;i<9;i++) {
-        universe->aexels[i] = AXAexelCreate(width/2, height*0.25+dx);
+        universe->aexels[i] = ICAexelCreate(width/2, height*0.25+dx);
         dx += height*0.5 / 8.0;
     }
 
@@ -674,23 +674,23 @@ Universe* AXUniverseCreateF(double width, double height, double relaxed) {
     
     x = x0;
     for (int i=0; i<n; i++) {
-        universe->aexels[k] = AXAexelCreate(x, y);
+        universe->aexels[k] = ICAexelCreate(x, y);
         x += dx;
         k++;
     }
     
     for (int j=1; j<m-1; j++) {
         y += dy;
-        universe->aexels[k] = AXAexelCreate(x0, y);
+        universe->aexels[k] = ICAexelCreate(x0, y);
         k++;
-        universe->aexels[k] = AXAexelCreate(x0+((double)n-1)*dx, y);
+        universe->aexels[k] = ICAexelCreate(x0+((double)n-1)*dx, y);
         k++;
     }
     
     x = x0;
     y += dy;
     for (int i=0; i<n; i++) {
-        universe->aexels[k] = AXAexelCreate(x, y);
+        universe->aexels[k] = ICAexelCreate(x, y);
         x += dx;
         k++;
     }
@@ -715,7 +715,7 @@ Universe* AXUniverseCreateG(double width, double height, double relaxed) {
     
     for (int j=0; j<m; j++) {
         for (int i=0; i<n; i++) {
-            universe->aexels[j*n+i] = AXAexelCreate(x, y);
+            universe->aexels[j*n+i] = ICAexelCreate(x, y);
             x += dx;
         }
         x = x0;
@@ -738,7 +738,7 @@ Universe* AXUniverseCreateH(double width, double height, double relaxed) {
     for (int i=0;i<n;i++) {
         double x = width/2 + r*sin(q);
         double y = height/2 + r*cos(q);
-        universe->aexels[i] = AXAexelCreate(x, y);
+        universe->aexels[i] = ICAexelCreate(x, y);
         q += dq;
     }
 
@@ -764,7 +764,7 @@ Universe* AXUniverseCreateI(double width, double height, double relaxed) {
         for (int i=0;i<n;i++) {
             double x = width/2 + r*sin(q);
             double y = height/2 + r*cos(q);
-            universe->aexels[j*n+i] = AXAexelCreate(x, y);
+            universe->aexels[j*n+i] = ICAexelCreate(x, y);
             q += dq;
         }
         q = q0;
@@ -782,7 +782,7 @@ void AXUniverseRelease(Universe* universe) {
 	for (int i=0;i<universe->sectorCount;i++) {AXSectorRelease(universe->sectors[i]);}
 	free(universe->sectors);
 	
-	for (int i=0;i<universe->aexelCount;i++) {AXAexelRelease(universe->aexels[i]);}
+	for (int i=0;i<universe->aexelCount;i++) {ICAexelRelease(universe->aexels[i]);}
 	free(universe->aexels);
 	
 	for (int i=0;i<universe->photonCount;i++) {AXPhotonRelease(universe->photons[i]);}
@@ -794,7 +794,7 @@ void AXUniverseRelease(Universe* universe) {
 	free(universe->bonds);
 	free(universe);
 }
-byte AXUniverseUsing(Universe* universe, AXAexel* aexel) {
+byte AXUniverseUsing(Universe* universe, ICAexel* aexel) {
 	for (int i=0;i<universe->photonCount;i++) {
 		if (AXPhotonUsing(universe->photons[i], aexel)) return 1;
 	}
@@ -809,12 +809,12 @@ void AXUniverseHadronFindCenter(Universe* universe, Hadron* hadron) {
 		.y = (hadron->quarks[0].aexel->s.y+hadron->quarks[1].aexel->s.y+hadron->quarks[2].aexel->s.y)/3
 	};
 	double min = -1;
-	AXAexel* aexel = 0;
+	ICAexel* aexel = 0;
 	hadron->center = 0;
 	for (int j=0;j<3;j++) {
-		AXAexel* quarkAexel = hadron->quarks[j].aexel;
+		ICAexel* quarkAexel = hadron->quarks[j].aexel;
 		for (int k=0;k<quarkAexel->bondCount;k++) {
-			AXAexel* maybe = AXBondOtherAexel(quarkAexel->bonds[k], quarkAexel);
+			ICAexel* maybe = AXBondOtherAexel(quarkAexel->bonds[k], quarkAexel);
 			if (maybe == 0 || AXUniverseUsing(universe, maybe)) continue;
 			Vector delta = AXVectorSub(center, maybe->s);
 			double lengthSquared = delta.x*delta.x + delta.y*delta.y;
@@ -838,7 +838,7 @@ void AXUniverseDemarcate(Universe* universe) {
 	}
 	double sectionLength = universe->snapped*2;
 	for (int i=0;i<universe->aexelCount;i++) {
-		AXAexel* aexel = universe->aexels[i];
+		ICAexel* aexel = universe->aexels[i];
 		int x = (int)((aexel->s.x + sectionLength)/sectionLength);
 		int y = (int)((aexel->s.y + sectionLength)/sectionLength);
 		Sector* sector = universe->sectors[y*universe->sectorWidth+x];
@@ -849,7 +849,7 @@ void AXUniverseDemarcate(Universe* universe) {
 		aexel->sectorIndex = qy*universe->sectorWidth+qx;
 	}
 }
-void AXUniverseWipeBondsFor(Universe* universe, AXAexel* aexel) {
+void AXUniverseWipeBondsFor(Universe* universe, ICAexel* aexel) {
 	for (int i=0;i<universe->bondCount;i++) {
 		if (universe->bonds[i].a == aexel || universe->bonds[i].b == aexel) {
 			universe->bondCount--;
@@ -860,7 +860,7 @@ void AXUniverseWipeBondsFor(Universe* universe, AXAexel* aexel) {
 		}
 	}
 }
-void AXUniverseBuildBondsFor(Universe* universe, AXAexel* aexel) {
+void AXUniverseBuildBondsFor(Universe* universe, ICAexel* aexel) {
 	int sectorIndexes[] = {
 		aexel->sectorIndex,
 		aexel->sectorIndex+1,
@@ -871,7 +871,7 @@ void AXUniverseBuildBondsFor(Universe* universe, AXAexel* aexel) {
 	for (int i=0;i<4;i++) {
 		Sector* sector = universe->sectors[sectorIndexes[i]];
 		for (int j=0;j<sector->aexelCount;j++) {
-			AXAexel* other = sector->aexels[j];
+			ICAexel* other = sector->aexels[j];
 			if (aexel == other) continue;
 			
 //			int exists = 0;
@@ -903,9 +903,9 @@ void AXUniverseBuildBondsFor(Universe* universe, AXAexel* aexel) {
 	}
 //	printf("###] %d\n", universe->bondCount);
 }
-AXAexel* AXUniverseAexelNear(Universe* universe, Vector v) {
+ICAexel* AXUniverseAexelNear(Universe* universe, Vector v) {
 	double min = -1;
-	AXAexel* aexel = 0;
+	ICAexel* aexel = 0;
 	for (int i=0;i<universe->aexelCount;i++) {
 		Vector delta = AXVectorSub(v, universe->aexels[i]->s);
 		double lengthSquared = delta.x*delta.x + delta.y*delta.y;
@@ -932,7 +932,7 @@ void AXUniverseStep(Universe* universe) {
 
 void AXUniverseJump(Universe* universe) {
 	for (int i=0;i<universe->aexelCount;i++) {
-		AXAexel* aexel = universe->aexels[i];
+		ICAexel* aexel = universe->aexels[i];
 		double nx = 0;
 		double ny = 0;
 		for (int j=0;j<aexel->bondCount;j++) {
@@ -957,14 +957,14 @@ void AXUniverseJump(Universe* universe) {
 
 void AXUniverseWarp(Universe* universe) {
 	static int n = -1;
-	static AXAexel** recycle = 0;
+	static ICAexel** recycle = 0;
 	
 	if (n == -1) {
 		n = universe->hadronCount/2;
-		recycle = (AXAexel**)malloc(sizeof(AXAexel*)*n);
+		recycle = (ICAexel**)malloc(sizeof(ICAexel*)*n);
 	} else if (n < universe->hadronCount/2) {
 		n = universe->hadronCount/2;
-		recycle = (AXAexel**)realloc(recycle, sizeof(AXAexel*)*n);
+		recycle = (ICAexel**)realloc(recycle, sizeof(ICAexel*)*n);
 	}
 	
 	int s = 0;
@@ -985,7 +985,7 @@ void AXUniverseWarp(Universe* universe) {
 		};
 
 		if (s > 0) {
-			AXAexel* aexel = recycle[--s];
+			ICAexel* aexel = recycle[--s];
 			aexel->s = center;
 		}
 	}
@@ -998,7 +998,7 @@ void AXUniverseBind(Universe* universe) {
 	AXUniverseDemarcate(universe);
 	
 	for (int i=0;i<universe->aexelCount;i++) {
-		AXAexel* aexel = universe->aexels[i];
+		ICAexel* aexel = universe->aexels[i];
 		if (aexel->sectorIndex == aexel->oldIndex) continue;
 		AXUniverseWipeBondsFor(universe, aexel);
 		AXUniverseBuildBondsFor(universe, aexel);
@@ -1028,10 +1028,10 @@ void AXUniverseBind(Universe* universe) {
 		
 //		printf("(%lf, %lf)-(%lf, %lf)\n", bond.a->s.x, bond.a->s.y, bond.b->s.x, bond.b->s.y);
 		
-		AXAexel* aexel = bond.a;
+		ICAexel* aexel = bond.a;
 		
 		for (int j=0;j<aexel->bondCount;j++) {
-			AXAexel* other = AXBondOtherAexel(aexel->bonds[j], aexel);
+			ICAexel* other = AXBondOtherAexel(aexel->bonds[j], aexel);
 			if (other == bond.b) continue;
 			for (int k=0;k<other->bondCount;k++) {
 				Bond test = other->bonds[k];
@@ -1047,7 +1047,7 @@ void AXUniverseBind(Universe* universe) {
 		aexel = bond.b;
 		
 		for (int j=0;j<aexel->bondCount;j++) {
-			AXAexel* other = AXBondOtherAexel(aexel->bonds[j], aexel);
+			ICAexel* other = AXBondOtherAexel(aexel->bonds[j], aexel);
 			if (other == bond.a) continue;
 			for (int k=0;k<other->bondCount;k++) {
 				Bond test = other->bonds[k];
@@ -1079,7 +1079,7 @@ void AXUniverseGOLStep(Universe* universe) {
 	for (int i=0;i<universe->aexelCount;i++)
 		universe->aexels[i]->stateB = universe->aexels[i]->stateA;
 	for (int i=0;i<universe->aexelCount;i++) {
-		AXAexel* aexel = universe->aexels[i];
+		ICAexel* aexel = universe->aexels[i];
 		int sum = 0;
 		for (int j=0;j<aexel->bondCount;j++)
 			sum += AXBondOtherAexel(aexel->bonds[j], aexel)->stateB;
@@ -1101,12 +1101,12 @@ void AXUniverseTic(Universe* universe) {
 
 void AXUniverseAddAexel(Universe* universe, double x, double y) {
     universe->aexelCount++;
-    universe->aexels = (AXAexel**)realloc(universe->aexels, sizeof(AXAexel*)*universe->aexelCount);
+    universe->aexels = (ICAexel**)realloc(universe->aexels, sizeof(ICAexel*)*universe->aexelCount);
     universe->bonds = (Bond*)realloc(universe->bonds, sizeof(Bond)*universe->aexelCount*universe->aexelCount);
-    universe->aexels[universe->aexelCount-1] = AXAexelCreate(x, y);
+    universe->aexels[universe->aexelCount-1] = ICAexelCreate(x, y);
 }
 
-void AXUniverseRemoveAexel(Universe* universe, AXAexel* aexel) {
+void AXUniverseRemoveAexel(Universe* universe, ICAexel* aexel) {
     int i = 0;
     while (i < universe->aexelCount) {
         if (universe->aexels[i] == aexel) break;
@@ -1118,7 +1118,7 @@ void AXUniverseRemoveAexel(Universe* universe, AXAexel* aexel) {
         i++;
     }
     universe->aexelCount--;
-    universe->aexels = (AXAexel**)realloc(universe->aexels, sizeof(AXAexel*)*universe->aexelCount);
+    universe->aexels = (ICAexel**)realloc(universe->aexels, sizeof(ICAexel*)*universe->aexelCount);
     universe->bonds = (Bond*)realloc(universe->bonds, sizeof(Bond)*universe->aexelCount*universe->aexelCount);
 }
 

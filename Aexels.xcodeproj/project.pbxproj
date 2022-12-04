@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8042F11293AEB0200453B8E /* DilationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8042F10293AEB0200453B8E /* DilationView.swift */; };
+		D8042F15293B085500453B8E /* Thracian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8042F14293B085500453B8E /* Thracian.c */; };
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
@@ -79,6 +81,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
+		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
+		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
@@ -166,6 +171,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8042F12293B06A800453B8E /* Thracian */ = {
+			isa = PBXGroup;
+			children = (
+				D8042F13293B085500453B8E /* Thracian.h */,
+				D8042F14293B085500453B8E /* Thracian.c */,
+			);
+			path = Thracian;
+			sourceTree = "<group>";
+		};
 		D86FD6C7292B7D0700A6CA7A /* Forward */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,11 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				D8AE17F02814F20E00E74CB8 /* ExpButton.swift */,
-				D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */,
-				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
 				D8AE17F12814F20E00E74CB8 /* NetButton.swift */,
 				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
 				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
+				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
+				D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */,
 			);
 			path = Kinematics;
 			sourceTree = "<group>";
@@ -373,8 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				D8AE18162814F61E00E74CB8 /* Ionian */,
-				D8AE17F92814F21700E74CB8 /* GravityExplorer.swift */,
 				D8AE17FA2814F21700E74CB8 /* GravityView.swift */,
+				D8AE17F92814F21700E74CB8 /* GravityExplorer.swift */,
 			);
 			path = Gravity;
 			sourceTree = "<group>";
@@ -382,6 +396,8 @@
 		D8AE175A2814EB3E00E74CB8 /* Dilation */ = {
 			isa = PBXGroup;
 			children = (
+				D8042F12293B06A800453B8E /* Thracian */,
+				D8042F10293AEB0200453B8E /* DilationView.swift */,
 				D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */,
 			);
 			path = Dilation;
@@ -570,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8042F11293AEB0200453B8E /* DilationView.swift in Sources */,
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
 				D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */,
@@ -606,6 +623,7 @@
 				D8AE17642814F08400E74CB8 /* AXSync.swift in Sources */,
 				D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */,
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,
+				D8042F15293B085500453B8E /* Thracian.c in Sources */,
 				D8AE17EC2814F20500E74CB8 /* GuideButton.swift in Sources */,
 				D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */,
 				D8AE17F52814F20E00E74CB8 /* KinematicsView.swift in Sources */,
@@ -751,7 +769,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
@@ -766,7 +784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -787,7 +805,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
@@ -802,7 +820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
