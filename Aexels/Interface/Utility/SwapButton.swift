@@ -19,7 +19,7 @@ fileprivate class SwapView: UIView {
 		didSet {setNeedsDisplay()}
 	}
 
-	init() {
+    init() {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 		isUserInteractionEnabled = false
@@ -71,7 +71,10 @@ fileprivate class SwapView: UIView {
 class SwapButton: AXButton {
 	fileprivate let swapView = SwapView()
 
-	override init() {
+    private var expandHitBox: Bool = true
+
+    init(expandHitBox: Bool = true) {
+        self.expandHitBox = expandHitBox
 		super.init()
 		swapView.isUserInteractionEnabled = false
 		addSubview(swapView)
@@ -100,6 +103,7 @@ class SwapButton: AXButton {
 		swapView.frame = bounds
 	}
 	override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        guard expandHitBox else { return super.point(inside: point, with: event) }
 		let margin: CGFloat = 15*s
 		let area = self.bounds.insetBy(dx: -margin, dy: -margin)
 		let inside = area.contains(point)

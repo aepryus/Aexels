@@ -10,39 +10,52 @@ import Acheron
 import UIKit
 
 class DilationView: UIView {
-    private var universe: UnsafeMutablePointer<TCUniverse>
+    var universe: UnsafeMutablePointer<TCUniverse>
     private var source: UnsafeMutablePointer<TCTeslon>
+    private var targetN: UnsafeMutablePointer<TCTeslon>
+    private var targetE: UnsafeMutablePointer<TCTeslon>?
     private var camera: UnsafeMutablePointer<TCCamera>
     
     private var queue: DispatchQueue = DispatchQueue(label: "dilationView")
     var renderMode: RenderMode = .started
     private var image: UIImage?
     private var back: UIImage?
+    private var fore: UIImage?
     private var vw: Int = 0
+    
+    var trailsOn: Bool = false
+    var autoOn: Bool = false
+    var chaseCameraOn: Bool = false
 
-    init() {
-        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*Screen.s : 0)
-        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*Screen.s : 0)
-        let height = Screen.height - topY - botY
-        let s = height / 748
-        
-        let uw: CGFloat = height - 110*s - 46*s
-
-        universe = TCUniverseCreate(uw, uw, 1, 0.5)
-        
-        source = TCUniverseCreateTeslon(universe, uw/2, uw/2, 0.5, .pi/2)
-        TCUniverseCreateTeslon(universe, uw/2, uw/4, 0.5, .pi/2)
-        TCUniversePulse(universe, source, 99)
-        camera = TCUniverseCreateCamera(universe, uw/2, uw/2, 0.5, .pi/2)
-        
+    init(chaseCameraOn: Bool = false) {
+        self.chaseCameraOn = chaseCameraOn
+        universe = TCUniverseCreate(10, 10, 0, 1)
+        source = TCUniverseCreateTeslon(universe, 5, 5, 0.5, .pi/2)
+        targetN = TCUniverseCreateTeslon(universe, 5, 5, 0.5, .pi/2)
+        camera = TCUniverseCreateCamera(universe, 5, 5, 0.5, .pi/2)
         super.init(frame: CGRect.zero)
         backgroundColor = UIColor.clear
+        reset()
     }
     required init?(coder aDecoder: NSCoder) { fatalError() }
     deinit {
         TCUniverseRelease(universe)
     }
     
+    var speedOfLight: Double = 1 {
+        didSet {
+            universe.pointee.c = speedOfLight
+        }
+    }
+    var velocity: Double = 1 {
+        didSet {
+            let v: TCVelocity = TCVelocity(s: abs(velocity), q: velocity > 0 ? Double.pi/2 : Double.pi*3/2)
+            source.pointee.v = v
+            targetN.pointee.v = v
+            camera.pointee.v = v
+        }
+    }
+
     func play() {
         Aexels.sync.link.preferredFramesPerSecond = 60
         Aexels.sync.start()
@@ -50,12 +63,40 @@ class DilationView: UIView {
     func stop() {
         Aexels.sync.stop()
     }
-    private func reset(next: UnsafeMutablePointer<TCUniverse>) {
+    func reset() {
+        fore = nil
         TCUniverseRelease(universe)
-        universe = next
-        self.renderMode = .started
-        self.renderImage()
-        setNeedsDisplay()
+        TCTeslonRelease(source)
+        TCTeslonRelease(targetN)
+        TCCameraRelease(camera)
+
+        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*Screen.s : 0)
+        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*Screen.s : 0)
+        let height = Screen.height - topY - botY
+        let s = height / 748
+        let uw: CGFloat = height - 110*s - 46*s
+        let v: Double = 0.5
+
+        universe = TCUniverseCreate(uw, uw, 1, v)
+        
+        source = TCUniverseCreateTeslon(universe, uw/2, uw/2, v, .pi/2)
+        targetN = TCUniverseCreateTeslon(universe, uw/2, uw/4, v, .pi/2)
+        camera = TCUniverseCreateCamera(universe, uw/2, uw/2, v, .pi/2)
+        TCUniversePulse(universe, source, 99)
+    }
+    
+    func extractUniverse(from: DilationView) {
+        self.universe = from.universe
+        self.source = from.source
+        self.targetN = from.targetN
+        
+        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*Screen.s : 0)
+        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*Screen.s : 0)
+        let height = Screen.height - topY - botY
+        let s = height / 748
+        let uw: CGFloat = height - 110*s - 46*s
+
+        self.camera = TCUniverseCreateCamera(universe, 0, uw/2, 0, .pi/2)
     }
     
     func renderBack() {
@@ -124,19 +165,33 @@ class DilationView: UIView {
         
         if back == nil { renderBack() }
         
+        
+        
         let dx: CGFloat = width/2 - camera.pointee.p.x
         let dy: CGFloat = height/2 - camera.pointee.p.y
+        
+        if chaseCameraOn {
+            let tolerance = width/2+10
+            if source.pointee.v.q == .pi/2 {
+                if source.pointee.p.x - camera.pointee.p.x > tolerance {
+                    camera.pointee.p.x += tolerance*2
+                }
+            } else {
+                if camera.pointee.p.x - source.pointee.p.x > tolerance {
+                    camera.pointee.p.x -= tolerance*2
+                }
+            }
+        }
         
         let d: CGFloat = 10.0*s
         let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
         let mod: CGFloat = 2*(d+sn)
-
         
+        // Fore ====================================================================================
         UIGraphicsBeginImageContext(bounds.size)
-        let c = UIGraphicsGetCurrentContext()!
+        var c = UIGraphicsGetCurrentContext()!
 
-//        if let image { image.draw(at: CGPoint.zero) }
-        if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
+        if trailsOn, let fore { fore.draw(at: CGPoint.zero, blendMode: .normal, alpha: 0.9) }
 
         for i in 0..<Int(universe.pointee.teslonCount) {
             let teslon = universe.pointee.teslons![i]!
@@ -151,120 +206,33 @@ class DilationView: UIView {
         for i in 0..<Int(universe.pointee.maxtonCount) {
             let maxton = universe.pointee.maxtons![i]!
             let r: Double = 1
-            var path = CGMutablePath(ellipseIn: CGRect(x: dx+maxton.pointee.p.x-r, y: dy+maxton.pointee.p.y-r, width: 2*r, height: 2*r), transform: nil)
+            let path = CGMutablePath(ellipseIn: CGRect(x: dx+maxton.pointee.p.x-r, y: dy+maxton.pointee.p.y-r, width: 2*r, height: 2*r), transform: nil)
             c.addPath(path)
             c.setStrokeColor(UIColor.green.tint(0.7).tone(0.5).cgColor)
-//            c.setStrokeColor(UIColor.purple.tone(0.5).tint(0.5).cgColor)
             c.drawPath(using: .stroke)
-            path = CGMutablePath()
-            path.move(to: CGPoint(x: dx+maxton.pointee.p.x, y: dy+maxton.pointee.p.y))
-            path.addLine(to: CGPoint(x: dx+maxton.pointee.p.x+5*sin(maxton.pointee.q), y: dy+maxton.pointee.p.y-5*cos(maxton.pointee.q)))
+        }
+        
+        for i in 0..<Int(universe.pointee.photonCount) {
+            let photon = universe.pointee.photons![i]!
+            let r: Double = 1
+            let path = CGMutablePath(ellipseIn: CGRect(x: dx+photon.pointee.p.x-r, y: dy+photon.pointee.p.y-r, width: 2*r, height: 2*r), transform: nil)
             c.addPath(path)
-//            c.setStrokeColor(UIColor.green.tint(0.7).cgColor)
+            c.setStrokeColor(UIColor.red.tint(0.5).cgColor)
             c.drawPath(using: .stroke)
         }
 
-//        c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
+        fore = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
 
-//        for i in 0..<Int(universe.pointee.bondCount) {
-//            let bond = universe.pointee.bonds[i]
-//            guard bond.hot == 1 else {continue}
-//            c.move(to: CGPoint(x: bond.a.pointee.s.x, y: bond.a.pointee.s.y))
-//            c.addLine(to: CGPoint(x: bond.b.pointee.s.x, y: bond.b.pointee.s.y))
-//        }
-//        c.drawPath(using: .stroke)
+        // Image ==================================================================================
         
-//        let relaxed: Double = universe.pointee.relaxed;
-        
-        c.setLineWidth(0.5)
-//        if universe.pointee.gol == 0 {
-//            c.setStrokeColor(UIColor(rgb: 0xFFFFFF).cgColor)
-//            c.setFillColor(UIColor(rgb: 0xEEEEEE).alpha(0.5).cgColor);
-//
-//            for i in 0..<Int(universe.pointee.aexelCount) {
-//                let aexel = universe.pointee.aexels![i]!
-//                guard aexel.pointee.stateC == 0 else { continue }
-//                c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
-//            }
-//            c.drawPath(using: .fillStroke)
-//
-//            let color1: UIColor = UIColor(rgb: 0x5CFF74).tint(0.2)
-//            c.setStrokeColor(color1.shade(0.7).cgColor)
-//            c.setFillColor(color1.cgColor);
-//
-//            for i in 0..<Int(universe.pointee.aexelCount) {
-//                let aexel = universe.pointee.aexels![i]!
-//                guard aexel.pointee.stateC == 1 else { continue }
-//                c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
-//            }
-//            c.drawPath(using: .fillStroke)
-//
-//
-//        } else {
-//            let color1: UIColor = UIColor(rgb: 0x5CFF74).tint(0.2)
-//            c.setStrokeColor(color1.shade(0.7).cgColor)
-//            c.setFillColor(color1.cgColor);
-//
-//            for i in 0..<Int(universe.pointee.aexelCount) {
-//                let aexel = universe.pointee.aexels![i]!
-//                guard aexel.pointee.stateA == 1 else { continue }
-//                c.addEllipse(in: CGRect(x: aexel.pointee.s.x-relaxed/2, y: aexel.pointee.s.y-relaxed/2, width: relaxed, height: relaxed))
-//            }
-//            c.drawPath(using: .fillStroke)
-//        }
+        UIGraphicsBeginImageContext(bounds.size)
+        c = UIGraphicsGetCurrentContext()!
 
-//        c.setStrokeColor(UIColor.orange.tint(0.5).cgColor)
-//        for i in 0..<universe.pointee.sectorWidth {
-//            c.move(to: CGPoint(x: Double(i)*universe.pointee.snapped*2, y: 0))
-//            c.addLine(to: CGPoint(x: Double(i)*universe.pointee.snapped*2, y: Double(height)))
-//        }
-//        for i in 0..<universe.pointee.sectorWidth {
-//            c.move(to: CGPoint(x: 0, y: Double(i)*universe.pointee.snapped*2))
-//            c.addLine(to: CGPoint(x: Double(height), y: Double(i)*universe.pointee.snapped*2))
-//        }
-//        c.drawPath(using: .stroke)
-
-        // Momentum Vectors
-//        c.setStrokeColor(UIColor.white.cgColor);
-//        for i in 0..<Int(universe.pointee.photonCount) {
-//            let photon = universe.pointee.photons![i]!
-//            c.move(to: CGPoint(x: photon.pointee.aexel.pointee.s.x, y: photon.pointee.aexel.pointee.s.y))
-//            c.addLine(to: CGPoint(x: photon.pointee.aexel.pointee.s.x+photon.pointee.v.x*7, y: photon.pointee.aexel.pointee.s.y+photon.pointee.v.y*7))
-//        }
-
-//        for i in 0..<Int(universe.pointee.hadronCount) {
-//            let hadron = universe.pointee.hadrons![i]!
-//            for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
-//                c.move(to: CGPoint(x: quark.aexel.pointee.s.x, y: quark.aexel.pointee.s.y))
-//                c.addLine(to: CGPoint(x: quark.aexel.pointee.s.x+quark.hadron.pointee.v.x*7*10/3, y: quark.aexel.pointee.s.y+quark.hadron.pointee.v.y*7*10/3))
-//            }
-//        }
-//        c.drawPath(using: .stroke)
-
-        // Particles
-//        let radius: Double = 3
-//        c.setFillColor(UIColor(rgb: 0x00FF00).cgColor);
-//        for i in 0..<Int(universe.pointee.photonCount) {
-//            let photon = universe.pointee.photons![i]!
-//            c.addEllipse(in: CGRect(x: photon.pointee.aexel.pointee.s.x-radius, y: photon.pointee.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
-//        }
-//        c.drawPath(using: .fill)
-
-//        for i in 0..<Int(universe.pointee.hadronCount) {
-//            let hadron = universe.pointee.hadrons![i]!
-//            c.setFillColor(UIColor(rgb: hadron.pointee.anti == 0 ? 0x0000FF : 0xFF0000).cgColor);
-//            for quark in Mirror(reflecting: hadron.pointee.quarks).children.map({$0.value}) as! [Quark] {
-//                c.addEllipse(in: CGRect(x: quark.aexel.pointee.s.x-radius, y: quark.aexel.pointee.s.y-radius, width: 2*radius, height: 2*radius))
-//            }
-//            c.drawPath(using: .fill)
-////            if hadron.pointee.anti == 0 && hadron.pointee.center != nil {
-////                c.setFillColor(UIColor(rgb: 0xFF00FF).tint(0.2).cgColor);
-////                c.addEllipse(in: CGRect(x: hadron.pointee.center.pointee.s.x-radius, y: hadron.pointee.center.pointee.s.y-radius, width: 2*radius, height: 2*radius))
-////                c.drawPath(using: .fill)
-////            }
-//        }
-        
+        if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
+        if let fore { fore.draw(at: CGPoint.zero) }
         self.image = UIGraphicsGetImageFromCurrentImageContext()
+        
         UIGraphicsEndImageContext()
         
         renderMode = .rendered
@@ -295,6 +263,16 @@ class DilationView: UIView {
     func tic() {
         queue.sync {
             TCUniverseTic(self.universe)
+            self.renderMode = .started
+            self.renderImage()
+//            self.sampleFrameRate()
+            DispatchQueue.main.async {
+                self.setNeedsDisplay()
+            }
+        }
+    }
+    func slaveTic() {
+        queue.sync {
             self.renderMode = .started
             self.renderImage()
 //            self.sampleFrameRate()

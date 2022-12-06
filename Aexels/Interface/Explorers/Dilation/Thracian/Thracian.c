@@ -51,6 +51,7 @@ void TCMaxtonRelease(TCMaxton* maxton) {
 // Photon ==========================================================================================
 TCPhoton* TCPhotonCreate(void) {
     TCPhoton* photon = (TCPhoton*)malloc(sizeof(TCPhoton));
+    photon->recycle = 0;
     return photon;
 }
 void TCPhotonRelease(TCPhoton* photon) {
@@ -113,22 +114,51 @@ void TCUniverseRelease(TCUniverse* universe) {
 void TCUniverseTic(TCUniverse* universe) {
     for (int i=0;i<universe->teslonCount;i++) {
         universe->teslons[i]->p.x += universe->c*universe->teslons[i]->v.s*sin(universe->teslons[i]->v.q);
-        universe->teslons[i]->p.y += universe->teslons[i]->v.s*(-cos(universe->teslons[i]->v.q));
+        universe->teslons[i]->p.y += universe->c*universe->teslons[i]->v.s*(-cos(universe->teslons[i]->v.q));
     }
 
     for (int i=0;i<universe->maxtonCount;i++) {
-        universe->maxtons[i]->p.x += universe->c*universe->maxtons[i]->v.s*sin(universe->maxtons[i]->v.q);
-        universe->maxtons[i]->p.y += universe->maxtons[i]->v.s*(-cos(universe->maxtons[i]->v.q));
+        universe->maxtons[i]->p.x += universe->c*sin(universe->maxtons[i]->v.q);
+        universe->maxtons[i]->p.y += universe->c*(-cos(universe->maxtons[i]->v.q));
         
         TCTeslon* center = universe->teslons[0];
         if (TCV2LengthSquared(TCV2Sub(center->p, universe->maxtons[i]->p)) > universe->boundrySquared) {
             universe->maxtons[i]->recycle = 1;
         }
+        
+        if (TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 100) {
+            universe->maxtons[i]->recycle = 1;
+            
+            TCTeslon* teslon = universe->teslons[1];
+            TCMaxton* maxton = universe->maxtons[i];
+            
+            TCV2 p;
+            p.x = 2*teslon->p.x - maxton->p.x;
+            p.y = maxton->p.y;
+            TCVelocity v;
+            v.s = maxton->v.s;
+            v.q = 2*teslon->v.q - maxton->v.q;
+            TCUniverseCreatePhoton(universe, p, v, v.q);
+        }
+    }
+    
+    for (int i=0;i<universe->photonCount;i++) {
+        universe->photons[i]->p.x += universe->c*sin(universe->photons[i]->v.q);
+        universe->photons[i]->p.y += universe->c*(-cos(universe->photons[i]->v.q));
+        
+        TCTeslon* center = universe->teslons[0];
+        if (TCV2LengthSquared(TCV2Sub(center->p, universe->photons[i]->p)) > universe->boundrySquared) {
+            universe->photons[i]->recycle = 1;
+        }
+        
+        if (TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->photons[i]->p)) < 100) {
+            universe->photons[i]->recycle = 1;
+        }
     }
     
     for (int i=0;i<universe->cameraCount;i++) {
         universe->cameras[i]->p.x += universe->c*universe->cameras[i]->v.s*sin(universe->cameras[i]->v.q);
-        universe->cameras[i]->p.y += universe->cameras[i]->v.s*(-cos(universe->cameras[i]->v.q));
+        universe->cameras[i]->p.y += universe->c*universe->cameras[i]->v.s*(-cos(universe->cameras[i]->v.q));
     }
     
     int k = 0;
@@ -142,7 +172,34 @@ void TCUniverseTic(TCUniverse* universe) {
         if (k != i) universe->maxtons[k] = universe->maxtons[i];
         k++;
     }
-//    printf("maxtons [%d]\n", universe->maxtonCount);
+    
+    k = 0;
+    int pC = universe->photonCount;
+    for (int i=0; i<pC; i++) {
+        if (universe->photons[i]->recycle) {
+            TCPhotonRelease(universe->photons[i]);
+            universe->photonCount--;
+            continue;
+        }
+        if (k != i) universe->photons[k] = universe->photons[i];
+        k++;
+    }
+
+//    printf("maxtons [%d]\tphotons [%d]\n", universe->maxtonCount, universe->photonCount);
+}
+
+void TCUniverseAddPhoton(TCUniverse* universe, TCPhoton* photon) {
+    universe->photonCount++;
+    universe->photons = (TCPhoton**)realloc(universe->photons, sizeof(TCPhoton*)*universe->photonCount);
+    universe->photons[universe->photonCount-1] = photon;
+}
+TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q) {
+    TCPhoton* photon = TCPhotonCreate();
+    photon->p = p;
+    photon->v = v;
+    photon->q = q;
+    TCUniverseAddPhoton(universe, photon);
+    return photon;
 }
 
 void TCUniverseAddTeslon(TCUniverse* universe, TCTeslon* teslon) {

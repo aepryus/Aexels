@@ -8,7 +8,6 @@
 
 import Acheron
 import UIKit
-import OoviumKit
 
 class DilatorView: UIView, UIGestureRecognizerDelegate {
 	var position: CGFloat = 1

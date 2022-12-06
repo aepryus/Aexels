@@ -40,6 +40,7 @@ typedef struct TCPhoton {
     TCVelocity v;
     double q;
     double e;
+    unsigned char recycle;
 } TCPhoton;
 
 TCPhoton* TCPhotonCreate(void);
@@ -81,6 +82,7 @@ typedef struct TCUniverse {
 TCUniverse* TCUniverseCreate(double width, double height, double c, double v);
 void TCUniverseRelease(TCUniverse* universe);
 void TCUniverseTic(TCUniverse* universe);
+TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q);
 TCTeslon* TCUniverseCreateTeslon(TCUniverse* universe, double x, double y, double s, double q);
 TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, double s, double q);
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n);

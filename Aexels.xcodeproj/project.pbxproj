@@ -13,6 +13,7 @@
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
+		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */; };
 		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
 		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
@@ -78,6 +79,7 @@
 		D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */; };
 		D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */; };
 		D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18132814F59D00E74CB8 /* Ionian.c */; };
+		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,7 @@
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
+		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
 		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
+		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -360,9 +364,7 @@
 		D8AE17572814EB2300E74CB8 /* Cellular Automata */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
-				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
-				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
+				D8C1CC09293D767D001881F5 /* Widgets */,
 				D8AE17E22814F20500E74CB8 /* CellularView.swift */,
 				D8AE17E42814F20500E74CB8 /* CellularEngine.swift */,
 				D8AE17E12814F20500E74CB8 /* CellularExplorer.swift */,
@@ -373,8 +375,7 @@
 		D8AE17582814EB2F00E74CB8 /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE17F02814F20E00E74CB8 /* ExpButton.swift */,
-				D8AE17F12814F20E00E74CB8 /* NetButton.swift */,
+				D8C1CC08293D7669001881F5 /* Widgets */,
 				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
 				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
 				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
@@ -397,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				D8042F12293B06A800453B8E /* Thracian */,
+				D8C1CC07293D7654001881F5 /* Widgets */,
 				D8042F10293AEB0200453B8E /* DilationView.swift */,
 				D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */,
 			);
@@ -481,6 +483,34 @@
 				D8AE18132814F59D00E74CB8 /* Ionian.c */,
 			);
 			name = Ionian;
+			sourceTree = "<group>";
+		};
+		D8C1CC07293D7654001881F5 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				D8C1CC0A293D76D9001881F5 /* CSlider.swift */,
+				D850F449293EEDD60091F15A /* VSlider.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		D8C1CC08293D7669001881F5 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				D8AE17F02814F20E00E74CB8 /* ExpButton.swift */,
+				D8AE17F12814F20E00E74CB8 /* NetButton.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		D8C1CC09293D767D001881F5 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
+				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
+				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,10 +620,12 @@
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
 				D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */,
+				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
 				D8AE17FB2814F21700E74CB8 /* GravityExplorer.swift in Sources */,
+				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
 				D8AE17C82814F1C700E74CB8 /* NexusButton.swift in Sources */,
