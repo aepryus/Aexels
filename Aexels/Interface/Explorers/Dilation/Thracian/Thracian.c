@@ -79,14 +79,13 @@ void TCCameraRelease(TCCamera* camera) {
 }
 
 // Universe ========================================================================================
-TCUniverse* TCUniverseCreate(double width, double height, double c, double v) {
+TCUniverse* TCUniverseCreate(double width, double height, double c) {
     TCUniverse* universe = (TCUniverse*)malloc(sizeof(TCUniverse));
     
     universe->center.x = width/2;
     universe->center.y = height/2;
     universe->width = width;
     universe->height = height;
-    universe->v = v;
     universe->c = c;
     
     double a = (width > height ? width : height)/2*1.5;
@@ -196,6 +195,7 @@ void TCUniverseAddPhoton(TCUniverse* universe, TCPhoton* photon) {
 TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q) {
     TCPhoton* photon = TCPhotonCreate();
     photon->p = p;
+    photon->o = p;
     photon->v = v;
     photon->q = q;
     TCUniverseAddPhoton(universe, photon);
@@ -211,6 +211,7 @@ TCTeslon* TCUniverseCreateTeslon(TCUniverse* universe, double x, double y, doubl
     TCTeslon* teslon = TCTeslonCreate();
     teslon->p.x = x;
     teslon->p.y = y;
+    teslon->o = teslon->p;
     teslon->v.s = s;
     teslon->v.q = q;
     TCUniverseAddTeslon(universe, teslon);
@@ -243,6 +244,7 @@ void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n) {
         TCMaxton* maxton = TCMaxtonCreate();
         maxton->p.x = teslon->p.x;
         maxton->p.y = teslon->p.y;
+        maxton->o = maxton->p;
         maxton->v.s = universe->c;
         maxton->v.q = q;
         maxton->q = q;

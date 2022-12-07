@@ -12,7 +12,7 @@ import UIKit
 class VSlider: UIView, UIGestureRecognizerDelegate {
     var position: CGFloat = 1
     var availableVelocities: [Double] = [-0.99, -0.9, -0.7, -0.5, -0.2, -0.1, 0, 0.1, 0.2, 0.5, 0.7, 0.9, 0.99]
-    lazy var velocity: Double = 0
+    lazy var velocity: Double = 0.5
 
     var onChange: ((Double)->())?
     
@@ -26,6 +26,10 @@ class VSlider: UIView, UIGestureRecognizerDelegate {
         addGestureRecognizer(gesture)
     }
     required init?(coder aDecoder: NSCoder) {fatalError()}
+    
+    func setTo(_ value: Double) {
+        position = CGFloat(availableVelocities.firstIndex(where: { $0 == value }) ?? 0)/CGFloat(availableVelocities.count)
+    }
     
 // Events ==========================================================================================
     @objc func onPan(gesture: UIPanGestureRecognizer) {

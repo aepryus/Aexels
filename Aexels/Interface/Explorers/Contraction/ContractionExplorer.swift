@@ -10,28 +10,28 @@ import Acheron
 import UIKit
 
 class ContractionExplorer: Explorer {
-    let dilationView: DilationView = DilationView()
+    let engine: DilationEngine
+    lazy var dilationView: DilationView = DilationView(engine: engine)
     let dilationLimbo: Limbo = Limbo()
     let pulseLimbo = LimboButton(title: "Pulse")
     let closeLimbo = LimboButton(title: "Close")
 
-    init(parent: UIView) { super.init(parent: parent, name: "Contraction", key: "Contraction", canExplore: true) }
+    init(parent: UIView) {
+        engine = DilationEngine(size: .zero)
+        super.init(parent: parent, name: "Contraction", key: "Contraction", canExplore: true)
+    }
     
 // Events ==========================================================================================
     override func onOpen() {
         Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.dilationView.tic()
+            self.engine.tic()
             complete()
         }
         Aexels.sync.link.preferredFramesPerSecond = 60
         
     }
-    override func onOpened() {
-        self.dilationView.play()
-    }
-    override func onClose() {
-        self.dilationView.stop()
-    }
+    override func onOpened() { engine.play() }
+    override func onClose() { engine.stop() }
 
 // Explorer ========================================================================================
     override func createLimbos() {
@@ -41,7 +41,7 @@ class ContractionExplorer: Explorer {
         // PulseLimbo
         pulseLimbo.alpha = 0
         pulseLimbo.addAction { [unowned self] in
-            self.dilationView.pulse()
+            self.engine.pulse()
         }
 
         // CloseLimbo

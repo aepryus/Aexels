@@ -12,7 +12,7 @@ import UIKit
 class CSlider: UIView, UIGestureRecognizerDelegate {
     var position: CGFloat = 1
     var availableSpeedsOfLight: [Double] = [60, 80, 100, 120, 140, 160, 180]
-    var speedOfLight: Double = 1
+    var speedOfLight: Double = 60
 
     var onChange: ((Double)->())?
     
@@ -25,7 +25,11 @@ class CSlider: UIView, UIGestureRecognizerDelegate {
         gesture.delegate = self
         addGestureRecognizer(gesture)
     }
-    required init?(coder aDecoder: NSCoder) {fatalError()}
+    required init?(coder aDecoder: NSCoder) { fatalError() }
+    
+    func setTo(_ value: Double) {
+        position = CGFloat(availableSpeedsOfLight.firstIndex(where: { $0 == value }) ?? 0)
+    }
     
 // Events ==========================================================================================
     @objc func onPan(gesture: UIPanGestureRecognizer) {

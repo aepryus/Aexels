@@ -10,9 +10,10 @@ import Acheron
 import UIKit
 
 class DilationExplorer: Explorer {
-    let dilationView: DilationView = DilationView()
+    let engine: DilationEngine
+    lazy var dilationView: DilationView = DilationView(engine: engine)
     let dilationLimbo: Limbo = Limbo()
-    let fixedDilationView: DilationView = DilationView(chaseCameraOn: true)
+    lazy var fixedDilationView: DilationView = DilationView(engine: engine, chaseCameraOn: true)
     let fixedDilationLimbo: Limbo = Limbo()
     let pulseLimbo = LimboButton(title: "Pulse")
     let cSlider: CSlider = CSlider()
@@ -26,78 +27,86 @@ class DilationExplorer: Explorer {
     let controlsLimbo: Limbo = Limbo()
     let closeLimbo = LimboButton(title: "Close")
     
-	init(parent: UIView) { super.init(parent: parent, name: "Dilation", key: "Dilation", canExplore: true) }
+	init(parent: UIView) {
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let s: CGFloat = height / 748
+        let mainLen: CGFloat = height - 110*s
+        let fixLen: CGFloat = Screen.width - mainLen - 10*s
+
+        engine = DilationEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen))
+        
+        super.init(parent: parent, name: "Dilation", key: "Dilation", canExplore: true)
+    }
     
 // Events ==========================================================================================
     var n: Int = 1
     override func onOpen() {
-        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.dilationView.tic()
-            self.fixedDilationView.slaveTic()
-            self.n += 1
-            if self.dilationView.autoOn && self.n % 120 == 0 { self.dilationView.pulse() }
-            complete()
-        }
-        Aexels.sync.link.preferredFramesPerSecond = 60
-        
+//        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+//            self.dilationView.tic()
+//            self.fixedDilationView.slaveTic()
+//            self.n += 1
+//            if self.dilationView.autoOn && self.n % 120 == 0 { self.dilationView.pulse() }
+//            complete()
+//        }
+//        Aexels.sync.link.preferredFramesPerSecond = 60
     }
-    override func onOpened() {
-        self.dilationView.play()
-    }
-    override func onClose() {
-        self.dilationView.stop()
-    }
+    override func onOpened() { engine.play() }
+    override func onClose() { engine.stop() }
 
 // Explorer ========================================================================================
     override func createLimbos() {
         // DilationLimbo
         dilationLimbo.content = dilationView
+//        engine.camera = engine.createCamera(teleport: true)
+        engine.trailsOn = true
         fixedDilationLimbo.content = fixedDilationView
-        fixedDilationView.extractUniverse(from: dilationView)
         
         cSlider.onChange = { (speedOfLight: Double) in
-            self.dilationView.speedOfLight = speedOfLight
+            self.engine.speedOfLight = speedOfLight
         }
         cLimbo.content = cSlider
-        
-        
+                
         vSlider.onChange = { (velocity: Double) in
-            self.dilationView.velocity = velocity
+            self.engine.velocity = velocity
+            self.engine.camera.pointee.v.s = abs(velocity)
+            self.engine.camera.pointee.v.q = velocity > 0 ? .pi/2 : .pi*3/2
         }
         vLimbo.content = vSlider
         
         playButton.playing = true
         controlsLimbo.addSubview(playButton)
         playButton.onPlay = { [unowned self] in
-            self.dilationView.play()
+            self.engine.play()
         }
         playButton.onStop = { [unowned self] in
-            self.dilationView.stop()
+            self.engine.stop()
         }
 
         controlsLimbo.addSubview(resetButton)
         resetButton.addAction(for: .touchUpInside) { [unowned self] in
             self.playButton.stop()
-            self.dilationView.reset()
-            self.dilationView.tic()
+            self.engine.reset()
+//            self.engine.camera = self.engine.createCamera()
+//            self.engine.camera = self.engine.createCamera(teleport: true)
+            self.engine.tic()
         }
         
         controlsLimbo.addSubview(trailsSwap)
         trailsSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.trailsSwap.rotateView()
-            self.dilationView.trailsOn = !self.dilationView.trailsOn
+            self.engine.trailsOn = !self.engine.trailsOn
         }
 
         controlsLimbo.addSubview(autoSwap)
         autoSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.autoSwap.rotateView()
-            self.dilationView.autoOn = !self.dilationView.autoOn
+            self.engine.autoOn = !self.engine.autoOn
         }
 
         // PulseLimbo
         pulseLimbo.alpha = 0
         pulseLimbo.addAction { [unowned self] in
-            self.dilationView.pulse()
+            self.engine.pulse()
         }
 
         // CloseLimbo
@@ -129,6 +138,9 @@ class DilationExplorer: Explorer {
         
         let p: CGFloat = 5*s
         let uw: CGFloat = height - 110*s
+        
+//        engine.size = CGSize(width: uw, height: uw)
+        engine.reset()
 
         dilationLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
 
@@ -145,5 +157,8 @@ class DilationExplorer: Explorer {
         resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
         trailsSwap.left(dx: resetButton.right+20*s, size: CGSize(width: 26*s, height: 26*s))
         autoSwap.left(dx: trailsSwap.right+15*s, size: CGSize(width: 26*s, height: 26*s))
+        
+        cSlider.setTo(60)
+        vSlider.setTo(0.5)
     }
 }

@@ -26,6 +26,7 @@ typedef struct TCVelocity {
 } TCVelocity;
 
 typedef struct TCMaxton {
+    TCV2 o;
     TCV2 p;
     TCVelocity v;
     double q;
@@ -36,6 +37,7 @@ TCMaxton* TCMaxtonCreate(void);
 void TCMaxtonRelease(TCMaxton* maxton);
 
 typedef struct TCPhoton {
+    TCV2 o;
     TCV2 p;
     TCVelocity v;
     double q;
@@ -47,6 +49,7 @@ TCPhoton* TCPhotonCreate(void);
 void TCPhotonRelease(TCPhoton* photon);
 
 typedef struct TCTeslon {
+    TCV2 o;
     TCV2 p;
     TCVelocity v;
 } TCTeslon;
@@ -79,7 +82,7 @@ typedef struct TCUniverse {
     TCCamera** cameras;
 } TCUniverse;
 
-TCUniverse* TCUniverseCreate(double width, double height, double c, double v);
+TCUniverse* TCUniverseCreate(double width, double height, double c);
 void TCUniverseRelease(TCUniverse* universe);
 void TCUniverseTic(TCUniverse* universe);
 TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q);
