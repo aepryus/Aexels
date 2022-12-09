@@ -12,6 +12,7 @@
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DiliationEngine.swift */; };
@@ -87,6 +88,7 @@
 		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
+		D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DiliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiliationEngine.swift; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 				D8042F14293B085500453B8E /* Thracian.c */,
 			);
 			path = Thracian;
+			sourceTree = "<group>";
+		};
+		D838FD882941A15F000C0228 /* Electromagnetism */ = {
+			isa = PBXGroup;
+			children = (
+				D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */,
+			);
+			path = Electromagnetism;
 			sourceTree = "<group>";
 		};
 		D86FD6C7292B7D0700A6CA7A /* Forward */ = {
@@ -337,6 +347,7 @@
 				D8AE175B2814EB4400E74CB8 /* Contraction */,
 				D8AE175C2814EB4A00E74CB8 /* Darkness */,
 				D8AE175D2814EB5400E74CB8 /* Equivalence */,
+				D838FD882941A15F000C0228 /* Electromagnetism */,
 				D86FD6CF292C83BE00A6CA7A /* Discrepancy */,
 				D86FD6CA292B804500A6CA7A /* Epilogue */,
 			);
@@ -641,6 +652,7 @@
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
+				D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,

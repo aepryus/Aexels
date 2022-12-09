@@ -11,7 +11,15 @@
 #import <stdlib.h>
 #include "Thracian.h"
 
+double TCLambda(double v) { return 1/sqrt(1 - v*v); }
+
 // V2 ==============================================================================================
+TCV2 TCV2Add(TCV2 a, TCV2 b) {
+    TCV2 result;
+    result.x = a.x + b.x;
+    result.y = a.y + b.y;
+    return result;
+}
 TCV2 TCV2Sub(TCV2 a, TCV2 b) {
     TCV2 result;
     result.x = a.x - b.x;
@@ -125,7 +133,10 @@ void TCUniverseTic(TCUniverse* universe) {
             universe->maxtons[i]->recycle = 1;
         }
         
-        if (TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 100) {
+        if (
+            TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 100 &&
+            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))
+        ) {
             universe->maxtons[i]->recycle = 1;
             
             TCTeslon* teslon = universe->teslons[1];
@@ -137,7 +148,46 @@ void TCUniverseTic(TCUniverse* universe) {
             TCVelocity v;
             v.s = maxton->v.s;
             v.q = 2*teslon->v.q - maxton->v.q;
-            TCUniverseCreatePhoton(universe, p, v, v.q);
+            TCUniverseCreatePhoton(universe, p, v, v.q, 0);
+        }
+        
+        if (universe->teslonCount == 3) {
+            if (
+                TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->maxtons[i]->p)) < 100 &&
+                TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p))
+            ) {
+                universe->maxtons[i]->recycle = 1;
+                
+                TCTeslon* teslon = universe->teslons[2];
+                TCMaxton* maxton = universe->maxtons[i];
+                
+                TCV2 position;
+                position.x = maxton->p.x;
+                position.y = 2*teslon->p.y - maxton->p.y;
+                TCVelocity velocity;
+                velocity.s = maxton->v.s;
+                
+                double c = universe->c;
+                double v = universe->teslons[2]->v.s;
+                double x = maxton->p.y - universe->teslons[2]->p.y;
+                if (x == 0) {
+                    velocity.q = M_PI+maxton->v.q;
+                } else {
+                    double theta = M_PI - maxton->v.q;
+                    double z = x / cos(theta);
+                    double t1 = z / c;
+                    double y = x * tan(theta);
+                    double p = v * t1;
+                    double r = y - p;
+                    double phi = atan2(
+                        (-v*x + c*c*r*r*v*x/(c*c*r*r+c*c*x*x) + c*r*sqrt(-c*c*x*x*(-c*c*r*r-c*c*x*x+v*v*x*x))/(c*c*r*r+c*c*x*x))/(c*x),
+                        (c*r*v*x + sqrt(c*c*c*c*r*r*x*x+c*c*c*c*x*x*x*x-c*c*v*v*x*x*x*x))/(c*c*r*r+c*c*x*x)
+                    );
+                    velocity.q = M_PI+phi;
+                }
+                
+                TCUniverseCreatePhoton(universe, position, velocity, velocity.q, 1);
+            }
         }
     }
     
@@ -150,7 +200,13 @@ void TCUniverseTic(TCUniverse* universe) {
             universe->photons[i]->recycle = 1;
         }
         
-        if (TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->photons[i]->p)) < 100) {
+        if (
+            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->photons[i]->p)) < 100 &&
+            (
+                (universe->photons[i]->vOrh == 0 && TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->photons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))) ||
+                (universe->photons[i]->vOrh == 1 && TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->photons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p)))
+            )
+        ) {
             universe->photons[i]->recycle = 1;
         }
     }
@@ -192,12 +248,13 @@ void TCUniverseAddPhoton(TCUniverse* universe, TCPhoton* photon) {
     universe->photons = (TCPhoton**)realloc(universe->photons, sizeof(TCPhoton*)*universe->photonCount);
     universe->photons[universe->photonCount-1] = photon;
 }
-TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q) {
+TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH) {
     TCPhoton* photon = TCPhotonCreate();
     photon->p = p;
     photon->o = p;
     photon->v = v;
     photon->q = q;
+    photon->vOrh = vOrH;
     TCUniverseAddPhoton(universe, photon);
     return photon;
 }
@@ -237,9 +294,60 @@ TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, doubl
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n) {
     universe->maxtonCount += n;
     universe->maxtons = (TCMaxton**)realloc(universe->maxtons, sizeof(TCMaxton*)*universe->maxtonCount);
-    double dq = 2*M_PI/(double)n;
-    double q = 0;
-    for (int i=0;i<n;i++) {
+    
+    int i=0;
+    int j = universe->maxtonCount-n+i;
+    TCMaxton* maxton = TCMaxtonCreate();
+    maxton->p.x = teslon->p.x;
+    maxton->p.y = teslon->p.y;
+    maxton->o = maxton->p;
+    maxton->v.s = universe->c;
+    maxton->v.q = M_PI/2;
+    maxton->q = maxton->v.q;
+    universe->maxtons[j] = maxton;
+    i++;
+    
+    j = universe->maxtonCount-n+i;
+    maxton = TCMaxtonCreate();
+    maxton->p.x = teslon->p.x;
+    maxton->p.y = teslon->p.y;
+    maxton->o = maxton->p;
+    maxton->v.s = universe->c;
+    
+    double d = TCV2Length(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p));
+    double v = universe->teslons[0]->v.s;
+    double s = universe->teslons[0]->v.q < M_PI ? 1 : -1;
+    double c = 1;
+    double lambda = TCLambda(v);
+    
+    maxton->v.q = atan2(s*v*d/c*lambda, d);
+    
+    maxton->q = maxton->v.q;
+    universe->maxtons[j] = maxton;
+    i++;
+    
+    double iQ = maxton->q;
+    double dQ = M_PI/2 - iQ;
+    int nA = round(dQ/2/M_PI*(n-2));
+    
+    double dq = dQ/(double)(nA+1);
+    double q = iQ+dq;
+    for (;i<nA+2;i++) {
+        int j = universe->maxtonCount-n+i;
+        TCMaxton* maxton = TCMaxtonCreate();
+        maxton->p.x = teslon->p.x;
+        maxton->p.y = teslon->p.y;
+        maxton->o = maxton->p;
+        maxton->v.s = universe->c;
+        maxton->v.q = q;
+        maxton->q = q;
+        universe->maxtons[j] = maxton;
+        q += dq;
+    }
+    
+    dq = (2*M_PI-dQ)/(double)((n-nA-2)+1);
+    q = M_PI/2+dq;
+    for (;i<n;i++) {
         int j = universe->maxtonCount-n+i;
         TCMaxton* maxton = TCMaxtonCreate();
         maxton->p.x = teslon->p.x;

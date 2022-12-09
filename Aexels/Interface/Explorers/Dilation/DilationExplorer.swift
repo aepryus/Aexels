@@ -61,6 +61,12 @@ class DilationExplorer: Explorer {
         engine.trailsOn = true
         fixedDilationLimbo.content = fixedDilationView
         
+        // PulseLimbo
+        pulseLimbo.alpha = 0
+        pulseLimbo.addAction { [unowned self] in
+            self.engine.pulse()
+        }
+        
         cSlider.onChange = { (speedOfLight: Double) in
             self.engine.speedOfLight = speedOfLight
         }
@@ -101,12 +107,6 @@ class DilationExplorer: Explorer {
         autoSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.autoSwap.rotateView()
             self.engine.autoOn = !self.engine.autoOn
-        }
-
-        // PulseLimbo
-        pulseLimbo.alpha = 0
-        pulseLimbo.addAction { [unowned self] in
-            self.engine.pulse()
         }
 
         // CloseLimbo

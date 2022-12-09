@@ -295,6 +295,7 @@ class NexusViewController: UIViewController {
 			ContractionExplorer(parent: view),
 			DarknessExplorer(parent: view),
 			EquivalenceExplorer(parent: view),
+            ElectromagnetismExplorer(parent: view),
             DiscrepancyExplorer(parent: view),
             EpilogueExplorer(parent: view)
 		]

@@ -8,11 +8,14 @@
 
 // TC = Thracian Sea
 
+double TCLambda(double v);
+
 typedef struct TCV2 {
     double x;
     double y;
 } TCV2;
 
+TCV2 TCV2Add(TCV2 a, TCV2 b);
 TCV2 TCV2Sub(TCV2 a, TCV2 b);
 TCV2 TCV2Mul(TCV2 a, double b);
 double TCV2LengthSquared(TCV2 a);
@@ -27,6 +30,7 @@ typedef struct TCVelocity {
 
 typedef struct TCMaxton {
     TCV2 o;
+    TCV2 e;
     TCV2 p;
     TCVelocity v;
     double q;
@@ -42,6 +46,7 @@ typedef struct TCPhoton {
     TCVelocity v;
     double q;
     double e;
+    char vOrh;
     unsigned char recycle;
 } TCPhoton;
 
@@ -85,7 +90,7 @@ typedef struct TCUniverse {
 TCUniverse* TCUniverseCreate(double width, double height, double c);
 void TCUniverseRelease(TCUniverse* universe);
 void TCUniverseTic(TCUniverse* universe);
-TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q);
+TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH);
 TCTeslon* TCUniverseCreateTeslon(TCUniverse* universe, double x, double y, double s, double q);
 TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, double s, double q);
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n);
