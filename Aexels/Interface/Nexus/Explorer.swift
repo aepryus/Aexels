@@ -30,9 +30,7 @@ class Explorer {
 		self.canExplore = canExplore
 	}
 	
-	func closeSize() -> CGSize {
-		return CGSize(width: 139, height: 60)
-	}
+    func closeSize() -> CGSize { CGSize(width: 139, height: 60) }
 	
 	func createLimbos() {}
 

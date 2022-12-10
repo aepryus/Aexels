@@ -7,24 +7,29 @@
 //
 
 import Acheron
+import OoviumKit
 import UIKit
 
 class ContractionExplorer: Explorer {
     let engine: DilationEngine
     lazy var dilationView: DilationView = DilationView(engine: engine)
     let dilationLimbo: Limbo = Limbo()
-    let pulseLimbo = LimboButton(title: "Pulse")
     let cSlider: CSlider = CSlider()
-    let cLimbo: Limbo = Limbo()
     let vSlider: VSlider = VSlider()
-    let vLimbo: Limbo = Limbo()
     let playButton: PlayButton = PlayButton()
     let resetButton: ResetButton = ResetButton()
-    let trailsSwap: SwapButton = SwapButton(expandHitBox: false)
-    let autoSwap: SwapButton = SwapButton(expandHitBox: false)
-    let contractSwap: SwapButton = SwapButton(expandHitBox: false)
+    let autoSwap: BoolButton = BoolButton(text: "auto")
+    let tailsSwap: BoolButton = BoolButton(text: "tails")
+    let contractSwap: BoolButton = BoolButton(text: "contract")
+    let pulseButton: PulseButton = PulseButton()
     let controlsLimbo: Limbo = Limbo()
+    let messageLimbo: MessageLimbo = MessageLimbo()
     let closeLimbo = LimboButton(title: "Close")
+    
+    let lightSpeedLabel: UILabel = UILabel()
+    let cLabel: UILabel = UILabel()
+    let velocityLabel: UILabel = UILabel()
+    let lambdaLabel: UILabel = UILabel()
 
     init(parent: UIView) {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -35,6 +40,12 @@ class ContractionExplorer: Explorer {
         engine = DilationEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen), horizontalOn: true)
 
         super.init(parent: parent, name: "Contraction", key: "Contraction", canExplore: true)
+
+        engine.onVelocityChange = { (v: TCVelocity) in
+            let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)
+            let sb = italicPen.format("λ = \(String(format: "%3.2f", TCLambda(self.engine.velocity)))")
+            self.lambdaLabel.attributedText = sb
+        }
     }
     
 // Events ==========================================================================================
@@ -54,23 +65,17 @@ class ContractionExplorer: Explorer {
         // DilationLimbo
         dilationLimbo.content = dilationView
         
-        // PulseLimbo
-        pulseLimbo.alpha = 0
-        pulseLimbo.addAction { [unowned self] in
-            self.engine.pulse()
-        }
-        
+        controlsLimbo.addSubview(cSlider)
         cSlider.onChange = { (speedOfLight: Double) in
             self.engine.speedOfLight = speedOfLight
         }
-        cLimbo.content = cSlider
                 
+        controlsLimbo.addSubview(vSlider)
         vSlider.onChange = { (velocity: Double) in
             self.engine.velocity = velocity
             self.engine.camera.pointee.v.s = abs(velocity)
             self.engine.camera.pointee.v.q = velocity > 0 ? .pi/2 : .pi*3/2
         }
-        vLimbo.content = vSlider
         
         playButton.playing = true
         controlsLimbo.addSubview(playButton)
@@ -85,14 +90,12 @@ class ContractionExplorer: Explorer {
         resetButton.addAction(for: .touchUpInside) { [unowned self] in
             self.playButton.stop()
             self.engine.reset()
-//            self.engine.camera = self.engine.createCamera()
-//            self.engine.camera = self.engine.createCamera(teleport: true)
             self.engine.tic()
         }
         
-        controlsLimbo.addSubview(trailsSwap)
-        trailsSwap.addAction(for: .touchUpInside) { [unowned self] in
-            self.trailsSwap.rotateView()
+        controlsLimbo.addSubview(tailsSwap)
+        tailsSwap.addAction(for: .touchUpInside) { [unowned self] in
+            self.tailsSwap.rotateView()
             self.engine.trailsOn = !self.engine.trailsOn
         }
 
@@ -107,6 +110,14 @@ class ContractionExplorer: Explorer {
             self.contractSwap.rotateView()
             self.engine.swapContract()
         }
+        
+        controlsLimbo.addSubview(pulseButton)
+        pulseButton.addAction {
+            self.engine.pulse()
+        }
+        
+        // MessageLimbo
+        messageLimbo.key = "ContractionLab"
 
         // CloseLimbo
         closeLimbo.alpha = 0
@@ -114,18 +125,35 @@ class ContractionExplorer: Explorer {
             self.closeExplorer()
             Aexels.nexus.brightenNexus()
         }
-                
+        
+        // Labels
+        let pen: Pen = Pen(font: .verdana(size: 15*s), color: .white, alignment: .center)
+        let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)
+        
+        var sb = pen.format("speed of light (c)")
+        lightSpeedLabel.attributedText = sb
+        controlsLimbo.addSubview(lightSpeedLabel)
+        
+        sb = italicPen.format("points per second")
+        cLabel.attributedText = sb
+        controlsLimbo.addSubview(cLabel)
+        
+        sb = pen.format("velocity (% of c)")
+        velocityLabel.attributedText = sb
+        controlsLimbo.addSubview(velocityLabel)
+        
+        sb = italicPen.format("λ = \(String(format: "%3.2f", TCLambda(engine.velocity)))")
+        lambdaLabel.attributedText = sb
+        controlsLimbo.addSubview(lambdaLabel)
+        
         limbos = [
             dilationLimbo,
-            pulseLimbo,
             controlsLimbo,
-            cLimbo,
-            vLimbo,
+            messageLimbo,
             closeLimbo
         ]
     }
     override func layout375x667() {
-//        gravityLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expLimbo.top-Screen.safeTop)
         closeLimbo.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: 139*s, height: 60*s)
     }
     override func layout1024x768() {
@@ -138,22 +166,31 @@ class ContractionExplorer: Explorer {
         let uw: CGFloat = height - 110*s
 
         dilationLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
-        pulseLimbo.bottomLeft(dx: p, dy: -botY, width: 176*s, height: 110*s)
         closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
 
-        cLimbo.bottomLeft(dx: pulseLimbo.right, dy: -botY, width: 176*s, height: 110*s)
-        vLimbo.bottomLeft(dx: cLimbo.right, dy: -botY, width: 176*s, height: 110*s)
-        controlsLimbo.bottomLeft(dx: vLimbo.right, dy: -botY, width: 266*s, height: 110*s)
+        controlsLimbo.bottomLeft(dx: p, dy: -botY, width: dilationLimbo.width, height: 110*s)
         closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
         
         let bw: CGFloat = 40*s
         playButton.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
         resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
-        trailsSwap.left(dx: resetButton.right+20*s, size: CGSize(width: 26*s, height: 26*s))
-        autoSwap.left(dx: trailsSwap.right+15*s, size: CGSize(width: 26*s, height: 26*s))
-        contractSwap.left(dx: autoSwap.right+15*s, size: CGSize(width: 26*s, height: 26*s))
+        cSlider.topLeft(dx: resetButton.right+15*s, dy: 58*s, width: 140*s, height: 40*s)
+        vSlider.topLeft(dx: cSlider.right+20*s, dy: 54*s, width: 140*s, height: 40*s)
+        autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
+        tailsSwap.left(dx: autoSwap.left)
+        contractSwap.left(dx: autoSwap.left, dy: 30*s)
+        pulseButton.right(dx: -15*s, width: 60*s, height: 80*s)
+
+        lightSpeedLabel.topLeft(dx: cSlider.left, dy: 20*s, width: cSlider.width, height: 20*s)
+        cLabel.topLeft(dx: cSlider.left, dy: 36*s, width: cSlider.width, height: 20*s)
+        velocityLabel.topLeft(dx: vSlider.left, dy: 20*s, width: vSlider.width, height: 20*s)
+        lambdaLabel.topLeft(dx: vSlider.left, dy: 36*s, width: vSlider.width, height: 20*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.5)
+
+        messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
+        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
+        messageLimbo.renderPaths()
     }
 }

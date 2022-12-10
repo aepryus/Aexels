@@ -22,11 +22,7 @@ class DilationEngine {
     var horizontal: UnsafeMutablePointer<TCTeslon>?
     var camera: UnsafeMutablePointer<TCCamera>
     
-    var maxtonImage: UIImage?
-    var maxtonTailImage: UIImage?
-    var photonImage: UIImage?
-    var photonTailImage: UIImage?
-    var teslonImage: UIImage?
+    var onVelocityChange: ((TCVelocity)->())?
     
     private let queue: DispatchQueue = DispatchQueue(label: "dilation")
     private let iterations: Int = ProcessInfo.processInfo.activeProcessorCount + 1
@@ -42,8 +38,6 @@ class DilationEngine {
         vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
         camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
         if horizontalOn { initializeHorizontal() }
-        
-//        renderLoops()
     }
     deinit { TCUniverseRelease(universe) }
     
@@ -59,12 +53,9 @@ class DilationEngine {
             camera.pointee.v = v
             positionHorizontal()
             tic()
+            onVelocityChange?(v)
         }
     }
-    
-    //    func createCamera(teleport: Bool = false) -> UnsafeMutablePointer<TCCamera> {
-    //        TCUniverseCreateCamera(universe, size.width/2, size.height/2, teleport ? 0 : velocity, .pi/2)
-    //    }
     
     func initializeHorizontal() {
         horizontal = TCUniverseCreateTeslon(universe, size.width/2 + size.height/4, size.height/2, velocity, .pi/2)
@@ -84,12 +75,6 @@ class DilationEngine {
         TCTeslonRelease(source)
         TCTeslonRelease(vertical)
         if horizontalOn { TCTeslonRelease(horizontal) }
-        
-        //        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*Screen.s : 0)
-        //        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*Screen.s : 0)
-        //        let height = Screen.height - topY - botY
-        //        let s = height / 748
-        //        let uw: CGFloat = height - 110*s - 46*s
         
         universe = TCUniverseCreate(size.width, size.height, 1)
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
@@ -132,87 +117,6 @@ class DilationEngine {
     var image: UIImage?
     private var back: UIImage?
     private var fore: UIImage?
-    
-//    func renderLoops() {
-//        let size: CGSize = CGSize(width: 20, height: 20)
-//
-//        // Maxton ==================================================================================
-//        UIGraphicsBeginImageContext(size)
-//        var c: CGContext = UIGraphicsGetCurrentContext()!
-//
-//        var path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(x: 9, y: 9, width: 2, height: 2), transform: nil)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.green.tint(0.7).tone(0.5).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        self.maxtonImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//
-//        // MaxtonTail ==============================================================================
-//        UIGraphicsBeginImageContext(size)
-//        c = UIGraphicsGetCurrentContext()!
-//
-//        path = CGMutablePath()
-//        let o: CGPoint = CGPoint(x: 9.5, y: 20)
-//        let p: CGPoint = CGPoint(x: 9.5, y: 10)
-//        path.move(to: o)
-//        path.addLine(to: p)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.green.tone(0.3).tint(0.4).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        path = CGMutablePath(ellipseIn: CGRect(x: 9, y: 9, width: 2, height: 2), transform: nil)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.green.tint(0.7).tone(0.5).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        self.maxtonTailImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//
-//        // Photon ==================================================================================
-//        UIGraphicsBeginImageContext(size)
-//        c = UIGraphicsGetCurrentContext()!
-//
-//        path = CGMutablePath(ellipseIn: CGRect(x: 9, y: 9, width: 2, height: 2), transform: nil)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.red.tint(0.7).tone(0.5).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        self.photonImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//
-//        // PhotonTail ==============================================================================
-//        UIGraphicsBeginImageContext(size)
-//        c = UIGraphicsGetCurrentContext()!
-//
-//        path = CGMutablePath()
-//        path.move(to: o)
-//        path.addLine(to: p)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.red.tone(0.3).tint(0.4).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        path = CGMutablePath(ellipseIn: CGRect(x: 9, y: 9, width: 2, height: 2), transform: nil)
-//        c.addPath(path)
-//        c.setStrokeColor(UIColor.red.tint(0.7).tone(0.5).cgColor)
-//        c.drawPath(using: .stroke)
-//
-//        self.photonTailImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//
-//        // Teslon ==================================================================================
-//        UIGraphicsBeginImageContext(size)
-//        c = UIGraphicsGetCurrentContext()!
-//
-//        path = CGMutablePath(ellipseIn: CGRect(origin: .zero, size: size), transform: nil)
-//        c.addPath(path)
-//        c.setFillColor(UIColor.blue.tone(0.3).tint(0.7).cgColor)
-//        c.setStrokeColor(UIColor.blue.tone(0.3).tint(0.4).cgColor)
-//        c.drawPath(using: .fillStroke)
-//
-//        self.teslonImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//    }
     
     func renderBack() {
         let d: CGFloat = 10.0*s
@@ -274,21 +178,6 @@ class DilationEngine {
         UIGraphicsEndImageContext()
     }
     
-//    DispatchQueue.global(qos: .userInitiated).async {
-//        DispatchQueue.concurrentPerform(iterations: self.iterations, execute: { (i: Int) in
-//            AXAutomataStep(self.automatas[i], self.cells, self.next, Int32(i*self.stride), Int32(i == self.iterations-1 ? self.side : (i+1)*self.stride))
-//        })
-//
-//        (self.cells, self.next) = (self.next, self.cells)
-//
-////            let end = DispatchTime.now()
-////            let delta = Double(end.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
-////            print("    calculate:\t\(delta) or \(round(1/delta)) SPS")
-//        self.working = false
-//        complete()
-//    }
-
-    
     private func findEnds(from: Int, to: Int) {
         let ll: CGFloat = 10
 
@@ -320,7 +209,6 @@ class DilationEngine {
         
         if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
 
-        let dp: CGPoint = CGPoint(x: -10, y: -10)
         let ll: CGFloat = 10
         
         let noOfMaxtons: Int = Int(universe.pointee.maxtonCount)

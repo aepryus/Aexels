@@ -82,6 +82,8 @@
 		D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */; };
 		D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18132814F59D00E74CB8 /* Ionian.c */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
+		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
+		D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +164,8 @@
 		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
+		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
+		D8D2E1272944BC4E00EC1719 /* BoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButton.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -504,6 +508,8 @@
 			children = (
 				D8C1CC0A293D76D9001881F5 /* CSlider.swift */,
 				D850F449293EEDD60091F15A /* VSlider.swift */,
+				D8D2E1252944592900EC1719 /* PulseButton.swift */,
+				D8D2E1272944BC4E00EC1719 /* BoolButton.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -651,12 +657,14 @@
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
+				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,
 				D8AE17DD2814F1EC00E74CB8 /* Limbo.swift in Sources */,
+				D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */,
 				D8AE17CC2814F1C700E74CB8 /* NexusViewController.swift in Sources */,
 				D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */,
 				D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */,

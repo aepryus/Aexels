@@ -25,6 +25,6 @@ class AXButton: UIControl {
 		return inside
 	}
 	override var isHighlighted: Bool {
-		didSet {setNeedsDisplay()}
+		didSet { setNeedsDisplay() }
 	}
 }
