@@ -34,7 +34,13 @@ class DilationExplorer: Explorer {
     let lambdaLabel: UILabel = UILabel()
     
     var cameraOn: Bool = true
-    
+
+    let swapper: Limbo = Limbo()
+    let swapButton: SwapButton = SwapButton()
+    var first: [Limbo] = []
+    var second: [Limbo] = []
+    var isFirst: Bool = true
+
 	init(parent: UIView) {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
         let s: CGFloat = height / 748
@@ -136,7 +142,7 @@ class DilationExplorer: Explorer {
             self.engine.autoOn = !self.engine.autoOn
         }
 
-        controlsLimbo.addSubview(cameraSwap)
+        if !Screen.iPhone { controlsLimbo.addSubview(cameraSwap) }
         cameraSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.cameraSwap.rotateView()
             self.swapCamera()
@@ -149,6 +155,29 @@ class DilationExplorer: Explorer {
 
         // MessageLimbo
         messageLimbo.key = "DilationLab"
+
+        // Swapper =========================
+        if Screen.iPhone {
+            swapButton.addAction(for: .touchUpInside) { [unowned self] in
+                self.swapButton.rotateView()
+                if self.isFirst {
+                    self.isFirst = false
+                    self.dimLimbos(self.first)
+                    self.brightenLimbos(self.second)
+                    self.limbos = [self.swapper] + self.second + [self.closeLimbo]
+                } else {
+                    self.isFirst = true
+                    self.dimLimbos(self.second)
+                    self.brightenLimbos(self.first)
+                    self.limbos = [self.swapper] + self.first + [self.closeLimbo]
+                }
+                self.swapper.removeFromSuperview()
+                self.parent.addSubview(self.swapper)
+                self.closeLimbo.removeFromSuperview()
+                self.parent.addSubview(self.closeLimbo)
+            }
+            swapper.content = swapButton
+        }
 
         // CloseLimbo
         closeLimbo.alpha = 0
@@ -177,16 +206,53 @@ class DilationExplorer: Explorer {
         lambdaLabel.attributedText = sb
         controlsLimbo.addSubview(lambdaLabel)
 
-        limbos = [
-            dilationLimbo,
-            fixedDilationLimbo,
-            controlsLimbo,
-            messageLimbo,
-            closeLimbo
-        ]
+        if Screen.iPhone {
+            first = [messageLimbo]
+            second = [dilationLimbo, controlsLimbo]
+            brightenLimbos(first)
+            limbos = [swapper] + first + [closeLimbo]
+        } else {
+            limbos = [
+                dilationLimbo,
+                fixedDilationLimbo,
+                controlsLimbo,
+                messageLimbo,
+                closeLimbo
+            ]
+        }
     }
     override func layout375x667() {
-        closeLimbo.bottomRight(dx: -5*s, dy: -Screen.safeBottom, width: 139*s, height: 60*s)
+        let size = UIScreen.main.bounds.size
+        
+        let w = size.width - 10*s
+
+        controlsLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
+        controlsLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+        controlsLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+        controlsLimbo.renderPaths()
+
+        dilationLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: controlsLimbo.top-Screen.safeTop)
+
+        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+        messageLimbo.renderPaths()
+        
+        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
+        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
+        
+        playButton.topLeft(dx: 12*s, dy: 12*s, size: CGSize(width: 40*s, height: 30*s))
+        resetButton.topLeft(dx: 15*s, dy: playButton.bottom+2*s, size: CGSize(width: 40*s, height: 30*s))
+        cSlider.topLeft(dx: resetButton.right+18*s, dy: 94*s, width: 136*s, height: 40*s)
+        vSlider.topLeft(dx: cSlider.left, dy: 27*s, width: cSlider.width, height: cSlider.height)
+        autoSwap.topLeft(dx: vSlider.right+19*s, dy: 12*s)
+        tailsSwap.topLeft(dx: autoSwap.left, dy: 42*s)
+        pulseButton.topRight(dx: -12*s, dy: 10*s, width: 45*s, height: 60*s)
+
+        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.top-26*s, width: cSlider.width, height: 20*s)
+        cLabel.topLeft(dx: cSlider.left, dy: lightSpeedLabel.bottom-5*s, width: cSlider.width, height: 20*s)
+        velocityLabel.topLeft(dx: vSlider.left, dy: 8*s, width: vSlider.width, height: 20*s)
+        lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-5*s, width: vSlider.width, height: 20*s)
     }
     override func layout1024x768() {
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)

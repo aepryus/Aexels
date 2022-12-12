@@ -165,7 +165,6 @@ class GravityExplorer: Explorer {
 				self.parent.addSubview(self.closeLimbo)
 			}
 			swapper.content = swapButton
-			limbos.append(swapper)
 		}
 
 		// CloseLimbo
