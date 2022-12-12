@@ -21,7 +21,7 @@ class PulseButton: AXButton {
 // UIView ==========================================================================================
     override func draw(_ rect: CGRect) {
         
-        let ss: CGFloat = rect.width/60
+        let ss: CGFloat = rect.width/60/Screen.s
         
         let c = UIGraphicsGetCurrentContext()!
 

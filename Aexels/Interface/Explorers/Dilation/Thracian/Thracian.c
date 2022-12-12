@@ -134,7 +134,7 @@ void TCUniverseTic(TCUniverse* universe) {
         }
         
         if (
-            TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 100 &&
+            TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 49 &&
             TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))
         ) {
             universe->maxtons[i]->recycle = 1;
