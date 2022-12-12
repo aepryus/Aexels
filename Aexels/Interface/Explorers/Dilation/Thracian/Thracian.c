@@ -168,20 +168,21 @@ void TCUniverseTic(TCUniverse* universe) {
                 velocity.s = maxton->v.s;
                 
                 double c = universe->c;
-                double v = universe->teslons[2]->v.s;
+                double v = universe->teslons[2]->v.s*(universe->teslons[2]->v.q == M_PI/2 ? 1 : -1);
                 double x = maxton->p.y - universe->teslons[2]->p.y;
                 if (x == 0) {
                     velocity.q = M_PI+maxton->v.q;
                 } else {
-                    double theta = M_PI - maxton->v.q;
+                    double theta = M_PI/2 - fabs(M_PI/2 - maxton->v.q);
                     double z = x / cos(theta);
                     double t1 = z / c;
                     double y = x * tan(theta);
                     double p = v * t1;
                     double r = y - p;
+                    double s = fabs(x)/x;
                     double phi = atan2(
                         (-v*x + c*c*r*r*v*x/(c*c*r*r+c*c*x*x) + c*r*sqrt(-c*c*x*x*(-c*c*r*r-c*c*x*x+v*v*x*x))/(c*c*r*r+c*c*x*x))/(c*x),
-                        (c*r*v*x + sqrt(c*c*c*c*r*r*x*x+c*c*c*c*x*x*x*x-c*c*v*v*x*x*x*x))/(c*c*r*r+c*c*x*x)
+                        s*(c*r*v*x + sqrt(c*c*c*c*r*r*x*x+c*c*c*c*x*x*x*x-c*c*v*v*x*x*x*x))/(c*c*r*r+c*c*x*x)
                     );
                     velocity.q = M_PI+phi;
                 }

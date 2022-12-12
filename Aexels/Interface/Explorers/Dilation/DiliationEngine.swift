@@ -233,7 +233,7 @@ class DilationEngine {
                 let maxton: UnsafeMutablePointer<TCMaxton> = universe.pointee.maxtons![i]!
                 let center: CGPoint = CGPoint(x: dx+maxton.pointee.p.x, y: dy+maxton.pointee.p.y)
                 if !trailsOn {
-                    let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1, y: -1), size: CGSize(width: 2, height: 2)), transform: nil)
+                    let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)), transform: nil)
                     c.addPath(path)
                     c.setStrokeColor(UIColor.green.tone(0.7).tint(0.5).cgColor)
                     c.drawPath(using: .stroke)
@@ -247,7 +247,7 @@ class DilationEngine {
                     path.move(to: e)
                     path.addLine(to: p)
 
-                    path.addEllipse(in: CGRect(origin: center+CGPoint(x: -1, y: -1), size: CGSize(width: 2, height: 2)))
+                    path.addEllipse(in: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)))
                     c.addPath(path)
                     c.setStrokeColor(UIColor.green.tone(0.7).tint(0.5).cgColor)
                     c.drawPath(using: .stroke)
@@ -259,7 +259,7 @@ class DilationEngine {
             let photon: UnsafeMutablePointer<TCPhoton> = universe.pointee.photons![i]!
             let center: CGPoint = CGPoint(x: dx+photon.pointee.p.x, y: dy+photon.pointee.p.y)
             if !trailsOn {
-                let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1, y: -1), size: CGSize(width: 2, height: 2)), transform: nil)
+                let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)), transform: nil)
                 c.addPath(path)
                 c.setStrokeColor(UIColor.red.tint(0.5).cgColor)
                 c.drawPath(using: .stroke)
@@ -271,7 +271,7 @@ class DilationEngine {
                 path.move(to: p+(o-p).unit()*ll)
                 path.addLine(to: p)
 
-                path.addEllipse(in: CGRect(origin: center+CGPoint(x: -1, y: -1), size: CGSize(width: 2, height: 2)))
+                path.addEllipse(in: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)))
                 c.addPath(path)
                 c.setStrokeColor(UIColor.red.tint(0.5).cgColor)
                 c.drawPath(using: .stroke)
