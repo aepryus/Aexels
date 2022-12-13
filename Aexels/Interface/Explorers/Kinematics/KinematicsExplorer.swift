@@ -38,7 +38,7 @@ class KinematicsExplorer: Explorer {
 
 	var first = [Limbo]()
 	var second = [Limbo]()
-	var isFirst: Bool = true
+	var isFirst: Bool = false
 
 	init(parent: UIView) {
 		
@@ -297,12 +297,12 @@ class KinematicsExplorer: Explorer {
 		zoneD.addSubview(expAButton)
 		zoneD.addSubview(expBButton)
 
-		first = [message]
-		second = [universe, zoneA, zoneB, zoneC, zoneD]
 		
 		if Screen.iPhone {
-			brightenLimbos(first)
-			limbos = [swapper] + first + [close]
+            first = [message]
+            second = [universe, zoneA, zoneB, zoneC, zoneD]
+			brightenLimbos(second)
+			limbos = [swapper] + second + [close]
 		} else {
 			limbos = [swapper, universe, zoneA, zoneB, zoneC, zoneD, message, close]
 		}

@@ -43,7 +43,7 @@ class GravityExplorer: Explorer {
 	let swapButton: SwapButton = SwapButton()
 	var first = [Limbo]()
 	var second = [Limbo]()
-	var isFirst: Bool = true
+	var isFirst: Bool = false
 
 	init(parent: UIView) {
 		super.init(parent: parent, name: "Gravity", key: "Gravity", canExplore: true)
@@ -177,8 +177,8 @@ class GravityExplorer: Explorer {
 		if Screen.iPhone {
 			first = [messageLimbo]
 			second = [gravityLimbo, expLimbo]
-			brightenLimbos(first)
-			limbos = [swapper] + first + [closeLimbo]
+			brightenLimbos(second)
+			limbos = [swapper] + second + [closeLimbo]
 		} else {
 			limbos = [gravityLimbo, expLimbo, messageLimbo, closeLimbo];
 		}

@@ -33,13 +33,13 @@ class DilationExplorer: Explorer {
     let velocityLabel: UILabel = UILabel()
     let lambdaLabel: UILabel = UILabel()
     
-    var cameraOn: Bool = true
+    var cameraOn: Bool = false
 
     let swapper: Limbo = Limbo()
     let swapButton: SwapButton = SwapButton()
     var first: [Limbo] = []
     var second: [Limbo] = []
-    var isFirst: Bool = true
+    var isFirst: Bool = false
 
 	init(parent: UIView) {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -230,12 +230,11 @@ class DilationExplorer: Explorer {
         if Screen.iPhone {
             first = [messageLimbo]
             second = [dilationLimbo, controlsLimbo]
-            brightenLimbos(first)
-            limbos = [swapper] + first + [closeLimbo]
+            brightenLimbos(second)
+            limbos = [swapper] + second + [closeLimbo]
         } else {
             limbos = [
                 dilationLimbo,
-                fixedDilationLimbo,
                 controlsLimbo,
                 messageLimbo,
                 closeLimbo
@@ -311,7 +310,7 @@ class DilationExplorer: Explorer {
         velocityLabel.topLeft(dx: vSlider.left, dy: vSlider.bottom-8*s, width: vSlider.width, height: 20*s)
         lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-2*s, width: vSlider.width, height: 20*s)
 
-        messageLimbo.frame = CGRect(x: dilationLimbo.right, y: fixedDilationLimbo.bottom, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-fixedDilationLimbo.bottom)
+        messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
         messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
         messageLimbo.renderPaths()
 

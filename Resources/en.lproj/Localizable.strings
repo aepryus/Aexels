@@ -682,7 +682,7 @@ More about learning how to use the Oovium visual programming language including 
 
 ";
 
-"KinematicsLab" = "Kinematics
+"KinematicsLab" = "Kinematics Lab
 
 Motion in our own universe can be described entirely by a vector which represents the velocity of a given object.  In Universe X, however there are two distinct forms of motion: translation across the aether and the flow of the aether itself.  In order to fully describe motion in Universe X, one must know both the translating vector and the aethereal flow vector, as well as the density and geometry of the aexels themselves.
 
@@ -728,6 +728,63 @@ Currently, this model does a respectable job of healing holes in the aethereal f
 
 ";
 
+"DilationLab" = "Dilation Lab
+
+Cheat Sheet:
+    - Play / Pause: to pause and unpause the simulation
+    - Reset: to clear the simulation and restart with current settings
+    - Speed of Light: define the speed of light in points (pixels) per second.
+    - Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+    - Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+    - Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+    - Fixed: Turns on/off the fixed camera that moves with the aexels instead of the teslons.  (although jumps ahead when the teslon leaves the screen.)
+    - Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+
+In our Universe 'Time Dilation' is a very magical phenomena.  'Time' itself is dilating.  There are no special frames of reference and the observations of different systems is a function of the observers themselves rather than being based on fundemental physical processes.  The Twin paradox is an actual paradox in our Universe.
+
+In Universe X however, 'Dilation' is not magical at all.  First of all, 'Time' does not dilate, but rather the rate at which physical systems animate.  In Universe X this rate of animation has nothing to do with the relative speed difference between different frames of reference, but is entirely based solely on the rate of translation of various systems across the aexel field.
+
+In Universe X 'Dilation' is in no way dependent on an observer; each system experiences a specific `Dilation` entirely and solely a function of it's rate of translation across the aexel field.
+
+This dilation in Universe X has a physical basis; it is caused by the slow down of 'edison' (loops that move at the speed of light) messengers traveling between the 'teslons' (loops that move at less than the speed of light).
+
+This laboratory gives a viceral description of the process of dilation in Universe X.  As the rate of translation of a system of teslons (the blue circles) increases the amount of time it takes a signal to move back and forth increases.
+
+This simulation knows nothing about the equations of relativity.  It simply shows teslons moving at a velocity v as a percent of c (as specified by the user) and edisons moving at velocity c.  From these simple rules 'dilation' naturally appears.
+
+In playing with the simulation try to observe the increased distance that must be traveled between the teslons as the rate of translation increases.  Be particularly cognizant of the direction of translation of edisons as the move back and forth.
+
+Note:
+In this simulation the individual aexels are not being modeled, only the flow of the aexel field in general.  Electromagnetic phenemena as being illustrated here works at a much larger scale than the aexels and as such the continuous approximation is a fair representation of reality.  For example, if each aexel were one meter across, than the radius of a proton would extend beyond the orbit of Venus.
+
+Twin Paradox
+Let's imagine I have a set of twins and two spaceships, P and Q.  The spaceships are docked to one another and each twin gets into one.  Now imagine the following 3 situations:
+
+    - [1] P stays right there, Q accelerates to 0.9 c travels for a year and then turns around coming back.
+    - [2] P accelerates to 0.9 c in the opposite direction, travels for a year and then turns around coming back.
+    - [3] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around coming back.
+
+For each of the 3 scenarios which twin is older?  Are the results the same for all the scenarios?  If not how do the scenarios differ at all?
+
+In our universe all motion is relative.  There are no special frames of reference.  Thus answering this question can be very tricky and thusly the Twin Paradox is a paradox.
+
+In Universe X however, answering the above is relatively straight forward, however it is not possible without one additional piece of data: How fast where the twins translating across the aexel field initially?
+
+For example, if when they were docked they weren't traveling across the aexel field at all.  Then the answers would be [1] P is older; [2] Q is older; [3] P and Q are still the same age.
+
+However, if the twins had been translating across the aexels inititally than the answers could be entirely different.  Without knowing the initial rate of translation it is impossible to answer the question, but once you do know the initial rate of translation and the direction the spaceships travel relative to the direction of that translation it becomes straightforward to calculte the relative ages of the twins.
+
+In Universe X, there is no Twin Paradox.
+
+
+
+
+";
+
+"ContractionLab" = "Contraction Lab
+
+
+";
 
 /*
  Localizable.strings

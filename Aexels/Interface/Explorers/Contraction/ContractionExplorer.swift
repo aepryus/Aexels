@@ -35,7 +35,7 @@ class ContractionExplorer: Explorer {
     let swapButton: SwapButton = SwapButton()
     var first: [Limbo] = []
     var second: [Limbo] = []
-    var isFirst: Bool = true
+    var isFirst: Bool = false
 
     init(parent: UIView) {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -178,8 +178,8 @@ class ContractionExplorer: Explorer {
         if Screen.iPhone {
             first = [messageLimbo]
             second = [dilationLimbo, controlsLimbo]
-            brightenLimbos(first)
-            limbos = [swapper] + first + [closeLimbo]
+            brightenLimbos(second)
+            limbos = [swapper] + second + [closeLimbo]
         } else {
             limbos = [
                 dilationLimbo,
