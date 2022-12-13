@@ -179,7 +179,7 @@ void TCUniverseTic(TCUniverse* universe) {
                     double y = x * tan(theta);
                     double p = v * t1;
                     double r = y - p;
-                    double s = fabs(x)/x;
+                    double s = maxton->v.q > M_PI/2 ? 1 : -1;
                     double phi = atan2(
                         (-v*x + c*c*r*r*v*x/(c*c*r*r+c*c*x*x) + c*r*sqrt(-c*c*x*x*(-c*c*r*r-c*c*x*x+v*v*x*x))/(c*c*r*r+c*c*x*x))/(c*x),
                         s*(c*r*v*x + sqrt(c*c*c*c*r*r*x*x+c*c*c*c*x*x*x*x-c*c*v*v*x*x*x*x))/(c*c*r*r+c*c*x*x)

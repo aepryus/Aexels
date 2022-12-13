@@ -13,6 +13,7 @@ class DilationEngine {
     let size: CGSize
     
     var autoOn: Bool = true
+    var tailsOn: Bool = true
     var contractOn: Bool = true
     let horizontalOn: Bool
     
@@ -108,8 +109,6 @@ class DilationEngine {
     func stop() { Aexels.sync.stop() }
     
     // Render Image ====================================================================================
-    
-    var trailsOn: Bool = false
     
     private var s: CGFloat { Screen.s }
     var renderMode: RenderMode = .started
@@ -213,7 +212,7 @@ class DilationEngine {
         
         let noOfMaxtons: Int = Int(universe.pointee.maxtonCount)
         if noOfMaxtons > 0 {
-            if trailsOn {
+            if tailsOn {
                 let stride: Int = noOfMaxtons / iterations + (noOfMaxtons % iterations == 0 ? 0 : 1)
                 let iterations: Int = noOfMaxtons / stride + (noOfMaxtons % stride == 0 ? 0 : 1)
                 
@@ -232,7 +231,7 @@ class DilationEngine {
             for i in 0..<Int(universe.pointee.maxtonCount) {
                 let maxton: UnsafeMutablePointer<TCMaxton> = universe.pointee.maxtons![i]!
                 let center: CGPoint = CGPoint(x: dx+maxton.pointee.p.x, y: dy+maxton.pointee.p.y)
-                if !trailsOn {
+                if !tailsOn {
                     let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)), transform: nil)
                     c.addPath(path)
                     c.setStrokeColor(UIColor.green.tone(0.7).tint(0.5).cgColor)
@@ -258,7 +257,7 @@ class DilationEngine {
         for i in 0..<Int(universe.pointee.photonCount) {
             let photon: UnsafeMutablePointer<TCPhoton> = universe.pointee.photons![i]!
             let center: CGPoint = CGPoint(x: dx+photon.pointee.p.x, y: dy+photon.pointee.p.y)
-            if !trailsOn {
+            if !tailsOn {
                 let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)), transform: nil)
                 c.addPath(path)
                 c.setStrokeColor(UIColor.red.tint(0.5).cgColor)

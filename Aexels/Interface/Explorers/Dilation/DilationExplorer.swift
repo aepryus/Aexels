@@ -22,7 +22,7 @@ class DilationExplorer: Explorer {
     let resetButton: ResetButton = ResetButton()
     let autoSwap: BoolButton = BoolButton(text: "auto")
     let tailsSwap: BoolButton = BoolButton(text: "tails")
-    let cameraSwap: BoolButton = BoolButton(text: "camera")
+    let cameraSwap: BoolButton = BoolButton(text: "fixed")
     let pulseButton: PulseButton = PulseButton()
     let controlsLimbo: Limbo = Limbo()
     let messageLimbo: MessageLimbo = MessageLimbo()
@@ -61,32 +61,54 @@ class DilationExplorer: Explorer {
     func swapCamera() {
         self.cameraOn = !cameraOn
         
-        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-        let height = Screen.height - topY - botY
-        let s = height / 748
-        
-        let p: CGFloat = 5*s
+        if !Screen.iPhone {
+            let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+            let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+            let height = Screen.height - topY - botY
+            let s = height / 748
+            
+            let p: CGFloat = 5*s
 
-        if self.cameraOn {
-            messageLimbo.frame = CGRect(x: dilationLimbo.right, y: fixedDilationLimbo.bottom, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-fixedDilationLimbo.bottom)
-            brightenLimbos([fixedDilationLimbo])
-            limbos = [
-                dilationLimbo,
-                fixedDilationLimbo,
-                controlsLimbo,
-                messageLimbo,
-                closeLimbo
-            ]
+            if self.cameraOn {
+                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: fixedDilationLimbo.bottom, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-fixedDilationLimbo.bottom)
+                brightenLimbos([fixedDilationLimbo])
+                limbos = [
+                    dilationLimbo,
+                    fixedDilationLimbo,
+                    controlsLimbo,
+                    messageLimbo,
+                    closeLimbo
+                ]
+            } else {
+                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: Screen.safeTop + (Screen.mac ? 5*s : 0), width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
+                dimLimbos([fixedDilationLimbo])
+                limbos = [
+                    dilationLimbo,
+                    controlsLimbo,
+                    messageLimbo,
+                    closeLimbo
+                ]
+            }
         } else {
-            messageLimbo.frame = CGRect(x: dilationLimbo.right, y: Screen.safeTop + (Screen.mac ? 5*s : 0), width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
-            dimLimbos([fixedDilationLimbo])
-            limbos = [
-                dilationLimbo,
-                controlsLimbo,
-                messageLimbo,
-                closeLimbo
-            ]
+            if self.cameraOn {
+                dimLimbos([dilationLimbo])
+                brightenLimbos([fixedDilationLimbo])
+                limbos = [
+                    fixedDilationLimbo,
+                    controlsLimbo,
+                    messageLimbo,
+                    closeLimbo
+                ]
+            } else {
+                dimLimbos([fixedDilationLimbo])
+                brightenLimbos([dilationLimbo])
+                limbos = [
+                    dilationLimbo,
+                    controlsLimbo,
+                    messageLimbo,
+                    closeLimbo
+                ]
+            }
         }
     }
     
@@ -99,7 +121,6 @@ class DilationExplorer: Explorer {
     override func createLimbos() {
         // DilationLimbo
         dilationLimbo.content = dilationView
-        engine.trailsOn = true
         fixedDilationLimbo.content = fixedDilationView
         
         controlsLimbo.addSubview(cSlider)
@@ -133,7 +154,7 @@ class DilationExplorer: Explorer {
         controlsLimbo.addSubview(tailsSwap)
         tailsSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.tailsSwap.rotateView()
-            self.engine.trailsOn = !self.engine.trailsOn
+            self.engine.tailsOn = !self.engine.tailsOn
         }
 
         controlsLimbo.addSubview(autoSwap)
@@ -142,7 +163,7 @@ class DilationExplorer: Explorer {
             self.engine.autoOn = !self.engine.autoOn
         }
 
-        if !Screen.iPhone { controlsLimbo.addSubview(cameraSwap) }
+        controlsLimbo.addSubview(cameraSwap)
         cameraSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.cameraSwap.rotateView()
             self.swapCamera()
@@ -222,16 +243,15 @@ class DilationExplorer: Explorer {
         }
     }
     override func layout375x667() {
-        let size = UIScreen.main.bounds.size
-        
-        let w = size.width - 10*s
+        let w = UIScreen.main.bounds.size.width - 10*s
 
-        controlsLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
+        controlsLimbo.frame = CGRect(x: 5*s, y: Screen.height-180*s-Screen.safeBottom, width: w, height: 180*s)
         controlsLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
         controlsLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
         controlsLimbo.renderPaths()
 
         dilationLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: controlsLimbo.top-Screen.safeTop)
+        fixedDilationLimbo.frame = dilationLimbo.frame
 
         messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
         messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
@@ -241,18 +261,22 @@ class DilationExplorer: Explorer {
         swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
         closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
         
-        playButton.topLeft(dx: 12*s, dy: 12*s, size: CGSize(width: 40*s, height: 30*s))
-        resetButton.topLeft(dx: 15*s, dy: playButton.bottom+2*s, size: CGSize(width: 40*s, height: 30*s))
-        cSlider.topLeft(dx: resetButton.right+18*s, dy: 94*s, width: 136*s, height: 40*s)
-        vSlider.topLeft(dx: cSlider.left, dy: 27*s, width: cSlider.width, height: cSlider.height)
-        autoSwap.topLeft(dx: vSlider.right+19*s, dy: 12*s)
-        tailsSwap.topLeft(dx: autoSwap.left, dy: 42*s)
-        pulseButton.topRight(dx: -12*s, dy: 10*s, width: 45*s, height: 60*s)
+        playButton.topLeft(dx: 12*s, dy: 28*s, size: CGSize(width: 40*s, height: 30*s))
+        resetButton.topLeft(dx: 15*s, dy: playButton.bottom+12*s, size: CGSize(width: 40*s, height: 30*s))
+        cSlider.topLeft(dx: resetButton.right+18*s, dy: 96*s, width: 136*s, height: 40*s)
+        vSlider.topLeft(dx: cSlider.left-6*s, dy: 16*s, width: cSlider.width, height: cSlider.height)
+        autoSwap.topLeft(dx: vSlider.right+16*s, dy: 16*s)
+        tailsSwap.topLeft(dx: autoSwap.left, dy: autoSwap.bottom+3*s)
+        cameraSwap.topLeft(dx: autoSwap.left, dy: tailsSwap.bottom+3*s)
+        pulseButton.topRight(dx: -16*s, dy: 21*s, width: 45*s, height: 80*s)
 
-        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.top-26*s, width: cSlider.width, height: 20*s)
+        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.bottom-8*s, width: cSlider.width, height: 20*s)
         cLabel.topLeft(dx: cSlider.left, dy: lightSpeedLabel.bottom-5*s, width: cSlider.width, height: 20*s)
-        velocityLabel.topLeft(dx: vSlider.left, dy: 8*s, width: vSlider.width, height: 20*s)
+        velocityLabel.topLeft(dx: vSlider.left, dy: vSlider.bottom-7*s, width: vSlider.width, height: 20*s)
         lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-5*s, width: vSlider.width, height: 20*s)
+
+        cSlider.setTo(60)
+        vSlider.setTo(0.5)
     }
     override func layout1024x768() {
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -275,23 +299,23 @@ class DilationExplorer: Explorer {
         let bw: CGFloat = 40*s
         playButton.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
         resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
-        cSlider.topLeft(dx: resetButton.right+15*s, dy: 58*s, width: 140*s, height: 40*s)
-        vSlider.topLeft(dx: cSlider.right+20*s, dy: 54*s, width: 140*s, height: 40*s)
+        cSlider.topLeft(dx: resetButton.right+18*s, dy: 16*s, width: 140*s, height: 40*s)
+        vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
         autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
         tailsSwap.left(dx: autoSwap.left)
         cameraSwap.left(dx: autoSwap.left, dy: 30*s)
         pulseButton.right(dx: -15*s, width: 60*s, height: 80*s)
 
-        lightSpeedLabel.topLeft(dx: cSlider.left, dy: 20*s, width: cSlider.width, height: 20*s)
-        cLabel.topLeft(dx: cSlider.left, dy: 36*s, width: cSlider.width, height: 20*s)
-        velocityLabel.topLeft(dx: vSlider.left, dy: 20*s, width: vSlider.width, height: 20*s)
-        lambdaLabel.topLeft(dx: vSlider.left, dy: 36*s, width: vSlider.width, height: 20*s)
-
-        cSlider.setTo(60)
-        vSlider.setTo(0.5)
+        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.bottom-8*s, width: cSlider.width, height: 20*s)
+        cLabel.topLeft(dx: cSlider.left, dy: lightSpeedLabel.bottom-2*s, width: cSlider.width, height: 20*s)
+        velocityLabel.topLeft(dx: vSlider.left, dy: vSlider.bottom-8*s, width: vSlider.width, height: 20*s)
+        lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-2*s, width: vSlider.width, height: 20*s)
 
         messageLimbo.frame = CGRect(x: dilationLimbo.right, y: fixedDilationLimbo.bottom, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-fixedDilationLimbo.bottom)
         messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
         messageLimbo.renderPaths()
+
+        cSlider.setTo(60)
+        vSlider.setTo(0.5)
     }
 }
