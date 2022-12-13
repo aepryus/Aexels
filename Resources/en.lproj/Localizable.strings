@@ -783,6 +783,48 @@ In Universe X, there is no Twin Paradox.
 
 "ContractionLab" = "Contraction Lab
 
+Cheat Sheet:
+    - Play / Pause: to pause and unpause the simulation
+    - Reset: to clear the simulation and restart with current settings
+    - Speed of Light: define the speed of light in points (pixels) per second.
+    - Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+    - Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+    - Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+    - Contract: Turns on/off the length contraction.  (I.e., Makes the horizontal and vertical partiles equadistant from the source.)
+    - Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+
+The Contraction lab is very similar to the Dilation lab, but with the addition of a horizontal teslon in addition to the previous vertical and source teslons of the Dilation lab.
+
+This lab does not attempt to explain the mechanism of length contraction; there is some conjecture on the point in the Electromagetism section.  However, this lab does further illustrate the mechanism underpinning relativity in Universe X and how Lorentz covariance continues to hold.
+
+Similar to 'Time Dilation', 'Length Contraction' in our Universe is described as being an observational phenomena highly dependent on the frame of reference of the observer.  And like 'Time Dilation' there is no special frame of reference, observers always see their meter sticks as being longest.
+
+However, just as in the 'Dilation' section, 'Contraction' in Universe X is a real physical phenomenon and is a direct result of the rate of translation across the aexel field.
+
+In our Universe there is a notion called Lorentz Covariance which says that the speed of light is the same in all directions for all time frames.  In Universe X, however, not only is the speed of light not the same, it's almost always different, not just for people in different frames, but along almost any two directions of a single frame (unless the frame isn't translating at all.)
+
+However, even though the speed of light is always changing, Lorentz Covariance holds in Universe X just as it does in our Universe and it does so because of the Length Contraction.
+
+In Universe X, light (or any edison) always travels at one aexel per tic; previously we defined 1 aexel / tic = speed of light.  The Contraction simulation illustrates another way in which `light always travels at the speed of light`.  Any time a signal is sent out in any direction, it will always return at exact same time from all directions as a result of length contraction, even though the velocity of the light can varie greatly in each of the directions and varie on its way out compared to its return trip.
+
+It would be more accurate to say that the duration of any roundtrip path of light over a given distance is a constant.
+
+This lab perhaps work best with 'auto' turned off and being manually pulsed instead.  In this way it is possible to compare the roundtrip duration of the vertical light and the horizontal light.
+
+Certainly, when the velocity of the system of teslons is 0, the light returns at the exact same moment in all directions.  But, watch as the system is sped up to 10, 20, 50, 70, 90 and 99% of the speed of light.  In all of these cases each signal return back to the source at the exact same moment no matter the rate of translation, whether moving towards or moving away from the horizontal loop.
+
+Next turn off contraction, forcing the horizontal particle to be equadistant from the source as the vertical one.  Now it is possible to see that the light messangers are returning at different times.  Without, length contraction, Lorentz Covariance would no longer hold.
+
+One of the complications in this conversation and really any topics related to Universe X is the notion of distance.  In our Universe, distance is rather straight foward.  However, in Universe X, there are potentially 3 different notions of distance.
+
+    - In Universe X, space is just an empty box filled with quantized aether.  So, between any two points there exists a basic cartesian distance between them.  But, since everything in the universe happens in the context of the aexels, there are no natural land marks or meta rules available to measure this type of distance; it can only be infured from other hints.
+    - The next potential definition of distance would be to simply count the number of aexels between two points.  Since aexels can vary in density this concept of distance may not track with the cartesian concept.  Also, there is another difficulty, it's not really possible to see aexels and certainly not possible to count them, this leads to...
+    - The last potential definition of distance would be measure the time it takes light to travel to and from two points.  This definition has the massive advantage of being able to be measured.  However, because of length contraction this definition is not universal for all observers.
+
+Just as distance is a tricky concept to get a handle of in Universe X, time is similarly a tricky concept to measure and with time and distance both being tricky, it's easy to see why velocity also can be difficult to get a hold of.
+
+
+
 
 ";
 

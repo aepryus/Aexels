@@ -81,6 +81,8 @@ class DilationEngine {
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
         vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
         camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
+        self.velocity = { self.velocity }()
+        self.speedOfLight = { self.speedOfLight }()
         if horizontalOn { initializeHorizontal() }
     }
     

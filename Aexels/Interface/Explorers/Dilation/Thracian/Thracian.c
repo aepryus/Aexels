@@ -153,7 +153,7 @@ void TCUniverseTic(TCUniverse* universe) {
         
         if (universe->teslonCount == 3) {
             if (
-                TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->maxtons[i]->p)) < 100 &&
+                TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->maxtons[i]->p)) < 49 &&
                 TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p))
             ) {
                 universe->maxtons[i]->recycle = 1;
@@ -168,7 +168,7 @@ void TCUniverseTic(TCUniverse* universe) {
                 velocity.s = maxton->v.s;
                 
                 double c = universe->c;
-                double v = universe->teslons[2]->v.s*(universe->teslons[2]->v.q == M_PI/2 ? 1 : -1);
+                double v = universe->c*universe->teslons[2]->v.s*(universe->teslons[2]->v.q == M_PI/2 ? 1 : -1);
                 double x = maxton->p.y - universe->teslons[2]->p.y;
                 if (x == 0) {
                     velocity.q = M_PI+maxton->v.q;
@@ -202,7 +202,7 @@ void TCUniverseTic(TCUniverse* universe) {
         }
         
         if (
-            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->photons[i]->p)) < 100 &&
+            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->photons[i]->p)) < 49 &&
             (
                 (universe->photons[i]->vOrh == 0 && TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->photons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))) ||
                 (universe->photons[i]->vOrh == 1 && TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->photons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p)))

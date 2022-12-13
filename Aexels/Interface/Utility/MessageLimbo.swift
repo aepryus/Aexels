@@ -65,7 +65,7 @@ class MessageLimbo: Limbo {
 		let pen = Pen(font: UIFont(name: "Verdana", size: 18*s)!, color: .white, alignment: .left)
 
 		for i in 0..<texts.count {
-			let height: CGFloat = texts[i].boundingRect(with: CGSize(width: w, height: 9999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size.height
+			let height: CGFloat = texts[i].boundingRect(with: CGSize(width: w, height: 19999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size.height
 			h += height
 			tHs.append(height)
 			if i < images.count {
