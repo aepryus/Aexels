@@ -375,7 +375,39 @@ In Universe X potential energy is actually just kinetic energy.
 
 ";
 
-"Electromagnetism" = "Electromagnetism";
+"Electromagnetism" = "Electromagnetism
+
+Certainly, there is much work to be done to further understand the quantitative aspects of Universe X.  But, the qualitative aspects of Universe X have really begun to come into focus.
+
+There is, however, one major aspect that is still quite blurry: Electromagnetism.  With some of the more recent realizations, Electromagnetism is starting to take shape.
+
+Equivalence illustrated that there is a conserved type of loop in Universe X that is able to translate and destroys aexels as part of that translation.  The effects of the translation was called energy and the effects of the destruction of aexels was called mass.
+
+It would be nice to give this type of loop a name other than mass or energy, since those words are so tightly associated with their particular effects.  Aristotle hypothezed the existence of a primordial matter that made up all things; lets borrow his term to apply to this loop, `hyle`.  The loop seems to fit well with his concept.
+
+A proton therefore is made up of Hyle; it has some internal structure and internal translation which is the hyle moving around internal to the proton.  If a proton is sitting still on a static aexel field, no hyle is being lost.  However, a proton can interact with another proton at a distance and in any direction.  This indicates that there are translating loops that exist in Universe X other than hyle; loops that translate without 'energy', without 'mass', without destroying the aexels.
+
+The coulomb force drops off a 1/r^2.  Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests a analgous phenomena; loops being sent off evenly in all directions.
+
+Dilation and Contraction illustrated that the speed a loop moves doesn't matter only the roundtrip time matters.  Imagine two photons traveling directly towards one another.  Some hyle is used in the construction of the protons themselves, but some is devoted to translating the protons as a whole.  As the protons come closer they start to trade photons with one another; photons which are also made of hyle.
+
+Two potential mechanisms become apparent.  Each proton is sending out spherical pulses of hyleless signals in all directions.  When a protons detects one of these signals coming in, it responds with a photon sent back using data relayed in the signal in the direction where it anticipates the source will be.  One issue with this model is that when that photon is sent out the hyle must be pulled from its translational stores and as such it seems there would be a one way effect.  Perhaps this is just a unperceptible edge effect that will be masked by the photon returning from its own signals being sent out or else perhaps it points to different mechanism...
+
+Protons can send out signals.  These signals can be generalized; sent off equally in all directions or directed; a single beam sent out.  These signals can contain hyle or not.  It's unlikely that hyle would be sent out in a generalized signal and would only be sent out in a directed signal.  Perhaps there are two types of generalized signals, perhaps there are ping loops that are continually being send out and then a pong response that is send out after receiving a ping.  Only after receiving a pong back is a directed photon sent out.  The two signal hand shake when then fully explain the reason why only the roundtrip speed of light matters in the E/M interaction.
+
+Beyond the basic mechanism of coulombs force how does Magnetism play into all of this and what is the precise mechanism of length contraction.
+
+If the pingons and pongons some how contain information that can be used to anticipate the location of other particles perhaps some sort of vector pointer that can be used to direct the trade photon, than perhaps the difference between a magnetic field and a electric field is simply the difference in the angle of incidence and the angle of the loops internal pointer.
+
+Length contraction could perhaps then be a result of the orthogonal / square nature of the magnetic and electric fields.
+
+Another issue that needs to be considered.  In playing with the Contraction simulation one may notice that during length contraction the flux of pingons received by a particle increases greatly the more length is contracted.  However, perhaps this canceled out by the reduction of pongons that are received in response.
+
+
+
+
+
+";
 
 "Discrepancy" = "Discrepancy
 
