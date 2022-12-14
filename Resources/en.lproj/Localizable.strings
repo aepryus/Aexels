@@ -387,7 +387,7 @@ It would be nice to give this type of loop a name other than mass or energy, sin
 
 A proton therefore is made up of Hyle; it has some internal structure and internal translation which is the hyle moving around internal to the proton.  If a proton is sitting still on a static aexel field, no hyle is being lost.  However, a proton can interact with another proton at a distance and in any direction.  This indicates that there are translating loops that exist in Universe X other than hyle; loops that translate without 'energy', without 'mass', without destroying the aexels.
 
-The coulomb force drops off a 1/r^2.  Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests a analgous phenomena; loops being sent off evenly in all directions.
+The coulomb force drops off a 1/r².  Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests a analgous phenomena; loops being sent off evenly in all directions.
 
 Dilation and Contraction illustrated that the speed a loop moves doesn't matter only the roundtrip time matters.  Imagine two photons traveling directly towards one another.  Some hyle is used in the construction of the protons themselves, but some is devoted to translating the protons as a whole.  As the protons come closer they start to trade photons with one another; photons which are also made of hyle.
 
@@ -411,38 +411,80 @@ Another issue that needs to be considered.  In playing with the Contraction simu
 
 "Discrepancy" = "Discrepancy
 
-Since the beginning of Universe X it was uncertain whether there were any experimentally verifiable differences between our Universe and Universe X.  It's possible that Universe X was just a different way of achieving the same results as our Universe.  However, finally a verifiable difference has been uncovered.
+It has been uncertain whether there were verifiable differences between our universe and Universe X; even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
 
-Dilation at the Surface of a Sphere
 
-Now that we know what the dilation will be as a function of the translation rate across the aexels; let's now calculate what the dilation would be at the surface of a non-rotating sphere.
+- Dilation at the Surface of a Sphere
 
-As discussed in the Gravity section, gravity in Universe X is not a force, but rather is a result of the destruction and creation of aexels and the pulling and pushing that that causes on the aethereal fabric.  Gravity alone, therefore, cannot directly initiate the translation of a loop across an aexial field.  All it can do is pull on the aexial field itself.
+Imagine a nearly empty Universe X with a single non-rotating non-translating planet.  What is the Dilation experienced at the surface of this planet?
 
-Let's take an empty universe and place a planet P and a tennis ball B in it, infinitely far apart, both of which are not translating across the aexial field at all.  If we assume Newton's law of gravitation to be empirically true of Universe X, we can calculate the velocity of the tennis ball once it hits the surface of the planet.  Since gravity can not directly cause a translation across the aexels, the velocity of the tennis ball must equal the velocity of the aexels upon which it is sitting.
+Previously Dilation has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of this planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
+
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newtons law of Gravitation is an empirical law, but we can use it to track the motion of a tennis ball placed at rest infinitely far from the planet.
+
+Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Let's calculate the velocity of the tennis ball at the surface:
 
 <<DiscrA>>
 
-This gives us the velocity of the aexels flowing into the planet at its surface.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the previous dilation equation in order to get the dilation at the surface.
+This give us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
 
 <<DiscrB>>
 
 Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
 
 
-Dilation while Falling from Infinity
+- Dilation while Falling from Infinity
 
-In the previous calculation we dropped a tennis ball from infinity in order to calculate the velocity of the aexels flowing into the planet at the surface so that we could calculate the dilation for a system at rest on that surface.  What about the dilation for the tennis ball itself?
+Let's now consider a related thought experiment using the same nearly empty Universe X and planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
 
-In our Universe, this calculation might be pretty challenging, since time dilation is both a function of velocity and gravity and since both the velocity and gravity is constantly changing throughout the tennis ball's journey.
+<<4Clocks>>
 
-However, in Universe X, this calculation is quite easy.  Dilation in Universe X is solely a function of the translating velocity over the aexial field.  In Universe X, throughout the journey from infinity down to the planet's surface, the tennis ball's translation velocity remains zero; it is simply flowing down along with the aexels.  And since, throughout the journey, there is never any translating velocity, there is therefore never any dilation.
+The question is what is the time dilation experienced by each of the 4 clocks.
+
+Clock W at infinity is not translating at all, so it has no translational velocity and therefore its lambda is 1.
 
 <<DiscrC>>
 
+Clock X is simply floating down with the aexels and similarly not translating at all; its lambda is also equal to 1.
+
+<<DiscrC>>
+
+Clock Y, is sitting on the surface of the planet, so its lambda was calculated in the previous section, (i.e., is equal to lambda when plugging in the escape velocity at the surface).
+
+<<DiscrB>>
+
+Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at escape velocity at a radius r.  The clock itself will be moving away from the planet at the same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times the escape velocity.
+
 <<DiscrD>>
 
+Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
+
+There is a constant of motion for an inertial observer in the Schwarzschild metric (for a clock starting from rest at infinity energy will entirely be due to its intrinsic mass and therefore will equal mc²):
+
 <<Clock>>
+
+Using this, we can calculate the dilation for clocks W, X and Z:
+
+Clock W, r goes to infinity, 1/r goes to 0 and lambda goes to 1.
+
+<<DiscrC>>
+
+Clock X
+
+Clock Y
+
+Clock Z
+
+While Clock W and Y in our universe match W and Y in Universe X.  X and Z do not match.  And more so, for any given r in Universe X:
+    W = X < Y < Z
+Where as in our Universe
+    W < Y < X = Z
+
+Digging deeper into the derivation of the Schwarzschild metric ([https://en.wikipedia.org/wiki/Derivation\_of\_the\_Schwarzschild\_solution]) we find that the solution is based on 4 boundary conditions.  The second of which is:
+
+\"A static spacetime is one in which all metric components are independent of the time coordinate {\displaystyle t}t (so that {\displaystyle {\tfrac {\partial }{\partial t}}g_{\mu \nu }=0}{\displaystyle {\tfrac {\partial }{\partial t}}g_{\mu \nu }=0}) and the geometry of the spacetime is unchanged under a time-reversal {\displaystyle t\rightarrow -t}t\rightarrow -t.\"
+
+In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
 
 
 
