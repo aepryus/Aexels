@@ -1,26 +1,27 @@
- 
 \begin{align*}
 PE&=Fs\\
 \\
-F&=G\frac{M_pM_b}{r^2}\\
+F&=G\frac{Mm}{r^2}\\
 \\
-PE&=\int_{r_p}^{\infty}G\frac{M_pM_b}{r^2}\,ds\\
+PE&=\int_{r}^{\infty}G\frac{Mm}{r^2}\,ds\\
 \\
-PE&=-HM_pM_b\frac{1}{r}\bigg|_{r_p}^{\infty}=G\frac{M_pM_b}{r_p}\\
+PE&=-HMm\frac{1}{r}\bigg|_{r}^{\infty}=G\frac{Mm}{r}\\
 \\
-KE&=\frac{1}{2}mv^2=\frac{1}{2}M_bv^2\\
+KE&=\frac{1}{2}mv^2\\
 \\
-KE=PE&\implies\frac{1}{2}M_bv^2=G\frac{M_pM_b}{r_p}\\
+KE=PE&\implies\frac{1}{2}mv^2=G\frac{Mm}{r}\\
 \\
-v&=\sqrt{\frac{2GM_p}{r_p}}\\
+v&=\sqrt{\frac{2GM}{r}}\\
 \\
-\frac{t'}{t}&=\frac{1}{\sqrt{1-\frac{2GM_p}{r_pc^2}}}\\
+\lambda&=\frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}\\
 \\
-\frac{t'}{t}&=1\\
+\lambda&=1\\
 \\
-\frac{t'}{t}&=\frac{1}{\sqrt{1-\frac{8GM_p}{r_pc^2}}}\\
+\lambda&=\frac{1}{\sqrt{1-\frac{8GM}{rc^2}}}\\
 \\
-left(1 - \frac{r_s}{r}\right)\frac{dt}{d\tau} &= \frac{E}{mc^2}\\
+\lambda&=\frac{1}{\sqrt{1-\frac{|\vec{v}-\vec{v_e}|^2}{c^2}}}\\
+\\
+(1 - \frac{r_s}{r})\frac{dt}{d\tau} &= \frac{E}{mc^2}\\
 \\
 E &= mc^2\\
 \\
@@ -28,5 +29,14 @@ E &= mc^2\\
 \\
 r_s &= \frac{2GM}{c^2}\\
 \\
-\frac{t'}{t} = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
+\lambda = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
+\\
+\\
+\lambda &= \frac{1}{1-\frac{2GM}{rc^2}}
+\\
 \end{align*}
+
+
+\[\text{\parbox{10cm}{
+A static spacetime is one in which all metric components are independent of the time coordinate $t$ (so that $\tfrac\partial{\partial t}g_{\mu \nu}=0$) and the geometry of the spacetime is unchanged under a time-reversal $t \rightarrow -t$.
+}}\]

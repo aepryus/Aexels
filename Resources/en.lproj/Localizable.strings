@@ -411,14 +411,14 @@ Another issue that needs to be considered.  In playing with the Contraction simu
 
 "Discrepancy" = "Discrepancy
 
-It has been uncertain whether there were verifiable differences between our universe and Universe X; even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
+It has been uncertain whether there were verifiable differences between our universe and Universe X.  Even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
 
 
 - Dilation at the Surface of a Sphere
 
 Imagine a nearly empty Universe X with a single non-rotating non-translating planet.  What is the Dilation experienced at the surface of this planet?
 
-Previously Dilation has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of this planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
+Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
 
 In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newtons law of Gravitation is an empirical law, but we can use it to track the motion of a tennis ball placed at rest infinitely far from the planet.
 
@@ -435,7 +435,7 @@ Coincidently, the dilation at the surface of a non-rotating sphere in Universe X
 
 - Dilation while Falling from Infinity
 
-Let's now consider a related thought experiment using the same nearly empty Universe X and planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
+Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
 
 <<4Clocks>>
 
@@ -449,21 +449,31 @@ Clock X is simply floating down with the aexels and similarly not translating at
 
 <<DiscrC>>
 
-Clock Y, is sitting on the surface of the planet, so its lambda was calculated in the previous section, (i.e., is equal to lambda when plugging in the escape velocity at the surface).
+Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the lambda equation:
 
 <<DiscrB>>
 
-Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at escape velocity at a radius r.  The clock itself will be moving away from the planet at the same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times the escape velocity.
+Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
 
 <<DiscrD>>
 
+A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
+
+<<DiscrE>>
+
 Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
 
-There is a constant of motion for an inertial observer in the Schwarzschild metric (for a clock starting from rest at infinity energy will entirely be due to its intrinsic mass and therefore will equal mc²):
+There is a constant of motion for an inertial observer in the Schwarzschild metric:
 
-<<Clock>>
+<<DiscrF>>
 
-Using this, we can calculate the dilation for clocks W, X and Z:
+For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate lambda:
+
+<<DiscrG>>
+
+In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
+
+For our universe the time dilation of the 4 clocks is as follows:
 
 Clock W, r goes to infinity, 1/r goes to 0 and lambda goes to 1.
 
@@ -471,20 +481,35 @@ Clock W, r goes to infinity, 1/r goes to 0 and lambda goes to 1.
 
 Clock X
 
-Clock Y
+<<DiscrH>>
+
+Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
+
+<<DiscrB>>
 
 Clock Z
 
-While Clock W and Y in our universe match W and Y in Universe X.  X and Z do not match.  And more so, for any given r in Universe X:
+<<DiscrH>>
+
+The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
+
+Universe X:
     W = X < Y < Z
-Where as in our Universe
+    
+Our Universe
     W < Y < X = Z
 
-Digging deeper into the derivation of the Schwarzschild metric ([https://en.wikipedia.org/wiki/Derivation\_of\_the\_Schwarzschild\_solution]) we find that the solution is based on 4 boundary conditions.  The second of which is:
+This is a rather substantial deviation in the two universes.
 
-\"A static spacetime is one in which all metric components are independent of the time coordinate {\displaystyle t}t (so that {\displaystyle {\tfrac {\partial }{\partial t}}g_{\mu \nu }=0}{\displaystyle {\tfrac {\partial }{\partial t}}g_{\mu \nu }=0}) and the geometry of the spacetime is unchanged under a time-reversal {\displaystyle t\rightarrow -t}t\rightarrow -t.\"
+If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
+
+Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation\_of\_the\_Schwarzschild\_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
+
+<<Wiki2>>
 
 In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
+
+For that reason, the Schwarzschild solution does not apply in Universe X and a discrepancy between our universe and Universe X arises.
 
 
 
