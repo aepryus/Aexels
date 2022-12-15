@@ -420,9 +420,9 @@ Imagine a nearly empty Universe X with a single non-rotating non-translating pla
 
 Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
 
-In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newtons law of Gravitation is an empirical law, but we can use it to track the motion of a tennis ball placed at rest infinitely far from the planet.
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newtons law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
 
-Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Let's calculate the velocity of the tennis ball at the surface:
+Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
 
 <<DiscrA>>
 
