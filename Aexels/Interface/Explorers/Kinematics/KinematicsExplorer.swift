@@ -32,7 +32,8 @@ class KinematicsExplorer: Explorer {
 	let expBButton = ExpButton(name: "Exp\nB")
 	let swapper = Limbo()
 	let swapButton = SwapButton()
-	let close = LimboButton(title: "Close")
+    let close = LimboButton(title: "Close")
+    let closeButton: CloseButton = CloseButton()
 	let aetherLabel = UILabel()
 	let loopLabel = UILabel()
 
@@ -260,6 +261,13 @@ class KinematicsExplorer: Explorer {
 			Aexels.nexus.brightenNexus()
 		}
 
+        closeButton.alpha = 0
+        closeButton.addAction(for: .touchUpInside) { [unowned self] in
+            self.isFirst = true
+            self.closeExplorer()
+            Aexels.nexus.brightenNexus()
+        }
+
 		// Swapper =========================
 		if Screen.iPhone {
 			swapButton.addAction(for: .touchUpInside) { [unowned self] in
@@ -304,7 +312,7 @@ class KinematicsExplorer: Explorer {
 			brightenLimbos(second)
 			limbos = [swapper] + second + [close]
 		} else {
-			limbos = [swapper, universe, zoneA, zoneB, zoneC, zoneD, message, close]
+			limbos = [swapper, universe, zoneA, zoneB, zoneC, zoneD, message, closeButton]
 		}
 	}
 	override func layout375x667() {
@@ -403,7 +411,7 @@ class KinematicsExplorer: Explorer {
 		message.renderPaths()
 		
 		swapper.topLeft(dx: 5*s, dy: message.bottom-56*s, width: 56*s, height: 56*s)
-		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
+        close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
 		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -419,9 +427,11 @@ class KinematicsExplorer: Explorer {
 		universe.frame = CGRect(x: p, y: topY, width: uw, height: uw)
 		
 		message.frame = CGRect(x: universe.right, y: topY, width: mw, height: height)
-		message.cutouts[.bottomRight] = Cutout(width: 176*s, height: 110*s)
+        message.closeOn = true
 		message.renderPaths()
 		message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)
+
+        closeButton.topLeft(dx: message.right-50*s, dy: message.top, width: 50*s, height: 50*s)
 
 		zoneB.frame = CGRect(x: 5*s, y: universe.bottom, width: 160*s, height: ch)
 		zoneA.frame = CGRect(x: zoneB.right, y: universe.bottom, width: 150*s, height: ch)
@@ -441,6 +451,5 @@ class KinematicsExplorer: Explorer {
 		expAButton.center(dx: -26*s, size: CGSize(width: 40*s, height: 50*s))
 		expBButton.center(dx: 26*s, size: CGSize(width: 40*s, height: 50*s))
 
-		close.topLeft(dx: message.right-176*s, dy: message.bottom-110*s, width: 176*s, height: 110*s)
 	}
 }

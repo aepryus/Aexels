@@ -72,21 +72,27 @@ class DilationEngine {
     }
     
     func reset() {
-        TCUniverseRelease(universe)
-        TCTeslonRelease(source)
-        TCTeslonRelease(vertical)
-        if horizontalOn { TCTeslonRelease(horizontal) }
-        
-        universe = TCUniverseCreate(size.width, size.height, 1)
-        source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
-        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
-        camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
+        queue.sync {
+            TCUniverseRelease(universe)
+            TCTeslonRelease(source)
+            TCTeslonRelease(vertical)
+            if horizontalOn { TCTeslonRelease(horizontal) }
+            
+            universe = TCUniverseCreate(size.width, size.height, 1)
+            source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
+            vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
+            camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
+            if horizontalOn { initializeHorizontal() }
+        }
         self.velocity = { self.velocity }()
         self.speedOfLight = { self.speedOfLight }()
-        if horizontalOn { initializeHorizontal() }
     }
     
-    func pulse() { TCUniversePulse(universe, source, 99) }
+    func pulse() {
+        queue.sync {
+            TCUniversePulse(universe, source, 99)
+        }        
+    }
     
     func tic() {
         queue.sync {

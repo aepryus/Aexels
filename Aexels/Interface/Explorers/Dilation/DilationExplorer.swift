@@ -27,6 +27,7 @@ class DilationExplorer: Explorer {
     let controlsLimbo: Limbo = Limbo()
     let messageLimbo: MessageLimbo = MessageLimbo()
     let closeLimbo = LimboButton(title: "Close")
+    let closeButton: CloseButton = CloseButton()
     
     let lightSpeedLabel: UILabel = UILabel()
     let cLabel: UILabel = UILabel()
@@ -70,42 +71,48 @@ class DilationExplorer: Explorer {
             let p: CGFloat = 5*s
 
             if self.cameraOn {
-                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: fixedDilationLimbo.bottom, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-fixedDilationLimbo.bottom)
+                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: fixedDilationLimbo.top-topY)
                 brightenLimbos([fixedDilationLimbo])
                 limbos = [
                     dilationLimbo,
                     fixedDilationLimbo,
                     controlsLimbo,
                     messageLimbo,
-                    closeLimbo
+                    closeButton
                 ]
             } else {
-                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: Screen.safeTop + (Screen.mac ? 5*s : 0), width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
+                messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
                 dimLimbos([fixedDilationLimbo])
                 limbos = [
                     dilationLimbo,
                     controlsLimbo,
                     messageLimbo,
-                    closeLimbo
+                    closeButton
                 ]
             }
         } else {
             if self.cameraOn {
+                first = [messageLimbo]
+                second = [fixedDilationLimbo, controlsLimbo]
                 dimLimbos([dilationLimbo])
                 brightenLimbos([fixedDilationLimbo])
                 limbos = [
                     fixedDilationLimbo,
                     controlsLimbo,
                     messageLimbo,
+                    swapper,
                     closeLimbo
                 ]
             } else {
+                first = [messageLimbo]
+                second = [dilationLimbo, controlsLimbo]
                 dimLimbos([fixedDilationLimbo])
                 brightenLimbos([dilationLimbo])
                 limbos = [
                     dilationLimbo,
                     controlsLimbo,
                     messageLimbo,
+                    swapper,
                     closeLimbo
                 ]
             }
@@ -146,7 +153,6 @@ class DilationExplorer: Explorer {
 
         controlsLimbo.addSubview(resetButton)
         resetButton.addAction(for: .touchUpInside) { [unowned self] in
-            self.playButton.stop()
             self.engine.reset()
             self.engine.tic()
         }
@@ -206,6 +212,12 @@ class DilationExplorer: Explorer {
             self.closeExplorer()
             Aexels.nexus.brightenNexus()
         }
+
+        closeButton.alpha = 0
+        closeButton.addAction(for: .touchUpInside) { [unowned self] in
+            self.closeExplorer()
+            Aexels.nexus.brightenNexus()
+        }
         
         // Labels
         let pen: Pen = Pen(font: .verdana(size: 15*s), color: .white, alignment: .center)
@@ -237,7 +249,7 @@ class DilationExplorer: Explorer {
                 dilationLimbo,
                 controlsLimbo,
                 messageLimbo,
-                closeLimbo
+                closeButton
             ]
         }
     }
@@ -288,12 +300,10 @@ class DilationExplorer: Explorer {
 
         dilationLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
         let vw: CGFloat = Screen.width - dilationLimbo.right - p
-        fixedDilationLimbo.topLeft(dx: dilationLimbo.right, dy: topY, width: vw, height: vw)
-
-        closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
+        fixedDilationLimbo.topLeft(dx: dilationLimbo.right, dy: topY+height-vw, width: vw, height: vw)
 
         controlsLimbo.bottomLeft(dx: p, dy: -botY, width: dilationLimbo.width, height: 110*s)
-        closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
+        closeButton.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
         
         let bw: CGFloat = 40*s
         playButton.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
@@ -311,8 +321,10 @@ class DilationExplorer: Explorer {
         lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-2*s, width: vSlider.width, height: 20*s)
 
         messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
-        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
+        messageLimbo.closeOn = true
         messageLimbo.renderPaths()
+        
+        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.5)

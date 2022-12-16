@@ -26,6 +26,7 @@ class GravityExplorer: Explorer {
 	let expLimbo = Limbo()
 	let messageLimbo: MessageLimbo = MessageLimbo()
 	let closeLimbo = LimboButton(title: "Close")
+    let closeButton: CloseButton = CloseButton()
     lazy var experiments: [ExpButton] = { [
         expAButton,
         expBButton,
@@ -168,8 +169,13 @@ class GravityExplorer: Explorer {
 		}
 
 		// CloseLimbo
-		closeLimbo.alpha = 0
-		closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
+        closeLimbo.alpha = 0
+        closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
+            self.closeExplorer()
+            Aexels.nexus.brightenNexus()
+        }
+
+        closeButton.addAction(for: .touchUpInside) { [unowned self] in
 			self.closeExplorer()
 			Aexels.nexus.brightenNexus()
 		}
@@ -178,31 +184,31 @@ class GravityExplorer: Explorer {
 			first = [messageLimbo]
 			second = [gravityLimbo, expLimbo]
 			brightenLimbos(second)
-			limbos = [swapper] + second + [closeLimbo]
+			limbos = [swapper, closeLimbo] + second
 		} else {
-			limbos = [gravityLimbo, expLimbo, messageLimbo, closeLimbo];
+			limbos = [gravityLimbo, expLimbo, messageLimbo, closeButton];
 		}
 	}
 	override func layout375x667() {
-		let size = UIScreen.main.bounds.size
-		
-		let w = size.width - 10*s
+        let size = UIScreen.main.bounds.size
+        
+        let w = size.width - 10*s
 
-		expLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
-		expLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-		expLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-		expLimbo.renderPaths()
+        expLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
+        expLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+        expLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+        expLimbo.renderPaths()
 
-		gravityLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expLimbo.top-Screen.safeTop)
+        gravityLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expLimbo.top-Screen.safeTop)
 
-		let om = 15*s
-		let im = 6*s
-		let bw = (expLimbo.width-2*om-9*im)/10
-		let bh = (expLimbo.height-2*om)/1-60*s
-		expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-		expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
+        let om = 15*s
+        let im = 6*s
+        let bw = (expLimbo.width-2*om-9*im)/10
+        let bh = (expLimbo.height-2*om)/1-60*s
+        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
+        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
+        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
+        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
         expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
         expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
         expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
@@ -210,13 +216,13 @@ class GravityExplorer: Explorer {
         expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
 
-		messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
-		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-		messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-		messageLimbo.renderPaths()
-		
-		swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
-		closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
+        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+        messageLimbo.renderPaths()
+        
+        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
+        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout1024x768() {
 		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -228,7 +234,6 @@ class GravityExplorer: Explorer {
 		let uw: CGFloat = height - 110*s
 
 		gravityLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
-		closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
 		expLimbo.topLeft(dx: p, dy: gravityLimbo.bottom, width: gravityLimbo.width, height: Screen.height-botY-gravityLimbo.bottom)
 
 		let om = 24*s
@@ -247,7 +252,9 @@ class GravityExplorer: Explorer {
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
 
 		messageLimbo.frame = CGRect(x: gravityLimbo.right, y: topY, width: Screen.width-2*p-gravityLimbo.width, height: Screen.height-botY-topY)
-		messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
+        messageLimbo.closeOn = true
 		messageLimbo.renderPaths()
+        
+        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
 	}
 }

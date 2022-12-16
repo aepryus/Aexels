@@ -16,6 +16,7 @@ class NexusViewController: UIViewController {
 	var versionLabel: NexusLabel!
 	
 	var messageView: MessageLimbo!
+    let closeButton: CloseButton = CloseButton()
 	let exploreButton = LimboButton(title: "Explore")
 
 	var nexusButtons: [NexusButton] = []
@@ -41,6 +42,7 @@ class NexusViewController: UIViewController {
 		messageView.load()
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
+            self.closeButton.alpha = 1
 			if explorer.canExplore { self.exploreButton.alpha = 1 }
 			else { self.exploreButton.alpha = 0 }
 		}, completion: { (Bool) in
@@ -64,6 +66,7 @@ class NexusViewController: UIViewController {
 			}
 			UIView.animate(withDuration: 0.2, animations: { 
 				self.messageView.alpha = 0
+                self.closeButton.alpha = 0
 				self.exploreButton.alpha = 0
 			}, completion: { (Bool) in
 				self.display(explorer: explorer)
@@ -95,6 +98,7 @@ class NexusViewController: UIViewController {
 		UIView.animate(withDuration: 0.2) {
 			self.nexusLabel.alpha = 0.1
 			self.messageView.alpha = 0
+            self.closeButton.alpha = 0
 			self.exploreButton.alpha = 0
 			for button in self.nexusButtons {
 				button.alpha = 0
@@ -109,6 +113,15 @@ class NexusViewController: UIViewController {
 			}
 		}
 	}
+    
+    func dismissMessageView() {
+        UIView.animate(withDuration: 0.2) {
+            self.messageView.alpha = 0
+            self.closeButton.alpha = 0
+            self.exploreButton.alpha = 0
+        }
+        if Screen.iPhone { brightenNexus() }
+    }
 	
 	func iPadLayout() {
 		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -145,16 +158,16 @@ class NexusViewController: UIViewController {
 		// Message
 		let w: CGFloat = Screen.width-(340+52)*s
 		messageView = MessageLimbo()
+        messageView.closeOn = true
 		messageView.frame = CGRect(x: Screen.width-w-5*s, y: topY, width: w, height: Screen.height-topY-botY)
 		messageView.alpha = 0
-		messageView.onTap = {()->() in
-			UIView.animate(withDuration: 0.2) {
-				self.messageView.alpha = 0
-				self.exploreButton.alpha = 0
-			}
-		}
 		view.addSubview(messageView)
-
+        
+        closeButton.alpha = 0
+        view.addSubview(closeButton)
+        let cr: CGFloat = 50*s
+        closeButton.frame = CGRect(x: messageView.right-cr, y: messageView.top, width: cr, height: cr)
+        
 		exploreButton.alpha = 0
 		exploreButton.topLeft(dx: Screen.width-5*s-176*s, dy: Screen.height-botY-110*s, width: 176*s, height: 110*s)
 		view.addSubview(exploreButton)
@@ -192,16 +205,15 @@ class NexusViewController: UIViewController {
 
 		// Message
 		messageView = MessageLimbo()
+        messageView.closeOn = true
 		messageView.frame = CGRect(x: 5*s, y: (5+20)*s, width: (375-10)*s, height: (667-10-20)*s)
 		messageView.alpha = 0
-		messageView.onTap = {()->() in
-			UIView.animate(withDuration: 0.2, animations: { 
-				self.messageView.alpha = 0
-				self.exploreButton.alpha = 0
-			})
-			self.brightenNexus()
-		}
 		view.addSubview(messageView)
+        
+        closeButton.alpha = 0
+        view.addSubview(closeButton)
+        let cr: CGFloat = 50*s
+        closeButton.frame = CGRect(x: messageView.right-cr, y: messageView.top, width: cr, height: cr)
 		
 		// Explore
 		exploreButton.alpha = 0
@@ -241,16 +253,17 @@ class NexusViewController: UIViewController {
 		
 		// Message
 		messageView = MessageLimbo()
+        messageView.closeOn = true
 		messageView.frame = CGRect(x: 5*s, y: Screen.safeTop, width: Screen.width-10*s, height: Screen.height-Screen.safeTop-Screen.safeBottom)
 		messageView.alpha = 0
-		messageView.onTap = {()->() in
-			UIView.animate(withDuration: 0.2, animations: {
-				self.messageView.alpha = 0
-				self.exploreButton.alpha = 0
-			})
-			self.brightenNexus()
-		}
 		view.addSubview(messageView)
+//        messageView.backgroundColor = .blue.alpha(0.25)
+        
+        closeButton.alpha = 0
+        view.addSubview(closeButton)
+        let cr: CGFloat = 50*s
+        closeButton.frame = CGRect(x: messageView.right-cr, y: messageView.top, width: cr, height: cr)
+//        closeButton.backgroundColor = .red.alpha(0.25)
 		
 		// Explore
 		exploreButton.alpha = 0
@@ -276,14 +289,14 @@ class NexusViewController: UIViewController {
 	}
 	
 // UIViewController ================================================================================
-	override var prefersHomeIndicatorAutoHidden: Bool {
-		return true
-	}
+	override var prefersHomeIndicatorAutoHidden: Bool { true }
 	override func viewDidLoad() {
         super.viewDidLoad()
 
 		imageView.frame = view.frame
 		view.addSubview(imageView)
+        
+        closeButton.addAction { self.dismissMessageView() }
 
 		explorers = [
             ForwardExplorer(parent: view),

@@ -25,6 +25,7 @@ class ContractionExplorer: Explorer {
     let controlsLimbo: Limbo = Limbo()
     let messageLimbo: MessageLimbo = MessageLimbo()
     let closeLimbo = LimboButton(title: "Close")
+    let closeButton: CloseButton = CloseButton()
     
     let lightSpeedLabel: UILabel = UILabel()
     let cLabel: UILabel = UILabel()
@@ -94,7 +95,6 @@ class ContractionExplorer: Explorer {
 
         controlsLimbo.addSubview(resetButton)
         resetButton.addAction(for: .touchUpInside) { [unowned self] in
-            self.playButton.stop()
             self.engine.reset()
             self.engine.tic()
         }
@@ -154,6 +154,12 @@ class ContractionExplorer: Explorer {
             self.closeExplorer()
             Aexels.nexus.brightenNexus()
         }
+
+        closeButton.alpha = 0
+        closeButton.addAction(for: .touchUpInside) { [unowned self] in
+            self.closeExplorer()
+            Aexels.nexus.brightenNexus()
+        }
         
         // Labels
         let pen: Pen = Pen(font: .verdana(size: 15*s), color: .white, alignment: .center)
@@ -185,7 +191,7 @@ class ContractionExplorer: Explorer {
                 dilationLimbo,
                 controlsLimbo,
                 messageLimbo,
-                closeLimbo
+                closeButton
             ]
         }
     }
@@ -234,10 +240,8 @@ class ContractionExplorer: Explorer {
         let uw: CGFloat = height - 110*s
 
         dilationLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
-        closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
 
         controlsLimbo.bottomLeft(dx: p, dy: -botY, width: dilationLimbo.width, height: 110*s)
-        closeLimbo.bottomRight(dx: -p, dy: -botY, width: 176*s, height: 110*s)
         
         let bw: CGFloat = 40*s
         playButton.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
@@ -258,7 +262,9 @@ class ContractionExplorer: Explorer {
         vSlider.setTo(0.5)
 
         messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
-        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 176*s, height: 110*s)
+        messageLimbo.closeOn = true
         messageLimbo.renderPaths()
+        
+        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
     }
 }
