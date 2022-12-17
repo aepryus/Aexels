@@ -47,7 +47,7 @@ There are things we know for certain about Universe X; there are things we can s
 
 This app is divided into sections that each describe a different aspect of Universe X.  Eventually each of these sections will also contain an exploration screen that will allow the user to see each aspect modeled visually.
 
-Aexels current explorers:
+Aexel's current explorers:
     - The Cellular Automata explorer will allow the user to view a number of famous Cellular Automata and will also allow users to define and execute their own Cellular Automata using the Oovium visual programming language.
     - The Kinematics explorer compares simple motion in our Universe to that in Universe X.
     - The Gravity explorer attempts to qualitatively model the crystalline nature of Aexels themselves.
