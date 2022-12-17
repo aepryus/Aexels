@@ -8,7 +8,7 @@
 
 "Forward" = "Forward to 3.0
 
-Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked these new insights on into additional articles leaving the old articles largely untouched.
+Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
 
 However, with this version I am choosing to rewrite each of the articles based on the complete current understanding of Universe X.  Additionally I have removed 'Odds and Ends' and integrated its discussions into other sections.
 
@@ -170,10 +170,10 @@ In Universe X there exists many different types of stable state loops.  There ar
 It is quite certain that there are loops that destroy aexels in Universe X.  In Universe X these loops are referred to as 'matter'.  This article, 'Gravity', pertains to these types of loops.
 
 - they could create aexels:
-That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  In Universe X these loops are referred to as 'antimatter'.  The article 'Darkness' pertains to these type of loops.
+That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  The article 'Darkness' pertains to these type of loops.
 
 - they could do neither:
-Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that no such loops exist or at least they are less prevalent than one might initially assume.  The 'Equivalence' article discusses these possibilities further.
+Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that these loops are less prevalent than one might initially guess.  The 'Equivalence' article discusses these possibilities further.
 
 Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
 
@@ -201,9 +201,9 @@ In Universe X, however, no such time dilation occurs.  There is however an analo
 
 Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
 
-In the Gravity article a classification of loops was created based on whether the loops created aexels (matter), destroyed aexels (antimatter) or did neither.  For the purposes of the Dilation and Contraction articles let's create a second classification: loops that translate at the speed of light (one aexel per tic) and loops that translate at less than the speed of light.
+Let's classify all loops in Universe X into one of two categories: loops that translate at the speed of light (one aexel per tic) and loops that translate at less than the speed of light.
 
-It would be nice to give names to these two classes, but there aren't great analogous names from our Universe that can be used.  One could almost use the term 'boson' for speed of light travelers and 'fermion' for sub-light travelers, but some bosons (such as W, Z and Higgs) move at less than the speed of light.  Still, perhaps, they can be a model for new names in Universe X.
+It would be nice to give names to these two categories, but there aren't great analogous names from our Universe that can be used.  One could almost use the term 'boson' for speed of light travelers and 'fermion' for sub-light travelers, but some bosons (such as W, Z and Higgs) move at less than the speed of light.  Still, perhaps, they can be a model for new names in Universe X.
 
 It may be the case that all translation in Universe X is at one aexel per tic.  But, that some loops move directly in a straight line and therefore the loop itself translates at the speed of light and other loops have internal motion that alternates back and forth in some manner causing the net speed of translation to be less than the speed of light.
 
@@ -211,11 +211,9 @@ As such, let's refer to those loops that translate directly in a straight line (
 
 In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be a dependent on the the amount of time it takes the edisons to move back and forth between them.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons hits another teslon, the edison affects that teslon's rate of translation across the aexel field.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons interacts with a different teslon it invokes a reaction.  Perhaps that reaction is a change in the target teslon's rate of translation or perhaps it causes the target teslon to send out edisons of its own in response and its those response edisons that cause the change in translation when received by the original teslon.
 
-For example, consider a teslon that is stationary on a field of stationary aexels (ignore gravity for a moment).  An edison traveling from elsewhere is moving towards the teslon.  When the edison hits the teslon (and is absorbed) the teslon begins to translate across the stationary field of aexels.
-
-In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth from teslon to teslon.
+In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth between the teslons.
 
 For two stationary teslons separated by a fixed number of aexels the edisons will travel between them at one aexel per tic.  However, if the teslons are both translating across the aexel field, the amount of time it takes edisons to move between them will vary based on the direction of motion of the edisons relative to the translating motion of the teslons across the aexel field.
 
@@ -229,11 +227,11 @@ In Universe X, two observers translating across the aexels in different frames w
 
 Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow (north / south).  A signal traveling at c is sent out from one to the other and back.
 
-<<DilaSketch>>
-
 The question is how long does this roundtrip journey take?
 
 First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
+
+<<DilaSketch>>
 
 In the second case, the loops are translating across the aexels at some non-zero 'velocity' (aexels/time), therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t_n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
 
@@ -263,13 +261,13 @@ Certainly, in Universe X, the speed of light is always one aexel per tic.  But, 
 
 However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.
 
-In the Dilation article we calculated the increased amount of time needed to bounce a signal moving at the speed of light off a mirror and back when the signal is sent out orthogonal to the direction of translation (north / south).
+In the Dilation article we calculated the increased amount of time needed to bounce an edison moving at the speed of light between two teslons when the edison is sent out orthogonal to the direction of translation (north / south).
 
-For this article let's now repeat the same calculation but for a signal sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
-
-<<ContraSketch>>
+For this article let's now repeat the same calculation but for an edison sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
 
 In this case the signal travels 2d (the distance to the mirror) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.  Now let's start translating the same system over the aexel field.
+
+<<ContraSketch>>
 
 While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_e:
 
@@ -283,7 +281,7 @@ The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the 
 
 <<Contra>>
 
-For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two signals sent out at the same time, both bounced off a mirror 1 meter away one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
+For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two edisons sent out at the same time, both bounced off a teslon 1 meter away, one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
 
 Length Contraction occurs and the length of things in the direction of translation are reduced by a factor of gamma.  In that case both signals would return at the exact same moment and the 'speed of light' would appear to be the same in both directions.
 
@@ -333,7 +331,7 @@ The aexels of Universe X form a crystal like lattice.  They sit in a potential w
 
 The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
 
-As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
+As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
 
 
 
