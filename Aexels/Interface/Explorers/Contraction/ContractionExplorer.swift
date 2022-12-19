@@ -50,7 +50,7 @@ class ContractionExplorer: Explorer {
 
         engine.onVelocityChange = { (v: TCVelocity) in
             let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)
-            let sb = italicPen.format("λ = \(String(format: "%3.2f", TCLambda(self.engine.velocity)))")
+            let sb = italicPen.format("γ = \(String(format: "%3.2f", TCLambda(self.engine.velocity)))")
             self.lambdaLabel.attributedText = sb
         }
     }
@@ -177,7 +177,7 @@ class ContractionExplorer: Explorer {
         velocityLabel.attributedText = sb
         controlsLimbo.addSubview(velocityLabel)
         
-        sb = italicPen.format("λ = \(String(format: "%3.2f", TCLambda(engine.velocity)))")
+        sb = italicPen.format("γ = \(String(format: "%3.2f", TCLambda(engine.velocity)))")
         lambdaLabel.attributedText = sb
         controlsLimbo.addSubview(lambdaLabel)
         
