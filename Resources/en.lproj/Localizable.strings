@@ -17,13 +17,13 @@ Aexels 3.0 also includes 3 new articles and 2 new explorers:
 Articles:
 - Electromagnetism: New insights have started to shine some light into the mechanism of E&M in Universe X; this contains some early conjecture.
 - Discrepancy: Potentially a substantial difference between Universe X and our Universe has been discovered
-- Epilogue: A list of about 30 physics questions that tend to be challenging to answer in our universe are answered for Universe X.
+- Epilogue: A list of about 30 physics questions that tend to be challenging to answer in our universe, are answered for Universe X.
 
 Explorers:
 - Dilation: Observe the actual mechanism underpinning 'animation' dilation in Universe X; see exactly when and how it occurs.
 - Contraction: While not explaining the mechanism causing length contraction, this simulation viscerally shows the importance of contraction and shows exactly what Lorentz covariance means and what it does not mean in Universe X.
 
-My hope is that Aexels 3.0 represents a significant step forward in the study of Universe X.  There is still much work to be done, especially in the quantitative aspects.  Playing with the Gravity explorer it quickly becomes obvious that the aether is way too flimsy and needs to be stiffened considerably.  The qualitative understanding of electromagnetism is just beginning and is still extremely foggy.
+My hope is that Aexels 3.0 represents a significant step forward in the understanding of Universe X, but of course much work remains.  Qualitatively, the big picture is starting to come to light (although it too still has unknowns such as electromagnetism), but quantitatively almost everything still remains to be done.
 
 Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
 
@@ -211,7 +211,7 @@ As such, let's refer to those loops that translate directly in a straight line (
 
 In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be a dependent on the the amount of time it takes the edisons to move back and forth between them.
 
-Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons interacts with a different teslon it invokes a reaction.  Perhaps that reaction is a change in the target teslon's rate of translation or perhaps it causes the target teslon to send out edisons of its own in response and its those response edisons that cause the change in translation when received by the original teslon.
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons interacts with a different teslon it invokes a reaction.  (Conjecture on the exact nature of this reaction is further discussed in both the Equivalence and the Electromagnetism sections.)
 
 In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth between the teslons.
 
@@ -265,15 +265,15 @@ In the Dilation article we calculated the increased amount of time needed to bou
 
 For this article let's now repeat the same calculation but for an edison sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
 
-In this case the signal travels 2d (the distance to the mirror) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.  Now let's start translating the same system over the aexel field.
+In this case the signal travels 2d (the distance to the target) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.
 
 <<ContraSketch>>
 
-While the signal is moving to the right it is 'chasing' the mirror' therefore the total distance it needs to cover is 'd' the distance to the mirror plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the mirror moving to the right.  Let's calculate that time, t_e:
+Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the target moving to the right.  Let's calculate that time, t_e:
 
 <<ContraEast>>
 
-Once the signal bounces off the mirror back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
+Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
 
 <<ContraWest>>
 
@@ -351,7 +351,7 @@ In our universe both mass and energy are conserved quantities.  Our own sun lose
 
 When initially thinking about Gravity in Universe X, it was hypothesized that 'mass' destroys aexels; it was also hypothesized that energy was the translation of that mass across an aexel field.  Thinking back to the classification of Universe X's loops between those that move at the speed of light, edisons and those that move less than the speed of light, teslons; it was easy to imagine teslons being the destroyers and creators of aexels because they have mass while perhaps the edisons, such as photons, doing neither because they don't have mass.
 
-But, thinking about a star radiating photons and losing mass, perhaps it's not 'mass' that destroys aexels, but rather translation that destroys aexels.  Perhaps the 'mass' of teslons is simply the internal translations of the components of the loop.  And photons while translating also destroy aexels, but always in their wake, never internal to themselves, explaining why the 'mass' of photons is so ambiguous.
+But, thinking about a star radiating photons and losing mass, perhaps it's not 'mass' that destroys aexels, but rather 'translation' that destroys aexels.  Perhaps the 'mass' of teslons is simply the internal translations of the components of the loop.  And photons while translating also destroy aexels, but always in their wake, never internal to themselves, explaining why the 'mass' of photons is so ambiguous.
 
 - loops that do neither
 
@@ -406,9 +406,9 @@ The coulomb force drops off a 1/r².  Imagine a pile of N grains of salt sitting
 
 Dilation and Contraction illustrated that the speed a loop moves doesn't matter only the roundtrip time matters.  Imagine two protons traveling directly towards one another.  Some hyle is used in the construction of the protons themselves, but some is devoted to translating the protons as a whole.  As the protons come closer they start to trade photons with one another; photons which are also made of hyle.
 
-Two potential mechanisms become apparent.  \[1 Bounce\] Each proton is sending out spherical pulses of hyleless signals in all directions.  When a proton detects one of these signals coming in, perhaps it responds with a photon sent back using data relayed in the signal in the direction where it anticipates the source will be.  One issue with this model is that when that photon is sent out the hyle must be pulled from its translational stores and as such it seems there would be a one way effect.  Perhaps this is just an imperceptible edge effect that will be masked by the photon returning from its own signals being sent out or else perhaps it points to different mechanism...
+Two potential mechanisms become apparent.  [1 Bounce] Each proton is sending out spherical pulses of hyleless signals in all directions.  When a proton detects one of these signals coming in, perhaps it responds with a photon sent back using data relayed in the signal in the direction where it anticipates the source will be.  One issue with this model is that when that photon is sent out the hyle must be pulled from its translational stores and as such it seems there would be a one way effect.  Perhaps this is just an imperceptible edge effect that will be masked by the photon returning from its own signals being sent out or else perhaps it points to different mechanism...
 
-\[2 Bounce\]  Protons can send out signals.  These signals can be generalized; sent off equally in all directions or directed; a single beam sent out.  These signals can contain hyle or not.  It's unlikely that hyle would be sent out in a generalized signal; it would only be sent out in a directed signal.  Perhaps there are two types of generalized signals, perhaps there are ping loops that are continually being send out and then a pong response that is send out after receiving a ping.  Only after receiving a pong back is a directed photon sent out.  The two signal hand shake would then fully explain the reason why only the roundtrip speed of light matters in the E/M interaction.
+[2 Bounce]  Protons can send out signals.  These signals can be generalized; sent off equally in all directions or directed; a single beam sent out.  These signals can contain hyle or not.  It's unlikely that hyle would be sent out in a generalized signal; it would only be sent out in a directed signal.  Perhaps there are two types of generalized signals, perhaps there are ping loops that are continually being send out and then a pong response that is send out after receiving a ping.  Only after receiving a pong back is a directed photon sent out.  The two signal hand shake would then fully explain the reason why only the roundtrip speed of light matters in the E/M interaction.
 
 Beyond the basic mechanism of coulombs force how does Magnetism play into all of this and what is the precise mechanism of length contraction?
 
@@ -436,7 +436,7 @@ Imagine a nearly empty Universe X with a single non-rotating non-translating pla
 
 Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
 
-In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newtons law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newton's law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
 
 Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
 
@@ -630,7 +630,7 @@ It has been stated that Gravity is a force that is proportional to the product o
 
 A Photon (and any loop in Universe X whether it destroys or creates aexels or not) will be affected by gravity because gravity is in fact not a force.  It is an emergent phenomenon better described as an acceleration caused by the pulling in of the aether and everything sitting on top of that aether.
 
-And as Galileo point out long ago that affect is in no way a function of the mass of objects being 'pulled' on.
+And as Galileo pointed out long ago that effect is in no way a function of the mass of objects being 'pulled' on.
 
 \[4c\] What is a black hole?
 
@@ -676,7 +676,7 @@ Length Contraction is an actual physical phenomena causing loops to sit closer t
 
 \[6b\] Do two observers both consider their own meter sticks to be longer?
 
-No.  Just like in Dilation above, both observers will see a long stick and a short stick and will no which is which.  And it will be based entirely on each observers current rate of translation across the aexel field.
+No.  Just like in Dilation above, both observers will see a long stick and a short stick and will know which is which.  And it will be based entirely on each observer's current rate of translation across the aexel field.
 
 \[6c\] Why is the speed of light always invariant?
 
@@ -706,15 +706,15 @@ Dark Matter does not exist.  The phenomena that hints at dark matter is caused b
 
 Matter destroys aexels constantly bringing things towards itself.  Antimatter creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
 
-\[8a\] What does E=mc^2 really mean?
+\[8a\] What does E=mc² really mean?
 
-E=mc^2 means that mass and energy are two affects of the exact same phenomenon.
+E=mc² means that mass and energy are two effects of the exact same phenomenon.
 
 \[8b\] What is its mechanism?
 
 The translation of certain loops (but not all) cause the destruction (or creation) of aexels.  Some of this translation occurs internal to a loop such as in a proton, neutron or electron.  The mass of those objects being a measure of the amount of translation occurring internally.  Other translation occurs in the movement of the loops as a whole.
 
-The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc^2 points out that both are the exact same phenomenon.
+The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc² points out that both are the exact same phenomenon.
 
 \[8c\] Does a photon have mass?  Where does the mass a star radiates go?
 

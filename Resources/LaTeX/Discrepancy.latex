@@ -13,13 +13,13 @@ KE=PE&\implies\frac{1}{2}mv^2=G\frac{Mm}{r}\\
 \\
 v&=\sqrt{\frac{2GM}{r}}\\
 \\
-\lambda&=\frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}\\
+\lambda=\lambda(v_e)&=\frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}\\
 \\
-\lambda&=1\\
+\lambda=\lambda(0)&=1\\
 \\
-\lambda&=\frac{1}{\sqrt{1-\frac{8GM}{rc^2}}}\\
+\lambda=\lambda(2 v_e)&=\frac{1}{\sqrt{1-\frac{8GM}{rc^2}}}\\
 \\
-\lambda&=\frac{1}{\sqrt{1-\frac{|\vec{v}-\vec{v_e}|^2}{c^2}}}\\
+\lambda(\vec{v},\vec{v_e})&=\lambda(|\vec{v}-\vec{v_e}|)\\
 \\
 (1 - \frac{r_s}{r})\frac{dt}{d\tau} &= \frac{E}{mc^2}\\
 \\
@@ -32,7 +32,9 @@ r_s &= \frac{2GM}{c^2}\\
 \lambda = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
 \\
 \\
-\lambda &= \frac{1}{1-\frac{2GM}{rc^2}}
+\lambda &= \frac{1}{1-\frac{2GM}{rc^2}}=\lambda(v_e)^2\\
+\\
+\lambda(\vec{v},\vec{v_e})&=\lambda(|\vec{v}|) \lambda(|\vec{v_e}|)\\
 \\
 \end{align*}
 
