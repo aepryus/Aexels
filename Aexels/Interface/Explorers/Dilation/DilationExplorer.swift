@@ -99,7 +99,6 @@ class DilationExplorer: Explorer {
                 limbos = [
                     fixedDilationLimbo,
                     controlsLimbo,
-                    messageLimbo,
                     swapper,
                     closeLimbo
                 ]
@@ -111,7 +110,6 @@ class DilationExplorer: Explorer {
                 limbos = [
                     dilationLimbo,
                     controlsLimbo,
-                    messageLimbo,
                     swapper,
                     closeLimbo
                 ]
