@@ -509,16 +509,16 @@ Clock Z
 The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
 
 Universe X:
-W = X < Y < Z
+    W = X < Y < Z
 
 Our Universe
-W < Y < X = Z
+    W < Y < X = Z
 
 This is a rather substantial deviation in the two universes.
 
 If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
 
-Digging deeper into the derivation of the Schwarzschild metric: https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution (https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution) it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
+Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
 
 <<Wiki2>>
 
