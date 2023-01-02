@@ -210,7 +210,7 @@ It may be the case that all translation in Universe X is at one aexel per tic.  
 
 As such, let's refer to those loops that translate directly in a straight line (at the speed of light) as 'edisons' (ed-i-sans) and those loops that translate in some sort of alternating fashion (at less than the speed of light) as 'teslons' (tes-lans).
 
-In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be a dependent on the the amount of time it takes the edisons to move back and forth between them.
+In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be dependent on the amount of time it takes the edisons to move back and forth between them.
 
 Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons interacts with a different teslon it invokes a reaction.  (Conjecture on the exact nature of this reaction is further discussed in the Electromagnetism section.)
 
@@ -218,7 +218,7 @@ In this way, complex static or dynamic systems of teslons can be formed.  The ra
 
 For two stationary teslons separated by a fixed number of aexels the edisons will travel between them at one aexel per tic.  However, if the teslons are both translating across the aexel field, the amount of time it takes edisons to move between them will vary based on the direction of motion of the edisons relative to the translating motion of the teslons across the aexel field.
 
-In some cases the time will be less, in others the time will be more, but in all cases the time of the roundtrip journey of an edison between the teslons will increase as the rate of translation increases.  This increased time will result in a slow down of the rate of the animation of the dynamic system of loops.
+In some cases the time will be less, in others the time will be more, but in all cases the time of the roundtrip journey of an edison between the teslons will increase as the rate of translation increases.  This increased time will result in a slow down of the rate of the animation of the composite system of loops.
 
 This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the edisons to move most quickly between the teslons.
 
@@ -234,7 +234,7 @@ First, let's look at the case where v = 0, the loops are not moving at all relat
 
 <<DilaSketch>>
 
-In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t~n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t\_n.  The signal therefore travels c \* t\_n while the system moves v \* t\_n.  Using the Pythagorean theorem we then get:
 
 <<Dilation>>
 
@@ -268,19 +268,19 @@ For this article let's now repeat the same calculation but for an edison sent ou
 
 In this case the signal travels 2d (the distance to the target) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.
 
-<<ContraSketch>>
+(img)
 
-Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the target moving to the right.  Let's calculate that time, t_e:
+Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v\*t\_e, v being the velocity of translation and t\_e being the time needed to hit the target moving to the right.  Let's calculate that time, t\_e:
 
-<<ContraEast>>
+(img)
 
-Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
+Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v\*t\_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t\_w:
 
-<<ContraWest>>
+(img)
 
-The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the time when the system is not translating at all.
+The total time, t' is equal to the sum of t\_e and t\_w.  Let's compare it to the time when the system is not translating at all.
 
-<<Contra>>
+(img)
 
 For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two edisons sent out at the same time, both bounced off equidistant teslons, one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
 
@@ -358,7 +358,7 @@ As such, if photons actually do destroy aexels, then are there in fact any loops
 
 - potential energy
 
-The energy of any system has 3 forms: mass, kinetic and potential.  If the previous explanation explains the equivalence of mass and energy for mass energy and kinetic energy, what is the explanation for potential energy?  How could potential energy have mass; how could it have translation; how could it destroy aexels?
+The energy of any system has 3 forms: mass, kinetic and potential.  If the previous explanation explains the equivalence of mass and energy for *mass energy* and *kinetic energy*, what is the explanation for *potential energy*?  How could potential energy have mass; how could it have translation; how could it destroy aexels?
 
 Consider two protons in Universe X on a static aexel field directly translating towards one another.  We know there is a single quantity that can be called 'mass' or 'energy' or 'aexel destroying loops' that is always conserved.  With the help of Aristotle, let's name this stuff 'hyle' which is the word Aristotle used for the primordial matter that made up all things.
 
@@ -382,7 +382,7 @@ Certainly, there is much work to be done on the quantitative aspects of Universe
 
 Equivalence illustrated that there is a conserved type of loop in Universe X that is able to translate and destroys aexels as part of that translation.  Originally the effects of the translation of this loop was called energy and the effects of the destruction of aexels was called mass.
 
-It would be nice to give this type of loop a name other than mass or energy, since those words are so tightly associated with their particular effects.  Aristotle hypothesized the existence of a primordial matter that made up all things; lets borrow his term to apply to this aexel destroying energy/mass loop: hyle; it seems to fit well with his concept.
+It would be nice to give this type of loop a name other than mass or energy, since those words are so tightly associated with their particular effects.  Aristotle hypothesized the existence of a primordial matter that made up all things, which he called: hyle.  Let's borrow his term to apply to this aexel destroying energy/mass loop; it seems to fit well with his concept.
 
 - loops that do neither
 
@@ -411,7 +411,7 @@ If the source proton sends out a hyleless signal (a ping) and then the target pr
 
 The 0 Bounce systems seems impossible in Universe X because of the necessary continuous loss of hyle.  Perhaps the first bounce in the 1 Bounce system is just an edge effect and the system does actually depend on the roundtrip time or perhaps the 2 Bounce mechanism is how things actually work.  But both the 1 Bounce and 2 Bounce mechanism both strongly hint at the existence of hyleless edisons; of non aexel destroying / creating edisons; of 'loops that do neither'.
 
-Miscellaneous Ruminations
+### Miscellaneous Ruminations
 
 - Throughout this app one aexel per tic is referred to the speed of light.  However, rarely are the aexels going to be precisely lined up in the direction of translation.  Given the nature of the aexels there is some mean angle between the vector of translation and the vector pointing to the next neighbor, theta.  As such it's imaginable that the speed of light is actual one aexel per tic times the cos(theta).
 - An omni-pulse ping might be responded to by either an omni-pulse or beam-pulse pong.  That pong would then be responded to by a beam-pulse photon.  Those beam pulses would need to be sent off in the direction where the source particle is headed not to where it was.  The information needed to predict the new location would need to be encoded in the ping (and/or pong) as some sort of internal vector.  Perhaps the difference between an electric and magnetic field is based on the combination of the angle of translation, angle of incidence and its internal angle; explaining why electric fields become magnetic fields and visa versa depending on the a target system's rate of translation.
@@ -439,52 +439,51 @@ In Universe X, gravity is not a force, it is a result of the tugging on the aeth
 
 Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
 
-<<DiscrA>>
+(img)
 
-This give us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
+This gives us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
 
-<<DiscrB>>
+(img)
 
 Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
-
 
 - Dilation while Falling from Infinity
 
 Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
 
-<<4Clocks>>
+(img)
 
 The question is what is the time dilation experienced by each of the 4 clocks.
 
 Clock W at infinity is not translating at all, so it has no translational velocity and therefore its gamma is 1.
 
-<<DiscrC>>
+(img)
 
 Clock X is simply floating down with the aexels and similarly not translating at all; its gamma is also equal to 1.
 
-<<DiscrC>>
+(img)
 
 Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the gamma factor:
 
-<<DiscrB>>
+(img)
 
 Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
 
-<<DiscrE>>
+(img)
 
 A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
 
-<<DiscrF>>
+(img)
 
 Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
 
 There is a constant of motion for an inertial observer in the Schwarzschild metric:
 
-<<DiscrG>>
+(img)
 
 For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
 
-<<DiscrH>>
+(img)
 
 In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
 
@@ -492,25 +491,25 @@ For our universe the time dilation of the 4 clocks is as follows:
 
 Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
 
-<<DiscrD>>
+(img)
 
 Clock X
 
-<<DiscrI>>
+(img)
 
 Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
 
-<<DiscrB>>
+(img)
 
 Clock Z
 
-<<DiscrI>>
+(img)
 
 The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
 
 Universe X:
     W = X < Y < Z
-
+    
 Our Universe
     W < Y < X = Z
 
@@ -518,9 +517,9 @@ This is a rather substantial deviation in the two universes.
 
 If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
 
-Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
+Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation\_of\_the\_Schwarzschild\_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
 
-<<Wiki2>>
+(img)
 
 In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
 
@@ -534,8 +533,7 @@ For that reason, the Schwarzschild solution does not apply in Universe X and a d
 
 "Epilogue" = "Epilogue
 
-Math is knowing...
-Knowing, is not, understanding.
+Math is knowing... Knowing, is not, understanding.
 
 When learning about the physics of our Universe there are a number of questions that might occur to oneself.
 
@@ -543,90 +541,67 @@ What follows is a list of about 30 of these questions.  After the questions will
 
 Questions
 
-[1a] What is the speed of light?
-[1b] Why does light travel at that speed?
-[1c] Why is it not possible to go faster than the speed of light?
-[1d] Why can't things with mass move at light speed?
+\[1a\] What is the speed of light? \[1b\] Why does light travel at that speed? \[1c\] Why is it not possible to go faster than the speed of light? \[1d\] Why can't things with mass move at light speed?
 
-[2a] Does God play dice with the Universe?
-[2b] Is matter a particle?  Is matter a wave?
+\[2a\] Does God play dice with the Universe? \[2b\] Is matter a particle?  Is matter a wave?
 
-[3a] Is space 4D? 11D?
-[3b] What does it mean for space to warp?
+\[3a\] Is space 4D? 11D? \[3b\] What does it mean for space to warp?
 
-[4a] What is gravity?  What is its mechanism?
-[4b] How can a star attract a photon?
-[4c] What is a black hole?
-[4d] What happens inside of a black hole?
-[4e] Why can't light escape?
-[4f] What is a gravity wave?  What is waving?
+\[4a\] What is gravity?  What is its mechanism? \[4b\] How can a star attract a photon? \[4c\] What is a black hole? \[4d\] What happens inside of a black hole? \[4e\] Why can't light escape? \[4f\] What is a gravity wave?  What is waving?
 
-[5a] What is time dilation?
-[5b] Is there really no special frame of reference?
-[5c] Do two observers both consider their own clocks to be faster?
-[5d] How does one resolve the twin paradox?
-[5e] What is the relationship between Special and General relativity?
+\[5a\] What is time dilation? \[5b\] Is there really no special frame of reference? \[5c\] Do two observers both consider their own clocks to be faster? \[5d\] How does one resolve the twin paradox? \[5e\] What is the relationship between Special and General relativity?
 
-[6a] What is Length Contraction?
-[6b] Do two observers both consider their own meter sticks to be longer?
-[6c] Why is the speed of light always invariant?
-[6d] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
+\[6a\] What is Length Contraction? \[6b\] Do two observers both consider their own meter sticks to be longer? \[6c\] Why is the speed of light always invariant? \[6d\] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
 
-[7a] What is the expansion of the universe?
-[7b] What causes it?
-[7c] What is Dark Energy?
-[7d] What is Dark Matter?
-[7e] Why does there appear to be more matter than antimatter in the Universe?
+\[7a\] What is the expansion of the universe? \[7b\] What causes it? \[7c\] What is Dark Energy? \[7d\] What is Dark Matter? \[7e\] Why does there appear to be more matter than antimatter in the Universe?
 
-[8a] What does E=mc^2 really mean?
-[8b] What is its mechanism?
-[8c] Does a photon have mass?  Where does the mass a star radiates go?
+\[8a\] What does E=mc^2 really mean? \[8b\] What is its mechanism? \[8c\] Does a photon have mass?  Where does the mass a star radiates go?
 
 Universe X Answers
 
-[1a] What is the speed of light?
+\[1a\] What is the speed of light?
 
 Universe X is filled with a quantized crystalline fluid called 'aether'.  Each element of the aether is called an 'aexel'.  Each aexel can communicate with its neighbors.  It takes exactly one 'tic' of time for a signal to move from an aexel to its neighbor.  The 'speed of light' is the translation of a signal at one aexel per tic.
 
-[1b] Why is it not possible to go faster than the speed of light?
+\[1b\] Why is it not possible to go faster than the speed of light?
 
 It's not possible to go faster than the speed of light because a signal can't move between two aexels faster than a tic and each aexel can only talk to its neighbors; it can't jump over or skip aexels.
 
-[1c] Why does light travel at light speed?
+\[1c\] Why does light travel at light speed?
 
 Light travels at light speed because it translates in a straight line, moving a full aexel each tic.
 
-[1d] Why can't things with mass move at light speed?
+\[1d\] Why can't things with mass move at light speed?
 
 When a frisbee is flying through the air at a certain speed it is also rotating; as a result some parts of the frisbee are moving faster than the frisbee and other parts are moving slower than the frisbee.  For a frisbee to move at the speed of light some parts of the frisbee would need to move faster than the speed of light, since its not possible to move faster than the speed of light, the frisbee itself would never be able to move at the speed of light.
 
 Sub-lightspeed particles have analogous internal motion and for the same reason can also never move at the speed of light.
 
-[2a] Does God play dice with the Universe?
+\[2a\] Does God play dice with the Universe?
 
 No.  The seemingly random behavior observed in certain experiments is caused by the (un)known hidden geometry of the aexels at any given point.  The precise location of the aexels at any instance can have an impact in the translation of loops crossing over them.  The observed behavior is statistical not probabilistic.
 
-[2b] Is matter a particle?  Is matter a wave?
+\[2b\] Is matter a particle?  Is matter a wave?
 
 Matter is neither a particle or a wave.  It is a stable state loop iterating across a field of aexels.
 
-[3a] Is space 4D? 11D?
+\[3a\] Is space 4D? 11D?
 
 Space is 3D.  The aether is a crystalline compressible fluid.  The aexels can flow; they can bunch up; they can spread out.  Arguably, the density and/or the rate of flow of the aexels at any point could be considered a 4th dimension.  But, calling space or the aether itself 4 dimensional because it's dynamic and compressible really doesn't make any more sense than calling any compressible gas 4D or for that matter any gas that varies in temperature, humidity or any other imaginable property from point to point as 4D.
 
-[3b] What does it mean for space to warp?
+\[3b\] What does it mean for space to warp?
 
 Space does not warp.  However, the aether squishes; the aether stretches.
 
-[4a] What is gravity?  What is its mechanism?
+\[4a\] What is gravity?  What is its mechanism?
 
-Universe X is made up of a quantized crystalline fabric called the aether which is made up of aexels.  Crystalline in that the aexels are bound to their neighbors and sit in a potential well from their neighbors, never letting themselves get too close or too far from their neighbors.
+Universe X is made up of a quantized crystalline fabric called the aether which is made up of aexels.  Crystalline in that each of the aexels are bound to their neighbors and sit in a potential well away from those neighbors, never letting themselves get too close or too far.
 
 Some state loops in Universe X cause the destruction of these aexels.  As the aexels get destroyed these aexel destroying loops tend to clump up.  As they clump up the rate of aexels being destroyed increases.
 
 The velocity of aexels flowing towards these clumps will increase the closer they get to the clumps.  The increasing velocity; the acceleration, is gravity.
 
-[4b] How can a star attract a photon?
+\[4b\] How can a star attract a photon?
 
 It has been stated that Gravity is a force that is proportional to the product of the masses of two objects.  If a photon has no mass doesn't it follow that it will be unaffected by Gravity?
 
@@ -634,91 +609,91 @@ A Photon (and any loop in Universe X whether it destroys or creates aexels or no
 
 And as Galileo pointed out long ago that phenomena is in no way a function of the mass of objects being 'pulled' on.
 
-[4c] What is a black hole?
+\[4c\] What is a black hole?
 
 A black hole is any concentration of matter dense enough to have the aexels flowing into it at the speed of light.
 
-[4d] What happens inside of a black hole?
+\[4d\] What happens inside of a black hole?
 
 Nothing particularly interesting.  A black hole must be filled with matter all the way to its event horizon, because the escape velocity will always be greatest at the surface.  Both above and below the surface the escape velocity will drop off.  That shell where the escape velocity is equal to c can not have any mass because intrinsic mass loops can't travel at c and can't 'sit' at c (see above).
 
 If a star existed with an escape velocity just below being a black a hole and a tennis ball got tossed into it causing it to cross the line of being a black hole, would anything particularly dramatic happen to the interior of that star?
 
-[4e] Why can't light escape?
+\[4e\] Why can't light escape?
 
 Light can't escape a black hole because the aexels are flowing into it at the speed of light.  Light can't go faster than light speed and therefore will never be able to cross the boundary of that shell, like a runner running on a treadmill that is turned up past their max speed.
 
-[4f] What is a gravity wave?  What is waving?
+\[4f\] What is a gravity wave?  What is waving?
 
 A gravity wave is a compression wave of the density of aexels.  Just as a sound wave is a compression wave of the density of air.
 
-[5a] What is time dilation?
+\[5a\] What is time dilation?
 
 In Universe X, 'time' does not dilate.  The rate at which physical systems animate, dilates and it does so because of the delayed round trip time of light speed traveling signals between loops when translating across the aexel field.
 
-[5b] Is there really no special frame of reference?
+\[5b\] Is there really no special frame of reference?
 
 There IS a special frame of reference; the frame of reference that is not translating across the aexel field at all will animate the fastest and experience no length contraction.  Any other frame will animate slower and experience length contraction entirely as a function of its rate of translation.
 
-[5c] Do two observers both consider their own clocks to be faster?
+\[5c\] Do two observers both consider their own clocks to be faster?
 
 No.  There will be an observer with a fast clock, an observer with a slow clock and each will know which is which.  And it will entirely be a function of each observer's current rate of translation across the aexel field.
 
-[5d] How does one resolve the twin paradox?
+\[5d\] How does one resolve the twin paradox?
 
 One twin will be translating slower than the other twin on the aexel field.  Whichever twin is translating slower will age more rapidly.
 
-[5e] What is the relationship between Special and General relativity?
+\[5e\] What is the relationship between Special and General relativity?
 
 Special and general relativity are the exact same phenomena; the translation of systems across an aexel field.  In the case of special relativity a moving system is translating across a static aexel field and in general relativity a static system is translating across a moving aexel field.  But, in both cases the affect simply concerns the translation of a system over an aexel field.
 
-[6a] What is Length Contraction?
+\[6a\] What is Length Contraction?
 
 Length Contraction is an actual physical phenomena causing loops to sit closer to one another along the direction of translation entirely as a function of the rate of translation.
 
-[6b] Do two observers both consider their own meter sticks to be longer?
+\[6b\] Do two observers both consider their own meter sticks to be longer?
 
-No.  Just like in Dilation above, both observers will see a long stick and a short stick and will know which is which.  And it will be based entirely on each observer's current rate of translation across the aexel field.
+No.  Just like in Dilation above, both observers will see a long stick and a short stick and will know which is which; it will be based entirely on each system's current rate of translation across the aexel field.
 
-[6c] Why is the speed of light always invariant?
+\[6c\] Why is the speed of light always invariant?
 
 It is always invariant because length contraction masks changes in the speed of light.  The length of things in the direction of translation is a function of that speed of translation and that change of length will cancel out the change of the speed of light causing the speed of light to always appear to be invariant.
 
-[6d] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
+\[6d\] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
 
 No.  Length contraction only affects systems that are actually translating.  The length between any other non translating systems in Universe X will be unaffected.
 
-[7a] What is the expansion of the universe?
+\[7a\] What is the expansion of the universe?
 
 The expansion of the universe is the creation of aexels.
 
-[7b] What causes it?
+\[7b\] What causes it?
 
 Every loop has an anti loop that is equal and opposite in every way.  Matter loops destroy aexels and as such antimatter loops create them.
 
-[7c] What is Dark Energy?
+\[7c\] What is Dark Energy?
 
 Dark energy is the antimatter loops creating aexels there by causing the \"expansion of the universe\"
 
-[7d] What is Dark Matter?
+\[7d\] What is Dark Matter?
 
 Dark Matter does not exist.  The phenomena that hints at dark matter is caused by the same entity that causes the phenomena hinted at by dark energy, namely the antimatter particles that are creating aexels.  Those new aexels pushing on galaxies from the outside, but being mistaken for a pulling on the galaxies from the inside.
 
-[7e] Why does there appear to be more matter than antimatter in the Universe?
+\[7e\] Why does there appear to be more matter than antimatter in the Universe?
 
 Matter destroys aexels constantly bringing things towards itself.  Antimatter creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
 
-[8a] What does E=mc² really mean?
+\[8a\] What does E=mc² really mean?
 
 E=mc² means that mass and energy are two effects of the exact same phenomenon.
 
-[8b] What is its mechanism?
+\[8b\] What is its mechanism?
 
 The translation of certain loops (but not all) cause the destruction (or creation) of aexels.  Some of this translation occurs internal to a loop such as in a proton, neutron or electron.  The mass of those objects being a measure of the amount of translation occurring internally.  Other translation occurs in the movement of the loops as a whole.
 
 The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc² points out that both are the exact same phenomenon.
 
-[8c] Does a photon have mass?  Where does the mass a star radiates go?
+\[8c\] Does a photon have mass?  Where does the mass a star radiates go?
 
 Unlike a proton, a photon does not have internal translation.  Its translation is in a straight-line.  The destruction or creation of aexels by a photon always occurs in its wake never internal to itself.
 
@@ -825,11 +800,11 @@ In this case the aether is modeled simplistically with regular 2 dimensional hex
 "GravityLab" = "Gravity Lab
 
 Note: In addition to the new experiments a number of interactive abilities have been added:
-- Aexels can now be dragged around.
-  - An Aexel can be locked in place by tapping on it.
-  - A new Aexel can be created by tapping on empty space.
-  - An Aexel can be destroyed by double tapping on it.
 
+- Aexels can now be dragged around.
+- An Aexel can be locked in place by tapping on it.
+- A new Aexel can be created by tapping on empty space.
+- An Aexel can be destroyed by double tapping on it.
 
 This is an attempt to model the Aexels themselves.  Certainly, the ideal will be to create a quantitative model, however there are way too many open questions to attempt that currently.  As such the goal at this point is to create a qualitative model of Universe X and its aexels.  The hope being to create a visceral picture of Universe X; a thousand words per frame at 60 frames per second.
 
@@ -850,37 +825,35 @@ Currently, this model does a respectable job of healing holes in the aether fabr
 
 Cheat Sheet:
 - Play / Pause: to pause and unpause the simulation
-  - Reset: to clear the simulation and restart with current settings
-  - Speed of Light: define the speed of light in points (pixels) per second.
-  - Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
-  - Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
-  - Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
-  - Fixed: Turns on/off the fixed camera that moves with the aexels instead of the teslons.  (although jumps ahead when the teslon leaves the screen.)
-  - Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+- Reset: to clear the simulation and restart with current settings
+- Speed of Light: define the speed of light in points (pixels) per second.
+- Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+- Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+- Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+- Fixed: Turns on/off the fixed camera that moves with the aexels instead of the teslons.  (although jumps ahead when the teslon leaves the screen.)
+- Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
 
 In our Universe 'Time Dilation' is a very magical phenomena.  'Time' itself is dilating.  There are no special frames of reference and the observations of different systems is a function of the observers themselves rather than being based on fundamental physical processes.  The Twin paradox is an actual paradox in our Universe.
 
-In Universe X however, 'Dilation' is not magical at all.  First of all, 'Time' does not dilate, but rather the rate at which physical systems animate.  In Universe X this rate of animation has nothing to do with the relative speed difference between different frames of reference, but is entirely based solely on the rate of translation of various systems across the aexel field.
-
-In Universe X 'Dilation' is in no way dependent on an observer; each system experiences a specific 'Dilation' entirely and solely a function of it's rate of translation across the aexel field.
+In Universe X however, dilation is not magical at all.  First of all, time does not dilate, but rather it's the rate at which physical systems animate, that dilates.  Dilation is in no way dependent on an observer; each system experiences a specific dilation entirely a function of it's rate of translation across the aexel field.
 
 This dilation in Universe X has a physical basis; it is caused by the slow down of edison (loops that move at the speed of light) messengers traveling between the teslons (loops that move at less than the speed of light).
 
 This laboratory gives a visceral description of the process of dilation in Universe X.  As the rate of translation of a system of teslons (the blue circles) increases the amount of time it takes a signal to move back and forth increases.
 
-This simulation knows nothing about the equations of relativity.  It simply shows teslons moving at a velocity v as a percent of c (as specified by the user) and edisons moving at velocity c.  From these simple rules 'dilation' naturally appears.
+This simulation knows nothing about the equations of relativity.  It simply shows teslons moving at a velocity v as a percent of c (as specified by the user) and edisons moving at velocity c.  From these simple rules 'dilation' naturally arises.
 
-In playing with the simulation try to observe the increased distance that must be traveled between the teslons as the rate of translation increases.  Be particularly cognizant of the direction of translation of edisons as the move back and forth.
+In playing with the simulation try to observe the increased distance that must be traveled between the teslons as the rate of translation increases.  Be particularly cognizant of the direction of translation of edisons as they move back and forth.
 
 Note:
-In this simulation the individual aexels are not being modeled, only the flow of the aexel field in general.  Electromagnetic phenomena as being illustrated here works at a much larger scale than the aexels and as such the continuous approximation is a fair representation of reality.  For example, if each aexel were one meter across (rather than the Planck length), then the radius of a proton would extend beyond the orbit of Venus.
+In this simulation the individual aexels are not being modeled, only the flow of the aexel field in general.  Electromagnetic phenomena as being illustrated here works at a much larger scale than the aexels and as such the continuous approximation is a fair representation of reality.  For example, if each aexel were one nanometer across (rather than the Planck length), then the radius of a proton centered on the Sun would extend nearly halfway to Venus.
 
 Twin Paradox
 Let's imagine I have a set of twins and two spaceships, P and Q.  The spaceships are docked with one another; each twin gets into one.  Imagine the following 3 situations:
 
-  - [1] P stays put, Q accelerates to 0.9 c travels for a year and then turns around returning to the starting point.
-  - [2] P accelerates to 0.9 c travels for a year and then turns around returning to the starting point, Q stays put.
-  - [3] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around returning to the starting point.
+- \[1\] P stays put, Q accelerates to 0.9 c travels for a year and then turns around returning to the starting point.
+- \[2\] P accelerates to 0.9 c travels for a year and then turns around returning to the starting point, Q stays put.
+- \[3\] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around returning to the starting point.
 
 For each of the 3 scenarios which twin is older?  Are the results the same for all the scenarios?  If not how do the scenarios differ at all?
 
@@ -888,7 +861,7 @@ In our universe all motion is relative.  There are no special frames of referenc
 
 In Universe X however, answering the above is relatively straight forward, however it is not possible without one additional piece of data: what is the vector of translation initially before the twins start their journeys?
 
-For example, if when the twins were docked they weren't translating across the aexel field at all.  Then the answers would be [1] P is older; [2] Q is older; [3] P and Q are still the same age.
+For example, if when the twins were docked they weren't translating across the aexel field at all then the answers would be \[1\] P is older; \[2\] Q is older; \[3\] P and Q are still the same age.
 
 However, if the twins had been translating across the aexels initially than the answers could be entirely different.  Without knowing the initial rate of translation it is impossible to answer the question, but once you do know the initial rate of translation and the direction the spaceships travel relative to the direction of that translation it becomes straightforward to calculate the relative ages of the twins.
 
@@ -902,14 +875,14 @@ In Universe X, there is no Twin Paradox.
 "ContractionLab" = "Contraction Lab
 
 Cheat Sheet:
-  - Play / Pause: to pause and unpause the simulation
-  - Reset: to clear the simulation and restart with current settings
-  - Speed of Light: define the speed of light in points (pixels) per second.
-  - Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
-  - Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
-  - Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
-  - Contract: Turns on/off the length contraction.  (I.e., Makes the horizontal and vertical particles equidistant from the source.)
-  - Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+- Play / Pause: to pause and unpause the simulation
+- Reset: to clear the simulation and restart with current settings
+- Speed of Light: define the speed of light in points (pixels) per second.
+- Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+- Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+- Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+- Contract: Turns on/off the length contraction.  (I.e., Makes the horizontal and vertical particles equidistant from the source.)
+- Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
 
 The Contraction lab is very similar to the Dilation lab, but also includes a horizontal teslon in addition to the previous vertical and source teslons.
 
@@ -917,29 +890,29 @@ This lab does not attempt to explain the mechanism of length contraction.  Howev
 
 Similar to 'Time Dilation', 'Length Contraction' in our Universe is described as being an observational phenomena highly dependent on the frame of reference of the observer.  And like 'Time Dilation' there is no special frame of reference, observers always see their meter sticks as being longest.
 
-However, just as in the 'Dilation' section, 'Contraction' in Universe X is a real physical phenomenon and is a direct result of the rate of translation across the aexel field.
+However, just as in the dilation section, contraction in Universe X is a real physical phenomenon and is a direct result of the rate of translation across the aexel field.
 
 In our Universe there is a notion called Lorentz Covariance which says that the speed of light is the same in all directions for all time frames.  In Universe X, however, not only is the speed of light not the same, it's almost always different, not just for people in different frames, but along almost any two directions of a single frame (unless the frame isn't translating at all.)
 
-However, even though the speed of light is always changing, Lorentz Covariance holds in Universe X just as it does in our Universe and it does so because of the Length Contraction.
+However, even though the speed of light is always changing, Lorentz Covariance holds in Universe X just as it does in our Universe and it does so because of the length contraction.
 
-In Universe X, light (or any edison) always travels at one aexel per tic; previously we defined 1 aexel / tic = speed of light.  The Contraction simulation illustrates another way in which 'light always travels at the speed of light'.  Any time a signal is sent out in any direction, it will always return at exact same time from all directions as a result of length contraction, even though the velocity of the light can vary greatly in each of the directions and vary on its way out compared to its return trip.
+In Universe X, light (or any edison) always travels at one aexel per tic; previously we defined 1 aexel / tic = speed of light.  The Contraction simulation illustrates another way in which 'light always travels at the speed of light'.  Any time a signal is sent out in any direction, it will always return at the exact same time from all directions as a result of length contraction, even though the velocity of the light can vary greatly in each of the directions and vary on its way out compared to its return trip.
 
-It would be more accurate to say that the time of any roundtrip journey of light over a given distance is a constant.
+Rather than saying that 'light always travels at the speed of light' for all inertial frames, It would perhaps be more accurate to say that the time of any roundtrip journey between two points of light over a given distance is a constant.
 
-This lab perhaps work best with 'auto' turned off and manually pulsing instead.  In this way it is possible to compare the roundtrip duration of the vertical light and the horizontal light.
+This lab perhaps works best with 'auto' turned off and manually pulsing instead.  In this way it is possible to compare the roundtrip duration of the vertical light and the horizontal light.
 
-Certainly, when the velocity of the system of teslons is 0, the light returns at the exact same moment in all directions.  But, watch as the system is sped up to 10, 20, 50, 70, 90 and 99% of the speed of light.  In all of these cases each signal return back to the source at the exact same moment no matter the rate of translation, whether moving towards or moving away from the horizontal loop.
+Certainly, when the velocity of the system of teslons is 0, the light returns at the exact same moment in all directions.  But, watch as the system is sped up to 10, 20, 50, 70, 90 and 99% of the speed of light.  In all of these cases each signal returns back to the source at the exact same moment no matter the rate of translation, whether moving towards or moving away from the horizontal loop.
 
-Next turn off contraction, forcing the horizontal particle to be equidistant from the source as the vertical one.  Now it is possible to see that the light messengers are returning at different times.  Without, length contraction, Lorentz Covariance would no longer hold.
+Next turn off contraction, forcing the horizontal particle to be equidistant from the source as the vertical one.  Now it is possible to see that the edison messengers are returning at different times.  Without, length contraction, Lorentz Covariance would no longer hold.
 
 One of the complications in this conversation and really any topics related to Universe X is the notion of distance.  In our Universe, distance is rather straight forward.  However, in Universe X, there are potentially 3 different notions of distance.
 
-- In Universe X, space is just an empty box filled with quantized aether.  So, between any two points there exists a basic cartesian distance between them.  But, since everything in the universe happens in the context of the aexels, there are no natural land marks or 'space' rulers available to measure this type of distance; it can only be inferred from other hints.
+- In Universe X, space is just an empty box filled with quantized aether.  Therefore between any two points there exists a basic cartesian distance between them.  But, since everything in the universe happens in the context of the aexels, there are no natural land marks or 'space' rulers available to measure this type of distance; it can only be inferred from other hints.
 - The next potential definition of distance would be to simply count the number of aexels between two points.  Since aexels can vary in density this concept of distance may not track with the cartesian concept.  Similar to the 'space' definition above there isn't a (known) way to directly measure the number of aexels between two points.
 - The last potential definition of distance would be measure the time it takes light to travel to and from two points.  This definition has the massive advantage of being able to be measured.  However, unlike the previous two definitions because of length contraction this definition is not universal for all observers.
 
-Distance is a tricky concept to get a handle on in Universe X.  Time is a similarly tricky concept to get a handle on.  Velocity being distance / time makes it perhaps doubly tricky to get a handle on and as a result the notion of the \"speed of light\" can be a bit nebulous.
+Distance is a tricky concept to get a handle on in Universe X.  Time is a similarly tricky concept to get a handle on.  Velocity being distance / time makes it perhaps doubly tricky to get a handle on and as a result the notion of the "speed of light" can be a bit nebulous.
 
 
 
