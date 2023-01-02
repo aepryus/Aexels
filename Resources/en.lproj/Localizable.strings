@@ -234,7 +234,7 @@ First, let's look at the case where v = 0, the loops are not moving at all relat
 
 <<DilaSketch>>
 
-In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t\_n.  The signal therefore travels c \* t\_n while the system moves v \* t\_n.  Using the Pythagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t_n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
 
 <<Dilation>>
 
@@ -268,19 +268,19 @@ For this article let's now repeat the same calculation but for an edison sent ou
 
 In this case the signal travels 2d (the distance to the target) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.
 
-(img)
+<<ContraSketch>>
 
-Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v\*t\_e, v being the velocity of translation and t\_e being the time needed to hit the target moving to the right.  Let's calculate that time, t\_e:
+Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the target moving to the right.  Let's calculate that time, t_e:
 
-(img)
+<<ContraEast>>
 
-Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v\*t\_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t\_w:
+Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
 
-(img)
+<<ContraWest>>
 
-The total time, t' is equal to the sum of t\_e and t\_w.  Let's compare it to the time when the system is not translating at all.
+The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the time when the system is not translating at all.
 
-(img)
+<<Contra>>
 
 For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two edisons sent out at the same time, both bounced off equidistant teslons, one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
 
@@ -358,7 +358,7 @@ As such, if photons actually do destroy aexels, then are there in fact any loops
 
 - potential energy
 
-The energy of any system has 3 forms: mass, kinetic and potential.  If the previous explanation explains the equivalence of mass and energy for *mass energy* and *kinetic energy*, what is the explanation for *potential energy*?  How could potential energy have mass; how could it have translation; how could it destroy aexels?
+The energy of any system has 3 forms: mass, kinetic and potential.  If the previous explanation explains the equivalence of mass and energy for mass energy and kinetic energy, what is the explanation for potential energy?  How could potential energy have mass; how could it have translation; how could it destroy aexels?
 
 Consider two protons in Universe X on a static aexel field directly translating towards one another.  We know there is a single quantity that can be called 'mass' or 'energy' or 'aexel destroying loops' that is always conserved.  With the help of Aristotle, let's name this stuff 'hyle' which is the word Aristotle used for the primordial matter that made up all things.
 
@@ -411,7 +411,7 @@ If the source proton sends out a hyleless signal (a ping) and then the target pr
 
 The 0 Bounce systems seems impossible in Universe X because of the necessary continuous loss of hyle.  Perhaps the first bounce in the 1 Bounce system is just an edge effect and the system does actually depend on the roundtrip time or perhaps the 2 Bounce mechanism is how things actually work.  But both the 1 Bounce and 2 Bounce mechanism both strongly hint at the existence of hyleless edisons; of non aexel destroying / creating edisons; of 'loops that do neither'.
 
-### Miscellaneous Ruminations
+Miscellaneous Ruminations
 
 - Throughout this app one aexel per tic is referred to the speed of light.  However, rarely are the aexels going to be precisely lined up in the direction of translation.  Given the nature of the aexels there is some mean angle between the vector of translation and the vector pointing to the next neighbor, theta.  As such it's imaginable that the speed of light is actual one aexel per tic times the cos(theta).
 - An omni-pulse ping might be responded to by either an omni-pulse or beam-pulse pong.  That pong would then be responded to by a beam-pulse photon.  Those beam pulses would need to be sent off in the direction where the source particle is headed not to where it was.  The information needed to predict the new location would need to be encoded in the ping (and/or pong) as some sort of internal vector.  Perhaps the difference between an electric and magnetic field is based on the combination of the angle of translation, angle of incidence and its internal angle; explaining why electric fields become magnetic fields and visa versa depending on the a target system's rate of translation.
@@ -439,51 +439,52 @@ In Universe X, gravity is not a force, it is a result of the tugging on the aeth
 
 Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
 
-(img)
+<<DiscrA>>
 
 This gives us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
 
-(img)
+<<DiscrB>>
 
 Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
+
 
 - Dilation while Falling from Infinity
 
 Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
 
-(img)
+<<4Clocks>>
 
 The question is what is the time dilation experienced by each of the 4 clocks.
 
 Clock W at infinity is not translating at all, so it has no translational velocity and therefore its gamma is 1.
 
-(img)
+<<DiscrC>>
 
 Clock X is simply floating down with the aexels and similarly not translating at all; its gamma is also equal to 1.
 
-(img)
+<<DiscrC>>
 
 Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the gamma factor:
 
-(img)
+<<DiscrB>>
 
 Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
 
-(img)
+<<DiscrE>>
 
 A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
 
-(img)
+<<DiscrF>>
 
 Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
 
 There is a constant of motion for an inertial observer in the Schwarzschild metric:
 
-(img)
+<<DiscrG>>
 
 For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
 
-(img)
+<<DiscrH>>
 
 In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
 
@@ -491,25 +492,25 @@ For our universe the time dilation of the 4 clocks is as follows:
 
 Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
 
-(img)
+<<DiscrD>>
 
 Clock X
 
-(img)
+<<DiscrI>>
 
 Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
 
-(img)
+<<DiscrB>>
 
 Clock Z
 
-(img)
+<<DiscrI>>
 
 The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
 
 Universe X:
     W = X < Y < Z
-    
+
 Our Universe
     W < Y < X = Z
 
@@ -519,7 +520,7 @@ If we assume that Einstein's equations hold in Universe X and we also assume tha
 
 Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation\_of\_the\_Schwarzschild\_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
 
-(img)
+<<Wiki2>>
 
 In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
 
@@ -542,11 +543,8 @@ What follows is a list of about 30 of these questions.  After the questions will
 Questions
 
 \[1a\] What is the speed of light? \[1b\] Why does light travel at that speed? \[1c\] Why is it not possible to go faster than the speed of light? \[1d\] Why can't things with mass move at light speed?
-
 \[2a\] Does God play dice with the Universe? \[2b\] Is matter a particle?  Is matter a wave?
-
 \[3a\] Is space 4D? 11D? \[3b\] What does it mean for space to warp?
-
 \[4a\] What is gravity?  What is its mechanism? \[4b\] How can a star attract a photon? \[4c\] What is a black hole? \[4d\] What happens inside of a black hole? \[4e\] Why can't light escape? \[4f\] What is a gravity wave?  What is waving?
 
 \[5a\] What is time dilation? \[5b\] Is there really no special frame of reference? \[5c\] Do two observers both consider their own clocks to be faster? \[5d\] How does one resolve the twin paradox? \[5e\] What is the relationship between Special and General relativity?
