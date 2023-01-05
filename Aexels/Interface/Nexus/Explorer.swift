@@ -15,13 +15,16 @@ class Explorer {
 	let name: String
 	let key: String
 	let canExplore: Bool
+    lazy var explorerButton: ExplorerButton? = {
+        let replace: [String:String] = ["Cellular Automata":"Automata"]
+        if canExplore { return ExplorerButton(explorer: self, text: replace[name] ?? name, imageView: UIImageView(image: UIImage(named: (replace[name] ?? name)+"Icon"))) }
+        else { return nil }
+    }()
 	var layedOut: Bool = false
 
 	var limbos = [UIView]()
 	
-	var s: CGFloat {
-		return Screen.s
-	}
+	var s: CGFloat { Screen.s }
 	
 	init(parent: UIView, name: String, key: String, canExplore: Bool) {
 		self.parent = parent

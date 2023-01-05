@@ -23,7 +23,10 @@ class NexusViewController: UIViewController {
 	var explorers: [Explorer]!
 	var explorer: Explorer?
 
-	var busy = false
+    var busy: Bool = false
+    
+    var explorerButtons: [ExplorerButton] { explorers.compactMap { $0.explorerButton } }
+
 	private func display(explorer: Explorer) {
 		if explorer.canExplore {
 			if Screen.iPad || Screen.mac {
@@ -103,6 +106,7 @@ class NexusViewController: UIViewController {
 			for button in self.nexusButtons {
 				button.alpha = 0
 			}
+            self.explorerButtons.forEach { $0.alpha = 0 }
 		}
 	}
 	func brightenNexus() {
@@ -111,6 +115,7 @@ class NexusViewController: UIViewController {
 			for button in self.nexusButtons {
 				button.alpha = 1
 			}
+            self.explorerButtons.forEach { $0.alpha = 1 }
 		}
 	}
     
@@ -140,13 +145,30 @@ class NexusViewController: UIViewController {
 		versionLabel.frame = CGRect(x: 52*s, y: 114*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
+        
+        // ExplorerButtons
+        var x: CGFloat = 10*s
+        let dx: CGFloat = 73*s
+        let nvc: NexusViewController = self
+        explorerButtons.forEach { (button: ExplorerButton) in
+            view.addSubview(button)
+            button.frame = CGRect(x: x, y: 156*s, width: 70*s, height: 66*s)
+            x += dx
+            button.addAction { [weak nvc] in
+                guard let nvc else { return }
+                nvc.dimNexus()
+                button.explorer.openExplorer(view: nvc.view)
+            }
+        }
 
 		// Menu
 		var i: CGFloat = 0
-        let dy: CGFloat = 9*64*s/CGFloat(explorers.count)
+        let y0: CGFloat = 240*s
+        let y1: CGFloat = 720*s
+        let dy: CGFloat = (y1-y0)/CGFloat(explorers.count-1)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 50*s, y: 162*s+i*dy, width: 300*s, height: 40*s)
+			button.frame = CGRect(x: 50*s, y: y0+i*dy, width: 300*s, height: 40*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -179,22 +201,39 @@ class NexusViewController: UIViewController {
 	func iPhoneLayout() {
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:60*s)
-		nexusLabel.frame = CGRect(x: 16*s, y: 52*s, width: 300*s, height: 64*s)
+		nexusLabel.frame = CGRect(x: 16*s, y: 42*s, width: 300*s, height: 64*s)
 		view.addSubview(nexusLabel)
 		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
-		versionLabel.frame = CGRect(x: 16*s, y: 105*s, width: 300*s, height: 30*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 95*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		
+        // ExplorerButtons
+        var x: CGFloat = 10*s
+        let dx: CGFloat = 71*s
+        let nvc: NexusViewController = self
+        explorerButtons.forEach { (button: ExplorerButton) in
+            view.addSubview(button)
+            button.frame = CGRect(x: x, y: 130*s, width: 70*s, height: 66*s)
+            x += dx
+            button.addAction { [weak nvc] in
+                guard let nvc else { return }
+                nvc.dimNexus()
+                button.explorer.openExplorer(view: nvc.view)
+            }
+        }
+
 		// Menu
 		var i: CGFloat = 0
-        let dy: CGFloat = 9*52*s/CGFloat(explorers.count)
+        let y0: CGFloat = 210*s
+        let y1: CGFloat = 624*s
+        let dy: CGFloat = (y1-y0)/CGFloat(explorers.count-1)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 164*s+i*dy, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: y0+i*dy, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
@@ -227,22 +266,39 @@ class NexusViewController: UIViewController {
 	func iPhoneXLayout() {
 		// Title
 		nexusLabel = NexusLabel(text: "Aexels", size:60*s)
-		nexusLabel.frame = CGRect(x: 16*s, y: 102*s, width: 300*s, height: 64*s)
+		nexusLabel.frame = CGRect(x: 16*s, y: 72*s, width: 300*s, height: 64*s)
 		view.addSubview(nexusLabel)
 		nexusLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 		
 		// Version
 		versionLabel = NexusLabel(text: "v\(Aexels.version)", size:18*s)
-		versionLabel.frame = CGRect(x: 16*s, y: 155*s, width: 300*s, height: 30*s)
+		versionLabel.frame = CGRect(x: 16*s, y: 125*s, width: 300*s, height: 30*s)
 		versionLabel.alpha = 0
 		view.addSubview(versionLabel)
 		
+        // ExplorerButtons
+        var x: CGFloat = 10*s
+        let dx: CGFloat = 71*s
+        let nvc: NexusViewController = self
+        explorerButtons.forEach { (button: ExplorerButton) in
+            view.addSubview(button)
+            button.frame = CGRect(x: x, y: 164*s, width: 70*s, height: 66*s)
+            x += dx
+            button.addAction { [weak nvc] in
+                guard let nvc else { return }
+                nvc.dimNexus()
+                button.explorer.openExplorer(view: nvc.view)
+            }
+        }
+
 		// Menu
 		var i: CGFloat = 0
-        let dy: CGFloat = 9*58*s/CGFloat(explorers.count)
+        let y0: CGFloat = 250*s
+        let y1: CGFloat = 730*s
+        let dy: CGFloat = (y1-y0)/CGFloat(explorers.count-1)
 		for explorer in explorers {
 			let button = NexusButton(text: explorer.name)
-			button.frame = CGRect(x: 16*s, y: 224*s+i*dy, width: 300*s, height: 32*s)
+			button.frame = CGRect(x: 16*s, y: y0+i*dy, width: 300*s, height: 32*s)
 			button.addAction(for: .touchUpInside, {
 				self.wantsToDisplay(explorer: explorer)
 			})
