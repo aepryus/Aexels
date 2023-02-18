@@ -42,7 +42,7 @@ My original thinking on the MMX was that with aexels, the flow of aether would b
 
 However, I later realized that a vertical MMX would show a null result in Universe X just as it would in ours and it does so because of length contraction.
 
-I have created a simulation that vividly illustrates that fact: [Aexels](https://apps.apple.com/us/app/aexels/id935727868), however I've also recorded a [video](https://www.youtube.com/watch?v=QMwKmdHTo9U) of it in case you just want to watch.
+Here is a [video](https://www.youtube.com/watch?v=QMwKmdHTo9U) which vividly illustrates this phenomena.
 
 ### Schwarzschild Metric
 
