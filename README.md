@@ -22,13 +22,13 @@ Translating systems will experience 'animation' dilation.  Systems sitting still
 
  5. Length contraction also exists in Universe X and is also entirely a function of the rate of translation of the composite system.  Without length contraction differences in the roundtrip journey time between edisons moving perpendicular and parallel to the direction of translation would become apparent, but with length contraction, the difference is precisely masked and as a result the round trip time is equal in both directions.
 
-##Discussion of 3 Potential Descrepancies
+## Discussion of 3 Potential Descrepancies
 
 Realizing the non-trivial aspect of this question and the fact that I've had a lot more time to think about it than someone just coming to it now, I thought I'd perhaps give people a head start and discuss 3 potential issues.
 
 I also hope to hint to people that this question is perhaps a bit less frivolous than it may seem.
 
-_Lorentz Covariance_
+### Lorentz Covariance
 
 Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance][2] and the [Michelson-Morley Experiment][3].  These were among my first concerns also.
 
@@ -38,7 +38,7 @@ However, I later realized that a vertical MMX would show a null result in Univer
 
 I have created a simulation that vividly illustrates that fact: [Aexels][4], however I've also recorded a [video][5] of it in case you just want to watch.
 
-_Schwarzschild Metric_
+### Schwarzschild Metric
 
 In Universe X, since gravity is not a force, it can not directly cause a system to translate over the aexels, only E&M can do that.  As such, a tennis ball placed infinitely far from a static non-rotating planet will not translate across the aexels, but rather will just float down on top of them as they flow towards the planet like a leaf floating down a stream.
 
@@ -52,7 +52,7 @@ The same analysis in our universe using the [Schwarzschild metric][6] will inste
 
 So, it seems we have found a discrepancy!  The problem is that while there have been a handful of experiments that have verified the phenomena of 'time dilation', 'warping of spacetime', 'expansion of the universe', there have been none showing that the Schwarzschild metric is physical and actually there are [indications][7] that it is not.
 
-_Minkowski Space_
+### Minkowski Space
 
 One of the first steps in the derivation of General Relativity is to define a 4-vector with time and 3 spacial dimensions and define a value $ds^2=dt^2-dx^2$ and then assert that $ds^2$ is an invariant value in all inertial frames.
 
