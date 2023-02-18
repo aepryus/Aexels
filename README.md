@@ -22,7 +22,7 @@ Translating systems will experience 'animation' dilation.  Systems sitting still
 
  5. Length contraction also exists in Universe X and is also entirely a function of the rate of translation of the composite system.  Without length contraction differences in the roundtrip journey time between edisons moving perpendicular and parallel to the direction of translation would become apparent, but with length contraction, the difference is precisely masked and as a result the round trip time is equal in both directions.
 
-## Discussion of 3 Potential Descrepancies
+## 3 Potential Descrepancies
 
 Realizing the non-trivial aspect of this question and the fact that I've had a lot more time to think about it than someone just coming to it now, I thought I'd perhaps give people a head start and discuss 3 potential issues.
 
