@@ -1,6 +1,8 @@
 # Aexels
 a universe is discovered
 
+Available in the AppStore: itms://itunes.apple.com/us/app/aexels/id935727868?mt=8
+
 Universe X
 
  1. At a base level Universe X is made up of normal cartesian space and normal cartesian time.  Placed in this cartesian space is a quantized aether made up of tiny cells, I'm calling aexels.  The individual aexels form bonds with their direct neighbors that don't let them get too close or too far from one another.
