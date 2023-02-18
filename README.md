@@ -34,9 +34,9 @@ Translating systems will experience 'animation' dilation.  Systems sitting still
 
 ## 3 Potential Descrepancies
 
-### Lorentz Covariance
+A discussion of 3 ways in which Universe X may differ from ours.
 
-Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance](https://en.wikipedia.org/wiki/Lorentz_covariance) and the [Michelson-Morley Experiment](https://en.wikipedia.org/wiki/Michelson-Morley_experiment).  These were among my first concerns also.
+### Lorentz Covariance
 
 My original thinking on the MMX was that with aexels, the flow of aether would be directly into the Earth and since the MMX was only looking for changes of the aethereal flow horizontal to the surface of the Earth the null result would make sense in Universe X, but that if somehow someone could repeat a vertical version of the experiment the flow could be seen.
 
