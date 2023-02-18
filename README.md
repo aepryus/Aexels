@@ -34,10 +34,6 @@ Translating systems will experience 'animation' dilation.  Systems sitting still
 
 ## 3 Potential Descrepancies
 
-Realizing the non-trivial aspect of this question and the fact that I've had a lot more time to think about it than someone just coming to it now, I thought I'd perhaps give people a head start and discuss 3 potential issues.
-
-I also hope to hint to people that this question is perhaps a bit less frivolous than it may seem.
-
 ### Lorentz Covariance
 
 Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance](https://en.wikipedia.org/wiki/Lorentz_covariance) and the [Michelson-Morley Experiment](https://en.wikipedia.org/wiki/Michelson-Morley_experiment).  These were among my first concerns also.
