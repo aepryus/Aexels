@@ -1,7 +1,7 @@
 # Aexels
 a universe is discovered
 
-Available in the AppStore: itms://itunes.apple.com/us/app/aexels/id935727868?mt=8
+Available in the AppStore: [Aexels](itms://itunes.apple.com/us/app/aexels/id935727868?mt=8)
 
 Universe X
 
@@ -32,13 +32,13 @@ I also hope to hint to people that this question is perhaps a bit less frivolous
 
 ### Lorentz Covariance
 
-Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance][2] and the [Michelson-Morley Experiment][3].  These were among my first concerns also.
+Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance][https://en.wikipedia.org/wiki/Lorentz_covariance] and the [Michelson-Morley Experiment][https://en.wikipedia.org/wiki/Michelson%E2%80%93Morley_experiment].  These were among my first concerns also.
 
 My original thinking on the MMX was that with aexels, the flow of aether would be directly into the Earth and since the MMX was only looking for changes of the aethereal flow horizontal to the surface of the Earth the null result would make sense in Universe X, but that if somehow someone could repeat a vertical version of the experiment the flow could be seen.
 
 However, I later realized that a vertical MMX would show a null result in Universe X just as it would in ours and it does so because of length contraction.
 
-I have created a simulation that vividly illustrates that fact: [Aexels][4], however I've also recorded a [video][5] of it in case you just want to watch.
+I have created a simulation that vividly illustrates that fact: [Aexels][itms://itunes.apple.com/us/app/aexels/id935727868?mt=8], however I've also recorded a [video][https://www.youtube.com/watch?v=QMwKmdHTo9U] of it in case you just want to watch.
 
 ### Schwarzschild Metric
 
@@ -50,9 +50,9 @@ Perhaps shockingly, this calculation which uses only concepts of Universe X exac
 
 However, using this same analysis we can "calculate" the dilation of the tennis ball as it's falling towards the planet.  The tennis ball is never translating across the aexels and therefore will never experience any dilation on its journey from infinity to the planet.
 
-The same analysis in our universe using the [Schwarzschild metric][6] will instead net $\gamma(v_e)^2$ (where $\gamma$ is the Lorentz factor and $v_e$ is the escape velocity).
+The same analysis in our universe using the [Schwarzschild metric][https://en.wikipedia.org/wiki/Schwarzschild_metric] will instead net $\gamma(v_e)^2$ (where $\gamma$ is the Lorentz factor and $v_e$ is the escape velocity).
 
-So, it seems we have found a discrepancy!  The problem is that while there have been a handful of experiments that have verified the phenomena of 'time dilation', 'warping of spacetime', 'expansion of the universe', there have been none showing that the Schwarzschild metric is physical and actually there are [indications][7] that it is not.
+So, it seems we have found a discrepancy!  The problem is that while there have been a handful of experiments that have verified the phenomena of 'time dilation', 'warping of spacetime', 'expansion of the universe', there have been none showing that the Schwarzschild metric is physical and actually there are [indications][https://physics.stackexchange.com/questions/744073/how-do-we-know-the-assumptions-of-the-schwarzschild-solution-are-valid] that it is not.
 
 ### Minkowski Space
 
