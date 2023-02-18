@@ -4,6 +4,10 @@ a universe is discovered
 Available in the AppStore: [Aexels](https://apps.apple.com/us/app/aexels/id935727868)
 
 ![Automata](Graphics/Screenshots/AXiPhoneX1.png)
+![Dilation](Graphics/Screenshots/AXiPhoneX4.png)
+![Gravity](Graphics/Screenshots/AXiPhoneX5.png)
+![Contraction](Graphics/Screenshots/AXiPhoneX6.png)
+![Kinematics](Graphics/Screenshots/AXiPhoneX7.png)
 
 Universe X
 
