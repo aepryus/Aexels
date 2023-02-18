@@ -32,7 +32,7 @@ I also hope to hint to people that this question is perhaps a bit less frivolous
 
 ### Lorentz Covariance
 
-Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance][https://en.wikipedia.org/wiki/Lorentz_covariance] and the [Michelson-Morley Experiment][https://en.wikipedia.org/wiki/Michelson%E2%80%93Morley_experiment].  These were among my first concerns also.
+Perhaps, the only substantive answers provided here so far, involve [Lorentz Covariance](https://en.wikipedia.org/wiki/Lorentz_covariance) and the [Michelson-Morley Experiment][https://en.wikipedia.org/wiki/Michelson%E2%80%93Morley_experiment].  These were among my first concerns also.
 
 My original thinking on the MMX was that with aexels, the flow of aether would be directly into the Earth and since the MMX was only looking for changes of the aethereal flow horizontal to the surface of the Earth the null result would make sense in Universe X, but that if somehow someone could repeat a vertical version of the experiment the flow could be seen.
 
