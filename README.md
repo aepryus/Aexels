@@ -4,11 +4,11 @@ a universe is discovered
 Available in the AppStore: [Aexels](https://apps.apple.com/us/app/aexels/id935727868)
 
 <p float="left">
-<img src="Graphics/Screenshots/AXiPhoneX1.png" width="200" />
-<img src="Graphics/Screenshots/AXiPhoneX4.png" width="200" />
-<img src="Graphics/Screenshots/AXiPhoneX5.png" width="200" />
-<img src="Graphics/Screenshots/AXiPhoneX6.png" width="200" />
-<img src="Graphics/Screenshots/AXiPhoneX7.png" width="200" />
+<img src="Graphics/Screenshots/AXiPhoneX1.png" width="160" />
+<img src="Graphics/Screenshots/AXiPhoneX4.png" width="160" />
+<img src="Graphics/Screenshots/AXiPhoneX5.png" width="160" />
+<img src="Graphics/Screenshots/AXiPhoneX6.png" width="160" />
+<img src="Graphics/Screenshots/AXiPhoneX7.png" width="160" />
  </p>
 
 Universe X
