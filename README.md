@@ -40,7 +40,7 @@ A discussion of 3 ways in which Universe X may differ from ours.
 
 ### Lorentz Covariance
 
-My original thinking on the MMX was that with aexels, the flow of aether would be directly into the Earth and since the MMX was only looking for changes of the aethereal flow horizontal to the surface of the Earth the null result would make sense in Universe X, but that if somehow someone could repeat a vertical version of the experiment the flow could be seen.
+My original thinking on the [Michelson-Morley experiment](https://en.wikipedia.org/wiki/Michelson-Morley_experiment) was that with aexels, the flow of aether would be directly into the Earth and since the MMX was only looking for changes of the aethereal flow horizontal to the surface of the Earth the null result would make sense in Universe X, but that if somehow someone could repeat a vertical version of the experiment the flow could be seen.
 
 However, I later realized that a vertical MMX would show a null result in Universe X just as it would in ours and it does so because of length contraction.
 
