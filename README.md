@@ -58,7 +58,7 @@ However, using this same analysis we can "calculate" the dilation of the tennis 
 
 The same analysis in our universe using the [Schwarzschild metric](https://en.wikipedia.org/wiki/Schwarzschild_metric) will instead net $\gamma(v_e)^2$ (where $\gamma$ is the Lorentz factor and $v_e$ is the escape velocity).
 
-So, it seems we have found a discrepancy!  The problem is that while there have been a handful of experiments that have verified the phenomena of 'time dilation', 'warping of spacetime', 'expansion of the universe', there have been none showing that the Schwarzschild metric is physical and actually there are [indications](https://physics.stackexchange.com/questions/744073/how-do-we-know-the-assumptions-of-the-schwarzschild-solution-are-valid) that it is not.
+So, it seems we have found a discrepancy!  The problem is that while there have been a handful of experiments that have verified the phenomena of 'time dilation', 'warping of spacetime', 'expansion of the universe', I have been unable to find any showing that the Schwarzschild metric is physical and actually there are [indications](https://physics.stackexchange.com/questions/744073/how-do-we-know-the-assumptions-of-the-schwarzschild-solution-are-valid) that it is not.
 
 ### Minkowski Space
 
@@ -66,7 +66,7 @@ One of the first steps in the derivation of General Relativity is to define a 4-
 
 It is quite easy to devise a thought experiment in Universe X and see that $ds^2$ would not be invariant in all frames in Universe X.
 
-So, once again it seems we've found a discrepancy!  But, just as before there never has been any experimental verification of Minkowski's assertion that $ds^2$ is invariant in our Universe.
+So, once again it seems we've found a discrepancy!  But, just as before I have been unable to find any experimental verification of Minkowski's assertion that $ds^2$ is invariant in our Universe.
 
 (And the fact that we see the ISS's clocks moving faster and they see our clocks moving slower seems to directly counter Minkowski's assertion.)
 
