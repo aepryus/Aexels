@@ -45,7 +45,7 @@ My original thinking on the [Michelson-Morley experiment](https://en.wikipedia.o
 
 However, I later realized that a vertical MMX would show a null result in Universe X just as it would in ours and it does so because of length contraction.
 
-Here is a [video](https://www.youtube.com/watch?v=QMwKmdHTo9U) which vividly illustrates this phenomena.
+Here is a [video](https://www.youtube.com/watch?v=Fc6_McWXFuQ) which vividly illustrates this phenomena.
 
 ### Schwarzschild Metric
 
