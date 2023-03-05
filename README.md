@@ -1,7 +1,7 @@
 # Aexels
 a universe is discovered
 
-Available in the AppStore (iOS, macOS, iPadOS): [Aexels](https://apps.apple.com/us/app/aexels/id935727868)
+Available in the AppStore (iOS, macOS, iPadOS): [Aexels](https://apps.apple.com/us/app/aexels/id935727868)<br>
 Or a PDF of the app's text: [Aexels PDF](https://github.com/aepryus/Aexels/releases/download/v3.0.3/Aexels30.pdf)
 
 <p float="left">
