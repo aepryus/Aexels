@@ -6,10 +6,10 @@ Or a PDF of the app's text: [Aexels PDF](https://github.com/aepryus/Aexels/relea
 
 <p float="left">
 <a href="https://www.youtube.com/watch?v=WE8Ov1I0KKs"><img src="Graphics/Screenshots/AXiPhoneX1.png" width="160" /></a>
-<a href=""><img src="Graphics/Screenshots/AXiPhoneX4.png" width="160" /></a>
-<a href=""><img src="Graphics/Screenshots/AXiPhoneX5.png" width="160" /></a>
-<a href=""><img src="Graphics/Screenshots/AXiPhoneX6.png" width="160" /></a>
-<a href=""><img src="Graphics/Screenshots/AXiPhoneX7.png" width="160" /></a>
+<a href="https://www.youtube.com/watch?v=6EuBceZx3pw"><img src="Graphics/Screenshots/AXiPhoneX4.png" width="160" /></a>
+<a href="https://www.youtube.com/watch?v=Vs0zQd3-jMA"><img src="Graphics/Screenshots/AXiPhoneX5.png" width="160" /></a>
+<a href="https://www.youtube.com/watch?v=Fc6_McWXFuQ"><img src="Graphics/Screenshots/AXiPhoneX6.png" width="160" /></a>
+<a href="https://www.youtube.com/watch?v=_FMNbzB-YlE"><img src="Graphics/Screenshots/AXiPhoneX7.png" width="160" /></a>
  </p>
 
 Universe X
