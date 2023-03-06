@@ -35,9 +35,9 @@ Translating systems will experience 'animation' dilation.  Systems sitting still
  
  6. Actually, it is not mass and antimass that destroy aexels it is the translation of a conserved quantity called 'hyle'.  Teslons and antiteslons have internal structure with hyle translating back and forth.  The translation of this hyle is what destroys and creates the aexels.  Photons are also made up of hyle and destroy and create aexels as they translate, but always in their wake not internal to themselves.  Hyle is the source of all aexel destruction, mass; it is the source of all translation, energy; it is the source of all aexel creation, antimass.
 
-## 3 Potential Descrepancies
+## 4 Potential Descrepancies
 
-A discussion of 3 ways in which Universe X may differ from ours.
+A discussion of 4 ways in which Universe X may differ from ours.
 
 ### Lorentz Covariance
 
@@ -72,3 +72,26 @@ So, once again it seems we've found a discrepancy!  But, just as before I have b
 (And the fact that we see the ISS's clocks moving faster and they see our clocks moving slower seems to directly counter Minkowski's assertion.)
 
 The result being that I still have not been able to find an experiment that would net different results in Universe X and our Universe.
+
+### Bell's Inequality
+
+StackExchange user John Forkosh brought up the issue that this model appears to violate [Bell's Inequality](http://www.physics.smu.edu/scalise/EPR/References/mermin_moon.pdf), which it certainly does.  It has been my belief that the dynamic geometry of the aexels themselves were the "unknown hidden variables" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic.  And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
+
+But after reading the above linked Mermin paper, it became apparent there was perhaps a more fundemental descrepancy between Universe X and Quantum Mechanics.  This led to a paper by Dutch Physicist Gerard 't Hooft titled ["Explicit construction of Local Hidden Variables for
+any quantum theory up to any desired accuracy"](https://arxiv.org/abs/2103.04335).  In his paper Professor 't Hooft argues contrairy to Bell that "The machinery of quantum mechanics is fully capable of describing a single
+realistic world."
+
+He states:
+
+> Every cellular automaton allows for a description in terms of a quantum Hamiltonian,
+> which reproduces the evolution of all cells with infinite perfection. Conversely, every
+> quantum system can be approximated by an Hamiltonian derived from a cellular automaton.
+
+However, he doesn't have a specific Cellular Automata in mind, but he does indiciate what constraints it must be able to solve:
+
+> ...we need to
+> restrict ourselves to finite models, forcing us to work with lattice theories. Making
+> such theories relativistically invariant is notoriously difficult. It will presumably involve
+> general relativity, and this is far beyond what we can handle presently.
+
+I believe Universe X is just such a lattice theory.  A theory that elegant handles Special and General Relativity, Lorentz Covariance and Gravity.
