@@ -87,7 +87,7 @@ He states:
 > which reproduces the evolution of all cells with infinite perfection. Conversely, every
 > quantum system can be approximated by an Hamiltonian derived from a cellular automaton.
 
-However, he doesn't have a specific Cellular Automata in mind, but he does indiciate what constraints it must be able to solve:
+However, he doesn't have a specific Cellular Automaton in mind, but he does indiciate what constraints it must be able to solve:
 
 > ...we need to
 > restrict ourselves to finite models, forcing us to work with lattice theories. Making
