@@ -94,4 +94,4 @@ However, he doesn't have a specific Cellular Automaton in mind, but he does indi
 > such theories relativistically invariant is notoriously difficult. It will presumably involve
 > general relativity, and this is far beyond what we can handle presently.
 
-I believe Universe X is just such a lattice theory.  A model that elegant handles Special and General Relativity, Lorentz Covariance and Gravity.
+I believe Universe X is just such a lattice theory.  A theory that elegant handles Special and General Relativity, Lorentz Covariance and Gravity.
