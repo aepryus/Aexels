@@ -78,7 +78,7 @@ The result being that I still have not been able to find an experiment that woul
 StackExchange user John Forkosh brought up the issue that this model appears to violate [Bell's Inequality](http://www.physics.smu.edu/scalise/EPR/References/mermin_moon.pdf), which it certainly does.  It has been my belief that the dynamic geometry of the aexels themselves were the "unknown hidden variables" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic.  And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
 
 But after reading the above linked Mermin paper, it became apparent there was perhaps a more fundemental descrepancy between Universe X and Quantum Mechanics.  This led me to a paper by Dutch Physicist Gerard 't Hooft titled ["Explicit construction of Local Hidden Variables for
-any quantum theory up to any desired accuracy"](https://arxiv.org/abs/2103.04335).  In his paper Professor 't Hooft argues that contrairy to Bell that "The machinery of quantum mechanics is fully capable of describing a single
+any quantum theory up to any desired accuracy"](https://arxiv.org/abs/2103.04335).  In his paper Professor 't Hooft argues that contrary to Bell that "The machinery of quantum mechanics is fully capable of describing a single
 realistic world."
 
 He states:
