@@ -14,7 +14,7 @@ Or a PDF of the app's text: [Aexels PDF](https://github.com/aepryus/Aexels/relea
 
 Universe X
 
- 1. *Automata and the Speed of Light*: At a base level Universe X is made up of normal cartesian space and normal cartesian time.  Placed in this cartesian space is a quantized aether made up of tiny cells, I'm calling aexels.  The individual aexels form bonds with their direct neighbors that don't let them get too close or too far from one another.
+ 1. *Automata, Compressible Aether and the Speed of Light*: At a base level Universe X is made up of normal cartesian space and normal cartesian time.  Placed in this cartesian space is a quantized aether made up of tiny cells, I'm calling aexels.  The individual aexels form bonds with their direct neighbors that don't let them get too close or too far from one another.
 As a result this aether is a compressible liquid crystal lattice; it can flow; it can stretch, it can squish.  Each individual aexel can have state; the states of these aexels can be communicated to their neighbors; it takes one 'tic' of time for a signal to move from an aexel to its neighbor.  The fastest a signal can move across the aether is one aexel per tic.  In Universe X one aexel per tic is referred to as the speed of light.
 
  2. *Gravity and Black Holes*: These state signals that jump from aexel to aexel can loop back to a previous state forming a stable state loop analogous to the 'particles' of Conway's Game of Life.  These stable state loops form the basis of all matter in Universe X.
