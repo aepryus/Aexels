@@ -1121,12 +1121,3 @@ void AXUniverseRemoveAexel(Universe* universe, ICAexel* aexel) {
     universe->aexels = (ICAexel**)realloc(universe->aexels, sizeof(ICAexel*)*universe->aexelCount);
     universe->bonds = (Bond*)realloc(universe->bonds, sizeof(Bond)*universe->aexelCount*universe->aexelCount);
 }
-
-void test() {
-	int sortedList[] = {3,4,5};
-	int element = 5;
-	int index = 0;
-	while (sortedList[index] != element && 3 > ++index);
-	int answer = index < 3 ? index : -1;
-	printf("@@@ answer [%d]\n", answer);
-}

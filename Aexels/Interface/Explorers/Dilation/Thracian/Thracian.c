@@ -67,7 +67,7 @@ void TCPhotonRelease(TCPhoton* photon) {
 }
 
 // Teslon ==========================================================================================
-TCTeslon* TCTeslonCreate() {
+TCTeslon* TCTeslonCreate(void) {
     TCTeslon* teslon = (TCTeslon*)malloc(sizeof(TCTeslon));
     teslon->v.s = 0;
     return teslon;
@@ -77,7 +77,7 @@ void TCTeslonRelease(TCTeslon* teslon) {
 }
 
 // Camera ==========================================================================================
-TCCamera* TCCameraCreate() {
+TCCamera* TCCameraCreate(void) {
     TCCamera* camera = (TCCamera*)malloc(sizeof(TCCamera));
     camera->v.s = 0;
     return camera;
