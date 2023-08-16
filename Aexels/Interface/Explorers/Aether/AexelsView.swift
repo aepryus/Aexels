@@ -1,5 +1,5 @@
 //
-//  GravityView.swift
+//  AetherView.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 6/16/19.
@@ -11,10 +11,10 @@ import OoviumEngine
 import OoviumKit
 import UIKit
 
-class GravityView: UIView {
+class AexelsView: UIView {
 	var universe: UnsafeMutablePointer<Universe>
 	
-	private var queue: DispatchQueue = DispatchQueue(label: "gravityView")
+	private var queue: DispatchQueue = DispatchQueue(label: "aexelsView")
 	var renderMode: RenderMode = .started
 	private var image: UIImage?
 	private var vw: Int = 0

@@ -16,7 +16,7 @@
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DiliationEngine.swift */; };
-		D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */; };
+		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
 		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
 		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
 		D87C0DCB2931029B0005B44D /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC72931029B0005B44D /* Back5.png */; };
@@ -75,17 +75,17 @@
 		D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F02814F20E00E74CB8 /* ExpButton.swift */; };
 		D8AE17F72814F20E00E74CB8 /* NetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F12814F20E00E74CB8 /* NetButton.swift */; };
 		D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */; };
-		D8AE17FB2814F21700E74CB8 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F92814F21700E74CB8 /* GravityExplorer.swift */; };
-		D8AE17FC2814F21700E74CB8 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FA2814F21700E74CB8 /* GravityView.swift */; };
 		D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */; };
 		D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */; };
 		D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */; };
 		D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */; };
-		D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AE18132814F59D00E74CB8 /* Ionian.c */; };
 		D8B80D98296644CE00116F5B /* ExplorerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B80D97296644CE00116F5B /* ExplorerButton.swift */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
 		D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButton.swift */; };
+		D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */; };
+		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
+		D8DDAC732A8C35D800100633 /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC712A8C35D800100633 /* Ionian.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +96,7 @@
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DiliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiliationEngine.swift; sourceTree = "<group>"; };
-		D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardExplorer.swift; sourceTree = "<group>"; };
+		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
 		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
 		D87C0DC72931029B0005B44D /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
@@ -157,19 +157,19 @@
 		D8AE17F02814F20E00E74CB8 /* ExpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpButton.swift; sourceTree = "<group>"; };
 		D8AE17F12814F20E00E74CB8 /* NetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetButton.swift; sourceTree = "<group>"; };
 		D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsExplorer.swift; sourceTree = "<group>"; };
-		D8AE17F92814F21700E74CB8 /* GravityExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
-		D8AE17FA2814F21700E74CB8 /* GravityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
 		D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilationExplorer.swift; sourceTree = "<group>"; };
 		D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8AE18012814F22F00E74CB8 /* DarknessExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarknessExplorer.swift; sourceTree = "<group>"; };
 		D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquivalenceExplorer.swift; sourceTree = "<group>"; };
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
-		D8AE18132814F59D00E74CB8 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
-		D8AE18142814F59D00E74CB8 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
 		D8B80D97296644CE00116F5B /* ExplorerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerButton.swift; sourceTree = "<group>"; };
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
 		D8D2E1272944BC4E00EC1719 /* BoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButton.swift; sourceTree = "<group>"; };
+		D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AetherExplorer.swift; sourceTree = "<group>"; };
+		D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsView.swift; sourceTree = "<group>"; };
+		D8DDAC712A8C35D800100633 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Ionian.c; path = Aexels/Interface/Explorers/Aether/Ionian.c; sourceTree = SOURCE_ROOT; };
+		D8DDAC722A8C35D800100633 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ionian.h; path = Aexels/Interface/Explorers/Aether/Ionian.h; sourceTree = SOURCE_ROOT; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,14 +202,6 @@
 				D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */,
 			);
 			path = Electromagnetism;
-			sourceTree = "<group>";
-		};
-		D86FD6C7292B7D0700A6CA7A /* Forward */ = {
-			isa = PBXGroup;
-			children = (
-				D86FD6C8292B7D1A00A6CA7A /* ForwardExplorer.swift */,
-			);
-			path = Forward;
 			sourceTree = "<group>";
 		};
 		D86FD6CA292B804500A6CA7A /* Epilogue */ = {
@@ -347,8 +339,8 @@
 		D8AE17542814EB0400E74CB8 /* Explorers */ = {
 			isa = PBXGroup;
 			children = (
-				D86FD6C7292B7D0700A6CA7A /* Forward */,
 				D8AE17562814EB1D00E74CB8 /* Intro */,
+				D8DDAC6C2A8C345100100633 /* Aether */,
 				D8AE17572814EB2300E74CB8 /* Cellular Automata */,
 				D8AE17582814EB2F00E74CB8 /* Kinematics */,
 				D8AE17592814EB3600E74CB8 /* Gravity */,
@@ -410,9 +402,7 @@
 		D8AE17592814EB3600E74CB8 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE18162814F61E00E74CB8 /* Ionian */,
-				D8AE17FA2814F21700E74CB8 /* GravityView.swift */,
-				D8AE17F92814F21700E74CB8 /* GravityExplorer.swift */,
+				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 			);
 			path = Gravity;
 			sourceTree = "<group>";
@@ -503,10 +493,11 @@
 		D8AE18162814F61E00E74CB8 /* Ionian */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE18142814F59D00E74CB8 /* Ionian.h */,
-				D8AE18132814F59D00E74CB8 /* Ionian.c */,
+				D8DDAC722A8C35D800100633 /* Ionian.h */,
+				D8DDAC712A8C35D800100633 /* Ionian.c */,
 			);
 			name = Ionian;
+			path = Gravity;
 			sourceTree = "<group>";
 		};
 		D8C1CC07293D7654001881F5 /* Widgets */ = {
@@ -537,6 +528,16 @@
 				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		D8DDAC6C2A8C345100100633 /* Aether */ = {
+			isa = PBXGroup;
+			children = (
+				D8AE18162814F61E00E74CB8 /* Ionian */,
+				D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */,
+				D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */,
+			);
+			path = Aether;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -652,13 +653,11 @@
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE18042814F23600E74CB8 /* EquivalenceExplorer.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
-				D8AE17FB2814F21700E74CB8 /* GravityExplorer.swift in Sources */,
 				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
 				D8AE17C82814F1C700E74CB8 /* NexusButton.swift in Sources */,
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
-				D8AE17FC2814F21700E74CB8 /* GravityView.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
 				D8AE17D82814F1EC00E74CB8 /* MessageLimbo.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
@@ -667,20 +666,22 @@
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */,
+				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,
+				D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */,
 				D8B80D98296644CE00116F5B /* ExplorerButton.swift in Sources */,
 				D8AE17DD2814F1EC00E74CB8 /* Limbo.swift in Sources */,
 				D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */,
+				D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */,
 				D8AE17CC2814F1C700E74CB8 /* NexusViewController.swift in Sources */,
-				D8AE18152814F59D00E74CB8 /* Ionian.c in Sources */,
+				D8DDAC732A8C35D800100633 /* Ionian.c in Sources */,
 				D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */,
 				D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */,
 				D8AE17EA2814F20500E74CB8 /* CellularEngine.swift in Sources */,
 				D8AE17E02814F1FA00E74CB8 /* IntroExplorer.swift in Sources */,
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
-				D86FD6C9292B7D1A00A6CA7A /* ForwardExplorer.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
@@ -833,7 +834,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
@@ -848,7 +849,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -869,7 +870,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aexels/Global/Info.plist;
@@ -884,7 +885,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.1;
+				MARKETING_VERSION = 3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
