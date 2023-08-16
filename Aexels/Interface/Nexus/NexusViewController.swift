@@ -355,9 +355,9 @@ class NexusViewController: UIViewController {
         closeButton.addAction { self.dismissMessageView() }
 
 		explorers = [
-            ForwardExplorer(parent: view),
 			IntroExplorer(parent: view),
 			CellularExplorer(parent: view),
+            AetherExplorer(parent: view),
 			KinematicsExplorer(parent: view),
 			GravityExplorer(parent: view),
 			DilationExplorer(parent: view),
