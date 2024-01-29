@@ -41,6 +41,7 @@ class NexusViewController: UIViewController {
         let stepsV: Double = graph.dVChain.tower.value
         graph.dV = (graph.eV-graph.sV)/stepsV
         graph.t = graph.tChain.tower.value
+        graph.look = V3(-0.597824245607881, -0.542194458806552, -0.904535868587812)
 
         let graphView = GraphView(graph: graph)
         graphView.alpha = 0.3
@@ -394,7 +395,7 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
         
         graphView.frame = view.frame
-//        view.addSubview(graphView)
+        view.addSubview(graphView)
         
         closeButton.addAction { self.dismissMessageView() }
 
