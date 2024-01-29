@@ -15,14 +15,10 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 // UIApplicationDelegate ===========================================================================
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		print("==================== [ Aexels ] =============================================")
-		
 		Aexels.start()
-		
 		return true
 	}
 	func applicationDidEnterBackground(_ application: UIApplication) {
-		if let aetherView = Aexels.aetherView {
-			aetherView.saveAether()
-		}
+        if let aetherView = Aexels.aetherView { aetherView.saveAether() }
 	}
 }

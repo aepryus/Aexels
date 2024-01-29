@@ -19,9 +19,7 @@ class Aexels {
 	static var sync: AXSync = AXSync()
 	static var shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 	
-	static var version: String {
-		return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
-	}
+	static var version: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0" }
 	
 	static func backImage() -> UIImage {
 		switch Screen.dimensions  {

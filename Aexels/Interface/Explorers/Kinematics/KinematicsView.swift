@@ -152,7 +152,7 @@ class KinematicsView: UIView, Simulation {
 		var A: Int = 0
 		
 		for i in 0..<6 {
-			if V2.innerAngle(ord[i], Vl) < Double.pi/3 {
+            if ord[i].innerAngle(Vl) < Double.pi/3 {
 				if i == 0 {
 					zero = true
 				} else if i == 1 && zero {

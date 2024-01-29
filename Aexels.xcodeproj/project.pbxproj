@@ -11,16 +11,19 @@
 		D8042F15293B085500453B8E /* Thracian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8042F14293B085500453B8E /* Thracian.c */; };
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
+		D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngine.swift */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
 		D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DiliationEngine.swift */; };
 		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
+		D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */ = {isa = PBXBuildFile; fileRef = D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */; };
+		D8656C122A8CF907003FC9A3 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8656C112A8CF907003FC9A3 /* GravityView.swift */; };
 		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
 		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
+		D87417032B61098D005ABE45 /* SmokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87417022B61098D005ABE45 /* SmokeView.swift */; };
 		D87C0DCB2931029B0005B44D /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC72931029B0005B44D /* Back5.png */; };
-		D87C0DCC2931029B0005B44D /* BackiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC82931029B0005B44D /* BackiPad.png */; };
 		D87C0DCD2931029B0005B44D /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC92931029B0005B44D /* Back4.png */; };
 		D87C0DCE2931029B0005B44D /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DCA2931029B0005B44D /* Back6.png */; };
 		D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD02931A7AE0005B44D /* Dilation.latex */; };
@@ -92,15 +95,19 @@
 		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
+		D813B7682AA6B892003851AE /* GravityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngine.swift; sourceTree = "<group>"; };
 		D838FD892941A190000C0228 /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DiliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiliationEngine.swift; sourceTree = "<group>"; };
 		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
+		D8656C0E2A8CF7C1003FC9A3 /* Myrtoan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Myrtoan.h; sourceTree = "<group>"; };
+		D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Myrtoan.c; sourceTree = "<group>"; };
+		D8656C112A8CF907003FC9A3 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
 		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
+		D87417022B61098D005ABE45 /* SmokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeView.swift; sourceTree = "<group>"; };
 		D87C0DC72931029B0005B44D /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
-		D87C0DC82931029B0005B44D /* BackiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackiPad.png; sourceTree = "<group>"; };
 		D87C0DC92931029B0005B44D /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back4.png; sourceTree = "<group>"; };
 		D87C0DCA2931029B0005B44D /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
 		D87C0DD02931A7AE0005B44D /* Dilation.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dilation.latex; sourceTree = "<group>"; };
@@ -168,8 +175,8 @@
 		D8D2E1272944BC4E00EC1719 /* BoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButton.swift; sourceTree = "<group>"; };
 		D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AetherExplorer.swift; sourceTree = "<group>"; };
 		D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsView.swift; sourceTree = "<group>"; };
-		D8DDAC712A8C35D800100633 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Ionian.c; path = Aexels/Interface/Explorers/Aether/Ionian.c; sourceTree = SOURCE_ROOT; };
-		D8DDAC722A8C35D800100633 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ionian.h; path = Aexels/Interface/Explorers/Aether/Ionian.h; sourceTree = SOURCE_ROOT; };
+		D8DDAC712A8C35D800100633 /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Ionian.c; path = Aexels/Interface/Explorers/Aether/Ionian/Ionian.c; sourceTree = SOURCE_ROOT; };
+		D8DDAC722A8C35D800100633 /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ionian.h; path = Aexels/Interface/Explorers/Aether/Ionian/Ionian.h; sourceTree = SOURCE_ROOT; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +211,24 @@
 			path = Electromagnetism;
 			sourceTree = "<group>";
 		};
+		D8656C0C2A8CF6F7003FC9A3 /* Ionian */ = {
+			isa = PBXGroup;
+			children = (
+				D8DDAC722A8C35D800100633 /* Ionian.h */,
+				D8DDAC712A8C35D800100633 /* Ionian.c */,
+			);
+			path = Ionian;
+			sourceTree = "<group>";
+		};
+		D8656C0D2A8CF74F003FC9A3 /* Myrtoan */ = {
+			isa = PBXGroup;
+			children = (
+				D8656C0E2A8CF7C1003FC9A3 /* Myrtoan.h */,
+				D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */,
+			);
+			path = Myrtoan;
+			sourceTree = "<group>";
+		};
 		D86FD6CA292B804500A6CA7A /* Epilogue */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +251,6 @@
 				D87C0DC92931029B0005B44D /* Back4.png */,
 				D87C0DC72931029B0005B44D /* Back5.png */,
 				D87C0DCA2931029B0005B44D /* Back6.png */,
-				D87C0DC82931029B0005B44D /* BackiPad.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -358,6 +382,7 @@
 		D8AE17552814EB0D00E74CB8 /* Nexus */ = {
 			isa = PBXGroup;
 			children = (
+				D87417022B61098D005ABE45 /* SmokeView.swift */,
 				D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */,
 				D8B80D97296644CE00116F5B /* ExplorerButton.swift */,
 				D8AE17C32814F1C700E74CB8 /* NexusButton.swift */,
@@ -402,6 +427,9 @@
 		D8AE17592814EB3600E74CB8 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
+				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
+				D8656C112A8CF907003FC9A3 /* GravityView.swift */,
+				D813B7682AA6B892003851AE /* GravityEngine.swift */,
 				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 			);
 			path = Gravity;
@@ -490,16 +518,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		D8AE18162814F61E00E74CB8 /* Ionian */ = {
-			isa = PBXGroup;
-			children = (
-				D8DDAC722A8C35D800100633 /* Ionian.h */,
-				D8DDAC712A8C35D800100633 /* Ionian.c */,
-			);
-			name = Ionian;
-			path = Gravity;
-			sourceTree = "<group>";
-		};
 		D8C1CC07293D7654001881F5 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,7 +551,7 @@
 		D8DDAC6C2A8C345100100633 /* Aether */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE18162814F61E00E74CB8 /* Ionian */,
+				D8656C0C2A8CF6F7003FC9A3 /* Ionian */,
 				D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */,
 				D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */,
 			);
@@ -617,7 +635,6 @@
 				D8AE17972814F0D300E74CB8 /* Game of Life.oo in Resources */,
 				D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */,
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
-				D87C0DCC2931029B0005B44D /* BackiPad.png in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
 				D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */,
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
@@ -647,6 +664,7 @@
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
+				D87417032B61098D005ABE45 /* SmokeView.swift in Sources */,
 				D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */,
 				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,
 				D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */,
@@ -663,6 +681,7 @@
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
+				D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */,
@@ -678,6 +697,7 @@
 				D8AE17CC2814F1C700E74CB8 /* NexusViewController.swift in Sources */,
 				D8DDAC732A8C35D800100633 /* Ionian.c in Sources */,
 				D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */,
+				D8656C122A8CF907003FC9A3 /* GravityView.swift in Sources */,
 				D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */,
 				D8AE17EA2814F20500E74CB8 /* CellularEngine.swift in Sources */,
 				D8AE17E02814F1FA00E74CB8 /* IntroExplorer.swift in Sources */,
@@ -686,6 +706,7 @@
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
 				D8AE17642814F08400E74CB8 /* AXSync.swift in Sources */,
+				D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */,
 				D8AE18022814F22F00E74CB8 /* DarknessExplorer.swift in Sources */,
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,
 				D8042F15293B085500453B8E /* Thracian.c in Sources */,

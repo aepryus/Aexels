@@ -118,7 +118,7 @@ class DilationExplorer: Explorer {
     }
     
 // Events ==========================================================================================
-    var n: Int = 1
+//    var n: Int = 1
     override func onOpened() { engine.play() }
     override func onClose() { engine.stop() }
 

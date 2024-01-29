@@ -36,7 +36,7 @@ class AexelsView: UIView {
         gesture.numberOfTapsRequired = 2
         addGestureRecognizer(gesture)
     }
-	required init?(coder aDecoder: NSCoder) {fatalError()}
+	required init?(coder aDecoder: NSCoder) { fatalError() }
 	deinit {
 		AXUniverseRelease(universe)
 	}

@@ -7,11 +7,45 @@
 //
 
 import Acheron
+import OoviumEngine
 import OoviumKit
 import UIKit
 
 class NexusViewController: UIViewController {
 	let imageView = UIImageView(image: Aexels.backImage())
+//    let smokeView: SmokeView = SmokeView()
+    let aether: Aether = Aether()
+    lazy var graph: Graph = aether.create(at: .zero)
+    lazy var graphView: GraphView = {
+        graph.surfaceOn = true
+        graph.fXChain = Chain("va:Gp1.u")
+        graph.fYChain = Chain("va:Gp1.v")
+        graph.fZChain = Chain("fn:sin;va:Gp1.u;op:×;va:Gp1.v;op:+;va:Gp1.t;sp:);op:÷;dg:3")
+        graph.sUChain = Chain(natural: "-7")
+        graph.eUChain = Chain(natural: "7")
+        graph.dUChain = Chain(natural: "70")
+        graph.sVChain = Chain(natural: "-7")
+        graph.eVChain = Chain(natural: "7")
+        graph.dVChain = Chain(natural: "70")
+        graph.onLoad()
+        aether.onLoad()
+        
+        let grey: CGFloat = 0.2
+        graph.netColor = RGB(r: grey, g: grey, b: grey)
+        graph.sU = graph.sUChain.tower.value
+        graph.eU = graph.eUChain.tower.value
+        let stepsU: Double = graph.dUChain.tower.value
+        graph.dU = (graph.eU-graph.sU)/stepsU
+        graph.sV = graph.sVChain.tower.value
+        graph.eV = graph.eVChain.tower.value
+        let stepsV: Double = graph.dVChain.tower.value
+        graph.dV = (graph.eV-graph.sV)/stepsV
+        graph.t = graph.tChain.tower.value
+
+        let graphView = GraphView(graph: graph)
+        graphView.alpha = 0.3
+        return graphView
+    }()
 	var nexusLabel: NexusLabel!
 	var versionLabel: NexusLabel!
 	
@@ -26,8 +60,14 @@ class NexusViewController: UIViewController {
     var busy: Bool = false
     
     var explorerButtons: [ExplorerButton] { explorers.compactMap { $0.explorerButton } }
-
+    
 	private func display(explorer: Explorer) {
+        UIView.animate(withDuration: 0.2) {
+            self.graphView.alpha = 0
+        } completion: { (complete: Bool) in
+            self.graphView.timer.stop()
+            self.graphView.removeFromSuperview()
+        }
 		if explorer.canExplore {
 			if Screen.iPad || Screen.mac {
 				let height = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -43,6 +83,7 @@ class NexusViewController: UIViewController {
 		
 		messageView.key = explorer.key
 		messageView.load()
+        view.addSubview(messageView)
 		UIView.animate(withDuration: 0.2, animations: {
 			self.messageView.alpha = 1
             self.closeButton.alpha = 1
@@ -349,15 +390,18 @@ class NexusViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		imageView.frame = view.frame
+		imageView.frame = view.bounds
 		view.addSubview(imageView)
+        
+        graphView.frame = view.frame
+//        view.addSubview(graphView)
         
         closeButton.addAction { self.dismissMessageView() }
 
 		explorers = [
 			IntroExplorer(parent: view),
-			CellularExplorer(parent: view),
             AetherExplorer(parent: view),
+			CellularExplorer(parent: view),
 			KinematicsExplorer(parent: view),
 			GravityExplorer(parent: view),
 			DilationExplorer(parent: view),
@@ -377,6 +421,7 @@ class NexusViewController: UIViewController {
 	}
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		imageView.frame = view.frame
+		imageView.frame = view.bounds
+        graphView.frame = view.bounds
 	}
 }
