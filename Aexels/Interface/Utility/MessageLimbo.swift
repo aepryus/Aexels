@@ -77,29 +77,28 @@ class MessageLimbo: Limbo {
 			}
 		}
 
-		UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: h), false, UIScreen.main.scale)
-		guard let c = UIGraphicsGetCurrentContext() else {return}
-		c.saveGState()
-		c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
-		c.setFillColor(UIColor.white.cgColor)
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: w, height: h))
+        let image = renderer.image { (_: UIGraphicsImageRendererContext) in
+            guard let c = UIGraphicsGetCurrentContext() else { return }
+            c.saveGState()
+            c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
+            c.setFillColor(UIColor.white.cgColor)
 
-		for i in 0..<texts.count {
-			texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
-			y += tHs[i]
-			if i < images.count {
-                let w: CGFloat = min(images[i].size.width, width * 0.84)
-                let r: CGFloat = w / images[i].size.width
-                let size: CGSize = CGSize(width: images[i].size.width * r, height: images[i].size.height * r)
-                images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: size))
-				y += iHs[i]
-			}
-		}
+            for i in 0..<texts.count {
+                texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
+                y += tHs[i]
+                if i < images.count {
+                    let w: CGFloat = min(images[i].size.width, width * 0.84)
+                    let r: CGFloat = w / images[i].size.width
+                    let size: CGSize = CGSize(width: images[i].size.width * r, height: images[i].size.height * r)
+                    images[i].draw(in: CGRect(origin: CGPoint(x: Screen.iPhone ? 0 : 50*s, y: y), size: size))
+                    y += iHs[i]
+                }
+            }
 
-		c.restoreGState()
-		
-		let image = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		
+            c.restoreGState()
+        }
+
 		imageView.frame = CGRect(x: p, y: p, width: w, height: h)
 		imageView.image = image
 

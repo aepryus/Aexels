@@ -23,9 +23,6 @@
 		D86FD6CE292B808500A6CA7A /* EpilogueExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */; };
 		D86FD6D1292C83F800A6CA7A /* DiscrepancyExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */; };
 		D87417032B61098D005ABE45 /* SmokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87417022B61098D005ABE45 /* SmokeView.swift */; };
-		D87C0DCB2931029B0005B44D /* Back5.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC72931029B0005B44D /* Back5.png */; };
-		D87C0DCD2931029B0005B44D /* Back4.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DC92931029B0005B44D /* Back4.png */; };
-		D87C0DCE2931029B0005B44D /* Back6.png in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DCA2931029B0005B44D /* Back6.png */; };
 		D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD02931A7AE0005B44D /* Dilation.latex */; };
 		D87C0DD32931A8250005B44D /* Contraction.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD22931A8250005B44D /* Contraction.latex */; };
 		D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881B7B8294BDED2004DE0DD /* CloseButton.swift */; };
@@ -107,9 +104,6 @@
 		D86FD6CD292B808500A6CA7A /* EpilogueExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpilogueExplorer.swift; sourceTree = "<group>"; };
 		D86FD6D0292C83F800A6CA7A /* DiscrepancyExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscrepancyExplorer.swift; sourceTree = "<group>"; };
 		D87417022B61098D005ABE45 /* SmokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeView.swift; sourceTree = "<group>"; };
-		D87C0DC72931029B0005B44D /* Back5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back5.png; sourceTree = "<group>"; };
-		D87C0DC92931029B0005B44D /* Back4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back4.png; sourceTree = "<group>"; };
-		D87C0DCA2931029B0005B44D /* Back6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back6.png; sourceTree = "<group>"; };
 		D87C0DD02931A7AE0005B44D /* Dilation.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dilation.latex; sourceTree = "<group>"; };
 		D87C0DD22931A8250005B44D /* Contraction.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Contraction.latex; sourceTree = "<group>"; };
 		D881B7B8294BDED2004DE0DD /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -245,16 +239,6 @@
 			path = Discrepancy;
 			sourceTree = "<group>";
 		};
-		D87C0DC6293102730005B44D /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				D87C0DC92931029B0005B44D /* Back4.png */,
-				D87C0DC72931029B0005B44D /* Back5.png */,
-				D87C0DCA2931029B0005B44D /* Back6.png */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 		D87C0DCF2931A7720005B44D /* LaTeX */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,9 +280,10 @@
 		D8AE174E2814EA5A00E74CB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8E154D028162E650074A59B /* Aexels.entitlements */,
+				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
 				D8AE17432814E97300E74CB8 /* Assets.xcassets */,
 				D8AE17662814F0D300E74CB8 /* en.lproj */,
-				D87C0DC6293102730005B44D /* Images */,
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
 				D87C0DCF2931A7720005B44D /* LaTeX */,
@@ -326,7 +311,7 @@
 		D8AE17512814EADC00E74CB8 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE175F2814F00E00E74CB8 /* Support Files */,
+				D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */,
 				D8AE17C02814F1AF00E74CB8 /* AexelsDelegate.swift */,
 				D8AE17BF2814F1AF00E74CB8 /* Aexels.swift */,
 			);
@@ -469,16 +454,6 @@
 				D8AE18032814F23600E74CB8 /* EquivalenceExplorer.swift */,
 			);
 			path = Equivalence;
-			sourceTree = "<group>";
-		};
-		D8AE175F2814F00E00E74CB8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D8E154D028162E650074A59B /* Aexels.entitlements */,
-				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
-				D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */,
-			);
-			name = "Support Files";
 			sourceTree = "<group>";
 		};
 		D8AE17662814F0D300E74CB8 /* en.lproj */ = {
@@ -641,14 +616,11 @@
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,
 				D87C0DD32931A8250005B44D /* Contraction.latex in Resources */,
-				D87C0DCE2931029B0005B44D /* Back6.png in Resources */,
 				D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */,
 				D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */,
 				D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */,
 				D8AE17B42814F0D300E74CB8 /* TrajanPro-Regular.otf in Resources */,
 				D8AE17B52814F0D300E74CB8 /* Move iP.oo in Resources */,
-				D87C0DCD2931029B0005B44D /* Back4.png in Resources */,
-				D87C0DCB2931029B0005B44D /* Back5.png in Resources */,
 				D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -853,12 +825,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Aexels/Global/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -870,7 +842,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -889,12 +861,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Aexels/Global/Aexels.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Aexels/Global/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -906,7 +878,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aepryus.aexels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

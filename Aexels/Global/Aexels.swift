@@ -12,12 +12,12 @@ import OoviumKit
 import UIKit
 
 class Aexels {
+    static var window: UIWindow = UIWindow()
 	static let basket: Basket = Basket(SQLitePersist("pequod"))
-	static var window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
 	static var nexus: NexusViewController!
 	static var aetherView: AetherView? = nil
 	static var sync: AXSync = AXSync()
-	static var shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
+	static let shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 	
 	static var version: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0" }
 	
@@ -35,6 +35,7 @@ class Aexels {
 	}
 	
 	static func start() {
+        print("==================== [ Aexels ] =============================================")
         _ = ChainResponder.hasExternalKeyboard
 
         Math.start()
