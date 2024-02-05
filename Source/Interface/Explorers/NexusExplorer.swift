@@ -11,31 +11,43 @@ import OoviumEngine
 import OoviumKit
 import UIKit
 
-class NexusExplorer: Explorer {
-    let graphView: GraphView
-    
-    let aether: Aether
-    let graph: Graph
-    
-    init() {
-        
-        aether = Aether()
-        graph = aether.create(at: .zero)
+class NexusExplorer: AEViewController {
+    let cyto: Cyto = Cyto()
+    let limbo: Limbo = ContentLimbo(content: UIView())
+    let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 72*Screen.s)
+    let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:20*Screen.s)
+    let glass: UIView = UIView()
+    let scrollView: UIScrollView = UIScrollView()
+
+    let aether: Aether = Aether()
+    lazy var graph: Graph = aether.create(at: .zero)
+    lazy var graphView: GraphView = {
         graph.surfaceOn = true
         graph.fXChain = Chain("va:Gp1.u")
         graph.fYChain = Chain("va:Gp1.v")
         graph.fZChain = Chain("fn:sin;va:Gp1.u;op:×;va:Gp1.v;op:+;va:Gp1.t;sp:);op:÷;dg:3")
-        graph.sUChain = Chain(natural: "-7")
-        graph.eUChain = Chain(natural: "7")
-        graph.dUChain = Chain(natural: "70")
-        graph.sVChain = Chain(natural: "-7")
-        graph.eVChain = Chain(natural: "7")
-        graph.dVChain = Chain(natural: "70")
+//        graph.sUChain = Chain(natural: "-7")
+//        graph.eUChain = Chain(natural: "7")
+//        graph.dUChain = Chain(natural: "70")
+//        graph.sVChain = Chain(natural: "-7")
+//        graph.eVChain = Chain(natural: "7")
+//        graph.dVChain = Chain(natural: "70")
+        graph.sUChain = Chain(natural: "-4")
+        graph.eUChain = Chain(natural: "4")
+        graph.dUChain = Chain(natural: "40")
+        graph.sVChain = Chain(natural: "-4")
+        graph.eVChain = Chain(natural: "4")
+        graph.dVChain = Chain(natural: "40")
         graph.onLoad()
         aether.onLoad()
 
-        let grey: CGFloat = 0.0
-        graph.netColor = RGB(r: grey, g: grey, b: grey)
+        let net: CGFloat = 0.0
+        let light: CGFloat = 0.8
+        let surface: CGFloat = 0.2
+        graph.netColor = RGB(r: net, g: net, b: net)
+        graph.lightColor = RGB(r: light, g: light, b: light)
+        graph.surfaceColor = RGB(r: surface, g: surface, b: surface)
+        graph.surfaceOn = true
         graph.sU = graph.sUChain.tower.value
         graph.eU = graph.eUChain.tower.value
         let stepsU: Double = graph.dUChain.tower.value
@@ -45,20 +57,112 @@ class NexusExplorer: Explorer {
         let stepsV: Double = graph.dVChain.tower.value
         graph.dV = (graph.eV-graph.sV)/stepsV
         graph.t = graph.tChain.tower.value
-        graph.look = V3(-0.597824245607881, -0.542194458806552, -0.904535868587812)
+//        graph.look = V3(-0.597824245607881, -0.542194458806552, -0.904535868587812)
+        graph.surfaceOn = true
 
-        graphView = GraphView(graph: graph)
-        graphView.alpha = 0.3
+        let graphView = GraphView(graph: graph)
+        graphView.alpha = 0.2
+//        graphView.layer.shadowRadius = 2
+//        graphView.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        graphView.layer.shadowOpacity = 0.8
+        return graphView
+    }()
         
-        super.init(name: "", key: "", canExplore: false)
+// Events ==========================================================================================
+    @objc func onTouch(gesture: TouchingGesture) {
+        if gesture.state == .began {
+            UIView.animate(withDuration: 0.2) {
+                self.versionLabel.alpha = 1
+            }
+        } else if gesture.state == .ended {
+            UIView.animate(withDuration: 0.2) {
+                self.versionLabel.alpha = 0
+            }
+        }
     }
-    
+        
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(graphView)
+        
+        if Screen.iPhone {
+        } else {
+            cyto.rows = 15
+            cyto.cols = 3
+            cyto.padding = 6*s
+            
+            let view: UIView = UIView()
+            view.backgroundColor = .clear
+//            view.backgroundColor = .blue.tone(0.5).alpha(0.5)
+            
+            cyto.cells = [
+                NexusCell(name: "Forward", c: 0, r: 0),
+                NexusCell(name: "Intro", c: 1, r: 0, w: 2),
+                NexusCell(name: "Cellular\nAutomata", c: 0, r: 1, w: 2),
+                NexusCell(image: UIImage(named: "AutomataIcon"), c: 2, r: 1),
+                NexusCell(name: "Kinematics", c: 0, r: 2),
+                NexusCell(name: "Gravity", c: 1, r: 2),
+                NexusCell(name: "Dilation", c: 2, r: 2),
+                NexusCell(name: "Contraction", c: 0, r: 3),
+                NexusCell(name: "Darkness", c: 1, r: 3),
+                NexusCell(name: "Equivalence", c: 2, r: 3),
+                NexusCell(name: "Electro\nmagnetism", c: 0, r: 4),
+                NexusCell(name: "Discrepancy", c: 1, r: 4),
+                NexusCell(name: "Epilogue", c: 2, r: 4),
+            ]
+        }
+//        view.addSubview(cyto)
+        
+        glass.backgroundColor = .black.tint(0.8)
+        glass.layer.cornerRadius = 8*s
+        glass.layer.shadowRadius = 8*s
+        glass.layer.shadowOffset = CGSize(width: 8*s, height: 8*s)
+        glass.layer.shadowOpacity = 0.6
+        glass.layer.borderColor = UIColor.white.shade(0.5).cgColor
+        glass.layer.borderWidth = 1*s
+        view.addSubview(glass)
+        
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.addSubview(cyto)
+        glass.addSubview(scrollView)
+        
+//        view.addSubview(limbo)
     }
-    override func viewWillLayoutSubviews() {
+    override func layoutRatio056() {
+        graph.view = V3(8.91167255619427, 8.2567481154179, 9.63093990157929)*0.39
         graphView.frame = view.bounds
+    }
+    override func layoutRatio133() {
+        graphView.topLeft(dx: 510*s, dy: 10*s, width: 600*s, height: 800*s)
+        
+//        aexelsLabel.frame = CGRect(x: 16*s, y: 42*s, width: 300*s, height: 64*s)
+        view.addSubview(aexelsLabel)
+        aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
+
+        // Version
+//        versionLabel.frame = CGRect(x: 16*s, y: 95*s, width: 300*s, height: 30*s)
+        versionLabel.alpha = 0
+        view.addSubview(versionLabel)
+        
+        aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
+
+
+        
+//        cyto.backgroundColor = .magenta.tone(0.5).alpha(0.4)
+//        cyto.frame = CGRect(x: Screen.safeLeft+3, y: Screen.safeTop+3, width: view.width-(Screen.safeLeft+3)-3, height: view.height-(Screen.safeTop+3)-3-Screen.safeBottom)
+
+        glass.left(dx: 16*s, dy: Screen.safeTop/2, width: 480*s, height: view.height-Screen.safeTop-Screen.safeBottom-32*s)
+//        glass.layer.shadowPath = CGPath(roundedRect: glass.bounds, cornerWidth: 8*s, cornerHeight: 8*s, transform: nil)
+        scrollView.frame = glass.bounds
+        
+        cyto.top(dy: 8*s, width: glass.width-16*s, height: 2000*s)
+        cyto.layout()
+        
+        scrollView.contentSize = CGSize(width: glass.width, height: cyto.height+16*s)
+
+
+        limbo.topLeft(dx: 300, dy: 200, width: 400, height: 300)
     }
 }

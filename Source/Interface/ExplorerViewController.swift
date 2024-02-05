@@ -6,19 +6,21 @@
 //  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import UIKit
 
 class ExplorerViewController: UIViewController {
-    let imageView: UIImageView = UIImageView(image: UIImage(named: "BackiPad"))
+    let imageView: UIImageView = UIImageView(image: UIImage(named: "OldBack"))
     
-    var explorer: Explorer? = nil {
+    var explorer: AEViewController? = nil {
         didSet {
             guard let explorer else { return }
             explorer.view.alpha = 0
+            explorer.view.frame = view.bounds
             view.addSubview(explorer.view)
-            UIView.animate(withDuration: 0.2) {
-                explorer.view.alpha = 1
-            }
+            UIView.animate(withDuration: 0.2) { explorer.view.alpha = 1 }
+            
+//            guard let explorer: Explorer = explorer as? Explorer else { return }
         }
     }
     

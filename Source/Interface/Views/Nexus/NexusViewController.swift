@@ -12,7 +12,7 @@ import OoviumKit
 import UIKit
 
 class NexusViewController: UIViewController {
-	let imageView = UIImageView(image: Aexels.backImage())
+	let imageView = UIImageView(image: UIImage(named: "BackiPad")!)
 //    let smokeView: SmokeView = SmokeView()
     let aether: Aether = Aether()
     lazy var graph: Graph = aether.create(at: .zero)

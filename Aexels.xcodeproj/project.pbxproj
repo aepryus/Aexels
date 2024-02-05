@@ -84,6 +84,12 @@
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
 		D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButton.swift */; };
+		D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */; };
+		D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */; };
+		D8DA98C42B6CF29800A4AA8F /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */; };
+		D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */; };
+		D8DA98C82B6F40BB00A4AA8F /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */; };
+		D8DA98CA2B709D1200A4AA8F /* NexusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C92B709D1200A4AA8F /* NexusCell.swift */; };
 		D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */; };
 		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
 /* End PBXBuildFile section */
@@ -169,6 +175,12 @@
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
 		D8D2E1272944BC4E00EC1719 /* BoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButton.swift; sourceTree = "<group>"; };
+		D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cyto.swift; sourceTree = "<group>"; };
+		D8DA98C12B69384300A4AA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboCell.swift; sourceTree = "<group>"; };
+		D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		D8DA98C92B709D1200A4AA8F /* NexusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusCell.swift; sourceTree = "<group>"; };
 		D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AetherExplorer.swift; sourceTree = "<group>"; };
 		D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsView.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
@@ -203,6 +215,8 @@
 				D8656C0C2A8CF6F7003FC9A3 /* Ionian */,
 				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
 				D8042F12293B06A800453B8E /* Thracian */,
+				D813B7682AA6B892003851AE /* GravityEngine.swift */,
+				D850F44B293F2EB30091F15A /* DiliationEngine.swift */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -271,8 +285,6 @@
 			children = (
 				D8AE174F2814EACC00E74CB8 /* Extensions */,
 				D80ED6AE2B679A4100EF4F8D /* Engines */,
-				D813B7682AA6B892003851AE /* GravityEngine.swift */,
-				D850F44B293F2EB30091F15A /* DiliationEngine.swift */,
 				D8AE17522814EAED00E74CB8 /* Interface */,
 				D8AE17512814EADC00E74CB8 /* Global */,
 			);
@@ -283,8 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				D8E154D028162E650074A59B /* Aexels.entitlements */,
-				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
 				D8AE17432814E97300E74CB8 /* Assets.xcassets */,
+				D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */,
+				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
 				D8AE17662814F0D300E74CB8 /* en.lproj */,
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
@@ -324,18 +337,22 @@
 		D8AE17532814EAFD00E74CB8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
-				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
-				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
-				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
 				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
 				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
+				D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */,
+				D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */,
+				D8DA98C92B709D1200A4AA8F /* NexusCell.swift */,
+				D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */,
+				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
+				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
 				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
 				D8AE17CF2814F1EC00E74CB8 /* MessageLimbo.swift */,
 				D8AE17CD2814F1EC00E74CB8 /* PlayButton.swift */,
+				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
+				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
 			);
@@ -368,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */,
+				D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */,
 				D8B80D97296644CE00116F5B /* ExplorerButton.swift */,
 				D8AE17C32814F1C700E74CB8 /* NexusButton.swift */,
 				D8AE17C42814F1C700E74CB8 /* NexusLabel.swift */,
@@ -564,6 +582,7 @@
 				D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */,
 				D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */,
 				D8AE17B42814F0D300E74CB8 /* TrajanPro-Regular.otf in Resources */,
+				D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */,
 				D8AE17B52814F0D300E74CB8 /* Move iP.oo in Resources */,
 				D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */,
 			);
@@ -592,6 +611,8 @@
 				D8AE17C82814F1C700E74CB8 /* NexusButton.swift in Sources */,
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
+				D8DA98C42B6CF29800A4AA8F /* TitleCell.swift in Sources */,
+				D8DA98CA2B709D1200A4AA8F /* NexusCell.swift in Sources */,
 				D8AE17D82814F1EC00E74CB8 /* MessageLimbo.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
@@ -600,10 +621,13 @@
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
+				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
 				D838FD8A2941A190000C0228 /* ElectromagnetismExplorer.swift in Sources */,
+				D8DA98C82B6F40BB00A4AA8F /* ContentCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
+				D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,
 				D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */,
@@ -644,6 +668,14 @@
 				D8AE17682814F0D300E74CB8 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8DA98C12B69384300A4AA8F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -781,6 +813,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -817,6 +850,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
