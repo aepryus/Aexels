@@ -46,7 +46,7 @@ class ContractionExplorer: Explorer {
 
         engine = DilationEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen), horizontalOn: true)
 
-        super.init(name: "Contraction", key: "Contraction", canExplore: true)
+        super.init(name: "Contraction", key: "contraction", canExplore: true)
 
         engine.onVelocityChange = { (v: TCVelocity) in
             let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)

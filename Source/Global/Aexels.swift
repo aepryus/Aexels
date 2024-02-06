@@ -31,9 +31,9 @@ class Aexels {
 
 		nexus = NexusViewController()
 		
-		window.rootViewController = ExplorerViewController()
+		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()
-//		window.rootViewController = nexus
+		window.rootViewController = ExplorerViewController()
 
 		let oldVersion: String? = Aexels.basket.get(key: "version")
 		if oldVersion == nil { Local.archiveXML() }

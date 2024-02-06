@@ -51,7 +51,7 @@ final class CellularExplorer: Explorer, AetherViewDelegate {
 		else if Screen.iPad { d = Int(432*s) }
 		else /*if Screen.mac*/ { d = Int(Screen.scaler == 1 ? 465 : 609) }
 		engine = CellularEngine(side: d)
-		super.init(name: "Cellular Automata", key: "CellularAutomata", canExplore: true)
+		super.init(name: "Cellular Automata", key: "cellular", canExplore: true)
 	}
 	
 	func open(aether: Aether) {

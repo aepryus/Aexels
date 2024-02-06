@@ -6,7 +6,8 @@
   Copyright (c) 2014 Aepryus Software. All rights reserved.
 */
 
-"Intro" = "Forward to 3.0
+"intro_name" = "Intro";
+"intro_article" = "Forward to 3.0
 
 Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
 
@@ -87,7 +88,8 @@ As such, let our exploration begin...
 
 ";
 
-"Aether" = "Aether
+"aether_name" = "Aether";
+"aether_article" = "Aether
 
 In Universe X, the aether is not a substance that is displaced by planets and stars.  Rather, in Universe X, the aether is a substance upon which the matter of the universe sits.  It is the canvas upon which the painting appears; it is the game board upon which the chess pieces move.  The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
 
@@ -101,7 +103,8 @@ Currently, there are a few things we know about these aexels.  Like the atoms of
 
 ";
 
-"CellularAutomata" = "Cellular Automata
+"cellular_name" = "Cellular\nAutomata";
+"cellular_article" = "Cellular Automata
 
 A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
 
@@ -137,7 +140,8 @@ In Universe X, one aexel per tic is referred to as 'the speed of light'.
 
 ";
 
-"Kinematics" = "Kinematics
+"kinematics_name" = "Kinematics";
+"kinematics_article" = "Kinematics
 
 Kinematics is the study of motion absent of force.  In our universe, such motion is quite straightforward.  Generally things in Universe X are less complicated than in our own universe, but in this case things in Universe X are considerably more complicated.
 
@@ -159,7 +163,8 @@ There are some rather sticky ramifications to all of this.  In our universe a si
 
 ";
 
-"Gravity" = "Gravity
+"gravity_name" = "Gravity";
+"gravity_article" = "Gravity
 
 Gravity is the tendency of objects with mass to move towards one another.
 
@@ -198,7 +203,8 @@ At some point, certain clumps in Universe X get so big (dense) and the velocity 
 
 ";
 
-"Dilation" = "Dilation
+"dilation_name" = "Dilation";
+"dilation_article" = "Dilation
 
 Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
 
@@ -254,7 +260,8 @@ So, for a system of loops translating across an aexial field the signals traveli
 
 ";
 
-"Contraction" = "Contraction
+"contraction_name" = "Contraction";
+"contraction_article" = "Contraction
 
 Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
 
@@ -308,7 +315,8 @@ If a ship is heading towards some distant star, the amount of contracted meter s
 
 ";
 
-"Darkness" = "Darkness
+"darkness_name" = "Darkness";
+"darkness_article" = "Darkness
 
 Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
 
@@ -348,7 +356,8 @@ As such the antimatter dust of Universe X both causing the 'expansion' of the ae
 
 ";
 
-"Equivalence" = "Equivalence
+"equivalence_name" = "Equivalence";
+"equivalence_article" = "Equivalence
 
 E=mc²
 
@@ -384,7 +393,8 @@ In Universe X potential energy is actually just more kinetic energy.
 
 ";
 
-"Electromagnetism" = "Electromagnetism
+"electromagnetism_name" = "Electro\nmagnetism";
+"electromagnetism_article" = "Electromagnetism
 
 Certainly, there is much work to be done on the quantitative aspects of Universe X.  The qualitative aspects are starting to come into focus but there is a glaring exception: electromagnetism.  However, recent insights have started to shed some light on this topic also.
 
@@ -432,7 +442,8 @@ Miscellaneous Ruminations
 
 ";
 
-"Discrepancy" = "Discrepancy
+"discrepancy_name" = "Discrepancy";
+"discrepancy_article" = "Discrepancy
 
 It has been uncertain whether there were verifiable differences between our universe and Universe X.  Even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
 
@@ -540,7 +551,8 @@ For that reason, the Schwarzschild solution does not apply in Universe X and a d
 
 ";
 
-"Epilogue" = "Epilogue
+"epilogue_name" = "Epilogue";
+"epilogue_article" = "Epilogue
 
 Math is knowing...
 Knowing, is not, understanding.

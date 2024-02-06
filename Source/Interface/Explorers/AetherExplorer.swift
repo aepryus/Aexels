@@ -47,7 +47,7 @@ class AetherExplorer: Explorer {
 	var isFirst: Bool = false
 
 	init() {
-		super.init(name: "Aether", key: "Aether", canExplore: true)
+		super.init(name: "Aether", key: "aether", canExplore: true)
 	}
 	
 // Events ==========================================================================================

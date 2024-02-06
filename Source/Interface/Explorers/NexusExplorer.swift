@@ -19,6 +19,8 @@ class NexusExplorer: AEViewController {
     let glass: UIView = UIView()
     let scrollView: UIScrollView = UIScrollView()
 
+    let messageLimbo: MessageLimbo = MessageLimbo()
+
     let aether: Aether = Aether()
     lazy var graph: Graph = aether.create(at: .zero)
     lazy var graphView: GraphView = {
@@ -67,6 +69,26 @@ class NexusExplorer: AEViewController {
 //        graphView.layer.shadowOpacity = 0.8
         return graphView
     }()
+    
+    func showArticle(key: String) {
+        dimNexus()
+        messageLimbo.key = key
+        messageLimbo.load()
+        view.addSubview(messageLimbo)
+    }
+    
+    func dimNexus() {
+        UIView.animate(withDuration: 0.2) {
+            self.aexelsLabel.alpha = 0.1
+//            self.glass.alpha = 0
+        }
+    }
+    func brightenNexus() {
+        UIView.animate(withDuration: 0.2) {
+            self.aexelsLabel.alpha = 1
+            self.glass.alpha = 1
+        }
+    }
         
 // Events ==========================================================================================
     @objc func onTouch(gesture: TouchingGesture) {
@@ -96,20 +118,38 @@ class NexusExplorer: AEViewController {
             view.backgroundColor = .clear
 //            view.backgroundColor = .blue.tone(0.5).alpha(0.5)
             
+//                IntroExplorer(),
+//                AetherExplorer(),
+//                CellularExplorer(),
+//                KinematicsExplorer(),
+//                GravityExplorer(),
+//                DilationExplorer(),
+//                ContractionExplorer(),
+//                DarknessExplorer(),
+//                EquivalenceExplorer(),
+//                ElectromagnetismExplorer(),
+//                DiscrepancyExplorer(),
+//                EpilogueExplorer()
+
+            
             cyto.cells = [
-                NexusCell(name: "Forward", c: 0, r: 0),
-                NexusCell(name: "Intro", c: 1, r: 0, w: 2),
-                NexusCell(name: "Cellular\nAutomata", c: 0, r: 1, w: 2),
-                NexusCell(image: UIImage(named: "AutomataIcon"), c: 2, r: 1),
-                NexusCell(name: "Kinematics", c: 0, r: 2),
-                NexusCell(name: "Gravity", c: 1, r: 2),
-                NexusCell(name: "Dilation", c: 2, r: 2),
-                NexusCell(name: "Contraction", c: 0, r: 3),
-                NexusCell(name: "Darkness", c: 1, r: 3),
-                NexusCell(name: "Equivalence", c: 2, r: 3),
-                NexusCell(name: "Electro\nmagnetism", c: 0, r: 4),
-                NexusCell(name: "Discrepancy", c: 1, r: 4),
-                NexusCell(name: "Epilogue", c: 2, r: 4),
+                ArticleCell(key: "intro", c: 0, r: 0, w: 2),
+                ArticleCell(key: "aether", c: 2, r: 0),
+                ArticleCell(key: "cellular", c: 0, r: 1, w: 2),
+                ExplorerCell(explorer: CellularExplorer(), c: 2, r: 1),
+                ArticleCell(key: "kinematics", c: 0, r: 2),
+                ExplorerCell(explorer: KinematicsExplorer(), c: 1, r: 2),
+                ArticleCell(key: "gravity", c: 2, r: 2),
+                ExplorerCell(explorer: AetherExplorer(), c: 2, r: 3),
+                ArticleCell(key: "dilation", c: 0, r: 3),
+                ExplorerCell(explorer: DilationExplorer(), c: 1, r: 3),
+                ArticleCell(key: "contraction", c: 0, r: 4),
+                ExplorerCell(explorer: ContractionExplorer(), c: 1, r: 4),
+                ArticleCell(key: "darkness", c: 2, r: 4),
+                ArticleCell(key: "equivalence", c: 0, r: 5),
+                ArticleCell(key: "electromagnetism", c: 1, r: 5),
+                ArticleCell(key: "discrepancy", c: 2, r: 5),
+                ArticleCell(key: "epilogue", c: 1, r: 6),
             ]
         }
 //        view.addSubview(cyto)
@@ -128,6 +168,12 @@ class NexusExplorer: AEViewController {
         glass.addSubview(scrollView)
         
 //        view.addSubview(limbo)
+        
+        view.addSubview(aexelsLabel)
+        aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
+
+        view.addSubview(versionLabel)
+//        view.addSubview(messageLimbo)
     }
     override func layoutRatio056() {
         graph.view = V3(8.91167255619427, 8.2567481154179, 9.63093990157929)*0.39
@@ -137,13 +183,10 @@ class NexusExplorer: AEViewController {
         graphView.topLeft(dx: 510*s, dy: 10*s, width: 600*s, height: 800*s)
         
 //        aexelsLabel.frame = CGRect(x: 16*s, y: 42*s, width: 300*s, height: 64*s)
-        view.addSubview(aexelsLabel)
-        aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
 
         // Version
 //        versionLabel.frame = CGRect(x: 16*s, y: 95*s, width: 300*s, height: 30*s)
         versionLabel.alpha = 0
-        view.addSubview(versionLabel)
         
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
@@ -161,7 +204,8 @@ class NexusExplorer: AEViewController {
         cyto.layout()
         
         scrollView.contentSize = CGSize(width: glass.width, height: cyto.height+16*s)
-
+        
+        messageLimbo.left(dx: glass.right+20*s, dy: Screen.safeTop/2, width: view.width-glass.right-2*20*s, height: glass.height)
 
         limbo.topLeft(dx: 300, dy: 200, width: 400, height: 300)
     }

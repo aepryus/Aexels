@@ -20,7 +20,9 @@ class ExplorerViewController: UIViewController {
             view.addSubview(explorer.view)
             UIView.animate(withDuration: 0.2) { explorer.view.alpha = 1 }
             
-//            guard let explorer: Explorer = explorer as? Explorer else { return }
+            guard let explorer: Explorer = explorer as? Explorer else { return }
+            
+            explorer.openExplorer(view: view)
         }
     }
     

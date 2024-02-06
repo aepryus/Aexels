@@ -48,7 +48,7 @@ class KinematicsExplorer: Explorer {
 		
 		playButton = PlayButton()
 		
-		super.init(name: "Kinematics", key: "Kinematics", canExplore: true)
+		super.init(name: "Kinematics", key: "kinematics", canExplore: true)
 	}
 	
 	

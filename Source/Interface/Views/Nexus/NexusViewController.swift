@@ -399,20 +399,20 @@ class NexusViewController: UIViewController {
         
         closeButton.addAction { self.dismissMessageView() }
 
-		explorers = [
-			IntroExplorer(),
-            AetherExplorer(),
-			CellularExplorer(),
-			KinematicsExplorer(),
-			GravityExplorer(),
-			DilationExplorer(),
-			ContractionExplorer(),
-			DarknessExplorer(),
-			EquivalenceExplorer(),
-            ElectromagnetismExplorer(),
-            DiscrepancyExplorer(),
-            EpilogueExplorer()
-		]
+//		explorers = [
+//			IntroExplorer(),
+//            AetherExplorer(),
+//			CellularExplorer(),
+//			KinematicsExplorer(),
+//			GravityExplorer(),
+//			DilationExplorer(),
+//			ContractionExplorer(),
+//			DarknessExplorer(),
+//			EquivalenceExplorer(),
+//            ElectromagnetismExplorer(),
+//            DiscrepancyExplorer(),
+//            EpilogueExplorer()
+//		]
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)

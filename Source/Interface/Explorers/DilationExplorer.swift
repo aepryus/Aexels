@@ -50,7 +50,7 @@ class DilationExplorer: Explorer {
 
         engine = DilationEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen))
         
-        super.init(name: "Dilation", key: "Dilation", canExplore: true)
+        super.init(name: "Dilation", key: "dilation", canExplore: true)
         
         engine.onVelocityChange = { (v: TCVelocity) in
             let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)

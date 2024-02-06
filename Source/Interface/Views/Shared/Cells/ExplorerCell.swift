@@ -1,0 +1,33 @@
+//
+//  ExplorerCell.swift
+//  Aexels
+//
+//  Created by Joe Charlier on 2/6/24.
+//  Copyright © 2024 Aepryus Software. All rights reserved.
+//
+
+import Acheron
+import UIKit
+
+class ExplorerCell: NexusCell {
+    let explorer: Explorer
+    let imageView: UIImageView = UIImageView()
+    
+    init(explorer: Explorer, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
+        self.explorer = explorer
+        super.init(c: c, r: r, w: w, h: h)
+        imageView.image = UIImage(named: "\(explorer.key)_icon")
+        addSubview(imageView)
+    }
+    
+// NexusCell =======================================================================================
+    override func onTap() {
+        let explorerViewController: ExplorerViewController = (Aexels.window.rootViewController as! ExplorerViewController)
+        explorerViewController.explorer = explorer
+    }
+    
+// UIView ==========================================================================================
+    override func layoutSubviews() {
+        imageView.center(width: 189*s/2, height: 150*s/2)
+    }
+}
