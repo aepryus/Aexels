@@ -10,11 +10,6 @@ import Acheron
 import OoviumKit
 import UIKit
 
-class LimboPath {
-	var strokePath: CGPath!
-	var shadowPath: CGPath!
-	var maskPath: CGPath!
-}
 
 class Cutout {
 	let width: CGFloat
@@ -54,7 +49,7 @@ class Limbo: UIView {
 		layoutContent()
 	}
 
-	var limboPath = LimboPath()
+    var limboPath = LimboCell.Path()
 	
 	init() {
 		super.init(frame: CGRect.zero)

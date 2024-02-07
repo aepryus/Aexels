@@ -9,7 +9,7 @@
 import UIKit
 
 class CloseButton: AXButton {
-    private var limboPath: LimboPath = LimboPath()
+    private var limboPath: LimboCell.Path = LimboCell.Path()
     
     override init() {
         super.init()

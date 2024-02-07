@@ -9,7 +9,7 @@
 import Acheron
 import UIKit
 
-class Cyto: UIView {
+class Cyto: AEView {
     class Cell: AEView {
         let c: Int
         let r: Int
@@ -34,26 +34,39 @@ class Cyto: UIView {
     
     var showGrid: Bool = false
     
-    func dx(_ cell: Cell) -> CGFloat { Xs[0..<cell.c].summate { $0 } }
-    func dy(_ cell: Cell) -> CGFloat { Ys[0..<cell.r].summate { $0 } }
-    func width(_ cell: Cell) -> CGFloat { Xs[cell.c..<(cell.c+cell.w)].summate { $0 } }
-    func height(_ cell: Cell) -> CGFloat { Ys[cell.r..<(cell.r+cell.h)].summate { $0 } }
+    init(rows: Int, cols: Int) {
+        self.rows = rows
+        self.cols = cols
+        super.init()
+    }
+    
+    func dx(_ col: Int) -> CGFloat {
+        if col == 0 { return 0 }
+        if col <= Xs.count { return Xs[0..<col].summate { $0 } }
+        let eX: CGFloat = Xs.summate { $0 }
+        let cw: CGFloat = (width - eX) / CGFloat(cols - Xs.count)
+        return eX + cw * CGFloat(col-Xs.count)
+    }
+    func dy(_ row: Int) -> CGFloat {
+        if row == 0 { return 0 }
+        if row <= Ys.count { return Ys[0..<row].summate { $0 } }
+        let eY: CGFloat = Ys.summate { $0 }
+        let ch: CGFloat = (height - eY) / CGFloat(rows - Ys.count)
+        return eY + ch * CGFloat(row-Ys.count)
+    }
+    func width(_ cell: Cell) -> CGFloat { dx(cell.c+cell.w) - dx(cell.c) }
+    func height(_ cell: Cell) -> CGFloat { dy(cell.r+cell.h) - dy(cell.r) }
     
     func layout() {
-        Xs = []
-        Ys = []
         
-        subviews.forEach { $0.removeFromSuperview() }
-        
-        let cw: CGFloat = width/CGFloat(cols)
-        let ch: CGFloat = height/CGFloat(rows)
-        
-        for _ in 0..<cols { Xs.append(cw) }
-        for _ in 0..<rows { Ys.append(ch) }
+        for i in 0...cols { print("dx(\(i)) = \(dx(i))") }
+        print("")
+        for j in 0...rows { print("dy(\(j)) = \(dy(j))") }
+
         
         cells.forEach {
             addSubview($0)
-            $0.topLeft(dx: dx($0)+padding, dy: dy($0)+padding, width: width($0)-2*padding, height: height($0)-2*padding)
+            $0.topLeft(dx: dx($0.c)+padding, dy: dy($0.r)+padding, width: width($0)-2*padding, height: height($0)-2*padding)
         }
     }
     
