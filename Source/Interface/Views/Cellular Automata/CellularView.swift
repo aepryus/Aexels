@@ -33,7 +33,7 @@ struct Cell {
 	static let zero = Cell(0,0)
 }
 
-final class CellularView: UIView {
+class CellularView: UIView {
 	var engine: CellularEngine!
 
 	var origin: Cell = Cell.zero
@@ -155,7 +155,7 @@ final class CellularView: UIView {
 			
 			let a: CFData? = CFDataCreate(nil, data, size)
 			let b: CFData = a!
-			let provider: CGDataProvider = CGDataProvider(data: b)!
+            guard let provider: CGDataProvider = CGDataProvider(data: b) else { return }
 			let cgImage = CGImage(width: vw, height: vw, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: vw*4, space: space, bitmapInfo: CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent)!
 			self.image = UIImage(cgImage: cgImage)
 			

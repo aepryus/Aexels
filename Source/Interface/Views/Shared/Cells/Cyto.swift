@@ -58,12 +58,6 @@ class Cyto: AEView {
     func height(_ cell: Cell) -> CGFloat { dy(cell.r+cell.h) - dy(cell.r) }
     
     func layout() {
-        
-        for i in 0...cols { print("dx(\(i)) = \(dx(i))") }
-        print("")
-        for j in 0...rows { print("dy(\(j)) = \(dy(j))") }
-
-        
         cells.forEach {
             addSubview($0)
             $0.topLeft(dx: dx($0.c)+padding, dy: dy($0.r)+padding, width: width($0)-2*padding, height: height($0)-2*padding)

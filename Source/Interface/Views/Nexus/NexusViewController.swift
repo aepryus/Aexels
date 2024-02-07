@@ -199,7 +199,7 @@ class NexusViewController: UIViewController {
             button.addAction { [weak nvc] in
                 guard let nvc else { return }
                 nvc.dimNexus()
-                button.explorer.openExplorer(view: nvc.view)
+//                button.explorer.openExplorer(view: nvc.view)
             }
         }
 
@@ -264,7 +264,7 @@ class NexusViewController: UIViewController {
             button.addAction { [weak nvc] in
                 guard let nvc else { return }
                 nvc.dimNexus()
-                button.explorer.openExplorer(view: nvc.view)
+//                button.explorer.openExplorer(view: nvc.view)
             }
         }
 
@@ -329,7 +329,7 @@ class NexusViewController: UIViewController {
             button.addAction { [weak nvc] in
                 guard let nvc else { return }
                 nvc.dimNexus()
-                button.explorer.openExplorer(view: nvc.view)
+//                button.explorer.openExplorer(view: nvc.view)
             }
         }
 

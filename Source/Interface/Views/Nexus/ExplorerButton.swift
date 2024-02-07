@@ -10,13 +10,11 @@ import Acheron
 import UIKit
 
 class ExplorerButton: UIControl {
-    let explorer: Explorer
     let backView: UIView = UIView()
     let imageView: UIView
     let label: UILabel = UILabel()
     
-    init(explorer: Explorer, text: String, imageView: UIImageView) {
-        self.explorer = explorer
+    init(text: String, imageView: UIImageView) {
         self.imageView = imageView
         super.init(frame: .zero)
 
@@ -36,7 +34,7 @@ class ExplorerButton: UIControl {
         imageView.layer.masksToBounds = true
         
         label.text = text
-        label.pen = Pen(font: .ax(size: 9*s), color: .black, alignment: .center)
+        label.pen = Pen(font: .ax(size: 9*s), color: .white, alignment: .center)
         label.adjustsFontSizeToFitWidth = true
         addSubview(label)
     }

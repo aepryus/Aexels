@@ -11,13 +11,13 @@ import UIKit
 
 class ExplorerCell: NexusCell {
     let explorer: Explorer
-    let imageView: UIImageView = UIImageView()
+    let explorerButton: ExplorerButton
     
     init(explorer: Explorer, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
         self.explorer = explorer
+        self.explorerButton = explorer.explorerButton
         super.init(c: c, r: r, w: w, h: h)
-        imageView.image = UIImage(named: "\(explorer.key)_icon")
-        addSubview(imageView)
+        addSubview(explorerButton)
     }
     
 // NexusCell =======================================================================================
@@ -28,6 +28,7 @@ class ExplorerCell: NexusCell {
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        imageView.center(width: 189*s/2, height: 150*s/2)
+//        explorerButton.center(width: 189*s/2, height: 150*s/2)
+        explorerButton.center(width: 70*s, height: 66*s)
     }
 }

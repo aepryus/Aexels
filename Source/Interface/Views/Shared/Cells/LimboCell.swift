@@ -32,7 +32,7 @@ class LimboCell: Cyto.Cell {
     
     let p: CGFloat = 15*Screen.s
     
-    override init(c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
+    init(content: UIView? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
         super.init(c: c, r: r, w: w, h: h)
 
         backgroundColor = .clear
@@ -41,6 +41,10 @@ class LimboCell: Cyto.Cell {
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = 3*Screen.s
         layer.shadowOpacity = 0.6
+        
+        defer {
+            self.content = content
+        }
     }
 
     func layoutContent() {
