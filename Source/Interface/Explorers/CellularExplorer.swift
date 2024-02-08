@@ -30,23 +30,27 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         aetherView.backgroundColor = .clear
         aetherView.aetherViewDelegate = self
         aetherView.orb = Orb(aetherView: aetherView, view: Aexels.nexus.view, dx: 0, dy: 0)
+        aetherView.hideScrollIndicators()
         Aexels.aetherView = aetherView
         aetherView.toolBarOffset = UIOffset(horizontal: -3, vertical: 6)
         
         return aetherView
     }()
     lazy var ooviumView: OoviumView = OoviumView(aetherView: aetherView)
-    lazy var ooviumCell: LimboCell = LimboCell(content: ooviumView, c: 2, r: 2, h: 3)
+    lazy var ooviumCell: ContentCell = ContentCell(content: ooviumView, c: 2, r: 2, h: 3)
     
     let cyto: Cyto = Cyto(rows: 5, cols: 3)
     
-    let largeCell: CellularView = CellularView()
-    let mediumCell: CellularView = CellularView()
-    let smallCell: CellularView = CellularView()
+    let largeView: CellularView = CellularView()
+    let mediumView: CellularView = CellularView()
+    let smallView: CellularView = CellularView()
     let dilatorView: DilatorView = DilatorView()
     var messageLimbo: MessageLimbo = MessageLimbo()
     let controlsView: UIView = UIView()
-
+    
+// Explorer ========================================================================================
+    override var shortName: String { "Automata" }
+    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,24 +62,24 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.open(aether: Aether(json: json))
         }
         
-        largeCell.zoomView = mediumCell
-        mediumCell.parentView = largeCell
-        mediumCell.zoomView = smallCell
-        smallCell.parentView = mediumCell
+        largeView.zoomView = mediumView
+        mediumView.parentView = largeView
+        mediumView.zoomView = smallView
+        smallView.parentView = mediumView
         
-        mediumCell.zoom = 2
-        smallCell.zoom = 4
+        mediumView.zoom = 2
+        smallView.zoom = 4
         
         if Screen.iPhone {
-            largeCell.points = floorQ(x: 335*s, to: 1)
-            mediumCell.points = floorQ(x: 190*s, to: 2)
-            smallCell.points = floorQ(x: 112*s, to: 4)
+            largeView.points = floorQ(x: 335*s, to: 1)
+            mediumView.points = floorQ(x: 190*s, to: 2)
+            smallView.points = floorQ(x: 112*s, to: 4)
         } else /*if Screen.iPad*/{
             let height = Screen.height - Screen.safeTop - Screen.safeBottom
             let s = height / 748
-            largeCell.points = floorQ(x: 432*s, to: 1)
-            mediumCell.points = floorQ(x: 256*s, to: 2)
-            smallCell.points = floorQ(x: 144*s, to: 4)
+            largeView.points = floorQ(x: 432*s, to: 1)
+            mediumView.points = floorQ(x: 256*s, to: 2)
+            smallView.points = floorQ(x: 144*s, to: 4)
         }
         
 //        var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))
@@ -103,18 +107,18 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.engine.guideOn = !self.engine.guideOn
             self.guide.stateOn = self.engine.guideOn
             self.guide.setNeedsDisplay()
-            self.largeCell.flash()
-            self.mediumCell.flash()
+            self.largeView.flash()
+            self.mediumView.flash()
         }
 
         cyto.padding = 0
         cyto.cells = [
-            LimboCell(content: largeCell, c: 0, r: 0, w: 2, h: 3),
-            LimboCell(content: mediumCell, c: 0, r: 3, h: 2),
-            LimboCell(content: smallCell, c: 1, r: 3),
+            LimboCell(content: largeView, size: CGSize(width: largeView.points, height: largeView.points), c: 0, r: 0, w: 2, h: 3),
+            LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 3, h: 2),
+            LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 3),
             LimboCell(content: controlsView, c: 1, r: 4),
             LimboCell(c: 2, r: 0),
-            LimboCell(content: dilatorView, c: 2, r: 1),
+            LimboCell(content: dilatorView, c: 2, r: 1, p: 12),
             ooviumCell
         ]
         cyto.layout()
@@ -144,9 +148,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 //        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
 //
 //        controls.topLeft(dx: small.left, dy: small.bottom, width: small.width, height: medium.height-small.height)
-        play.left(dx: sw/2-q-bw, size: CGSize(width: bw, height: 30*s))
-        reset.left(dx: sw/2-bw/2, size: CGSize(width: bw, height: 30*s))
-        guide.left(dx: sw/2+q, size: CGSize(width: bw, height: 30*s))
 //
 //        dilator.frame = CGRect(x: large.right, y: messageLimbo.bottom, width: Screen.width-lW-10*s, height: ch)
 
@@ -165,6 +166,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         cyto.Ys = [768*s-20*s-y-ch, ch, lW-ch-(768*s-20*s-y-ch), 176*s]
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
+        
+        play.left(dx: sw/2-q-bw-15*s, size: CGSize(width: bw, height: 30*s))
+        reset.left(dx: sw/2-bw/2-15*s, size: CGSize(width: bw, height: 30*s))
+        guide.left(dx: sw/2+q-15*s, size: CGSize(width: bw, height: 30*s))
         
         if Screen.mac { aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-10*s, vertical: -ooviumCell.top+12*s) }
         else { aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-10*s, vertical: -ooviumCell.top+12*s) }
@@ -225,16 +230,16 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 
 		engine.removeAllViews()
 
-		engine.addView(largeCell)
-		engine.addView(mediumCell)
-		engine.addView(smallCell)
+		engine.addView(largeView)
+		engine.addView(mediumView)
+		engine.addView(smallView)
 
 		engine.compile(aether: aether)
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			self.engine.reset()
-			let a = self.largeCell.width/2
-			self.largeCell.zoom(at: CGPoint(x: a, y: a))
+			let a = self.largeView.width/2
+			self.largeView.zoom(at: CGPoint(x: a, y: a))
 		}
 		
 		if aether.name == "Game of Life" {
@@ -288,15 +293,15 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 		
 
 		if Screen.iPhone {
-			largeCell.points = floorQ(x: 335*s, to: 1)
-			mediumCell.points = floorQ(x: 190*s, to: 2)
-			smallCell.points = floorQ(x: 112*s, to: 4)
+			largeView.points = floorQ(x: 335*s, to: 1)
+			mediumView.points = floorQ(x: 190*s, to: 2)
+			smallView.points = floorQ(x: 112*s, to: 4)
 		} else /*if Screen.iPad*/{
 			let height = Screen.height - Screen.safeTop - Screen.safeBottom
 			let s = height / 748
-			largeCell.points = floorQ(x: 432*s, to: 1)
-			mediumCell.points = floorQ(x: 256*s, to: 2)
-			smallCell.points = floorQ(x: 144*s, to: 4)
+			largeView.points = floorQ(x: 432*s, to: 1)
+			mediumView.points = floorQ(x: 256*s, to: 2)
+			smallView.points = floorQ(x: 144*s, to: 4)
 		}
 		
 //		var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))

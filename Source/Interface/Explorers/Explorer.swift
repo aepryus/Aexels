@@ -22,8 +22,8 @@ class Explorer: AEViewController {
         super.init()
 	}
 	
-// Explorer ========================================================================================
-    lazy var explorerButton: ExplorerButton = ExplorerButton(text: name, imageView: UIImageView(image: UIImage(named: "\(key)_icon")))
+    var shortName: String { name }
+    lazy var explorerButton: ExplorerButton = ExplorerButton(text: shortName, imageView: UIImageView(image: UIImage(named: "\(key)_icon")))
     var limbos: [UIView] = []
     var layedOut: Bool = false
     

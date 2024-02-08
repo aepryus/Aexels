@@ -30,9 +30,11 @@ class LimboCell: Cyto.Cell {
         didSet { layoutContent() }
     }
     
-    let p: CGFloat = 15*Screen.s
+    let p: CGFloat
     
-    init(content: UIView? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
+    init(content: UIView? = nil, size: CGSize? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, p: CGFloat = 15*Screen.s) {
+        self.contentSize = size
+        self.p = p
         super.init(c: c, r: r, w: w, h: h)
 
         backgroundColor = .clear
