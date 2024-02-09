@@ -20,7 +20,7 @@ class ExplorerButton: UIControl {
 
         backView.addSubview(imageView)
         backView.isUserInteractionEnabled = false
-        backView.layer.borderColor = UIColor.black.cgColor
+        backView.layer.borderColor = UIColor.white.shade(0.14).cgColor
         backView.layer.borderWidth = 1*s
         backView.layer.cornerRadius = 8*s
         backView.layer.shadowOffset = CGSize(width: 2*s, height: 2*s)

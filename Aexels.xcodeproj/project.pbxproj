@@ -11,6 +11,7 @@
 		D8042F15293B085500453B8E /* Thracian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8042F14293B085500453B8E /* Thracian.c */; };
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
+		D80B6ED72B75188C00EC2536 /* Aexels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D80B6ED62B75188C00EC2536 /* Aexels.mp3 */; };
 		D80ED6AD2B679A1A00EF4F8D /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6AB2B679A1A00EF4F8D /* Ionian.c */; };
 		D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */; };
 		D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */; };
@@ -74,6 +75,7 @@
 		D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */; };
 		D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */; };
 		D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */; };
+		D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFFA9E2B74B30C00588196 /* VisionBar.swift */; };
 		D8B80D98296644CE00116F5B /* ExplorerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B80D97296644CE00116F5B /* ExplorerButton.swift */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
@@ -95,6 +97,7 @@
 		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
+		D80B6ED62B75188C00EC2536 /* Aexels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aexels.mp3; sourceTree = "<group>"; };
 		D80ED6AB2B679A1A00EF4F8D /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D80ED6AC2B679A1A00EF4F8D /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
 		D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusExplorer.swift; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 		D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilationExplorer.swift; sourceTree = "<group>"; };
 		D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
+		D8AFFA9E2B74B30C00588196 /* VisionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionBar.swift; sourceTree = "<group>"; };
 		D8B80D97296644CE00116F5B /* ExplorerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerButton.swift; sourceTree = "<group>"; };
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
@@ -201,6 +205,14 @@
 				D8042F14293B085500453B8E /* Thracian.c */,
 			);
 			path = Thracian;
+			sourceTree = "<group>";
+		};
+		D80B6ED52B75186F00EC2536 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				D80B6ED62B75188C00EC2536 /* Aexels.mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		D80ED6AE2B679A4100EF4F8D /* Engines */ = {
@@ -294,6 +306,7 @@
 				D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */,
 				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
 				D8AE17662814F0D300E74CB8 /* en.lproj */,
+				D80B6ED52B75186F00EC2536 /* Music */,
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
 				D87C0DCF2931A7720005B44D /* LaTeX */,
@@ -369,6 +382,7 @@
 		D8AE17552814EB0D00E74CB8 /* Nexus */ = {
 			isa = PBXGroup;
 			children = (
+				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
 				D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */,
 				D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */,
 				D8B80D97296644CE00116F5B /* ExplorerButton.swift */,
@@ -563,6 +577,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D80B6ED72B75188C00EC2536 /* Aexels.mp3 in Resources */,
 				D8AE17942814F0D300E74CB8 /* Sweetness.oo in Resources */,
 				D8AE17B82814F0D300E74CB8 /* Game of Life iP.oo in Resources */,
 				D8AE179C2814F0D300E74CB8 /* WalledCities iP.oo in Resources */,
@@ -594,6 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */,
 				D8042F11293AEB0200453B8E /* DilationView.swift in Sources */,
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */,
