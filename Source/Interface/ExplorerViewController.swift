@@ -56,10 +56,15 @@ class ExplorerViewController: UIViewController {
     
     var explorer: AEViewController? = nil {
         didSet {
-            if let nexusExplorer: NexusExplorer = oldValue as? NexusExplorer {
+            if explorer is NexusExplorer {
+                graphView.timer.start()
+                startMusic()
+            } else if oldValue is NexusExplorer {
                 graphView.timer.stop()
-                nexusExplorer.view.removeFromSuperview()
+                stopMusic()
             }
+            
+            if let oldValue { oldValue.view.removeFromSuperview() }
             
             guard let explorer else { return }
             explorer.view.alpha = 0
@@ -81,23 +86,41 @@ class ExplorerViewController: UIViewController {
     lazy var visionBar: VisionBar = {
         let visions: [[Vision?]] = [
             [Vision(color: .green.tone(0.5).alpha(0.5)), nil, nil, nil],
-            [Vision(color: .purple.tone(0.5).alpha(0.5)), Vision(color: .blue.tone(0.5).alpha(0.5)), Vision(color: .cyan.tone(0.5).alpha(0.5)), Vision(color: .orange.tone(0.5).alpha(0.5))]
+            [ExplorerVision(explorer: Aexels.nexusExplorer, color: .purple.tone(0.5).alpha(0.5)), ExplorerVision(explorer: Aexels.cellularExplorer, color: .blue.tone(0.5).alpha(0.5)), Vision(color: .cyan.tone(0.5).alpha(0.5)), Vision(color: .orange.tone(0.5).alpha(0.5))]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)
         let visionBar: VisionBar = VisionBar(visionBox: visionBox)
         return visionBar
     }()
     
-    func startMusic() {
-        guard let url: URL = Bundle.main.url(forResource: "Aexels", withExtension: "mp3") else { return }
+    func initMusic() {
+        guard let url: URL = Bundle.main.url(forResource: "Aexels3", withExtension: "mp3") else { return }
         do {
             try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             player?.numberOfLoops = -1
-            player?.play()
+            player?.volume = 0
         }
         catch { print("startMusic ERROR: \(error)") }
+    }
+    func startMusic() {
+        player?.play()
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
+            guard let player = self.player else { return }
+            if player.volume < 1 { player.volume += 0.05 }
+            else { timer.invalidate() }
+        }
+    }
+    func stopMusic() {
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
+            guard let player = self.player else { return }
+            if player.volume > 0 { player.volume -= 0.05 }
+            else {
+                player.stop()
+                timer.invalidate()
+            }
+        }
     }
     
 // UIViewController ================================================================================
@@ -110,6 +133,7 @@ class ExplorerViewController: UIViewController {
 
         explorer = NexusExplorer()
         
+        initMusic()
         startMusic()
     }
     override func viewWillLayoutSubviews() {

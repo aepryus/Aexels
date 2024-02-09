@@ -172,12 +172,12 @@ class AetherExplorer: Explorer {
         closeLimbo.alpha = 0
         closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
             self.closeExplorer()
-            Aexels.nexus.brightenNexus()
+//            Aexels.nexus.brightenNexus()
         }
 
         closeButton.addAction(for: .touchUpInside) { [unowned self] in
 			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
+//			Aexels.nexus.brightenNexus()
 		}
 		
 		if Screen.iPhone {

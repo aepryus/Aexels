@@ -29,7 +29,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         let aetherView: AetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
         aetherView.backgroundColor = .clear
         aetherView.aetherViewDelegate = self
-        aetherView.orb = Orb(aetherView: aetherView, view: Aexels.nexus.view, dx: 0, dy: 0)
+        aetherView.orb = Orb(aetherView: aetherView, view: Aexels.explorerViewController.view, dx: 0, dy: 0)
         aetherView.hideScrollIndicators()
         Aexels.aetherView = aetherView
         aetherView.toolBarOffset = UIOffset(horizontal: -3, vertical: 6)
@@ -110,6 +110,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.largeView.flash()
             self.mediumView.flash()
         }
+        
+        dilatorView.onChange = { (frameRate: Int) in
+            self.engine.frameRate = frameRate
+        }
 
         cyto.padding = 0
         cyto.cells = [
@@ -123,6 +127,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         ]
         cyto.layout()
         view.addSubview(cyto)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        play.stop()
     }
     
 // AEViewController ================================================================================

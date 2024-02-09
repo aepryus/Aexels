@@ -207,13 +207,13 @@ class DilationExplorer: Explorer {
         closeLimbo.alpha = 0
         closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
             self.closeExplorer()
-            Aexels.nexus.brightenNexus()
+//            Aexels.nexus.brightenNexus()
         }
 
         closeButton.alpha = 0
         closeButton.addAction(for: .touchUpInside) { [unowned self] in
             self.closeExplorer()
-            Aexels.nexus.brightenNexus()
+//            Aexels.nexus.brightenNexus()
         }
         
         // Labels

@@ -12,6 +12,8 @@
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
 		D804561E281534BF0018223B /* OoviumEngine in Frameworks */ = {isa = PBXBuildFile; productRef = D804561D281534BF0018223B /* OoviumEngine */; };
 		D80B6ED72B75188C00EC2536 /* Aexels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D80B6ED62B75188C00EC2536 /* Aexels.mp3 */; };
+		D80B6ED92B76315700EC2536 /* ExplorerVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80B6ED82B76315700EC2536 /* ExplorerVision.swift */; };
+		D80B6EDB2B766F3C00EC2536 /* Aexels3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D80B6EDA2B766F3C00EC2536 /* Aexels3.mp3 */; };
 		D80ED6AD2B679A1A00EF4F8D /* Ionian.c in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6AB2B679A1A00EF4F8D /* Ionian.c */; };
 		D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */; };
 		D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */; };
@@ -98,6 +100,8 @@
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
 		D80B6ED62B75188C00EC2536 /* Aexels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aexels.mp3; sourceTree = "<group>"; };
+		D80B6ED82B76315700EC2536 /* ExplorerVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerVision.swift; sourceTree = "<group>"; };
+		D80B6EDA2B766F3C00EC2536 /* Aexels3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aexels3.mp3; sourceTree = "<group>"; };
 		D80ED6AB2B679A1A00EF4F8D /* Ionian.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Ionian.c; sourceTree = "<group>"; };
 		D80ED6AC2B679A1A00EF4F8D /* Ionian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ionian.h; sourceTree = "<group>"; };
 		D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusExplorer.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				D80B6ED62B75188C00EC2536 /* Aexels.mp3 */,
+				D80B6EDA2B766F3C00EC2536 /* Aexels3.mp3 */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -383,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
+				D80B6ED82B76315700EC2536 /* ExplorerVision.swift */,
 				D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */,
 				D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */,
 				D8B80D97296644CE00116F5B /* ExplorerButton.swift */,
@@ -596,6 +602,7 @@
 				D8AE17912814F0D300E74CB8 /* Localizable.strings in Resources */,
 				D8AE17A42814F0D300E74CB8 /* Sweetness iP.oo in Resources */,
 				D8AE17B42814F0D300E74CB8 /* TrajanPro-Regular.otf in Resources */,
+				D80B6EDB2B766F3C00EC2536 /* Aexels3.mp3 in Resources */,
 				D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */,
 				D8AE17B52814F0D300E74CB8 /* Move iP.oo in Resources */,
 				D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */,
@@ -629,6 +636,7 @@
 				D8DA98C42B6CF29800A4AA8F /* TitleCell.swift in Sources */,
 				D8DA98CA2B709D1200A4AA8F /* NexusCell.swift in Sources */,
 				D8AE17D82814F1EC00E74CB8 /* MessageLimbo.swift in Sources */,
+				D80B6ED92B76315700EC2536 /* ExplorerVision.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,

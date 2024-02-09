@@ -14,10 +14,14 @@ import UIKit
 class Aexels {
     static var window: UIWindow = UIWindow()
 	static let basket: Basket = Basket(SQLitePersist("pequod"))
-	static var nexus: NexusViewController!
+//	static var nexus: NexusViewController!
+    static var explorerViewController: ExplorerViewController = ExplorerViewController()
 	static var aetherView: AetherView? = nil
 	static var sync: AESync = AESync()
 	static let shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
+    
+    static let nexusExplorer: NexusExplorer = NexusExplorer()
+    static let cellularExplorer: CellularExplorer = CellularExplorer()
 	
 	static var version: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0" }
 	
@@ -29,11 +33,11 @@ class Aexels {
 		Loom.start(basket: Aexels.basket, namespaces: ["Aexels", "OoviumEngine"])
 		Skin.skin = IvorySkin()
 
-		nexus = NexusViewController()
+//		nexus = NexusViewController()
 		
 		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()
-		window.rootViewController = ExplorerViewController()
+		window.rootViewController = explorerViewController
 
 		let oldVersion: String? = Aexels.basket.get(key: "version")
 		if oldVersion == nil { Local.archiveXML() }

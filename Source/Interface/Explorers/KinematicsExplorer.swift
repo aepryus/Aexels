@@ -258,14 +258,14 @@ class KinematicsExplorer: Explorer {
 		close.addAction(for: .touchUpInside) { [unowned self] in
 			self.isFirst = true
 			self.closeExplorer()
-			Aexels.nexus.brightenNexus()
+//			Aexels.nexus.brightenNexus()
 		}
 
         closeButton.alpha = 0
         closeButton.addAction(for: .touchUpInside) { [unowned self] in
             self.isFirst = true
             self.closeExplorer()
-            Aexels.nexus.brightenNexus()
+//            Aexels.nexus.brightenNexus()
         }
 
 		// Swapper =========================

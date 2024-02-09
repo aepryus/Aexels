@@ -107,6 +107,11 @@ class NexusExplorer: AEViewController {
         view.addSubview(versionLabel)
 //        view.addSubview(messageLimbo)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        messageLimbo.removeFromSuperview()
+        brightenNexus()
+    }
     
     override func layoutRatio056() {
     }
