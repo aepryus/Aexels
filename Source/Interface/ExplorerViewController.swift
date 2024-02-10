@@ -85,8 +85,7 @@ class ExplorerViewController: UIViewController {
     var player: AVAudioPlayer?
     lazy var visionBar: VisionBar = {
         let visions: [[Vision?]] = [
-            [Vision(color: .green.tone(0.5).alpha(0.5)), nil, nil, nil],
-            [ExplorerVision(explorer: Aexels.nexusExplorer, color: .purple.tone(0.5).alpha(0.5)), ExplorerVision(explorer: Aexels.cellularExplorer, color: .blue.tone(0.5).alpha(0.5)), Vision(color: .cyan.tone(0.5).alpha(0.5)), Vision(color: .orange.tone(0.5).alpha(0.5))]
+            [ExplorerVision(explorer: Aexels.nexusExplorer, color: .purple.tone(0.5).alpha(0.5)), ExplorerVision(explorer: Aexels.cellularExplorer, color: .blue.tone(0.5).alpha(0.5)), Vision(color: .cyan.tone(0.5).alpha(0.5)), Vision(color: .orange.tone(0.5).alpha(0.5)), Vision(color: .green.tone(0.5).alpha(0.5)), nil, nil, nil]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)
         let visionBar: VisionBar = VisionBar(visionBox: visionBox)

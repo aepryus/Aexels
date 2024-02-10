@@ -179,8 +179,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         reset.left(dx: sw/2-bw/2-15*s, size: CGSize(width: bw, height: 30*s))
         guide.left(dx: sw/2+q-15*s, size: CGSize(width: bw, height: 30*s))
         
-        if Screen.mac { aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-10*s, vertical: -ooviumCell.top+12*s) }
-        else { aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-10*s, vertical: -ooviumCell.top+12*s) }
+        aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-cyto.left-10*s, vertical: -ooviumCell.top-cyto.top+12*s)
     }
     
 // AetherViewDelegate ==============================================================================
