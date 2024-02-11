@@ -12,38 +12,113 @@ import UIKit
 class GlyphsView: AEView {
     var glyphs: [GlyphView] = []
     
+    override init() {
+        super.init()
+        backgroundColor = .clear
+    }
+    
     func add(glyph: GlyphView) {
         glyphs.append(glyph)
         addSubview(glyph)
     }
     
+    func printSpokes() {
+        glyphs.forEach { (glyphView: GlyphView) in
+            print("===================")
+            glyphView.sortedLinkedTo.forEach { (other: GlyphView) in
+                print("  : \(glyphView.spoke(to: other))")
+            }
+        }
+    }
     
+// AEView ==========================================================================================
+    override func draw(_ rect: CGRect) {
+        guard let first: GlyphView = glyphs.first else { return }
+
+        let moat: CGFloat = 8*s
+        let a: CGFloat = 5*s
+        var point: GlyphView = first
+        var angle: CGFloat = 0
+        var comingFrom: GlyphView? = nil
+        
+        let path: CGMutablePath = CGMutablePath()
+        path.move(to: point.center + (point.radius/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
+
+        while true {
+            if point === first && comingFrom == nil {
+                let movingTo: GlyphView = point.sortedLinkedTo[0]
+                let angleTo: CGFloat = point.spoke(to: movingTo)
+                let radius: CGFloat = point.radius/2+moat
+                let dq: CGFloat = asin(a/radius)
+                path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
+                let angleBack: CGFloat = movingTo.spoke(to: point)
+//                path.addLine(to: movingTo.center + (movingTo.radius/2+moat)*CGPoint(x: sin(angleBack), y: -cos(angleBack)))
+                comingFrom = point
+                angle = angleBack
+                point = movingTo
+            } else if point === first && comingFrom == point.sortedLinkedTo.last! {
+                let angleTo: CGFloat = 2 * .pi
+                let radius: CGFloat = point.radius/2+moat
+                let dq: CGFloat = asin(a/radius)
+                path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
+                path.closeSubpath()
+                break
+            } else {
+                let movingTo: GlyphView = point.linkAfter(comingFrom!)
+                let angleTo: CGFloat = point.spoke(to: movingTo)
+                let radius: CGFloat = point.radius/2+moat
+                let dq: CGFloat = asin(a/radius)
+                path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
+                let angleBack: CGFloat = movingTo.spoke(to: point)
+//                path.addLine(to: movingTo.center + (movingTo.radius/2+moat)*CGPoint(x: sin(angleBack), y: -cos(angleBack)))
+                comingFrom = point
+                angle = angleBack
+                point = movingTo
+            }
+        }
+
+        let c = UIGraphicsGetCurrentContext()!
+        c.addPath(path)
+        c.setLineWidth(3)
+        c.setStrokeColor(UIColor.black.tint(0.5).cgColor)
+        c.strokePath()
+    }
 }
 
 class GlyphView: AEView {
     let radius: CGFloat
     var linkedTo: [GlyphView] = []
     
-    init(radius: CGFloat) {
+    init(radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.radius = radius
         super.init()
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowOffset = .zero
-//        layer.shadowRadius = 0.5
-//        layer.shadowOpacity = 1
+        frame = CGRect(x: x, y: y, width: radius, height: radius)
+        backgroundColor = .clear
     }
     
     var color: UIColor { UIColor.black.tint(0.5) }
-    
+
     func link(to other: GlyphView) {
         linkedTo.append(other)
         other.linkedTo.append(self)
     }
-    private func spoke(to other: GlyphView) -> CGFloat { .pi - atan2(other.frame.origin.x-frame.origin.x, other.frame.origin.y-frame.origin.y) }
+    func spoke(to other: GlyphView) -> CGFloat { .pi/2 - atan2(-(other.center.y-center.y), other.center.x-center.x) }
+    func spokeAtan(to other: GlyphView) -> CGFloat { atan2(-(other.center.y-center.y), other.center.x-center.x) }
+
+    static func toClock(_ angle: CGFloat) -> CGFloat { .pi/2 - angle }
+    static func fromClock(_ angle: CGFloat) -> CGFloat { -(angle - .pi/2) }
     
-    var spokes: [CGFloat] {
-        let spokes: [CGFloat] = linkedTo.map { spoke(to: $0) }
-        return spokes.sorted()
+    lazy var sortedLinkedTo: [GlyphView] = {
+        linkedTo.sorted(by: { spoke(to: $0) < spoke(to: $1) })
+    }()
+    
+    func linkAfter(_ glyphView: GlyphView) -> GlyphView {
+        for i in 0..<sortedLinkedTo.count {
+            guard sortedLinkedTo[i] === glyphView else { continue }
+            if i == sortedLinkedTo.count - 1 { return sortedLinkedTo[0] }
+            else { return sortedLinkedTo[i+1] }
+        }
+        fatalError()
     }
 }
 
@@ -51,10 +126,9 @@ class ArticleGlyph: GlyphView {
     let name: String
     let label: UILabel = UILabel()
     
-    init(name: String, radius: CGFloat) {
+    init(name: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.name = name
-        super.init(radius: radius)
-        backgroundColor = .clear
+        super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
         layer.borderWidth = 2
@@ -79,10 +153,9 @@ class ExplorerGlyph: GlyphView {
     let image: UIImage
     let imageView: UIImageView = UIImageView()
     
-    init(image: UIImage, radius: CGFloat) {
+    init(image: UIImage, radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.image = image
-        super.init(radius: radius)
-        backgroundColor = .clear
+        super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
         layer.borderWidth = 3
@@ -107,11 +180,10 @@ class AsideGlyph: GlyphView {
     let name: String
     let label: UILabel = UILabel()
     
-    init(name: String, radius: CGFloat) {
+    init(name: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.name = name
-        super.init(radius: radius)
-        backgroundColor = .clear
-        
+        super.init(radius: radius, x: x, y: y)
+
         layer.borderColor = color.cgColor
         layer.borderWidth = 3
         

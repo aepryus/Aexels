@@ -108,125 +108,89 @@ class NexusExplorer: AEViewController {
         
         let p: CGFloat = 3*s
         var y: CGFloat = 30*s
-        var dy: CGFloat = 120*s
+        var dy: CGFloat = 150*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(name: "Universe X", radius: 110*s+2*p)
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(name: "Universe X", radius: 110*s+2*p, x: 70*s, y: y)
         glyphsView.add(glyph: universeXGlyph)
-        universeXGlyph.frame = CGRect(x: 30*s, y: y, width: universeXGlyph.radius, height: universeXGlyph.radius)
         y += dy
 
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(name: "Aether", radius: 80*s+2*p)
+        let aetherGlyph: ArticleGlyph = ArticleGlyph(name: "Aether", radius: 80*s+2*p, x: 50*s, y: y)
         glyphsView.add(glyph: aetherGlyph)
-        aetherGlyph.frame = CGRect(x: 30*s, y: y, width: aetherGlyph.radius, height: aetherGlyph.radius)
         y += dy
 
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(name: "Cellular Automata", radius: 100*s+2*p)
+        let cellularGlyph: ArticleGlyph = ArticleGlyph(name: "Cellular Automata", radius: 100*s+2*p, x: 230*s, y: y)
         glyphsView.add(glyph: cellularGlyph)
-        cellularGlyph.frame = CGRect(x: 30*s, y: y, width: cellularGlyph.radius, height: cellularGlyph.radius)
         y += dy
 
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(name: "Kinematics", radius: 110*s+2*p)
+        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(name: "Kinematics", radius: 110*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: kinematicsGlyph)
-        kinematicsGlyph.frame = CGRect(x: 30*s, y: y, width: kinematicsGlyph.radius, height: kinematicsGlyph.radius)
         y += dy
 
-        let gravityGlyph: ArticleGlyph = ArticleGlyph(name: "Gravity", radius: 90*s+2*p)
+        let gravityGlyph: ArticleGlyph = ArticleGlyph(name: "Gravity", radius: 90*s+2*p, x: 200*s, y: y)
         glyphsView.add(glyph: gravityGlyph)
-        gravityGlyph.frame = CGRect(x: 30*s, y: y, width: gravityGlyph.radius, height: gravityGlyph.radius)
         y += dy
 
-        let dilationGlyph: ArticleGlyph = ArticleGlyph(name: "Dilation", radius: 100*s+2*p)
+        let dilationGlyph: ArticleGlyph = ArticleGlyph(name: "Dilation", radius: 100*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: dilationGlyph)
-        dilationGlyph.frame = CGRect(x: 30*s, y: y, width: dilationGlyph.radius, height: dilationGlyph.radius)
         y += dy
 
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(name: "Contraction", radius: 120*s+2*p)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(name: "Contraction", radius: 120*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: contractionGlyph)
-        contractionGlyph.frame = CGRect(x: 30*s, y: y, width: contractionGlyph.radius, height: contractionGlyph.radius)
         y += dy
 
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(name: "Darkness", radius: 120*s+2*p)
+        let darknessGlyph: ArticleGlyph = ArticleGlyph(name: "Darkness", radius: 120*s+2*p, x: 130*s, y: 1200*s)
         glyphsView.add(glyph: darknessGlyph)
-        darknessGlyph.frame = CGRect(x: 30*s, y: y, width: darknessGlyph.radius, height: darknessGlyph.radius)
         y += dy
 
-        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(name: "Equivalence", radius: 120*s+2*p)
+        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(name: "Equivalence", radius: 120*s+2*p, x: 230*s, y: 1400*s)
         glyphsView.add(glyph: equivalenceGlyph)
-        equivalenceGlyph.frame = CGRect(x: 30*s, y: y, width: equivalenceGlyph.radius, height: equivalenceGlyph.radius)
         y += dy
 
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(name: "Electro Magnetism", radius: 110*s+2*p)
+        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(name: "Electro Magnetism", radius: 110*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: electromagnetismGlyph)
-        electromagnetismGlyph.frame = CGRect(x: 30*s, y: y, width: electromagnetismGlyph.radius, height: electromagnetismGlyph.radius)
         y += dy
 
-        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(name: "Discrepancies", radius: 130*s+2*p)
+        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(name: "Discrepancies", radius: 130*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: discrepanciesGlyph)
-        discrepanciesGlyph.frame = CGRect(x: 30*s, y: y, width: discrepanciesGlyph.radius, height: discrepanciesGlyph.radius)
         y += dy
 
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(name: "Epilogue", radius: 90*s+2*p)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(name: "Epilogue", radius: 90*s+2*p, x: 200*s, y: 2000*s)
         glyphsView.add(glyph: epilogueGlyph)
-        epilogueGlyph.frame = CGRect(x: 30*s, y: y, width: epilogueGlyph.radius, height: epilogueGlyph.radius)
         y += dy
 
 
-        y = 30*s
-        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "aether_icon")!, radius: 50*s+2*p)
+        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "aether_icon")!, radius: 50*s+2*p, x: 230*s, y: 70*s)
         glyphsView.add(glyph: aetherExpGlyph)
-        aetherExpGlyph.frame = CGRect(x: 30*s, y: y, width: aetherExpGlyph.radius, height: aetherExpGlyph.radius)
-        y += dy
 
-        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "cellular_icon")!, radius: 50*s+2*p)
+        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "cellular_icon")!, radius: 50*s+2*p, x: 400*s, y: 300*s)
         glyphsView.add(glyph: cellularExpGlyph)
-        cellularExpGlyph.frame = CGRect(x: 30*s, y: y, width: cellularExpGlyph.radius, height: cellularExpGlyph.radius)
-        y += dy
 
-        let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "kinematics_icon")!, radius: 50*s+2*p)
+        let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "kinematics_icon")!, radius: 50*s+2*p, x: 230*s, y: 530*s)
         glyphsView.add(glyph: kinematicsExpGlyph)
-        kinematicsExpGlyph.frame = CGRect(x: 30*s, y: y, width: kinematicsExpGlyph.radius, height: kinematicsExpGlyph.radius)
-        y += dy
 
-        let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "dilation_icon")!, radius: 50*s+2*p)
+        let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "dilation_icon")!, radius: 50*s+2*p, x: 230*s, y: 800*s)
         glyphsView.add(glyph: dilationExpGlyph)
-        dilationExpGlyph.frame = CGRect(x: 30*s, y: y, width: dilationExpGlyph.radius, height: dilationExpGlyph.radius)
-        y += dy
 
-        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p)
+        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p, x: 230*s, y: 1030*s)
         glyphsView.add(glyph: contractionExpGlyph)
-        contractionExpGlyph.frame = CGRect(x: 30*s, y: y, width: contractionExpGlyph.radius, height: contractionExpGlyph.radius)
-        y += dy
 
-        y = 30*s
-        let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p)
+        let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
         glyphsView.add(glyph: blackHoleGlyph)
-        blackHoleGlyph.frame = CGRect(x: 30*s, y: y, width: blackHoleGlyph.radius, height: blackHoleGlyph.radius)
-        y += dy
         
-        let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p)
+        let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 300*s, y: 920*s)
         glyphsView.add(glyph: twinParadoxGlyph)
-        twinParadoxGlyph.frame = CGRect(x: 30*s, y: y, width: twinParadoxGlyph.radius, height: twinParadoxGlyph.radius)
-        y += dy
 
-        let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p)
+        let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
         glyphsView.add(glyph: narwhalGlyph)
-        narwhalGlyph.frame = CGRect(x: 30*s, y: y, width: narwhalGlyph.radius, height: narwhalGlyph.radius)
-        y += dy
 
-        let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p)
+        let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p, x: 330*s, y: 1600*s)
         glyphsView.add(glyph: symetricGlyph)
-        symetricGlyph.frame = CGRect(x: 30*s, y: y, width: symetricGlyph.radius, height: symetricGlyph.radius)
-        y += dy
 
-        let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p)
+        let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p, x: 380*s, y: 1700*s)
         glyphsView.add(glyph: blackShieldGlyph)
-        blackShieldGlyph.frame = CGRect(x: 30*s, y: y, width: blackShieldGlyph.radius, height: blackShieldGlyph.radius)
-        y += dy
 
-        let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p)
+        let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p, x: 280*s, y: 1800*s)
         glyphsView.add(glyph: quantumBellGlyph)
-        quantumBellGlyph.frame = CGRect(x: 30*s, y: y, width: quantumBellGlyph.radius, height: quantumBellGlyph.radius)
-        y += dy
                 
         scrollView.addSubview(glyphsView)
         
@@ -234,7 +198,7 @@ class NexusExplorer: AEViewController {
         
         aetherGlyph.link(to: cellularGlyph)
         aetherGlyph.link(to: aetherExpGlyph)
-        
+
         cellularGlyph.link(to: kinematicsGlyph)
         cellularGlyph.link(to: cellularExpGlyph)
         
@@ -256,11 +220,13 @@ class NexusExplorer: AEViewController {
         
         equivalenceGlyph.link(to: electromagnetismGlyph)
         
+        electromagnetismGlyph.link(to: discrepanciesGlyph)
+        
         discrepanciesGlyph.link(to: epilogueGlyph)
         discrepanciesGlyph.link(to: symetricGlyph)
         discrepanciesGlyph.link(to: blackShieldGlyph)
         discrepanciesGlyph.link(to: quantumBellGlyph)
-
+        
         view.addSubview(versionLabel)
 //        view.addSubview(messageLimbo)
     }
@@ -282,7 +248,7 @@ class NexusExplorer: AEViewController {
 
         
         glass.left(dx: 16*s, dy: Screen.safeTop/2, width: 480*s, height: view.height-Screen.safeTop-Screen.safeBottom-32*s)
-        glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 2000)
+        glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 3000)
 //        glass.layer.shadowPath = CGPath(roundedRect: glass.bounds, cornerWidth: 8*s, cornerHeight: 8*s, transform: nil)
         scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 700, height: view.height-Screen.safeTop-Screen.safeBottom)
         
