@@ -11,22 +11,21 @@ import OoviumKit
 import UIKit
 
 class AetherExplorer: Explorer {
-	let aexelsView = AexelsView()
-	let aetherLimbo = Limbo()
-    let expAButton = ExpButton(name: Screen.iPhone ? "12" : "12\nAexels")
-	let expBButton = ExpButton(name: Screen.iPhone ? "60" : "60\nAexels")
-	let expCButton = ExpButton(name: Screen.iPhone ? "360" : "360\nAexels")
-	let expDButton = ExpButton(name: Screen.iPhone ? "G\no\nL" : "Game\nof\nLife")
-    let expEButton = ExpButton(shape: .line)
-    let expFButton = ExpButton(shape: .rectangle)
-    let expGButton = ExpButton(shape: .box)
-    let expHButton = ExpButton(shape: .ring)
-    let expIButton = ExpButton(shape: .circle)
-    let expJButton = ExpButton(shape: .nothing)
-	let expLimbo = Limbo()
-	let messageLimbo: MessageLimbo = MessageLimbo()
-	let closeLimbo = LimboButton(title: "Close")
-    let closeButton: CloseButton = CloseButton()
+    
+    let aexelsView: AexelsView = AexelsView()
+//    let aetherLimbo: Limbo = Limbo()
+    let expAButton: ExpButton = ExpButton(name: Screen.iPhone ? "12" : "12\nAexels")
+    let expBButton: ExpButton = ExpButton(name: Screen.iPhone ? "60" : "60\nAexels")
+    let expCButton: ExpButton = ExpButton(name: Screen.iPhone ? "360" : "360\nAexels")
+    let expDButton: ExpButton = ExpButton(name: Screen.iPhone ? "G\no\nL" : "Game\nof\nLife")
+    let expEButton: ExpButton = ExpButton(shape: .line)
+    let expFButton: ExpButton = ExpButton(shape: .rectangle)
+    let expGButton: ExpButton = ExpButton(shape: .box)
+    let expHButton: ExpButton = ExpButton(shape: .ring)
+    let expIButton: ExpButton = ExpButton(shape: .circle)
+    let expJButton: ExpButton = ExpButton(shape: .nothing)
+    let expView: UIView = UIView()
+
     lazy var experiments: [ExpButton] = { [
         expAButton,
         expBButton,
@@ -39,172 +38,137 @@ class AetherExplorer: Explorer {
         expIButton,
         expJButton
     ] }()
-	
-	let swapper: Limbo = Limbo()
-	let swapButton: SwapButton = SwapButton()
-	var first = [Limbo]()
-	var second = [Limbo]()
-	var isFirst: Bool = false
+    
+    let swapper: Limbo = Limbo()
+    let swapButton: SwapButton = SwapButton()
+    var first: [Limbo] = [Limbo]()
+    var second: [Limbo] = [Limbo]()
+    var isFirst: Bool = false
+    
+    let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
-	init() {
-		super.init(name: "Aether", key: "aether", canExplore: true)
-	}
-	
-// Events ==========================================================================================
-	override func onOpen() {
-		Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-			self.aexelsView.tic()
-			complete()
-		}
-		Aexels.sync.link.preferredFramesPerSecond = 60
-		
-	}
-	override func onOpened() {
-		self.aexelsView.play()
-	}
-	override func onClose() {
-		self.aexelsView.stop()
-	}
+    init() {
+        super.init(name: "Aether", key: "aether", canExplore: true)
+    }
 
-// Explorer ========================================================================================
-	override func createLimbos() {
-		// AetherLimbo
-		aetherLimbo.content = aexelsView
-		
-		expAButton.addAction {
+    
+// UIViewController ================================================================================
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // AetherLimbo
+//        aetherLimbo.content = aexelsView
+        
+        expAButton.addAction {
             self.experiments.forEach { $0.activated = false }
-			self.aexelsView.experimentA()
-			self.expAButton.activated = true
-		}
-		self.expAButton.activated = true
-		expLimbo.addSubview(expAButton)
+            self.aexelsView.experimentA()
+            self.expAButton.activated = true
+        }
+        self.expAButton.activated = true
+        expView.addSubview(expAButton)
 
-		expBButton.addAction {
+        expBButton.addAction {
             self.experiments.forEach { $0.activated = false }
-			self.aexelsView.experimentB()
-			self.expBButton.activated = true
-		}
-		expLimbo.addSubview(expBButton)
+            self.aexelsView.experimentB()
+            self.expBButton.activated = true
+        }
+        expView.addSubview(expBButton)
 
-		expCButton.addAction {
+        expCButton.addAction {
             self.experiments.forEach { $0.activated = false }
-			self.aexelsView.experimentC()
-			self.expCButton.activated = true
-		}
-		expLimbo.addSubview(expCButton)
+            self.aexelsView.experimentC()
+            self.expCButton.activated = true
+        }
+        expView.addSubview(expCButton)
 
-		expDButton.addAction {
+        expDButton.addAction {
             self.experiments.forEach { $0.activated = false }
-			self.aexelsView.experimentD()
-			self.expDButton.activated = true
-		}
-		expLimbo.addSubview(expDButton)
+            self.aexelsView.experimentD()
+            self.expDButton.activated = true
+        }
+        expView.addSubview(expDButton)
 
         expEButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentE()
             self.expEButton.activated = true
         }
-        expLimbo.addSubview(expEButton)
+        expView.addSubview(expEButton)
 
         expFButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentF()
             self.expFButton.activated = true
         }
-        expLimbo.addSubview(expFButton)
+        expView.addSubview(expFButton)
 
         expGButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentG()
             self.expGButton.activated = true
         }
-        expLimbo.addSubview(expGButton)
+        expView.addSubview(expGButton)
 
         expHButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentH()
             self.expHButton.activated = true
         }
-        expLimbo.addSubview(expHButton)
+        expView.addSubview(expHButton)
 
         expIButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentI()
             self.expIButton.activated = true
         }
-        expLimbo.addSubview(expIButton)
+        expView.addSubview(expIButton)
         
         expJButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentJ()
             self.expJButton.activated = true
         }
-        expLimbo.addSubview(expJButton)
-
-		// MessageLimbo
-		messageLimbo.key = "AetherLab"
-		
-		// Swapper =========================
-		if Screen.iPhone {
-			swapButton.addAction(for: .touchUpInside) { [unowned self] in
-				self.swapButton.rotateView()
-				if self.isFirst {
-					self.isFirst = false
-					self.dimLimbos(self.first)
-					self.brightenLimbos(self.second)
-					self.limbos = [self.swapper] + self.second + [self.closeLimbo]
-				} else {
-					self.isFirst = true
-					self.dimLimbos(self.second)
-					self.brightenLimbos(self.first)
-					self.limbos = [self.swapper] + self.first + [self.closeLimbo]
-				}
-				self.swapper.removeFromSuperview()
-				self.view.addSubview(self.swapper)
-				self.closeLimbo.removeFromSuperview()
-				self.view.addSubview(self.closeLimbo)
-			}
-			swapper.content = swapButton
-		}
-
-		// CloseLimbo
-        closeLimbo.alpha = 0
-        closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
-            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-        }
-
-        closeButton.addAction(for: .touchUpInside) { [unowned self] in
-			self.closeExplorer()
-//			Aexels.nexus.brightenNexus()
-		}
-		
-		if Screen.iPhone {
-			first = [messageLimbo]
-			second = [aetherLimbo, expLimbo]
-			brightenLimbos(second)
-			limbos = [swapper, closeLimbo] + second
-		} else {
-			limbos = [aetherLimbo, expLimbo, messageLimbo, closeButton];
-		}
-	}
-	override func layout375x667() {
-        let size = UIScreen.main.bounds.size
+        expView.addSubview(expJButton)
         
-        let w = size.width - 10*s
+        cyto.cells = [
+            LimboCell(content: aexelsView, c: 0, r: 0),
+            LimboCell(c: 1, r: 0, h: 2),
+            LimboCell(content: expView, c: 0, r: 1)
+        ]
+        cyto.padding = 0
+        
+        view.addSubview(cyto)
+        
 
-        expLimbo.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
-        expLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-        expLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-        expLimbo.renderPaths()
+        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+            self.aexelsView.tic()
+            complete()
+        }
+        Aexels.sync.link.preferredFramesPerSecond = 60
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        aexelsView.play()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        aexelsView.stop()
+    }
+        
+// AEViewController ================================================================================
+    override func layout1024x768() {
+        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+        let height = Screen.height - topY - botY
+        let s = height / 748
+        
+        let p: CGFloat = 5*s
+        let uw: CGFloat = height - 110*s
 
-        aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expLimbo.top-Screen.safeTop)
-
-        let om = 15*s
+        let om = 6*s
         let im = 6*s
-        let bw = (expLimbo.width-2*om-9*im)/10
-        let bh = (expLimbo.height-2*om)/1-60*s
+        let bw = (expView.width-2*om-9*im)/10
+        let bh = (expView.height-2*om)/1
         expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
         expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
         expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
@@ -216,34 +180,41 @@ class AetherExplorer: Explorer {
         expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
 
-        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
-        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-        messageLimbo.renderPaths()
+        cyto.Xs = [uw]
+        cyto.Ys = [uw]
+        cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
+        cyto.layout()
+    }
+    
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+
+
+	
+// Explorer ========================================================================================
+	override func layout375x667() {
+        let size = UIScreen.main.bounds.size
         
-        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
-        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
-	}
-	override func layout1024x768() {
-		let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-		let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-		let height = Screen.height - topY - botY
-		let s = height / 748
-		
-		let p: CGFloat = 5*s
-		let uw: CGFloat = height - 110*s
+        let w = size.width - 10*s
 
-        aetherLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
-		expLimbo.topLeft(dx: p, dy: aetherLimbo.bottom, width: aetherLimbo.width, height: Screen.height-botY-aetherLimbo.bottom)
+        expView.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
+//        expView.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//        expView.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//        expView.renderPaths()
 
-		let om = 24*s
-		let im = 6*s
-		let bw = (expLimbo.width-2*om-9*im)/10
-		let bh = (expLimbo.height-2*om)/1
-		expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-		expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-		expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-		expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
+//        aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expView.top-Screen.safeTop)
+
+        let om = 15*s
+        let im = 6*s
+        let bw = (expView.width-2*om-9*im)/10
+        let bh = (expView.height-2*om)/1-60*s
+        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
+        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
+        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
+        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
         expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
         expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
         expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
@@ -251,10 +222,12 @@ class AetherExplorer: Explorer {
         expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
 
-		messageLimbo.frame = CGRect(x: aetherLimbo.right, y: topY, width: Screen.width-2*p-aetherLimbo.width, height: Screen.height-botY-topY)
-        messageLimbo.closeOn = true
-		messageLimbo.renderPaths()
-        
-        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
+//        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+//        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//        messageLimbo.renderPaths()
+//        
+//        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
+//        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
 	}
 }

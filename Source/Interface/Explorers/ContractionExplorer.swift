@@ -22,7 +22,7 @@ class ContractionExplorer: Explorer {
     let tailsSwap: BoolButton = BoolButton(text: "tails")
     let contractSwap: BoolButton = BoolButton(text: "contract")
     let pulseButton: PulseButton = PulseButton()
-    let controlsLimbo: Limbo = Limbo()
+    let controlsView: UIView = UIView()
     let messageLimbo: MessageLimbo = MessageLimbo()
     let closeLimbo = LimboButton(title: "Close")
     let closeButton: CloseButton = CloseButton()
@@ -37,6 +37,8 @@ class ContractionExplorer: Explorer {
     var first: [Limbo] = []
     var second: [Limbo] = []
     var isFirst: Bool = false
+    
+    let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
     init() {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -55,29 +57,18 @@ class ContractionExplorer: Explorer {
         }
     }
     
-// Events ==========================================================================================
-    override func onOpen() {
-        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.engine.tic()
-            complete()
-        }
-        Aexels.sync.link.preferredFramesPerSecond = 60
-        
-    }
-    override func onOpened() { engine.play() }
-    override func onClose() { engine.stop() }
-
-// Explorer ========================================================================================
-    override func createLimbos() {
+// UIViewController ================================================================================
+    override func viewDidLoad() {
+        super.viewDidLoad()
         // DilationLimbo
         dilationLimbo.content = dilationView
         
-        controlsLimbo.addSubview(cSlider)
+        controlsView.addSubview(cSlider)
         cSlider.onChange = { (speedOfLight: Double) in
             self.engine.speedOfLight = speedOfLight
         }
                 
-        controlsLimbo.addSubview(vSlider)
+        controlsView.addSubview(vSlider)
         vSlider.onChange = { (velocity: Double) in
             self.engine.velocity = velocity
             self.engine.camera.pointee.v.s = abs(velocity)
@@ -85,7 +76,7 @@ class ContractionExplorer: Explorer {
         }
         
         playButton.playing = true
-        controlsLimbo.addSubview(playButton)
+        controlsView.addSubview(playButton)
         playButton.onPlay = { [unowned self] in
             self.engine.play()
         }
@@ -93,31 +84,31 @@ class ContractionExplorer: Explorer {
             self.engine.stop()
         }
 
-        controlsLimbo.addSubview(resetButton)
+        controlsView.addSubview(resetButton)
         resetButton.addAction(for: .touchUpInside) { [unowned self] in
             self.engine.reset()
             self.engine.tic()
         }
         
-        controlsLimbo.addSubview(tailsSwap)
+        controlsView.addSubview(tailsSwap)
         tailsSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.tailsSwap.rotateView()
             self.engine.tailsOn = !self.engine.tailsOn
         }
 
-        controlsLimbo.addSubview(autoSwap)
+        controlsView.addSubview(autoSwap)
         autoSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.autoSwap.rotateView()
             self.engine.autoOn = !self.engine.autoOn
         }
 
-        controlsLimbo.addSubview(contractSwap)
+        controlsView.addSubview(contractSwap)
         contractSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.contractSwap.rotateView()
             self.engine.swapContract()
         }
         
-        controlsLimbo.addSubview(pulseButton)
+        controlsView.addSubview(pulseButton)
         pulseButton.addAction {
             self.engine.pulse()
         }
@@ -167,43 +158,109 @@ class ContractionExplorer: Explorer {
         
         var sb = pen.format("speed of light (c)")
         lightSpeedLabel.attributedText = sb
-        controlsLimbo.addSubview(lightSpeedLabel)
+        controlsView.addSubview(lightSpeedLabel)
         
         sb = italicPen.format("points per second")
         cLabel.attributedText = sb
-        controlsLimbo.addSubview(cLabel)
+        controlsView.addSubview(cLabel)
         
         sb = pen.format("velocity (% of c)")
         velocityLabel.attributedText = sb
-        controlsLimbo.addSubview(velocityLabel)
+        controlsView.addSubview(velocityLabel)
         
         sb = italicPen.format("γ = \(String(format: "%3.2f", TCLambda(engine.velocity)))")
         lambdaLabel.attributedText = sb
-        controlsLimbo.addSubview(lambdaLabel)
+        controlsView.addSubview(lambdaLabel)
         
-        if Screen.iPhone {
-            first = [messageLimbo]
-            second = [dilationLimbo, controlsLimbo]
-            brightenLimbos(second)
-            limbos = [swapper] + second + [closeLimbo]
-        } else {
-            limbos = [
-                dilationLimbo,
-                controlsLimbo,
-                messageLimbo,
-                closeButton
-            ]
+//        if Screen.iPhone {
+//            first = [messageLimbo]
+//            second = [dilationLimbo, controlsView]
+//            brightenLimbos(second)
+//            limbos = [swapper] + second + [closeLimbo]
+//        } else {
+//            limbos = [
+//                dilationLimbo,
+//                controlsView,
+//                messageLimbo,
+//                closeButton
+//            ]
+//        }
+        
+        cyto.padding = 0
+        cyto.cells = [
+            LimboCell(content: dilationView, c: 0, r: 0),
+            LimboCell(content: UIView(), c: 1, r: 0, h: 2),
+            LimboCell(content: controlsView, c: 0, r: 1),
+        ]
+        view.addSubview(cyto)
+    }
+    
+// AEViewController ================================================================================
+    override func layout1024x768() {
+        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+        let height = Screen.height - topY - botY
+        let s = height / 748
+        
+        let p: CGFloat = 5*s
+        let uw: CGFloat = height - 110*s
+        
+        cyto.Xs = [uw]
+        cyto.Ys = [uw]
+        cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
+        cyto.layout()
+
+        
+        let bw: CGFloat = 40*s
+        playButton.left(size: CGSize(width: bw, height: 30*s))
+        resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
+        cSlider.topLeft(dx: resetButton.right+18*s, dy: 1*s, width: 140*s, height: 40*s)
+        vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
+        autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
+        tailsSwap.left(dx: autoSwap.left)
+        contractSwap.left(dx: autoSwap.left, dy: 30*s)
+        pulseButton.right(dx: -15*s, width: 60*s, height: 80*s)
+
+        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.bottom-8*s, width: cSlider.width, height: 20*s)
+        cLabel.topLeft(dx: cSlider.left, dy: lightSpeedLabel.bottom-2*s, width: cSlider.width, height: 20*s)
+        velocityLabel.topLeft(dx: vSlider.left, dy: vSlider.bottom-8*s, width: vSlider.width, height: 20*s)
+        lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-2*s, width: vSlider.width, height: 20*s)
+
+        cSlider.setTo(60)
+        vSlider.setTo(0.5)
+    }
+    
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
+
+// Events ==========================================================================================
+    override func onOpen() {
+        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+            self.engine.tic()
+            complete()
         }
+        Aexels.sync.link.preferredFramesPerSecond = 60
+        
+    }
+    override func onOpened() { engine.play() }
+    override func onClose() { engine.stop() }
+
+// Explorer ========================================================================================
+    override func createLimbos() {
     }
     override func layout375x667() {
         let w = UIScreen.main.bounds.size.width - 10*s
 
-        controlsLimbo.frame = CGRect(x: 5*s, y: Screen.height-180*s-Screen.safeBottom, width: w, height: 180*s)
-        controlsLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-        controlsLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-        controlsLimbo.renderPaths()
+        controlsView.frame = CGRect(x: 5*s, y: Screen.height-180*s-Screen.safeBottom, width: w, height: 180*s)
+//        controlsView.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//        controlsView.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//        controlsView.renderPaths()
 
-        dilationLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: controlsLimbo.top-Screen.safeTop)
+        dilationLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: controlsView.top-Screen.safeTop)
 
         messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
         messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
@@ -229,42 +286,5 @@ class ContractionExplorer: Explorer {
 
         cSlider.setTo(60)
         vSlider.setTo(0.5)
-    }
-    override func layout1024x768() {
-        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-        let height = Screen.height - topY - botY
-        let s = height / 748
-        
-        let p: CGFloat = 5*s
-        let uw: CGFloat = height - 110*s
-
-        dilationLimbo.topLeft(dx: p, dy: topY, width: uw, height: uw)
-
-        controlsLimbo.bottomLeft(dx: p, dy: -botY, width: dilationLimbo.width, height: 110*s)
-        
-        let bw: CGFloat = 40*s
-        playButton.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
-        resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
-        cSlider.topLeft(dx: resetButton.right+18*s, dy: 16*s, width: 140*s, height: 40*s)
-        vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
-        autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
-        tailsSwap.left(dx: autoSwap.left)
-        contractSwap.left(dx: autoSwap.left, dy: 30*s)
-        pulseButton.right(dx: -15*s, width: 60*s, height: 80*s)
-
-        lightSpeedLabel.topLeft(dx: cSlider.left, dy: cSlider.bottom-8*s, width: cSlider.width, height: 20*s)
-        cLabel.topLeft(dx: cSlider.left, dy: lightSpeedLabel.bottom-2*s, width: cSlider.width, height: 20*s)
-        velocityLabel.topLeft(dx: vSlider.left, dy: vSlider.bottom-8*s, width: vSlider.width, height: 20*s)
-        lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-2*s, width: vSlider.width, height: 20*s)
-
-        cSlider.setTo(60)
-        vSlider.setTo(0.5)
-
-        messageLimbo.frame = CGRect(x: dilationLimbo.right, y: topY, width: Screen.width-2*p-dilationLimbo.width, height: Screen.height-botY-topY)
-        messageLimbo.closeOn = true
-        messageLimbo.renderPaths()
-        
-        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
     }
 }

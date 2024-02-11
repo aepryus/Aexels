@@ -40,22 +40,14 @@ class GlyphsView: AEView {
         var point: GlyphView = first
         var angle: CGFloat = 0
         var comingFrom: GlyphView? = nil
+        var movingTo: GlyphView! = nil
         
         let path: CGMutablePath = CGMutablePath()
         path.move(to: point.center + (point.radius/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
 
         while true {
             if point === first && comingFrom == nil {
-                let movingTo: GlyphView = point.sortedLinkedTo[0]
-                let angleTo: CGFloat = point.spoke(to: movingTo)
-                let radius: CGFloat = point.radius/2+moat
-                let dq: CGFloat = asin(a/radius)
-                path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
-                let angleBack: CGFloat = movingTo.spoke(to: point)
-//                path.addLine(to: movingTo.center + (movingTo.radius/2+moat)*CGPoint(x: sin(angleBack), y: -cos(angleBack)))
-                comingFrom = point
-                angle = angleBack
-                point = movingTo
+                movingTo = point.sortedLinkedTo[0]
             } else if point === first && comingFrom == point.sortedLinkedTo.last! {
                 let angleTo: CGFloat = 2 * .pi
                 let radius: CGFloat = point.radius/2+moat
@@ -64,22 +56,21 @@ class GlyphsView: AEView {
                 path.closeSubpath()
                 break
             } else {
-                let movingTo: GlyphView = point.linkAfter(comingFrom!)
-                let angleTo: CGFloat = point.spoke(to: movingTo)
-                let radius: CGFloat = point.radius/2+moat
-                let dq: CGFloat = asin(a/radius)
-                path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
-                let angleBack: CGFloat = movingTo.spoke(to: point)
-//                path.addLine(to: movingTo.center + (movingTo.radius/2+moat)*CGPoint(x: sin(angleBack), y: -cos(angleBack)))
-                comingFrom = point
-                angle = angleBack
-                point = movingTo
+                movingTo = point.linkAfter(comingFrom!)
             }
+            let angleTo: CGFloat = point.spoke(to: movingTo)
+            let radius: CGFloat = point.radius/2+moat
+            let dq: CGFloat = asin(a/radius)
+            path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
+            let angleBack: CGFloat = movingTo.spoke(to: point)
+            comingFrom = point
+            angle = angleBack
+            point = movingTo
         }
 
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)
-        c.setLineWidth(3)
+        c.setLineWidth(2)
         c.setStrokeColor(UIColor.black.tint(0.5).cgColor)
         c.strokePath()
     }
@@ -103,7 +94,6 @@ class GlyphView: AEView {
         other.linkedTo.append(self)
     }
     func spoke(to other: GlyphView) -> CGFloat { .pi/2 - atan2(-(other.center.y-center.y), other.center.x-center.x) }
-    func spokeAtan(to other: GlyphView) -> CGFloat { atan2(-(other.center.y-center.y), other.center.x-center.x) }
 
     static func toClock(_ angle: CGFloat) -> CGFloat { .pi/2 - angle }
     static func fromClock(_ angle: CGFloat) -> CGFloat { -(angle - .pi/2) }

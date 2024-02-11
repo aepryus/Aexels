@@ -12,9 +12,9 @@ import UIKit
 public class Vision: AEView {
     var visionBar: VisionBar!
     
-    init(color: UIColor) {
+    override init() {
         super.init()
-        backgroundColor = color
+        backgroundColor = .clear
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
     }
     

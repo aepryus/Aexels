@@ -56,9 +56,10 @@ class ExplorerViewController: UIViewController {
     
     var explorer: AEViewController? = nil {
         didSet {
+            guard explorer != oldValue else { return }
             if explorer is NexusExplorer {
                 graphView.timer.start()
-                startMusic()
+                DispatchQueue.main.async { self.startMusic() }
             } else if oldValue is NexusExplorer {
                 graphView.timer.stop()
                 stopMusic()
@@ -85,7 +86,14 @@ class ExplorerViewController: UIViewController {
     var player: AVAudioPlayer?
     lazy var visionBar: VisionBar = {
         let visions: [[Vision?]] = [
-            [ExplorerVision(explorer: Aexels.nexusExplorer, color: .purple.tone(0.5).alpha(0.5)), ExplorerVision(explorer: Aexels.cellularExplorer, color: .blue.tone(0.5).alpha(0.5)), Vision(color: .cyan.tone(0.5).alpha(0.5)), Vision(color: .orange.tone(0.5).alpha(0.5)), Vision(color: .green.tone(0.5).alpha(0.5)), nil, nil, nil]
+            [
+                ExplorerVision(explorer: Aexels.nexusExplorer),
+                ExplorerVision(explorer: Aexels.aetherExplorer),
+                ExplorerVision(explorer: Aexels.cellularExplorer),
+                ExplorerVision(explorer: Aexels.kinematicsExplorer),
+                ExplorerVision(explorer: Aexels.dilationExplorer),
+                ExplorerVision(explorer: Aexels.contractionExplorer)
+            ]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)
         let visionBar: VisionBar = VisionBar(visionBox: visionBox)
@@ -130,7 +138,7 @@ class ExplorerViewController: UIViewController {
         view.addSubview(visionBar)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
 
-        explorer = NexusExplorer()
+        explorer = Aexels.nexusExplorer
         
         initMusic()
         startMusic()

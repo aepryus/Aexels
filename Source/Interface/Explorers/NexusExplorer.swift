@@ -108,7 +108,7 @@ class NexusExplorer: AEViewController {
         
         let p: CGFloat = 3*s
         var y: CGFloat = 30*s
-        var dy: CGFloat = 150*s
+        let dy: CGFloat = 150*s
         
         let universeXGlyph: ArticleGlyph = ArticleGlyph(name: "Universe X", radius: 110*s+2*p, x: 70*s, y: y)
         glyphsView.add(glyph: universeXGlyph)
@@ -138,7 +138,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: contractionGlyph)
         y += dy
 
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(name: "Darkness", radius: 120*s+2*p, x: 130*s, y: 1200*s)
+        let darknessGlyph: ArticleGlyph = ArticleGlyph(name: "Darkness", radius: 120*s+2*p, x: 250*s, y: 1130*s)
         glyphsView.add(glyph: darknessGlyph)
         y += dy
 
@@ -146,7 +146,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: equivalenceGlyph)
         y += dy
 
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(name: "Electro Magnetism", radius: 110*s+2*p, x: 30*s, y: y)
+        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(name: "Electro Magnetism", radius: 110*s+2*p, x: 30*s, y: 1240*s)
         glyphsView.add(glyph: electromagnetismGlyph)
         y += dy
 
@@ -171,13 +171,13 @@ class NexusExplorer: AEViewController {
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "dilation_icon")!, radius: 50*s+2*p, x: 230*s, y: 800*s)
         glyphsView.add(glyph: dilationExpGlyph)
 
-        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p, x: 230*s, y: 1030*s)
+        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p, x: 90*s, y: 1100*s)
         glyphsView.add(glyph: contractionExpGlyph)
 
         let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
         glyphsView.add(glyph: blackHoleGlyph)
         
-        let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 300*s, y: 920*s)
+        let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 70*s, y: 630*s)
         glyphsView.add(glyph: twinParadoxGlyph)
 
         let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
