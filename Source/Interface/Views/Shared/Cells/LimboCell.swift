@@ -30,11 +30,15 @@ class LimboCell: Cyto.Cell {
         didSet { layoutContent() }
     }
     
+    let cutout: Bool
+    
     let p: CGFloat
     
-    init(content: UIView? = nil, size: CGSize? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, p: CGFloat = 15*Screen.s) {
+    init(content: UIView? = nil, size: CGSize? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, p: CGFloat = 15*Screen.s, cutout: Bool = false) {
         self.contentSize = size
         self.p = p
+        self.cutout = cutout
+        
         super.init(c: c, r: r, w: w, h: h)
 
         backgroundColor = .clear
@@ -68,7 +72,12 @@ class LimboCell: Cyto.Cell {
 
         path.move(to: CGPoint(x: x1, y: y1+r))
         path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
-        path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: r)
+        if !cutout {
+            path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: r)
+        } else {
+            let radius: CGFloat = 24*s
+            path.addArc(center: CGPoint(x: width-20*s, y: 20*s), radius: radius, startAngle: 3/2 * .pi - atan(radius/20), endAngle: atan(radius/20), clockwise: true)
+        }
         path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: r)
         path.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: r)
         path.closeSubpath()

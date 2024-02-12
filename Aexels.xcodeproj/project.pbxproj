@@ -87,7 +87,7 @@
 		D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */; };
 		D8DA98C42B6CF29800A4AA8F /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */; };
 		D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */; };
-		D8DA98C82B6F40BB00A4AA8F /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */; };
+		D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */; };
 		D8DA98CA2B709D1200A4AA8F /* NexusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C92B709D1200A4AA8F /* NexusCell.swift */; };
 		D8DA98CD2B71DE4400A4AA8F /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98CC2B71DE4400A4AA8F /* ArticleCell.swift */; };
 		D8DA98CF2B71DE5800A4AA8F /* ExplorerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98CE2B71DE5800A4AA8F /* ExplorerCell.swift */; };
@@ -180,7 +180,7 @@
 		D8DA98C12B69384300A4AA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8DA98C32B6CF29800A4AA8F /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboCell.swift; sourceTree = "<group>"; };
-		D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskCell.swift; sourceTree = "<group>"; };
 		D8DA98C92B709D1200A4AA8F /* NexusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusCell.swift; sourceTree = "<group>"; };
 		D8DA98CC2B71DE4400A4AA8F /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		D8DA98CE2B71DE5800A4AA8F /* ExplorerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerCell.swift; sourceTree = "<group>"; };
@@ -504,7 +504,7 @@
 				D8DA98CC2B71DE4400A4AA8F /* ArticleCell.swift */,
 				D8DA98CE2B71DE5800A4AA8F /* ExplorerCell.swift */,
 				D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */,
-				D8DA98C72B6F40BB00A4AA8F /* ContentCell.swift */,
+				D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -650,7 +650,7 @@
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
-				D8DA98C82B6F40BB00A4AA8F /* ContentCell.swift in Sources */,
+				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,

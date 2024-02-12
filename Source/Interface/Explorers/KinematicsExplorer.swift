@@ -278,10 +278,9 @@ class KinematicsExplorer: Explorer {
         zoneD.addSubview(expBButton)
 
 
-        cyto.padding = 0
         cyto.cells = [
             LimboCell(content: kinematicsView, c: 0, r: 0, w: 4),
-            LimboCell(content: UIView(), c: 4, r: 0, h: 2),
+            LimboCell(content: UIView(), c: 4, r: 0, h: 2, cutout: true),
             LimboCell(content: zoneB, c: 0, r: 1),
             LimboCell(content: zoneA, c: 1, r: 1),
             LimboCell(content: zoneC, c: 2, r: 1),

@@ -37,7 +37,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         return aetherView
     }()
     lazy var ooviumView: OoviumView = OoviumView(aetherView: aetherView)
-    lazy var ooviumCell: ContentCell = ContentCell(content: ooviumView, c: 2, r: 2, h: 3)
+    lazy var ooviumCell: MaskCell = MaskCell(content: ooviumView, c: 2, r: 2, h: 3)
     
     let cyto: Cyto = Cyto(rows: 5, cols: 3)
     
@@ -115,13 +115,12 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.engine.frameRate = frameRate
         }
 
-        cyto.padding = 0
         cyto.cells = [
             LimboCell(content: largeView, size: CGSize(width: largeView.points, height: largeView.points), c: 0, r: 0, w: 2, h: 3),
             LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 3, h: 2),
             LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 3),
             LimboCell(content: controlsView, c: 1, r: 4),
-            LimboCell(c: 2, r: 0),
+            LimboCell(c: 2, r: 0, cutout: true),
             LimboCell(content: dilatorView, c: 2, r: 1, p: 12),
             ooviumCell
         ]

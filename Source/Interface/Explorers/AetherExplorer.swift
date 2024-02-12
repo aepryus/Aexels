@@ -132,10 +132,9 @@ class AetherExplorer: Explorer {
         
         cyto.cells = [
             LimboCell(content: aexelsView, c: 0, r: 0),
-            LimboCell(c: 1, r: 0, h: 2),
+            LimboCell(c: 1, r: 0, h: 2, cutout: true),
             LimboCell(content: expView, c: 0, r: 1)
         ]
-        cyto.padding = 0
         
         view.addSubview(cyto)
         
@@ -162,7 +161,7 @@ class AetherExplorer: Explorer {
         let height = Screen.height - topY - botY
         let s = height / 748
         
-        let p: CGFloat = 5*s
+//        let p: CGFloat = 5*s
         let uw: CGFloat = height - 110*s
 
         let om = 6*s

@@ -192,10 +192,9 @@ class DilationExplorer: Explorer {
 //            ]
 //        }
         
-        cyto.padding = 0
         cyto.cells = [
             LimboCell(content: dilationView, c: 0, r: 0),
-            LimboCell(content: UIView(), c: 1, r: 0, h: 2),
+            LimboCell(content: UIView(), c: 1, r: 0, h: 2, cutout: true),
             LimboCell(content: controlsView, c: 0, r: 1),
         ]
         view.addSubview(cyto)

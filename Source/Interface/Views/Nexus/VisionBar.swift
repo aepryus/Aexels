@@ -55,8 +55,6 @@ class VisionBar: AEView {
     
     var onSelect: (Vision)->() = {(vision: Vision) in }
     
-//    var contracting: Bool = false
-
     init(visionBox: VisionBox) {
         self.visionBox = visionBox
         selected = self.visionBox.visions[0][0]!
@@ -141,50 +139,6 @@ class VisionBar: AEView {
     func onExpand() {}
     func onContract() {}
     
-// Hover ===========================================================================================
-//    override func render() {
-//        guard !contracting else { return }
-//        super.render()
-//        var c: CGFloat = 0
-//        var r: CGFloat = 0
-//        for column: [Tool?] in tools {
-//            for tool: Tool? in column {
-//                if let tool = tool {
-//                    tool.frame = CGRect(x: (CGFloat(tools.count)-(c+1))*40*Oo.s, y: r*40*Oo.s, width: 40*Oo.s, height: 40*Oo.s)
-//                    tool.render()
-//                    tool.setNeedsDisplay()
-//                }
-//                r += 1
-//            }
-//            c += 1
-//            r = 0
-//        }
-//        if !expanded { selected.frame = CGRect(x: 0, y: 0, width: 40*Oo.s, height: 40*Oo.s) }
-//    }
-//    override func reRender() {
-//        tools.forEach { $0.forEach { if let tool = $0 { tool.setNeedsDisplay() } } }
-//    }
-//    override func rescale() {
-//        super.rescale()
-//        var c: CGFloat = 0
-//        var r: CGFloat = 0
-//        for column: [Tool?] in tools {
-//            for tool: Tool? in column {
-//                if let tool = tool {
-//                    tool.frame = CGRect(x: (CGFloat(tools.count)-(c+1))*40*Oo.s, y: r*40*Oo.s, width: 40*Oo.s, height: 40*Oo.s)
-//                    tool.rescale()
-//                }
-//                r += 1
-//            }
-//            c += 1
-//            r = 0
-//        }
-//        if !expanded {
-//            self.selected.frame = CGRect(x: 0, y: 0, width: 40*Oo.s, height: 40*Oo.s)
-//            self.selected.rescale()
-//        }
-//    }
-
 // UIView ==========================================================================================
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)

@@ -1,5 +1,5 @@
 //
-//  ContentCell.swift
+//  MaskCell.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 2/4/24.
@@ -10,7 +10,7 @@ import Acheron
 import OoviumKit
 import UIKit
 
-class ContentCell: LimboCell {
+class MaskCell: LimboCell {
     let evMaskView: MaskView
     
     init(content: UIView, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {

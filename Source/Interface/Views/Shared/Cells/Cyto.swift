@@ -30,7 +30,7 @@ class Cyto: AEView {
     var cols: Int = 1
     var Xs: [CGFloat] = []
     var Ys: [CGFloat] = []
-    var padding: CGFloat = 10
+    var padding: CGFloat = 0
     
     var showGrid: Bool = false
     

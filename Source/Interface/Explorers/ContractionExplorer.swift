@@ -186,10 +186,9 @@ class ContractionExplorer: Explorer {
 //            ]
 //        }
         
-        cyto.padding = 0
         cyto.cells = [
             LimboCell(content: dilationView, c: 0, r: 0),
-            LimboCell(content: UIView(), c: 1, r: 0, h: 2),
+            LimboCell(content: UIView(), c: 1, r: 0, h: 2, cutout: true),
             LimboCell(content: controlsView, c: 0, r: 1),
         ]
         view.addSubview(cyto)
@@ -202,7 +201,7 @@ class ContractionExplorer: Explorer {
         let height = Screen.height - topY - botY
         let s = height / 748
         
-        let p: CGFloat = 5*s
+//        let p: CGFloat = 5*s
         let uw: CGFloat = height - 110*s
         
         cyto.Xs = [uw]
@@ -213,7 +212,7 @@ class ContractionExplorer: Explorer {
         
         let bw: CGFloat = 40*s
         playButton.left(size: CGSize(width: bw, height: 30*s))
-        resetButton.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
+        resetButton.left(dx: bw, size: CGSize(width: bw, height: 30*s))
         cSlider.topLeft(dx: resetButton.right+18*s, dy: 1*s, width: 140*s, height: 40*s)
         vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
         autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)

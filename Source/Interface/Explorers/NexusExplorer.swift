@@ -12,36 +12,15 @@ import OoviumKit
 import UIKit
 
 class NexusExplorer: AEViewController {
-    let cyto: Cyto = Cyto(rows: 15, cols: 3)
     let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 72*Screen.s)
     let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:20*Screen.s)
-    let glass: UIView = UIView()
     let glyphsView: GlyphsView = GlyphsView()
     let scrollView: UIScrollView = UIScrollView()
 
-    let messageLimbo: MessageLimbo = MessageLimbo()
-
-    
     func showArticle(key: String) {
-        dimNexus()
-        messageLimbo.key = key
-        messageLimbo.load()
-        view.addSubview(messageLimbo)
+        print("  :: \(key)")
     }
-    
-    func dimNexus() {
-        UIView.animate(withDuration: 0.2) {
-            self.aexelsLabel.alpha = 0.1
-//            self.glass.alpha = 0
-        }
-    }
-    func brightenNexus() {
-        UIView.animate(withDuration: 0.2) {
-            self.aexelsLabel.alpha = 1
-            self.glass.alpha = 1
-        }
-    }
-        
+            
 // Events ==========================================================================================
     @objc func onTouch(gesture: TouchingGesture) {
         if gesture.state == .began {
@@ -58,103 +37,65 @@ class NexusExplorer: AEViewController {
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if Screen.iPhone {
-        } else {
-            cyto.rows = 15
-            cyto.cols = 3
-            cyto.padding = 6*s
-            
-            let view: UIView = UIView()
-            view.backgroundColor = .clear
-            
-            cyto.cells = [
-                ArticleCell(key: "intro", c: 0, r: 0, w: 2),
-                ArticleCell(key: "aether", c: 2, r: 0),
-                ArticleCell(key: "cellular", c: 0, r: 1, w: 2),
-                ExplorerCell(explorer: CellularExplorer(), c: 2, r: 1),
-                ArticleCell(key: "kinematics", c: 0, r: 2),
-                ExplorerCell(explorer: KinematicsExplorer(), c: 1, r: 2),
-                ArticleCell(key: "gravity", c: 2, r: 2),
-                ExplorerCell(explorer: AetherExplorer(), c: 2, r: 3),
-                ArticleCell(key: "dilation", c: 0, r: 3),
-                ExplorerCell(explorer: DilationExplorer(), c: 1, r: 3),
-                ArticleCell(key: "contraction", c: 0, r: 4),
-                ExplorerCell(explorer: ContractionExplorer(), c: 1, r: 4),
-                ArticleCell(key: "darkness", c: 2, r: 4),
-                ArticleCell(key: "equivalence", c: 0, r: 5),
-                ArticleCell(key: "electromagnetism", c: 1, r: 5),
-                ArticleCell(key: "discrepancy", c: 2, r: 5),
-                ArticleCell(key: "epilogue", c: 1, r: 6),
-            ]
-        }
-        
-        glass.backgroundColor = .black.tint(0.8)
-        glass.layer.cornerRadius = 8*s
-        glass.layer.shadowRadius = 8*s
-        glass.layer.shadowOffset = CGSize(width: 8*s, height: 8*s)
-        glass.layer.shadowOpacity = 0.6
-        glass.layer.borderColor = UIColor.white.shade(0.5).cgColor
-        glass.layer.borderWidth = 1*s
-//        view.addSubview(glass)
-        
-        scrollView.showsVerticalScrollIndicator = false
-//        scrollView.addSubview(glyphView)
-//        glass.addSubview(scrollView)
-        view.addSubview(scrollView)
-        
+                
         view.addSubview(aexelsLabel)
         aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
+        
+        versionLabel.alpha = 0
+        view.addSubview(versionLabel)
+
+        scrollView.showsVerticalScrollIndicator = false
+        view.addSubview(scrollView)
         
         let p: CGFloat = 3*s
         var y: CGFloat = 30*s
         let dy: CGFloat = 150*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(name: "Universe X", radius: 110*s+2*p, x: 70*s, y: y)
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(key: "intro", radius: 110*s+2*p, x: 70*s, y: y)
         glyphsView.add(glyph: universeXGlyph)
         y += dy
 
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(name: "Aether", radius: 80*s+2*p, x: 50*s, y: y)
+        let aetherGlyph: ArticleGlyph = ArticleGlyph(key: "aether", radius: 80*s+2*p, x: 50*s, y: y)
         glyphsView.add(glyph: aetherGlyph)
         y += dy
 
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(name: "Cellular Automata", radius: 100*s+2*p, x: 230*s, y: y)
+        let cellularGlyph: ArticleGlyph = ArticleGlyph(key: "cellular", radius: 100*s+2*p, x: 230*s, y: y)
         glyphsView.add(glyph: cellularGlyph)
         y += dy
 
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(name: "Kinematics", radius: 110*s+2*p, x: 30*s, y: y)
+        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(key: "kinematics", radius: 110*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: kinematicsGlyph)
         y += dy
 
-        let gravityGlyph: ArticleGlyph = ArticleGlyph(name: "Gravity", radius: 90*s+2*p, x: 200*s, y: y)
+        let gravityGlyph: ArticleGlyph = ArticleGlyph(key: "gravity", radius: 90*s+2*p, x: 200*s, y: y)
         glyphsView.add(glyph: gravityGlyph)
         y += dy
 
-        let dilationGlyph: ArticleGlyph = ArticleGlyph(name: "Dilation", radius: 100*s+2*p, x: 30*s, y: y)
+        let dilationGlyph: ArticleGlyph = ArticleGlyph(key: "dilation", radius: 100*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: dilationGlyph)
         y += dy
 
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(name: "Contraction", radius: 120*s+2*p, x: 30*s, y: y)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(key: "contraction", radius: 120*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: contractionGlyph)
         y += dy
 
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(name: "Darkness", radius: 120*s+2*p, x: 250*s, y: 1130*s)
+        let darknessGlyph: ArticleGlyph = ArticleGlyph(key: "darkness", radius: 120*s+2*p, x: 250*s, y: 1130*s)
         glyphsView.add(glyph: darknessGlyph)
         y += dy
 
-        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(name: "Equivalence", radius: 120*s+2*p, x: 230*s, y: 1400*s)
+        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(key: "equivalence", radius: 120*s+2*p, x: 230*s, y: 1400*s)
         glyphsView.add(glyph: equivalenceGlyph)
         y += dy
 
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(name: "Electro Magnetism", radius: 110*s+2*p, x: 30*s, y: 1240*s)
+        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(key: "electromagnetism", radius: 110*s+2*p, x: 30*s, y: 1240*s)
         glyphsView.add(glyph: electromagnetismGlyph)
         y += dy
 
-        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(name: "Discrepancies", radius: 130*s+2*p, x: 30*s, y: y)
+        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(key: "discrepancy", radius: 130*s+2*p, x: 30*s, y: y)
         glyphsView.add(glyph: discrepanciesGlyph)
         y += dy
 
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(name: "Epilogue", radius: 90*s+2*p, x: 200*s, y: 2000*s)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(key: "epilogue", radius: 90*s+2*p, x: 200*s, y: 2000*s)
         glyphsView.add(glyph: epilogueGlyph)
         y += dy
 
@@ -226,37 +167,21 @@ class NexusExplorer: AEViewController {
         discrepanciesGlyph.link(to: symetricGlyph)
         discrepanciesGlyph.link(to: blackShieldGlyph)
         discrepanciesGlyph.link(to: quantumBellGlyph)
-        
-        view.addSubview(versionLabel)
-//        view.addSubview(messageLimbo)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        messageLimbo.removeFromSuperview()
-        brightenNexus()
     }
     
     override func layoutRatio056() {
     }
     override func layoutRatio133() {
         
-        versionLabel.alpha = 0
         
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
-
-
         
-        glass.left(dx: 16*s, dy: Screen.safeTop/2, width: 480*s, height: view.height-Screen.safeTop-Screen.safeBottom-32*s)
         glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 3000)
-//        glass.layer.shadowPath = CGPath(roundedRect: glass.bounds, cornerWidth: 8*s, cornerHeight: 8*s, transform: nil)
         scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 700, height: view.height-Screen.safeTop-Screen.safeBottom)
-        
-        cyto.top(dy: 8*s, width: glass.width-16*s, height: 2000*s)
-        cyto.layout()
-        
         scrollView.contentSize = glyphsView.frame.size
-        
-        messageLimbo.left(dx: glass.right+20*s, dy: Screen.safeTop/2, width: view.width-glass.right-2*20*s, height: glass.height)
     }
 }

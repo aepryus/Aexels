@@ -22,14 +22,14 @@ class GlyphsView: AEView {
         addSubview(glyph)
     }
     
-    func printSpokes() {
-        glyphs.forEach { (glyphView: GlyphView) in
-            print("===================")
-            glyphView.sortedLinkedTo.forEach { (other: GlyphView) in
-                print("  : \(glyphView.spoke(to: other))")
-            }
-        }
-    }
+//    func printSpokes() {
+//        glyphs.forEach { (glyphView: GlyphView) in
+//            print("===================")
+//            glyphView.sortedLinkedTo.forEach { (other: GlyphView) in
+//                print("  : \(glyphView.spoke(to: other))")
+//            }
+//        }
+//    }
     
 // AEView ==========================================================================================
     override func draw(_ rect: CGRect) {
@@ -85,6 +85,7 @@ class GlyphView: AEView {
         super.init()
         frame = CGRect(x: x, y: y, width: radius, height: radius)
         backgroundColor = .clear
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
     }
     
     var color: UIColor { UIColor.black.tint(0.5) }
@@ -110,25 +111,33 @@ class GlyphView: AEView {
         }
         fatalError()
     }
+    
+// Events ==========================================================================================
+    @objc func onTap() {}
 }
 
 class ArticleGlyph: GlyphView {
-    let name: String
+    let key: String
     let label: UILabel = UILabel()
     
-    init(name: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
-        self.name = name
+    init(key: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
+        self.key = key
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
         layer.borderWidth = 2
         
         label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
-        label.text = name
+        label.text = "\(key)_name".localized
         label.numberOfLines = -1
         label.layer.borderColor = color.cgColor
         label.layer.borderWidth = 5
         addSubview(label)
+    }
+    
+// Events ==========================================================================================
+    override func onTap() {
+        Aexels.nexusExplorer.showArticle(key: key)
     }
     
 // UIView ==========================================================================================
