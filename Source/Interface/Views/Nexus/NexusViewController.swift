@@ -395,24 +395,6 @@ class NexusViewController: UIViewController {
 		view.addSubview(imageView)
         
         graphView.frame = view.frame
-//        view.addSubview(graphView)
-        
-        closeButton.addAction { self.dismissMessageView() }
-
-//		explorers = [
-//			IntroExplorer(),
-//            AetherExplorer(),
-//			CellularExplorer(),
-//			KinematicsExplorer(),
-//			GravityExplorer(),
-//			DilationExplorer(),
-//			ContractionExplorer(),
-//			DarknessExplorer(),
-//			EquivalenceExplorer(),
-//            ElectromagnetismExplorer(),
-//            DiscrepancyExplorer(),
-//            EpilogueExplorer()
-//		]
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)

@@ -14,11 +14,33 @@ import UIKit
 class NexusExplorer: AEViewController {
     let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 72*Screen.s)
     let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:20*Screen.s)
-    let glyphsView: GlyphsView = GlyphsView()
     let scrollView: UIScrollView = UIScrollView()
+    let glyphsView: GlyphsView = GlyphsView()
+    let articleView: ArticleView = ArticleView()
 
     func showArticle(key: String) {
         print("  :: \(key)")
+        articleView.key = key
+        UIView.animate(withDuration: 0.5) {
+            self.glyphsView.alpha = 0
+        } completion: { (complete: Bool) in
+            self.glyphsView.removeFromSuperview()
+            self.articleView.alpha = 0
+            self.scrollView.contentSize = self.articleView.scrollViewContentSize
+            self.scrollView.contentOffset = .zero
+            self.scrollView.addSubview(self.articleView)
+            UIView.animate(withDuration: 0.5) {
+                self.articleView.alpha = 1
+            }
+        }
+    }
+    
+    func showGlyphs() {
+        articleView.removeFromSuperview()
+        articleView.alpha = 0
+        glyphsView.alpha = 1
+        scrollView.addSubview(glyphsView)
+        scrollView.contentSize = glyphsView.frame.size
     }
             
 // Events ==========================================================================================
@@ -44,97 +66,60 @@ class NexusExplorer: AEViewController {
         versionLabel.alpha = 0
         view.addSubview(versionLabel)
 
-        scrollView.showsVerticalScrollIndicator = false
-        view.addSubview(scrollView)
-        
         let p: CGFloat = 3*s
-        var y: CGFloat = 30*s
-        let dy: CGFloat = 150*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(key: "intro", radius: 110*s+2*p, x: 70*s, y: y)
-        glyphsView.add(glyph: universeXGlyph)
-        y += dy
-
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(key: "aether", radius: 80*s+2*p, x: 50*s, y: y)
-        glyphsView.add(glyph: aetherGlyph)
-        y += dy
-
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(key: "cellular", radius: 100*s+2*p, x: 230*s, y: y)
-        glyphsView.add(glyph: cellularGlyph)
-        y += dy
-
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(key: "kinematics", radius: 110*s+2*p, x: 30*s, y: y)
-        glyphsView.add(glyph: kinematicsGlyph)
-        y += dy
-
-        let gravityGlyph: ArticleGlyph = ArticleGlyph(key: "gravity", radius: 90*s+2*p, x: 200*s, y: y)
-        glyphsView.add(glyph: gravityGlyph)
-        y += dy
-
-        let dilationGlyph: ArticleGlyph = ArticleGlyph(key: "dilation", radius: 100*s+2*p, x: 30*s, y: y)
-        glyphsView.add(glyph: dilationGlyph)
-        y += dy
-
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(key: "contraction", radius: 120*s+2*p, x: 30*s, y: y)
-        glyphsView.add(glyph: contractionGlyph)
-        y += dy
-
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(key: "intro", radius: 110*s+2*p, x: 70*s, y: 30*s)
+        let aetherGlyph: ArticleGlyph = ArticleGlyph(key: "aether", radius: 80*s+2*p, x: 50*s, y: 180*s)
+        let cellularGlyph: ArticleGlyph = ArticleGlyph(key: "cellular", radius: 100*s+2*p, x: 230*s, y: 330*s)
+        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(key: "kinematics", radius: 110*s+2*p, x: 30*s, y: 480*s)
+        let gravityGlyph: ArticleGlyph = ArticleGlyph(key: "gravity", radius: 90*s+2*p, x: 200*s, y: 630*s)
+        let dilationGlyph: ArticleGlyph = ArticleGlyph(key: "dilation", radius: 100*s+2*p, x: 30*s, y: 780*s)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(key: "contraction", radius: 120*s+2*p, x: 30*s, y: 930*s)
         let darknessGlyph: ArticleGlyph = ArticleGlyph(key: "darkness", radius: 120*s+2*p, x: 250*s, y: 1130*s)
-        glyphsView.add(glyph: darknessGlyph)
-        y += dy
-
         let equivalenceGlyph: ArticleGlyph = ArticleGlyph(key: "equivalence", radius: 120*s+2*p, x: 230*s, y: 1400*s)
-        glyphsView.add(glyph: equivalenceGlyph)
-        y += dy
-
         let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(key: "electromagnetism", radius: 110*s+2*p, x: 30*s, y: 1240*s)
-        glyphsView.add(glyph: electromagnetismGlyph)
-        y += dy
-
-        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(key: "discrepancy", radius: 130*s+2*p, x: 30*s, y: y)
-        glyphsView.add(glyph: discrepanciesGlyph)
-        y += dy
-
+        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(key: "discrepancy", radius: 130*s+2*p, x: 30*s, y: 1530*s)
         let epilogueGlyph: ArticleGlyph = ArticleGlyph(key: "epilogue", radius: 90*s+2*p, x: 200*s, y: 2000*s)
-        glyphsView.add(glyph: epilogueGlyph)
-        y += dy
-
 
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "aether_icon")!, radius: 50*s+2*p, x: 230*s, y: 70*s)
-        glyphsView.add(glyph: aetherExpGlyph)
-
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "cellular_icon")!, radius: 50*s+2*p, x: 400*s, y: 300*s)
-        glyphsView.add(glyph: cellularExpGlyph)
-
         let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "kinematics_icon")!, radius: 50*s+2*p, x: 230*s, y: 530*s)
-        glyphsView.add(glyph: kinematicsExpGlyph)
-
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "dilation_icon")!, radius: 50*s+2*p, x: 230*s, y: 800*s)
-        glyphsView.add(glyph: dilationExpGlyph)
-
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p, x: 90*s, y: 1100*s)
-        glyphsView.add(glyph: contractionExpGlyph)
 
         let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
-        glyphsView.add(glyph: blackHoleGlyph)
-        
         let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 70*s, y: 630*s)
-        glyphsView.add(glyph: twinParadoxGlyph)
-
         let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
-        glyphsView.add(glyph: narwhalGlyph)
-
         let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p, x: 330*s, y: 1600*s)
-        glyphsView.add(glyph: symetricGlyph)
-
         let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p, x: 380*s, y: 1700*s)
-        glyphsView.add(glyph: blackShieldGlyph)
-
         let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p, x: 280*s, y: 1800*s)
+
+        glyphsView.add(glyph: universeXGlyph)
+        glyphsView.add(glyph: aetherGlyph)
+        glyphsView.add(glyph: cellularGlyph)
+        glyphsView.add(glyph: kinematicsGlyph)
+        glyphsView.add(glyph: gravityGlyph)
+        glyphsView.add(glyph: dilationGlyph)
+        glyphsView.add(glyph: contractionGlyph)
+        glyphsView.add(glyph: darknessGlyph)
+        glyphsView.add(glyph: equivalenceGlyph)
+        glyphsView.add(glyph: electromagnetismGlyph)
+        glyphsView.add(glyph: discrepanciesGlyph)
+        glyphsView.add(glyph: epilogueGlyph)
+
+        glyphsView.add(glyph: aetherExpGlyph)
+        glyphsView.add(glyph: cellularExpGlyph)
+        glyphsView.add(glyph: kinematicsExpGlyph)
+        glyphsView.add(glyph: dilationExpGlyph)
+        glyphsView.add(glyph: contractionExpGlyph)
+
+        glyphsView.add(glyph: blackHoleGlyph)
+        glyphsView.add(glyph: twinParadoxGlyph)
+        glyphsView.add(glyph: narwhalGlyph)
+        glyphsView.add(glyph: symetricGlyph)
+        glyphsView.add(glyph: blackShieldGlyph)
         glyphsView.add(glyph: quantumBellGlyph)
-                
-        scrollView.addSubview(glyphsView)
-        
+
         universeXGlyph.link(to: aetherGlyph)
         
         aetherGlyph.link(to: cellularGlyph)
@@ -167,21 +152,26 @@ class NexusExplorer: AEViewController {
         discrepanciesGlyph.link(to: symetricGlyph)
         discrepanciesGlyph.link(to: blackShieldGlyph)
         discrepanciesGlyph.link(to: quantumBellGlyph)
+        
+        scrollView.addSubview(glyphsView)
+        scrollView.showsVerticalScrollIndicator = false
+        view.addSubview(scrollView)
+        articleView.scrollView = scrollView
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//    }
     
     override func layoutRatio056() {
     }
     override func layoutRatio133() {
-        
-        
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
-        
         glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 3000)
+        articleView.frame = glyphsView.frame
         scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 700, height: view.height-Screen.safeTop-Screen.safeBottom)
-        scrollView.contentSize = glyphsView.frame.size
+        if glyphsView.superview != nil {
+            scrollView.contentSize = glyphsView.frame.size
+        }
     }
 }

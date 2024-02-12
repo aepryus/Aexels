@@ -29,6 +29,7 @@
 		D87C0DD32931A8250005B44D /* Contraction.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD22931A8250005B44D /* Contraction.latex */; };
 		D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881B7B8294BDED2004DE0DD /* CloseButton.swift */; };
 		D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */; };
+		D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A472B79D5B800C28F93 /* ArticleView.swift */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -119,6 +120,7 @@
 		D87C0DD22931A8250005B44D /* Contraction.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Contraction.latex; sourceTree = "<group>"; };
 		D881B7B8294BDED2004DE0DD /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphsView.swift; sourceTree = "<group>"; };
+		D8A63A472B79D5B800C28F93 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
+				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
+				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,

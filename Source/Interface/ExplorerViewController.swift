@@ -57,7 +57,8 @@ class ExplorerViewController: UIViewController {
     var explorer: AEViewController? = nil {
         didSet {
             guard explorer != oldValue else { return }
-            if explorer is NexusExplorer {
+            if let nexusExplorer: NexusExplorer = explorer as? NexusExplorer {
+                nexusExplorer.showGlyphs()
                 graphView.timer.start()
                 DispatchQueue.main.async { self.startMusic() }
             } else if oldValue is NexusExplorer {
