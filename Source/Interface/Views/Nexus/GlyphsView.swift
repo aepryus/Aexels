@@ -22,15 +22,6 @@ class GlyphsView: AEView {
         addSubview(glyph)
     }
     
-//    func printSpokes() {
-//        glyphs.forEach { (glyphView: GlyphView) in
-//            print("===================")
-//            glyphView.sortedLinkedTo.forEach { (other: GlyphView) in
-//                print("  : \(glyphView.spoke(to: other))")
-//            }
-//        }
-//    }
-    
 // AEView ==========================================================================================
     override func draw(_ rect: CGRect) {
         guard let first: GlyphView = glyphs.first else { return }

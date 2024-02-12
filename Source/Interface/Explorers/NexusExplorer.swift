@@ -17,9 +17,9 @@ class NexusExplorer: AEViewController {
     let scrollView: UIScrollView = UIScrollView()
     let glyphsView: GlyphsView = GlyphsView()
     let articleView: ArticleView = ArticleView()
+    let navigator: ArticleNavigator = ArticleNavigator()
 
     func showArticle(key: String) {
-        print("  :: \(key)")
         articleView.key = key
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0
@@ -157,10 +157,13 @@ class NexusExplorer: AEViewController {
         scrollView.showsVerticalScrollIndicator = false
         view.addSubview(scrollView)
         articleView.scrollView = scrollView
+        
+        navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
+        view.addSubview(navigator)
+        navigator.topLeft(width: 32*s, height: navigator.width)
+        
+        navigator.tokens = ["Gravity", "Universe X", "◎"]
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
     
     override func layoutRatio056() {
     }
@@ -173,5 +176,6 @@ class NexusExplorer: AEViewController {
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size
         }
+        navigator.topLeft(dx: 5*s, dy: 340*s, width: 32*s, height: navigator.width)
     }
 }

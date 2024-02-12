@@ -14,7 +14,6 @@ import UIKit
 class Aexels {
     static var window: UIWindow = UIWindow()
 	static let basket: Basket = Basket(SQLitePersist("pequod"))
-//	static var nexus: NexusViewController!
     static var explorerViewController: ExplorerViewController = ExplorerViewController()
 	static var aetherView: AetherView? = nil
 	static var sync: AESync = AESync()
@@ -37,8 +36,6 @@ class Aexels {
 		Loom.start(basket: Aexels.basket, namespaces: ["Aexels", "OoviumEngine"])
 		Skin.skin = IvorySkin()
 
-//		nexus = NexusViewController()
-		
 		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()
 		window.rootViewController = explorerViewController

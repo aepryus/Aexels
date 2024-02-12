@@ -8,16 +8,9 @@
 
 import UIKit
 
-class TouchingGesture: UIGestureRecognizer {
-	
+class TouchingGesture: UIGestureRecognizer {	
 // UIGestureRecognizer =============================================================================
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-		if state == .possible { state = .began }
-	}
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
-		state = .ended
-	}
-	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
-		state = .ended
-	}
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) { if state == .possible { state = .began } }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) { state = .ended }
+	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) { state = .ended }
 }

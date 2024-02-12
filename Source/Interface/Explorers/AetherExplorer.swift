@@ -13,7 +13,6 @@ import UIKit
 class AetherExplorer: Explorer {
     
     let aexelsView: AexelsView = AexelsView()
-//    let aetherLimbo: Limbo = Limbo()
     let expAButton: ExpButton = ExpButton(name: Screen.iPhone ? "12" : "12\nAexels")
     let expBButton: ExpButton = ExpButton(name: Screen.iPhone ? "60" : "60\nAexels")
     let expCButton: ExpButton = ExpButton(name: Screen.iPhone ? "360" : "360\nAexels")
@@ -200,11 +199,6 @@ class AetherExplorer: Explorer {
         let w = size.width - 10*s
 
         expView.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
-//        expView.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-//        expView.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-//        expView.renderPaths()
-
-//        aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: expView.top-Screen.safeTop)
 
         let om = 15*s
         let im = 6*s
@@ -220,13 +214,5 @@ class AetherExplorer: Explorer {
         expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
         expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
-
-//        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
-//        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-//        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-//        messageLimbo.renderPaths()
-//        
-//        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
-//        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
 	}
 }

@@ -23,7 +23,6 @@ class Explorer: AEViewController {
 	}
 	
     var shortName: String { name }
-    lazy var explorerButton: ExplorerButton = ExplorerButton(text: shortName, imageView: UIImageView(image: UIImage(named: "\(key)_icon")))
     var limbos: [UIView] = []
     var layedOut: Bool = false
     
@@ -34,11 +33,6 @@ class Explorer: AEViewController {
             layedOut = true
         }
 
-        for limbo in limbos {
-            limbo.alpha = 0
-//            view.addSubview(limbo)
-        }
-        
         onOpen()
         UIView.animate(withDuration: 0.2, animations: {
             self.onOpening()

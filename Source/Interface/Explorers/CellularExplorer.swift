@@ -82,10 +82,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             smallView.points = floorQ(x: 144*s, to: 4)
         }
         
-//        var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))
-//        length = CGFloat(mediumCell.points); medium.set(content: mediumCell, size: CGSize(width: length, height: length))
-//        length = CGFloat(smallCell.points); small.set(content: smallCell, size: CGSize(width: length, height: length))
-        
         play.onPlay = { [unowned self] in
             self.engine.start(aether: self.aetherView.aether)
         }
@@ -146,23 +142,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         
         let lW: CGFloat = 462*s
 
-//        large.topLeft(dx: 5*s, dy: topY, width: lW, height: lW)
-//        medium.topLeft(dx: large.left, dy: large.bottom, width: 286*s, height: 286*s)
-//        small.topLeft(dx: medium.right, dy: large.bottom, width: 176*s, height: 176*s)
-//        messageLimbo.closeOn = true
-//        messageLimbo.frame = CGRect(x: large.right, y: topY, width: Screen.width-lW-10*s, height: 768*s-20*s-y-ch)
-//
-//        closeButton.topLeft(dx: messageLimbo.right-50*s, dy: messageLimbo.top, width: 50*s, height: 50*s)
-//
-//        controls.topLeft(dx: small.left, dy: small.bottom, width: small.width, height: medium.height-small.height)
-//
-//        dilator.frame = CGRect(x: large.right, y: messageLimbo.bottom, width: Screen.width-lW-10*s, height: ch)
-
-        // Aether
-//        aetherLimbo.frame = CGRect(x: large.right, y: dilator.bottom, width: Screen.width-lW-10*s, height: y)
-//        aetherLimbo.renderPaths()
-//        aetherLimbo.alpha = 0
-
         aetherView.renderToolBars()
         aetherView.placeToolBars()
         aetherView.showToolBars()
@@ -207,16 +186,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 	var second = [Limbo]()
 	var isFirst: Bool = true
 
-
-	
-//	var aetherLimbo: ContentLimbo!
-//	let controls = Limbo()
-//	let dilator = Limbo(p: 12)
-//	let large = Limbo()
-//	var medium = Limbo()
-//	let small = Limbo()
-//	let empty = Limbo()
-//    let close = LimboButton(title: "Close")
     let closeButton: CloseButton = CloseButton()
 	let swapper = Limbo()
 	let swapButton = SwapButton()
@@ -275,246 +244,11 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 		aetherView.dismissAetherPicker()
 		aetherView.snuffToolBars()
 		play.stop()
-		if Screen.iPhone {
-			swapButton.resetView()
-//			limbos = [swapper] + first + [close]
-		}
 	}
 	
 // Explorer ========================================================================================
-	override func createLimbos() {
-//        return
-        
-		// Cellular Views ==================
-		// Large
-//		limbos.append(large)
-		
-		// Medium
-//		mediumCell.zoom = 2
-//		limbos.append(medium)
-		
-		// Small
-//		smallCell.zoom = 4
-//		limbos.append(small)
-		
-
-		if Screen.iPhone {
-			largeView.points = floorQ(x: 335*s, to: 1)
-			mediumView.points = floorQ(x: 190*s, to: 2)
-			smallView.points = floorQ(x: 112*s, to: 4)
-		} else /*if Screen.iPad*/{
-			let height = Screen.height - Screen.safeTop - Screen.safeBottom
-			let s = height / 748
-			largeView.points = floorQ(x: 432*s, to: 1)
-			mediumView.points = floorQ(x: 256*s, to: 2)
-			smallView.points = floorQ(x: 144*s, to: 4)
-		}
-		
-//		var length: CGFloat = CGFloat(largeCell.points); large.set(content: largeCell, size: CGSize(width: length, height: length))
-//		length = CGFloat(mediumCell.points); medium.set(content: mediumCell, size: CGSize(width: length, height: length))
-//		length = CGFloat(smallCell.points); small.set(content: smallCell, size: CGSize(width: length, height: length))
-
-		// Message =========================
-        messageLimbo = MessageLimbo()
-		
-		// Aether ==========================
-        _ = Facade.create(space: Space.local) as! SpaceFacade
-        let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
-        facade.load { (json: String?) in
-			guard let json = json else { return }
-			self.open(aether: Aether(json: json))
-		}
-
-//		var tools: [[Tool?]] = Array(repeating: Array(repeating: nil, count: 2), count: 2)
-//		tools[0][0] = AetherView.objectTool
-//		tools[1][0] = AetherView.gateTool
-//		tools[0][1] = AetherView.mechTool
-//		
-//		aetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
-//        aetherView.backgroundColor = .clear
-//		aetherView.aetherViewDelegate = self
-//        aetherView.orb = Orb(aetherView: aetherView, view: Aexels.nexus.view, dx: 0, dy: 0)
-//		Aexels.aetherView = aetherView
-//		aetherView.toolBarOffset = UIOffset(horizontal: -3, vertical: 6)
-
-//		aetherLimbo = ContentLimbo(content: aetherView)
-		
-		// Dilator =========================
-//		dilatorView.onChange = { (frameRate: Int) in
-//			self.engine.frameRate = frameRate
-//		}
-//		dilator.content = dilatorView
-//		limbos.append(dilator)
-		
-		engine.onMeasure = {(actualSps: Double)->() in
-			print("actual frame rate: \(actualSps)")
-		}
-		
-		// Controls ========================
-//		limbos.append(controls)
-		
-//		play.onPlay = { [unowned self] in
-//			self.engine.start(aether: self.aetherView.aether)
-//		}
-//		play.onStop = { [unowned self] in
-//			self.engine.stop()
-//		}
-//		controls.addSubview(play)
-//		
-//		controls.addSubview(reset)
-//		reset.addAction(for: .touchUpInside) { [unowned self] in
-//			self.play.stop()
-//			self.engine.configureViews()
-//			self.engine.reset()
-//			self.engine.needsCompile = true
-//		}
-//		
-//		controls.addSubview(guide)
-//		guide.addAction(for: .touchUpInside) { [unowned self] in
-//			self.engine.guideOn = !self.engine.guideOn
-//			self.guide.stateOn = self.engine.guideOn
-//			self.guide.setNeedsDisplay()
-//			self.largeCell.flash()
-//			self.mediumCell.flash()
-//		}
-//
-//		// Close ===========================
-//        close.alpha = 0
-//        close.addAction(for: .touchUpInside) { [unowned self] in
-//            self.isFirst = true
-//            self.aetherView.snuffToolBars()
-//            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-//        }
-//        limbos.append(close)
-
-        closeButton.alpha = 0
-        closeButton.addAction(for: .touchUpInside) { [unowned self] in
-			self.isFirst = true
-			self.aetherView.snuffToolBars()
-			self.closeExplorer()
-//			Aexels.nexus.brightenNexus()
-		}
-		limbos.append(closeButton)
-
-		// Swapper =========================
-		if Screen.iPhone {
-			swapButton.addAction(for: .touchUpInside) { [unowned self] in
-				self.swapButton.rotateView()
-				if self.isFirst {
-					self.isFirst = false
-					self.dimLimbos(self.first)
-					self.brightenLimbos(self.second)
-//					self.limbos = [self.swapper] + self.second + [self.close]
-					self.aetherView.snuffToolBars()
-				} else {
-					self.isFirst = true
-					self.dimLimbos(self.second)
-					self.brightenLimbos(self.first)
-//					self.limbos = [self.swapper] + self.first + [self.close]
-					self.aetherView.invokeAetherPicker()
-					self.aetherView.showToolBars()
-				}
-				self.swapper.removeFromSuperview()
-				self.view.addSubview(self.swapper)
-//				self.close.removeFromSuperview()
-//				self.view.addSubview(self.close)
-			}
-			swapper.content = swapButton
-			limbos.append(swapper)
-
-//			first = [aetherLimbo, messageLimbo]
-//			if Screen.dimensions == .dim375x812 || Screen.dimensions == .dim414x896 {
-//				second = [empty, controls, dilator, large, medium, small]
-//			} else {
-//				second = [controls, dilator, large, medium, small]
-//			}
-		}
-		
-		if Screen.iPhone {
-			brightenLimbos(first)
-//			limbos = [swapper] + first + [close]
-		} else {
-//			limbos.append(aetherLimbo)
-			limbos.append(messageLimbo)
-		}
-	}
     override func layout375x667() {
-//        let lw: CGFloat = 375*s-10*s
-//        let mw: CGFloat = 221*s
-//        let sw: CGFloat = lw-mw
-//        let bw: CGFloat = 40*s
-//
-//        large.frame = CGRect(x: 5*s, y: 20*s, width: lw, height: lw)
-//        medium.frame = CGRect(x: 5*s, y: large.bottom, width: mw, height: mw)
-//        small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
-//        swapper.frame = CGRect(x: 5*s, y: medium.bottom, width: 56*s, height: 56*s)
-//        dilator.frame = CGRect(x: swapper.right, y: medium.bottom, width: medium.width-swapper.width, height: swapper.height)
-//        close.frame = CGRect(x: medium.right, y: medium.bottom, width: small.width, height: swapper.height)
-//
-//        controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
-//        play.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
-//        reset.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
-//        guide.left(dx: 15*s+2*bw, size: CGSize(width: bw, height: 30*s))
-//        
-//        // AetherLimbo
-//        aetherLimbo.frame = CGRect(x: 5*s, y: 20*s, width: lw, height: lw)
-//        aetherLimbo.renderPaths()
-//        aetherLimbo.alpha = 0
-//        
-//        aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-//        aetherView.aetherPickerOffset = UIOffset(horizontal: -10, vertical: -4)
-//
-//        aetherView.renderToolBars()
-//        aetherView.placeToolBars()
-//        aetherView.showToolBars()
-//        aetherView.stretch()
-//
-//        // Message
-//        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: small.width, height: swapper.height)
-//        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: swapper.height, height: swapper.height)
-//        messageLimbo.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-5*s)
     }
     override func layout375x812() {
-//        let lw: CGFloat = Screen.width-10*s
-//        let mw: CGFloat = 221*s
-//        let sw: CGFloat = lw-mw
-//        let bw: CGFloat = 40*s
-//        let sh: CGFloat = 56*s
-//        
-//        large.frame = CGRect(x: 5*s, y: Screen.safeTop, width: lw, height: lw)
-//        medium.frame = CGRect(x: 5*s, y: large.bottom, width: mw, height: mw)
-//        small.frame = CGRect(x: medium.right, y: large.bottom, width: sw, height: sw)
-//        
-//        controls.frame = CGRect(x: medium.right, y: small.bottom, width: small.width, height: medium.height-small.height)
-//        play.left(dx: 15*s, size: CGSize(width: bw, height: 30*s))
-//        reset.left(dx: 15*s+bw, size: CGSize(width: bw, height: 30*s))
-//        guide.left(dx: 15*s+2*bw, size: CGSize(width: bw, height: 30*s))
-//        
-//        // AetherLimbo
-//        aetherLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: lw, height: lw)
-//        aetherLimbo.renderPaths()
-//        aetherLimbo.alpha = 0
-//        
-//        aetherView.toolBarOffset = UIOffset(horizontal: -9, vertical: 9)
-//        aetherView.aetherPickerOffset = UIOffset(horizontal: -10, vertical: -4)
-//
-//        aetherView.renderToolBars()
-//        aetherView.placeToolBars()
-//        aetherView.showToolBars()
-//        aetherView.stretch()
-//        
-//        // Message
-//        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: small.width, height: sh)
-//        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: sh, height: sh)
-//        messageLimbo.frame = CGRect(x: 5*s, y: aetherLimbo.bottom, width: lw, height: Screen.height-aetherLimbo.bottom-Screen.safeBottom)
-//        
-//        swapper.frame = CGRect(x: 5*s, y: messageLimbo.bottom-sh, width: sh, height: sh)
-//        dilator.frame = CGRect(x: 5*s, y: medium.bottom, width: Screen.width-10*s, height: sh)
-//        close.frame = CGRect(x: messageLimbo.right-small.width, y: messageLimbo.bottom-sh, width: small.width, height: sh)
-//        
-//        empty.cutouts[Position.bottomRight] = Cutout(width: small.width, height: sh)
-//        empty.cutouts[Position.bottomLeft] = Cutout(width: sh, height: sh)
-//        empty.frame = CGRect(x: 5*s, y: dilator.bottom, width: Screen.width-10*s, height: Screen.height-dilator.bottom-Screen.safeBottom)
     }
 }
