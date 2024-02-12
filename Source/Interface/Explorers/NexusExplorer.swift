@@ -160,9 +160,11 @@ class NexusExplorer: AEViewController {
         
         navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
         view.addSubview(navigator)
-        navigator.topLeft(width: 32*s, height: navigator.width)
         
         navigator.tokens = ["Gravity", "Universe X", "◎"]
+        navigator.snaps[navigator.snaps.count-1].addAction {
+            self.showGlyphs()
+        }
     }
     
     override func layoutRatio056() {
@@ -176,6 +178,8 @@ class NexusExplorer: AEViewController {
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size
         }
-        navigator.topLeft(dx: 5*s, dy: 340*s, width: 32*s, height: navigator.width)
+        
+        navigator.render()
+        navigator.topLeft(dx: 5*s, dy: navigator.width)
     }
 }

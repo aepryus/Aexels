@@ -124,6 +124,11 @@ class ArticleNavigator: AEView {
     }
     
     var snaps: [Snap] = []
+    
+//    override init() {
+//        super.init()
+//        backgroundColor = .blue.tone(0.5).alpha(0.1)
+//    }
 
     func render() {
         var x: CGFloat = 0*s
@@ -131,7 +136,7 @@ class ArticleNavigator: AEView {
             let w: CGFloat = $0.calcWidth()
             x += w - 16*s
         }
-        frame = CGRect(x: 0, y: 0, width: x + 16*s, height: height)
+        frame = CGRect(x: 0, y: 0, width: x + 16*s, height: 32*s)
     }
 
 // UIView ==========================================================================================
