@@ -71,7 +71,7 @@ class ArticleView: AEView {
         let image = renderer.image { (_: UIGraphicsImageRendererContext) in
             guard let c = UIGraphicsGetCurrentContext() else { return }
             c.saveGState()
-            c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s)
+            c.setShadow(offset: CGSize(width: 2*s, height: 2*s), blur: 2*s, color: UIColor.black.alpha(0.2).cgColor)
             c.setFillColor(UIColor.white.cgColor)
 
             for i in 0..<texts.count {

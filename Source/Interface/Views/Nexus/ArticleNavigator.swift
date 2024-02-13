@@ -9,7 +9,7 @@
 import Acheron
 import UIKit
 
-public class Snap: UIControl {
+public class Snap: AEControl {
     private let text: String
     private let anchor: Bool
     private var path: CGPath = CGPath(rect: .zero, transform: nil)
@@ -20,13 +20,12 @@ public class Snap: UIControl {
     public init(text: String, anchor: Bool = false) {
         self.text = text
         self.anchor = anchor
-        super.init(frame: .zero)
+        super.init()
         backgroundColor = .clear
 
         addAction(for: [.touchDragEnter]) { [unowned self] in self.touch() }
         addAction(for: [.touchDragExit]) { [unowned self] in self.untouch() }
     }
-    required init?(coder: NSCoder) { fatalError() }
 
     var pen: Pen { touched ? Snap.highlightPen : Snap.pen }
 
@@ -112,13 +111,41 @@ public class Snap: UIControl {
     }
 }
 
+class AnchorSnap: Snap {
+    init() {
+        super.init(text: "◎", anchor: true)
+        addAction { Aexels.nexusExplorer.showGlyphs() }
+    }
+    
+    static let anchor: AnchorSnap = AnchorSnap()
+}
+
+class ArticleSnap: Snap {
+    let article: Article
+    
+    init(article: Article) {
+        self.article = article
+        super.init(text: article.nameWithoutNL)
+        addAction { Aexels.nexusExplorer.show(article: self.article) }
+    }
+}
+
 class ArticleNavigator: AEView {
-    var tokens: [String] = [] {
+    var article: Article? = nil {
         didSet {
             subviews.forEach { $0.removeFromSuperview() }
             snaps = []
-            tokens.enumerated().forEach { snaps.append(Snap(text: $0.1, anchor: $0.0 == tokens.count-1)) }
+            
+            var point: Article? = article
+            while point != nil {
+                snaps.append(ArticleSnap(article: point!))
+                point = point!.parent
+            }
+            
+            snaps.append(AnchorSnap.anchor)
+
             snaps.forEach { addSubview($0) }
+            
             render()
         }
     }

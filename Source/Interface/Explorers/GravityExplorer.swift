@@ -54,8 +54,6 @@ class GravityExplorer: Explorer {
 //        } else {
 //            limbos = [aetherLimbo, expLimbo, messageLimbo, closeButton];
 //        }
-
-        limbos = [gravityLimbo, messageLimbo, closeButton];
     }
     override func layout375x667() {
 //        let size = UIScreen.main.bounds.size

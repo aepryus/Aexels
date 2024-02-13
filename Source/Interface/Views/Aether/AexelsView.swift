@@ -42,6 +42,10 @@ class AexelsView: UIView {
 	}
 	
 	func play() {
+        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+            self.tic()
+            complete()
+        }
 		Aexels.sync.link.preferredFramesPerSecond = 60
 		Aexels.sync.start()
 	}

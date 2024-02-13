@@ -261,7 +261,6 @@ class KinematicsExplorer: Explorer {
                 self.view.addSubview(self.close)
             }
             swapper.content = swapButton
-            limbos.append(swapper)
         }
         
         zoneA.addSubview(playButton)

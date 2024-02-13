@@ -67,10 +67,3 @@ class Cyto: AEView {
 // UIView ==========================================================================================
     override func layoutSubviews() { layout() }
 }
-
-class ColorCell: Cyto.Cell {
-    init(c: Int, r: Int, w: Int = 1, h: Int = 1, color: UIColor) {
-        super.init(c: c, r: r, w: w, h: h)
-        backgroundColor = color
-    }
-}

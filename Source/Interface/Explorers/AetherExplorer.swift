@@ -136,19 +136,14 @@ class AetherExplorer: Explorer {
         ]
         
         view.addSubview(cyto)
-        
-
-        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.aexelsView.tic()
-            complete()
-        }
-        Aexels.sync.link.preferredFramesPerSecond = 60
     }
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
         super.viewWillAppear(animated)
         aexelsView.play()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        print("viewWillDisappear")
         super.viewWillDisappear(animated)
         aexelsView.stop()
     }

@@ -108,18 +108,18 @@ class GlyphView: AEView {
 }
 
 class ArticleGlyph: GlyphView {
-    let key: String
+    let article: Article
     let label: UILabel = UILabel()
     
-    init(key: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
-        self.key = key
+    init(article: Article, radius: CGFloat, x: CGFloat, y: CGFloat) {
+        self.article = article
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
         layer.borderWidth = 2
         
         label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
-        label.text = "\(key)_name".localized
+        label.text = article.name
         label.numberOfLines = -1
         label.layer.borderColor = color.cgColor
         label.layer.borderWidth = 5
@@ -128,7 +128,7 @@ class ArticleGlyph: GlyphView {
     
 // Events ==========================================================================================
     override func onTap() {
-        Aexels.nexusExplorer.showArticle(key: key)
+        Aexels.nexusExplorer.show(article: article)
     }
     
 // UIView ==========================================================================================
@@ -140,11 +140,11 @@ class ArticleGlyph: GlyphView {
 }
 
 class ExplorerGlyph: GlyphView {
-    let image: UIImage
+    let explorer: Explorer
     let imageView: UIImageView = UIImageView()
     
-    init(image: UIImage, radius: CGFloat, x: CGFloat, y: CGFloat) {
-        self.image = image
+    init(explorer: Explorer, radius: CGFloat, x: CGFloat, y: CGFloat) {
+        self.explorer = explorer
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
@@ -153,11 +153,16 @@ class ExplorerGlyph: GlyphView {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = color.cgColor
         imageView.layer.borderWidth = 3
-        imageView.image = image
+        imageView.image = explorer.icon
         imageView.layer.masksToBounds = true
         addSubview(imageView)
     }
 
+// Events ==========================================================================================
+    override func onTap() {
+        Aexels.explorerViewController.explorer = explorer
+    }
+        
 // UIView ==========================================================================================
     override func layoutSubviews() {
         imageView.center(width: width-15*s, height: height-15*s)
@@ -167,22 +172,27 @@ class ExplorerGlyph: GlyphView {
 }
 
 class AsideGlyph: GlyphView {
-    let name: String
+    let article: Article
     let label: UILabel = UILabel()
     
-    init(name: String, radius: CGFloat, x: CGFloat, y: CGFloat) {
-        self.name = name
+    init(article: Article, radius: CGFloat, x: CGFloat, y: CGFloat) {
+        self.article = article
         super.init(radius: radius, x: x, y: y)
 
         layer.borderColor = color.cgColor
         layer.borderWidth = 3
         
         label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
-        label.text = name
+        label.text = article.name
         label.numberOfLines = -1
         addSubview(label)
     }
     
+// Events ==========================================================================================
+    override func onTap() {
+        Aexels.nexusExplorer.show(article: article)
+    }
+        
 // UIView ==========================================================================================
     override func layoutSubviews() {
         label.center(width: width-15*s, height: height-15*s)

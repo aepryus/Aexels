@@ -101,7 +101,7 @@ Currently, there are a few things we know about these aexels.  Like the atoms of
 
 ";
 
-"cellular_name" = "Cellular\nAutomata";
+"cellular_name" = "Cellular Automata";
 "cellular_article" = "Cellular Automata
 
 A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
@@ -756,6 +756,32 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 
 
 ";
+
+//let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
+//let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 70*s, y: 630*s)
+//let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
+//let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p, x: 330*s, y: 1600*s)
+//let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p, x: 380*s, y: 1700*s)
+//let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p, x: 280*s, y: 1800*s)
+
+
+"blackHole_name" = "Black Holes";
+"blackHole_article" = "Black Holes";
+
+"twinParadox_name" = "Twin Paradox";
+"twinParadox_article" = "Twin Paradox";
+
+"narwhal_name" = "Narwhal, Walrus and Dolphin";
+"narwhal_article" = "Narwhal, Walrus and Dolphin";
+
+"symmetric_name" = "Symmetric Frames";
+"symmetric_article" = "Symmetric Frames";
+
+"blackShield_name" = "Black Shield";
+"blackShield_article" = "Black Shield";
+
+"quantumBell_name" = "Quantum and Bell";
+"quantumBell_article" = "Quantum and Bell";
 
 "GameOfLife" = "Cellular Automata Lab
 

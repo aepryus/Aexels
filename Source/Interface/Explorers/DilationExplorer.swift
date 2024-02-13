@@ -130,12 +130,12 @@ class DilationExplorer: Explorer {
                     self.isFirst = false
                     self.dimLimbos(self.first)
                     self.brightenLimbos(self.second)
-                    self.limbos = [self.swapper] + self.second + [self.closeLimbo]
+//                    self.limbos = [self.swapper] + self.second + [self.closeLimbo]
                 } else {
                     self.isFirst = true
                     self.dimLimbos(self.second)
                     self.brightenLimbos(self.first)
-                    self.limbos = [self.swapper] + self.first + [self.closeLimbo]
+//                    self.limbos = [self.swapper] + self.first + [self.closeLimbo]
                 }
                 self.swapper.removeFromSuperview()
                 self.view.addSubview(self.swapper)

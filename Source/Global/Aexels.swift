@@ -13,18 +13,20 @@ import UIKit
 
 class Aexels {
     static var window: UIWindow = UIWindow()
+    static var sync: AESync = AESync()
 	static let basket: Basket = Basket(SQLitePersist("pequod"))
-    static var explorerViewController: ExplorerViewController = ExplorerViewController()
-	static var aetherView: AetherView? = nil
-	static var sync: AESync = AESync()
-	static let shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
     
+    static var explorerViewController: ExplorerViewController = ExplorerViewController()
     static let nexusExplorer: NexusExplorer = NexusExplorer()
     static let aetherExplorer: AetherExplorer = AetherExplorer()
     static let cellularExplorer: CellularExplorer = CellularExplorer()
     static let kinematicsExplorer: KinematicsExplorer = KinematicsExplorer()
     static let dilationExplorer: DilationExplorer = DilationExplorer()
     static let contractionExplorer: ContractionExplorer = ContractionExplorer()
+
+    static var aetherView: AetherView? = nil
+
+    static let shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 
 	static var version: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0" }
 	

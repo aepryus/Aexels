@@ -22,8 +22,10 @@ class Explorer: AEViewController {
         super.init()
 	}
 	
+    var iconToken: String { "\(key)_icon" }
+    var icon: UIImage { UIImage(named: iconToken)! }
+    
     var shortName: String { name }
-    var limbos: [UIView] = []
     var layedOut: Bool = false
     
     func openExplorer (view: UIView) {
@@ -36,9 +38,6 @@ class Explorer: AEViewController {
         onOpen()
         UIView.animate(withDuration: 0.2, animations: {
             self.onOpening()
-            for view in self.limbos {
-                view.alpha = 1
-            }
         }) { (finished: Bool) in
             self.onOpened()
         }

@@ -19,8 +19,9 @@ class NexusExplorer: AEViewController {
     let articleView: ArticleView = ArticleView()
     let navigator: ArticleNavigator = ArticleNavigator()
 
-    func showArticle(key: String) {
-        articleView.key = key
+    func show(article: Article) {
+        articleView.key = article.key
+        navigator.article = article
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0
         } completion: { (complete: Bool) in
@@ -41,6 +42,7 @@ class NexusExplorer: AEViewController {
         glyphsView.alpha = 1
         scrollView.addSubview(glyphsView)
         scrollView.contentSize = glyphsView.frame.size
+        navigator.article = nil
     }
             
 // Events ==========================================================================================
@@ -68,31 +70,31 @@ class NexusExplorer: AEViewController {
 
         let p: CGFloat = 3*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(key: "intro", radius: 110*s+2*p, x: 70*s, y: 30*s)
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(key: "aether", radius: 80*s+2*p, x: 50*s, y: 180*s)
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(key: "cellular", radius: 100*s+2*p, x: 230*s, y: 330*s)
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(key: "kinematics", radius: 110*s+2*p, x: 30*s, y: 480*s)
-        let gravityGlyph: ArticleGlyph = ArticleGlyph(key: "gravity", radius: 90*s+2*p, x: 200*s, y: 630*s)
-        let dilationGlyph: ArticleGlyph = ArticleGlyph(key: "dilation", radius: 100*s+2*p, x: 30*s, y: 780*s)
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(key: "contraction", radius: 120*s+2*p, x: 30*s, y: 930*s)
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(key: "darkness", radius: 120*s+2*p, x: 250*s, y: 1130*s)
-        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(key: "equivalence", radius: 120*s+2*p, x: 230*s, y: 1400*s)
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(key: "electromagnetism", radius: 110*s+2*p, x: 30*s, y: 1240*s)
-        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(key: "discrepancy", radius: 130*s+2*p, x: 30*s, y: 1530*s)
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(key: "epilogue", radius: 90*s+2*p, x: 200*s, y: 2000*s)
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 110*s+2*p, x: 70*s, y: 30*s)
+        let aetherGlyph: ArticleGlyph = ArticleGlyph(article: Article.aether, radius: 80*s+2*p, x: 50*s, y: 180*s)
+        let cellularGlyph: ArticleGlyph = ArticleGlyph(article: Article.cellular, radius: 100*s+2*p, x: 230*s, y: 330*s)
+        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(article: Article.kinematics, radius: 110*s+2*p, x: 30*s, y: 480*s)
+        let gravityGlyph: ArticleGlyph = ArticleGlyph(article: Article.gravity, radius: 90*s+2*p, x: 200*s, y: 630*s)
+        let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 30*s, y: 780*s)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 120*s+2*p, x: 30*s, y: 930*s)
+        let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 120*s+2*p, x: 250*s, y: 1130*s)
+        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(article: Article.equivalence, radius: 120*s+2*p, x: 230*s, y: 1400*s)
+        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 110*s+2*p, x: 30*s, y: 1240*s)
+        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(article: Article.discrepancy, radius: 130*s+2*p, x: 30*s, y: 1530*s)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 200*s, y: 2000*s)
 
-        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "aether_icon")!, radius: 50*s+2*p, x: 230*s, y: 70*s)
-        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "cellular_icon")!, radius: 50*s+2*p, x: 400*s, y: 300*s)
-        let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "kinematics_icon")!, radius: 50*s+2*p, x: 230*s, y: 530*s)
-        let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "dilation_icon")!, radius: 50*s+2*p, x: 230*s, y: 800*s)
-        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(image: UIImage(named: "contraction_icon")!, radius: 50*s+2*p, x: 90*s, y: 1100*s)
+        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 230*s, y: 70*s)
+        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
+        let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.kinematicsExplorer, radius: 50*s+2*p, x: 230*s, y: 530*s)
+        let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 230*s, y: 800*s)
+        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 90*s, y: 1100*s)
 
-        let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
-        let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 70*s, y: 630*s)
-        let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
-        let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p, x: 330*s, y: 1600*s)
-        let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p, x: 380*s, y: 1700*s)
-        let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p, x: 280*s, y: 1800*s)
+        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 370*s, y: 700*s)
+        let twinParadoxGlyph: AsideGlyph = AsideGlyph(article: Article.twinParadox, radius: 54*s+2*p, x: 70*s, y: 630*s)
+        let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 190*s, y: 930*s)
+        let symetricGlyph: AsideGlyph = AsideGlyph(article: Article.symmetric, radius: 54*s+2*p, x: 330*s, y: 1600*s)
+        let blackShieldGlyph: AsideGlyph = AsideGlyph(article: Article.blackShield, radius: 46*s+2*p, x: 380*s, y: 1700*s)
+        let quantumBellGlyph: AsideGlyph = AsideGlyph(article: Article.quantumBell, radius: 60*s+2*p, x: 280*s, y: 1800*s)
 
         glyphsView.add(glyph: universeXGlyph)
         glyphsView.add(glyph: aetherGlyph)
@@ -159,12 +161,7 @@ class NexusExplorer: AEViewController {
         articleView.scrollView = scrollView
         
         navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
-        view.addSubview(navigator)
-        
-        navigator.tokens = ["Gravity", "Universe X", "◎"]
-        navigator.snaps[navigator.snaps.count-1].addAction {
-            self.showGlyphs()
-        }
+        view.addSubview(navigator)        
     }
     
     override func layoutRatio056() {
