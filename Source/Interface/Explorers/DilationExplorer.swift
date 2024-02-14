@@ -273,9 +273,9 @@ class DilationExplorer: Explorer {
         self.cameraOn = !cameraOn
         
         if !Screen.iPhone {
-            let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-            let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-            let height = Screen.height - topY - botY
+//            let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+//            let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+//            let height = Screen.height - topY - botY
 //            let s = height / 748
             
 //            let p: CGFloat = 5*s

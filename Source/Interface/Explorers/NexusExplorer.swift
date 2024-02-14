@@ -16,8 +16,9 @@ class NexusExplorer: AEViewController {
     let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:20*Screen.s)
     let scrollView: UIScrollView = UIScrollView()
     let glyphsView: GlyphsView = GlyphsView()
-    let articleView: ArticleView = ArticleView()
     let navigator: ArticleNavigator = ArticleNavigator()
+    let articleView: ArticleView = ArticleView()
+    let interchange: Interchange = Interchange()
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
@@ -178,6 +179,8 @@ class NexusExplorer: AEViewController {
         articleView.scrollView = scrollView
         
         navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
+        
+        view.addSubview(interchange)
     }
     
     override func layoutRatio056() {
@@ -185,14 +188,15 @@ class NexusExplorer: AEViewController {
     override func layoutRatio133() {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
-        glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 3000)
-        articleView.frame = CGRect(x: 20*s, y: 0, width: 700, height: 3000)
-        scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 700, height: view.height-Screen.safeTop-Screen.safeBottom)
+        glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 510*s, height: 2187*s)
+        articleView.frame = CGRect(x: 20*s, y: 0, width: 510*s, height: 2187*s)
+        scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 510*s, height: view.height-Screen.safeTop-Screen.safeBottom)
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size
         }
         
         navigator.render()
         navigator.topLeft(dx: 5*s, dy: navigator.width)
+        interchange.topLeft(dx: articleView.right+5*s, dy: Screen.safeTop+5*s, width: 360*s, height: 240*s)
     }
 }

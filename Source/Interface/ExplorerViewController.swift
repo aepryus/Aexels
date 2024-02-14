@@ -165,6 +165,6 @@ class ExplorerViewController: UIViewController {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
         graphView.topLeft(dx: 510*s, dy: 10*s, width: 600*s, height: 800*s)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
+        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
 }
