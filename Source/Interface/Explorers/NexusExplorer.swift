@@ -20,29 +20,46 @@ class NexusExplorer: AEViewController {
     let navigator: ArticleNavigator = ArticleNavigator()
 
     func show(article: Article) {
-        articleView.key = article.key
-        navigator.article = article
+        guard article.key != articleView.key else { return }
+        view.addSubview(navigator)
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0
-        } completion: { (complete: Bool) in
-            self.glyphsView.removeFromSuperview()
+            self.navigator.alpha = 0
             self.articleView.alpha = 0
+        } completion: { (complete: Bool) in
+            self.articleView.key = article.key
+            self.navigator.article = article
+            self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
             self.scrollView.contentOffset = .zero
             self.scrollView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
                 self.articleView.alpha = 1
+                self.navigator.alpha = 1
             }
         }
     }
     
     func showGlyphs() {
-        articleView.removeFromSuperview()
-        articleView.alpha = 0
-        glyphsView.alpha = 1
+        glyphsView.alpha = 0
         scrollView.addSubview(glyphsView)
-        scrollView.contentSize = glyphsView.frame.size
-        navigator.article = nil
+        
+        UIView.animate(withDuration: 0.5) {
+            self.navigator.alpha = 0
+            self.articleView.alpha = 0
+        } completion: { (complete: Bool) in
+            self.articleView.removeFromSuperview()
+            self.navigator.removeFromSuperview()
+            self.articleView.key = nil
+            self.navigator.article = nil
+            self.scrollView.contentSize = self.glyphsView.frame.size
+            self.scrollView.contentOffset = .zero
+            self.scrollView.addSubview(self.articleView)
+            UIView.animate(withDuration: 0.5) {
+                self.glyphsView.alpha = 1
+            }
+        }
+
     }
             
 // Events ==========================================================================================
@@ -92,7 +109,7 @@ class NexusExplorer: AEViewController {
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 370*s, y: 700*s)
         let twinParadoxGlyph: AsideGlyph = AsideGlyph(article: Article.twinParadox, radius: 54*s+2*p, x: 70*s, y: 630*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 190*s, y: 930*s)
-        let symetricGlyph: AsideGlyph = AsideGlyph(article: Article.symmetric, radius: 54*s+2*p, x: 330*s, y: 1600*s)
+        let symetricGlyph: AsideGlyph = AsideGlyph(article: Article.symmetric, radius: 64*s+2*p, x: 330*s, y: 1600*s)
         let blackShieldGlyph: AsideGlyph = AsideGlyph(article: Article.blackShield, radius: 46*s+2*p, x: 380*s, y: 1700*s)
         let quantumBellGlyph: AsideGlyph = AsideGlyph(article: Article.quantumBell, radius: 60*s+2*p, x: 280*s, y: 1800*s)
 
@@ -161,7 +178,6 @@ class NexusExplorer: AEViewController {
         articleView.scrollView = scrollView
         
         navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
-        view.addSubview(navigator)        
     }
     
     override func layoutRatio056() {
@@ -170,7 +186,7 @@ class NexusExplorer: AEViewController {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
         glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 700, height: 3000)
-        articleView.frame = glyphsView.frame
+        articleView.frame = CGRect(x: 20*s, y: 0, width: 700, height: 3000)
         scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 700, height: view.height-Screen.safeTop-Screen.safeBottom)
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size

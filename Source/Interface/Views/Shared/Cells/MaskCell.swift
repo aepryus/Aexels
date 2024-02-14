@@ -13,9 +13,9 @@ import UIKit
 class MaskCell: LimboCell {
     let evMaskView: MaskView
     
-    init(content: UIView, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
+    init(content: UIView, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, cutout: Bool = false) {
         evMaskView = MaskView(content: content)
-        super.init(content: evMaskView, c: c, r: r, w: w, h: h)
+        super.init(content: evMaskView, c: c, r: r, w: w, h: h, cutout: cutout)
         addSubview(self.evMaskView)
     }
     init(frame: CGRect, content: UIView) {
@@ -26,16 +26,15 @@ class MaskCell: LimboCell {
     }
     required init?(coder aDecoder: NSCoder) {fatalError()}
     
-    func bringContentToFront() {
-        bringSubviewToFront(evMaskView)
-    }
+    func bringContentToFront() { bringSubviewToFront(evMaskView) }
     
 // UIView ==========================================================================================
     override var frame: CGRect {
         didSet {
             guard bounds != CGRect.zero else {return}
             evMaskView.frame = bounds
-            evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*s, dy: 7*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
+//            evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*s, dy: 7*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
+            evMaskView.path = path.maskPath
         }
     }
 }

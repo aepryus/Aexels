@@ -12,7 +12,7 @@ import OoviumKit
 import UIKit
 
 class KinematicsExplorer: Explorer {
-	let message: MessageLimbo = MessageLimbo()
+//	let message: MessageLimbo = MessageLimbo()
 	
     let zoneA: UIView = UIView()
 	let zoneB: UIView = UIView()
@@ -38,6 +38,8 @@ class KinematicsExplorer: Explorer {
 
 	var isFirst: Bool = false
     
+    let articleScroll: UIScrollView = UIScrollView()
+    let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 5)
 
 	init() {
@@ -47,7 +49,7 @@ class KinematicsExplorer: Explorer {
 		
 		playButton = PlayButton()
 		
-		super.init(name: "Kinematics", key: "kinematics", canExplore: true)
+		super.init(name: "Kinematics", key: "kinematics")
 	}
 
 // UIVIewController ================================================================================
@@ -60,6 +62,12 @@ class KinematicsExplorer: Explorer {
         newtonianView.onTic = { [unowned self] (velocity: V2) in
             self.loopVector.vector = velocity
         }
+        
+        articleView.font = UIFont(name: "Verdana", size: 18*s)!
+        articleView.color = .white
+        articleView.scrollView = articleScroll
+        articleView.key = "kinematicsLab"
+        articleScroll.addSubview(articleView)
         
         // Universe
         universePicker = SliderView { [unowned self] (page: String) in
@@ -223,23 +231,8 @@ class KinematicsExplorer: Explorer {
         }
         
         // Message
-        message.key = "KinematicsLab"
+//        message.key = "KinematicsLab"
         
-        // Close
-        close.alpha = 0
-        close.addAction(for: .touchUpInside) { [unowned self] in
-            self.isFirst = true
-            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-        }
-
-        closeButton.alpha = 0
-        closeButton.addAction(for: .touchUpInside) { [unowned self] in
-            self.isFirst = true
-            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-        }
-
         // Swapper =========================
         if Screen.iPhone {
             swapButton.addAction(for: .touchUpInside) { [unowned self] in
@@ -279,7 +272,7 @@ class KinematicsExplorer: Explorer {
 
         cyto.cells = [
             LimboCell(content: kinematicsView, c: 0, r: 0, w: 4),
-            LimboCell(content: UIView(), c: 4, r: 0, h: 2, cutout: true),
+            MaskCell(content: articleScroll, c: 4, r: 0, h: 2, cutout: true),
             LimboCell(content: zoneB, c: 0, r: 1),
             LimboCell(content: zoneA, c: 1, r: 1),
             LimboCell(content: zoneC, c: 2, r: 1),
@@ -287,6 +280,26 @@ class KinematicsExplorer: Explorer {
         ]
         cyto.layout()
         view.addSubview(cyto)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if universePicker.pageNo == 0 {
+            Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+                self.newtonianView.tic()
+                complete()
+            }
+        } else {
+            Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+                self.kinematicsView.tic()
+                complete()
+            }
+        }
+        Aexels.sync.link.preferredFramesPerSecond = 60
+        playButton.play()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        playButton.stop()
     }
     
 // AEViewController ================================================================================
@@ -299,11 +312,11 @@ class KinematicsExplorer: Explorer {
 //        let p: CGFloat = 5*s
         let uw: CGFloat = height - 110*s
 
-        message.closeOn = true
-        message.renderPaths()
-        message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)
+//        message.closeOn = true
+//        message.renderPaths()
+//        message.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 70*s, right: 0)
 
-        closeButton.topLeft(dx: message.right-50*s, dy: message.top, width: 50*s, height: 50*s)
+//        closeButton.topLeft(dx: message.right-50*s, dy: message.top, width: 50*s, height: 50*s)
 
         universePicker.center(size: CGSize(width: 120*s, height: 67*s))
         
@@ -322,6 +335,10 @@ class KinematicsExplorer: Explorer {
         cyto.Ys = [uw]
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
+        
+        articleView.load()
+        articleScroll.contentSize = articleView.scrollViewContentSize
+        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
     }
 
     
@@ -343,37 +360,37 @@ class KinematicsExplorer: Explorer {
 	
 	
 // Events ==========================================================================================
-	override func onOpen() {
-		if universePicker.pageNo == 0 {
-			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-				self.newtonianView.tic()
-				complete()
-			}
-		} else {
-			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-				self.kinematicsView.tic()
-				complete()
-			}
-		}
-		Aexels.sync.link.preferredFramesPerSecond = 60
-	}
-	override func onOpened() {
-		playButton.play()
-	}
-	override func onClose() {
-		playButton.stop()
-		if Screen.iPhone {
-			swapButton.resetView()
-//			limbos = first + [swapper, close]
-		}
-	}
+//	override func onOpen() {
+//		if universePicker.pageNo == 0 {
+//			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+//				self.newtonianView.tic()
+//				complete()
+//			}
+//		} else {
+//			Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+//				self.kinematicsView.tic()
+//				complete()
+//			}
+//		}
+//		Aexels.sync.link.preferredFramesPerSecond = 60
+//	}
+//	override func onOpened() {
+//		playButton.play()
+//	}
+//	override func onClose() {
+//		playButton.stop()
+//		if Screen.iPhone {
+//			swapButton.resetView()
+////			limbos = first + [swapper, close]
+//		}
+//	}
 
 // Explorer ========================================================================================
 	override func layout375x667() {
 		let size = UIScreen.main.bounds.size
 		
 		let h = size.height - 110*s - 20*s
-		let w = size.width - 10*s
+//		let w = size.width - 10*s
 		let ch = size.height - 20*s - h - 15*2*s + 1*s
 		let vw: CGFloat = 72*s
 
@@ -405,18 +422,18 @@ class KinematicsExplorer: Explorer {
 
 		swapper.frame = CGRect(x: 5*s, y: (667-56-5)*s, width: 56*s, height: 56*s)
 
-		message.frame = CGRect(x: 5*s, y: 20*s, width: w, height: size.height-20*s-5*s)
-		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-		message.renderPaths()
+//		message.frame = CGRect(x: 5*s, y: 20*s, width: w, height: size.height-20*s-5*s)
+//		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//		message.renderPaths()
 
-		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
+//		close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
 	}
 	override func layout375x812() {
 		let size = UIScreen.main.bounds.size
 		
 		let h = size.height - 110*s - 20*s
-		let w = size.width - 10*s
+//		let w = size.width - 10*s
 		let ch = size.height - 20*s - h - 15*2*s + 1*s
 		let vw: CGFloat = 72*s
 //		let sh: CGFloat = 56*s
@@ -446,12 +463,12 @@ class KinematicsExplorer: Explorer {
 		
 		universePicker.center(size: CGSize(width: 120*s, height: ch-12*s))
 		
-		message.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
-		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-		message.renderPaths()
+//		message.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+//		message.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//		message.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//		message.renderPaths()
 		
-		swapper.topLeft(dx: 5*s, dy: message.bottom-56*s, width: 56*s, height: 56*s)
-        close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
+//		swapper.topLeft(dx: 5*s, dy: message.bottom-56*s, width: 56*s, height: 56*s)
+//        close.topLeft(dx: message.right-139*s, dy: message.bottom-60*s, width: 139*s, height: 60*s)
 	}
 }

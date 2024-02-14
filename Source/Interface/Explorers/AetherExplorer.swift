@@ -44,20 +44,23 @@ class AetherExplorer: Explorer {
     var second: [Limbo] = [Limbo]()
     var isFirst: Bool = false
     
+    let articleScroll: UIScrollView = UIScrollView()
+    let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
-    init() {
-        super.init(name: "Aether", key: "aether", canExplore: true)
-    }
+    init() { super.init(name: "Aether", key: "aether") }
 
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // AetherLimbo
-//        aetherLimbo.content = aexelsView
-        
+        articleView.font = UIFont(name: "Verdana", size: 18*s)!
+        articleView.color = .white
+        articleView.scrollView = articleScroll
+        articleView.key = "aetherLab"
+        articleScroll.addSubview(articleView)
+
         expAButton.addAction {
             self.experiments.forEach { $0.activated = false }
             self.aexelsView.experimentA()
@@ -131,19 +134,17 @@ class AetherExplorer: Explorer {
         
         cyto.cells = [
             LimboCell(content: aexelsView, c: 0, r: 0),
-            LimboCell(c: 1, r: 0, h: 2, cutout: true),
+            MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutout: true),
             LimboCell(content: expView, c: 0, r: 1)
         ]
         
         view.addSubview(cyto)
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
         super.viewWillAppear(animated)
         aexelsView.play()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear")
         super.viewWillDisappear(animated)
         aexelsView.stop()
     }
@@ -177,6 +178,10 @@ class AetherExplorer: Explorer {
         cyto.Ys = [uw]
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
+        
+        articleView.load()
+        articleScroll.contentSize = articleView.scrollViewContentSize
+        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
     }
     
 // =================================================================================================

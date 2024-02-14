@@ -44,8 +44,9 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     let largeView: CellularView = CellularView()
     let mediumView: CellularView = CellularView()
     let smallView: CellularView = CellularView()
+    let articleScroll: UIScrollView = UIScrollView()
+    let articleView: ArticleView = ArticleView()
     let dilatorView: DilatorView = DilatorView()
-    var messageLimbo: MessageLimbo = MessageLimbo()
     let controlsView: UIView = UIView()
     
 // Explorer ========================================================================================
@@ -82,6 +83,11 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             smallView.points = floorQ(x: 144*s, to: 4)
         }
         
+        articleView.font = UIFont(name: "Verdana", size: 18*s)!
+        articleView.color = .white
+        articleView.scrollView = articleScroll
+        articleScroll.addSubview(articleView)
+        
         play.onPlay = { [unowned self] in
             self.engine.start(aether: self.aetherView.aether)
         }
@@ -116,15 +122,25 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 3, h: 2),
             LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 3),
             LimboCell(content: controlsView, c: 1, r: 4),
-            LimboCell(c: 2, r: 0, cutout: true),
+            MaskCell(content: articleScroll, c: 2, r: 0, cutout: true),
             LimboCell(content: dilatorView, c: 2, r: 1, p: 12),
             ooviumCell
         ]
         cyto.layout()
         view.addSubview(cyto)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
+        engine.defineOnFire()
+        aetherView.layoutAetherPicker()
+        aetherView.snapAetherPicker()
+        aetherView.showToolBars()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        aetherView.dismissAetherPicker()
+        aetherView.snuffToolBars()
         play.stop()
     }
     
@@ -152,6 +168,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         cyto.Ys = [768*s-20*s-y-ch, ch, lW-ch-(768*s-20*s-y-ch), 176*s]
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
+        
+        articleView.load()
+        articleScroll.contentSize = articleView.scrollViewContentSize
+        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
         
         play.left(dx: sw/2-q-bw-15*s, size: CGSize(width: bw, height: 30*s))
         reset.left(dx: sw/2-bw/2-15*s, size: CGSize(width: bw, height: 30*s))
@@ -196,9 +216,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 	let play = PlayButton()
     
 	
-    init() {
-        super.init(name: "Cellular Automata", key: "cellular", canExplore: true)
-    }
+    init() { super.init(name: "Cellular Automata", key: "cellular") }
 	
 	func open(aether: Aether) {
 		play.stop()
@@ -218,33 +236,35 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 		}
 		
 		if aether.name == "Game of Life" {
-            messageLimbo.key = "GameOfLife"
+            articleView.key = "gameOfLife"
 		} else if aether.name == "Demons" {
-            messageLimbo.key = "Demons"
+            articleView.key = "demons"
 		} else {
-            messageLimbo.key = "Oovium"
+            articleView.key = "oovium"
 		}
-        messageLimbo.load()
+        articleView.load()
+        articleScroll.contentSize = articleView.scrollViewContentSize
+        articleScroll.contentOffset = .zero
 	}
 	
 	private func floorQ(x: CGFloat, to: Int) -> Int { Int(floor(x/CGFloat(to))*CGFloat(to)) }
 	
 // Events ==========================================================================================
-	override func onOpen() {
-		Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
-		engine.defineOnFire()
-		aetherView.layoutAetherPicker()
-	}
-	override func onOpening() {
-		aetherView.snapAetherPicker()
-		aetherView.showToolBars()
-	}
-	override func onOpened() {}
-	override func onClose() {
-		aetherView.dismissAetherPicker()
-		aetherView.snuffToolBars()
-		play.stop()
-	}
+//	override func onOpen() {
+//		Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
+//		engine.defineOnFire()
+//		aetherView.layoutAetherPicker()
+//	}
+//	override func onOpening() {
+//		aetherView.snapAetherPicker()
+//		aetherView.showToolBars()
+//	}
+//	override func onOpened() {}
+//	override func onClose() {
+//		aetherView.dismissAetherPicker()
+//		aetherView.snuffToolBars()
+//		play.stop()
+//	}
 	
 // Explorer ========================================================================================
     override func layout375x667() {

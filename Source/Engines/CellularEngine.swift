@@ -13,7 +13,7 @@ import OoviumEngine
 import OoviumKit
 import QuartzCore
 
-final class CellularEngine {
+class CellularEngine {
 	var aether: Aether!
 	private var auto: Auto!
 

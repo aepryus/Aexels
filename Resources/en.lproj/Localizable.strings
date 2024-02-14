@@ -757,14 +757,6 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 
 ";
 
-//let blackHoleGlyph: AsideGlyph = AsideGlyph(name: "Black Holes", radius: 40*s+2*p, x: 370*s, y: 700*s)
-//let twinParadoxGlyph: AsideGlyph = AsideGlyph(name: "Twin Paradox", radius: 54*s+2*p, x: 70*s, y: 630*s)
-//let narwhalGlyph: AsideGlyph = AsideGlyph(name: "Narwhal, Walrus and Dolphin", radius: 60*s+2*p, x: 190*s, y: 930*s)
-//let symetricGlyph: AsideGlyph = AsideGlyph(name: "Symetric Frames", radius: 54*s+2*p, x: 330*s, y: 1600*s)
-//let blackShieldGlyph: AsideGlyph = AsideGlyph(name: "Black Shield", radius: 46*s+2*p, x: 380*s, y: 1700*s)
-//let quantumBellGlyph: AsideGlyph = AsideGlyph(name: "Quantum and Bell", radius: 60*s+2*p, x: 280*s, y: 1800*s)
-
-
 "blackHole_name" = "Black Holes";
 "blackHole_article" = "Black Holes";
 
@@ -772,7 +764,19 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 "twinParadox_article" = "Twin Paradox";
 
 "narwhal_name" = "Narwhal, Walrus and Dolphin";
-"narwhal_article" = "Narwhal, Walrus and Dolphin";
+"narwhal_article" = "Narwhal, Walrus and Dolphin
+
+the Narwhal
+{{Narwhal.png}}
+
+the Dolphin
+{{Dolphin.png}}
+
+the Walrus
+{{Walrus.png}}
+
+
+";
 
 "symmetric_name" = "Symmetric Frames";
 "symmetric_article" = "Symmetric Frames";
@@ -783,7 +787,7 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 "quantumBell_name" = "Quantum and Bell";
 "quantumBell_article" = "Quantum and Bell";
 
-"GameOfLife" = "Cellular Automata Lab
+"gameOfLife_article" = "Cellular Automata Lab
 
 This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 
@@ -816,7 +820,7 @@ For the purpose of Universe X there are a number of important qualitative concep
 
 ";
 
-"Demons" = "Demons
+"demons_article" = "Demons
 
 Another type of cellular automaton, is the cyclic cellular automaton devised by David Griffeath of the University of Wisconsin.  And while perhaps not quite as fruitful as Game of Life in generating complex systems, it does nicely illustrate a number of important qualitative concepts, in addition to making pretty cool pictures.
 
@@ -827,7 +831,7 @@ If any of the neighboring cells is in a state that is one more than the current 
 
 ";
 
-"Oovium" = "Oovium
+"oovium_article" = "Oovium
 
 Using the Oovium visual programming language it is possible to define custom cellular automata.
 
@@ -844,7 +848,7 @@ More about learning how to use the Oovium visual programming language including 
 
 ";
 
-"KinematicsLab" = "Kinematics Lab
+"kinematicsLab_article" = "Kinematics Lab
 
 Motion in our own universe can be described entirely by a vector which represents the velocity of a given object.  In Universe X, however there are two distinct forms of motion: translation across the aether and the flow of the aether itself.  In order to fully describe motion in Universe X, one must know both the translating vector and the aethereal flow vector, as well as the density and geometry of the aexels themselves.
 
@@ -866,7 +870,7 @@ In this case the aether is modeled simplistically with regular 2 dimensional hex
 
 ";
 
-"AetherLab" = "Aether Lab
+"aetherLab_article" = "Aether Lab
 
 Note: In addition to the new experiments a number of interactive abilities have been added:
 
@@ -890,7 +894,7 @@ Currently, this model does a respectable job of healing holes in the aether fabr
 
 ";
 
-"DilationLab" = "Dilation Lab
+"dilationLab_article" = "Dilation Lab
 
 Cheat Sheet:
 - Play / Pause: to pause and unpause the simulation
@@ -941,7 +945,7 @@ In Universe X, there is no Twin Paradox.
 
 ";
 
-"ContractionLab" = "Contraction Lab
+"contractionLab_article" = "Contraction Lab
 
 Cheat Sheet:
 - Play / Pause: to pause and unpause the simulation

@@ -23,7 +23,6 @@ class ContractionExplorer: Explorer {
     let contractSwap: BoolButton = BoolButton(text: "contract")
     let pulseButton: PulseButton = PulseButton()
     let controlsView: UIView = UIView()
-    let messageLimbo: MessageLimbo = MessageLimbo()
     let closeLimbo = LimboButton(title: "Close")
     let closeButton: CloseButton = CloseButton()
     
@@ -38,6 +37,8 @@ class ContractionExplorer: Explorer {
     var second: [Limbo] = []
     var isFirst: Bool = false
     
+    let articleScroll: UIScrollView = UIScrollView()
+    let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
     init() {
@@ -48,7 +49,7 @@ class ContractionExplorer: Explorer {
 
         engine = DilationEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen), horizontalOn: true)
 
-        super.init(name: "Contraction", key: "contraction", canExplore: true)
+        super.init(name: "Contraction", key: "contraction")
 
         engine.onVelocityChange = { (v: TCVelocity) in
             let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)
@@ -59,7 +60,14 @@ class ContractionExplorer: Explorer {
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
+        
+        articleView.font = UIFont(name: "Verdana", size: 18*s)!
+        articleView.color = .white
+        articleView.scrollView = articleScroll
+        articleView.key = "contractionLab"
+        articleScroll.addSubview(articleView)
+
         // DilationLimbo
         dilationLimbo.content = dilationView
         
@@ -114,44 +122,31 @@ class ContractionExplorer: Explorer {
         }
         
         // MessageLimbo
-        messageLimbo.key = "ContractionLab"
+//        messageLimbo.key = "ContractionLab"
 
         // Swapper =========================
-        if Screen.iPhone {
-            swapButton.addAction(for: .touchUpInside) { [unowned self] in
-                self.swapButton.rotateView()
-                if self.isFirst {
-                    self.isFirst = false
-                    self.dimLimbos(self.first)
-                    self.brightenLimbos(self.second)
-//                    self.limbos = [self.swapper] + self.second + [self.closeLimbo]
-                } else {
-                    self.isFirst = true
-                    self.dimLimbos(self.second)
-                    self.brightenLimbos(self.first)
-//                    self.limbos = [self.swapper] + self.first + [self.closeLimbo]
-                }
-                self.swapper.removeFromSuperview()
-                self.view.addSubview(self.swapper)
-                self.closeLimbo.removeFromSuperview()
-                self.view.addSubview(self.closeLimbo)
-            }
-            swapper.content = swapButton
-        }
+//        if Screen.iPhone {
+//            swapButton.addAction(for: .touchUpInside) { [unowned self] in
+//                self.swapButton.rotateView()
+//                if self.isFirst {
+//                    self.isFirst = false
+//                    self.dimLimbos(self.first)
+//                    self.brightenLimbos(self.second)
+////                    self.limbos = [self.swapper] + self.second + [self.closeLimbo]
+//                } else {
+//                    self.isFirst = true
+//                    self.dimLimbos(self.second)
+//                    self.brightenLimbos(self.first)
+////                    self.limbos = [self.swapper] + self.first + [self.closeLimbo]
+//                }
+//                self.swapper.removeFromSuperview()
+//                self.view.addSubview(self.swapper)
+//                self.closeLimbo.removeFromSuperview()
+//                self.view.addSubview(self.closeLimbo)
+//            }
+//            swapper.content = swapButton
+//        }
 
-        // CloseLimbo
-        closeLimbo.alpha = 0
-        closeLimbo.addAction(for: .touchUpInside) { [unowned self] in
-            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-        }
-
-        closeButton.alpha = 0
-        closeButton.addAction(for: .touchUpInside) { [unowned self] in
-            self.closeExplorer()
-//            Aexels.nexus.brightenNexus()
-        }
-        
         // Labels
         let pen: Pen = Pen(font: .verdana(size: 15*s), color: .white, alignment: .center)
         let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .center)
@@ -188,12 +183,20 @@ class ContractionExplorer: Explorer {
         
         cyto.cells = [
             LimboCell(content: dilationView, c: 0, r: 0),
-            LimboCell(content: UIView(), c: 1, r: 0, h: 2, cutout: true),
+            MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutout: true),
             LimboCell(content: controlsView, c: 0, r: 1),
         ]
         view.addSubview(cyto)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        engine.play()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        engine.stop()
+    }
+
 // AEViewController ================================================================================
     override func layout1024x768() {
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -209,6 +212,9 @@ class ContractionExplorer: Explorer {
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
 
+        articleView.load()
+        articleScroll.contentSize = articleView.scrollViewContentSize
+        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
         
         let bw: CGFloat = 40*s
         playButton.left(size: CGSize(width: bw, height: 30*s))
@@ -237,20 +243,20 @@ class ContractionExplorer: Explorer {
 // =================================================================================================
 
 // Events ==========================================================================================
-    override func onOpen() {
-        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.engine.tic()
-            complete()
-        }
-        Aexels.sync.link.preferredFramesPerSecond = 60
-        
-    }
-    override func onOpened() { engine.play() }
-    override func onClose() { engine.stop() }
+//    override func onOpen() {
+//        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+//            self.engine.tic()
+//            complete()
+//        }
+//        Aexels.sync.link.preferredFramesPerSecond = 60
+//        
+//    }
+//    override func onOpened() { engine.play() }
+//    override func onClose() { engine.stop() }
 
 // Explorer ========================================================================================
-    override func createLimbos() {
-    }
+//    override func createLimbos() {
+//    }
     override func layout375x667() {
         let w = UIScreen.main.bounds.size.width - 10*s
 
@@ -261,13 +267,13 @@ class ContractionExplorer: Explorer {
 
         dilationLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: controlsView.top-Screen.safeTop)
 
-        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
-        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
-        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
-        messageLimbo.renderPaths()
+//        messageLimbo.frame = CGRect(x: 5*s, y: Screen.safeTop, width: w, height: Screen.height-Screen.safeTop-Screen.safeBottom)
+//        messageLimbo.cutouts[Position.bottomRight] = Cutout(width: 139*s, height: 60*s)
+//        messageLimbo.cutouts[Position.bottomLeft] = Cutout(width: 56*s, height: 56*s)
+//        messageLimbo.renderPaths()
         
-        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
-        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
+//        swapper.topLeft(dx: 5*s, dy: messageLimbo.bottom-56*s, width: 56*s, height: 56*s)
+//        closeLimbo.topLeft(dx: messageLimbo.right-139*s, dy: messageLimbo.bottom-60*s, width: 139*s, height: 60*s)
         
         playButton.topLeft(dx: 12*s, dy: 28*s, size: CGSize(width: 40*s, height: 30*s))
         resetButton.topLeft(dx: 15*s, dy: playButton.bottom+12*s, size: CGSize(width: 40*s, height: 30*s))

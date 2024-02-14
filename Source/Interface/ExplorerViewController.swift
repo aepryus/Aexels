@@ -58,6 +58,10 @@ class ExplorerViewController: UIViewController {
         didSet {
             guard explorer != oldValue else { return }
             if let nexusExplorer: NexusExplorer = explorer as? NexusExplorer {
+                nexusExplorer.articleView.removeFromSuperview()
+                nexusExplorer.navigator.removeFromSuperview()
+                nexusExplorer.articleView.alpha = 0
+                nexusExplorer.navigator.alpha = 0
                 nexusExplorer.showGlyphs()
                 graphView.timer.start()
                 DispatchQueue.main.async { self.startMusic() }
@@ -65,26 +69,26 @@ class ExplorerViewController: UIViewController {
                 graphView.timer.stop()
                 stopMusic()
             }
-            
+
             if let oldValue { oldValue.view.removeFromSuperview() }
-            
+
             guard let explorer else { return }
             explorer.view.alpha = 0
             explorer.view.frame = view.bounds
             
             if let explorer: Explorer = explorer as? Explorer {
-                explorer.openExplorer(view: view)
                 explorer.view.alpha = 1
                 view.addSubview(explorer.view)
             } else {
                 view.addSubview(explorer.view)
                 UIView.animate(withDuration: 0.2) { explorer.view.alpha = 1 }
             }
+//            visionBar.select(vision: visionB)
+            view.bringSubviewToFront(tripWire)
             view.bringSubviewToFront(visionBar)
         }
     }
     
-    var player: AVAudioPlayer?
     lazy var visionBar: VisionBar = {
         let visions: [[Vision?]] = [
             [
@@ -101,6 +105,8 @@ class ExplorerViewController: UIViewController {
         return visionBar
     }()
     
+    lazy var tripWire: TripWire = TripWire() { self.visionBar.contract() }
+    
     func initMusic() {
         guard let url: URL = Bundle.main.url(forResource: "Aexels3", withExtension: "mp3") else { return }
         do {
@@ -112,23 +118,33 @@ class ExplorerViewController: UIViewController {
         }
         catch { print("startMusic ERROR: \(error)") }
     }
-    func startMusic() {
-        player?.play()
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
-            guard let player = self.player else { return }
-            if player.volume < 1 { player.volume += 0.05 }
-            else { timer.invalidate() }
-        }
-    }
-    func stopMusic() {
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { timer in
-            guard let player = self.player else { return }
-            if player.volume > 0 { player.volume -= 0.05 }
-            else {
-                player.stop()
-                timer.invalidate()
+    
+    var player: AVAudioPlayer?
+    var musicOn: Bool = false
+    var timer: Timer? = nil
+    private func rampVolume() {
+        guard let player else { return }
+        if timer == nil {
+            if !player.isPlaying { player.play() }
+            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (timer: Timer) in
+                guard let player = self.player else { return }
+                if self.musicOn { player.volume += 0.05 }
+                else { player.volume -= 0.05 }
+                if player.volume >= 1 || player.volume <= 0 {
+                    timer.invalidate()
+                    self.timer = nil
+                }
+                if player.volume <= 0 { player.stop() }
             }
         }
+    }
+    func startMusic() {
+        musicOn = true
+        rampVolume()
+    }
+    func stopMusic() {
+        musicOn = false
+        rampVolume()
     }
     
 // UIViewController ================================================================================
@@ -136,6 +152,7 @@ class ExplorerViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(imageView)
         view.addSubview(graphView)
+        view.addSubview(tripWire)
         view.addSubview(visionBar)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
 
@@ -146,6 +163,7 @@ class ExplorerViewController: UIViewController {
     }
     override func viewWillLayoutSubviews() {
         imageView.frame = view.bounds
+        tripWire.frame = view.bounds
         graphView.topLeft(dx: 510*s, dy: 10*s, width: 600*s, height: 800*s)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
     }
