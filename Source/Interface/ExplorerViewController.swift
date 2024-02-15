@@ -57,36 +57,41 @@ class ExplorerViewController: UIViewController {
     var explorer: AEViewController? = nil {
         didSet {
             guard explorer != oldValue else { return }
-            if let nexusExplorer: NexusExplorer = explorer as? NexusExplorer {
-                nexusExplorer.articleView.removeFromSuperview()
-                nexusExplorer.navigator.removeFromSuperview()
-                nexusExplorer.articleView.alpha = 0
-                nexusExplorer.navigator.alpha = 0
-                nexusExplorer.interchange.alpha = 0
-                nexusExplorer.showGlyphs()
-                graphView.timer.start()
-                DispatchQueue.main.async { self.startMusic() }
-            } else if oldValue is NexusExplorer {
+            if oldValue is NexusExplorer {
                 graphView.timer.stop()
                 stopMusic()
             }
+            UIView.animate(withDuration: 0.5) {
+                oldValue?.view.alpha = 0
+            } completion: { (complete: Bool) in
+                if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
+                    nexusExplorer.articleView.removeFromSuperview()
+                    nexusExplorer.navigator.removeFromSuperview()
+                    nexusExplorer.articleView.alpha = 0
+                    nexusExplorer.navigator.alpha = 0
+                    nexusExplorer.interchange.alpha = 0
+                    nexusExplorer.showGlyphs()
+                    self.graphView.timer.start()
+                    DispatchQueue.main.async { self.startMusic() }
+                }
+                if let oldValue { oldValue.view.removeFromSuperview() }
 
-            if let oldValue { oldValue.view.removeFromSuperview() }
+                guard let explorer = self.explorer else { return }
+                explorer.view.alpha = 0
+                explorer.view.frame = self.view.bounds
+                
+                if let explorer: Explorer = explorer as? Explorer {
+                    self.visionBar.select(vision: explorer.vision)
+                    self.view.addSubview(explorer.view)
+                } else {
+                    self.view.addSubview(explorer.view)
+                }
+                self.view.bringSubviewToFront(self.tripWire)
+                self.view.bringSubviewToFront(self.visionBar)
 
-            guard let explorer else { return }
-            explorer.view.alpha = 0
-            explorer.view.frame = view.bounds
-            
-            if let explorer: Explorer = explorer as? Explorer {
-                explorer.view.alpha = 1
-                view.addSubview(explorer.view)
-            } else {
-                view.addSubview(explorer.view)
-                UIView.animate(withDuration: 0.2) { explorer.view.alpha = 1 }
+                UIView.animate(withDuration: 0.5) { explorer.view.alpha = 1 }
             }
-//            visionBar.select(vision: visionB)
-            view.bringSubviewToFront(tripWire)
-            view.bringSubviewToFront(visionBar)
+
         }
     }
     
@@ -94,11 +99,11 @@ class ExplorerViewController: UIViewController {
         let visions: [[Vision?]] = [
             [
                 ExplorerVision(explorer: Aexels.nexusExplorer),
-                ExplorerVision(explorer: Aexels.aetherExplorer),
-                ExplorerVision(explorer: Aexels.cellularExplorer),
-                ExplorerVision(explorer: Aexels.kinematicsExplorer),
-                ExplorerVision(explorer: Aexels.dilationExplorer),
-                ExplorerVision(explorer: Aexels.contractionExplorer)
+                Aexels.aetherExplorer.vision,
+                Aexels.cellularExplorer.vision,
+                Aexels.kinematicsExplorer.vision,
+                Aexels.dilationExplorer.vision,
+                Aexels.contractionExplorer.vision
             ]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)

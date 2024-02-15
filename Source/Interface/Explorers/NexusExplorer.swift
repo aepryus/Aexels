@@ -22,7 +22,6 @@ class NexusExplorer: AEViewController {
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
-//        view.addSubview(navigator)
         view.addSubview(interchange)
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0

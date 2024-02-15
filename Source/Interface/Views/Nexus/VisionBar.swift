@@ -22,9 +22,7 @@ public class Vision: AEView {
     func rescale() {}
     
 // Events ==========================================================================================
-    @objc func onTap() {
-        visionBar.select(vision: self)
-    }
+    @objc func onTap() { visionBar.tap(vision: self) }
     func onSelect() {}
     func onDeselect() {}
     
@@ -124,15 +122,24 @@ class VisionBar: AEView {
     }
     
     func select(vision: Vision) {
+        selected = vision
+        selected.topLeft(dx: (self.noOfColumns-1)*40*self.s, width: 40*self.s, height: 40*self.s)
+        selected.alpha = 1
+        addSubview(selected)
+        visionBox.visions.forEach({ $0.forEach({ if let vision = $0, vision !== self.selected {
+            vision.alpha = 0
+            vision.removeFromSuperview()
+        } }) })
+
+    }
+    func tap(vision: Vision) {
         if expanded {
             selected.onDeselect()
             selected = vision
             selected.onSelect()
             onSelect(vision)
             contract()
-        } else {
-            expand()
-        }
+        } else { expand() }
     }
     
 // Events ==========================================================================================
