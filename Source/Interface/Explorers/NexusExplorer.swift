@@ -22,14 +22,17 @@ class NexusExplorer: AEViewController {
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
-        view.addSubview(navigator)
+//        view.addSubview(navigator)
+        view.addSubview(interchange)
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0
             self.navigator.alpha = 0
             self.articleView.alpha = 0
+            self.interchange.alpha = 0
         } completion: { (complete: Bool) in
             self.articleView.key = article.key
             self.navigator.article = article
+            self.interchange.article = article
             self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
             self.scrollView.contentOffset = .zero
@@ -37,6 +40,7 @@ class NexusExplorer: AEViewController {
             UIView.animate(withDuration: 0.5) {
                 self.articleView.alpha = 1
                 self.navigator.alpha = 1
+                self.interchange.alpha = 1
             }
         }
     }
@@ -47,10 +51,12 @@ class NexusExplorer: AEViewController {
         
         UIView.animate(withDuration: 0.5) {
             self.navigator.alpha = 0
+            self.interchange.alpha = 0
             self.articleView.alpha = 0
         } completion: { (complete: Bool) in
             self.articleView.removeFromSuperview()
             self.navigator.removeFromSuperview()
+            self.interchange.removeFromSuperview()
             self.articleView.key = nil
             self.navigator.article = nil
             self.scrollView.contentSize = self.glyphsView.frame.size
@@ -189,14 +195,13 @@ class NexusExplorer: AEViewController {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
         glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 510*s, height: 2187*s)
-        articleView.frame = CGRect(x: 20*s, y: 0, width: 510*s, height: 2187*s)
-        scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 510*s, height: view.height-Screen.safeTop-Screen.safeBottom)
+        scrollView.frame = CGRect(x: 10*s, y: Screen.safeTop, width: 550*s, height: view.height-Screen.safeTop-Screen.safeBottom)
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size
         }
         
         navigator.render()
         navigator.topLeft(dx: 5*s, dy: navigator.width)
-        interchange.topLeft(dx: articleView.right+5*s, dy: Screen.safeTop+5*s, width: 360*s, height: 240*s)
+        interchange.topLeft(dx: scrollView.right-20*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
     }
 }

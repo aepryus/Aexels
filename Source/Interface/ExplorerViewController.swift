@@ -62,6 +62,7 @@ class ExplorerViewController: UIViewController {
                 nexusExplorer.navigator.removeFromSuperview()
                 nexusExplorer.articleView.alpha = 0
                 nexusExplorer.navigator.alpha = 0
+                nexusExplorer.interchange.alpha = 0
                 nexusExplorer.showGlyphs()
                 graphView.timer.start()
                 DispatchQueue.main.async { self.startMusic() }

@@ -42,7 +42,9 @@ class Aexels {
 		window.makeKeyAndVisible()
 		window.rootViewController = explorerViewController
 
-		let oldVersion: String? = Aexels.basket.get(key: "version")
+        Article.wire()
+
+        let oldVersion: String? = Aexels.basket.get(key: "version")
 		if oldVersion == nil { Local.archiveXML() }
 		if oldVersion != Aexels.version {
 			Aexels.shippedAethers.forEach { Local.installAetherFromBundle(name: $0) }

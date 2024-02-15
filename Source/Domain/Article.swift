@@ -13,7 +13,14 @@ class Article {
     var parent: Article? = nil
     var children: [Article] = []
     var explorers: [Explorer] = []
-    var next: Article? = nil
+    var next: Article? = nil {
+        didSet {
+            guard next !== oldValue else { return }
+            oldValue?.prev = nil
+            guard let next else { return }
+            next.prev = self
+        }
+    }
     var prev: Article? = nil
     
     init(key: String, parent: Article? = nil) {
@@ -57,4 +64,25 @@ class Article {
     static let symmetric : Article = Article(key: "symmetric", parent: discrepancy)
     static let blackShield : Article = Article(key: "blackShield", parent: discrepancy)
     static let quantumBell : Article = Article(key: "quantumBell", parent: discrepancy)
+    
+    static func wire() {
+        intro.next = aether
+        aether.next = cellular
+        cellular.next = kinematics
+        kinematics.next = gravity
+        gravity.next = dilation
+        dilation.next = contraction
+        contraction.next = darkness
+        darkness.next = equivalence
+        equivalence.next = electromagnetism
+        electromagnetism.next = discrepancy
+        discrepancy.next = epilogue
+        symmetric.next = blackShield
+        blackShield.next = quantumBell
+        aether.explorers.append(Aexels.aetherExplorer)
+        cellular.explorers.append(Aexels.cellularExplorer)
+        kinematics.explorers.append(Aexels.kinematicsExplorer)
+        dilation.explorers.append(Aexels.dilationExplorer)
+        contraction.explorers.append(Aexels.contractionExplorer)
+    }
 }
