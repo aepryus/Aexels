@@ -67,7 +67,19 @@ class NexusExplorer: AEViewController {
         }
 
     }
-            
+    func snapGlyphs() {
+        articleView.removeFromSuperview()
+        navigator.removeFromSuperview()
+        interchange.removeFromSuperview()
+        scrollView.addSubview(glyphsView)
+        articleView.key = nil
+        navigator.article = nil
+        scrollView.contentSize = self.glyphsView.frame.size
+        scrollView.contentOffset = .zero
+        scrollView.addSubview(self.articleView)
+        glyphsView.alpha = 1
+    }
+
 // Events ==========================================================================================
     @objc func onTouch(gesture: TouchingGesture) {
         if gesture.state == .began {
