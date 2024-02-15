@@ -10,8 +10,8 @@ import Acheron
 import UIKit
 
 class Capsule: AEControl {
-    let lhs: String
-    let rhs: String
+    var lhs: String { didSet { render() } }
+    var rhs: String { didSet { render() } }
     
     static let pen: Pen = Pen(font: .optima(size: 12*Screen.s), color: .black.tint(0.4))
     
@@ -20,9 +20,14 @@ class Capsule: AEControl {
         self.rhs = rhs
         super.init()
         backgroundColor = .clear
+        render()
+    }
+    
+    private func render() {
         let lw: CGFloat = lhs.size(pen: Capsule.pen).width+6*s
         let rw: CGFloat = rhs.size(pen: Capsule.pen).width+10*s
         frame = CGRect(origin: frame.origin, size: CGSize(width: lw+rw+11*s, height: 20*s))
+        setNeedsDisplay()
     }
     
 // UIView ==========================================================================================
@@ -71,9 +76,12 @@ class AnchorCapsule: Capsule {
 }
 
 class ArticleCapsule: Capsule {
+    var article: Article { didSet { rhs = article.nameWithoutNL } }
+    
     init(_ lhs: String, article: Article) {
+        self.article = article
         super.init(lhs, article.nameWithoutNL)
-        addAction { Aexels.nexusExplorer.show(article: article) }
+        addAction { Aexels.nexusExplorer.show(article: self.article) }
     }
 }
 

@@ -67,8 +67,10 @@ class ExplorerViewController: UIViewController {
                 if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
                     nexusExplorer.articleView.removeFromSuperview()
                     nexusExplorer.navigator.removeFromSuperview()
+                    nexusExplorer.currentCapsule.removeFromSuperview()
                     nexusExplorer.articleView.alpha = 0
                     nexusExplorer.navigator.alpha = 0
+                    nexusExplorer.currentCapsule.alpha = 0
                     nexusExplorer.interchange.alpha = 0
                     nexusExplorer.snapGlyphs()
                     self.graphView.timer.start()

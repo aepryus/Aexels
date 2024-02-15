@@ -19,18 +19,22 @@ class NexusExplorer: AEViewController {
     let navigator: ArticleNavigator = ArticleNavigator()
     let articleView: ArticleView = ArticleView()
     let interchange: Interchange = Interchange()
+    var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
-        view.addSubview(interchange)
+        if interchange.superview == nil { view.addSubview(interchange) }
+        if currentCapsule.superview == nil { view.addSubview(currentCapsule) }
         UIView.animate(withDuration: 0.5) {
             self.glyphsView.alpha = 0
             self.navigator.alpha = 0
+            self.currentCapsule.alpha = 0
             self.articleView.alpha = 0
             self.interchange.alpha = 0
         } completion: { (complete: Bool) in
             self.articleView.key = article.key
             self.navigator.article = article
+            self.currentCapsule.article = article
             self.interchange.article = article
             self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
@@ -39,6 +43,7 @@ class NexusExplorer: AEViewController {
             UIView.animate(withDuration: 0.5) {
                 self.articleView.alpha = 1
                 self.navigator.alpha = 1
+                self.currentCapsule.alpha = 1
                 self.interchange.alpha = 1
             }
         }
@@ -50,11 +55,13 @@ class NexusExplorer: AEViewController {
         
         UIView.animate(withDuration: 0.5) {
             self.navigator.alpha = 0
+            self.currentCapsule.alpha = 0
             self.interchange.alpha = 0
             self.articleView.alpha = 0
         } completion: { (complete: Bool) in
             self.articleView.removeFromSuperview()
             self.navigator.removeFromSuperview()
+            self.currentCapsule.removeFromSuperview()
             self.interchange.removeFromSuperview()
             self.articleView.key = nil
             self.navigator.article = nil
@@ -70,6 +77,7 @@ class NexusExplorer: AEViewController {
     func snapGlyphs() {
         articleView.removeFromSuperview()
         navigator.removeFromSuperview()
+        currentCapsule.removeFromSuperview()
         interchange.removeFromSuperview()
         scrollView.addSubview(glyphsView)
         articleView.key = nil
@@ -195,7 +203,8 @@ class NexusExplorer: AEViewController {
         view.addSubview(scrollView)
         articleView.scrollView = scrollView
         
-        navigator.transform = CGAffineTransform(rotationAngle: -.pi/2)
+        currentCapsule.transform = CGAffineTransform(rotationAngle: -.pi/2)
+        view.addSubview(currentCapsule)
         
         view.addSubview(interchange)
     }
@@ -206,13 +215,14 @@ class NexusExplorer: AEViewController {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
         glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 510*s, height: 2187*s)
-        scrollView.frame = CGRect(x: 10*s, y: Screen.safeTop, width: 550*s, height: view.height-Screen.safeTop-Screen.safeBottom)
+        scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 540*s, height: view.height-Screen.safeTop-Screen.safeBottom)
         if glyphsView.superview != nil {
             scrollView.contentSize = glyphsView.frame.size
         }
         
         navigator.render()
         navigator.topLeft(dx: 5*s, dy: navigator.width)
+        currentCapsule.topLeft(dx: 3*s, dy: Screen.safeTop+5*s)
         interchange.topLeft(dx: scrollView.right-20*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
     }
 }
