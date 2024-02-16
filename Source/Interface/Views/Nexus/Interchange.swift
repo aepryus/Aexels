@@ -23,7 +23,7 @@ class Capsule: AEControl {
         render()
     }
     
-    private func render() {
+    func render() {
         let lw: CGFloat = lhs.size(pen: Capsule.pen).width+6*s
         let rw: CGFloat = rhs.size(pen: Capsule.pen).width+10*s
         frame = CGRect(origin: frame.origin, size: CGSize(width: lw+rw+11*s, height: 20*s))

@@ -18,7 +18,6 @@
 		D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */; };
 		D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngine.swift */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
-		D843DA322B7A3D7E0043DC49 /* ArticleNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D843DA312B7A3D7E0043DC49 /* ArticleNavigator.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DiliationEngine.swift */; };
@@ -102,7 +101,6 @@
 		D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusExplorer.swift; sourceTree = "<group>"; };
 		D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewController.swift; sourceTree = "<group>"; };
 		D813B7682AA6B892003851AE /* GravityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngine.swift; sourceTree = "<group>"; };
-		D843DA312B7A3D7E0043DC49 /* ArticleNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNavigator.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DiliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiliationEngine.swift; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 				D8AE17C42814F1C700E74CB8 /* NexusLabel.swift */,
 				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
 				D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */,
-				D843DA312B7A3D7E0043DC49 /* ArticleNavigator.swift */,
 				D88878BF2B7CBAF900BB3D09 /* Interchange.swift */,
 			);
 			path = Nexus;
@@ -627,7 +624,6 @@
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
-				D843DA322B7A3D7E0043DC49 /* ArticleNavigator.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
 				D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */,
