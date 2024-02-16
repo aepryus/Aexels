@@ -58,6 +58,7 @@ class Article {
     static let discrepancy: Article = Article(key: "discrepancy")
     static let epilogue: Article = Article(key: "epilogue")
     
+    static let forward: Article = Article(key: "forward", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
     static let twinParadox : Article = Article(key: "twinParadox", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)

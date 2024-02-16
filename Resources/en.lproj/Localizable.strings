@@ -7,31 +7,7 @@
 */
 
 "intro_name" = "Universe X";
-"intro_article" = "Forward to 3.0
-
-Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
-
-However, with this version I am choosing to rewrite each of the articles based on the complete current understanding of Universe X.  Additionally I have removed 'Odds and Ends' and integrated its discussions into other sections.
-
-Aexels 3.0 also includes 3 new articles and 2 new explorers:
-
-Articles:
-- Electromagnetism: New insights have started to shine some light into the mechanism of E&M in Universe X; this contains some early conjecture.
-- Discrepancy: Potentially a substantial difference between Universe X and our Universe has been discovered
-- Epilogue: A list of about 30 physics questions that tend to be challenging to answer in our universe, are answered for Universe X.
-
-Explorers:
-- Dilation: Observe the actual mechanism underpinning 'animation' dilation in Universe X; see exactly when and how it occurs.
-- Contraction: While not explaining the mechanism causing length contraction, this simulation viscerally shows the importance of contraction and shows exactly what Lorentz covariance means and what it does not mean in Universe X.
-
-My hope is that Aexels 3.0 represents a significant step forward in the understanding of Universe X, but of course much work remains.  Qualitatively, the big picture is starting to come to light (although it too still has unknowns such as electromagnetism), but quantitatively almost everything still remains to be done.
-
-Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
-
-    - Joe
-
-
-A universe is discovered...
+"intro_article" = "A universe is discovered...
 
 Universe X
 
@@ -750,6 +726,36 @@ Our Universe Answers
 Answering the above questions in our Universe is actually quite a bit easier than answering them for Universe X.  Easier because each of the questions has the exact same answer:
 
     I have no idea.
+
+
+
+
+
+";
+
+"forward_name" = "Forward";
+"forward_article" = "Forward to 3.0
+
+Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
+
+However, with this version I am choosing to rewrite each of the articles based on the complete current understanding of Universe X.  Additionally I have removed 'Odds and Ends' and integrated its discussions into other sections.
+
+Aexels 3.0 also includes 3 new articles and 2 new explorers:
+
+Articles:
+- Electromagnetism: New insights have started to shine some light into the mechanism of E&M in Universe X; this contains some early conjecture.
+- Discrepancy: Potentially a substantial difference between Universe X and our Universe has been discovered
+- Epilogue: A list of about 30 physics questions that tend to be challenging to answer in our universe, are answered for Universe X.
+
+Explorers:
+- Dilation: Observe the actual mechanism underpinning 'animation' dilation in Universe X; see exactly when and how it occurs.
+- Contraction: While not explaining the mechanism causing length contraction, this simulation viscerally shows the importance of contraction and shows exactly what Lorentz covariance means and what it does not mean in Universe X.
+
+My hope is that Aexels 3.0 represents a significant step forward in the understanding of Universe X, but of course much work remains.  Qualitatively, the big picture is starting to come to light (although it too still has unknowns such as electromagnetism), but quantitatively almost everything still remains to be done.
+
+Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
+
+    - Joe
 
 
 

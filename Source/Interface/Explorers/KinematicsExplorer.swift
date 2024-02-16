@@ -19,11 +19,12 @@ class KinematicsExplorer: Explorer {
 	let zoneC: UIView = UIView()
 	let zoneD: UIView = UIView()
 	
-	let newtonianView: NewtownianView
-	let kinematicsView: KinematicsView
+	let newtonianView: NewtownianView = NewtownianView()
+	let kinematicsView: KinematicsView = KinematicsView()
+    lazy var universeCell: LimboCell = LimboCell(content: kinematicsView, c: 0, r: 0, w: 4)
 	
 	var universePicker: SliderView!
-	let playButton: PlayButton
+	let playButton: PlayButton = PlayButton()
 	let aetherVector = VectorView()
 	let loopVector = VectorView()
 	let netButton = NetButton()
@@ -42,15 +43,7 @@ class KinematicsExplorer: Explorer {
     let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 5)
 
-	init() {
-		
-		newtonianView = NewtownianView()
-		kinematicsView = KinematicsView()
-		
-		playButton = PlayButton()
-		
-		super.init(name: "Kinematics", key: "kinematics")
-	}
+	init() { super.init(name: "Kinematics", key: "kinematics") }
 
 // UIVIewController ================================================================================
     override func viewDidLoad() {
@@ -109,32 +102,32 @@ class KinematicsExplorer: Explorer {
                     self.kinematicsView.play()
                 }
             }
-//            UIView.animate(withDuration: 0.2, animations: {
-//                self.universe.content?.alpha = 0
-//                if page == "Universe X" {
-//                    self.aetherLabel.alpha = 1
-//                    self.aetherVector.alpha = 1
-//                    self.netButton.alpha = 1
-//                    self.expAButton.alpha = 1
-//                    self.expBButton.alpha = 1
-//                } else {
-//                    self.aetherLabel.alpha = 0
-//                    self.aetherVector.alpha = 0
-//                    self.netButton.alpha = 0
-//                    self.expAButton.alpha = 0
-//                    self.expBButton.alpha = 0
-//                }
-//            }, completion: { (finished: Bool) in
-//                if page == "Universe" {
-//                    self.universe.content = self.newtonianView
-//                } else {
-//                    self.universe.content = self.kinematicsView
-//                }
-//                self.universe.content?.alpha = 0
-//                UIView.animate(withDuration: 0.2, animations: {
-//                    self.universe.content?.alpha = 1
-//                })
-//            })
+            UIView.animate(withDuration: 0.2, animations: {
+                self.universeCell.content?.alpha = 0
+                if page == "Universe X" {
+                    self.aetherLabel.alpha = 1
+                    self.aetherVector.alpha = 1
+                    self.netButton.alpha = 1
+                    self.expAButton.alpha = 1
+                    self.expBButton.alpha = 1
+                } else {
+                    self.aetherLabel.alpha = 0
+                    self.aetherVector.alpha = 0
+                    self.netButton.alpha = 0
+                    self.expAButton.alpha = 0
+                    self.expBButton.alpha = 0
+                }
+            }, completion: { (finished: Bool) in
+                if page == "Universe" {
+                    self.universeCell.content = self.newtonianView
+                } else {
+                    self.universeCell.content = self.kinematicsView
+                }
+                self.universeCell.content?.alpha = 0
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.universeCell.content?.alpha = 1
+                })
+            })
         }
 //        universe.content = kinematicsView
         
@@ -271,7 +264,7 @@ class KinematicsExplorer: Explorer {
 
 
         cyto.cells = [
-            LimboCell(content: kinematicsView, c: 0, r: 0, w: 4),
+            universeCell,
             MaskCell(content: articleScroll, c: 4, r: 0, h: 2, cutout: true),
             LimboCell(content: zoneB, c: 0, r: 1),
             LimboCell(content: zoneA, c: 1, r: 1),

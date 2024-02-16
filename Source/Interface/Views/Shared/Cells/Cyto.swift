@@ -11,10 +11,10 @@ import UIKit
 
 class Cyto: AEView {
     class Cell: AEView {
-        let c: Int
-        let r: Int
-        let w: Int
-        let h: Int
+        var c: Int
+        var r: Int
+        var w: Int
+        var h: Int
         
         init(c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1) {
             self.c = c

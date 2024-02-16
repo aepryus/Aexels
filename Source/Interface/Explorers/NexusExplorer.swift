@@ -117,12 +117,13 @@ class NexusExplorer: AEViewController {
         let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(article: Article.discrepancy, radius: 130*s+2*p, x: 30*s, y: 1530*s)
         let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 200*s, y: 2000*s)
 
-        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 230*s, y: 70*s)
+        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
         let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.kinematicsExplorer, radius: 50*s+2*p, x: 230*s, y: 530*s)
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 230*s, y: 800*s)
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 90*s, y: 1100*s)
 
+        let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 370*s, y: 700*s)
         let twinParadoxGlyph: AsideGlyph = AsideGlyph(article: Article.twinParadox, radius: 54*s+2*p, x: 70*s, y: 630*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 190*s, y: 930*s)
@@ -149,6 +150,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: dilationExpGlyph)
         glyphsView.add(glyph: contractionExpGlyph)
 
+        glyphsView.add(glyph: forwardGlyph)
         glyphsView.add(glyph: blackHoleGlyph)
         glyphsView.add(glyph: twinParadoxGlyph)
         glyphsView.add(glyph: narwhalGlyph)
@@ -157,6 +159,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: quantumBellGlyph)
 
         universeXGlyph.link(to: aetherGlyph)
+        universeXGlyph.link(to: forwardGlyph)
         
         aetherGlyph.link(to: cellularGlyph)
         aetherGlyph.link(to: aetherExpGlyph)
