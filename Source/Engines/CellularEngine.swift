@@ -155,7 +155,7 @@ class CellularEngine {
 	private var working: Bool = false
 	func step(_ complete: @escaping ()->()) {
 //		guard !working else {print("step skipped");return}
-		guard !working else {return}
+		guard !working else { return }
 		working = true
 //		let start = DispatchTime.now()
 
@@ -196,7 +196,7 @@ class CellularEngine {
 					DispatchQueue.main.async {
 						self.views.forEach {
 //							guard $0.renderMode == .rendered else {print("draw skipped");return}
-							guard $0.renderMode == .rendered else {return}
+							guard $0.renderMode == .rendered else { return }
 							$0.setNeedsDisplay()
 						}
 //						guard self.views[0].renderMode == .rendered else {return}
