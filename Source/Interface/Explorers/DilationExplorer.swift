@@ -216,9 +216,6 @@ class DilationExplorer: Explorer {
         let vw: CGFloat = Screen.width - uw - 2*p
         let mh: CGFloat = view.height-topY-botY - vw
 
-        print("uw:\(uw)")
-        print("vw:\(vw)")
-
         cyto.Xs = [uw]
         cyto.Ys = [mh, uw-mh]
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)

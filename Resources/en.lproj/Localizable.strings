@@ -764,22 +764,82 @@ Hopefully new insights will continue to present themselves and with them the inn
 ";
 
 "blackHole_name" = "Black Holes";
-"blackHole_article" = "Black Holes";
+"blackHole_article" = "What is Inside a Black Hole?
+
+In our universe the interior of a black hole is quite a mystery.  Perhaps there is a singularity inside; perhaps a portal to a worm hole or another universe.
+
+But, in Universe X, once again things are not so mysterious; by considering the mechanisms in play we can infer a lot about the interior of a black hole.
+
+In Universe X, a black hole is any accumulation of mass that is dense enough to draw the aexels in at the speed of light; or more accurately to cause them to flow across the horizon at one aexel per tic.
+
+Perhaps before we get to black holes we should consider something a bit easier to think about such as a planet with uniform density.  As we get closer and closer to a planet the gravitational force continually increases as well as the escape velocity which in Universe X is equal to rate of flow of the aexels inward.  The escape velocity will be greatest at the surface and then drop off the further you get away from the planet's surface.
+
+Once we pass through the surface of the planet and start to dig towards the center there will still be a gravitational force inward and as such the escape velocity will continue to increase.  But the gravitational force will begin to fall off until you reach the center of the planet where it will be zero.  But, the gravity itself will never point outwards; the escape velocity will always be increasing and therefore the aexels will never slow down.
+
+So the first question is can their be vacuum inside the even horizon?  Since we know that the escape velocity is greatest at the surface of a mass in order for their to be space inside the horizon the aexels would need to flow at greater than one aexel per tic at the surface.  But it is impossible for teslons to sit still on aexels flowing at the the speed of light or greater and so there could be no solid surface.  Similarly it is not possible for edisons to sit still on aexels moving faster than the speed of light.
+
+From this we can say that teslons can not be at the surface with the aexel flow at the speed of light or greater and while edisons can be at the surface of aexels flowing at the speed of light they can't be at the surface of edisons greater than the speed of light.  So, the surface of a black hole must be made up of edisons.
+
+At the horizon of the black hole the aexels are flowing in at one aexel per tic.  Where no teslon could sit.  In order for a teslon to sit in the interior of the black hole the aexels would need to slow down.  But slowing down would require a gravitational force pushing outward which as discussed above is counter to how gravity works.
+
+As such the aexels must continually flow at the speed of light within the interior of the black hole and as such all matter within the black hole must be in the form of edisons.  Which is to say that all teslons (protons, neutrons and electrons) will be converted into edisons (protons) when crossing over the horizon.
+
+As such the interior of a black hole will be pure light (or some other form of edison).
+
+
+
+
+
+";
 
 "twinParadox_name" = "Twin Paradox";
-"twinParadox_article" = "Twin Paradox";
+"twinParadox_article" = "Twin Paradox
+Let's imagine I have a set of twins and two spaceships, P and Q.  The spaceships are docked with one another; each twin gets into one.  Imagine the following 3 situations:
+
+- [1] P stays put, Q accelerates to 0.9 c travels for a year and then turns around returning to the starting point.
+- [2] P accelerates to 0.9 c travels for a year and then turns around returning to the starting point, Q stays put.
+- [3] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around returning to the starting point.
+
+For each of the 3 scenarios which twin is older?  Are the results the same for all the scenarios?  If not how do the scenarios differ at all?
+
+In our universe all motion is relative.  There are no special frames of reference.  Thus answering this question can be very tricky and thusly the Twin Paradox is a paradox.
+
+In Universe X however, answering the above is relatively straight forward, however it is not possible without one additional piece of data: what is the vector of translation initially before the twins start their journeys?
+
+For example, if when the twins were docked they weren't translating across the aexel field at all then the answers would be [1] P is older; [2] Q is older; [3] P and Q are still the same age.
+
+However, if the twins had been translating across the aexels initially than the answers could be entirely different.  Without knowing the initial rate of translation it is impossible to answer the question, but once you do know the initial rate of translation and the direction the spaceships travel relative to the direction of that translation it becomes straightforward to calculate the relative ages of the twins.
+
+In Universe X, there is no Twin Paradox.
+
+
+
+
+
+";
 
 "narwhal_name" = "Narwhal, Walrus and Dolphin";
-"narwhal_article" = "Narwhal, Walrus and Dolphin
+"narwhal_article" = "The Narwhal, the Walrus and the Dolphin
 
-the Narwhal
-{{Narwhal.png}}
+3 spaceships, the Narwhal, the Walrus and the Dolphin meet in deep space to conduct an experiment concerning length contraction.
 
-the Dolphin
-{{Dolphin.png}}
+Each of these ships is somewhat unique.  The Walrus is a large lumbering ship that while able to get around is not particularly fast.  The Dolphin on the other hand is a very fast and nimble ship that is able to accelerate to half the speed of light in the blink of an eye.  The most unusual is the Narwhal which is just as fast as the Dolphin however it has a large horn protruding from its fore side that is one astronomical unit in length (1 AU = the distance from the Earth to the Sun).
 
-the Walrus
-{{Walrus.png}}
+{{NWD.png}}
+They bring with them a steel 'AU Stick' pole that is also one astronomical unit in length.  Once they have all arrived, they arrange themselves as such:  The Walrus and the Dolphin situate themselves at one end of the pole; the Narwhal at the opposite end of the pole with its horn parallel to the pole and facing towards the other two ships.  The Dolphin is facing the same direction as the Narwhal, i.e., facing directly away from it.  The Walrus is just floating near by observing.  (See diagram)
+
+The pole has a light signal situated at its center.  Once all the ships are ready, the light signal goes off.  It arrives at both the Dolphin and the Narwhal at the same moment.  Once the Dolphin and the Narwhal receive the signal they both accelerate very quickly to 0.5 c.  The Walrus just stays put.  Let's consider the following questions:
+
+From the Narwhal's perspective:
+
+- Is the Narwhal closer, further or the same distance away from the Walrus?
+- Are the Narwhal and the Dolphin in the \"same inertial frame\"?
+- Is the Narwhal closer, further or the same distance away from the Dolphin?
+- Is the Narwhal's horn shorter, longer or the same length as the steel pole?
+- Is the tip of the Narwhal's horn still next to the Walrus? the Dolphin?
+
+
+
 
 
 ";
@@ -926,25 +986,6 @@ In playing with the simulation try to observe the increased distance that must b
 
 Note:
 In this simulation the individual aexels are not being modeled, only the flow of the aexel field in general.  Electromagnetic phenomena as being illustrated here works at a much larger scale than the aexels and as such the continuous approximation is a fair representation of reality.  For example, if each aexel were one nanometer across (rather than the Planck length), then the radius of a proton centered on the Sun would extend nearly halfway to Venus.
-
-Twin Paradox
-Let's imagine I have a set of twins and two spaceships, P and Q.  The spaceships are docked with one another; each twin gets into one.  Imagine the following 3 situations:
-
-- [1] P stays put, Q accelerates to 0.9 c travels for a year and then turns around returning to the starting point.
-- [2] P accelerates to 0.9 c travels for a year and then turns around returning to the starting point, Q stays put.
-- [3] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around returning to the starting point.
-
-For each of the 3 scenarios which twin is older?  Are the results the same for all the scenarios?  If not how do the scenarios differ at all?
-
-In our universe all motion is relative.  There are no special frames of reference.  Thus answering this question can be very tricky and thusly the Twin Paradox is a paradox.
-
-In Universe X however, answering the above is relatively straight forward, however it is not possible without one additional piece of data: what is the vector of translation initially before the twins start their journeys?
-
-For example, if when the twins were docked they weren't translating across the aexel field at all then the answers would be [1] P is older; [2] Q is older; [3] P and Q are still the same age.
-
-However, if the twins had been translating across the aexels initially than the answers could be entirely different.  Without knowing the initial rate of translation it is impossible to answer the question, but once you do know the initial rate of translation and the direction the spaceships travel relative to the direction of that translation it becomes straightforward to calculate the relative ages of the twins.
-
-In Universe X, there is no Twin Paradox.
 
 
 
