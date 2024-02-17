@@ -69,6 +69,8 @@ class ExplorerViewController: UIViewController {
                 Aexels.aetherExplorer.vision,
                 Aexels.cellularExplorer.vision,
                 Aexels.kinematicsExplorer.vision,
+                Aexels.distanceExplorer.vision,
+                Aexels.gravityExplorer.vision,
                 Aexels.dilationExplorer.vision,
                 Aexels.contractionExplorer.vision
             ]

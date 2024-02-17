@@ -120,11 +120,13 @@ class NexusExplorer: AEViewController {
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
         let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.kinematicsExplorer, radius: 50*s+2*p, x: 230*s, y: 530*s)
+        let distanceExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.distanceExplorer, radius: 50*s+2*p, x: 320*s, y: 600*s)
+        let gravityExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.gravityExplorer, radius: 50*s+2*p, x: 380*s, y: 670*s)
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 230*s, y: 800*s)
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 90*s, y: 1100*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
-        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 370*s, y: 700*s)
+        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
         let twinParadoxGlyph: AsideGlyph = AsideGlyph(article: Article.twinParadox, radius: 54*s+2*p, x: 70*s, y: 630*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 190*s, y: 930*s)
         let symetricGlyph: AsideGlyph = AsideGlyph(article: Article.symmetric, radius: 64*s+2*p, x: 330*s, y: 1600*s)
@@ -147,6 +149,8 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: aetherExpGlyph)
         glyphsView.add(glyph: cellularExpGlyph)
         glyphsView.add(glyph: kinematicsExpGlyph)
+        glyphsView.add(glyph: distanceExpGlyph)
+        glyphsView.add(glyph: gravityExpGlyph)
         glyphsView.add(glyph: dilationExpGlyph)
         glyphsView.add(glyph: contractionExpGlyph)
 
@@ -171,6 +175,8 @@ class NexusExplorer: AEViewController {
         kinematicsGlyph.link(to: kinematicsExpGlyph)
         
         gravityGlyph.link(to: dilationGlyph)
+        gravityGlyph.link(to: distanceExpGlyph)
+        gravityGlyph.link(to: gravityExpGlyph)
         gravityGlyph.link(to: blackHoleGlyph)
         
         dilationGlyph.link(to: contractionGlyph)
@@ -203,8 +209,7 @@ class NexusExplorer: AEViewController {
         view.addSubview(interchange)
     }
     
-    override func layoutRatio056() {
-    }
+    override func layoutRatio056() {}
     override func layoutRatio133() {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)

@@ -11,12 +11,10 @@ import OoviumKit
 import UIKit
 
 class Explorer: AEViewController {
-	let name: String
 	let key: String
     lazy var vision: Vision = ExplorerVision(explorer: self)
 	
-	init(name: String, key: String) {
-		self.name = name
+	init(key: String) {
 		self.key = key
         super.init()
 	}
@@ -24,5 +22,6 @@ class Explorer: AEViewController {
     var iconToken: String { "\(key)_icon" }
     var icon: UIImage { UIImage(named: iconToken)! }
     
+    var name: String { "\(key)_name".localized }
     var shortName: String { name }
 }

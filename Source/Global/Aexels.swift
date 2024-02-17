@@ -21,6 +21,8 @@ class Aexels {
     static let aetherExplorer: AetherExplorer = AetherExplorer()
     static let cellularExplorer: CellularExplorer = CellularExplorer()
     static let kinematicsExplorer: KinematicsExplorer = KinematicsExplorer()
+    static let distanceExplorer: DistanceExplorer = DistanceExplorer()
+    static let gravityExplorer: GravityExplorer = GravityExplorer()
     static let dilationExplorer: DilationExplorer = DilationExplorer()
     static let contractionExplorer: ContractionExplorer = ContractionExplorer()
 

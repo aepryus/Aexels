@@ -83,6 +83,8 @@ class Article {
         aether.explorers.append(Aexels.aetherExplorer)
         cellular.explorers.append(Aexels.cellularExplorer)
         kinematics.explorers.append(Aexels.kinematicsExplorer)
+        gravity.explorers.append(Aexels.distanceExplorer)
+        gravity.explorers.append(Aexels.gravityExplorer)
         dilation.explorers.append(Aexels.dilationExplorer)
         contraction.explorers.append(Aexels.contractionExplorer)
     }

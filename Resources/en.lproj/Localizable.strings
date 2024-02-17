@@ -422,104 +422,6 @@ Miscellaneous Ruminations
 It has been uncertain whether there were verifiable differences between our universe and Universe X.  Even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
 
 
-- Dilation at the Surface of a Sphere
-
-Imagine a nearly empty Universe X with a single non-rotating non-translating planet.  What is the Dilation experienced at the surface of this planet?
-
-Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
-
-In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newton's law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
-
-Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
-
-<<DiscrA>>
-
-This gives us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
-
-<<DiscrB>>
-
-Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
-
-
-- Dilation while Falling from Infinity
-
-Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
-
-<<4Clocks>>
-
-The question is what is the time dilation experienced by each of the 4 clocks.
-
-Clock W at infinity is not translating at all, so it has no translational velocity and therefore its gamma is 1.
-
-<<DiscrC>>
-
-Clock X is simply floating down with the aexels and similarly not translating at all; its gamma is also equal to 1.
-
-<<DiscrC>>
-
-Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the gamma factor:
-
-<<DiscrB>>
-
-Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
-
-<<DiscrE>>
-
-A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
-
-<<DiscrF>>
-
-Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
-
-There is a constant of motion for an inertial observer in the Schwarzschild metric:
-
-<<DiscrG>>
-
-For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
-
-<<DiscrH>>
-
-In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
-
-For our universe the time dilation of the 4 clocks is as follows:
-
-Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
-
-<<DiscrD>>
-
-Clock X
-
-<<DiscrI>>
-
-Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
-
-<<DiscrB>>
-
-Clock Z
-
-<<DiscrI>>
-
-The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
-
-Universe X:
-    W = X < Y < Z
-
-Our Universe
-    W < Y < X = Z
-
-This is a rather substantial deviation in the two universes.
-
-If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
-
-Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
-
-<<Wiki2>>
-
-In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
-
-For that reason, the Schwarzschild solution does not apply in Universe X and a discrepancy between our universe and Universe X arises.
-
-
 
 
 
@@ -845,13 +747,156 @@ From the Narwhal's perspective:
 ";
 
 "symmetric_name" = "Symmetric Frames";
-"symmetric_article" = "Symmetric Frames";
+"symmetric_article" = "Symmetric Frames
+
+One of the first steps in the derivation of General Relativity is to define a 4-vector with time and 3 spacial dimensions and define a value
+ and then assert that
+ is an invariant value in all inertial frames.
+
+It is quite easy to devise a thought experiment in Universe X and see that
+ would not be invariant in all frames in Universe X.
+
+So, once again it seems we've found a discrepancy! But, just as before I have been unable to find any experimental verification of Minkowski's assertion that
+ is invariant in our Universe.
+
+(And the fact that we see the ISS's clocks moving faster and they see our clocks moving slower seems to directly counter Minkowski's assertion.)
+
+The result being that I still have not been able to find an experiment that would net different results in Universe X and our Universe.
+
+
+
+
+
+";
 
 "blackShield_name" = "Black Shield";
-"blackShield_article" = "Black Shield";
+"blackShield_article" = "Black Shield
+
+- Dilation at the Surface of a Sphere
+
+Imagine a nearly empty Universe X with a single non-rotating non-translating planet.  What is the Dilation experienced at the surface of this planet?
+
+Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
+
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newton's law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
+
+Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
+
+<<DiscrA>>
+
+This gives us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
+
+<<DiscrB>>
+
+Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
+
+
+- Dilation while Falling from Infinity
+
+Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
+
+<<4Clocks>>
+
+The question is what is the time dilation experienced by each of the 4 clocks.
+
+Clock W at infinity is not translating at all, so it has no translational velocity and therefore its gamma is 1.
+
+<<DiscrC>>
+
+Clock X is simply floating down with the aexels and similarly not translating at all; its gamma is also equal to 1.
+
+<<DiscrC>>
+
+Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the gamma factor:
+
+<<DiscrB>>
+
+Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
+
+<<DiscrE>>
+
+A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
+
+<<DiscrF>>
+
+Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
+
+There is a constant of motion for an inertial observer in the Schwarzschild metric:
+
+<<DiscrG>>
+
+For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
+
+<<DiscrH>>
+
+In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
+
+For our universe the time dilation of the 4 clocks is as follows:
+
+Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
+
+<<DiscrD>>
+
+Clock X
+
+<<DiscrI>>
+
+Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
+
+<<DiscrB>>
+
+Clock Z
+
+<<DiscrI>>
+
+The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
+
+Universe X:
+    W = X < Y < Z
+
+Our Universe
+    W < Y < X = Z
+
+This is a rather substantial deviation in the two universes.
+
+If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
+
+Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
+
+<<Wiki2>>
+
+In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
+
+For that reason, the Schwarzschild solution does not apply in Universe X and a discrepancy between our universe and Universe X arises.
+
+
+
+
+
+";
 
 "quantumBell_name" = "Quantum and Bell";
-"quantumBell_article" = "Quantum and Bell";
+"quantumBell_article" = "Quantum and Bell
+
+This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the \"unknown hidden variables\" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
+
+But after reading the above linked Mermin paper, it became apparent there was perhaps a more fundemental descrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that \"The machinery of quantum mechanics is fully capable of describing a single realistic world.\"
+
+He states:
+
+Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.
+
+However, he doesn't have a specific Cellular Automaton in mind, but he does indicate what constraints it must be able to solve:
+
+...we need to restrict ourselves to finite models, forcing us to work with lattice theories. Making such theories relativistically invariant is notoriously difficult. It will presumably involve general relativity, and this is far beyond what we can handle presently.
+
+I believe Universe X is just such a lattice theory. A theory that elegantly handles Special and General Relativity, Lorentz Covariance and Gravity.
+
+
+
+
+
+";
 
 "gameOfLife_article" = "Cellular Automata Lab
 
@@ -954,6 +999,20 @@ This model is entirely two dimensional and bonds can not cross one another.  Whe
 In this lab there are ten preset experiments; the first three differ only in the number of aexels and the relaxation distance.  The 4th experiment implements Conway’s Game of Life on top of the dynamic lattice, giving a flavor of the possible interplay between the aexels and the loops sitting upon them.  The 5th through 9th experiments start the aexels out in various initial shapes.  The 10th is simply a blank sandbox that allows users to create whatever systems they want.
 
 Currently, this model does a respectable job of healing holes in the aether fabric.  The next step is to attempt to model gravity itself.  This will require a mechanism for creating and destroying aexels based on the loops on top.  In order to succeed the fabric probably needs to be even better at healing itself and realistically there will need to be a lot more aexels.  The key to adding more aexels will be continually increasing the performance of the algorithms being used here.
+
+
+
+
+";
+
+"distanceLab_article" = "Distance Lab
+
+
+
+
+";
+
+"gravityLab_article" = "Gravity Lab
 
 
 

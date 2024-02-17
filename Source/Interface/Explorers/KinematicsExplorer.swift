@@ -43,7 +43,7 @@ class KinematicsExplorer: Explorer {
     let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 5)
 
-	init() { super.init(name: "Kinematics", key: "kinematics") }
+	init() { super.init(key: "kinematics") }
 
 // UIVIewController ================================================================================
     override func viewDidLoad() {

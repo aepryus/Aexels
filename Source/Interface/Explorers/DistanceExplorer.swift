@@ -1,31 +1,25 @@
 //
-//  GravityExplorer.swift
+//  DistanceExplorer.swift
 //  Aexels
 //
-//  Created by Joe Charlier on 8/16/23.
-//  Copyright © 2023 Aepryus Software. All rights reserved.
+//  Created by Joe Charlier on 2/17/24.
+//  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
 import Acheron
 import UIKit
 
-class GravityExplorer: Explorer {
+class DistanceExplorer: Explorer {
     let cyto: Cyto = Cyto(rows: 2, cols: 2)
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
 
-    let engine: GravityEngine
-    lazy var gravityView = GravityView(engine: engine)
+    init() { super.init(key: "distance") }
 
-    init() {
-        engine = GravityEngine(size: .zero)
-        super.init(key: "gravity")
-    }
-    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white
         articleView.scrollView = articleScroll
@@ -33,19 +27,11 @@ class GravityExplorer: Explorer {
         articleScroll.addSubview(articleView)
 
         cyto.cells = [
-            LimboCell(content: gravityView, c: 0, r: 0),
+            LimboCell(c: 0, r: 0),
             LimboCell(c: 0, r: 1),
             MaskCell(content: articleScroll,c: 1, r: 0, h: 2)
         ]
         view.addSubview(cyto)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        engine.play()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        engine.stop()
     }
 
 // AEViewController ================================================================================
@@ -63,8 +49,5 @@ class GravityExplorer: Explorer {
         articleView.load()
         articleScroll.contentSize = articleView.scrollViewContentSize
         articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
-
-        engine.universe.pointee.width = gravityView.width
-        engine.universe.pointee.height = gravityView.height
     }
 }

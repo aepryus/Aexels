@@ -216,7 +216,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 	let play = PlayButton()
     
 	
-    init() { super.init(name: "Cellular Automata", key: "cellular") }
+    init() { super.init(key: "cellular") }
 	
 	func open(aether: Aether) {
 		play.stop()

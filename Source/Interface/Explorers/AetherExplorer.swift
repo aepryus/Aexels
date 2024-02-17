@@ -48,7 +48,7 @@ class AetherExplorer: Explorer {
     let articleView: ArticleView = ArticleView()
     let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
-    init() { super.init(name: "Aether", key: "aether") }
+    init() { super.init(key: "aether") }
 
     
 // UIViewController ================================================================================
