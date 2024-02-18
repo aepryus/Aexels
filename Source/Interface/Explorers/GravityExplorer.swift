@@ -35,7 +35,7 @@ class GravityExplorer: Explorer {
         cyto.cells = [
             LimboCell(content: gravityView, c: 0, r: 0),
             LimboCell(c: 0, r: 1),
-            MaskCell(content: articleScroll,c: 1, r: 0, h: 2)
+            MaskCell(content: articleScroll,c: 1, r: 0, h: 2, cutout: true)
         ]
         view.addSubview(cyto)
     }
