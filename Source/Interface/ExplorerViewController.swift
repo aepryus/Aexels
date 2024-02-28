@@ -139,8 +139,8 @@ class ExplorerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
-        let a: CGFloat = 0.7
-        graphView.topLeft(dx: 680*s, dy: 180*s, width: 600*s*a, height: 800*s*a)
+        let a: CGFloat = 0.8
+        graphView.bottomRight(dx: -10*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
 }

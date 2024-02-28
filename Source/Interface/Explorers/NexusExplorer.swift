@@ -12,8 +12,8 @@ import OoviumKit
 import UIKit
 
 class NexusExplorer: AEViewController {
-    let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 72*Screen.s)
-    let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:20*Screen.s)
+    let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 48*Screen.s)
+    let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:16*Screen.s)
     let scrollView: UIScrollView = UIScrollView()
     let glyphsView: GlyphsView = GlyphsView()
     let articleView: ArticleView = ArticleView()
@@ -211,8 +211,8 @@ class NexusExplorer: AEViewController {
     
     override func layoutRatio056() {}
     override func layoutRatio133() {
-        aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
-        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
+        aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 510*s, height: 2187*s)
         scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
