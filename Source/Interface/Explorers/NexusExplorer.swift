@@ -213,11 +213,11 @@ class NexusExplorer: AEViewController {
     override func layoutRatio133() {
         aexelsLabel.bottomRight(dx: -20*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+62*s, width: 300*s, height: 30*s)
-        glyphsView.frame = CGRect(x: 20*s, y: Screen.safeTop+20*s, width: 510*s, height: 2187*s)
-        scrollView.frame = CGRect(x: 20*s, y: Screen.safeTop, width: 540*s, height: view.height-Screen.safeTop-Screen.safeBottom)
+        glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 510*s, height: 2187*s)
+        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
-        currentCapsule.topLeft(dx: 4*s, dy: Screen.safeTop+5*s)
-        interchange.topLeft(dx: scrollView.right-20*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
+        currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
+        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
     }
 }

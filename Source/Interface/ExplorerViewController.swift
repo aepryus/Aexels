@@ -25,7 +25,7 @@ class ExplorerViewController: UIViewController {
         didSet {
             guard explorer != oldValue else { return }
             if oldValue is NexusExplorer {
-                graphView.timer.stop()
+                graphView.stop()
                 stopMusic()
             }
             UIView.animate(withDuration: 0.5) {
@@ -38,7 +38,7 @@ class ExplorerViewController: UIViewController {
                     nexusExplorer.currentCapsule.alpha = 0
                     nexusExplorer.interchange.alpha = 0
                     nexusExplorer.snapGlyphs()
-                    self.graphView.timer.start()
+                    self.graphView.start()
                     DispatchQueue.main.async { self.startMusic() }
                 }
                 if let oldValue { oldValue.view.removeFromSuperview() }
@@ -139,7 +139,8 @@ class ExplorerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
-        graphView.topLeft(dx: 510*s, dy: 10*s, width: 600*s, height: 800*s)
+        let a: CGFloat = 0.7
+        graphView.topLeft(dx: 680*s, dy: 180*s, width: 600*s*a, height: 800*s*a)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
 }
