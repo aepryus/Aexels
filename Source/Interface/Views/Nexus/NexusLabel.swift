@@ -9,6 +9,8 @@
 import Acheron
 import UIKit
 
+// Used to render "Aexels" and "v4.0".
+
 class NexusLabel: AEView {
 	let text: String
 	let size: CGFloat

@@ -9,6 +9,8 @@
 import Acheron
 import UIKit
 
+// The explorer selector in the top right of the screen.
+
 public class Vision: AEView {
     var visionBar: VisionBar!
     

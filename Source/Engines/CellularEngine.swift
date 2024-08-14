@@ -153,7 +153,7 @@ class CellularEngine {
 	}
 
 	private var working: Bool = false
-	func step(_ complete: @escaping ()->()) {
+	private func step(_ complete: @escaping ()->()) {
 //		guard !working else {print("step skipped");return}
 		guard !working else { return }
 		working = true

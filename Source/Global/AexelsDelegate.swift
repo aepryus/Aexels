@@ -17,7 +17,11 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		Aexels.start()
 		return true
 	}
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if Aexels.explorerViewController.explorer is NexusExplorer { Aexels.explorerViewController.graphView.start() }
+    }
 	func applicationDidEnterBackground(_ application: UIApplication) {
+        Aexels.explorerViewController.graphView.stop()
         if let aetherView = Aexels.aetherView { aetherView.saveAether() }
 	}
 }

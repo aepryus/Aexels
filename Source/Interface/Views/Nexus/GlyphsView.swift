@@ -9,6 +9,8 @@
 import Acheron
 import UIKit
 
+// The main crop circle control of the nexus explorer.
+
 class GlyphsView: AEView {
     var glyphs: [GlyphView] = []
     

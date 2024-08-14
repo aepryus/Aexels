@@ -9,6 +9,14 @@
 import Acheron
 import UIKit
 
+/* The article navigation elements.
+    Interchange - the related links control situated to the right of the article containing all the [Capsule]s and [Exploret]s
+    Capsule - related links base class
+    AnchorCapsule - the link back to the crop circles
+    ArticleCapsule - each of the related articles
+    Exploret - the articles related explorers
+ */
+
 class Capsule: AEControl {
     var lhs: String { didSet { render() } }
     var rhs: String { didSet { render() } }
