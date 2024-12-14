@@ -14,7 +14,7 @@ class GravityEngine {
 
     private var queue: DispatchQueue = DispatchQueue(label: "aexelsView")
     
-    lazy var view: GravityView = GravityView(engine: self)
+    weak var view: GravityView?
     
     init(size: CGSize) {
         universe = MYUniverseCreate(size.width, size.height, 18, 3)
@@ -27,7 +27,7 @@ class GravityEngine {
             MYUniverseTic(self.universe)
             renderMode = .started
             renderImage()
-            DispatchQueue.main.async { self.view.setNeedsDisplay() }
+            DispatchQueue.main.async { self.view?.setNeedsDisplay() }
         }
     }
 

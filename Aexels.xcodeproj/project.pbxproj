@@ -17,6 +17,13 @@
 		D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */; };
 		D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */; };
 		D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngine.swift */; };
+		D818929F2C7195FE0018E4B9 /* Start in Resources */ = {isa = PBXBuildFile; fileRef = D818929E2C7195FE0018E4B9 /* Start */; };
+		D81892A12C729DAC0018E4B9 /* Original in Resources */ = {isa = PBXBuildFile; fileRef = D81892A02C729DAC0018E4B9 /* Original */; };
+		D823A2612D0A900700A72DDF /* ElectromagentismEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */; };
+		D823A2642D0A915000A72DDF /* ElectromagnetismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */; };
+		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
+		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
+		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
@@ -101,6 +108,14 @@
 		D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewController.swift; sourceTree = "<group>"; };
 		D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceExplorer.swift; sourceTree = "<group>"; };
 		D813B7682AA6B892003851AE /* GravityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngine.swift; sourceTree = "<group>"; };
+		D818929E2C7195FE0018E4B9 /* Start */ = {isa = PBXFileReference; lastKnownFileType = text; path = Start; sourceTree = "<group>"; wrapsLines = 1; };
+		D81892A02C729DAC0018E4B9 /* Original */ = {isa = PBXFileReference; lastKnownFileType = text; path = Original; sourceTree = "<group>"; wrapsLines = 1; };
+		D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagentismEngine.swift; sourceTree = "<group>"; };
+		D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismView.swift; sourceTree = "<group>"; };
+		D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
+		D823A2682D0ABE2700A72DDF /* North.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = North.h; sourceTree = "<group>"; };
+		D823A2692D0ABE3E00A72DDF /* North.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = North.c; sourceTree = "<group>"; };
+		D823A26B2D0BCB3B00A72DDF /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DiliationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiliationEngine.swift; sourceTree = "<group>"; };
@@ -215,9 +230,12 @@
 				D8656C0C2A8CF6F7003FC9A3 /* Ionian */,
 				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
 				D8042F12293B06A800453B8E /* Thracian */,
+				D823A2672D0ABDE300A72DDF /* North */,
+				D823A26B2D0BCB3B00A72DDF /* Engine.swift */,
 				D8AE17E42814F20500E74CB8 /* CellularEngine.swift */,
 				D850F44B293F2EB30091F15A /* DiliationEngine.swift */,
 				D813B7682AA6B892003851AE /* GravityEngine.swift */,
+				D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -232,8 +250,35 @@
 				D8AE17582814EB2F00E74CB8 /* Kinematics */,
 				D8AE17592814EB3600E74CB8 /* Gravity */,
 				D8AE175A2814EB3E00E74CB8 /* Dilation */,
+				D823A2622D0A913000A72DDF /* Electromagnetism */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D818929D2C7195D90018E4B9 /* Claude */ = {
+			isa = PBXGroup;
+			children = (
+				D818929E2C7195FE0018E4B9 /* Start */,
+				D81892A02C729DAC0018E4B9 /* Original */,
+			);
+			path = Claude;
+			sourceTree = "<group>";
+		};
+		D823A2622D0A913000A72DDF /* Electromagnetism */ = {
+			isa = PBXGroup;
+			children = (
+				D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */,
+			);
+			path = Electromagnetism;
+			sourceTree = "<group>";
+		};
+		D823A2672D0ABDE300A72DDF /* North */ = {
+			isa = PBXGroup;
+			children = (
+				D823A2682D0ABE2700A72DDF /* North.h */,
+				D823A2692D0ABE3E00A72DDF /* North.c */,
+			);
+			path = North;
 			sourceTree = "<group>";
 		};
 		D8656C0C2A8CF6F7003FC9A3 /* Ionian */ = {
@@ -313,6 +358,7 @@
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
 				D87C0DCF2931A7720005B44D /* LaTeX */,
+				D818929D2C7195D90018E4B9 /* Claude */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -379,6 +425,7 @@
 				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 				D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */,
 				D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */,
+				D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */,
 			);
 			path = Explorers;
 			sourceTree = "<group>";
@@ -583,11 +630,13 @@
 				D8AE17A62814F0D300E74CB8 /* Move.oo in Resources */,
 				D8AE17972814F0D300E74CB8 /* Game of Life.oo in Resources */,
 				D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */,
+				D818929F2C7195FE0018E4B9 /* Start in Resources */,
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
 				D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */,
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
+				D81892A12C729DAC0018E4B9 /* Original in Resources */,
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,
 				D87C0DD32931A8250005B44D /* Contraction.latex in Resources */,
 				D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */,
@@ -613,10 +662,12 @@
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D850F44C293F2EB30091F15A /* DiliationEngine.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
+				D823A2642D0A915000A72DDF /* ElectromagnetismView.swift in Sources */,
 				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,
 				D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
+				D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */,
 				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
@@ -634,7 +685,9 @@
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
+				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
+				D823A2612D0A900700A72DDF /* ElectromagentismEngine.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
@@ -644,6 +697,7 @@
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,
 				D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */,
+				D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */,
 				D8AE17DD2814F1EC00E74CB8 /* Limbo.swift in Sources */,
 				D8D2E1282944BC4E00EC1719 /* BoolButton.swift in Sources */,
 				D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */,

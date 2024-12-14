@@ -1,27 +1,26 @@
 //
-//  GravityView.swift
+//  ElectromagnetismView.swift
 //  Aexels
 //
-//  Created by Joe Charlier on 8/16/23.
-//  Copyright © 2023 Aepryus Software. All rights reserved.
+//  Created by Joe Charlier on 12/12/24.
+//  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
 import Acheron
 import UIKit
 
-class GravityView: AEView {
-    private var engine: GravityEngine
+class ElectromagnetismView: AEView {
+    private var engine: ElectromagnetismEngine
 
     private var image: UIImage?
     private var vw: Int = 0
     
-    init(engine: GravityEngine) {
+    init(engine: ElectromagnetismEngine) {
         self.engine = engine
         super.init()
         backgroundColor = UIColor.clear
         self.engine.view = self
     }
-    required init?(coder aDecoder: NSCoder) { fatalError() }
 
 // UIView ==========================================================================================
     override func draw(_ rect: CGRect) {
