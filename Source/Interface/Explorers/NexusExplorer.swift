@@ -124,6 +124,7 @@ class NexusExplorer: AEViewController {
         let gravityExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.gravityExplorer, radius: 50*s+2*p, x: 380*s, y: 670*s)
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 230*s, y: 800*s)
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 90*s, y: 1100*s)
+        let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 190*s, y: 1270*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
@@ -153,6 +154,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: gravityExpGlyph)
         glyphsView.add(glyph: dilationExpGlyph)
         glyphsView.add(glyph: contractionExpGlyph)
+        glyphsView.add(glyph: electromagnetismExpGlyph)
 
         glyphsView.add(glyph: forwardGlyph)
         glyphsView.add(glyph: blackHoleGlyph)
@@ -191,6 +193,7 @@ class NexusExplorer: AEViewController {
         
         equivalenceGlyph.link(to: electromagnetismGlyph)
         
+        electromagnetismGlyph.link(to: electromagnetismExpGlyph)
         electromagnetismGlyph.link(to: discrepanciesGlyph)
         
         discrepanciesGlyph.link(to: epilogueGlyph)

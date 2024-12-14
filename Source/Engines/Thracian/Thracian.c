@@ -11,7 +11,7 @@
 #import <stdlib.h>
 #include "Thracian.h"
 
-double TCLambda(double v) { return 1/sqrt(1 - v*v); }
+double TCGamma(double v) { return 1/sqrt(1 - v*v); }
 
 // V2 ==============================================================================================
 TCV2 TCV2Add(TCV2 a, TCV2 b) {
@@ -319,7 +319,7 @@ void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n) {
     double v = universe->teslons[0]->v.s;
     double s = universe->teslons[0]->v.q < M_PI ? 1 : -1;
     double c = 1;
-    double lambda = TCLambda(v);
+    double lambda = TCGamma(v);
     
     maxton->v.q = atan2(s*v*d/c*lambda, d);
     

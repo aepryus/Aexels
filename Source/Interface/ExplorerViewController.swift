@@ -72,7 +72,8 @@ class ExplorerViewController: UIViewController {
                 Aexels.distanceExplorer.vision,
                 Aexels.gravityExplorer.vision,
                 Aexels.dilationExplorer.vision,
-                Aexels.contractionExplorer.vision
+                Aexels.contractionExplorer.vision,
+                Aexels.electromagnetismExplorer.vision
             ]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)

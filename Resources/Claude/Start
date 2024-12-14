@@ -1,0 +1,54 @@
+- Let's construct an entirely new physics from first principles.
+    : it will be entirely mechanistic; no magic
+    : it will highly prize parsimony
+    : it must adhere to all known experimental results
+    : it will not depend on “observers”
+    : it will exist in 3D Cartesian space and Cartesian time
+- Universe X uses normal cartesian 3D space and time.
+- The only thing in this universe is a quantized aether; each quanta is called an Aexel.
+- Aexels are very fine grained. Each Aexel can form bidirectional bonds with its nearest neighbors.
+- Signals can move between Aexels. It takes exactly one Tic of time for a signal to move from one Aexel to the next.  The fastest a signal can move is one Aexel / Tic.  One Aexel / Tic is referred to as "the speed of light" or simply c.
+- These signals can form repeating patterns and like gliders in Conways GoL can translate across the Aexels.  These repeating patterns are called stable state loops or rather just loops. There are two classes of loops. Edisons move linearly in a straight line (assuming very fine grained Aexels) at one Aexel / Tic which we will refer to as "the speed of light" or simply 'c'. Teslons have back and forth internal motion, which means they always net translate at v < c.  (Because in order for a teslon to move at c, their constituent parts would need to move at v > c.)
+- Teslons continually send out a type of edison in all directions that we refer to as a 'ping'. When a ping interacts with another teslon it causes that teslon to send out a different type of edison, also in all directions, called a 'pong'.
+    
+[1] (a) Imagine 2 non-translating teslons separated by a distance 'd'. What is the roundtrip time of the ping and pong back to the original teslon 't'?
+    (b) Imagine the teslons are translating in the same direction at a speed v (v < c). The teslons are situated perpendicular to the direction of translation. Now how long does the round trip ping and pong take relative to the static case? Call this ratio gamma.
+    (c) Now situate the teslons parallel to the direction of translation and recalculate the time to ping pong relatively to the static case (1a) in terms of the gamma from 1b.
+
+[2] Now assume that length contraction in Universe X shrinks all distance is the direction of translation by 1/gamma.  Please carefully repeat all 3 calculations assuming this length contraction. What are the ramifications of this.  What is this ramfication usually referred to in our universe?
+
+[3] Why is the Twin Paradox not an issue in Universe X?  Is it possible that the 'traveling' twin ages more than the 'stationary' twin?  Does acceleration play any role in this question?  What if the twins started out translating at a high rate?
+
+- Aexels are compressible, they form a crystaline lattic with each bond pulling when they get too far and pushing when they get too close.  This varying density of aexels is the source of the "curvature of space".
+- Light can not escape from black holes, however, in Universe X, even if aexels were compressed very much it would still be possible for light to escape.  Unless black holes destroy aexels; then they would be able to pull the aexels in at a rate equal to or greater than the speed of light; then light would not be able to escape.
+- But, what is special about black holes?  Perhaps its not black holes that destroy aexels, but rather mass itself.  And if all mass destroy black holes doesn't that become the obvious mechanism underpinning gravity, the destruction of aexels causing the aether to be pulled in and drawing all matter sitting on top of it, in with it; like plates and silverware being pulled into the center of a table when a tablecloth is pulled through a whole in the center of the table from below.
+- In this case gravity is not a force, but rather just an emergent phenemona caused by the destruction of aexels and as such can not directly cause a translation itself; only e&m can do so.  As such if we assume Newton's law of gravitation to hold for a single star in free space then a tennis ball falling from infinity will not be translating across aexels when it hits the planet surface and as such will not experience any time dilation itself.  But will be an indicator of the speed of aexels flowing into the planet at the surface.
+
+[4] Calculate the time dilation due to gravity at the surface of a planet in Universe X.  Compare it to the time dilation due to gravity at the surface of a planet in our universe.  What is the relationship between SR and GR in Universe X compared to our universe.
+
+- But won't Universe X eventually run out of aexels?  If all loops are created through pair creation and each pair is equal and opposite in every way then perhaps if matter loops destroy aexels then antimatter loops will create them and the exact same rate.  And as a result the number of aexels in Universe X will remain constant.
+- And if matter loops destroy aexels, drawing everything in towards them then matter clumps will begin to form that will bring in more matter causing increasingly large clumps, eventually planets and stars and finally black holes when the rate of aexel flow towards the clumbs becomes one aexel per tic.
+- While antimatter loops will continually add aexels around themselves always pushing everything away from themselves becoming a dust that quietly occupies the space between the clumps. Causing the Universe to contain much matter and relatively little antimatter.
+- This antimatter will then cause a redshift of photons traveling between clumps; that is to say is responsible for the 'Dark Energy' effect.  The 'Dark Matter' effect is assumed to be caused by a pulling of unseen matter from within galaxies, but perhaps it is instead caused by the pushing of this antimatter dust from the outside of the galaxy thus explaining the apparent spherical halo of dark matter, meaning that it is then also responsible for the 'Dark Matter' effect.
+
+[5] How does Universe X solve the baryogenesis problem?
+
+- E=mc^2 is often incorrectly referred to as a conversion formula, but it is not.  It says that the total mass and total energy of a closed system is always constant and always of that proportion.  In Universe X, 'mass' is shown by the destruction of aexels; 'energy' is shown by translation.  If we consider a star radiating photons, it would seem that this concept could not hold in Universe X if only teslons destroy aexels and not edisons.  Unless its not mass that destroys aexels but rather translation that destroys aexels.  With both the internal translation of the teslons destroy aexels as things bounce around back and forth and the edisons destroying them as they radiate outwards.  Instead of calling this 'mass' which represents aexel destruction or 'energy' which represents translation, let's refer to this conserved substance as 'hyle' with mass and energy being two of its measurable effects; explaining why it is always in proportion to one another and why 'mass' is not converted into 'energy' and visa versa.
+
+[6] Is E=mc^2 not a conversion formula?  Why is both mass and energy always conserved?  Why are they always proportional to one another?  Does Universe X make these concepts easier to understand?
+[7] If photons contain hyle do all edisons contain hyle?  Consider a proton sitting in free space radiating pings.
+[8] Imagine two protons in Universe X moving towards one another.  At some point they come to a complete stop before bouncing back.  How is hyle conserved?  Where is it?
+[9] How does Universe X resolve Zeno's Arrow Paradox (how does an arrow in motion differ from one at rest?)
+[10] How does Universe X resolve the hierarchy problem?
+
+Definitions:
+- Universe X: the universe defined by this set of rules.
+- Aexels: a quanta of aether which can have state.
+- Stable State Loop: a pattern of states of aexels that repeats periodically and is capable of translating across the aexels.
+- Loop: shorthand name of Stable State Loop
+- Edison: a loop that moves at c.
+- Teslon: a loop that moves at < c.
+- Ping: an edison that gets sent out periodically by the Teslon.
+- Pong: a response edison that gets sent out by a Teslon when it interacts with a Ping edison.
+- Photon: a Hyle based edison that gets sent out by the Teslon when interacting with a Pong.
+- Hyle: A conserved quantity that is responsible for both the mass and energy effects.

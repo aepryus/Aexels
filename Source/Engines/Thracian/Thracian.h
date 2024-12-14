@@ -8,7 +8,7 @@
 
 // TC = Thracian Sea
 
-double TCLambda(double v);
+double TCGamma(double v);
 
 typedef struct TCV2 {
     double x;
@@ -24,16 +24,16 @@ double TCV2Dot(TCV2 a, TCV2 b);
 double TCV2Angle(TCV2 a, TCV2 b);
 
 typedef struct TCVelocity {
-    double s;
-    double q;
+    double s;               // speed
+    double q;               // theta
 } TCVelocity;
 
 typedef struct TCMaxton {
-    TCV2 o;
-    TCV2 e;
-    TCV2 p;
-    TCVelocity v;
-    double q;
+    TCV2 o;                 // old - last position
+    TCV2 e;                 // end - of tail (fixed length not just old position)
+    TCV2 p;                 // position
+    TCVelocity v;           // velocity
+    double q;               // theta?
     unsigned char recycle;
 } TCMaxton;
 

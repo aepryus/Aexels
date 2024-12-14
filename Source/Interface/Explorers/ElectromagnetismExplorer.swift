@@ -1,23 +1,32 @@
 //
-//  GravityExplorer.swift
+//  ElectromagnetismExplorer.swift
 //  Aexels
 //
-//  Created by Joe Charlier on 8/16/23.
-//  Copyright © 2023 Aepryus Software. All rights reserved.
+//  Created by Joe Charlier on 12/12/24.
+//  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
 import Acheron
 import UIKit
 
-class GravityExplorer: Explorer {
+class ElectromagnetismExplorer: Explorer {
     let cyto: Cyto = Cyto(rows: 2, cols: 2)
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
+    
+    let engine: ElectromagnetismEngine
+    lazy var electromagneticView = ElectromagnetismView(engine: engine)
 
-    let engine: GravityEngine = GravityEngine(size: .zero)
-    lazy var gravityView = GravityView(engine: engine)
+    init() {
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let s: CGFloat = height / 748
+        let mainLen: CGFloat = height - 110*s
+        let fixLen: CGFloat = Screen.width - mainLen - 10*s
 
-    init() { super.init(key: "gravity") }
+        engine = ElectromagnetismEngine(size: CGSize(width: max(mainLen, fixLen*2+123), height: mainLen))
+
+        super.init(key: "electromagnetism")
+    }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
@@ -30,7 +39,7 @@ class GravityExplorer: Explorer {
         articleScroll.addSubview(articleView)
 
         cyto.cells = [
-            LimboCell(content: gravityView, c: 0, r: 0),
+            LimboCell(content: electromagneticView, c: 0, r: 0),
             LimboCell(c: 0, r: 1),
             MaskCell(content: articleScroll,c: 1, r: 0, h: 2, cutout: true)
         ]
@@ -60,8 +69,5 @@ class GravityExplorer: Explorer {
         articleView.load()
         articleScroll.contentSize = articleView.scrollViewContentSize
         articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
-
-        engine.universe.pointee.width = gravityView.width
-        engine.universe.pointee.height = gravityView.height
     }
 }

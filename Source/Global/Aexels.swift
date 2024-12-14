@@ -25,6 +25,7 @@ class Aexels {
     static let gravityExplorer: GravityExplorer = GravityExplorer()
     static let dilationExplorer: DilationExplorer = DilationExplorer()
     static let contractionExplorer: ContractionExplorer = ContractionExplorer()
+    static let electromagnetismExplorer: ElectromagnetismExplorer = ElectromagnetismExplorer()
 
     static var aetherView: AetherView? = nil
 

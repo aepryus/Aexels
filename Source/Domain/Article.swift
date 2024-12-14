@@ -87,5 +87,6 @@ class Article {
         gravity.explorers.append(Aexels.gravityExplorer)
         dilation.explorers.append(Aexels.dilationExplorer)
         contraction.explorers.append(Aexels.contractionExplorer)
+        electromagnetism.explorers.append(Aexels.electromagnetismExplorer)
     }
 }

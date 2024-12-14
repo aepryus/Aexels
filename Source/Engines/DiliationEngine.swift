@@ -63,7 +63,7 @@ class DilationEngine {
         positionHorizontal()
     }
     func positionHorizontal() {
-        horizontal?.pointee.p = TCV2(x: source.pointee.p.x + size.height/4/(contractOn ? TCLambda(velocity) : 1), y: source.pointee.p.y)
+        horizontal?.pointee.p = TCV2(x: source.pointee.p.x + size.height/4/(contractOn ? TCGamma(velocity) : 1), y: source.pointee.p.y)
     }
     func swapContract() {
         contractOn = !contractOn
@@ -125,8 +125,8 @@ class DilationEngine {
     private var back: UIImage?
     private var fore: UIImage?
     
-    func renderBack() {
-        let d: CGFloat = 10.0*s
+    static func renderBack(size: CGSize) -> UIImage {
+        let d: CGFloat = 10.0*Screen.s
         let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
         let cs: CGFloat = d*CGFloat(cos(Double.pi/6))
         
@@ -181,8 +181,10 @@ class DilationEngine {
         c.setStrokeColor(UIColor.white.shade(0.6).cgColor)
         c.drawPath(using: .stroke)
         
-        self.back = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
+        return image
     }
     
     private func findEnds(from: Int, to: Int) {
@@ -201,7 +203,7 @@ class DilationEngine {
         guard renderMode == .started else { return }
         renderMode = .rendering
         
-        if back == nil { renderBack() }
+        if back == nil { back = DilationEngine.renderBack(size: size) }
         
         let dx: CGFloat = size.width/2 - camera.pointee.p.x
         let dy: CGFloat = size.height/2 - camera.pointee.p.y
