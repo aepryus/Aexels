@@ -27,6 +27,8 @@ typedef struct Velocity {
 } Velocity;
 
 Velocity VelocityAdd(Velocity a, Velocity b);
+double VelocityX(Velocity v);
+double VelocityY(Velocity v);
 
 typedef struct NCTeslon {
     CV2 pos;

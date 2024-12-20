@@ -48,7 +48,7 @@ class Engine {
     }
     
     func renderImage() {
-        if back == nil { back = DilationEngine.renderBack(size: size) }
+        if back == nil { back = DilationEngine.renderBack(size: CGSize(width: size.width+100, height: size.height)) }
         
         UIGraphicsBeginImageContext(size)
         let c: CGContext = UIGraphicsGetCurrentContext()!
