@@ -6,8 +6,25 @@
 //  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
+#import <math.h>
 #import <stdlib.h>
 #import "North.h"
+
+// Velocity ========================================================================================
+Velocity VelocityAdd(Velocity a, Velocity b) {
+    double ax = a.speed * cos(a.orient);
+    double ay = a.speed * sin(a.orient);
+    double bx = b.speed * cos(b.orient);
+    double by = b.speed * sin(b.orient);
+    
+    double rx = ax + bx;
+    double ry = ay + by;
+    
+    Velocity result;
+    result.speed = sqrt(rx*rx + ry*ry);
+    result.orient = atan2(ry, rx);
+    return result;
+}
 
 // Teslon ==========================================================================================
 NCTeslon* NCTeslonCreate(void) {
@@ -20,92 +37,336 @@ void NCTeslonRelease(NCTeslon* teslon) {
 
 // Ping ============================================================================================
 NCPing* NCPingCreate(void) {
-    NCPing* teslon = (NCPing*)malloc(sizeof(NCPing));
-    return teslon;
+    NCPing* ping = (NCPing*)malloc(sizeof(NCPing));
+    return ping;
 }
-void NCPingRelease(NCPing* teslon) {
-    free(teslon);
+void NCPingRelease(NCPing* ping) {
+    free(ping);
 }
 
 // Pong ============================================================================================
 NCPong* NCPongCreate(void) {
-    NCPong* teslon = (NCPong*)malloc(sizeof(NCPong));
-    return teslon;
+    NCPong* pong = (NCPong*)malloc(sizeof(NCPong));
+    return pong;
 }
-void NCPongRelease(NCPong* teslon) {
-    free(teslon);
+void NCPongRelease(NCPong* pong) {
+    free(pong);
 }
 
 // Photon ==========================================================================================
 NCPhoton* NCPhotonCreate(void) {
-    NCPhoton* teslon = (NCPhoton*)malloc(sizeof(NCPhoton));
-    return teslon;
+    NCPhoton* photon = (NCPhoton*)malloc(sizeof(NCPhoton));
+    return photon;
 }
-void NCPhotonRelease(NCPhoton* teslon) {
-    free(teslon);
+void NCPhotonRelease(NCPhoton* photon) {
+    free(photon);
+}
+
+// Camera ==========================================================================================
+NCCamera* NCCameraCreate(void) {
+    NCCamera* camera = (NCCamera*)malloc(sizeof(NCCamera));
+    camera->v.speed = 0;
+    return camera;
+}
+void NCCameraRelease(NCCamera* camera) {
+    free(camera);
 }
 
 // Universe ========================================================================================
-NCUniverse* NCUniverseCreate(void) {
-    NCUniverse* teslon = (NCUniverse*)malloc(sizeof(NCUniverse));
-    return teslon;
+NCUniverse* NCUniverseCreate(double width, double height) {
+    NCUniverse* universe = (NCUniverse*)malloc(sizeof(NCUniverse));
+    universe->width = width;
+    universe->height = height;
+    universe->c = 1;
+    universe->speed = 0;
+    
+    universe->teslonCount = 0;
+    universe->teslonCapacity = 2;
+    universe->teslons = (NCTeslon**)malloc(sizeof(NCTeslon*)*universe->teslonCapacity);
+    
+    universe->pingCount = 0;
+    universe->pingCapacity = 2;
+    universe->pings = (NCPing**)malloc(sizeof(NCPing*)*universe->pingCapacity);
+    
+    universe->pongCount = 0;
+    universe->pongCapacity = 2;
+    universe->pongs = (NCPong**)malloc(sizeof(NCPong*)*universe->pongCapacity);
+    
+    universe->photonCount = 0;
+    universe->photonCapacity = 2;
+    universe->photons = (NCPhoton**)malloc(sizeof(NCPhoton*)*universe->photonCapacity);
+    
+    universe->cameraCount = 0;
+    universe->cameraCapacity = 2;
+    universe->cameras = (NCCamera**)malloc(sizeof(NCCamera*)*universe->cameraCapacity);
+
+    return universe;
 }
-void NCUniverseRelease(NCUniverse* teslon) {
-    free(teslon);
+void NCUniverseRelease(NCUniverse* universe) {
+    for (int i=0;i<universe->teslonCount;i++) NCTeslonRelease(universe->teslons[i]);
+    free(universe->teslons);
+    for (int i=0;i<universe->pingCount;i++) NCPingRelease(universe->pings[i]);
+    free(universe->pings);
+    for (int i=0;i<universe->pongCount;i++) NCPongRelease(universe->pongs[i]);
+    free(universe->pongs);
+    for (int i=0;i<universe->photonCount;i++) NCPhotonRelease(universe->photons[i]);
+    free(universe->photons);
+    for (int i=0;i<universe->cameraCount;i++) NCCameraRelease(universe->cameras[i]);
+    free(universe->cameras);
+    free(universe);
 }
 
 void NCUniverseAddTeslon(NCUniverse* universe, NCTeslon* teslon) {
     universe->teslonCount++;
-    universe->teslons = (NCTeslon**)realloc(universe->teslons, sizeof(NCTeslon*)*universe->teslonCount);
+    if (universe->teslonCount > universe->teslonCapacity) {
+        universe->teslonCapacity *= 2;
+        universe->teslons = (NCTeslon**)realloc(universe->teslons, sizeof(NCTeslon*)*universe->teslonCapacity);
+    }
     universe->teslons[universe->teslonCount-1] = teslon;
 }
 void NCUniverseAddPing(NCUniverse* universe, NCPing* ping) {
     universe->pingCount++;
-    universe->pings = (NCPing**)realloc(universe->pings, sizeof(NCPing*)*universe->pingCount);
+    if (universe->pingCount > universe->pingCapacity) {
+        universe->pingCapacity *= 2;
+        universe->pings = (NCPing**)realloc(universe->pings, sizeof(NCPing*)*universe->pingCapacity);
+    }
     universe->pings[universe->pingCount-1] = ping;
 }
 void NCUniverseAddPong(NCUniverse* universe, NCPong* pong) {
     universe->pongCount++;
-    universe->pongs = (NCPong**)realloc(universe->pongs, sizeof(NCPong*)*universe->pongCount);
+    if (universe->pongCount > universe->pongCapacity) {
+        universe->pongCapacity *= 2;
+        universe->pongs = (NCPong**)realloc(universe->pongs, sizeof(NCPong*)*universe->pongCapacity);
+    }
     universe->pongs[universe->pongCount-1] = pong;
 }
 void NCUniverseAddPhoton(NCUniverse* universe, NCPhoton* photon) {
     universe->photonCount++;
-    universe->photons = (NCPhoton**)realloc(universe->photons, sizeof(NCPhoton*)*universe->photonCount);
+    if (universe->photonCount > universe->photonCapacity) {
+        universe->photonCapacity *= 2;
+        universe->photons = (NCPhoton**)realloc(universe->photons, sizeof(NCPhoton*)*universe->photonCapacity);
+    }
     universe->photons[universe->photonCount-1] = photon;
 }
+void NCUniverseAddCamera(NCUniverse* universe, NCCamera* camera) {
+    universe->cameraCount++;
+    if (universe->cameraCount > universe->cameraCapacity) {
+        universe->cameraCapacity *= 2;
+        universe->cameras = (NCCamera**)realloc(universe->cameras, sizeof(NCCamera*)*universe->cameraCapacity);
+    }
+    universe->cameras[universe->cameraCount-1] = camera;
+}
 
-NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double s, double q) {
+NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed) {
     NCTeslon* teslon = NCTeslonCreate();
     teslon->pos.x = x;
     teslon->pos.y = y;
+    teslon->v.speed = speed;
+    teslon->v.orient = orient;
+    teslon->fixed = fixed;
+    teslon->hyle = 1;
     NCUniverseAddTeslon(universe, teslon);
     return teslon;
 }
-NCPing* NCUniverseCreatePing(NCUniverse* universe, double x, double y, double s, double q) {
+NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon, double orient) {
     NCPing* ping = NCPingCreate();
-    ping->pos.x = x;
-    ping->pos.y = y;
+    ping->source = teslon;
+    ping->pos = teslon->pos;
+    ping->v.speed = 1;
+    ping->v.orient = orient;
+    ping->recycle = 0;
     NCUniverseAddPing(universe, ping);
     return ping;
 }
-NCPong* NCUniverseCreatePong(NCUniverse* universe, double x, double y, double s, double q) {
+NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon, double orient) {
     NCPong* pong = NCPongCreate();
-    pong->pos.x = x;
-    pong->pos.y = y;
+    pong->source = teslon;
+    pong->pos = teslon->pos;
+    pong->v.speed = 1;
+    pong->v.orient = orient;
+    pong->recycle = 0;
     NCUniverseAddPong(universe, pong);
     return pong;
 }
-NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, double x, double y, double s, double q) {
+NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon, double orient) {
     NCPhoton* photon = NCPhotonCreate();
-    photon->pos.x = x;
-    photon->pos.y = y;
+    photon->source = teslon;
+    photon->pos = teslon->pos;
+    photon->v.speed = 1;
+    photon->v.orient = orient;
+    photon->hyle = 1;
+    photon->recycle = 0;
     NCUniverseAddPhoton(universe, photon);
     return photon;
 }
+NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, double speed, double orient) {
+    NCCamera* camera = NCCameraCreate();
+    camera->pos.x = x;
+    camera->pos.y = y;
+    camera->v.speed = speed;
+    camera->v.orient = orient;
+    NCUniverseAddCamera(universe, camera);
+    return camera;
+}
 
-void NCUniverseTic(NCUniverse* universe) {
+int NCUniverseOutsideOf(NCUniverse* universe, CV2 pos) {
+    return pos.x < -100 || pos.y < -100 || pos.x > universe->width + 100 || pos.y > universe->height + 100;
+}
+int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos) {
+    double radius = 20;
+    if (pos.x < teslon->pos.x - radius) return 0;
+    if (pos.x > teslon->pos.x + radius) return 0;
+    if (pos.y < teslon->pos.y - radius) return 0;
+    if (pos.y > teslon->pos.y + radius) return 0;
+    double dx = teslon->pos.x-pos.x;
+    double dy = teslon->pos.y-pos.y;
+    return dx*dx+dy*dy < radius*radius;
+}
+
+void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
+    Velocity delta;
+    delta.speed = speed - universe->speed;
+    delta.orient = 0;
+    universe->speed += delta.speed;
+    for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v = VelocityAdd(universe->teslons[i]->v, delta);
+    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v = VelocityAdd(universe->cameras[i]->v, delta);
 }
 
 void NCUniversePulse(NCUniverse* universe, int n) {
+    int pingI = universe->pingCount;
+    universe->pingCount += n * universe->teslonCount;
+    if (universe->pingCount > universe->pingCapacity) {
+        while (universe->pingCount > universe->pingCapacity) universe->pingCapacity *= 2;
+        universe->pings = (NCPing**)realloc(universe->pings, sizeof(NCPing*)*universe->pingCapacity);
+    }
+    
+    for (int i=0;i<universe->teslonCount;i++) {
+        NCTeslon* teslon = universe->teslons[i];
+        double iQ = teslon->v.orient;
+        double q = M_PI/2 - iQ;
+        double dQ = 2*M_PI/n;
+        
+        for (int j=0;j<n;j++) {
+            NCPing* ping = NCPingCreate();
+            ping->pos.x = teslon->pos.x;
+            ping->pos.y = teslon->pos.y;
+            ping->v.speed = 1;
+            ping->v.orient = q;
+//            ping->emOrient = atan(universe->c*sin(q)/(universe->c*cos(q)-teslon->v.speed));
+            ping->emOrient = q-M_PI/2;
+            ping->source = teslon;
+            q += dQ;
+            universe->pings[pingI] = ping;
+            pingI++;
+        }
+    }
+}
+
+void NCUniverseTic(NCUniverse* universe) {
+    // Basic Translation
+    for (int i=0;i<universe->teslonCount;i++) {
+        if (universe->teslons[i]->fixed) continue;
+        universe->teslons[i]->pos.x += universe->c*universe->teslons[i]->v.speed*sin(universe->teslons[i]->v.orient);
+        universe->teslons[i]->pos.y += universe->c*universe->teslons[i]->v.speed*(-cos(universe->teslons[i]->v.orient));
+    }
+    for (int i=0;i<universe->pingCount;i++) {
+        universe->pings[i]->pos.x += universe->c*universe->pings[i]->v.speed*sin(universe->pings[i]->v.orient);
+        universe->pings[i]->pos.y += universe->c*universe->pings[i]->v.speed*(-cos(universe->pings[i]->v.orient));
+    }
+    for (int i=0;i<universe->pongCount;i++) {
+        universe->pongs[i]->pos.x += universe->c*universe->pongs[i]->v.speed*sin(universe->pongs[i]->v.orient);
+        universe->pongs[i]->pos.y += universe->c*universe->pongs[i]->v.speed*(-cos(universe->pongs[i]->v.orient));
+    }
+    for (int i=0;i<universe->photonCount;i++) {
+        universe->photons[i]->pos.x += universe->c*universe->photons[i]->v.speed*sin(universe->photons[i]->v.orient);
+        universe->photons[i]->pos.y += universe->c*universe->photons[i]->v.speed*(-cos(universe->photons[i]->v.orient));
+    }
+    for (int i=0;i<universe->cameraCount;i++) {
+        universe->cameras[i]->pos.x += universe->c*universe->cameras[i]->v.speed*sin(universe->cameras[i]->v.orient);
+        universe->cameras[i]->pos.y += universe->c*universe->cameras[i]->v.speed*(-cos(universe->cameras[i]->v.orient));
+    }
+
+    for (int i=0;i<universe->teslonCount;i++) {
+        NCTeslon* teslon = universe->teslons[i];
+
+        // Teslon Bounce
+        if (teslon->pos.x < 0 || teslon->pos.x > universe->width) {
+            double orient = teslon->v.orient;
+            teslon->v.orient = -orient;
+        }
+        if (teslon->pos.y < 0 || teslon->pos.y > universe->height) {
+            double orient = teslon->v.orient;
+            teslon->v.orient = M_PI-orient;
+        }
+        
+        // Ping Collision; Pong Reflection
+        for (int j=0;j<universe->pingCount;j++) {
+            NCPing* ping = universe->pings[j];
+            if (ping->source != teslon && NCTeslonInsideOf(teslon, ping->pos)) {
+                NCPong* pong = NCUniverseCreatePong(universe, teslon, 0);
+                pong->pos = ping->pos;
+                pong->v.orient = ping->v.orient + M_PI;
+                pong->emOrient = ping->emOrient + M_PI;
+                ping->recycle = 1;
+            }
+        }
+
+        // Pong Collision; Photon Reflection
+        for (int j=0;j<universe->pongCount;j++) {
+            NCPong* pong = universe->pongs[j];
+            if (pong->source != teslon && NCTeslonInsideOf(teslon, pong->pos)) {
+                NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon, 0);
+                photon->pos = pong->pos;
+                photon->v.orient = pong->v.orient + M_PI;
+                photon->emOrient = pong->emOrient + M_PI;
+                pong->recycle = 1;
+            }
+        }
+        
+        // Photon Collision; Photon Absorption
+        for (int j=0;j<universe->photonCount;j++) {
+            NCPhoton* photon = universe->photons[j];
+            if (photon->source != teslon && NCTeslonInsideOf(teslon, photon->pos)) {
+                photon->recycle = 1;
+            }
+        }
+    }
+    
+    // Clear Recycled Edisons
+    int k = 0;
+    int pC = universe->pingCount;
+    for (int i=0; i<pC; i++) {
+        NCPing* ping = universe->pings[i];
+        if (ping->recycle || NCUniverseOutsideOf(universe, ping->pos)) {
+            NCPingRelease(ping);
+            universe->pingCount--;
+        } else {
+            if (k != i) universe->pings[k] = universe->pings[i];
+            k++;
+        }
+    }
+    k = 0;
+    pC = universe->pongCount;
+    for (int i=0; i<pC; i++) {
+        NCPong* pong = universe->pongs[i];
+        if (pong->recycle || NCUniverseOutsideOf(universe, pong->pos)) {
+            NCPongRelease(pong);
+            universe->pongCount--;
+        } else {
+            if (k != i) universe->pongs[k] = universe->pongs[i];
+            k++;
+        }
+    }
+    k = 0;
+    pC = universe->photonCount;
+    for (int i=0; i<pC; i++) {
+        NCPhoton* photon = universe->photons[i];
+        if (photon->recycle || NCUniverseOutsideOf(universe, photon->pos)) {
+            NCPhotonRelease(photon);
+            universe->photonCount--;
+        } else {
+            if (k != i) universe->photons[k] = universe->photons[i];
+            k++;
+        }
+    }
 }

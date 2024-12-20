@@ -68,13 +68,13 @@ typedef struct TCCamera {
 } TCCamera;
 
 TCCamera* TCCameraCreate(void);
-void TCCameraRelease(TCCamera* teslon);
+void TCCameraRelease(TCCamera* camera);
 
 typedef struct TCUniverse {
     TCV2 center;
     double width;
     double height;
-    double v;
+//    double v;
     double c;
     double boundrySquared;
     int maxtonCount;

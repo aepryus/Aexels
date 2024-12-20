@@ -9,7 +9,7 @@
 import UIKit
 
 class Engine {
-    let size: CGSize
+    var size: CGSize
 
     var image: UIImage?
     weak var view: UIView?
