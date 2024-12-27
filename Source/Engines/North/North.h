@@ -77,6 +77,8 @@ void NCPhotonRelease(NCPhoton* photon);
 typedef struct NCCamera {
     CV2 pos;
     Velocity v;
+    double width;
+    double height;
 } NCCamera;
 
 NCCamera* NCCameraCreate(void);

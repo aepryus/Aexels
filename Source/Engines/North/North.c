@@ -256,7 +256,14 @@ void NCUniversePulse(NCUniverse* universe, int n) {
             ping->pos = teslon->pos;
             ping->v.speed = 1;
             ping->v.orient = iQ;
-            ping->emOrient = atan2(universe->c*sin(iQ), universe->c*cos(iQ) - teslon->v.speed);
+            
+            double iQx = cos(iQ);
+            double iQy = sin(iQ);
+            
+            double tVx = VelocityX(teslon->v);
+            double tVy = VelocityY(teslon->v);
+            
+            ping->emOrient = atan2(iQy - tVy, iQx - tVx);
             ping->source = teslon;
             iQ += dQ;
             universe->pings[pingI] = ping;
