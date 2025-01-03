@@ -21,7 +21,7 @@ class ContractionExplorer: Explorer {
     let autoSwap: BoolButton = BoolButton(text: "auto")
     let tailsSwap: BoolButton = BoolButton(text: "tails")
     let contractSwap: BoolButton = BoolButton(text: "contract")
-    let pulseButton: PulseButton = PulseButton()
+    let pulseButton: PulseButton = PulseButton(name: "pulse")
     let controlsView: UIView = UIView()
     let closeLimbo = LimboButton(title: "Close")
     let closeButton: CloseButton = CloseButton()

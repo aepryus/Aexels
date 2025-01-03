@@ -14,7 +14,8 @@ class AXButton: UIControl {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 	}
-	required init?(coder aDecoder: NSCoder) {fatalError()}
+    @available(*, unavailable)
+    required public init?(coder aDecoder: NSCoder) { fatalError() }
 
 // UIView ==========================================================================================
 	override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

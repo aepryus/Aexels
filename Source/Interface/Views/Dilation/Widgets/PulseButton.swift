@@ -11,12 +11,12 @@ import OoviumEngine
 import UIKit
 
 class PulseButton: AXButton {
+    let name: String
     
-//    overriinit() {
-//        super.init(frame: .zero)
-//        backgroundColor = .clear
-//    }
-//    required init?(coder: NSCoder) { fatalError() }
+    init(name: String) {
+        self.name = name
+        super.init()
+    }
     
 // UIView ==========================================================================================
     override func draw(_ rect: CGRect) {
@@ -50,6 +50,6 @@ class PulseButton: AXButton {
         c.strokePath()
 
         let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s*ss)!, color: stroke, alignment: .center)
-        "pulse".draw(in: CGRect(x: (width-50*s*ss)/2, y: 10*s*ss, width: 50*s*ss, height: 20*s*ss), pen: pen)
+        name.draw(in: CGRect(x: (width-50*s*ss)/2, y: 10*s*ss, width: 50*s*ss, height: 20*s*ss), pen: pen)
     }
 }

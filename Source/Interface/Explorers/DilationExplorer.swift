@@ -21,7 +21,7 @@ class DilationExplorer: Explorer {
     let autoSwap: BoolButton = BoolButton(text: "auto")
     let tailsSwap: BoolButton = BoolButton(text: "tails")
     let cameraSwap: BoolButton = BoolButton(text: "fixed")
-    let pulseButton: PulseButton = PulseButton()
+    let pulseButton: PulseButton = PulseButton(name: "pulse")
     let controlsView: UIView = UIView()
     
     let lightSpeedLabel: UILabel = UILabel()

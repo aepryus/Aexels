@@ -59,7 +59,7 @@ class ElectromagnetismEngine: Engine {
         let mro: CGFloat = min(sqrt(tA / .pi), iri)
         let tAo: CGFloat = tA - .pi * mro * mro
         let tro: CGFloat = sqrt((tAo + .pi * tri * tri) / .pi)
-
+        
         c.addArc(center: center, radius: tro, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
         c.move(to: center+iri*CGPoint(x: 1, y: 0))
         c.addArc(center: center, radius: iri, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
@@ -80,7 +80,7 @@ class ElectromagnetismEngine: Engine {
         c.drawPath(using: .stroke)
         
         c.move(to: center+mro*CGPoint(x: 1, y: 0))
-        c.addArc(center: center, radius: mro*teslon.pointee.hyle, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+        c.addArc(center: center, radius: mro*teslon.pointee.iHyle, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
 
         c.setFillColor(ElectromagnetismEngine.hyleColor.cgColor)
         c.setStrokeColor(UIColor.black.cgColor)
@@ -175,26 +175,61 @@ class ElectromagnetismEngine: Engine {
         let dx: CGFloat = camera.pointee.width/2 - camera.pointee.pos.x
         let dy: CGFloat = camera.pointee.height/2 - camera.pointee.pos.y
         let center: CGPoint = CGPoint(x: dx + photon.pointee.pos.x, y: dy + photon.pointee.pos.y)
-        let hr: CGFloat = 4*scale
+        let r: CGFloat = 2*scale
+        
+        let iro: CGFloat = 10*scale
+        let iri: CGFloat = 7*scale
+        let iA: CGFloat = .pi * (iro*iro - iri*iri)
+        let pA: CGFloat = iA*abs(photon.pointee.hyle)
+        let kro: CGFloat = sqrt(pA / .pi)
+        
+        c.move(to: center)
+        c.addLine(to: center+CGPoint(x: 3*r*VelocityX(photon.pointee.v), y: 3*r*VelocityY(photon.pointee.v)))
 
-        c.addArc(center: center, radius: hr*photon.pointee.hyle, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+        c.setFillColor(UIColor.black.tint(0.6).cgColor)
+        c.setStrokeColor(UIColor.black.tint(0.6).cgColor)
+        c.drawPath(using: .fillStroke)
+        
+        c.addArc(center: center, radius: kro, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
 
         c.setFillColor(ElectromagnetismEngine.hyleColor.cgColor)
         c.setStrokeColor(UIColor.black.cgColor)
         c.setLineWidth(1*scale)
         c.drawPath(using: .fillStroke)
         
-        let q: CGFloat = photon.pointee.emOrient
-        c.move(to: center)
-        let end: CGPoint = center+hr*CGPoint(x: cos(q), y: -sin(q))
-        c.addLine(to: end)
-        c.setStrokeColor(UIColor.white.cgColor)
-        c.setFillColor(UIColor.white.cgColor)
-        c.setLineWidth(1*scale)
-        c.setLineCap(.round)
-        c.move(to: end+3*CGPoint(x: 1, y: 0))
-        c.addArc(center: end, radius: 2.5, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
-        c.drawPath(using: .fillStroke)
+//
+//        let frameV: CGPoint = CGPoint(x: VelocityX(photon.pointee.v) - VelocityX(camera.pointee.v), y: VelocityY(photon.pointee.v) - VelocityY(camera.pointee.v)).unit()
+//        c.addArc(center: center, radius: r/2, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
+//        c.move(to: center)
+//        c.addLine(to: center + 2.5 * r * frameV )
+//
+//        c.setFillColor(UIColor.black.tint(0.96).cgColor)
+//        c.setStrokeColor(UIColor.black.tint(0.96).cgColor)
+//        c.drawPath(using: .fillStroke)
+//        
+//        let emPoint: CGPoint = CGPoint(x: cos(photon.pointee.emOrient), y: -sin(photon.pointee.emOrient))
+//        c.addArc(center: center, radius: r/4, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
+//        c.move(to: center)
+//        c.addLine(to: center + 1.5 * r * emPoint.unit() )
+//        
+//        let emColor: UIColor = .red.blend(with: .blue, percent: 1 - abs(emPoint.dot(frameV))).tone(0.5).tint(0.1)
+//
+//        c.setFillColor(emColor.cgColor)
+//        c.setStrokeColor(emColor.cgColor)
+//        c.drawPath(using: .fillStroke)
+
+        
+//        let q: CGFloat = photon.pointee.emOrient
+//        c.move(to: center)
+//        let end: CGPoint = center+hr*CGPoint(x: cos(q), y: -sin(q))
+//        c.addLine(to: end)
+//        c.setStrokeColor(UIColor.white.cgColor)
+//        c.setFillColor(UIColor.white.cgColor)
+//        c.setLineWidth(1*scale)
+//        c.setLineCap(.round)
+//        c.move(to: end+3*CGPoint(x: 1, y: 0))
+//        c.addArc(center: end, radius: 2.5, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
+//        c.drawPath(using: .fillStroke)
     }
 
 // Engine ==========================================================================================
@@ -211,8 +246,11 @@ class ElectromagnetismEngine: Engine {
     override func onTic() {
         NCUniverseTic(universe)
     }
-    func onPulse() {
-        NCUniversePulse(universe, 32)
+    func onPing() {
+        NCUniversePing(universe, 32)
+    }
+    func onPong() {
+        NCUniversePong(universe)
     }
     override func onRender(c: CGContext) {
         let dx: CGFloat = size.width/2 - camera.pointee.pos.x

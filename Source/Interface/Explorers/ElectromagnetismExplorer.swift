@@ -18,7 +18,8 @@ class ElectromagnetismExplorer: Explorer {
     let playButton: PlayButton = PlayButton()
     let resetButton: ResetButton = ResetButton()
     let autoSwap: BoolButton = BoolButton(text: "auto")
-    let pulseButton: PulseButton = PulseButton()
+    let pingButton: PulseButton = PulseButton(name: "ping")
+    let pongButton: PulseButton = PulseButton(name: "pong")
     let controlsView: UIView = UIView()
 
     let engine: ElectromagnetismEngine
@@ -84,9 +85,14 @@ class ElectromagnetismExplorer: Explorer {
 //            self.engine.autoOn = !self.engine.autoOn
         }
 
-        controlsView.addSubview(pulseButton)
-        pulseButton.addAction {
-            self.engine.onPulse()
+        controlsView.addSubview(pingButton)
+        pingButton.addAction {
+            self.engine.onPing()
+        }
+
+        controlsView.addSubview(pongButton)
+        pongButton.addAction {
+            self.engine.onPong()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -124,8 +130,9 @@ class ElectromagnetismExplorer: Explorer {
         cSlider.topLeft(dx: resetButton.right+18*s, dy: 1*s, width: 140*s, height: 40*s)
         vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
         autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
-        pulseButton.right(dx: -15*s, width: 60*s, height: 80*s)
-        
+        pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
+        pongButton.right(dx: -115*s, width: 60*s, height: 80*s)
+
         cSlider.setTo(60)
         vSlider.setTo(0.0)
     }
