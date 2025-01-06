@@ -131,7 +131,7 @@ class ElectromagnetismExplorer: Explorer {
         vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
         autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
         pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
-        pongButton.right(dx: -115*s, width: 60*s, height: 80*s)
+        pongButton.right(dx: -85*s, width: 60*s, height: 80*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.0)

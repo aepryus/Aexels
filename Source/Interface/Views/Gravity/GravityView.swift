@@ -21,7 +21,6 @@ class GravityView: AEView {
         backgroundColor = UIColor.clear
         self.engine.view = self
     }
-    required init?(coder aDecoder: NSCoder) { fatalError() }
 
 // UIView ==========================================================================================
     override func draw(_ rect: CGRect) {

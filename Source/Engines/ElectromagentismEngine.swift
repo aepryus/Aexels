@@ -18,10 +18,11 @@ class ElectromagnetismEngine: Engine {
 
     static let hyleColor: UIColor = UIColor(patternImage: UIImage(named: "hyle")!)
     
-    override init(size: CGSize) {
+    init(size: CGSize) {
         universe = NCUniverseCreate(size.width, size.height)
-        NCUniverseCreateTeslon(universe, 360, 240, 0.0, 0.0, 1)
-        NCUniverseCreateTeslon(universe, 360, 400, 0.0, 0.0, 1)
+        NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
+        NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
+//        NCUniverseCreateTeslon(universe, 360, 240, 0.5, .pi / 4, 0)
         camera = NCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, 0)
         super.init(size: size)
     }
@@ -49,7 +50,7 @@ class ElectromagnetismEngine: Engine {
         
         let vC: CGFloat = camera.pointee.v.speed
         let vT: CGFloat = teslon.pointee.v.speed
-        let gC: CGFloat = 1/sqrt(1-vC*vC)
+//        let gC: CGFloat = 1/sqrt(1-vC*vC)
         let gT: CGFloat = 1/sqrt(1-vT*vT)
         let iA: CGFloat = .pi * (iro*iro - iri*iri)
         let tA: CGFloat = iA * (gT - 1)
@@ -110,7 +111,7 @@ class ElectromagnetismEngine: Engine {
         c.setStrokeColor(UIColor.black.tint(0.96).cgColor)
         c.drawPath(using: .fillStroke)
         
-        let emPoint: CGPoint = CGPoint(x: cos(ping.pointee.emOrient), y: -sin(ping.pointee.emOrient))
+        let emPoint: CGPoint = CGPoint(x: cos(ping.pointee.cupola), y: sin(ping.pointee.cupola))
         c.addArc(center: center, radius: r/4, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
         c.move(to: center)
         c.addLine(to: center + 1.5 * r * emPoint.unit() )
@@ -140,14 +141,14 @@ class ElectromagnetismEngine: Engine {
         
         let spread: CGFloat = .pi / 3
         
-        let emOrient: CGFloat = pong.pointee.emOrient
+        let emOrient: CGFloat = pong.pointee.cupola
         let start: CGFloat = emOrient - spread / 2
         let stop: CGFloat = emOrient + spread / 2
         
-        let startPoint: CGPoint = center + r * CGPoint(x: cos(start), y: -sin(start))
-        let stopPoint: CGPoint = center + r * CGPoint(x: cos(stop), y: -sin(stop))
+        let startPoint: CGPoint = center + r * CGPoint(x: cos(start), y: sin(start))
+        let stopPoint: CGPoint = center + r * CGPoint(x: cos(stop), y: sin(stop))
 
-        let emPoint: CGPoint = CGPoint(x: cos(pong.pointee.emOrient), y: -sin(pong.pointee.emOrient))
+        let emPoint: CGPoint = CGPoint(x: cos(pong.pointee.cupola), y: sin(pong.pointee.cupola))
         c.addArc(center: center, radius: r, startAngle: 2 * .pi - start, endAngle: 2 * .pi - stop, clockwise: false)
         c.move(to: startPoint)
         c.addLine(to: center + 3 * r * emPoint.unit() )
@@ -263,9 +264,25 @@ class ElectromagnetismEngine: Engine {
         if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
 
         let scale: CGFloat = 2
-        for i in 0..<Int(universe.pointee.pingCount) { renderPing(c: c, ping: universe.pointee.pings![i]!, camera: camera, scale: scale) }
-        for i in 0..<Int(universe.pointee.pongCount) { renderPong(c: c, pong: universe.pointee.pongs![i]!, camera: camera, scale: scale) }
-        for i in 0..<Int(universe.pointee.photonCount) { renderPhoton(c: c, photon: universe.pointee.photons![i]!, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.pingCount) { renderPing(c: c, ping: universe.pointee.pings![i]!, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.pongCount) { renderPong(c: c, pong: universe.pointee.pongs![i]!, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.photonCount) { renderPhoton(c: c, photon: universe.pointee.photons![i]!, camera: camera, scale: scale) }
         for i in 0..<Int(universe.pointee.teslonCount) { renderTeslon(c: c, teslon: universe.pointee.teslons![i]!, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.pingCount) { renderSimple(c: c, pos: universe.pointee.pings![i]!.pointee.pos, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.pongCount) { renderSimple(c: c, pos: universe.pointee.pongs![i]!.pointee.pos, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.photonCount) { renderSimple(c: c, pos: universe.pointee.photons![i]!.pointee.pos, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.teslonCount) { renderSimple(c: c, pos: universe.pointee.teslons![i]!.pointee.pos, camera: camera, scale: scale) }
+    }
+    private func renderSimple(c: CGContext, pos: CV2, camera: UnsafeMutablePointer<NCCamera>, scale: CGFloat = 10) {
+        let dx: CGFloat = camera.pointee.width/2 - camera.pointee.pos.x
+        let dy: CGFloat = camera.pointee.height/2 - camera.pointee.pos.y
+        let center: CGPoint = CGPoint(x: dx + pos.x, y: dy + pos.y)
+
+        c.addArc(center: center, radius: 3, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+
+        c.setFillColor(UIColor.green.cgColor)
+        c.setStrokeColor(UIColor.black.cgColor)
+        c.setLineWidth(1*scale)
+        c.drawPath(using: .fillStroke)
     }
 }

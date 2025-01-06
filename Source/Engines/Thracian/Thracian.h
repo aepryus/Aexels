@@ -6,7 +6,7 @@
 //  Copyright © 2022 Aepryus Software. All rights reserved.
 //
 
-// TC = Thracian Sea
+// TC = Thracian Sea : Dilation and Contraction
 
 double TCGamma(double v);
 

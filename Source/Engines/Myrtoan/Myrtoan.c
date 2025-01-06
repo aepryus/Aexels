@@ -11,77 +11,91 @@
 #import <stdlib.h>
 #include "Myrtoan.h"
 
-// Slice ===========================================================================================
-MYSlice* MYSliceCreate(void) {
-    MYSlice* slice = (MYSlice*)malloc(sizeof(MYSlice));
-    return slice;
+// Planet ==========================================================================================
+MCPlanet* MCPlanetCreate(double radius) {
+    MCPlanet* planet = (MCPlanet*)malloc(sizeof(MCPlanet));
+    planet->radius = radius;
+    return planet;
 }
-void MYSliceRelease(MYSlice* slice) {
-    free(slice);
+void MCPlanetRelease(MCPlanet* planet) {
+    free(planet);
+}
+
+// Ring ============================================================================================
+MCRing* MCRingCreate(void) {
+    MCRing* ring = (MCRing*)malloc(sizeof(MCRing));
+    return ring;
+}
+void MCRingRelease(MCRing* ring) {
+    free(ring);
+}
+
+// Moon ============================================================================================
+MCMoon* MCMoonCreate(void) {
+    MCMoon* moon = (MCMoon*)malloc(sizeof(MCMoon));
+    return moon;
+}
+void MCMoonRelease(MCMoon* moon) {
+    free(moon);
 }
 
 // Universe ========================================================================================
-MYUniverse* MYUniverseCreate(double width, double height, double dx, double g) {
-    MYUniverse* universe = (MYUniverse*)malloc(sizeof(MYUniverse));
+MCUniverse* MCUniverseCreate(double width, double height) {
+    MCUniverse* universe = (MCUniverse*)malloc(sizeof(MCUniverse));
     
     universe->width = width;
     universe->height = height;
-    universe->dx = dx;
-    universe->g = g;
-    universe->destroyed = -1;
     
-    universe->sliceCount = 0;
-    universe->slices = (MYSlice**)malloc(sizeof(MYSlice*)*0);
+    universe->planet = MCPlanetCreate(80);
+    
+    universe->ringCount = 0;
+    universe->ringCapacity = 1;
+    universe->rings = (MCRing**)malloc(sizeof(MCRing*)*universe->ringCapacity);
+    
+    universe->moonCount = 0;
+    universe->moonCapacity = 1;
+    universe->moons = (MCMoon**)malloc(sizeof(MCMoon*)*universe->moonCapacity);
     
     return universe;
 }
-void MYUniverseRelease(MYUniverse* universe) {
+void MCUniverseRelease(MCUniverse* universe) {
     if (universe == 0) return;
-    free(universe->slices);
+    for (int i=0;i<universe->moonCount;i++) MCMoonRelease(universe->moons[i]);
+    free(universe->moons);
+    for (int i=0;i<universe->ringCount;i++) MCRingRelease(universe->rings[i]);
+    free(universe->rings);
+    MCPlanetRelease(universe->planet);
     free(universe);
 }
-void MYUniverseTic(MYUniverse* universe) {
-    for (int i=0;i<universe->sliceCount;i++) {
-        MYSlice* slice = universe->slices[i];
-        slice->y += slice->vy/60;
-        slice->vy *= 0.9985;
-//        slice->vy += universe->g/60;
-    }
-    for (int i=0;i<universe->sliceCount;i++) {
-        MYSlice* slice = universe->slices[i];
-        if (!slice->replicated && slice->y > universe->dx) {
-            slice->replicated = 1;
-            if (universe->destroyed == -1) {
-                MYUniverseCreateSlice(universe, 0, 100, !slice->evenOdd);
-            } else {
-                MYSlice* newSlice = universe->slices[universe->destroyed];
-                universe->destroyed = -1;
-                newSlice->destroyed = 0;
-                newSlice->y = 0;
-                newSlice->vy = 100;
-                newSlice->replicated = 0;
-                newSlice->evenOdd = !slice->evenOdd;
-            }
-        }
-        if (slice->y > universe->height) {
-            slice->destroyed = 1;
-            universe->destroyed = i;
-        }
-    }
+void MCUniverseTic(MCUniverse* universe) {
 }
-
-void MYUniverseAddSlice(MYUniverse* universe, MYSlice* slice) {
-    universe->sliceCount++;
-    universe->slices = (MYSlice**)realloc(universe->slices, sizeof(MYSlice*)*universe->sliceCount);
-    universe->slices[universe->sliceCount-1] = slice;
+void MCUniverseAddRing(MCUniverse* universe, MCRing* ring) {
+    universe->ringCount++;
+    if (universe->ringCount > universe->ringCapacity) {
+        universe->ringCapacity *= 2;
+        universe->rings = (MCRing**)realloc(universe->rings, sizeof(MCRing*)*universe->ringCapacity);
+    }
+    universe->rings[universe->ringCount-1] = ring;
 }
-MYSlice* MYUniverseCreateSlice(MYUniverse* universe, double y, double vy, byte evenOdd) {
-    MYSlice* slice = MYSliceCreate();
-    slice->y = y;
-    slice->vy = vy;
-    slice->evenOdd = evenOdd;
-    slice->replicated = 0;
-    slice->destroyed = 0;
-    MYUniverseAddSlice(universe, slice);
-    return slice;
+MCRing* MCUniverseCreateRing(MCUniverse* universe, double radius) {
+    MCRing* ring = MCRingCreate();
+    ring->radius = radius;
+    MCUniverseAddRing(universe, ring);
+    return ring;
+}
+void MCUniverseAddMoon(MCUniverse* universe, MCMoon* moon) {
+    universe->moonCount++;
+    if (universe->moonCount > universe->moonCapacity) {
+        universe->moonCapacity *= 2;
+        universe->moons = (MCMoon**)realloc(universe->moons, sizeof(MCMoon*)*universe->moonCapacity);
+    }
+    universe->moons[universe->moonCount-1] = moon;
+}
+MCMoon* MCUniverseCreateMoon(MCUniverse* universe, double x, double y, double radius) {
+    MCMoon* moon = MCMoonCreate();
+    moon->pos.x = x;
+    moon->pos.y = y;
+    moon->radius = radius;
+    MCUniverseAddMoon(universe, moon);
+    return moon;
 }

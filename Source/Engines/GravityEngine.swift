@@ -9,82 +9,81 @@
 import Acheron
 import UIKit
 
-class GravityEngine {
-    var universe: UnsafeMutablePointer<MYUniverse>
+class GravityEngine: Engine {
+    var universe: UnsafeMutablePointer<MCUniverse>
 
     private var queue: DispatchQueue = DispatchQueue(label: "aexelsView")
     
-    weak var view: GravityView?
-    
     init(size: CGSize) {
-        universe = MYUniverseCreate(size.width, size.height, 18, 3)
-        MYUniverseCreateSlice(universe, 0, 100, 0)
+        universe = MCUniverseCreate(size.width, size.height)
+        MCUniverseCreateRing(universe, 350)
+        MCUniverseCreateRing(universe, 270)
+        MCUniverseCreateRing(universe, 210)
+        MCUniverseCreateRing(universe, 170)
+        MCUniverseCreateRing(universe, 140)
+        MCUniverseCreateRing(universe, 120)
+        MCUniverseCreateRing(universe, 100)
+        MCUniverseCreateMoon(universe, -160, -120, 20)
+        super.init(size: size, background: .square)
     }
-    deinit { MYUniverseRelease(universe) }
+    deinit { MCUniverseRelease(universe) }
+    
+    private func renderRing(c: CGContext, ring: UnsafeMutablePointer<MCRing>) {
+        let dx: CGFloat = size.width/2
+        let dy: CGFloat = size.height/2
+        let center: CGPoint = CGPoint(x: dx, y: dy)
+        
+        let radius: CGFloat = ring.pointee.radius
 
-    func tic() {
-        queue.sync {
-            MYUniverseTic(self.universe)
-            renderMode = .started
-            renderImage()
-            DispatchQueue.main.async { self.view?.setNeedsDisplay() }
-        }
+        c.addArc(center: center, radius: radius, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+
+        c.setFillColor(UIColor.blue.tone(0.5).tint(0.5).alpha(0.3).cgColor)
+        c.setStrokeColor(UIColor.black.cgColor)
+        c.setLineWidth(1)
+        c.drawPath(using: .fillStroke)
     }
+    private func renderPlanet(c: CGContext, planet: UnsafeMutablePointer<MCPlanet>) {
+        let dx: CGFloat = size.width/2
+        let dy: CGFloat = size.height/2
+        let center: CGPoint = CGPoint(x: dx, y: dy)
+        
+        let radius: CGFloat = planet.pointee.radius
 
-    var n: Int = 1
-    func play() {
-        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-            self.tic()
-            self.n += 1
-            complete()
-        }
-        Aexels.sync.link.preferredFramesPerSecond = 60
-        Aexels.sync.start()
+        c.addArc(center: center, radius: radius, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+
+        c.setFillColor(UIColor.green.cgColor)
+        c.setStrokeColor(UIColor.black.cgColor)
+        c.setLineWidth(1)
+        c.drawPath(using: .fillStroke)
     }
-    func stop() { Aexels.sync.stop() }
-    
-    // Render Image ====================================================================================
-    
-    private var s: CGFloat { Screen.s }
-    var renderMode: RenderMode = .started
-    
-    var image: UIImage?
-    private var back: UIImage?
-    private var fore: UIImage?
-    
-    func renderImage() {
-        guard renderMode == .started else { return }
-        renderMode = .rendering
+    private func renderMoon(c: CGContext, moon: UnsafeMutablePointer<MCMoon>) {
+        let dx: CGFloat = size.width/2
+        let dy: CGFloat = size.height/2
+        let center: CGPoint = CGPoint(x: dx + moon.pointee.pos.x, y: dy + moon.pointee.pos.y)
         
-        let size: CGSize = CGSize(width: universe.pointee.width, height: universe.pointee.height)
-        
-        // Fore ====================================================================================
-        UIGraphicsBeginImageContext(size)
-        let c: CGContext = UIGraphicsGetCurrentContext()!
-        
-//        c.addPath(CGPath(rect: CGRect(origin: .zero, size: size), transform: nil))
-//        c.setStrokeColor(UIColor.green.tone(0.3).tint(0.4).cgColor)
-//        c.setLineWidth(3)
-//        c.drawPath(using: .stroke)
-//
-        c.setLineWidth(0.5)
-        for i in 0..<Int(universe.pointee.sliceCount) {
-            let slice: UnsafeMutablePointer<MYSlice> = universe.pointee.slices![i]!
-            guard slice.pointee.destroyed == 0 else { continue }
-            let path: CGMutablePath = CGMutablePath()
-            let qx: Double = slice.pointee.evenOdd == 0 ? 0 : universe.pointee.dx/2
-            for j in 0...Int(universe.pointee.width/universe.pointee.dx) {
-                path.addEllipse(in: CGRect(origin: CGPoint(x: Double(j)*universe.pointee.dx+qx, y: slice.pointee.y), size: CGSize(width: 5, height: 5)))
-            }
-            c.addPath(path)
-//            c.setFillColor(UIColor.gray.tone(0.3).tint(0.7).alpha(0.5).cgColor)
-            c.setStrokeColor(UIColor.gray.tone(0.3).tint(0.4).cgColor)
-            c.drawPath(using: .stroke)
-        }
+        let radius: CGFloat = moon.pointee.radius
 
-        image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        c.addArc(center: center, radius: radius, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+
+        c.setFillColor(UIColor.red.cgColor)
+        c.setStrokeColor(UIColor.black.cgColor)
+        c.setLineWidth(1)
+        c.drawPath(using: .fillStroke)
+    }
         
-        renderMode = .rendered
+// Engine ==========================================================================================
+    override func onRender(c: CGContext) {
+        let dx: CGFloat = size.width/2
+        let dy: CGFloat = size.height/2
+        
+        let d: CGFloat = 10.0*Screen.s
+        let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
+        let mod: CGFloat = 2*(d+sn)
+
+        if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
+
+        for i in 0..<Int(universe.pointee.ringCount) { renderRing(c: c, ring: universe.pointee.rings![i]!) }
+        renderPlanet(c: c, planet: universe.pointee.planet)
+        for i in 0..<Int(universe.pointee.moonCount) { renderMoon(c: c, moon: universe.pointee.moons![i]!) }
     }
 }

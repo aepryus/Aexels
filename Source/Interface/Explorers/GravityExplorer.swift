@@ -61,7 +61,6 @@ class GravityExplorer: Explorer {
         articleScroll.contentSize = articleView.scrollViewContentSize
         articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
 
-        engine.universe.pointee.width = gravityView.width
-        engine.universe.pointee.height = gravityView.height
+        engine.size = gravityView.frame.size
     }
 }

@@ -124,69 +124,7 @@ class DilationEngine {
     var image: UIImage?
     private var back: UIImage?
     private var fore: UIImage?
-    
-    static func renderBack(size: CGSize) -> UIImage {
-        let d: CGFloat = 10.0*Screen.s
-        let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
-        let cs: CGFloat = d*CGFloat(cos(Double.pi/6))
         
-        let w: CGFloat = size.width+100+2*(d+sn)
-        let h: CGFloat = size.height+100+2*cs
-        let n = (Int(w/(2*(d+sn))))+1
-        let m = (Int(h/(2*cs)))+1
-        var x: CGFloat = 1
-        var y: CGFloat = 1
-        
-        UIGraphicsBeginImageContext(size)
-        let c = UIGraphicsGetCurrentContext()!
-        
-        let path = CGMutablePath()
-        
-        for _ in 0..<n {
-            for _ in 0..<m {
-                path.move(to: CGPoint(x: x+sn, y: y))
-                path.addLine(to: CGPoint(x: x+sn+d, y: y))
-                path.addLine(to: CGPoint(x: x+2*sn+d, y: y+cs))
-                path.addLine(to: CGPoint(x: x+sn+d, y: y+2*cs))
-                path.addLine(to: CGPoint(x: x+sn, y: y+2*cs))
-                path.addLine(to: CGPoint(x: x, y: y+cs))
-                path.closeSubpath()
-                
-                y += 2*cs;
-            }
-            
-            x += 3*d;
-            y = 1;
-        }
-        x = sn+d+1;
-        y = cs+1;
-        for _ in 0..<n {
-            for _ in 0..<m {
-                path.move(to: CGPoint(x: x+sn, y: y))
-                path.addLine(to: CGPoint(x: x+sn+d, y: y))
-                path.addLine(to: CGPoint(x: x+2*sn+d, y: y+cs))
-                path.addLine(to: CGPoint(x: x+sn+d, y: y+2*cs))
-                path.addLine(to: CGPoint(x: x+sn, y: y+2*cs))
-                path.addLine(to: CGPoint(x: x, y: y+cs))
-                path.closeSubpath()
-                
-                y += 2*cs;
-            }
-            
-            x += 3*d;
-            y = cs+1;
-        }
-        
-        c.addPath(path)
-        c.setStrokeColor(UIColor.white.shade(0.6).cgColor)
-        c.drawPath(using: .stroke)
-        
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
     private func findEnds(from: Int, to: Int) {
         let ll: CGFloat = 10
 
@@ -203,7 +141,7 @@ class DilationEngine {
         guard renderMode == .started else { return }
         renderMode = .rendering
         
-        if back == nil { back = DilationEngine.renderBack(size: size) }
+        if back == nil { back = Engine.renderHex(size: size) }
         
         let dx: CGFloat = size.width/2 - camera.pointee.p.x
         let dy: CGFloat = size.height/2 - camera.pointee.p.y

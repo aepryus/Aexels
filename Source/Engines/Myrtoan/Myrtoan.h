@@ -6,37 +6,55 @@
 //  Copyright © 2023 Aepryus Software. All rights reserved.
 //
 
-// MY = Myrtoan Sea
+// MC = Myrtoan Sea : Gravity
 
-#import "Ionian.h"
+#import "Aegean.h"
+#import "North.h"
 
-// Slice ========
-typedef struct MYSlice {
-    double y;
-    double vy;
-    byte evenOdd;
-    byte replicated;
-    byte destroyed;
-} MYSlice;
+// Planet =======
+typedef struct MCPlanet {
+    double radius;
+} MCPlanet;
 
-// Quark ========
-typedef struct MYQuark {
-    MYSlice* slice;
-    int x;
-} MYQuark;
+MCPlanet* MCPlanetCreate(double radius);
+void MCPlanetRelease(MCPlanet* ring);
+
+// Ring =========
+typedef struct MCRing {
+    double radius;
+    double speed;
+} MCRing;
+
+MCRing* MCRingCreate(void);
+void MCRingRelease(MCRing* ring);
+
+// Moon =========
+typedef struct MCMoon {
+    double radius;
+    CV2 pos;
+    Velocity v;
+} MCMoon;
+
+MCMoon* MCMoonCreate(void);
+void MCMoonRelease(MCMoon* moon);
 
 // Universe =====
-typedef struct MYUniverse {
+typedef struct MCUniverse {
     double width;
     double height;
-    double g;
-    double dx;
-    int sliceCount;
-    MYSlice** slices;
-    int destroyed;
-} MYUniverse;
+    MCPlanet* planet;
+    int ringCount;
+    int ringCapacity;
+    MCRing** rings;
+    int moonCount;
+    int moonCapacity;
+    MCMoon** moons;
+} MCUniverse;
 
-MYUniverse* MYUniverseCreate(double width, double height, double dx, double g);
-void MYUniverseRelease(MYUniverse* universe);
-void MYUniverseTic(MYUniverse* universe);
-MYSlice* MYUniverseCreateSlice(MYUniverse* universe, double y, double vy, byte evenOdd);
+MCUniverse* MCUniverseCreate(double width, double height);
+void MCUniverseRelease(MCUniverse* universe);
+void MCUniverseTic(MCUniverse* universe);
+void MCUniverseAddRing(MCUniverse* universe, MCRing* ring);
+MCRing* MCUniverseCreateRing(MCUniverse* universe, double radius);
+void MCUniverseAddMoon(MCUniverse* universe, MCMoon* moon);
+MCMoon* MCUniverseCreateMoon(MCUniverse* universe, double x, double y, double radius);

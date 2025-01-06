@@ -6,7 +6,7 @@
 //  Copyright © 2019 Aepryus Software. All rights reserved.
 //
 
-// IC = Ionian Sea
+// IC = Ionian Sea : Cellular Automata and Aether
 
 #import "Aegean.h"
 
@@ -33,7 +33,7 @@ void AXAutomataRelease(Automata* automata);
 void AXAutomataStep(Automata* automata, double* cells, double* next, int from, int to);
 void AXDataLoad(byte* data, double* cells, long sX, long eX, long dnX, long sY, long eY, long dnY, long zoom, double states, byte* r, byte* g, byte* b, byte* a, long cw, long dw);
 
-// Gravity =========================================================================================
+// Aether ==========================================================================================
 typedef struct ICAexel ICAexel;
 typedef struct Bond Bond;
 typedef struct Photon Photon;

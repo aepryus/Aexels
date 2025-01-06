@@ -6,7 +6,7 @@
 //  Copyright © 2024 Aepryus Software. All rights reserved.
 //
 
-// NC = North Sea
+// NC = North Sea : Electricity and Magnetism
 
 typedef struct CV2 {
     double x;
@@ -55,7 +55,7 @@ void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double orient);
 typedef struct NCPing {
     CV2 pos;
     Velocity v;
-    double emOrient;
+    double cupola;
     unsigned char recycle;
     NCTeslon* source;
 } NCPing;
@@ -66,7 +66,7 @@ void NCPingRelease(NCPing* ping);
 typedef struct NCPong {
     CV2 pos;
     Velocity v;
-    double emOrient;
+    double cupola;
     unsigned char recycle;
     NCTeslon* source;
 } NCPong;
@@ -77,7 +77,7 @@ void NCPongRelease(NCPong* pong);
 typedef struct NCPhoton {
     CV2 pos;
     Velocity v;
-    double emOrient;
+    double cupola;
     double hyle;
     unsigned char recycle;
     NCTeslon* source;
@@ -131,7 +131,7 @@ NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon, double orie
 NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon);
 NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, double speed, double orient);
 int NCUniverseOutsideOf(NCUniverse* universe, CV2 pos);
-int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos);
+int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos, double radius);
 void NCUniverseSetSpeed(NCUniverse* universe, double speed);
 void NCUniversePing(NCUniverse* universe, int n);
 void NCUniversePong(NCUniverse* universe);
