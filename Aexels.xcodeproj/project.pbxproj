@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4C62D2CC61400F259BB /* ClaudeButton.swift */; };
+		D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4C82D2D221E00F259BB /* MusicButton.swift */; };
+		D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4CA2D2DE8A600F259BB /* ImageButton.swift */; };
 		D8042F11293AEB0200453B8E /* DilationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8042F10293AEB0200453B8E /* DilationView.swift */; };
 		D8042F15293B085500453B8E /* Thracian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8042F14293B085500453B8E /* Thracian.c */; };
 		D804561C281534BF0018223B /* Acheron in Frameworks */ = {isa = PBXBuildFile; productRef = D804561B281534BF0018223B /* Acheron */; };
@@ -98,6 +101,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D802E4C62D2CC61400F259BB /* ClaudeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeButton.swift; sourceTree = "<group>"; };
+		D802E4C82D2D221E00F259BB /* MusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicButton.swift; sourceTree = "<group>"; };
+		D802E4CA2D2DE8A600F259BB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
 		D8042F14293B085500453B8E /* Thracian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Thracian.c; sourceTree = "<group>"; };
@@ -396,13 +402,16 @@
 			children = (
 				D8DA98CB2B71DE0700A4AA8F /* Cells */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
+				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
 				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
 				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
 				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
 				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
+				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
 				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
+				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
 				D8AE17CD2814F1EC00E74CB8 /* PlayButton.swift */,
 				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
@@ -668,6 +677,7 @@
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
 				D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */,
+				D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */,
 				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
@@ -689,9 +699,11 @@
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D823A2612D0A900700A72DDF /* ElectromagentismEngine.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
+				D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
+				D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
 				D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,

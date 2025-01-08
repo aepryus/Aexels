@@ -104,9 +104,9 @@ class ExplorerViewController: UIViewController {
             if !player.isPlaying { player.play() }
             timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (timer: Timer) in
                 guard let player = self.player else { return }
-                if self.musicOn { player.volume += 0.05 }
-                else { player.volume -= 0.05 }
-                if player.volume >= 1 || player.volume <= 0 {
+                if self.musicOn { player.volume += 0.02 }
+                else { player.volume -= 0.02 }
+                if player.volume >= 0.2 || player.volume <= 0 {
                     timer.invalidate()
                     self.timer = nil
                 }

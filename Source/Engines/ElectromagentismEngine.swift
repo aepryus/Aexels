@@ -48,7 +48,7 @@ class ElectromagnetismEngine: Engine {
         let iro: CGFloat = 10*scale
         let iri: CGFloat = 7*scale
         
-        let vC: CGFloat = camera.pointee.v.speed
+//        let vC: CGFloat = camera.pointee.v.speed
         let vT: CGFloat = teslon.pointee.v.speed
 //        let gC: CGFloat = 1/sqrt(1-vC*vC)
         let gT: CGFloat = 1/sqrt(1-vT*vT)
@@ -264,13 +264,13 @@ class ElectromagnetismEngine: Engine {
         if let back { back.draw(at: CGPoint(x: dx.truncatingRemainder(dividingBy: mod), y: dy.truncatingRemainder(dividingBy: mod))) }
 
         let scale: CGFloat = 2
-//        for i in 0..<Int(universe.pointee.pingCount) { renderPing(c: c, ping: universe.pointee.pings![i]!, camera: camera, scale: scale) }
-//        for i in 0..<Int(universe.pointee.pongCount) { renderPong(c: c, pong: universe.pointee.pongs![i]!, camera: camera, scale: scale) }
-//        for i in 0..<Int(universe.pointee.photonCount) { renderPhoton(c: c, photon: universe.pointee.photons![i]!, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.pingCount) { renderPing(c: c, ping: universe.pointee.pings![i]!, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.pongCount) { renderPong(c: c, pong: universe.pointee.pongs![i]!, camera: camera, scale: scale) }
+        for i in 0..<Int(universe.pointee.photonCount) { renderPhoton(c: c, photon: universe.pointee.photons![i]!, camera: camera, scale: scale) }
         for i in 0..<Int(universe.pointee.teslonCount) { renderTeslon(c: c, teslon: universe.pointee.teslons![i]!, camera: camera, scale: scale) }
-        for i in 0..<Int(universe.pointee.pingCount) { renderSimple(c: c, pos: universe.pointee.pings![i]!.pointee.pos, camera: camera, scale: scale) }
-        for i in 0..<Int(universe.pointee.pongCount) { renderSimple(c: c, pos: universe.pointee.pongs![i]!.pointee.pos, camera: camera, scale: scale) }
-        for i in 0..<Int(universe.pointee.photonCount) { renderSimple(c: c, pos: universe.pointee.photons![i]!.pointee.pos, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.pingCount) { renderSimple(c: c, pos: universe.pointee.pings![i]!.pointee.pos, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.pongCount) { renderSimple(c: c, pos: universe.pointee.pongs![i]!.pointee.pos, camera: camera, scale: scale) }
+//        for i in 0..<Int(universe.pointee.photonCount) { renderSimple(c: c, pos: universe.pointee.photons![i]!.pointee.pos, camera: camera, scale: scale) }
 //        for i in 0..<Int(universe.pointee.teslonCount) { renderSimple(c: c, pos: universe.pointee.teslons![i]!.pointee.pos, camera: camera, scale: scale) }
     }
     private func renderSimple(c: CGContext, pos: CV2, camera: UnsafeMutablePointer<NCCamera>, scale: CGFloat = 10) {

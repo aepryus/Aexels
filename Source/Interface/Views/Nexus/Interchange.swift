@@ -120,6 +120,7 @@ class Interchange: AEView {
         didSet {
             capsules.forEach { $0.removeFromSuperview() }
             explorets.forEach { $0.removeFromSuperview() }
+            claudeButton.removeFromSuperview()
             capsules = []
             explorets = []
             guard let article else { return }
@@ -131,11 +132,14 @@ class Interchange: AEView {
             article.explorers.forEach { explorets.append(Exploret(explorer: $0)) }
             capsules.forEach { addSubview($0) }
             explorets.forEach { addSubview($0) }
+            claudeButton.article = article
+            addSubview(claudeButton)
         }
     }
     
     var capsules: [Capsule] = []
     var explorets: [Exploret] = []
+    let claudeButton: ClaudeButton = ClaudeButton()
     
 // UIViewController ================================================================================
     override func layoutSubviews() {
@@ -150,5 +154,9 @@ class Interchange: AEView {
             $0.topLeft(dx: x, dy: y, width: 35*s, height: 35*s)
             x += 39*s
         }
+        x = 0
+        if explorets.count > 0 { y += 39*s }
+        y += 11*s
+        claudeButton.topLeft(dx: x, dy: y, width: 175*s, height: 20*s)
     }
 }

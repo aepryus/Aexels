@@ -53,18 +53,25 @@ class Article {
     static let dilation: Article = Article(key: "dilation")
     static let contraction: Article = Article(key: "contraction")
     static let darkness: Article = Article(key: "darkness")
-    static let equivalence: Article = Article(key: "equivalence")
+    static let hyle: Article = Article(key: "hyle")
     static let electromagnetism: Article = Article(key: "electromagnetism")
     static let discrepancy: Article = Article(key: "discrepancy")
     static let epilogue: Article = Article(key: "epilogue")
     
     static let forward: Article = Article(key: "forward", parent: intro)
+    static let claude: Article = Article(key: "claude", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
     static let twinParadox : Article = Article(key: "twinParadox", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
     static let symmetric : Article = Article(key: "symmetric", parent: discrepancy)
     static let blackShield : Article = Article(key: "blackShield", parent: discrepancy)
     static let quantumBell : Article = Article(key: "quantumBell", parent: discrepancy)
+    
+    static var articles: [Article] = [
+        intro, aether, cellular, kinematics, gravity, dilation, contraction, darkness, hyle,
+        electromagnetism, discrepancy, epilogue, forward, claude, blackHole, twinParadox, narwhal,
+        symmetric, blackShield, quantumBell
+    ]
     
     static func wire() {
         intro.next = aether
@@ -74,8 +81,8 @@ class Article {
         gravity.next = dilation
         dilation.next = contraction
         contraction.next = darkness
-        darkness.next = equivalence
-        equivalence.next = electromagnetism
+        darkness.next = hyle
+        hyle.next = electromagnetism
         electromagnetism.next = discrepancy
         discrepancy.next = epilogue
         symmetric.next = blackShield

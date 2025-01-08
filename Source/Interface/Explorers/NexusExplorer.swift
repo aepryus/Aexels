@@ -20,11 +20,16 @@ class NexusExplorer: AEViewController {
     let interchange: Interchange = Interchange()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
 
+    let musicButton: ImageButton = ImageButton(named: "music")
+    let claudeButton: ClaudeButton = ClaudeButton()
+
     func show(article: Article) {
         guard article.key != articleView.key else { return }
         if interchange.superview == nil { view.addSubview(interchange) }
         if currentCapsule.superview == nil { view.addSubview(currentCapsule) }
         UIView.animate(withDuration: 0.5) {
+            self.musicButton.alpha = 0
+            self.claudeButton.alpha = 0
             self.glyphsView.alpha = 0
             self.currentCapsule.alpha = 0
             self.articleView.alpha = 0
@@ -33,6 +38,8 @@ class NexusExplorer: AEViewController {
             self.articleView.key = article.key
             self.currentCapsule.article = article
             self.interchange.article = article
+            self.musicButton.removeFromSuperview()
+            self.claudeButton.removeFromSuperview()
             self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
             self.scrollView.contentOffset = .zero
@@ -46,7 +53,11 @@ class NexusExplorer: AEViewController {
     }
     
     func showGlyphs() {
+        musicButton.alpha = 0
+        claudeButton.alpha = 0
         glyphsView.alpha = 0
+        view.addSubview(musicButton)
+        view.addSubview(claudeButton)
         scrollView.addSubview(glyphsView)
         
         UIView.animate(withDuration: 0.5) {
@@ -62,6 +73,8 @@ class NexusExplorer: AEViewController {
             self.scrollView.contentOffset = .zero
             self.scrollView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
+                self.musicButton.alpha = 1
+                self.claudeButton.alpha = 1
                 self.glyphsView.alpha = 1
             }
         }
@@ -71,11 +84,15 @@ class NexusExplorer: AEViewController {
         articleView.removeFromSuperview()
         currentCapsule.removeFromSuperview()
         interchange.removeFromSuperview()
+        view.addSubview(musicButton)
+        view.addSubview(claudeButton)
         scrollView.addSubview(glyphsView)
         articleView.key = nil
         scrollView.contentSize = self.glyphsView.frame.size
         scrollView.contentOffset = .zero
         scrollView.addSubview(self.articleView)
+        musicButton.alpha = 1
+        claudeButton.alpha = 1
         glyphsView.alpha = 1
     }
 
@@ -112,7 +129,7 @@ class NexusExplorer: AEViewController {
         let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 30*s, y: 780*s)
         let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 120*s+2*p, x: 30*s, y: 930*s)
         let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 120*s+2*p, x: 250*s, y: 1130*s)
-        let equivalenceGlyph: ArticleGlyph = ArticleGlyph(article: Article.equivalence, radius: 120*s+2*p, x: 230*s, y: 1400*s)
+        let hyleGlyph: ArticleGlyph = ArticleGlyph(article: Article.hyle, radius: 70*s+2*p, x: 230*s, y: 1400*s)
         let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 110*s+2*p, x: 30*s, y: 1240*s)
         let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(article: Article.discrepancy, radius: 130*s+2*p, x: 30*s, y: 1530*s)
         let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 200*s, y: 2000*s)
@@ -127,6 +144,7 @@ class NexusExplorer: AEViewController {
         let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 190*s, y: 1270*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
+        let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 200*s, y: 150*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
         let twinParadoxGlyph: AsideGlyph = AsideGlyph(article: Article.twinParadox, radius: 54*s+2*p, x: 70*s, y: 630*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 190*s, y: 930*s)
@@ -142,7 +160,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: dilationGlyph)
         glyphsView.add(glyph: contractionGlyph)
         glyphsView.add(glyph: darknessGlyph)
-        glyphsView.add(glyph: equivalenceGlyph)
+        glyphsView.add(glyph: hyleGlyph)
         glyphsView.add(glyph: electromagnetismGlyph)
         glyphsView.add(glyph: discrepanciesGlyph)
         glyphsView.add(glyph: epilogueGlyph)
@@ -157,6 +175,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: electromagnetismExpGlyph)
 
         glyphsView.add(glyph: forwardGlyph)
+        glyphsView.add(glyph: claudeGlyph)
         glyphsView.add(glyph: blackHoleGlyph)
         glyphsView.add(glyph: twinParadoxGlyph)
         glyphsView.add(glyph: narwhalGlyph)
@@ -166,6 +185,7 @@ class NexusExplorer: AEViewController {
 
         universeXGlyph.link(to: aetherGlyph)
         universeXGlyph.link(to: forwardGlyph)
+        universeXGlyph.link(to: claudeGlyph)
         
         aetherGlyph.link(to: cellularGlyph)
         aetherGlyph.link(to: aetherExpGlyph)
@@ -189,9 +209,9 @@ class NexusExplorer: AEViewController {
         contractionGlyph.link(to: contractionExpGlyph)
         contractionGlyph.link(to: narwhalGlyph)
         
-        darknessGlyph.link(to: equivalenceGlyph)
+        darknessGlyph.link(to: hyleGlyph)
         
-        equivalenceGlyph.link(to: electromagnetismGlyph)
+        hyleGlyph.link(to: electromagnetismGlyph)
         
         electromagnetismGlyph.link(to: electromagnetismExpGlyph)
         electromagnetismGlyph.link(to: discrepanciesGlyph)
@@ -210,6 +230,14 @@ class NexusExplorer: AEViewController {
         view.addSubview(currentCapsule)
         
         view.addSubview(interchange)
+        
+        view.addSubview(musicButton)
+        musicButton.addAction {
+            if Aexels.explorerViewController.musicOn { Aexels.explorerViewController.stopMusic() }
+            else { Aexels.explorerViewController.startMusic() }
+        }
+        
+        view.addSubview(claudeButton)
     }
     
     override func layoutRatio056() {}
@@ -222,5 +250,8 @@ class NexusExplorer: AEViewController {
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
         interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
+        
+        musicButton.topLeft(dx: 700*s, dy: 30*s, width: 20*s, height: 20*s)
+        claudeButton.topLeft(dx: musicButton.right+8*s, dy: musicButton.top, width: 175*s, height: 20*s)
     }
 }
