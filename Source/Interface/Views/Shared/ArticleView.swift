@@ -32,20 +32,23 @@ class ArticleView: AEView {
 
         var i: Int = 0
         while i < template.count {
-            if let left: Int = template.loc(of: "<<", after: i), let right: Int = template.loc(of: ">>", after: left) {
-                texts.append(template[i...left-1])
-                images.append(UIImage(named: template[left+2...right-1])!.withTintColor(color))
+            let leftA: Int? = template.loc(of: "<<", after: i)
+            let leftB: Int? = template.loc(of: "{{", after: i)
+            
+            if let leftA, leftB == nil || leftA < leftB!, let right: Int = template.loc(of: ">>", after: leftA) {
+                texts.append(template[i...leftA-1])
+                images.append(UIImage(named: template[leftA+2...right-1])!.withTintColor(color))
                 i = right+2
-            } else if let left: Int = template.loc(of: "{{", after: i), let right: Int = template.loc(of: "}}", after: left) {
-                    texts.append(template[i...left-1])
-                    images.append(UIImage(named: template[left+2...right-1])!)
-                    i = right+2
+            } else if let leftB, let right: Int = template.loc(of: "}}", after: leftB) {
+                texts.append(template[i...leftB-1])
+                images.append(UIImage(named: template[leftB+2...right-1])!)
+                i = right+2
             } else {
                 texts.append(template[i...template.count-1])
                 i = template.count
             }
         }
-
+        
         let p: CGFloat = 10*s
         let width: CGFloat = scrollView != nil ? scrollView!.width - 2*p : 500*s
         let w = width - p*2
