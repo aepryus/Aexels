@@ -61,7 +61,7 @@ class Article {
     static let forward: Article = Article(key: "forward", parent: intro)
     static let claude: Article = Article(key: "claude", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
-    static let twinParadox : Article = Article(key: "twinParadox", parent: dilation)
+    static let chronos : Article = Article(key: "chronos", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
     static let symmetric : Article = Article(key: "symmetric", parent: discrepancy)
     static let blackShield : Article = Article(key: "blackShield", parent: discrepancy)
@@ -69,7 +69,7 @@ class Article {
     
     static var articles: [Article] = [
         intro, aether, cellular, kinematics, gravity, dilation, contraction, darkness, hyle,
-        electromagnetism, discrepancy, epilogue, forward, claude, blackHole, twinParadox, narwhal,
+        electromagnetism, discrepancy, epilogue, forward, claude, blackHole, chronos, narwhal,
         symmetric, blackShield, quantumBell
     ]
     

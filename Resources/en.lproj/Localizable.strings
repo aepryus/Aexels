@@ -11,18 +11,9 @@
 
 Universe X
 
-Come along as we explore this new universe and discover the similarities and differences it has with our own.
+Come along as we explore this universe and discover the similarities and differences it has with our own.
 
 There are things we know for certain about Universe X; there are things we can speculate about and there are many things yet to be discovered.  Hopefully, over the lifetime of this app we will be able to continually increase our knowledge and understanding of this new world.
-
-This app is divided into sections that each describe a different aspect of Universe X.  Eventually each of these sections will also contain an exploration screen that will allow the user to see each aspect modeled visually.
-
-Aexel's current explorers:
-    - The Aether explorer attempts to qualitatively model the crystalline nature of Aexels themselves.
-    - The Cellular Automata explorer will allow the user to view a number of famous Cellular Automata and will also allow users to define and execute their own Cellular Automata using the Oovium visual programming language.
-    - The Kinematics explorer compares simple motion in our Universe to that in Universe X.
-    - The Dilation explorer visually illustrates the mechanism underpinning dilation.
-    - The Contraction explorer shows why length contraction is important for Lorentz covariance, what Lorentz covariance means and what it does not mean.
 
 So what is Universe X?
 
@@ -30,29 +21,19 @@ Universe X is quite different from our own.  Our universe can, at times, seem qu
 
 In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
 
-In the 19th century it was speculated that the universe was pervaded by a static rigid aether.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
+Universe X consists of a large number of a single entity called an 'aexel'.
 
-In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
+These aexels have state, they can move and flow, they can form bonds with their nearby neighbors and they can send signals to those neighbors.
 
-In the 19th century concept it was believed that the planets and stars moved frictionlessly through the aether and that light traversed this aether at a constant rate.  As a result it was thought that it should be possible to detect differences in the speed of light moving longitudinally or latitudinally across the Earth.
+They also can be created or destroyed as a result of those signals.
 
-In 1887, Michelson and Morley performed their famous experiment looking for this discrepancy in the speed of light; they were shocked to discover that no such discrepancy existed.
+The entire DNA of the universe is contained in each one of these aexels.
 
-In Universe X however, the aether is not static or rigid, rather it is dynamic, capable of flowing and compressing.  Also, akin to a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from 'picture elements' or 'picture cells'), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from 'aether elements' or 'aether cells').
-
-Like the atoms of a liquid, these aexels can move and flow.  Like the atoms of a crystal lattice, they repel when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
-
-The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
-
-These aexels have state.  Just as each pixel of a screen has a three dimensional state representing red, green and blue, each aexel also has a multidimensional state.  This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.
-
-And perhaps most shockingly, based on those states, new aexels can be created and existing aexels can be destroyed.
-
-At a base level, aexels are the only thing that exist in Universe X.  However, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
+However, aside from these aexels, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
 
 Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X, space and time are entirely separate notions that are not intertwined at all.
 
-Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the exact equation of force between individual aexels?  Does the notion of momentum exist for aexels?  How many dimensions of state are there?  Answering these questions and many more will be the primary focus of this app for years to come.
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Answering these questions and many more will be the primary focus of this app for years to come.
 
 As such, let our exploration begin...
 
@@ -65,11 +46,23 @@ As such, let our exploration begin...
 "aether_name" = "Aether";
 "aether_article" = "Aether
 
-In Universe X, the aether is not a substance that is displaced by planets and stars.  Rather, in Universe X, the aether is a substance upon which the matter of the universe sits.  It is the canvas upon which the painting appears; it is the game board upon which the chess pieces move.  The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
+In the 19th century it was speculated that the universe was pervaded by a static rigid aether.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
 
-And like a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from 'picture elements' or 'picture cells'), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from 'aether elements' or 'aether cells').
+In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
 
-Currently, there are a few things we know about these aexels.  Like the atoms of a liquid, they can move and flow.  Like the atoms of a crystal lattice, they repulse when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
+In the 19th century concept it was believed that the planets and stars moved frictionlessly through the aether and that light traversed this aether at a constant rate.  As a result it was thought that it should be possible to detect differences in the speed of light moving longitudinally or latitudinally across the Earth.
+
+In 1887, Michelson and Morley performed their famous experiment looking for this discrepancy in the speed of light; they were shocked to discover that no such discrepancy existed.
+
+In Universe X however, the aether is not static or rigid, rather it is dynamic, capable of flowing and compressing.  Akin to a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from 'picture elements' or 'picture cells'), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from 'aether elements' or 'aether cells').
+
+Like the atoms of a liquid, these aexels can move and flow.  Like the atoms of a crystal lattice, they repel when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
+
+The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
+
+These aexels have state.  Just as each pixel of a screen has a three dimensional state representing red, green and blue, each aexel also has a multidimensional state.  This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.
+
+And perhaps most shockingly, based on those states, new aexels can be created and existing aexels can be destroyed.
 
 
 
@@ -728,25 +721,29 @@ As such the interior of a black hole will be pure light (or some other form of e
 
 ";
 
-"twinParadox_name" = "Twin Paradox";
-"twinParadox_article" = "Twin Paradox
-Let's imagine I have a set of twins and two spaceships, P and Q.  The spaceships are docked with one another; each twin gets into one.  Imagine the following 3 situations:
+"chronos_name" = "Chronos";
+"chronos_article" = "Chronos
 
-- [1] P stays put, Q accelerates to 0.9 c travels for a year and then turns around returning to the starting point.
-- [2] P accelerates to 0.9 c travels for a year and then turns around returning to the starting point, Q stays put.
-- [3] Both P and Q accelerate in opposite directions at 0.45 c, travel for a year and then turn around returning to the starting point.
+Imagine a model of ship called the Chronos.  It has a large digital display on its hull that is linked to a stopwatch inside the ship.
 
-For each of the 3 scenarios which twin is older?  Are the results the same for all the scenarios?  If not how do the scenarios differ at all?
+{{Chronos}}
 
-In our universe all motion is relative.  There are no special frames of reference.  Thus answering this question can be very tricky and thusly the Twin Paradox is a paradox.
+Two of these ships are placed 1 AU apart with a beacon placed equidistant between them.  The beacon flashes and when each ship receives the signal they start their stopwatches and one of the ships blasts off towards the other.  When the ships pass one another they both note their clock and the other ship's clock.
 
-In Universe X however, answering the above is relatively straight forward, however it is not possible without one additional piece of data: what is the vector of translation initially before the twins start their journeys?
+What is the 'win condition' here that proves the following:
+- basic physical reality: that two observers looking at the same display at the same time at the same place will see the same thing.
+- dilation: that the clocks in the two ships will move at different rates.
+- reciprocity: that both ships will see the other ship's clock as being dilated.
 
-For example, if when the twins were docked they weren't translating across the aexel field at all then the answers would be [1] P is older; [2] Q is older; [3] P and Q are still the same age.
+If the observers read different values off the same display while looking at it at the same time from the same place, then physical reality breaks down.  There is no magic 'relativity of simultaneity' wand coming to the rescue here.
 
-However, if the twins had been translating across the aexels initially than the answers could be entirely different.  Without knowing the initial rate of translation it is impossible to answer the question, but once you do know the initial rate of translation and the direction the spaceships travel relative to the direction of that translation it becomes straightforward to calculate the relative ages of the twins.
+If both clocks show the same value, then dilation breaks down.
 
-In Universe X, there is no Twin Paradox.
+If both observers see a fast clock and a slow clock and agree on which is which than reciprocity breaks down.
+
+There is no win condition that confirms all three, only two can be true.  Luckily while there is a multitude of experimental evidence for basic physical reality and much evidence for dilation, there is precisely zero evidence for reciprocity.  Not a single experiment has ever confirmed it.  This makes the choice of which condition to abandon quite easy.
+
+Reciprocity can not be true.
 
 
 
