@@ -50,27 +50,27 @@ class Article {
     static let cellular: Article = Article(key: "cellular")
     static let kinematics: Article = Article(key: "kinematics")
     static let gravity: Article = Article(key: "gravity")
-    static let dilation: Article = Article(key: "dilation")
-    static let contraction: Article = Article(key: "contraction")
     static let darkness: Article = Article(key: "darkness")
     static let hyle: Article = Article(key: "hyle")
+    static let dilation: Article = Article(key: "dilation")
+    static let contraction: Article = Article(key: "contraction")
     static let electromagnetism: Article = Article(key: "electromagnetism")
-    static let discrepancy: Article = Article(key: "discrepancy")
+    static let bellTHooft : Article = Article(key: "bellTHooft")
     static let epilogue: Article = Article(key: "epilogue")
     
     static let forward: Article = Article(key: "forward", parent: intro)
     static let claude: Article = Article(key: "claude", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
     static let chronos : Article = Article(key: "chronos", parent: dilation)
+    static let fourClocks : Article = Article(key: "fourClocks", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
-    static let symmetric : Article = Article(key: "symmetric", parent: discrepancy)
-    static let blackShield : Article = Article(key: "blackShield", parent: discrepancy)
-    static let quantumBell : Article = Article(key: "quantumBell", parent: discrepancy)
-    
+    static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: bellTHooft)
+    static let glossary : Article = Article(key: "glossary", parent: epilogue)
+
     static var articles: [Article] = [
-        intro, aether, cellular, kinematics, gravity, dilation, contraction, darkness, hyle,
-        electromagnetism, discrepancy, epilogue, forward, claude, blackHole, chronos, narwhal,
-        symmetric, blackShield, quantumBell
+        intro, aether, cellular, kinematics, gravity, darkness, hyle, dilation, contraction,
+        electromagnetism, bellTHooft, epilogue, forward, claude, blackHole, chronos, fourClocks,
+        narwhal, glossary
     ]
     
     static func wire() {
@@ -83,10 +83,9 @@ class Article {
         contraction.next = darkness
         darkness.next = hyle
         hyle.next = electromagnetism
-        electromagnetism.next = discrepancy
-        discrepancy.next = epilogue
-        symmetric.next = blackShield
-        blackShield.next = quantumBell
+        electromagnetism.next = bellTHooft
+        bellTHooft.next = epilogue
+        chronos.next = fourClocks
         aether.explorers.append(Aexels.aetherExplorer)
         cellular.explorers.append(Aexels.cellularExplorer)
         kinematics.explorers.append(Aexels.kinematicsExplorer)

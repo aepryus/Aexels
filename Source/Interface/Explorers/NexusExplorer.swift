@@ -131,8 +131,8 @@ class NexusExplorer: AEViewController {
         let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 260*s, y: 1040*s)
         let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 120*s+2*p, x: 100*s, y: 1000*s)
         let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 110*s+2*p, x: 210*s, y: 1290*s)
-        let discrepanciesGlyph: ArticleGlyph = ArticleGlyph(article: Article.discrepancy, radius: 130*s+2*p, x: 30*s, y: 1530*s)
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 200*s, y: 2000*s)
+        let bellTHooftGlyph: ArticleGlyph = ArticleGlyph(article: Article.bellTHooft, radius: 100*s+2*p, x: 50*s, y: 1430*s)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 270*s, y: 1580*s)
 
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
@@ -147,10 +147,10 @@ class NexusExplorer: AEViewController {
         let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 200*s, y: 150*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
         let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 380*s, y: 1160*s)
+        let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 280*s, y: 1210*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 30*s, y: 1140*s)
-        let symetricGlyph: AsideGlyph = AsideGlyph(article: Article.symmetric, radius: 64*s+2*p, x: 330*s, y: 1600*s)
-        let blackShieldGlyph: AsideGlyph = AsideGlyph(article: Article.blackShield, radius: 46*s+2*p, x: 380*s, y: 1700*s)
-        let quantumBellGlyph: AsideGlyph = AsideGlyph(article: Article.quantumBell, radius: 60*s+2*p, x: 280*s, y: 1800*s)
+        let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 70*s, x: 120*s, y: 1600*s)
+        let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 240*s, y: 1710*s)
 
         glyphsView.add(glyph: universeXGlyph)
         glyphsView.add(glyph: aetherGlyph)
@@ -162,7 +162,7 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: dilationGlyph)
         glyphsView.add(glyph: contractionGlyph)
         glyphsView.add(glyph: electromagnetismGlyph)
-        glyphsView.add(glyph: discrepanciesGlyph)
+        glyphsView.add(glyph: bellTHooftGlyph)
         glyphsView.add(glyph: epilogueGlyph)
 
         glyphsView.add(glyph: aetherExpGlyph)
@@ -178,10 +178,10 @@ class NexusExplorer: AEViewController {
         glyphsView.add(glyph: claudeGlyph)
         glyphsView.add(glyph: blackHoleGlyph)
         glyphsView.add(glyph: chronosGlyph)
+        glyphsView.add(glyph: fourClocksGlyph)
         glyphsView.add(glyph: narwhalGlyph)
-        glyphsView.add(glyph: symetricGlyph)
-        glyphsView.add(glyph: blackShieldGlyph)
-        glyphsView.add(glyph: quantumBellGlyph)
+        glyphsView.add(glyph: thooftGlyph)
+        glyphsView.add(glyph: glossaryGlyph)
 
         universeXGlyph.link(to: aetherGlyph)
         universeXGlyph.link(to: forwardGlyph)
@@ -208,18 +208,19 @@ class NexusExplorer: AEViewController {
         dilationGlyph.link(to: contractionGlyph)
         dilationGlyph.link(to: dilationExpGlyph)
         dilationGlyph.link(to: chronosGlyph)
-        
+        dilationGlyph.link(to: fourClocksGlyph)
+
         contractionGlyph.link(to: electromagnetismGlyph)
         contractionGlyph.link(to: contractionExpGlyph)
         contractionGlyph.link(to: narwhalGlyph)
         
         electromagnetismGlyph.link(to: electromagnetismExpGlyph)
-        electromagnetismGlyph.link(to: discrepanciesGlyph)
+        electromagnetismGlyph.link(to: bellTHooftGlyph)
         
-        discrepanciesGlyph.link(to: epilogueGlyph)
-        discrepanciesGlyph.link(to: symetricGlyph)
-        discrepanciesGlyph.link(to: blackShieldGlyph)
-        discrepanciesGlyph.link(to: quantumBellGlyph)
+        bellTHooftGlyph.link(to: epilogueGlyph)
+        bellTHooftGlyph.link(to: thooftGlyph)
+        
+        epilogueGlyph.link(to: glossaryGlyph)
         
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false

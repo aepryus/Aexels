@@ -97,6 +97,7 @@
 		D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */; };
 		D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */; };
 		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
+		D8DEF8A92D346F2200298D26 /* 2103.04335v3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,7 @@
 		D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskCell.swift; sourceTree = "<group>"; };
 		D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AetherExplorer.swift; sourceTree = "<group>"; };
 		D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsView.swift; sourceTree = "<group>"; };
+		D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 2103.04335v3.pdf; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -364,6 +366,7 @@
 				D8AE17BB2814F11900E74CB8 /* Fonts */,
 				D8AE17BA2814F10000E74CB8 /* Aethers */,
 				D87C0DCF2931A7720005B44D /* LaTeX */,
+				D8DEF8A72D346F0900298D26 /* PDFs */,
 				D818929D2C7195D90018E4B9 /* Claude */,
 			);
 			path = Resources;
@@ -401,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				D8DA98CB2B71DE0700A4AA8F /* Cells */,
+				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
 				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
 				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
@@ -417,7 +421,6 @@
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
-				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -563,6 +566,14 @@
 			path = Aether;
 			sourceTree = "<group>";
 		};
+		D8DEF8A72D346F0900298D26 /* PDFs */ = {
+			isa = PBXGroup;
+			children = (
+				D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */,
+			);
+			path = PDFs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -646,6 +657,7 @@
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
 				D81892A12C729DAC0018E4B9 /* Original in Resources */,
+				D8DEF8A92D346F2200298D26 /* 2103.04335v3.pdf in Resources */,
 				D8AE17992814F0D300E74CB8 /* ChicagoFLF.ttf in Resources */,
 				D87C0DD32931A8250005B44D /* Contraction.latex in Resources */,
 				D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */,

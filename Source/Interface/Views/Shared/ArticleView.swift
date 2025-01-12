@@ -7,24 +7,67 @@
 //
 
 import Acheron
+import PDFKit
 import UIKit
 
 class ArticleView: AEView {
-    var key: String? { didSet { load() } }
+    var key: String? {
+        didSet {
+            if let key, key.hasSuffix("_pdf") { loadPDF() }
+            else { load() }
+        }
+    }
     weak var scrollView: UIScrollView? = nil
     var color: UIColor = .black.tint(0.4)
     var font: UIFont = .optima(size: 16*Screen.s)
 
     private let imageView: UIImageView = UIImageView()
+    private let pdfView: PDFView = PDFView()
 
     var scrollViewContentSize: CGSize = .zero
 
     override init() {
         super.init()
         addSubview(imageView)
+        addSubview(pdfView)
+        
+        pdfView.isHidden = true
+        pdfView.autoScales = true
+        pdfView.displayMode = .singlePageContinuous
+        pdfView.backgroundColor = .clear
+    }
+    
+    
+    func loadPDF() {
+        guard let key else { return }
+        imageView.isHidden = true
+        pdfView.isHidden = false
+        
+        let pathString: String = key[...(key.count-5)]
+        print(pathString)
+        if let path = Bundle.main.url(forResource: pathString, withExtension: "pdf"),
+           let document = PDFDocument(url: path),
+            let firstPage = document.page(at: 0) {
+
+            pdfView.document = document
+
+            
+            let pageSize = firstPage.bounds(for: .mediaBox).size
+            let ratio = pageSize.height / pageSize.width
+            let width: CGFloat = 770
+            let totalHeight = width * ratio * CGFloat(document.pageCount)
+
+                
+            pdfView.frame = CGRect(origin: .zero, size: CGSize(width: width, height: totalHeight))
+
+            scrollViewContentSize = pdfView.bounds.size
+        }
     }
     
     func load() {
+        imageView.isHidden = false
+        pdfView.isHidden = true
+
         guard let key else { return }
         let template = "\(key)_article".localized
         var texts: [String] = []

@@ -341,7 +341,7 @@ If one measures the sound or if one measures the tire marks; what they are reall
 
 In Universe X there is a conserved quantity; let's call it 'hyle' (a nod to Aristotle).  Hyle always translates at the speed of light and always destroys aexels as it translates and always in the same proportion.  Two separate effects of a single entity; the translation effect associated with energy, the aexel destruction effect associated with mass.
 
-There are two types of particles in Universe X, teslons that have internal motion and thus always must travel at less than c (1 aexel / tic) and edisons that simply move in a straight line always at exactly c.  But, the hyle in teslons and edisons is always moving (at c) and always destroying aexels and always in the same proportions.
+There are two types of particles in Universe X, teslons that have internal motion and thus always must travel at less than c (an aexel per tic) and edisons that simply move in a straight line always at exactly c.  But, the hyle in teslons and edisons is always moving (at c) and always destroying aexels and always in the same proportions.
 
 The motion of the hyle in the teslon is less obvious because it's mostly bouncing back and forth.  The destruction of aexels in the edisons is less obvious because it's always happening in the edison's wake, never internal to itself.  But, in both cases both effects are always occurring and always in the same proportion.
 
@@ -362,46 +362,28 @@ It is not mass that prevents something from moving at the speed of light, but ra
 "electromagnetism_name" = "Electro\nmagnetism";
 "electromagnetism_article" = "Electromagnetism
 
-Certainly, there is much work to be done on the quantitative aspects of Universe X.  The qualitative aspects are starting to come into focus but there is a glaring exception: electromagnetism.  However, recent insights have started to shed some light on this topic also.
+When starting to explore Universe X, electromagnetism didn't seem like particularly fertile ground for revolution.  Its concepts weren't nearly as dissonant as relativity and quantum's were.  Perhaps there were hints of problems such as the frame dependence of whether a field was electric or magnetic or the question of how Lorentz force could conserve momentum.  But, in general it seemed mostly solid.
 
-Equivalence illustrated that there is a conserved type of loop in Universe X that is able to translate and destroys aexels as part of that translation.  Originally the effects of the translation of this loop was called energy and the effects of the destruction of aexels was called mass.
+However, as the journey with Universe X continued more and more windows into electricity and magnetism opened up; the mechanisms underpinning E&M started to come into focus.  In the previous version we started to get hints as to what was going on, but now major pieces have begun to fall into place.  Unexpectedly, as this has happened a major shift in electricity and magnetism has occurred.
 
-It would be nice to give this type of loop a name other than mass or energy, since those words are so tightly associated with their particular effects.  Aristotle hypothesized the existence of a primordial matter that made up all things, which he called: hyle.  Let's borrow his term to apply to this aexel destroying energy/mass loop; it seems to fit well with his concept.
+Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests an analogous phenomena; loops being sent off evenly in all directions like the grains of salt.
 
-- loops that do neither
+The E=mc^2 article established that both protons (a type of teslon) and photons (a type of edison) contain hyle.  In trying to recreate Coulomb's force it is necessary to figure out how hyle can be transferred from one teslon to another most likely via photons.
 
-If all teslons have 'mass' and therefore destroy aexels and if photons, also destroy aexels as they translate across the aexel field then the question is do all edisons destroy aexels while they translate or just some?  Are there no loops that neither destroy or create aexels?
+We know that Hyle is a conserved quantity.  Let's go further and tentatively guess it is also locally conserved; it doesn't jump from one place to another.  To get from one point to another it has to traverse all the points in between.
 
-The exact mechanism of the Coulomb force in Universe X is unknown, but let's speculate a bit on how it might work; hopefully over time things will become clearer.
+Perhaps a proton sitting in space continually sends out photons in all directions looking for other protons to interact with.  But, immediately we have an issue.  The proton will quickly run out of hyle.  Therefore, the initial ping must be hyleless.
 
-The Coulomb force drops off at 1/r².  Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests an analogous phenomena; loops being sent off evenly in all directions like the grains of salt.
+Perhaps a teslon that encounters a hyleless ping sends out a photon response.  But, here too we have an issue (although perhaps a bit more subtle of one).  Consider two teslons translating inline across the aether.  They both send out pings.  The ping from the leading teslon will reach the trailing teslon first because the trailing teslon is moving up to meet it.  If the trailing teslon reacts at that point the reactions of the teslons won't be synchronized.  It is necessary for a full roundtrip handshake to occur before the teslons react so that their reactions will be synchronized.
 
-Dilation and Contraction illustrated that the particular speed a signal moves at does not matter only the time of the roundtrip journey; this hints that a change in the rate of translation of any proton should not occur before a signal's journey has fully completed.
+So, we have an omnidirectional hyleless ping followed by a hyleless pong, which then results in a directed photon.  Is the pong omnidirectional like the ping or directed like the photon?  Imagine 3 protons in the same vicinity all sending out pings omnidirectional pings.  When they receive the pings they send out omnidirectional pongs.  But, this means that teslon A will receive pongs from teslon B motivated by both his pings and also teslon C's pings.  The number of pongs received will scale with the number of teslons in the area.  This is totally counter to Coulomb.  Pongs must be directed like photons.
 
-A proton has the ability to send out signals moving at the speed of light.  These signals could take on different forms.  Perhaps they get sent out uniformly in all directions, an omni-pulse or perhaps they are directed in a single direction, a beam-pulse.
+But, how do the teslons know which direction to send the directed pongs and photons in order to reconnect with the source teslon?  Here we have a shockingly elegant answer.  Each ping, pong and photon has copula which points in a specific direction.  The copula's direction is determined by adding a vector length c of the edison minus the vector representing the translation of the source teslon; a vector pointing in the direction of translation of length v.
 
-These pulses may or may not be made up of hyle.  However, it seems highly unlikely that any omni-pulse would contain hyle.  The proton would quickly lose all of its own mass/energy.  But a proton is extremely stable; a lone resting proton will last forever and certainly not lose energy.
+Once such an edison is encounter the encountered teslons need only reflect the translation vector of the edison over the negative copula vector.  In this way sending off a response edison is guaranteed to find the source teslon if it has not accelerated.
 
-In our Universe photons are described as the force carriers of the Coulomb's force.  Imagine an empty universe with two non translating protons sitting on a static aexel field.  Let's look at 3 possible models for coulombs force in Universe X: 0 bounce, 1 bounce and 2 bounce models.
+But, that isn't the only utility of the copula; it also indicates the direction of the 'force'.  Each edison has its absolute translation vector; its copula vector and also a frame dependent translation vector.  When the copula and frame dependent translation vector align they appear as a +E field.  When they counter-align they appear as a -E field.  When they're orthogonal they appear as a B field.
 
-0 Bounce:
-Perhaps the proton radiates photons in all directions, which then look for other charge carriers to interact with.  There are two issues with this model, one, photons have energy and would be radiating that energy away from the proton similar to our star from before.  And two, a photon being sent out hypothetically would interact with any other charged loop that it encounters instantly, not necessitating any bounce and therefore not depending on the roundtrip time of transit.
-
-1 Bounce:
-A second option is to have our proton radiate an omni-pulse of hyleless edisons.  Right away this solves the conservation of energy and mass issues, since the edisons being sent out aren't destroying aexels as they translate; they have no mass, they have no energy.  This non aexel destroying edison now encounters another proton causing that second proton to pass an aexel destroying photon back towards the original.  Once that photon hits the originating loop it interacts with the original affecting its translational velocity.  However, the instant the target proton sent out its own photon its own rate of translation would have been affected; before the full roundtrip time.
-
-2 Bounce:
-If the source proton sends out a hyleless signal (a ping) and then the target proton sends out a different hyleless response (a pong) and only when the original proton receives that pong does it send out a beam-pulse photon towards the target proton, than it solves the conservation of energy and mass issue and requires everything to depend on the time of the roundtrip journey.
-
-The 0 Bounce systems seems impossible in Universe X because of the necessary continuous loss of hyle.  Perhaps the first bounce in the 1 Bounce system is just an edge effect and the system does actually depend on the roundtrip time or perhaps the 2 Bounce mechanism is how things actually work.  But both the 1 Bounce and 2 Bounce mechanism both strongly hint at the existence of hyleless edisons; of non aexel destroying / creating edisons; of 'loops that do neither'.
-
-Miscellaneous Ruminations
-
-- Throughout this app one aexel per tic is referred to the speed of light.  However, rarely are the aexels going to be precisely lined up in the direction of translation.  Given the nature of the aexels there is some mean angle between the vector of translation and the vector pointing to the next neighbor, theta.  As such it's imaginable that the speed of light is actual one aexel per tic times the cos(theta).
-- An omni-pulse ping might be responded to by either an omni-pulse or beam-pulse pong.  That pong would then be responded to by a beam-pulse photon.  Those beam pulses would need to be sent off in the direction where the source particle is headed not to where it was.  The information needed to predict the new location would need to be encoded in the ping (and/or pong) as some sort of internal vector.  Perhaps the difference between an electric and magnetic field is based on the combination of the angle of translation, angle of incidence and its internal angle; explaining why electric fields become magnetic fields and visa versa depending on the a target system's rate of translation.
-- When playing with the Contraction Lab, one can see that the ping flux increases greatly when moving away from length contracted loops.  This might be countered by the reduced flux of the pong response.  Or there might be some thing else going on.
-- If a single proton is resting on static aexels it will continually send out pings which do not destroy the aexels.  A photon is a slinky like progression of electric and magnetic fields shooting across the aether.  Perhaps, the rapid changing of the state of an aexel from electric to magnetic (changing the direction of the internal vector?) causes the aexel to be destroyed (or split?)?
-- Perhaps the beam-pulse isn't an exact beam, but instead works just as described by the Feynman Path Integral; and in taking all paths is able to find the original source proton again.
 
 
 
@@ -824,8 +806,8 @@ With this definition actually if the Dolphin were to reverse direction and trave
 So, this gives us 3 classes of 'Same Inertial Frame':
 
 - Type 1: part of a contiguous ping / pong cloud.
-- Type 2: isolated , but having the same dilation and contraction factors and aligned contraction axises.
-- Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axises.";
+- Type 2: isolated , but having the same dilation and contraction factors and aligned contraction axes.
+- Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axes.";
 
 "symmetric_name" = "Symmetric Frames";
 "symmetric_article" = "Symmetric Frames
@@ -850,8 +832,8 @@ The result being that I still have not been able to find an experiment that woul
 
 ";
 
-"blackShield_name" = "Black Shield";
-"blackShield_article" = "Black Shield
+"fourClocks_name" = "Four Clocks";
+"fourClocks_article" = "Four Clocks
 
 - Dilation at the Surface of a Sphere
 
@@ -956,8 +938,8 @@ For that reason, the Schwarzschild solution does not apply in Universe X and a d
 
 ";
 
-"quantumBell_name" = "Quantum and Bell";
-"quantumBell_article" = "Quantum and Bell
+"bellTHooft_name" = "Bell and ’t Hooft";
+"bellTHooft_article" = "Bell and ’t Hooft
 
 This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the \"unknown hidden variables\" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
 
@@ -972,6 +954,35 @@ However, he doesn't have a specific Cellular Automaton in mind, but he does indi
 ...we need to restrict ourselves to finite models, forcing us to work with lattice theories. Making such theories relativistically invariant is notoriously difficult. It will presumably involve general relativity, and this is far beyond what we can handle presently.
 
 I believe Universe X is just such a lattice theory. A theory that elegantly handles Special and General Relativity, Lorentz Covariance and Gravity.
+
+
+
+
+
+";
+
+"glossary_name" = "Glossary";
+"glossary_article" = "Glossary
+
+Aexel - a quanta of the aether.  The basic building block of all of Universe X.
+
+Copula - vector pointer attached to pings, pongs and photons
+
+Cord - the unit of measure of hyle.  equal to the hyle contained in a static proton.
+
+Edison - any stable state loop without internal motion.  Always moves at c.
+
+Hyle - a conserved quantity of universe X that makes up all 'matter'.
+
+Ping - the hyleless edison that is continually ejected by teslons in order to find other teslons.
+
+Pong - the hyleless edison response of a teslon that has encountered a ping.
+
+Teslon - a stable state loop that has internal motion.  Since, like all things the internal components can't move faster than c, the teslon itself can't move at c.
+
+Tic - the amount of time it takes signal to move from one aexel to another.
+
+Universe X - the universe where all these objects interact with one another.
 
 
 
@@ -1181,6 +1192,8 @@ Distance is a tricky concept to get a handle on in Universe X.  Time is a simila
 
 "electromagnetismLab_article" = "Electromagnetism Lab
 ";
+
+"2103.04335v3_pdf_name" = "'t Hooft Paper";
 
 /*
  Localizable.strings
