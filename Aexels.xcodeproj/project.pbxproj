@@ -98,6 +98,7 @@
 		D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */; };
 		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
 		D8DEF8A92D346F2200298D26 /* 2103.04335v3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */; };
+		D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEF8AE2D35189500298D26 /* Settings.swift */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +198,7 @@
 		D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AetherExplorer.swift; sourceTree = "<group>"; };
 		D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsView.swift; sourceTree = "<group>"; };
 		D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 2103.04335v3.pdf; sourceTree = "<group>"; };
+		D8DEF8AE2D35189500298D26 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				D8AA5A502B7AEFD700282522 /* Article.swift */,
+				D8DEF8AE2D35189500298D26 /* Settings.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
+				D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */,
 				D80ED6AD2B679A1A00EF4F8D /* Ionian.c in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
 				D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */,

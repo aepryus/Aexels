@@ -709,7 +709,7 @@ As such the interior of a black hole will be pure light (or some other form of e
 "chronos_name" = "Chronos";
 "chronos_article" = "Chronos
 
-Imagine a model of ship called the Chronos.  It has a large digital display on its hull that is linked to a stopwatch inside the ship.
+Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
 
 {{Chronos}}
 
@@ -832,27 +832,33 @@ The result being that I still have not been able to find an experiment that woul
 
 ";
 
-"fourClocks_name" = "Four Clocks";
-"fourClocks_article" = "Four Clocks
+"floatingLeaf_name" = "Floating Leaf";
+"floatingLeaf_article" = "Floating Leaf
 
-- Dilation at the Surface of a Sphere
+What is the dilation at the surface of a planet?
 
-Imagine a nearly empty Universe X with a single non-rotating non-translating planet.  What is the Dilation experienced at the surface of this planet?
+Dilation is entirely a function of the rate of translation of a system across the aexels.  In order to find the dilation at the surface of a planet one simply needs to figure out the rate that the aexels flow into the planet.
 
-Previously Dilation in Universe X has been calculated as a function of the rate of translation across an aexel field.  In order to calculate the Dilation at the surface of the planet one merely needs to calculate the velocity of the aexels flowing into the planet at the surface.
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by, for instance, a planet's destruction of aexels.  Newton's law of Gravitation is empirical, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from a planet.
 
-In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by the destruction of aexels by loops with mass.  Newton's law of Gravitation is an empirical law, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from the planet.
-
-Since gravity is not a force; since it can not directly cause the translation of loops across an aexel field, the motion of the tennis ball will show us the motion of the aexels themselves.  The velocity of a tennis ball at any point while falling to the surface of a planet must equal the velocity of the aexels upon which it is sitting (like a leaf floating down a river).  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e,. the escape velocity):
+Since gravity is not a force, since it can not directly cause the translation of teslons across the aexels, the motion of the tennis ball will show us the motion of the aexels.  Just as a leaf floating down a river shows us the velocity of the water that is carrying it, the tennis ball floating down to the planet will show us the velocity of the aexels upon which it sits.  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e., the escape velocity):
 
 <<DiscrA>>
 
-This gives us the velocity of the tennis ball and therefore the velocity of the aexels.  Any system at rest on the planet's surface will have the aexels flowing through it at that velocity, therefore we can plug that velocity into the dilation equation in order to get the dilation at the surface.
+This gives us the velocity of the tennis ball at the surface and therefore the velocity of the aexels at the surface.  Any system at rest on the planet will have the aexels flowing through it at that velocity, therefore we can plug it into the dilation equation in order to get the dilation at the surface.
 
 <<DiscrB>>
 
-Coincidently, the dilation at the surface of a non-rotating sphere in Universe X is the same as that for our Universe.
+Perhaps somewhat surprisingly, the value we arrived at here using a little physical intuition and undergrad math is precisely equal to the dilation at the surface of a planet in our universe that is calculated by solving Einstein's 4x4 tensor with 10 equations and 10 unknowns for a perfect sphere.
 
+
+
+
+
+";
+
+"fourClocks_name" = "Four Clocks";
+"fourClocks_article" = "Four Clocks
 
 - Dilation while Falling from Infinity
 

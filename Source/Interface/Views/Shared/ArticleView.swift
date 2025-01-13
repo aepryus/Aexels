@@ -37,7 +37,6 @@ class ArticleView: AEView {
         pdfView.backgroundColor = .clear
     }
     
-    
     func loadPDF() {
         guard let key else { return }
         imageView.isHidden = true

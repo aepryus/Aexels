@@ -13,6 +13,16 @@ import UIKit
 
 class GlyphsView: AEView {
     var glyphs: [GlyphView] = []
+    var focus: GlyphView? = nil {
+        didSet {
+            if let focus {
+                glyphs.forEach { $0.turnedOn = $0 === focus || focus.isLinked(to: $0) }
+            } else {
+                glyphs.forEach { $0.turnedOn = true }
+            }
+            glyphs.forEach({ $0.isHidden = !$0.turnedOn })
+        }
+    }
     
     override init() {
         super.init()
@@ -26,8 +36,8 @@ class GlyphsView: AEView {
     
 // AEView ==========================================================================================
     override func draw(_ rect: CGRect) {
-        guard let first: GlyphView = glyphs.first else { return }
-
+        guard let first: GlyphView = focus ?? glyphs.first else { return }
+        
         let moat: CGFloat = 8*s
         let a: CGFloat = 5*s
         var point: GlyphView = first
@@ -72,6 +82,7 @@ class GlyphsView: AEView {
 class GlyphView: AEView {
     let radius: CGFloat
     var linkedTo: [GlyphView] = []
+    var turnedOn: Bool = true
     
     init(radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.radius = radius
@@ -87,14 +98,18 @@ class GlyphView: AEView {
         linkedTo.append(other)
         other.linkedTo.append(self)
     }
-    func spoke(to other: GlyphView) -> CGFloat { .pi/2 - atan2(-(other.center.y-center.y), other.center.x-center.x) }
+    func isLinked(to other: GlyphView) -> Bool { linkedTo.contains(other) }
+    func spoke(to other: GlyphView) -> CGFloat {
+        let result: CGFloat = .pi/2 - atan2(-(other.center.y-center.y), other.center.x-center.x) + 2 * .pi
+        return result.truncatingRemainder(dividingBy: 2 * .pi)
+    }
 
     static func toClock(_ angle: CGFloat) -> CGFloat { .pi/2 - angle }
     static func fromClock(_ angle: CGFloat) -> CGFloat { -(angle - .pi/2) }
     
-    lazy var sortedLinkedTo: [GlyphView] = {
-        linkedTo.sorted(by: { spoke(to: $0) < spoke(to: $1) })
-    }()
+    var sortedLinkedTo: [GlyphView] {
+        linkedTo.filter({ $0.turnedOn }).sorted(by: { spoke(to: $0) < spoke(to: $1) })
+    }
     
     func linkAfter(_ glyphView: GlyphView) -> GlyphView {
         for i in 0..<sortedLinkedTo.count {

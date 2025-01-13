@@ -62,6 +62,7 @@ class Article {
     static let claude: Article = Article(key: "claude", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
     static let chronos : Article = Article(key: "chronos", parent: dilation)
+    static let floatingLeaf: Article = Article(key: "floatingLeaf", parent: dilation)
     static let fourClocks : Article = Article(key: "fourClocks", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
     static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: bellTHooft)
@@ -69,8 +70,8 @@ class Article {
 
     static var articles: [Article] = [
         intro, aether, cellular, kinematics, gravity, darkness, hyle, dilation, contraction,
-        electromagnetism, bellTHooft, epilogue, forward, claude, blackHole, chronos, fourClocks,
-        narwhal, glossary
+        electromagnetism, bellTHooft, epilogue, forward, claude, blackHole, chronos, floatingLeaf,
+        fourClocks, narwhal, glossary
     ]
     
     static func wire() {
@@ -78,14 +79,16 @@ class Article {
         aether.next = cellular
         cellular.next = kinematics
         kinematics.next = gravity
-        gravity.next = dilation
-        dilation.next = contraction
-        contraction.next = darkness
+        gravity.next = darkness
         darkness.next = hyle
-        hyle.next = electromagnetism
+        hyle.next = dilation
+        dilation.next = contraction
+        contraction.next = electromagnetism
         electromagnetism.next = bellTHooft
         bellTHooft.next = epilogue
-        chronos.next = fourClocks
+        forward.next = claude
+        chronos.next = floatingLeaf
+        floatingLeaf.next = fourClocks
         aether.explorers.append(Aexels.aetherExplorer)
         cellular.explorers.append(Aexels.cellularExplorer)
         kinematics.explorers.append(Aexels.kinematicsExplorer)
