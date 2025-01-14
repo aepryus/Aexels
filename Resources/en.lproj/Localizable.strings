@@ -860,23 +860,21 @@ Perhaps somewhat surprisingly, the value we arrived at here using a little physi
 "fourClocks_name" = "Four Clocks";
 "fourClocks_article" = "Four Clocks
 
-- Dilation while Falling from Infinity
-
-Let's now consider a related thought experiment using the same nearly empty Universe X and same non rotating, non translating planet.  This time let's situate 4 clocks W, X, Y and Z within the universe as follows.  Place W at rest at infinity.  Let X fall from rest at infinity just like our previous tennis ball until it reaches a distance r from the center of the planet.  Let Y sit at rest on a platform the same distance r from the surface of the planet.  And let Z blast off from the planet with just enough velocity to reach infinity until it too is a distance r from the center of the planet.
+Imagine a lone planet and 4 clocks.  The 4 clocks, W, X, Y and Z are situated as follows:  W sits at infinity, X is falling from infinity at escape velocity and is currently at a point r above the planet, Y is resting on a platform a distance r above the surface and Z is blasting off to infinity at escape velocity also currently at the point r above the planet.
 
 <<4Clocks>>
 
-The question is what is the time dilation experienced by each of the 4 clocks.
+What is the time dilation experienced by each of the 4 clocks.
 
-Clock W at infinity is not translating at all, so it has no translational velocity and therefore its gamma is 1.
-
-<<DiscrC>>
-
-Clock X is simply floating down with the aexels and similarly not translating at all; its gamma is also equal to 1.
+Clock W at infinity is not translating at all, so it has no translational velocity and therefore its dilation is 1.
 
 <<DiscrC>>
 
-Clock Y, is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the previous section.  Its dilation can be calculated by plugging the escape velocity at the platform into the gamma factor:
+Clock X is simply floating down with the aexels and similarly not translating at all; its dilation is also equal to 1.
+
+<<DiscrC>>
+
+Clock Y is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the Floating Leaf article.  Its dilation can be calculated by plugging the escape velocity at the platform into the dilation equation:
 
 <<DiscrB>>
 
@@ -884,7 +882,7 @@ Clock Z is blasting up from the surface.  The aexels will be moving towards the 
 
 <<DiscrE>>
 
-A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the subtraction of the escape velocity vector from the system's velocity vector; giving:
+A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the escape velocity vector minus the system's velocity vector; giving:
 
 <<DiscrF>>
 
@@ -926,17 +924,25 @@ Universe X:
 Our Universe
     W < Y < X = Z
 
-This is a rather substantial deviation in the two universes.
+This is a rather substantial deviation in the two universes.  How could such a discrepancy arise?
 
-If we assume that Einstein's equations hold in Universe X and we also assume that the Schwarzschild metric is a correctly calculated solution to those equations, how could such a discrepancy arise?
+Recall in the Chronos article it was shown that Reciprocity could not possibly be true.
 
-Digging deeper into the derivation of the Schwarzschild metric: [https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution] it is discovered that the solution is based on 4 boundary conditions.  The second of which is:
+One of the first steps in the derivation of Einstein's field equations is the definition of ds^2 = cdt^2 - dx^2 - dy^2 - dz^2 and to note that because of reciprocity this term is a constant for all frames.  From there the entirety of field equations are derived based on this; with the Schwarzschild Metric being the solution of these equations for a perfect sphere.
 
-<<Wiki2>>
+If however Reciprocity is false; then ds^2 is not invariant; consequently the field equations go tumbling down, bringing the Schwarzschild Metric with them.
 
-In our universe gravity is a force and as such this constraint makes sense.  However, in Universe X, gravity is not a force it is a result of the flow of aexels.  If time were reversed the flow of aexels would also reverse and as such the topology of Universe X would invert; hills would become valleys and valleys would become hills.
+But, the metric did get the dilation correct for clocks W and Y, even if it was wrong for clocks X and Z.  It worked for the static clocks, but not for the translating ones.  The Reciprocity assumption broke the calculation for moving systems.
 
-For that reason, the Schwarzschild solution does not apply in Universe X and a discrepancy between our universe and Universe X arises.
+One might also note that Einstein's General Relativity has only ever been experimentally tested using static systems.
+
+Beyond all this there may be something else being illustrated here.  Consider the following again:
+
+    W = Z
+
+This looks suspiciously familiar; this looks suspiciously like the Equivalence Principle.  And in this context, not some guess about how the universe works, not some axiom to be adopted, but rather a brutally transparent explanation for why the Equivalence Principle.  Because sitting still on a static aether and sitting still on a moving aether are the exact same thing.
+
+And further with the Schwarzschild Metric declaring W != Z it becomes apparent that Reciprocity is not compatible with the Equivalence Principle.  General Relativity is not internally consistent.
 
 
 
