@@ -82,13 +82,13 @@ fragment float4 em_fragment_shader(FragmentPacket in [[stage_in]]) {
     if (dist < innerRadius | dist > outerRadius) { return float4(0.0, 0.0, 0.0, 0.0); }
     
     if (in.type == 0) {           // Teslon
-        return float4(1.0, 0.5, 0.5, 1.0); // Red
+        return float4(0.7, 0.8, 0.9, 1.0);
     } else if (in.type == 1) {    // Ping
-        return float4(0.5, 0.8, 0.5, 1.0); // Green
+        return float4(0.5, 0.5, 0.5, 1.0);
     } else if (in.type == 2) {    // Pong
-        return float4(0.7, 0.7, 1.0, 1.0); // Blue
+        return float4(0.9, 0.7, 0.7, 1.0);
     } else if (in.type == 3) {    // Photon
-        return float4(0.7, 0.7, 0.3, 1.0); // Yellow
+        return float4(0.7, 0.8, 0.9, 1.0);
     }
     
     return float4(0.0, 0.0, 0.0, 0.0);

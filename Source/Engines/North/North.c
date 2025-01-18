@@ -348,20 +348,24 @@ void NCUniverseTic(NCUniverse* universe) {
         }
         
         // Ping Collision; Pong Reflection
-        for (int j=0;j<universe->pingCount;j++) {
+        for (int j = 0; j < universe->pingCount; j++) {
             NCPing* ping = universe->pings[j];
             if (ping->source != teslon && !ping->recycle && NCTeslonInsideOf(teslon, ping->pos, 20)) {
                 NCPong* pong = NCUniverseCreatePong(universe, teslon);
                 pong->pos = ping->pos;
-                pong->v.x = -(2 * ping->cupola.x - ping->v.x);
-                pong->v.y = -(2 * ping->cupola.y - ping->v.y);
 
+                float dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
+                float dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
+                float scale = 2.0f * dot / dot2;
+                pong->v.x = ping->v.x - scale * ping->cupola.x;
+                pong->v.y = ping->v.y - scale * ping->cupola.y;
+                
                 double iQx = pong->v.x;
                 double iQy = pong->v.y;
-                
+
                 double tVx = teslon->v.x;
                 double tVy = teslon->v.y;
-                
+
                 pong->cupola.x = iQx - tVx;
                 pong->cupola.y = iQy - tVy;
 
@@ -370,29 +374,34 @@ void NCUniverseTic(NCUniverse* universe) {
         }
 
         // Pong Collision; Photon Reflection
-        for (int j=0;j<universe->pongCount;j++) {
+        for (int j = 0; j < universe->pongCount; j++) {
             NCPong* pong = universe->pongs[j];
             if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 10)) {
-                
+
                 double beforeHyle = NCTeslonHyle(teslon);
-//                NCTeslonAddMomentum(teslon, 0.1, pong->cupola);
+                // NCTeslonAddMomentum(teslon, 0.1, pong->cupola);
                 double afterHyle = NCTeslonHyle(teslon);
-                
+
                 NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);
                 photon->pos = pong->pos;
-                photon->v.x = -(2 * pong->cupola.x - pong->v.x);
-                photon->v.y = -(2 * pong->cupola.y - pong->v.y);
+
+                float dot = pong->v.x * pong->cupola.x + pong->v.y * pong->cupola.y;  // A·B
+                float dot2 = pong->cupola.x * pong->cupola.x + pong->cupola.y * pong->cupola.y;  // B·B
+                float scale = 2.0f * dot / dot2;
+                photon->v.x = pong->v.x - scale * pong->cupola.x;
+                photon->v.y = pong->v.y - scale * pong->cupola.y;
 
                 double iQx = photon->v.x;
                 double iQy = photon->v.y;
-                
+
                 double tVx = teslon->v.x;
                 double tVy = teslon->v.y;
-                
+
                 photon->cupola.x = iQx - tVx;
                 photon->cupola.y = iQy - tVy;
 
                 photon->hyle = beforeHyle - afterHyle;
+
                 pong->recycle = 1;
             }
         }

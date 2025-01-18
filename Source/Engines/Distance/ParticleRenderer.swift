@@ -113,7 +113,7 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
     
 // Events ==========================================================================================
     func onPing() {
-        NCUniversePing(universe, 200)
+        NCUniversePing(universe, 1000)
     }
 
     
