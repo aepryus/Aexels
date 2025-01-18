@@ -1,0 +1,71 @@
+{
+  "name" : "Sweetness",
+  "yOffset" : 307,
+  "width" : 695.49732620320856,
+  "type" : "aether",
+  "height" : 422.45989304812832,
+  "version" : "3.0",
+  "readOnly" : true,
+  "xOffset" : 467,
+  "aexels" : [
+    {
+      "y" : 386.45989304812832,
+      "name" : "",
+      "statesChain" : "dg:3",
+      "x" : 595.49732620320856,
+      "no" : 1,
+      "modified" : "2019-05-18T15:36:08+0900",
+      "iden" : "",
+      "type" : "auto",
+      "resultChain" : "va:Gt1",
+      "states" : [
+        {
+          "color" : 19,
+          "no" : 0,
+          "modified" : "2018-10-03T21:11:59+0900",
+          "type" : "state",
+          "iden" : "17BAC435-9A99-49E0-B5FE-C5A9E4B363D2"
+        },
+        {
+          "type" : "state",
+          "modified" : "2018-10-03T21:11:59+0900",
+          "no" : 1,
+          "iden" : "D077B948-C10C-47C6-8EC8-F6363A9289F0",
+          "color" : 27
+        },
+        {
+          "no" : 2,
+          "modified" : "2018-10-03T21:11:59+0900",
+          "color" : 2,
+          "type" : "state",
+          "iden" : "C2DEB701-10A2-41C3-8B19-DED8383E450C"
+        }
+      ]
+    },
+    {
+      "modified" : "2019-05-18T15:36:08+0900",
+      "x" : 809.99732620320856,
+      "no" : 1,
+      "name" : "Ob_1",
+      "label" : "S",
+      "iden" : "",
+      "type" : "object",
+      "y" : 430.45989304812832,
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H"
+    },
+    {
+      "type" : "gate",
+      "name" : "",
+      "y" : 572.45989304812838,
+      "modified" : "2019-05-18T15:36:08+0900",
+      "thenChain" : "va:Ob1;op:=;dg:3;op:||;va:Ob1;op:=;dg:4",
+      "elseChain" : "va:Ob1;op:=;dg:3;op:||;va:Ob1;op:=;dg:4",
+      "iden" : "",
+      "ifChain" : "va:Au1.Self",
+      "x" : 777.99732620320856,
+      "no" : 1
+    }
+  ],
+  "iden" : "8B9884FB-F02F-44D2-B4D8-ED3B02B3398F",
+  "modified" : "2019-05-18T15:36:24+0900"
+}

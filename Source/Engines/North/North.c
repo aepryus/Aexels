@@ -12,24 +12,12 @@
 
 #import <stdio.h>
 
-// Velocity ========================================================================================
-Velocity VelocityAdd(Velocity a, Velocity b) {
-    double rx = VelocityX(a) + VelocityX(b);
-    double ry = VelocityY(a) + VelocityY(b);
-    
-    Velocity result;
-    result.speed = sqrt(rx*rx + ry*ry);
-    result.orient = atan2(ry, rx);
-    return result;
+// CV2 =============================================================================================
+double CV2Orient(CV2 a) {
+    return atan2(a.y, a.x);
 }
-double VelocityX(Velocity v) {
-    return v.speed * cos(v.orient);
-}
-double VelocityY(Velocity v) {
-    return v.speed * sin(v.orient);
-}
-double VelocityGamma(Velocity v) {
-    return 1/sqrt(1 - v.speed * v.speed);
+double CV2Gamma(CV2 a) {
+    return 1/sqrt(1 - (a.x*a.x+a.y*a.y));
 }
 
 // Momentum ========================================================================================
@@ -49,7 +37,7 @@ void NCTeslonRelease(NCTeslon* teslon) {
     free(teslon);
 }
 double NCTeslonHyle(NCTeslon* teslon) {
-    return teslon->iHyle * VelocityGamma(teslon->v);
+    return teslon->iHyle * CV2Gamma(teslon->v);
 }
 double HyleOrientX(double hyle, double orient) {
     return hyle * cos(orient);
@@ -57,16 +45,14 @@ double HyleOrientX(double hyle, double orient) {
 double HyleOrientY(double hyle, double orient) {
     return hyle * sin(orient);
 }
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double orient) {
-    double iHyle = teslon->iHyle;
-    double tHyle = iHyle * VelocityGamma(teslon->v);
-    double tSpeed = teslon->v.speed;
-    double tOrient = teslon->v.orient;
-    double x = HyleOrientX(tHyle*tSpeed, tOrient) + HyleOrientX(hyle, orient);
-    double y = HyleOrientY(tHyle*tSpeed, tOrient) + HyleOrientY(hyle, orient);
-    double mag = sqrt(x*x+y*y);
-    teslon->v.speed = mag/sqrt(iHyle*iHyle+mag*mag);
-    teslon->v.orient = atan2(y, x);
+void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double x, double y) {
+//    double iHyle = teslon->iHyle;
+//    double tHyle = iHyle * CV2Gamma(teslon->v);
+//    double pX = tHyle*teslon->v.x + hyle*x;
+//    double pY = tHyle*teslon->v.y + hyle*y;
+//    double mag = sqrt(x*x+y*y);
+//    teslon->v.speed = mag/sqrt(iHyle*iHyle+mag*mag);
+//    teslon->v.orient = atan2(y, x);
 }
 
 // Ping ============================================================================================
@@ -99,7 +85,8 @@ void NCPhotonRelease(NCPhoton* photon) {
 // Camera ==========================================================================================
 NCCamera* NCCameraCreate(void) {
     NCCamera* camera = (NCCamera*)malloc(sizeof(NCCamera));
-    camera->v.speed = 0;
+    camera->v.x = 0;
+    camera->v.y = 0;
     return camera;
 }
 void NCCameraRelease(NCCamera* camera) {
@@ -195,39 +182,39 @@ NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, doubl
     NCTeslon* teslon = NCTeslonCreate();
     teslon->pos.x = x;
     teslon->pos.y = y;
-    teslon->v.speed = speed;
-    teslon->v.orient = orient;
+    teslon->v.x = speed * cos(orient);
+    teslon->v.y = speed * sin(orient);
     teslon->fixed = fixed;
     teslon->iHyle = 1;
     NCUniverseAddTeslon(universe, teslon);
     return teslon;
 }
-NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon, double orient) {
+NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon) {
     NCPing* ping = NCPingCreate();
     ping->source = teslon;
     ping->pos = teslon->pos;
-    ping->v.speed = 1;
-    ping->v.orient = orient;
+    ping->v.x = 0;
+    ping->v.y = 0;
     ping->recycle = 0;
     NCUniverseAddPing(universe, ping);
     return ping;
 }
-NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon, double orient) {
+NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon) {
     NCPong* pong = NCPongCreate();
     pong->source = teslon;
     pong->pos = teslon->pos;
-    pong->v.speed = 1;
-    pong->v.orient = orient;
+    pong->v.x = 0;
+    pong->v.y = 0;
     pong->recycle = 0;
     NCUniverseAddPong(universe, pong);
     return pong;
 }
-NCPong* NCUniverseCreatePongWithPos(NCUniverse* universe, CV2 pos, double orient) {
+NCPong* NCUniverseCreatePongWithPos(NCUniverse* universe, CV2 pos) {
     NCPong* pong = NCPongCreate();
     pong->source = 0;
     pong->pos = pos;
-    pong->v.speed = 1;
-    pong->v.orient = orient;
+    pong->v.x = 0;
+    pong->v.y = 0;
     pong->recycle = 0;
     NCUniverseAddPong(universe, pong);
     return pong;
@@ -236,8 +223,8 @@ NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon) {
     NCPhoton* photon = NCPhotonCreate();
     photon->source = teslon;
     photon->pos = teslon->pos;
-    photon->v.speed = 1;
-    photon->v.orient = 0;
+    photon->v.x = 0;
+    photon->v.y = 0;
     photon->hyle = 1;
     photon->recycle = 0;
     NCUniverseAddPhoton(universe, photon);
@@ -247,8 +234,8 @@ NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, doubl
     NCCamera* camera = NCCameraCreate();
     camera->pos.x = x;
     camera->pos.y = y;
-    camera->v.speed = speed;
-    camera->v.orient = orient;
+    camera->v.x = speed * cos(orient);
+    camera->v.y = orient * sin(orient);
     NCUniverseAddCamera(universe, camera);
     return camera;
 }
@@ -270,12 +257,10 @@ int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos, double radius) {
 }
 
 void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
-    Velocity delta;
-    delta.speed = speed - universe->speed;
-    delta.orient = 0;
-    universe->speed += delta.speed;
-    for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v = VelocityAdd(universe->teslons[i]->v, delta);
-    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v = VelocityAdd(universe->cameras[i]->v, delta);
+    double delta = speed - universe->speed;
+    universe->speed += delta;
+    for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
+    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x += delta;
 }
 
 void NCUniversePing(NCUniverse* universe, int n) {
@@ -288,22 +273,25 @@ void NCUniversePing(NCUniverse* universe, int n) {
     
     for (int i=0;i<universe->teslonCount;i++) {
         NCTeslon* teslon = universe->teslons[i];
-        double iQ = teslon->v.orient;
+        double iQ = CV2Orient(teslon->v);
         double dQ = 2*M_PI/n;
         
         for (int j=0;j<n;j++) {
             NCPing* ping = NCPingCreate();
             ping->pos = teslon->pos;
-            ping->v.speed = 1;
-            ping->v.orient = iQ;
             
             double iQx = cos(iQ);
             double iQy = sin(iQ);
             
-            double tVx = VelocityX(teslon->v);
-            double tVy = VelocityY(teslon->v);
+            ping->v.x = iQx;
+            ping->v.y = iQy;
+
             
-            ping->cupola = atan2(iQy - tVy, iQx - tVx);
+            double tVx = teslon->v.x;
+            double tVy = teslon->v.y;
+            
+            ping->cupola.x = iQx - tVx;
+            ping->cupola.y = iQy - tVy;
             
             ping->source = teslon;
             iQ += dQ;
@@ -315,10 +303,12 @@ void NCUniversePing(NCUniverse* universe, int n) {
 void NCUniversePong(NCUniverse* universe) {
     for (int j=0;j<universe->pingCount;j++) {
         NCPing* ping = universe->pings[j];
-        NCPong* pong = NCUniverseCreatePongWithPos(universe, ping->pos, 0);
+        NCPong* pong = NCUniverseCreatePongWithPos(universe, ping->pos);
         pong->pos = ping->pos;
-        pong->v.orient = M_PI + ping->cupola + (ping->cupola - ping->v.orient);
-        pong->cupola = M_PI + ping->cupola;
+        pong->v.x = -(2 * ping->cupola.x - ping->v.x);
+        pong->v.y = -(2 * ping->cupola.y - ping->v.y);
+        pong->cupola.x = -ping->cupola.x;
+        pong->cupola.y = -ping->cupola.y;
         ping->recycle = 1;
     }
 }
@@ -326,24 +316,24 @@ void NCUniversePong(NCUniverse* universe) {
 void NCUniverseTic(NCUniverse* universe) {
     // Basic Translation
     for (int i=0;i<universe->teslonCount;i++) {
-        universe->teslons[i]->pos.x += universe->c * VelocityX(universe->teslons[i]->v);
-        universe->teslons[i]->pos.y += universe->c * VelocityY(universe->teslons[i]->v);
+        universe->teslons[i]->pos.x += universe->teslons[i]->v.x;
+        universe->teslons[i]->pos.y += universe->teslons[i]->v.y;
     }
     for (int i=0;i<universe->pingCount;i++) {
-        universe->pings[i]->pos.x += universe->c * VelocityX(universe->pings[i]->v);
-        universe->pings[i]->pos.y += universe->c * VelocityY(universe->pings[i]->v);
+        universe->pings[i]->pos.x += universe->pings[i]->v.x;
+        universe->pings[i]->pos.y += universe->pings[i]->v.y;
     }
     for (int i=0;i<universe->pongCount;i++) {
-        universe->pongs[i]->pos.x += universe->c * VelocityX(universe->pongs[i]->v);
-        universe->pongs[i]->pos.y += universe->c * VelocityY(universe->pongs[i]->v);
+        universe->pongs[i]->pos.x += universe->pongs[i]->v.x;
+        universe->pongs[i]->pos.y += universe->pongs[i]->v.y;
     }
     for (int i=0;i<universe->photonCount;i++) {
-        universe->photons[i]->pos.x += universe->c * VelocityX(universe->photons[i]->v);
-        universe->photons[i]->pos.y += universe->c * VelocityY(universe->photons[i]->v);
+        universe->photons[i]->pos.x += universe->photons[i]->v.x;
+        universe->photons[i]->pos.y += universe->photons[i]->v.y;
     }
     for (int i=0;i<universe->cameraCount;i++) {
-        universe->cameras[i]->pos.x += universe->c * VelocityX(universe->cameras[i]->v);
-        universe->cameras[i]->pos.y += universe->c * VelocityY(universe->cameras[i]->v);
+        universe->cameras[i]->pos.x += universe->cameras[i]->v.x;
+        universe->cameras[i]->pos.y += universe->cameras[i]->v.y;
     }
 
     for (int i=0;i<universe->teslonCount;i++) {
@@ -351,29 +341,29 @@ void NCUniverseTic(NCUniverse* universe) {
 
         // Teslon Bounce
         if (teslon->pos.x < 0 || teslon->pos.x > universe->width) {
-            double orient = teslon->v.orient;
-            teslon->v.orient = M_PI-orient;
+            teslon->v.x = -teslon->v.x;
         }
         if (teslon->pos.y < 0 || teslon->pos.y > universe->height) {
-            double orient = teslon->v.orient;
-            teslon->v.orient = -orient;
+            teslon->v.y = -teslon->v.y;
         }
         
         // Ping Collision; Pong Reflection
         for (int j=0;j<universe->pingCount;j++) {
             NCPing* ping = universe->pings[j];
             if (ping->source != teslon && !ping->recycle && NCTeslonInsideOf(teslon, ping->pos, 20)) {
-                NCPong* pong = NCUniverseCreatePong(universe, teslon, 0);
+                NCPong* pong = NCUniverseCreatePong(universe, teslon);
                 pong->pos = ping->pos;
-                pong->v.orient = M_PI + ping->cupola + (ping->cupola - ping->v.orient);
+                pong->v.x = -(2 * ping->cupola.x - ping->v.x);
+                pong->v.y = -(2 * ping->cupola.y - ping->v.y);
 
-                double iQx = cos(pong->v.orient);
-                double iQy = sin(pong->v.orient);
+                double iQx = pong->v.x;
+                double iQy = pong->v.y;
                 
-                double tVx = VelocityX(teslon->v);
-                double tVy = VelocityY(teslon->v);
+                double tVx = teslon->v.x;
+                double tVy = teslon->v.y;
                 
-                pong->cupola = atan2(iQy - tVy, iQx - tVx);
+                pong->cupola.x = iQx - tVx;
+                pong->cupola.y = iQy - tVy;
 
                 ping->recycle = 1;
             }
@@ -385,21 +375,23 @@ void NCUniverseTic(NCUniverse* universe) {
             if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 10)) {
                 
                 double beforeHyle = NCTeslonHyle(teslon);
-                NCTeslonAddMomentum(teslon, 0.1, pong->cupola);
+//                NCTeslonAddMomentum(teslon, 0.1, pong->cupola);
                 double afterHyle = NCTeslonHyle(teslon);
                 
                 NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);
                 photon->pos = pong->pos;
-                photon->v.orient = M_PI + pong->cupola + (pong->cupola - pong->v.orient);
+                photon->v.x = -(2 * pong->cupola.x - pong->v.x);
+                photon->v.y = -(2 * pong->cupola.y - pong->v.y);
 
-                double iQx = cos(photon->v.orient);
-                double iQy = sin(photon->v.orient);
+                double iQx = photon->v.x;
+                double iQy = photon->v.y;
                 
-                double tVx = VelocityX(teslon->v);
-                double tVy = VelocityY(teslon->v);
+                double tVx = teslon->v.x;
+                double tVy = teslon->v.y;
                 
-                photon->cupola = atan2(iQy - tVy, iQx - tVx);
-                
+                photon->cupola.x = iQx - tVx;
+                photon->cupola.y = iQy - tVy;
+
                 photon->hyle = beforeHyle - afterHyle;
                 pong->recycle = 1;
             }

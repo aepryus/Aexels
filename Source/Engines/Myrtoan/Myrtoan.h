@@ -32,7 +32,7 @@ void MCRingRelease(MCRing* ring);
 typedef struct MCMoon {
     double radius;
     CV2 pos;
-    Velocity v;
+    CV2 v;
 } MCMoon;
 
 MCMoon* MCMoonCreate(void);

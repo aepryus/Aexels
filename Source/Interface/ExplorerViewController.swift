@@ -12,7 +12,7 @@ import OoviumEngine
 import OoviumKit
 import UIKit
 
-class ExplorerViewController: UIViewController {
+class ExplorerViewController: AEViewController {
     let imageView: UIImageView = UIImageView(image: UIImage(named: "OldBack"))
     
     lazy var graphView: GraphView = {
@@ -123,6 +123,22 @@ class ExplorerViewController: UIViewController {
         rampVolume()
     }
     
+// AEViewController ================================================================================
+    override func layoutRatio056() {
+        imageView.frame = view.bounds
+        tripWire.frame = view.bounds
+        let a: CGFloat = 0.7
+        graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
+        visionBar.topRight(dx: -10*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+    }
+    override func layoutRatio133() {
+        imageView.frame = view.bounds
+        tripWire.frame = view.bounds
+        let a: CGFloat = 0.8
+        graphView.bottomRight(dx: -10*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
+        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+    }
+    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,12 +152,5 @@ class ExplorerViewController: UIViewController {
         
         initMusic()
         startMusic()
-    }
-    override func viewWillLayoutSubviews() {
-        imageView.frame = view.bounds
-        tripWire.frame = view.bounds
-        let a: CGFloat = 0.8
-        graphView.bottomRight(dx: -10*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
 }

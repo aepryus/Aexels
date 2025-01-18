@@ -1,0 +1,64 @@
+{
+  "xOffset" : 476,
+  "height" : 422.45989304812832,
+  "width" : 695.49732620320856,
+  "name" : "Day & Night",
+  "yOffset" : 304,
+  "iden" : "3D256FC7-5B8C-4DA4-AABA-94E55E2904FC",
+  "modified" : "2019-05-18T15:18:04+0900",
+  "version" : "3.0",
+  "aexels" : [
+    {
+      "states" : [
+        {
+          "type" : "state",
+          "iden" : "B5569703-21F5-4F70-9A97-40B5AB063708",
+          "no" : 0,
+          "modified" : "2018-10-01T00:38:35+0900",
+          "color" : 19
+        },
+        {
+          "no" : 1,
+          "color" : 14,
+          "iden" : "BF19E2B7-4060-45B1-A163-18F4A344C8ED",
+          "modified" : "2018-10-01T00:38:35+0900",
+          "type" : "state"
+        }
+      ],
+      "modified" : "2019-05-18T15:17:29+0900",
+      "statesChain" : "dg:2",
+      "no" : 1,
+      "type" : "auto",
+      "name" : "",
+      "x" : 595.49732620320856,
+      "iden" : "",
+      "y" : 386.45989304812832,
+      "resultChain" : "va:Gt1"
+    },
+    {
+      "type" : "object",
+      "x" : 821.99732620320856,
+      "y" : 430.45989304812832,
+      "label" : "S",
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
+      "iden" : "",
+      "no" : 1,
+      "name" : "Ob_1",
+      "modified" : "2019-05-18T15:17:29+0900"
+    },
+    {
+      "x" : 727.99732620320856,
+      "name" : "",
+      "no" : 1,
+      "elseChain" : "va:Ob1;op:=;dg:3;op:||;va:Ob1;op:≥;dg:6",
+      "thenChain" : "va:Ob1;op:=;dg:3;op:||;va:Ob1;op:=;dg:4;op:||;va:Ob1;op:≥;dg:6",
+      "y" : 567.45989304812838,
+      "iden" : "",
+      "modified" : "2019-05-18T15:17:29+0900",
+      "type" : "gate",
+      "ifChain" : "va:Au1.Self"
+    }
+  ],
+  "readOnly" : true,
+  "type" : "aether"
+}

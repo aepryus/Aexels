@@ -1,0 +1,122 @@
+{
+  "xOffset" : 485.5,
+  "height" : 422.45989304812832,
+  "width" : 695.49732620320856,
+  "name" : "Demons",
+  "yOffset" : 319.5,
+  "iden" : "B504C5F6-9FA3-45E4-8314-50F66B18ABE8",
+  "modified" : "2019-05-18T15:19:04+0900",
+  "version" : "3.0",
+  "aexels" : [
+    {
+      "thenChain" : "va:Ob1",
+      "modified" : "2019-05-18T15:18:38+0900",
+      "no" : 1,
+      "ifChain" : "va:Au1.B;op:=;va:Ob1;op:||;va:Au1.D;op:=;va:Ob1;op:||;va:Au1.F;op:=;va:Ob1;op:||;va:Au1.H;op:=;va:Ob1",
+      "type" : "gate",
+      "name" : "GtR_1",
+      "x" : 628.99732620320856,
+      "iden" : "1",
+      "y" : 587.45989304812838,
+      "elseChain" : "va:Au1.Self"
+    },
+    {
+      "x" : 595.49732620320856,
+      "name" : "",
+      "no" : 1,
+      "statesChain" : "",
+      "resultChain" : "va:Gt1",
+      "y" : 386.45989304812832,
+      "iden" : "1",
+      "type" : "auto",
+      "modified" : "2019-05-18T15:18:38+0900",
+      "states" : [
+        {
+          "type" : "state",
+          "iden" : "1",
+          "no" : 0,
+          "color" : 20
+        },
+        {
+          "no" : 0,
+          "iden" : "2",
+          "color" : 21,
+          "type" : "state"
+        },
+        {
+          "no" : 0,
+          "color" : 22,
+          "iden" : "3",
+          "type" : "state"
+        },
+        {
+          "color" : 23,
+          "iden" : "4",
+          "no" : 0,
+          "type" : "state"
+        },
+        {
+          "iden" : "5",
+          "no" : 0,
+          "color" : 24,
+          "type" : "state"
+        },
+        {
+          "color" : 25,
+          "no" : 0,
+          "iden" : "6",
+          "type" : "state"
+        },
+        {
+          "color" : 26,
+          "no" : 0,
+          "type" : "state",
+          "iden" : "7"
+        },
+        {
+          "iden" : "8",
+          "no" : 0,
+          "type" : "state",
+          "color" : 27
+        },
+        {
+          "iden" : "9",
+          "type" : "state",
+          "color" : 28,
+          "no" : 0
+        },
+        {
+          "no" : 0,
+          "iden" : "10",
+          "type" : "state",
+          "color" : 29
+        },
+        {
+          "type" : "state",
+          "color" : 30,
+          "no" : 0,
+          "iden" : "11"
+        },
+        {
+          "no" : 0,
+          "type" : "state",
+          "color" : 31,
+          "iden" : "12"
+        }
+      ]
+    },
+    {
+      "iden" : "3",
+      "no" : 1,
+      "label" : "up",
+      "modified" : "2019-05-18T15:18:38+0900",
+      "name" : "Ob_1",
+      "y" : 450.95989304812832,
+      "type" : "object",
+      "x" : 866.99732620320856,
+      "chain" : "sp:(;va:Au1.Self;op:+;dg:1;sp:);op:%;dg:1;dg:2"
+    }
+  ],
+  "readOnly" : true,
+  "type" : "aether"
+}

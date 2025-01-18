@@ -378,22 +378,21 @@ Perhaps a teslon that encounters a hyleless ping sends out a photon response.  B
 
 So, we have an omnidirectional hyleless ping followed by a hyleless pong, which then results in a directed photon.  Is the pong omnidirectional like the ping or directed like the photon?  Imagine 3 protons in the same vicinity all sending out pings omnidirectional pings.  When they receive the pings they send out omnidirectional pongs.  But, this means that teslon A will receive pongs from teslon B motivated by both his pings and also teslon C's pings.  The number of pongs received will scale with the number of teslons in the area.  This is totally counter to Coulomb.  Pongs must be directed like photons.
 
-But, how do the teslons know which direction to send the directed pongs and photons in order to reconnect with the source teslon?  Here we have a shockingly elegant answer.  Each ping, pong and photon has copula which points in a specific direction.  The copula's direction is determined by adding a vector length c of the edison minus the vector representing the translation of the source teslon; a vector pointing in the direction of translation of length v.
+But, how do the teslons know which direction to send the directed pongs and photons in order to reconnect with the source teslon?  Here we have a shockingly elegant answer.  Each ping, pong and photon has cupola which points in a specific direction.  The cupola's direction is determined by adding a vector length c of the edison minus the vector representing the translation of the source teslon; a vector pointing in the direction of translation of length v.
 
-Once such an edison is encounter the encountered teslons need only reflect the translation vector of the edison over the negative copula vector.  In this way sending off a response edison is guaranteed to find the source teslon if it has not accelerated.
+Once such an edison is encounter the encountered teslons need only reflect the translation vector of the edison over the negative cupola vector.  In this way sending off a response edison is guaranteed to find the source teslon if it has not accelerated.
 
-But, that isn't the only utility of the copula; it also indicates the direction of the 'force'.  Each edison has its absolute translation vector; its copula vector and also a frame dependent translation vector.  When the copula and frame dependent translation vector align they appear as a +E field.  When they counter-align they appear as a -E field.  When they're orthogonal they appear as a B field.
+In the case of a photon being directed back, if the source teslon has accelerated then the photon will miss its target and escape the interaction entirely.
 
+But, that isn't the only utility of the cupola; it also indicates the direction of the 'force'.  Each edison has its absolute translation vector; its cupola vector and also a frame dependent translation vector.  When the cupola and frame dependent translation vector align they appear as a +E field.  When they counter-align they appear as a -E field.  When they're orthogonal they appear as a B field.
 
+For photons the cupola represents linear momentum if it aligns and angular momentum if it is orthogonal.
 
+Imagine two protons heading directly towards one another at the same speed.  Before they come close to one another they have their innate hyle and the kinetic hyle that allows them to translate.  As they near one another their pings start to find one another and they respond with pongs and eventually photons causing each to slow.
 
+At the moment that they both come to a stop before starting to return around they still contain their innate hyle, but their kinetic hyle is now zero.  None-the-less, hyle is conserved the previous kinetic hyle is now entirely contained in the photons being passed back and forth between the protons.
 
-";
-
-"discrepancy_name" = "Discrepancy";
-"discrepancy_article" = "Discrepancy
-
-It has been uncertain whether there were verifiable differences between our universe and Universe X.  Even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
+Potential energy is still just hyle translating at the speed of light and destroying aexels as it goes, in this case in the space between the two protons.
 
 
 

@@ -14,7 +14,7 @@ class ElectromagnetismEngine: Engine {
     var universe: UnsafeMutablePointer<NCUniverse>
     var camera: UnsafeMutablePointer<NCCamera>
 
-    var onVelocityChange: ((Velocity)->())?
+    var onVelocityChange: ((Double)->())?
 
     static let hyleColor: UIColor = UIColor(patternImage: UIImage(named: "hyle")!)
     
@@ -33,10 +33,10 @@ class ElectromagnetismEngine: Engine {
     }
     var velocity: Double = 0 {
         didSet {
-            let v: Velocity = Velocity(speed: abs(velocity), orient: velocity > 0 ? 0 : .pi)
+//            let v: Velocity = Velocity(speed: abs(velocity), orient: velocity > 0 ? 0 : .pi)
             NCUniverseSetSpeed(universe, velocity)
             tic()
-            onVelocityChange?(v)
+            onVelocityChange?(velocity)
         }
     }
 
@@ -49,9 +49,9 @@ class ElectromagnetismEngine: Engine {
         let iri: CGFloat = 7*scale
         
 //        let vC: CGFloat = camera.pointee.v.speed
-        let vT: CGFloat = teslon.pointee.v.speed
+//        let vT: CGFloat = teslon.pointee.v.speed
 //        let gC: CGFloat = 1/sqrt(1-vC*vC)
-        let gT: CGFloat = 1/sqrt(1-vT*vT)
+        let gT: CGFloat = CV2Gamma(teslon.pointee.v)
         let iA: CGFloat = .pi * (iro*iro - iri*iri)
         let tA: CGFloat = iA * (gT - 1)
         
@@ -96,13 +96,13 @@ class ElectromagnetismEngine: Engine {
         
         c.addArc(center: center, radius: r, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
         c.move(to: center)
-        c.addLine(to: center+CGPoint(x: 3*r*VelocityX(ping.pointee.v), y: 3*r*VelocityY(ping.pointee.v)))
+        c.addLine(to: center+CGPoint(x: 3*r*ping.pointee.v.x, y: 3*r*ping.pointee.v.y))
 
         c.setFillColor(UIColor.black.tint(0.6).cgColor)
         c.setStrokeColor(UIColor.black.tint(0.6).cgColor)
         c.drawPath(using: .fillStroke)
         
-        let frameV: CGPoint = CGPoint(x: VelocityX(ping.pointee.v) - VelocityX(camera.pointee.v), y: VelocityY(ping.pointee.v) - VelocityY(camera.pointee.v)).unit()
+        let frameV: CGPoint = CGPoint(x: ping.pointee.v.x - camera.pointee.v.x, y: ping.pointee.v.y - camera.pointee.v.y).unit()
         c.addArc(center: center, radius: r/2, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
         c.move(to: center)
         c.addLine(to: center + 2.5 * r * frameV )
@@ -111,7 +111,7 @@ class ElectromagnetismEngine: Engine {
         c.setStrokeColor(UIColor.black.tint(0.96).cgColor)
         c.drawPath(using: .fillStroke)
         
-        let emPoint: CGPoint = CGPoint(x: cos(ping.pointee.cupola), y: sin(ping.pointee.cupola))
+        let emPoint: CGPoint = CGPoint(x: ping.pointee.cupola.x, y: ping.pointee.cupola.y)
         c.addArc(center: center, radius: r/4, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
         c.move(to: center)
         c.addLine(to: center + 1.5 * r * emPoint.unit() )
@@ -130,25 +130,25 @@ class ElectromagnetismEngine: Engine {
         
         // Aether Vector
         c.move(to: center)
-        c.addLine(to: center+CGPoint(x: 3*r*VelocityX(pong.pointee.v), y: 3*r*VelocityY(pong.pointee.v)))
+        c.addLine(to: center+CGPoint(x: 3*r*pong.pointee.v.x, y: 3*r*pong.pointee.v.y))
 
         c.setFillColor(UIColor.black.tint(0.6).cgColor)
         c.setStrokeColor(UIColor.black.tint(0.6).cgColor)
         c.drawPath(using: .fillStroke)
         
         // Body and E/M Vector
-        let frameV: CGPoint = CGPoint(x: VelocityX(pong.pointee.v) - VelocityX(camera.pointee.v), y: VelocityY(pong.pointee.v) - VelocityY(camera.pointee.v)).unit()
+        let frameV: CGPoint = CGPoint(x: pong.pointee.v.x - camera.pointee.v.x, y: pong.pointee.v.y - camera.pointee.v.y).unit()
         
         let spread: CGFloat = .pi / 3
         
-        let emOrient: CGFloat = pong.pointee.cupola
+        let emOrient: CGFloat = CV2Orient(pong.pointee.cupola)
         let start: CGFloat = emOrient - spread / 2
         let stop: CGFloat = emOrient + spread / 2
         
         let startPoint: CGPoint = center + r * CGPoint(x: cos(start), y: sin(start))
         let stopPoint: CGPoint = center + r * CGPoint(x: cos(stop), y: sin(stop))
 
-        let emPoint: CGPoint = CGPoint(x: cos(pong.pointee.cupola), y: sin(pong.pointee.cupola))
+        let emPoint: CGPoint = CGPoint(x: pong.pointee.cupola.x, y: pong.pointee.cupola.y)
         c.addArc(center: center, radius: r, startAngle: 2 * .pi - start, endAngle: 2 * .pi - stop, clockwise: false)
         c.move(to: startPoint)
         c.addLine(to: center + 3 * r * emPoint.unit() )
@@ -185,7 +185,7 @@ class ElectromagnetismEngine: Engine {
         let kro: CGFloat = sqrt(pA / .pi)
         
         c.move(to: center)
-        c.addLine(to: center+CGPoint(x: 3*r*VelocityX(photon.pointee.v), y: 3*r*VelocityY(photon.pointee.v)))
+        c.addLine(to: center+CGPoint(x: 3*r*photon.pointee.v.x, y: 3*r*photon.pointee.v.y))
 
         c.setFillColor(UIColor.black.tint(0.6).cgColor)
         c.setStrokeColor(UIColor.black.tint(0.6).cgColor)

@@ -13,23 +13,8 @@ typedef struct CV2 {
     double y;
 } CV2;
 
-CV2 CV2Add(CV2 a, CV2 b);
-CV2 CV2Sub(CV2 a, CV2 b);
-CV2 CV2Mul(CV2 a, double b);
-double CV2LengthSquared(CV2 a);
-double CV2Length(CV2 a);
-double CV2Dot(CV2 a, CV2 b);
-double CV2Angle(CV2 a, CV2 b);
-
-typedef struct Velocity {
-    double speed;
-    double orient;
-} Velocity;
-
-Velocity VelocityAdd(Velocity a, Velocity b);
-double VelocityX(Velocity v);
-double VelocityY(Velocity v);
-double VelocityGamma(Velocity v);
+double CV2Orient(CV2 a);
+double CV2Gamma(CV2 a);
 
 typedef struct Momentum {
     double hyle;
@@ -42,7 +27,7 @@ double MomentumY(Momentum* momentum);
 
 typedef struct NCTeslon {
     CV2 pos;
-    Velocity v;
+    CV2 v;
     double iHyle;                  // innate hyle
     unsigned char fixed;
 } NCTeslon;
@@ -50,12 +35,12 @@ typedef struct NCTeslon {
 NCTeslon* NCTeslonCreate(void);
 void NCTeslonRelease(NCTeslon* teslon);
 double NCTeslonHyle(NCTeslon* teslon);
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double orient);
+void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double x, double y);
 
 typedef struct NCPing {
     CV2 pos;
-    Velocity v;
-    double cupola;
+    CV2 v;
+    CV2 cupola;
     unsigned char recycle;
     NCTeslon* source;
 } NCPing;
@@ -65,8 +50,8 @@ void NCPingRelease(NCPing* ping);
 
 typedef struct NCPong {
     CV2 pos;
-    Velocity v;
-    double cupola;
+    CV2 v;
+    CV2 cupola;
     unsigned char recycle;
     NCTeslon* source;
 } NCPong;
@@ -76,8 +61,8 @@ void NCPongRelease(NCPong* pong);
 
 typedef struct NCPhoton {
     CV2 pos;
-    Velocity v;
-    double cupola;
+    CV2 v;
+    CV2 cupola;
     double hyle;
     unsigned char recycle;
     NCTeslon* source;
@@ -88,7 +73,7 @@ void NCPhotonRelease(NCPhoton* photon);
 
 typedef struct NCCamera {
     CV2 pos;
-    Velocity v;
+    CV2 v;
     double width;
     double height;
 } NCCamera;
@@ -126,8 +111,8 @@ void NCUniverseAddPing(NCUniverse* universe, NCPing* ping);
 void NCUniverseAddPong(NCUniverse* universe, NCPong* pong);
 void NCUniverseAddPhoton(NCUniverse* universe, NCPhoton* photon);
 NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed);
-NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon, double orient);
-NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon, double orient);
+NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon);
+NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon);
 NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon);
 NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, double speed, double orient);
 int NCUniverseOutsideOf(NCUniverse* universe, CV2 pos);

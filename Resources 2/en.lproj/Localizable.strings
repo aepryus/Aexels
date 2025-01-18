@@ -1,0 +1,1485 @@
+/* 
+  Localizable.strings
+  Aexels
+
+  Created by Joe Charlier on 7/18/14.
+  Copyright (c) 2014 Aepryus Software. All rights reserved.
+*/
+
+"intro_name" = "Universe X";
+"intro_article" = "A universe is discovered...
+
+Universe X
+
+Come along as we explore this universe and discover the similarities and differences it has with our own.
+
+There are things we know for certain about Universe X; there are things we can speculate about and there are many things yet to be discovered.  Hopefully, over the lifetime of this app we will be able to continually increase our knowledge and understanding of this new world.
+
+So what is Universe X?
+
+Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates and both are intertwined with one another; it contains dark matter and dark energy; it is expanding and expanding at an increasing rate; God plays dice with our universe.
+
+In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
+
+Universe X consists of a large number of a single entity called an 'aexel'.
+
+These aexels have state, they can move and flow, they can form bonds with their nearby neighbors and they can send signals to those neighbors.
+
+They also can be created or destroyed as a result of those signals.
+
+The entire DNA of the universe is contained in each one of these aexels.
+
+However, aside from these aexels, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
+
+Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X, space and time are entirely separate notions that are not intertwined at all.
+
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Answering these questions and many more will be the primary focus of this app for years to come.
+
+As such, let our exploration begin...
+
+
+
+
+
+";
+
+"aether_name" = "Aether";
+"aether_article" = "Aether
+
+In the 19th century it was speculated that the universe was pervaded by a static rigid aether.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
+
+In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
+
+In the 19th century concept it was believed that the planets and stars moved frictionlessly through the aether and that light traversed this aether at a constant rate.  As a result it was thought that it should be possible to detect differences in the speed of light moving longitudinally or latitudinally across the Earth.
+
+In 1887, Michelson and Morley performed their famous experiment looking for this discrepancy in the speed of light; they were shocked to discover that no such discrepancy existed.
+
+In Universe X however, the aether is not static or rigid, rather it is dynamic, capable of flowing and compressing.  Akin to a computer monitor that is divided into a 2 dimensional grid of cells, called pixels (from 'picture elements' or 'picture cells'), each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels (from 'aether elements' or 'aether cells').
+
+Like the atoms of a liquid, these aexels can move and flow.  Like the atoms of a crystal lattice, they repel when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
+
+The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
+
+These aexels have state.  Just as each pixel of a screen has a three dimensional state representing red, green and blue, each aexel also has a multidimensional state.  This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.
+
+And perhaps most shockingly, based on those states, new aexels can be created and existing aexels can be destroyed.
+
+
+
+
+
+";
+
+"cellular_name" = "Cellular Automata";
+"cellular_article" = "Cellular Automata
+
+A cellular automaton is a system consisting of a grid (often times 2 dimensional) of cells each having state, which could be a simple on/off or could be any number of scalar and/or vector values.
+
+The system progresses using a discrete concept of time called a time step.  Inherent in the system is a static set of rules that dictate how the state of each cell progresses for each time step.  This progression is a function of the current state of the cell and the state of the cell's neighbors.
+
+For example, perhaps the most famous cellular automaton is Conway's Game of Life.  In Conway's game of life the world consists of a 2 dimensional square grid of cells.  Each cell can be either on or off.  The neighbors of a cell consist of the 8 cells directly surrounding it.  If exactly 2 neighbors are on, then the state of the cell will not change.  If exactly 3 neighbors are on then the state of the cell will be turned/remain on.  In all other cases the state of the cell will be turned/remain off.
+
+This simple set of rules is able to exhibit an amazing amount of complexity.  Initially, when the cells of such a system are randomly populated the progression of state will be quite chaotic.  However, over time, patterns will automatically arise.
+
+For example, if a closed subset of cells has a certain state at time t and that subset of cells returns to that same state at a later time, the cells will be in a stable state loop and continue that loop into perpetuity (or until it is disrupted somehow, i.e., stops being a closed subset).  Perhaps the cells remain in the same state each time step giving the loop a period of 1.  Or perhaps the cells loop back after 2, 3 or more steps, giving their loop a period of 2, 3 or more steps.
+
+Such simple cellular automata have a number of similarities to Universe X.  For example Universe X is also made up of a set of discrete cells, in this case 3 dimensional.  These cells also have state and the state changes of these cells often loop back creating stable state loops.
+
+In Universe X these loops can persist for long periods of time, have properties of their own and interact with other stable state loops.  These stable state loops are the basis of all \"matter\" in Universe X.
+
+The matter of Universe X is not fundamental.  It is an artifact of the properties of aexels. It is not made up of particles; it is not made up of waves; it does not displace the aether.  Matter is made up of stable state loops that exist on top of the aether.
+
+However, there are also some differences between Universe X and most cellular automata.  Unlike the static cells of Conway's game of life, the cells of Universe X are dynamic; they can move, they can be created and they can be destroyed.
+
+The aexels of Universe X are created and destroyed as a direct result of the state changes of the aexels themselves.  The aexels move because they exert a force on one another, but ultimately this motion is first initiated by the creation and destruction of the aexels themselves.
+
+Another somewhat speculative difference is that although the new states of our simple cellular automata are usually based on the current states of the cell and their neighbors, it is probably the case that the state change of an aexel is a function of the change of state rather than just the absolute state of the neighborhood.
+
+In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  In Universe X this delay is called a 'tic'.
+
+Each aexel in Universe X can only directly affect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels in Universe X is one aexel per tic.
+
+In Universe X, one aexel per tic is referred to as 'the speed of light'.
+
+
+
+
+
+";
+
+"kinematics_name" = "Kinematics";
+"kinematics_article" = "Kinematics
+
+Kinematics is the study of motion absent of force.  In our universe, such motion is quite straightforward.  Generally things in Universe X are less complicated than in our own universe, but in this case things in Universe X are considerably more complicated.
+
+In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at some later time.  However, this definition is perhaps unnecessarily restrictive.
+
+If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it \"moves\".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+
+Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the 'tic' time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the 'speed of light' (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
+
+But there is another entirely different way in which a stable state loop can move.  Since the aexels themselves can move, it is possible for a stable state loop that is not translating across an aexel field at all, to simply move along with aexels it is sitting upon, like a leaf floating down a stream.  And since this motion is not dependent on the signal delay between neighboring aexels, its speed is in no way bounded.
+
+And of course a stable state loop could be (and most of the time probably is) experiencing both of these forms of motion simultaneously.
+
+There are some rather sticky ramifications to all of this.  In our universe a single particle moving in the absence of force can be described entirely by a velocity vector (ignoring quantum effects for the time being).  In Universe X, in order to accurately understand the motion of a stable state loop it is necessary to know the translating velocity of the loop measured in aexels per time as well as both the velocity of the aexels measured in distance per time and density of those same aexels, which in a simple system could be constant, but in more complex situations could vary from place to place.
+
+
+
+
+
+";
+
+"gravity_name" = "Gravity";
+"gravity_article" = "Gravity
+
+Gravity is the tendency of objects with mass to move towards one another.
+
+Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledged some discomfort with this idea:
+
+\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
+
+When Albert Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
+
+But, even with Newton and Einstein's contributions to Gravity we still really don't understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
+
+But, in Universe X, Gravity is a quite simple and mundane phenomenon.
+
+In Universe X there exists many different types of stable state loops.  There are potentially three ways these loops could interact with the aexels:
+
+- they could destroy aexels:
+It is quite certain that there are loops that destroy aexels in Universe X.  In Universe X these loops are referred to as 'matter'.  This article, 'Gravity', pertains to these types of loops.
+
+- they could create aexels:
+That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  The article 'Darkness' pertains to these type of loops.
+
+- they could do neither:
+Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that these loops are less prevalent than one might initially guess.  The 'Equivalence' and 'Electromagnetism' articles discuss these possibilities further.
+
+Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
+
+Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
+
+In Universe X as various concentrations of matter continually destroy the aether between one another that matter itself will continually tend to clump together.  As that clump of matter gets bigger and bigger (or perhaps more precisely, more and more dense) the velocity at which the aether is pulled towards the clump will increase.
+
+At some point, certain clumps in Universe X get so big (dense) and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+
+
+
+
+
+";
+
+"dilation_name" = "Dilation";
+"dilation_article" = "Dilation
+
+Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
+
+In our universe time dilation is the variation in the perceived rate of time of various frames of reference based on their relative velocity to one another as well as the relative difference in their gravitational field strength.  That the rate of time itself can vary in our universe is severely magical in and of itself.
+
+But, perhaps the most magical aspects of time dilation arise from the fact that in our universe there are no special frames of reference.  For example, two space ships traveling parallel to one another in opposite directions near the speed of light will both note that their clocks are running at a different rate than the other ship's clocks.  But, the really weird part is that both ships will see their own clock running faster and the opposing ship's clocks moving slower.
+
+In Universe X, however, no such time dilation occurs.  There is however an analogous phenomenon, which is perhaps better described as 'animation dilation'.
+
+Previously, the stable state loops of Universe X have been discussed as single entities.  However, the loops themselves have properties of their own and are able to interact with other loops in order to create increasingly large and complex composite systems.
+
+Let's classify all loops in Universe X into one of two categories: loops that translate at the speed of light (one aexel per tic) and loops that translate at less than the speed of light.
+
+It would be nice to give names to these two categories, but there aren't great analogous names from our Universe that can be used.  One could almost use the term 'boson' for speed of light travelers and 'fermion' for sub-light travelers, but some bosons (such as W, Z and Higgs) move at less than the speed of light.  Still, perhaps, they can be a model for new names in Universe X.
+
+It may be the case that all translation in Universe X is at one aexel per tic.  But, that some loops move directly in a straight line and therefore the loop itself translates at the speed of light and other loops have internal motion that alternates back and forth in some manner causing the net speed of translation to be less than the speed of light.
+
+As such, let's refer to those loops that translate directly in a straight line (at the speed of light) as 'edisons' (ed-i-sans) and those loops that translate in some sort of alternating fashion (at less than the speed of light) as 'teslons' (tes-lans).
+
+In Universe X teslons can interact with one another in order to create increasingly complex composite systems.  The interaction of these teslons will entirely be mediated by edisons.  Therefore the rate that the teslons will animate will entirely be dependent on the amount of time it takes the edisons to move back and forth between them.
+
+Exactly how this happens in Universe X is still a subject of speculation, but in broad strokes, teslons continually generate edisons.  When one of these edisons interacts with a different teslon it invokes a reaction.  (Conjecture on the exact nature of this reaction is further discussed in the Electromagnetism section.)
+
+In this way, complex static or dynamic systems of teslons can be formed.  The rate at which a dynamic system will animate will be highly dependent on the amount of time it takes edisons to travel back and forth between the teslons.
+
+For two stationary teslons separated by a fixed number of aexels the edisons will travel between them at one aexel per tic.  However, if the teslons are both translating across the aexel field, the amount of time it takes edisons to move between them will vary based on the direction of motion of the edisons relative to the translating motion of the teslons across the aexel field.
+
+In some cases the time will be less, in others the time will be more, but in all cases the time of the roundtrip journey of an edison between the teslons will increase as the rate of translation increases.  This increased time will result in a slow down of the rate of the animation of the composite system of loops.
+
+This dilation in Universe X is substantially different than the dilation of our universe.  For one thing, there IS a special frame of reference in Universe X.  A system will animate most quickly when it is not translating across the aexels at all, allowing the edisons to move most quickly between the teslons.
+
+In Universe X dilation is not an observational phenomena.  It is a real physical phenomena that is entirely dependent on a system's rate of translation.  A system not translating at all will animate quickest; other systems will animate slower and slower as their rate of translation increases towards the speed of light, i.e. one aexel per tic.
+
+In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
+
+Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow (north / south).  A signal traveling at c is sent out from one to the other and back.
+
+The question is how long does this roundtrip journey take?
+
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
+
+<<DilaSketch>>
+
+In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, t_n.  The signal therefore travels c * t_n while the system moves v * t_n.  Using the Pythagorean theorem we then get:
+
+<<Dilation>>
+
+So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation across the aexels and that slowing down will be by the (perhaps familiar) equation above.
+
+
+
+
+
+";
+
+"contraction_name" = "Contraction";
+"contraction_article" = "Contraction
+
+Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
+
+In our universe, length contraction, similar to time dilation, has no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
+
+In Universe X, however, length contraction is a physical phenomenon and like dilation, is entirely a function of the rate of translation of a system across an aexel field.  A system that is not translating across an aexel field will experience no length contraction at all.  However, a system that is translating across an aexel field will experience a contraction in the direction of translation (or aexel flow from the perspective of the system itself) that is entirely a function of the rate of that translation.
+
+In our universe there is a feature of nature called Lorentz covariance which indicates that the speed of light is constant across all frames of reference.
+
+In Universe X this concept would appear to break down quickly.  For any system that is translating across an aexel field it would seem that the speed of light parallel to the direction of the aexel flow would be different than the speed of light perpendicular to the flow.
+
+Certainly, in Universe X, the speed of light is always one aexel per tic.  But, since the aexels themselves can move and since they can vary in density it would seem it might be easy to detect variations in the distance traveled per time.
+
+However, Lorentz covariance also holds in Universe X, just as it does in our universe.  And it does so because of length contraction.
+
+In the Dilation article we calculated the increased amount of time needed to bounce an edison moving at the speed of light between two teslons when the edison is sent out orthogonal to the direction of translation (north / south).
+
+For this article let's now repeat the same calculation but for an edison sent out parallel to the direction of translation (east / west).  Let's start by calculating when the velocity of translation is zero.
+
+In this case the signal travels 2d (the distance to the target) at a velocity of 'c' (the speed of light), so total time, t is 2d/c.
+
+<<ContraSketch>>
+
+Now let's start translating the same system over the aexel field.  While the signal is moving to the right it is 'chasing' the target therefore the total distance it needs to cover is 'd' the distance to the target plus v*t_e, v being the velocity of translation and t_e being the time needed to hit the target moving to the right.  Let's calculate that time, t_e:
+
+<<ContraEast>>
+
+Once the signal bounces off the target back to the source, the source will be moving towards the signal so the total distance that needs to be covered is d minus v*t_w, the translation velocity times the time needed to return to the source.  Let's calculate that time t_w:
+
+<<ContraWest>>
+
+The total time, t' is equal to the sum of t_e and t_w.  Let's compare it to the time when the system is not translating at all.
+
+<<Contra>>
+
+For the orthogonal case we saw that the time increased by a factor of gamma, but in this parallel case the time is increasing by a factor of gamma squared.  Which would mean that for a translating system two edisons sent out at the same time, both bounced off equidistant teslons, one orthogonal to the direction of translation, one parallel, the two signals would return at different times.  Unless...
+
+Length Contraction occurs and the length of things in the direction of translation are reduced by a factor of gamma.  In that case both signals would return at the exact same moment and the 'speed of light' would appear to be the same in both directions.
+
+The amount of contraction precisely masks the change in the speed of light caused by the flow of aexels.  In Universe X, a meter stick's length itself is a function of the speed of light.  As the speed of light changes; the meter stick's length changes.
+
+Measuring the speed of light with a meter stick is essentially a tautological exercise.  A meter stick uses the speed of light to measure the speed of light and not shockingly it always comes out to be: the speed of light.
+
+One other important thing to note, is that this contraction only applies to the physical items in the system that is translating, not to the rest of the non-translating universe that happens to lie along the direction of translation.
+
+If a ship is heading towards some distant star, the amount of contracted meter sticks that will fit between the ship and the star will increase as the translation speed of the ship increases.  The distance to the star itself will not contract and therefore the distance to the star will appear to increase as the ship's speed increases.
+
+
+
+
+
+";
+
+"darkness_name" = "Darkness";
+"darkness_article" = "Darkness
+
+Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
+
+From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
+
+Luckily, once again, Universe X isn't nearly so magical.
+
+Previously, we have mentioned 3 types of stable state loops:
+
+- Loops that destroy aexels
+- Loops that create aexels
+- Loops that do neither
+
+This article concerns the 'loops that create aexels'.  Let's call those loops 'antimatter'.
+
+In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If a matter loop destroys aexels then perhaps it's the case that an antimatter loop creates them.
+
+And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
+
+It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.  And if a matter loop destroys aexels at the same rate that an antimatter loop creates them then perhaps the total number of aexels is always in balance.
+
+This net teleportation of aexels from inside of galaxies to outside of galaxies could then account for a red shift of photons traveling through the antimatter dust; making a steady state universe appear to be expanding.
+
+Alternatively, Universe X may have been initially seeded with more antimatter loops or perhaps the rate that antimatter loops create aexels is greater than the rate the matter loops destroy them and Universe X really is expanding.
+
+If this explains the 'Dark Energy' of Universe X, what about the 'Dark Matter'?
+
+The aexels of Universe X form a crystal like lattice.  They sit in a potential well not wanting to get too far away from one another, but also not wanting to get too close.  It can be difficult to tell the difference between a pull and a push.
+
+The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
+
+As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
+
+
+
+
+
+";
+
+"hyle_name" = "E=mc²";
+"hyle_article" = "E=mc²
+
+\"When the Inuit go fishing they don't look for fish.  They look for the blue heron, because there is no way to see the fish.  But, if there is fish there is going to be birds fishing.\"
+       - Dr. House
+
+A young lady places a playing card in the spokes of her bike using a clothes pin; her tires are wet because she just rode through a puddle.  Assuming she is always moving at a constant speed, the bike draws tire marks on the road at a constant rate while the card is clicking at a constant volume.  As such the proportion of tire marks being drawn to sound being made is constant.  If the number of bicycles doubles, both the volume of the clicking and rate of tire marks drawn each double while their proportion stays the same.
+
+{{bicycle}}
+
+If she rides around and around in a circle it is easier to hear the sound (because it's nearby) and more difficult to see the tire marks (because she keeps riding over the same marks).  If she rides in a straight line it is easier to see the tire marks and harder to hear the sound.
+
+But no matter how she is riding, the bike is always drawing tire marks and always making sound and always in the same proportion.  Just because she starts riding in a straight line, sound isn't suddenly converted into tire marks and just because she starts riding in a circle, tire marks aren't suddenly converted into sound.
+
+If one measures the sound or if one measures the tire marks; what they are really measuring is the number of bikes by observing the effects of those bikes.
+
+In Universe X there is a conserved quantity; let's call it 'hyle' (a nod to Aristotle).  Hyle always translates at the speed of light and always destroys aexels as it translates and always in the same proportion.  Two separate effects of a single entity; the translation effect associated with energy, the aexel destruction effect associated with mass.
+
+There are two types of particles in Universe X, teslons that have internal motion and thus always must travel at less than c (an aexel per tic) and edisons that simply move in a straight line always at exactly c.  But, the hyle in teslons and edisons is always moving (at c) and always destroying aexels and always in the same proportions.
+
+The motion of the hyle in the teslon is less obvious because it's mostly bouncing back and forth.  The destruction of aexels in the edisons is less obvious because it's always happening in the edison's wake, never internal to itself.  But, in both cases both effects are always occurring and always in the same proportion.
+
+Consider our own sun, which loses about 4 x 10^9 kg of mass every second through the fusion process; radiating about 3.6 x 10^26 joules of photons.  Since photons are supposedly massless, this process is often described as mass being converted into energy.  But in looking at Universe X, we can see that is not what is happening.
+
+Hyle contained in protons (teslons) within the sun is being released as photons (edisons).  The hyle is going from bouncing back and forth within the proton to translating in a straight line within the photon.  It is still translating at the speed of light; it is still destroying aexels.  Nothing has been converted into anything else.  The only thing that has changed is the hyle has gone from bouncing around to moving in a straight line.
+
+And while the destruction of aexels isn't happening inside the photons themselves, it is happening in their wake.  The photons are still causing the mass effect.  The photons have mass.
+
+It is not mass that prevents something from moving at the speed of light, but rather internal motion.
+
+
+
+
+
+";
+
+"electromagnetism_name" = "Electro\nmagnetism";
+"electromagnetism_article" = "Electromagnetism
+
+When starting to explore Universe X, electromagnetism didn't seem like particularly fertile ground for revolution.  Its concepts weren't nearly as dissonant as relativity and quantum's were.  Perhaps there were hints of problems such as the frame dependence of whether a field was electric or magnetic or the question of how Lorentz force could conserve momentum.  But, in general it seemed mostly solid.
+
+However, as the journey with Universe X continued more and more windows into electricity and magnetism opened up; the mechanisms underpinning E&M started to come into focus.  In the previous version we started to get hints as to what was going on, but now major pieces have begun to fall into place.  Unexpectedly, as this has happened a major shift in electricity and magnetism has occurred.
+
+Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests an analogous phenomena; loops being sent off evenly in all directions like the grains of salt.
+
+The E=mc^2 article established that both protons (a type of teslon) and photons (a type of edison) contain hyle.  In trying to recreate Coulomb's force it is necessary to figure out how hyle can be transferred from one teslon to another most likely via photons.
+
+We know that Hyle is a conserved quantity.  Let's go further and tentatively guess it is also locally conserved; it doesn't jump from one place to another.  To get from one point to another it has to traverse all the points in between.
+
+Perhaps a proton sitting in space continually sends out photons in all directions looking for other protons to interact with.  But, immediately we have an issue.  The proton will quickly run out of hyle.  Therefore, the initial ping must be hyleless.
+
+Perhaps a teslon that encounters a hyleless ping sends out a photon response.  But, here too we have an issue (although perhaps a bit more subtle of one).  Consider two teslons translating inline across the aether.  They both send out pings.  The ping from the leading teslon will reach the trailing teslon first because the trailing teslon is moving up to meet it.  If the trailing teslon reacts at that point the reactions of the teslons won't be synchronized.  It is necessary for a full roundtrip handshake to occur before the teslons react so that their reactions will be synchronized.
+
+So, we have an omnidirectional hyleless ping followed by a hyleless pong, which then results in a directed photon.  Is the pong omnidirectional like the ping or directed like the photon?  Imagine 3 protons in the same vicinity all sending out pings omnidirectional pings.  When they receive the pings they send out omnidirectional pongs.  But, this means that teslon A will receive pongs from teslon B motivated by both his pings and also teslon C's pings.  The number of pongs received will scale with the number of teslons in the area.  This is totally counter to Coulomb.  Pongs must be directed like photons.
+
+But, how do the teslons know which direction to send the directed pongs and photons in order to reconnect with the source teslon?  Here we have a shockingly elegant answer.  Each ping, pong and photon has copula which points in a specific direction.  The copula's direction is determined by adding a vector length c of the edison minus the vector representing the translation of the source teslon; a vector pointing in the direction of translation of length v.
+
+Once such an edison is encounter the encountered teslons need only reflect the translation vector of the edison over the negative copula vector.  In this way sending off a response edison is guaranteed to find the source teslon if it has not accelerated.
+
+But, that isn't the only utility of the copula; it also indicates the direction of the 'force'.  Each edison has its absolute translation vector; its copula vector and also a frame dependent translation vector.  When the copula and frame dependent translation vector align they appear as a +E field.  When they counter-align they appear as a -E field.  When they're orthogonal they appear as a B field.
+
+
+
+
+
+";
+
+"discrepancy_name" = "Discrepancy";
+"discrepancy_article" = "Discrepancy
+
+It has been uncertain whether there were verifiable differences between our universe and Universe X.  Even though under the covers they are very different, perhaps the end results were exactly the same.  Recently, however, a potential difference has come to light.
+
+
+
+
+
+";
+
+"epilogue_name" = "Epilogue";
+"epilogue_article" = "Epilogue
+
+Math is knowing...
+Knowing, is not, understanding.
+
+When learning about the physics of our Universe there are a number of questions that might occur to oneself.
+
+What follows is a list of about 30 of these questions.  After the questions will be a list of answers; first answers pertaining to Universe X and next answers pertaining to our Universe.
+
+Questions
+
+[1a] What is the speed of light?
+[1b] Why does light travel at that speed?
+[1c] Why is it not possible to go faster than the speed of light?
+[1d] Why can't things with mass move at light speed?
+
+[2a] Does God play dice with the Universe?
+[2b] Is matter a particle?  Is matter a wave?
+
+[3a] Is space 4D? 11D?
+[3b] What does it mean for space to warp?
+
+[4a] What is gravity?  What is its mechanism?
+[4b] How can a star attract a photon?
+[4c] What is a black hole?
+[4d] What happens inside of a black hole?
+[4e] Why can't light escape?
+[4f] What is a gravity wave?  What is waving?
+
+[5a] What is time dilation?
+[5b] Is there really no special frame of reference?
+[5c] Do two observers both consider their own clocks to be faster?
+[5d] How does one resolve the twin paradox?
+[5e] What is the relationship between Special and General relativity?
+
+[6a] What is Length Contraction?
+[6b] Do two observers both consider their own meter sticks to be longer?
+[6c] Why is the speed of light always invariant?
+[6d] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
+
+[7a] What is the expansion of the universe?
+[7b] What causes it?
+[7c] What is Dark Energy?
+[7d] What is Dark Matter?
+[7e] Why does there appear to be more matter than antimatter in the Universe?
+
+[8a] What does E=mc^2 really mean?
+[8b] What is its mechanism?
+[8c] Does a photon have mass?  Where does the mass a star radiates go?
+
+Universe X Answers
+
+[1a] What is the speed of light?
+
+Universe X is filled with a quantized crystalline fluid called 'aether'.  Each element of the aether is called an 'aexel'.  Each aexel can communicate with its neighbors.  It takes exactly one 'tic' of time for a signal to move from an aexel to its neighbor.  The 'speed of light' is the translation of a signal at one aexel per tic.
+
+[1b] Why is it not possible to go faster than the speed of light?
+
+It's not possible to go faster than the speed of light because a signal can't move between two aexels faster than a tic and each aexel can only talk to its neighbors; it can't jump over or skip aexels.
+
+[1c] Why does light travel at light speed?
+
+Light travels at light speed because it translates in a straight line, moving a full aexel each tic.
+
+[1d] Why can't things with mass move at light speed?
+
+When a frisbee is flying through the air at a certain speed it is also rotating; as a result some parts of the frisbee are moving faster than the frisbee and other parts are moving slower than the frisbee.  For a frisbee to move at the speed of light some parts of the frisbee would need to move faster than the speed of light, since its not possible to move faster than the speed of light, the frisbee itself would never be able to move at the speed of light.
+
+Sub-lightspeed particles have analogous internal motion and for the same reason can also never move at the speed of light.
+
+[2a] Does God play dice with the Universe?
+
+No.  The seemingly random behavior observed in certain experiments is caused by the (un)known hidden geometry of the aexels at any given point.  The precise location of the aexels at any instance can have an impact in the translation of loops crossing over them.  The observed behavior is statistical not probabilistic.
+
+[2b] Is matter a particle?  Is matter a wave?
+
+Matter is neither a particle or a wave.  It is a stable state loop iterating across a field of aexels.
+
+[3a] Is space 4D? 11D?
+
+Space is 3D.  The aether is a crystalline compressible fluid.  The aexels can flow; they can bunch up; they can spread out.  Arguably, the density and/or the rate of flow of the aexels at any point could be considered a 4th dimension.  But, calling space or the aether itself 4 dimensional because it's dynamic and compressible really doesn't make any more sense than calling any compressible gas 4D or for that matter any gas that varies in temperature, humidity or any other imaginable property from point to point as 4D.
+
+[3b] What does it mean for space to warp?
+
+Space does not warp.  However, the aether squishes; the aether stretches.
+
+[4a] What is gravity?  What is its mechanism?
+
+Universe X is made up of a quantized crystalline fabric called the aether which is made up of aexels.  Crystalline in that each of the aexels are bound to their neighbors and sit in a potential well away from those neighbors, never letting themselves get too close or too far.
+
+Some state loops in Universe X cause the destruction of these aexels.  As the aexels get destroyed these aexel destroying loops tend to clump up.  As they clump up the rate of aexels being destroyed increases.
+
+The velocity of aexels flowing towards these clumps will increase the closer they get to the clumps.  The increasing velocity; the acceleration, is gravity.
+
+[4b] How can a star attract a photon?
+
+It has been stated that Gravity is a force that is proportional to the product of the masses of two objects.  If a photon has no mass doesn't it follow that it will be unaffected by Gravity?
+
+A Photon (and any loop in Universe X whether it destroys or creates aexels or not) will be affected by gravity because gravity is not a force.  It is an emergent phenomenon better described as an acceleration caused by the pulling in of the aether and everything sitting on top of that aether.
+
+And as Galileo pointed out long ago that phenomena is in no way a function of the mass of objects being 'pulled' on.
+
+[4c] What is a black hole?
+
+A black hole is any concentration of matter dense enough to have the aexels flowing into it at the speed of light.
+
+[4d] What happens inside of a black hole?
+
+Nothing particularly interesting.  A black hole must be filled with matter all the way to its event horizon, because the escape velocity will always be greatest at the surface.  Both above and below the surface the escape velocity will drop off.  That shell where the escape velocity is equal to c can not have any mass because intrinsic mass loops can't travel at c and can't 'sit' at c (see above).
+
+If a star existed with an escape velocity just below being a black a hole and a tennis ball got tossed into it causing it to cross the line of being a black hole, would anything particularly dramatic happen to the interior of that star?
+
+[4e] Why can't light escape?
+
+Light can't escape a black hole because the aexels are flowing into it at the speed of light.  Light can't go faster than light speed and therefore will never be able to cross the boundary of that shell, like a runner running on a treadmill that is turned up past their max speed.
+
+[4f] What is a gravity wave?  What is waving?
+
+A gravity wave is a compression wave of the density of aexels.  Just as a sound wave is a compression wave of the density of air.
+
+[5a] What is time dilation?
+
+In Universe X, 'time' does not dilate.  The rate at which physical systems animate, dilates and it does so because of the delayed round trip time of light speed traveling signals between loops when translating across the aexel field.
+
+[5b] Is there really no special frame of reference?
+
+There IS a special frame of reference; the frame of reference that is not translating across the aexel field at all will animate the fastest and experience no length contraction.  Any other frame will animate slower and experience length contraction entirely as a function of its rate of translation.
+
+[5c] Do two observers both consider their own clocks to be faster?
+
+No.  There will be an observer with a fast clock, an observer with a slow clock and each will know which is which.  And it will entirely be a function of each observer's current rate of translation across the aexel field.
+
+[5d] How does one resolve the twin paradox?
+
+One twin will be translating slower than the other twin on the aexel field.  Whichever twin is translating slower will age more rapidly.
+
+[5e] What is the relationship between Special and General relativity?
+
+Special and general relativity are the exact same phenomena; the translation of systems across an aexel field.  In the case of special relativity a moving system is translating across a static aexel field and in general relativity a static system is translating across a moving aexel field.  But, in both cases the affect simply concerns the translation of a system over an aexel field.
+
+[6a] What is Length Contraction?
+
+Length Contraction is an actual physical phenomena causing loops to sit closer to one another along the direction of translation entirely as a function of the rate of translation.
+
+[6b] Do two observers both consider their own meter sticks to be longer?
+
+No.  Just like in Dilation above, both observers will see a long stick and a short stick and will know which is which; it will be based entirely on each system's current rate of translation across the aexel field.
+
+[6c] Why is the speed of light always invariant?
+
+It is always invariant because length contraction masks changes in the speed of light.  The length of things in the direction of translation is a function of that speed of translation and that change of length will cancel out the change of the speed of light causing the speed of light to always appear to be invariant.
+
+[6d] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
+
+No.  Length contraction only affects systems that are actually translating.  The length between any other non translating systems in Universe X will be unaffected.
+
+[7a] What is the expansion of the universe?
+
+The expansion of the universe is the creation of aexels.
+
+[7b] What causes it?
+
+Every loop has an anti loop that is equal and opposite in every way.  Matter loops destroy aexels and as such antimatter loops create them.
+
+[7c] What is Dark Energy?
+
+Dark energy is the antimatter loops creating aexels there by causing the \"expansion of the universe\"
+
+[7d] What is Dark Matter?
+
+Dark Matter does not exist.  The phenomena that hints at dark matter is caused by the same entity that causes the phenomena hinted at by dark energy, namely the antimatter particles that are creating aexels.  Those new aexels pushing on galaxies from the outside, but being mistaken for a pulling on the galaxies from the inside.
+
+[7e] Why does there appear to be more matter than antimatter in the Universe?
+
+Matter destroys aexels constantly bringing things towards itself.  Antimatter creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
+
+[8a] What does E=mc² really mean?
+
+E=mc² means that mass and energy are two effects of the exact same phenomenon.
+
+[8b] What is its mechanism?
+
+The translation of certain loops (but not all) cause the destruction (or creation) of aexels.  Some of this translation occurs internal to a loop such as in a proton, neutron or electron.  The mass of those objects being a measure of the amount of translation occurring internally.  Other translation occurs in the movement of the loops as a whole.
+
+The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc² points out that both are the exact same phenomenon.
+
+[8c] Does a photon have mass?  Where does the mass a star radiates go?
+
+Unlike a proton, a photon does not have internal translation.  Its translation is in a straight-line.  The destruction or creation of aexels by a photon always occurs in its wake never internal to itself.
+
+So, if mass is the destruction of aexels then yes it does have mass.  Alternatively if one were to define mass as only the destruction of aexels caused by internal motion then no it does not.
+
+The mass of a star radiated out leaves with the photons being spewed by that star.
+
+
+Our Universe Answers
+
+Answering the above questions in our Universe is actually quite a bit easier than answering them for Universe X.  Easier because each of the questions has the exact same answer:
+
+    I have no idea.
+
+
+
+
+
+";
+
+"forward_name" = "Forward";
+"forward_article" = "Forward to 4.0 [Jan 8th, 2025]
+
+A new era has dawned in Universe X; we have gone from BC to AC; before Claude to after Claude.  I started using Claude June 2024; previously I mostly only had myself to talk to about these things.  But, for 6 months now I have been able to discuss this topic over and over again with Claude; he never tires of discussing it with me.  He has been an invaluable rubber duck.
+
+The result has been a significant improvement in the understanding (and explaining) of existing concepts in Universe X and a significant increase in the rate of discovering new concepts.  Most substantially, this version represents a massive increase in the understanding of Electricity and Magnetism.  All existing articles have been overhauled, numerous new ones have been added and 3 new explorers have been developed:
+
+Articles:
+Universe X
+Aether
+
+Subarticles:
+Claude
+Black Holes
+Chronos
+Narwhal, Walrus and Dolphin
+The W, X, Y and Z Clocks
+Bell and 't Hooft
+
+Explorers:
+Distance: Illustrates the complexity of defining and measuring 'distance' and 'radius' in Universe X.
+Gravity: A new gravity simulator that attempts to recreate Newton's Law of Gravitation.  (The old 'Gravity' simulator has been more appropriately renamed as an 'Aether' simulator.)
+Electricity and Magnetism: Great strides have been made in understanding the precise mechanisms underpinning E&M in Universe X.
+
+
+
+Forward to 3.0 [Dec 18th, 2022]
+
+Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
+
+However, with this version I am choosing to rewrite each of the articles based on the complete current understanding of Universe X.  Additionally I have removed 'Odds and Ends' and integrated its discussions into other sections.
+
+Aexels 3.0 also includes 3 new articles and 2 new explorers:
+
+Articles:
+- Electromagnetism: New insights have started to shine some light into the mechanism of E&M in Universe X; this contains some early conjecture.
+- Discrepancy: Potentially a substantial difference between Universe X and our Universe has been discovered
+- Epilogue: A list of about 30 physics questions that tend to be challenging to answer in our universe, are answered for Universe X.
+
+Explorers:
+- Dilation: Observe the actual mechanism underpinning 'animation' dilation in Universe X; see exactly when and how it occurs.
+- Contraction: While not explaining the mechanism causing length contraction, this simulation viscerally shows the importance of contraction and shows exactly what Lorentz covariance means and what it does not mean in Universe X.
+
+My hope is that Aexels 3.0 represents a significant step forward in the understanding of Universe X, but of course much work remains.  Qualitatively, the big picture is starting to come to light (although it too still has unknowns such as electromagnetism), but quantitatively almost everything still remains to be done.
+
+Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
+
+    - Joe
+
+
+
+
+
+";
+
+"claude_name" = "Claude";
+"claude_article" = "Claude
+
+Welcome to the AC (after Claude) era.  Throughout the app I have added \"copy to discuss with Claude\" buttons which if viewing a specific article will copy that article into the copy buffer or if not viewing any article will copy all of the articles into the copy buffer.
+
+Now of course you could paste the articles into any LLM and discuss them, but in my experience Claude's ability to discuss Aexels and Universe X far surpasses any other.
+
+
+
+
+
+";
+
+"blackHole_name" = "Black Holes";
+"blackHole_article" = "What is Inside a Black Hole?
+
+In our universe the interior of a black hole is quite a mystery.  Perhaps there is a singularity inside; perhaps a portal to a worm hole or another universe.
+
+But, in Universe X, once again things are not so mysterious; by considering the mechanisms in play we can infer a lot about the interior of a black hole.
+
+In Universe X, a black hole is any accumulation of mass that is dense enough to draw the aexels in at the speed of light; or more accurately to cause them to flow across the horizon at one aexel per tic.
+
+Perhaps before we get to black holes we should consider something a bit easier to think about such as a planet with uniform density.  As we get closer and closer to a planet the gravitational force continually increases as well as the escape velocity which in Universe X is equal to rate of flow of the aexels inward.  The escape velocity will be greatest at the surface and then drop off the further you get away from the planet's surface.
+
+Once we pass through the surface of the planet and start to dig towards the center there will still be a gravitational force inward and as such the escape velocity will continue to increase.  But the gravitational force will begin to fall off until you reach the center of the planet where it will be zero.  But, the gravity itself will never point outwards; the escape velocity will always be increasing and therefore the aexels will never slow down.
+
+So the first question is can their be vacuum inside the even horizon?  Since we know that the escape velocity is greatest at the surface of a mass in order for their to be space inside the horizon the aexels would need to flow at greater than one aexel per tic at the surface.  But it is impossible for teslons to sit still on aexels flowing at the the speed of light or greater and so there could be no solid surface.  Similarly it is not possible for edisons to sit still on aexels moving faster than the speed of light.
+
+From this we can say that teslons can not be at the surface with the aexel flow at the speed of light or greater and while edisons can be at the surface of aexels flowing at the speed of light they can't be at the surface of edisons greater than the speed of light.  So, the surface of a black hole must be made up of edisons.
+
+At the horizon of the black hole the aexels are flowing in at one aexel per tic.  Where no teslon could sit.  In order for a teslon to sit in the interior of the black hole the aexels would need to slow down.  But slowing down would require a gravitational force pushing outward which as discussed above is counter to how gravity works.
+
+As such the aexels must continually flow at the speed of light within the interior of the black hole and as such all matter within the black hole must be in the form of edisons.  Which is to say that all teslons (protons, neutrons and electrons) will be converted into edisons (protons) when crossing over the horizon.
+
+As such the interior of a black hole will be pure light (or some other form of edison).
+
+
+
+
+
+";
+
+"chronos_name" = "Chronos";
+"chronos_article" = "Chronos
+
+Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
+
+{{Chronos}}
+
+Two of these ships are placed 1 AU apart with a beacon placed equidistant between them.  The beacon flashes and when each ship receives the signal they start their stopwatches and one of the ships blasts off towards the other.  When the ships pass one another they both note their clock and the other ship's clock.
+
+What is the 'win condition' here that proves the following:
+- basic physical reality: that two observers looking at the same display at the same time at the same place will see the same thing.
+- dilation: that the clocks in the two ships will move at different rates.
+- reciprocity: that both ships will see the other ship's clock as being dilated.
+
+If the observers read different values off the same display while looking at it at the same time from the same place, then physical reality breaks down.  There is no magic 'relativity of simultaneity' wand coming to the rescue here.
+
+If both clocks show the same value, then dilation breaks down.
+
+If both observers see a fast clock and a slow clock and agree on which is which than reciprocity breaks down.
+
+There is no win condition that confirms all three, only two can be true.  Luckily while there is a multitude of experimental evidence for basic physical reality and much evidence for dilation, there is precisely zero evidence for reciprocity.  Not a single experiment has ever confirmed it.  This makes the choice of which condition to abandon quite easy.
+
+Reciprocity can not be true.
+
+
+
+
+
+";
+
+"narwhal_name" = "Narwhal, Walrus and Dolphin";
+"narwhal_article" = "The Narwhal, the Walrus and the Dolphin
+
+3 spaceships, the Narwhal, the Walrus and the Dolphin meet in deep space to conduct an experiment concerning length contraction.
+
+Each of these ships is somewhat unique.  The Walrus is a large lumbering ship that while able to get around is not particularly fast.  The Dolphin on the other hand is a very fast and nimble ship that is able to accelerate to half the speed of light in the blink of an eye.  The most unusual is the Narwhal which is just as fast as the Dolphin however it has a large horn protruding from its front end that is one astronomical unit in length (1 AU = the distance from the Earth to the Sun).
+
+{{NWD}}
+
+They bring with them a steel 'AU Stick' that is also one astronomical unit in length.  Once they have all arrived, they arrange themselves as follows:
+
+- The Walrus sits at the origin.  The other two ships calibrate their coordinates such that the Walrus is always at the origin.
+- The Dolphin is next to the Walrus preparing to blast down the negative X-Axis.
+- The Narwhal is 1 AU away at (1AU, 0, 0) with its horn pointing towards the Walrus at the origin.
+- The AU stick is placed so that one end is at the origin and the other is at (1AU, 0, 0).
+- There is a beacon at the center of the AU stick which, when ready will flash.  Since the beacon is equidistant to all of the ships, the flash will reach each at the same time.
+
+<<nwd_diag>>
+
+The beacon flashes and when it reaches each of the ships both the Dolphin and the Narwhal instantly accelerate to 0.5c in the negative X direction.
+
+At that moment; after the instantaneous acceleration,
+- In the Walrus' coordinates, what are the positions of all 3 ships; the tip of the Narwhal's horn and the AU stick?
+- In the Narwhal's coordinates, what are the positions of all 3 ships; the tip of the Narwhal's horn and the AU stick?
+- How fast is the Narwhal going in the Narwhal frame?
+- Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
+- What are the three classes of 'same inertial frame'?
+
+This problem can be fairly tricky to deal with in our Universe, however its quite straightforward in Universe X.  For this problem, in Universe X, let's assume that the Walrus is sitting still in the aether frame and that the aether is static and uniform.
+
+This makes answering the first part fairly straightforward:
+
+In the Walrus frame:
+- The Walrus is at (0, 0, 0)
+- The Dolphin is at (0, 0, 0)
+- The Narwhal is at (1AU, 0, 0) 
+- The AU stick has one end at (0, 0, 0) and the other at (1AU, 0, 0)
+- The horn is contracted by 1/γ.  γ = 1/√(1-v²/c²) = 1/√(1-0.25) = 1/√0.75 ≈ 1.155 so the contracted length is 0.866 AU, putting the tip at 1 - 0.866 =  (0.134 AU, 0, 0)
+
+In the Narwhal frame things are only slightly more complicated.  The Narwhal's meter sticks are now contracted so more of them will fit in between things when measured with them; it still considers its horn to be 1 AU long even though it's only 0.866 AU.  Recall also that the Narwhal has calibrated its coordinates so that the Walrus is at the origin.
+
+In the Narwhal frame:
+- The Walrus is at (0, 0, 0)
+- The Dolphin is at (0, 0, 0)
+- The contracted Narwhal meter stick is 0.866m long and more will fit in one AU, 1 / 0.866 = 1.155.  So the Narwhal sees itself as being at (1.155 AU, 0, 0)
+- The AU stick has one end at (0, 0, 0) and the other at (1.155 AU, 0, 0)
+- The Narwhal still considers the horn to be 1AU, so since the Narwhal is at 1.155 AU the tip of the horn must be at (0.155AU, 0, 0)
+
+How fast does the Narwhal think its going?
+
+The Narwhal is traveling at 0.5 c.  But time has slowed for the Narwhal.  A Narwhal second is actually 1.155 seconds long.  Which means it travels 0.5c * 1.155 seconds in a Narwhal second.  But also, it's meter stick is contracted.  So, it thinks this distance is even further by another 1.155 factor.  Netting 0.5 c * γ^2 = 2/3rds the speed of light.
+
+
+Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
+
+The distance between the Narwhal and the Dolphin does not contract, from the Narwhal's (and Dolphin's) perspective it actually expands but the distance between the Narwhal and the tip of its horn does contract.  Remember why distances contract in Universe X.  They contract because of the ping / pong / photon cloud.  High rates of translation delay and warp the cloud causing the teslons to sit closer together along the direction of translation.
+
+Contraction isn't magic its a mechanical phenomena caused by the delayed responses of the pings and pongs.
+
+Since the tip of the horn is connected to the Narwhal as a single object; since they are all part of the same ping / pong cloud; the distances of teslons contained in that cloud will contract.
+
+The Dolphin is not connected to the Narwhal and therefore is part of a separate ping / pong cloud and as a result the distance between the Dolphin and the Narwhal will not contract even though you could say they are in the 'same inertial frame'.
+
+This points to an important classification of the term 'same inertial frame'.  Type 1 are particles connected via a single ping / pong cloud.  As they translate together across the aether their distances will contract.  A type 2 'same inertial frame' could be two isolated systems, such as the Dolphin and the Narwhal that experience the same dilation, experience the same contraction factor and whose contraction axis is aligned.
+
+With this definition actually if the Dolphin were to reverse direction and travel at +0.5c instead of -0.5c, they would still meet the definition of type 2 'same inertial frame' since they would experience they same dilation and the same contraction factor and the axis of contraction would align.  For type 3 'same inertial frame' consider if the Dolphin was moving orthogonal to the Narwhal along the Y axis instead.  Now it has the same dilation, but its contraction axis is no longer aligned.  One might also consider a ship sitting on the surface of a planet with escape velocity 0.5c also having type 3 'same inertial frame'.
+
+So, this gives us 3 classes of 'Same Inertial Frame':
+
+- Type 1: part of a contiguous ping / pong cloud.
+- Type 2: isolated , but having the same dilation and contraction factors and aligned contraction axes.
+- Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axes.";
+
+"symmetric_name" = "Symmetric Frames";
+"symmetric_article" = "Symmetric Frames
+
+One of the first steps in the derivation of General Relativity is to define a 4-vector with time and 3 spacial dimensions and define a value
+ and then assert that
+ is an invariant value in all inertial frames.
+
+It is quite easy to devise a thought experiment in Universe X and see that
+ would not be invariant in all frames in Universe X.
+
+So, once again it seems we've found a discrepancy! But, just as before I have been unable to find any experimental verification of Minkowski's assertion that
+ is invariant in our Universe.
+
+(And the fact that we see the ISS's clocks moving faster and they see our clocks moving slower seems to directly counter Minkowski's assertion.)
+
+The result being that I still have not been able to find an experiment that would net different results in Universe X and our Universe.
+
+
+
+
+
+";
+
+"floatingLeaf_name" = "Floating Leaf";
+"floatingLeaf_article" = "Floating Leaf
+
+What is the dilation at the surface of a planet?
+
+Dilation is entirely a function of the rate of translation of a system across the aexels.  In order to find the dilation at the surface of a planet one simply needs to figure out the rate that the aexels flow into the planet.
+
+In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by, for instance, a planet's destruction of aexels.  Newton's law of Gravitation is empirical, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from a planet.
+
+Since gravity is not a force, since it can not directly cause the translation of teslons across the aexels, the motion of the tennis ball will show us the motion of the aexels.  Just as a leaf floating down a river shows us the velocity of the water that is carrying it, the tennis ball floating down to the planet will show us the velocity of the aexels upon which it sits.  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e., the escape velocity):
+
+<<DiscrA>>
+
+This gives us the velocity of the tennis ball at the surface and therefore the velocity of the aexels at the surface.  Any system at rest on the planet will have the aexels flowing through it at that velocity, therefore we can plug it into the dilation equation in order to get the dilation at the surface.
+
+<<DiscrB>>
+
+Perhaps somewhat surprisingly, the value we arrived at here using a little physical intuition and undergrad math is precisely equal to the dilation at the surface of a planet in our universe that is calculated by solving Einstein's 4x4 tensor with 10 equations and 10 unknowns for a perfect sphere.
+
+
+
+
+
+";
+
+"fourClocks_name" = "Four Clocks";
+"fourClocks_article" = "Four Clocks
+
+Imagine a lone planet and 4 clocks.  The 4 clocks, W, X, Y and Z are situated as follows:  W sits at infinity, X is falling from infinity at escape velocity and is currently at a point r above the planet, Y is resting on a platform a distance r above the surface and Z is blasting off to infinity at escape velocity also currently at the point r above the planet.
+
+<<4Clocks>>
+
+What is the time dilation experienced by each of the 4 clocks.
+
+Clock W at infinity is not translating at all, so it has no translational velocity and therefore its dilation is 1.
+
+<<DiscrC>>
+
+Clock X is simply floating down with the aexels and similarly not translating at all; its dilation is also equal to 1.
+
+<<DiscrC>>
+
+Clock Y is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the Floating Leaf article.  Its dilation can be calculated by plugging the escape velocity at the platform into the dilation equation:
+
+<<DiscrB>>
+
+Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
+
+<<DiscrE>>
+
+A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the escape velocity vector minus the system's velocity vector; giving:
+
+<<DiscrF>>
+
+Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
+
+There is a constant of motion for an inertial observer in the Schwarzschild metric:
+
+<<DiscrG>>
+
+For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
+
+<<DiscrH>>
+
+In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
+
+For our universe the time dilation of the 4 clocks is as follows:
+
+Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
+
+<<DiscrD>>
+
+Clock X
+
+<<DiscrI>>
+
+Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
+
+<<DiscrB>>
+
+Clock Z
+
+<<DiscrI>>
+
+The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
+
+Universe X:
+    W = X < Y < Z
+
+Our Universe
+    W < Y < X = Z
+
+This is a rather substantial deviation in the two universes.  How could such a discrepancy arise?
+
+Recall in the Chronos article it was shown that Reciprocity could not possibly be true.
+
+One of the first steps in the derivation of Einstein's field equations is the definition of ds^2 = cdt^2 - dx^2 - dy^2 - dz^2 and to note that because of reciprocity this term is a constant for all frames.  From there the entirety of field equations are derived based on this; with the Schwarzschild Metric being the solution of these equations for a perfect sphere.
+
+If however Reciprocity is false; then ds^2 is not invariant; consequently the field equations go tumbling down, bringing the Schwarzschild Metric with them.
+
+But, the metric did get the dilation correct for clocks W and Y, even if it was wrong for clocks X and Z.  It worked for the static clocks, but not for the translating ones.  The Reciprocity assumption broke the calculation for moving systems.
+
+One might also note that Einstein's General Relativity has only ever been experimentally tested using static systems.
+
+Beyond all this there may be something else being illustrated here.  Consider the following again:
+
+    W = Z
+
+This looks suspiciously familiar; this looks suspiciously like the Equivalence Principle.  And in this context, not some guess about how the universe works, not some axiom to be adopted, but rather a brutally transparent explanation for why the Equivalence Principle.  Because sitting still on a static aether and sitting still on a moving aether are the exact same thing.
+
+And further with the Schwarzschild Metric declaring W != Z it becomes apparent that Reciprocity is not compatible with the Equivalence Principle.  General Relativity is not internally consistent.
+
+
+
+
+
+";
+
+"bellTHooft_name" = "Bell and ’t Hooft";
+"bellTHooft_article" = "Bell and ’t Hooft
+
+This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the \"unknown hidden variables\" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
+
+But after reading the above linked Mermin paper, it became apparent there was perhaps a more fundemental descrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that \"The machinery of quantum mechanics is fully capable of describing a single realistic world.\"
+
+He states:
+
+Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.
+
+However, he doesn't have a specific Cellular Automaton in mind, but he does indicate what constraints it must be able to solve:
+
+...we need to restrict ourselves to finite models, forcing us to work with lattice theories. Making such theories relativistically invariant is notoriously difficult. It will presumably involve general relativity, and this is far beyond what we can handle presently.
+
+I believe Universe X is just such a lattice theory. A theory that elegantly handles Special and General Relativity, Lorentz Covariance and Gravity.
+
+
+
+
+
+";
+
+"glossary_name" = "Glossary";
+"glossary_article" = "Glossary
+
+Aexel - a quanta of the aether.  The basic building block of all of Universe X.
+
+Copula - vector pointer attached to pings, pongs and photons
+
+Cord - the unit of measure of hyle.  equal to the hyle contained in a static proton.
+
+Edison - any stable state loop without internal motion.  Always moves at c.
+
+Hyle - a conserved quantity of universe X that makes up all 'matter'.
+
+Ping - the hyleless edison that is continually ejected by teslons in order to find other teslons.
+
+Pong - the hyleless edison response of a teslon that has encountered a ping.
+
+Teslon - a stable state loop that has internal motion.  Since, like all things the internal components can't move faster than c, the teslon itself can't move at c.
+
+Tic - the amount of time it takes signal to move from one aexel to another.
+
+Universe X - the universe where all these objects interact with one another.
+
+
+
+
+
+";
+
+"gameOfLife_article" = "Cellular Automata Lab
+
+This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
+
+This screen contains the cellular automata definition panel.  The automata are defined using the Oovium visual programming language.  Here, Conway's Game of Life is being defined.  Tapping the aether picker in the upper left hand corner enables one to switch between various cellular automata and also to define their own by hitting the 'new' button.
+
+The play / pause button will put the automaton into motion (or pause it).  The reset button will stop the automaton and reinitialize the cells.  The guide lines button will turn on and off the zoom indicator boxes.
+
+There is a time dilator slider, which allows the steps per second to be adjusted, speeding or slowing the system between 1 step per second up to 60 steps per second.
+
+The automata itself is displayed via 3 world views.  The top large view is the main world view panel.  Tapping this panel will cause a 2x zoomed section of the world to appear in the second panel.  Tapping the second panel will cause a 4x zoomed section to appear in the third panel.
+
+Game of Life
+
+In 1970, British Mathematician, John Conway devised the cellular automaton known as the Game of Life.  Conway was attempting to create a much simpler version of a system previously devised by John von Neumann in the 1940s.
+
+The rules to Conway's Game of Life are fairly straightforward: Take a plane made up of square cells.  Each cell can either be on or off.  Each cell has 8 neighbors, the 8 cells directly surrounding it.  If two of a cell's neighbors are 'on' then the cell's state is unchanged.  If three of the cell's neighbors are 'on' then the cell's state is turned / remains on.  In all other cases the cell's state is turned / remains off.
+
+Some things to look for:
+
+- Look for static patterns (called still lifes).  These are any shapes that repeat each step, i.e., stay exactly the same each step.  One common still life is the 'block', which is 4 pixels situated in a square.
+
+- Look for any dynamic patterns.  The most common dynamic pattern is a bar 3 cells long.  It will continually iterate between horizontal and vertical.  This loop is called a 'blinker'.  The blinker is by far the most common dynamic pattern.  There are a handful of other relatively common 2 step loops, such as 'beacons' and 'frogs'.
+
+- About once every few runs a rather large 3 step loop called a 'pulsar' will develop.  In some cases a half pulsar will develop on the edge of the world.
+
+- Perhaps the most famous loop is called the 'glider'.  The glider is a fairly common 4 step pattern, that has one important distinction from the above loops.  The glider is a translating pattern, which is to say it moves across the plane.
+
+For the purpose of Universe X there are a number of important qualitative concepts illustrated by Conway's Game of Life that can be gleaned fairly quickly.  However, a shockingly large amount of research has been done into Conway's Game of Life and a few minutes with Google can open up this massive body of work to enable further research, if so desired.
+
+
+";
+
+"demons_article" = "Demons
+
+Another type of cellular automaton, is the cyclic cellular automaton devised by David Griffeath of the University of Wisconsin.  And while perhaps not quite as fruitful as Game of Life in generating complex systems, it does nicely illustrate a number of important qualitative concepts, in addition to making pretty cool pictures.
+
+A cyclic cellular automaton again makes use of a plane tiled with square cells.  Each cell can be in one of n possible states (in this case 12) and has 4 neighbors; the cells directly above, below, left and right of it.
+
+If any of the neighboring cells is in a state that is one more than the current cell (or 0 for a cell of state n-1), then the cell will be eaten and take on the state of the neighboring cell.  A cell can eat and be eaten in the same time step.  This allows loops to form that contain each of the n states.  These loops will create spirals called demons.
+
+
+";
+
+"oovium_article" = "Oovium
+
+Using the Oovium visual programming language it is possible to define custom cellular automata.
+
+Double tapping on an empty area of the Oovium panel will create a new bubble.  By default an instance bubble will be created that allows the user to enter in a number or a calculation.  Using the bubble maker in the upper right of the Oovium panel, one can also create an IfBub which is a visual conditional or a MechBub which enables the creation of custom functions.
+
+The workspace of Oovium is called an 'aether' (Oovium was created well before Universe X was discovered and the usage of the term aether is just a coincidence).  By default, each of the aethers in the automata lab are pre populated with an AutoBub, which allows one to define their own cellular automata.
+
+The top area of the AutoBub represents a cell and its neighbors' current state: the neighborhood.  The bottom area represents the cell's new state which should be a calculation based on the current state of the neighborhood.
+
+There is also a properties button which will allow for the number of states to be defined (between 2 and 32) and also allow for various colors to be selected for the different states.
+
+More about learning how to use the Oovium visual programming language including tutorial videos can be found at oovium.com.  The full Oovium visual programming language is available for iPad and iPhone in the AppStore and for Mac in the Mac AppStore.
+
+
+";
+
+"kinematicsLab_article" = "Kinematics Lab
+
+Motion in our own universe can be described entirely by a vector which represents the velocity of a given object.  In Universe X, however there are two distinct forms of motion: translation across the aether and the flow of the aether itself.  In order to fully describe motion in Universe X, one must know both the translating vector and the aethereal flow vector, as well as the density and geometry of the aexels themselves.
+
+This lab allows us to compare the motion of our Universe with that of Universe X.  The lab models an object frictionlessly moving inside a 2 dimensional box, elastically bouncing off the walls.
+
+For Universe X, the model uses a regular hexagonal tiling to represent the aether.  The translational \"velocity\" vector represents the percent chance that the object will move to an adjacent cell each time step from 0 to 100 percent.  If the vector falls between two faces the chance of moving to either face is weighted based on the direction of the vector.  In this way motion in any arbitrary direction, not just the 6 cardinal directions can be achieved.  This random walk model is known as a Feynman checkerboard.
+
+Perhaps the first thing one might note when comparing the two models is that motion in the Universe X model is quite jerky as opposed to the smooth motion of the model for our Universe.  However, the Universe X model is a statistical model and we are looking at both large aexels and large time steps.  As the density of aexels and time steps increase the motion will continually get more and more smooth until it would become difficult to differentiate the motion of the two systems.
+
+In looking at the Universe X model there are two important things to note.  The first is that during collisions there can be a transfer between translating motion and flow motion.  For example, if we stop the translating motion entirely and point the aether directly downward (see Experiment B).  The particle will smoothly flow down along with the aether.  However, once the particle hits the bottom wall, the flow motion will be converted into twice the translating motion upwards, which when added to the flow motion will cause the object to move upwards at (statistically) the same velocity with which it moved downwards.
+
+The other thing to note then is that as the density of aexels and time steps increases, the flow of the aether is irrelevant to the dynamics of the system.  I.e., a system where there is no aethereal flow will behave statistically the same as one in which there is an aethereal flow.
+
+Although it is the case that God plays dice with our Universe, it is an open question as to whether God plays dice with Universe X.  In this situation, it was necessary for the model to employ a random number generator in order to model the motion.  Arbitrary directions of translation could not be achieved without this randomness.  However, this does not imply that such randomness is a necessary component of Universe X.
+
+In this case the aether is modeled simplistically with regular 2 dimensional hexagons.  However, one could imagine the actual distribution of 3 dimensional aexels in Universe X as being quite irregular.  Potentially an entirely deterministic way of jumping from aexel to aexel would appear random due to the unknown hidden variables which are the geometry of the aexels themselves.
+
+
+
+";
+
+"aetherLab_article" = "Aether Lab
+
+Note: In addition to the new experiments a number of interactive abilities have been added:
+
+- Aexels can now be dragged around.
+- An Aexel can be locked in place by tapping on it.
+- A new Aexel can be created by tapping on empty space.
+- An Aexel can be destroyed by double tapping on it.
+
+This is an attempt to model the Aexels themselves.  Certainly, the ideal will be to create a quantitative model, however there are way too many open questions to attempt that currently.  As such the goal at this point is to create a qualitative model of Universe X and its aexels.  The hope being to create a visceral picture of Universe X; a thousand words per frame at 60 frames per second.
+
+This first model attempts to recreate the dynamics of the aexel field itself, the aether.  In this case the aexels can create bonds between each other.  The bonds have a relaxation distance; if they are too close they will push apart, too far they will pull together.  However, aexels that are double the relaxation distance from one another can not create bonds and if a bond already exists between them it will snap.
+
+This model is entirely two dimensional and bonds can not cross one another.  When two bonds cross, the shorter bond will take precedence and snap the longer bond.  The aexels themselves have no concept of momentum; each bond creates a push or pull in the direction of the bond proportional to the distance from relaxation.  The aexel then jumps slightly in the direction of the sum of the pushes and pulls.
+
+In this lab there are ten preset experiments; the first three differ only in the number of aexels and the relaxation distance.  The 4th experiment implements Conway’s Game of Life on top of the dynamic lattice, giving a flavor of the possible interplay between the aexels and the loops sitting upon them.  The 5th through 9th experiments start the aexels out in various initial shapes.  The 10th is simply a blank sandbox that allows users to create whatever systems they want.
+
+Currently, this model does a respectable job of healing holes in the aether fabric.  The next step is to attempt to model gravity itself.  This will require a mechanism for creating and destroying aexels based on the loops on top.  In order to succeed the fabric probably needs to be even better at healing itself and realistically there will need to be a lot more aexels.  The key to adding more aexels will be continually increasing the performance of the algorithms being used here.
+
+
+
+
+";
+
+"distanceLab_article" = "Distance Lab
+
+
+
+
+";
+
+"gravityLab_article" = "Gravity Lab
+
+
+
+
+";
+
+"dilationLab_article" = "Dilation Lab
+
+Cheat Sheet:
+- Play / Pause: to pause and unpause the simulation
+- Reset: to clear the simulation and restart with current settings
+- Speed of Light: define the speed of light in points (pixels) per second.
+- Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+- Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+- Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+- Fixed: Turns on/off the fixed camera that moves with the aexels instead of the teslons.  (although jumps ahead when the teslon leaves the screen.)
+- Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+
+In our Universe 'Time Dilation' is a very magical phenomena.  'Time' itself is dilating.  There are no special frames of reference and the observations of different systems is a function of the observers themselves rather than being based on fundamental physical processes.  The Twin paradox is an actual paradox in our Universe.
+
+In Universe X however, dilation is not magical at all.  First of all, time does not dilate, but rather it's the rate at which physical systems animate, that dilates.  Dilation is in no way dependent on an observer; each system experiences a specific dilation entirely a function of it's rate of translation across the aexel field.
+
+This dilation in Universe X has a physical basis; it is caused by the slow down of edison (loops that move at the speed of light) messengers traveling between the teslons (loops that move at less than the speed of light).
+
+This laboratory gives a visceral description of the process of dilation in Universe X.  As the rate of translation of a system of teslons (the blue circles) increases the amount of time it takes a signal to move back and forth increases.
+
+This simulation knows nothing about the equations of relativity.  It simply shows teslons moving at a velocity v as a percent of c (as specified by the user) and edisons moving at velocity c.  From these simple rules 'dilation' naturally arises.
+
+In playing with the simulation try to observe the increased distance that must be traveled between the teslons as the rate of translation increases.  Be particularly cognizant of the direction of translation of edisons as they move back and forth.
+
+Note:
+In this simulation the individual aexels are not being modeled, only the flow of the aexel field in general.  Electromagnetic phenomena as being illustrated here works at a much larger scale than the aexels and as such the continuous approximation is a fair representation of reality.  For example, if each aexel were one nanometer across (rather than the Planck length), then the radius of a proton centered on the Sun would extend nearly halfway to Venus.
+
+
+
+
+";
+
+"contractionLab_article" = "Contraction Lab
+
+Cheat Sheet:
+- Play / Pause: to pause and unpause the simulation
+- Reset: to clear the simulation and restart with current settings
+- Speed of Light: define the speed of light in points (pixels) per second.
+- Velocity: the translation velocity of the teslons (blue) across the aexels as a percent of c.
+- Auto: turns on an auto-pulse which sends out green edisons from the source every 2 seconds.
+- Tails: turns on tails for the edisons which illustrate their direction of translation across the aexel field.
+- Contract: Turns on/off the length contraction.  (I.e., Makes the horizontal and vertical particles equidistant from the source.)
+- Pulse: Manually sends out a pulse of green edisons from the source blue teslon.
+
+The Contraction lab is very similar to the Dilation lab, but also includes a horizontal teslon in addition to the previous vertical and source teslons.
+
+This lab does not attempt to explain the mechanism of length contraction.  However, this lab does further illustrate the mechanism underpinning relativity in Universe X and how Lorentz covariance continues to hold.
+
+Similar to 'Time Dilation', 'Length Contraction' in our Universe is described as being an observational phenomena highly dependent on the frame of reference of the observer.  And like 'Time Dilation' there is no special frame of reference, observers always see their meter sticks as being longest.
+
+However, just as in the dilation section, contraction in Universe X is a real physical phenomenon and is a direct result of the rate of translation across the aexel field.
+
+In our Universe there is a notion called Lorentz Covariance which says that the speed of light is the same in all directions for all time frames.  In Universe X, however, not only is the speed of light not the same, it's almost always different, not just for people in different frames, but along almost any two directions of a single frame (unless the frame isn't translating at all.)
+
+However, even though the speed of light is always changing, Lorentz Covariance holds in Universe X just as it does in our Universe and it does so because of the length contraction.
+
+In Universe X, light (or any edison) always travels at one aexel per tic; previously we defined 1 aexel / tic = speed of light.  The Contraction simulation illustrates another way in which 'light always travels at the speed of light'.  Any time a signal is sent out in any direction, it will always return at the exact same time from all directions as a result of length contraction, even though the velocity of the light can vary greatly in each of the directions and vary on its way out compared to its return trip.
+
+Rather than saying that 'light always travels at the speed of light' for all inertial frames, It would perhaps be more accurate to say that the time of any roundtrip journey between two points of light over a given distance is a constant.
+
+This lab perhaps works best with 'auto' turned off and manually pulsing instead.  In this way it is possible to compare the roundtrip duration of the vertical light and the horizontal light.
+
+Certainly, when the velocity of the system of teslons is 0, the light returns at the exact same moment in all directions.  But, watch as the system is sped up to 10, 20, 50, 70, 90 and 99% of the speed of light.  In all of these cases each signal returns back to the source at the exact same moment no matter the rate of translation, whether moving towards or moving away from the horizontal loop.
+
+Next turn off contraction, forcing the horizontal particle to be equidistant from the source as the vertical one.  Now it is possible to see that the edison messengers are returning at different times.  Without, length contraction, Lorentz Covariance would no longer hold.
+
+One of the complications in this conversation and really any topics related to Universe X is the notion of distance.  In our Universe, distance is rather straight forward.  However, in Universe X, there are potentially 3 different notions of distance.
+
+- In Universe X, space is just an empty box filled with quantized aether.  Therefore between any two points there exists a basic cartesian distance between them.  But, since everything in the universe happens in the context of the aexels, there are no natural land marks or 'space' rulers available to measure this type of distance; it can only be inferred from other hints.
+- The next potential definition of distance would be to simply count the number of aexels between two points.  Since aexels can vary in density this concept of distance may not track with the cartesian concept.  Similar to the 'space' definition above there isn't a (known) way to directly measure the number of aexels between two points.
+- The last potential definition of distance would be measure the time it takes light to travel to and from two points.  This definition has the massive advantage of being able to be measured.  However, unlike the previous two definitions because of length contraction this definition is not universal for all observers.
+
+Distance is a tricky concept to get a handle on in Universe X.  Time is a similarly tricky concept to get a handle on.  Velocity being distance / time makes it perhaps doubly tricky to get a handle on and as a result the notion of the \"speed of light\" can be a bit nebulous.
+
+
+
+
+";
+
+"electromagnetismLab_article" = "Electromagnetism Lab
+";
+
+"2103.04335v3_pdf_name" = "'t Hooft Paper";
+
+/*
+ Localizable.strings
+ Oovium
+ 
+ Created by Joe Charlier on 1/21/12.
+ Copyright (c) 2012 Aepryus Software. All rights reserved.
+ */
+
+/* name of the Oovium workspace */
+"aether" = "aether";
+
+/* remove all bubbles from the current aether */
+"clear" = "clear";
+
+"buy" = "buy";
+
+/* internet URLs */
+"links" = "links";
+"help" = "help";
+
+"album" = "album";
+
+/* the Dropbox cloud service */
+"dropbox" = "dropbox";
+
+/* the iPad / iPhone or iPod touch */
+"device" = "device";
+
+/* log out of dropbox */
+"logoff" = "logoff";
+
+/* link to oovium.com */
+"oovium" = "oovium";
+
+/* online messageboard */
+"forums" = "forums";
+
+/* link to Oovium's twitter feed */
+"twitter" = "twitter";
+
+/* rate or review the app in the AppStore. */
+"review" = "review";
+
+/* bring up the about info (i.e., version and copyright) */
+"about" = "about";
+
+/* list of changes in the current version */
+"whatsnew" = "what's new";
+
+/* Oovium term describing a subset of gestures */
+"anchoring" = "anchoring";
+"tutorial" = "tutorial";
+
+/* tutorial explaining Oovium basics */
+"basics" = "basics";
+
+/* tutorial explaining how to make Mind Maps */
+"mapper" = "mapper";
+"cancel" = "cancel";
+
+"new" = "new";
+"add" = "add";
+"remove" = "remove";
+
+/* include other aethers in the current aether, similar to import */
+"includes" = "includes";
+"replace" = "replace";
+
+/* A sticker or tag affixed to an item to provide identifying or descriptive information. */
+"label" = "label";
+"copy" = "copy";
+
+/* menu option that allows the user to change the color of a bubble */
+"color" = "color";
+
+/* menu option that allows the user to change the shape of a bubble */
+"shape" = "shape";
+"delete" = "delete";
+
+"addParam" = "add param";
+"removeParam" = "remove param";
+
+/* set of functions that work on aggregate data (sum,count,average) */
+"aggregate" = "footer";
+
+/* text justification (center, right, left) */
+"justify" = "justify";
+"sum" = "sum";
+"average" = "average";
+
+/* a type of aggregate function which tallies a running total of a given column */
+"running" = "running";
+"none" = "none";
+"left" = "left";
+"center" = "center";
+"right" = "right";
+
+/* a list of nodes that flow into the current node */
+"inputs" = "inputs";
+
+/* a list of nodes that flow out of the current node */
+"outputs" = "outputs";
+"OK" = "OK";
+"Yes" = "Yes";
+"No" = "No";
+
+"clearConfirm" = "Clear this aether completely?";
+"deleteOneConfirm" = "Delete selected bubble?";
+"deleteManyConfirm" = "Delete selected bubbles?";
+"deleteColumn" = "Delete selected column?";
+"deleteRow" = "Delete selected row?";
+
+"bootupText" = "ANNOUNCING
+
+** Oovium for Mac **
+
+The conversion of Oovium to the desktop has recently been completed.  Oovium for Mac is now available in the Mac AppStore!
+
+All the Oovium goodness you've come to know and love on the iPad (and iPhone) is now available on your computer, allowing you to share Aethers between all of your devices via Dropbox.
+
+AepCalc, RPN calculator for Mac is also available.
+";
+
+"whatsnewText" = "What's New 1.1.4
+
+** Oovium for Mac **
+The conversion of Oovium to the desktop has recently been completed.  Oovium for Mac is now available in the Mac AppStore!  All the Oovium goodness you've come to know and love on the iPad (and iPhone) is now available on your computer, allowing you to share Aethers between all of your devices via Dropbox.
+
+AepCalc, RPN calculator for Mac is also available.
+
+BUBBLES:
+- IfBub : A visual conditional that can be used instead of the in-bubble 'if' function.  Aside from its visual representation, it also has the advantage of only evalutating the appropriate resultant.  This makes the IfBub very useful in creating recursive functions without needing to use the Function data type.
+
+- TailBub : A new type of a MechBub specifically designed for creating recursive functions, greatly simplifing the ability to create loops.  The TailBub's visual structure guides the user in creating a tail call optimized recursion which has performance advantages over MechBub recursion, but more importantly eliminates the 500 loop limit of the MechBub.  (The TailBub will process for up to 1 second, which allow for signficantly more iterations)
+
+- CronBub : Allows for the creation of a timer that increments its value periodically based on input parameters.  The utility of the CronBub, is perhaps a bit limited at this point, but it will become an essential tool for modeling and animating with the arrival of the 2nd aspect of Oovium.
+
+- TypeBub : Allows for the mapping of entities and relationships.  Currently, the TypeBub is not integrated with the other bubble types of Oovium and is a faint shadow of it's ultimate functionality.  However, it has been slipped into this version both as a preview of future attractions and because even in it's current form, it can be useful in creating some simple diagrams.
+
+FUNCTIONS:
+- [!,&,|] - the 'not' !, 'and' & and 'or' | operators have been added to the Lexicon
+
+OTHER:
+- The resolution of exported images has been increased to match the retina display.  There are still plans to create a vector output, but that hasn't been done yet.
+
+- In conjunction with the conversion of Oovium to OS X, once again massive under-the-cover refactoring has occurred with this version, including the conversion to the ARC memory model, a revamp of the Hover mechanism, some tweaks to the Math engine and major restructing of the Bubble system to allow for easier creation of new Bubbles, although more work is still needed with that.";
+
+"ooviumText" = "Welcome to Oovium
+
+What if a person ignorant of all past calculation tools were to design from scratch an app for doing calculations that made full use of the technology and concepts available to us today?  What would that application look like?
+
+Over the years Aepryus has had numerous ideas for applications.  Eventually, it was realized that six of these ideas were just six different aspects of the same program.  Oovium is that program.
+
+Or rather, Oovium will become that program.  Oovium is a mathematical sandbox.  As of version 1.1, Oovium includes one of the six aspects; code named Bricklin; this aspect is the implementation of an object oriented spreadsheet.  Eventually, the other 5 aspects will be incorporated into Oovium, code named Crawford, Shazaam, Archimedes, Eddington and Mithrandir.";
+
+"ooviumMmText" = "Oovium Mind Mapper
+
+Designed to replace your white board; it allows you to place nodes on a field (the aether) and designate links between them. Each node can have multiple inputs and outputs (a directed graph).
+
+Particular attention was given to creating a natural and elegant gesture suite that allows for quick and easy manipulations of the bubbles upon the aether.
+
+Be sure to read up on Anchoring to learn about these gestures.";
+
+"anchoringText" = "The Joy of Anchoring
+
+The workspace of Oovium is an arbitrarily large 2 dimensional plane that allows users to place bubbles upon it.  This plane is referred to as the Aether.  As Bubbles are added to the Aether, it automatically resizes to accommodate all of the bubbles.  In using Oovium, there is an important class of gestures known as anchoring.
+
+Anchoring is holding the Aether still with one finger while performing another action with a different finger.  These gestures are:
+
+MOVE BUBBLE [Anchor+Drag:bubble]
+Anchor with one finger, then drag a bubble with another.  The more fingers that you use, the more bubbles you can drag around.
+
+CONTEXT MENU [Anchor+Tap:bubble]
+Anchor with one finger and tap a bubble with another.  This will bring up a context menu for the bubble that will allow you to perform additional actions to the bubble, such as Label and Delete.
+
+LASSO [Anchor+Drag:aether]
+Anchor with one finger and drag another finger on empty space.  A yellow path will begin to render along the path of your second finger.  You will be able to select multiple Bubbles and then move them as a group or perform relevant context menu actions on all of them.
+
+MOVE CURSOR [Anchor+Tap:expression]
+While editing an expression, anchor with one finger and tap the expression with another.  The cursor will move to the location of the tap, allowing you to modify the expression at that location.";
+
+"basics01" = "Double\nTap\nMe";
+"basics02" = "The \"aether\" is your workspace.  You have just created an instance bubble on that aether.";
+"basics03" = "Using the keypad input 5781 =";
+"basics04" = "Double\nTap\nMe";
+"basics05" = "You can enter full expressions into a bubble.";
+"basics06" = "Input 84\U00D7114=";
+"basics07" = "Double\nTap\nMe";
+"basics08" = "Previous bubbles can be referenced from new bubbles.";
+"basics09" = "Touch your first bubble";
+"basics10" = "Hit the \U00D7 key";
+"basics11" = "Now touch your second bubble";
+"basics12" = "Hit the equal sign";
+"basics13" = "Bubbles can be revisited and edited.";
+"basics14" = "Hit the 5781 bubble";
+"basics15" = "Using the backspace, change the number to 5783; hit =";
+"basics16" = "Want to be able to access the context menu?  Want to be able to move a bubble or a collection of bubbles?  Read about anchoring! (in Help)";
+"basics17" = "Hit the menu key (the red dot in the lower left corner)";
+"basics18" = "Hit the aether key";
+"basics19" = "Hit the clear key";
+"basics20" = "Hit yes to clear your aether";
+
+"mapper01" = "Tap the box in the upper right corner (the tool bar) and select the orange oval.";
+"mapper02" = "Double\nTap\nMe";
+"mapper03" = "The \"aether\" is your workspace.  You have just created a node on the aether.";
+"mapper04" = "Type \"peanut butter\" and then hit return.";
+"mapper05" = "The toolbar in the upper right determines what gets created when double tapping on the aether.  Tap the color tool (the left most one) and select purple.";
+"mapper06" = "Double\nTap\nMe";
+"mapper07" = "In the second node type \"jelly\" and then hit return.";
+"mapper08" = "Feel free try a different color or shape combination before double tapping.";
+"mapper09" = "Double\nTap\nMe";
+"mapper10" = "In the third node type \"pb&j\" and then return.";
+"mapper11" = "You can edit the text of a node by double tapping on it.";
+"mapper12" = "Double tap on the pb&j node and add \"sandwich\", then hit return.";
+"mapper13" = "Single tapping on a node will allow you to connect it to other nodes.";
+"mapper14" = "Single tap on the \"pb&j sandwich\" node.";
+"mapper15" = "Tap both the \"peanut butter\" and \"jelly\" nodes.  Hit \"OK\" to set the connections.";
+"mapper16" = "Want to be able to change the shape or color of existing nodes?  Want to be able to move a bubble or a collection of bubbles?  Read about anchoring! (in Help)";
+"mapper17" = "Hit the menu key (the red dot in the lower left corner)";
+"mapper18" = "Hit the aether key";
+"mapper19" = "Hit the clear key";
+"mapper20" = "Hit yes to clear your aether";
+
+"lexiconMain" = "Single tap a token to see its description.\n\nDouble tap a token to insert it into your current expression.";
+"lexiconFilter" = "(filter)";
+"lexOperator" = "operator";
+"lexMisc" = "miscellaneous";
+"lexPower" = "exponentiation";
+"lexTrig" = "trigonometric";
+"lexAdd" = "addition operator";
+"lexSub" = "subtraction operator";
+"lexMul" = "multiplication operator";
+"lexDiv" = "division operator";
+"lexMod" = "modulus operator";
+"lexPow" = "power operator\n\nNegative Real inputs taken to non-integer powers will result in Nan.";
+"lexDot" = "dot product operator";
+"lexEqual" = "equal to\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexNotEqual" = "not equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexLess" = "less than\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexLessEqual" = "less than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexGreat" = "greater than\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexGreatEqual" = "greater than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
+"lexNot" = "unary not operator\n\nThis operator will return true (1) if the operand is false (0) and false (0) if the operand is true (not equal to 0).";
+"lexAnd" = "and operator\n\nThis operator will return true (1) if both operands are also true (not equal to 0).";
+"lexOr" = "or operator\n\nThis operator will return true (1) if either of the operands are true (not equal to 0).";
+"lexFac" = "factorial";
+"lexRound" = "round to nearest integer";
+"lexFloor" = "The floor function shifts a value to the lessor of the two integers that it falls between (or the value itself if it is already an integer).";
+"lexAbs" = "absolute value";
+"lexMin" = "returns the lesser of two values";
+"lexMax" = "returns the greater of two values";
+"lexIf" = "if then else\n\nIf the 'if' parameter (1st) is true (evaluates to a non-zero value) then the 'then' parameter (2nd) will be returned; otherwise if it is false (evaluates to zero) then the 'else' parameter (3rd) will be returned.\n\nWithin Oovium, all parameters are evaluated first before being sent to their function.  However, this will cause recursive functions to always result in a stack overflow.  For recursive functions, it is necessary to use the 2nd form with Function type 'then' and 'else' parameters.  In the 2nd form, the function itself is the result and therefore only the appropriate version will be evaluated preventing the stack overflow.";
+"lexSum" = "summation\n\nThis function will sum the results of the function parameter (3rd), by iterating that function using incrementing values of k.\n\nIn the first form k will iterate from the start parameter (1st) through the stop parameter (2nd).  In the 2nd form k will start with the start parameter (1st), but will continue to execute while the condition parameter (2nd) remains true.";
+"lexRandom" = "returns a random integer from 0 to n-1";
+"lexSqrt" = "square root (i.e., x^0.5)\n\nNegative Real inputs will result in NaN.";
+"lexLn" = "natural logarithm (i.e., logarithm base e)\n\nInverse of the exp function.";
+"lexLog" = "logarithm base 10\n\nInverse of the ten function.";
+"lexLog2" = "logarithm base 2\n\nInverse of the two function.";
+"lexExp" = "exponential, power of e (~2.71...) (e^x)";
+"lexTen" = "power of 10 (10^x)";
+"lexTwo" = "power of 2 (2^x)";
+"lexSin" = "sine\n\nThe input angle should be in radians.";
+"lexCos" = "cosine\n\nThe input angle should be in radians.";
+"lexTan" = "tangent\n\nThe input angle should be in radians.";
+"lexSec" = "secant\n\nThe input angle should be in radians.";
+"lexCsc" = "cosecant\n\nThe input angle should be in radians.";
+"lexCot" = "cotangent\n\nThe input angle should be in radians.";
+"lexAsin" = "arcsine";
+"lexAcos" = "arccosine";
+"lexAtan" = "arctangent";
+"lexSinh" = "hyperbolic sine";
+"lexCosh" = "hyperbolic cosine";
+"lexTanh" = "hyperbolic tangent";
+"lexAsinh" = "hyperbolic arcsine";
+"lexAcosh" = "hyperbolic arccosine";
+"lexAtanh" = "hyperbolic arctangent";

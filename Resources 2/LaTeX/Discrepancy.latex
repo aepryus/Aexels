@@ -1,0 +1,44 @@
+\begin{align*}
+PE&=Fs\\
+\\
+F&=G\frac{Mm}{r^2}\\
+\\
+PE&=\int_{r}^{\infty}G\frac{Mm}{r^2}\,ds\\
+\\
+PE&=-HMm\frac{1}{r}\bigg|_{r}^{\infty}=G\frac{Mm}{r}\\
+\\
+KE&=\frac{1}{2}mv^2\\
+\\
+KE=PE&\implies\frac{1}{2}mv^2=G\frac{Mm}{r}\\
+\\
+v&=\sqrt{\frac{2GM}{r}}\\
+\\
+\gamma=\gamma(v_e)&=\frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}\\
+\\
+\gamma=\gamma(0)&=1\\
+\\
+\gamma=\gamma(2 v_e)&=\frac{1}{\sqrt{1-\frac{8GM}{rc^2}}}\\
+\\
+\gamma(\vec{v},\vec{v_e})&=\gamma(|\vec{v}-\vec{v_e}|)\\
+\\
+(1 - \frac{r_s}{r})\frac{dt}{d\tau} &= \frac{E}{mc^2}\\
+\\
+E &= mc^2\\
+\\
+\frac{dt}{d\tau} &= \frac{1}{\left(1 - \frac{r_s}{r}\right)} \\
+\\
+r_s &= \frac{2GM}{c^2}\\
+\\
+\gamma = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
+\\
+\\
+\gamma &= \frac{1}{1-\frac{2GM}{rc^2}}=\gamma(v_e)^2\\
+\\
+\gamma(\vec{v},\vec{v_e})&=\gamma(|\vec{v}|) \gamma(|\vec{v_e}|)\\
+\\
+\end{align*}
+
+
+\[\text{\parbox{10cm}{
+A static spacetime is one in which all metric components are independent of the time coordinate $t$ (so that $\tfrac\partial{\partial t}g_{\mu \nu}=0$) and the geometry of the spacetime is unchanged under a time-reversal $t \rightarrow -t$.
+}}\]

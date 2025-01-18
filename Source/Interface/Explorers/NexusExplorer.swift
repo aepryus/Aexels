@@ -244,7 +244,19 @@ class NexusExplorer: AEViewController {
         view.addSubview(claudeButton)
     }
     
-    override func layoutRatio056() {}
+    override func layoutRatio056() {
+        aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
+        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: 510*s, height: 2187*s)
+        scrollView.frame = CGRect(x: -10*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
+        if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
+        currentCapsule.render()
+        currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
+        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
+        
+        musicButton.topLeft(dx: 700*s, dy: 30*s, width: 20*s, height: 20*s)
+        claudeButton.topLeft(dx: musicButton.right+8*s, dy: musicButton.top, width: 175*s, height: 20*s)
+    }
     override func layoutRatio133() {
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)

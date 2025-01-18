@@ -1,0 +1,59 @@
+{
+  "aexels" : [
+    {
+      "name" : "",
+      "statesChain" : "dg:2",
+      "y" : 329,
+      "no" : 1,
+      "type" : "auto",
+      "resultChain" : "va:Gt3",
+      "iden" : "1",
+      "x" : 265,
+      "states" : [
+        {
+          "no" : 0,
+          "iden" : "1",
+          "type" : "state",
+          "color" : 19
+        },
+        {
+          "no" : 0,
+          "color" : 9,
+          "iden" : "2",
+          "type" : "state"
+        }
+      ]
+    },
+    {
+      "iden" : "1",
+      "chain" : "va:Au1.A;op:+;va:Au1.B;op:+;va:Au1.C;op:+;va:Au1.D;op:+;va:Au1.E;op:+;va:Au1.F;op:+;va:Au1.G;op:+;va:Au1.H",
+      "x" : 430,
+      "name" : "Ob_1",
+      "y" : 373.5,
+      "type" : "object",
+      "no" : 1,
+      "label" : "S"
+    },
+    {
+      "y" : 521,
+      "ifChain" : "va:Au1.Self",
+      "thenChain" : "va:Ob1;op:=;dg:2;op:||;va:Ob1;op:=;dg:3",
+      "type" : "gate",
+      "name" : "",
+      "no" : 3,
+      "iden" : "",
+      "elseChain" : "va:Ob1;op:=;dg:3",
+      "x" : 343
+    }
+  ],
+  "name" : "Game of Life",
+  "yOffset" : 284,
+  "type" : "aether",
+  "height" : 365,
+  "readOnly" : true,
+  "xOffset" : 255.5,
+  "iden" : "1",
+  "modified" : "2019-03-10T09:33:57+0900",
+  "width" : 365,
+  "version" : "3.0"
+}
