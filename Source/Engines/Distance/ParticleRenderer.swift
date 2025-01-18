@@ -131,7 +131,8 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
         memcpy(universeBuffer.contents(), &metalUniverse, MemoryLayout<MetalUniverse>.size)
         
         var objects: [MetalObject] = []
-        
+        var pings: [MetalObject] = []
+
         for i: Int in 0..<Int(universe.pointee.teslonCount) {
             let teslon: UnsafeMutablePointer<NCTeslon> = universe.pointee.teslons[i]!
             let object: MetalObject = MetalObject(
@@ -160,7 +161,7 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
                 pad1: 0,
                 pad2: 0
             )
-            objects.append(object)
+            pings.append(object)
         }
         for i: Int in 0..<Int(universe.pointee.pongCount) {
             let pong: UnsafeMutablePointer<NCPong> = universe.pointee.pongs[i]!
@@ -193,11 +194,9 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
             objects.append(object)
         }
         
-        assert(MemoryLayout<MetalObject>.stride % 16 == 0, "MetalObject is not aligned. [\(MemoryLayout<MetalObject>.stride)]")
-        assert(MemoryLayout<MetalUniverse>.stride % 16 == 0, "MetalUniverse is not aligned. [\(MemoryLayout<MetalUniverse>.stride)]")
-
         let objectsBuffer = device.makeBuffer(bytes: objects, length: objects.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)!
-        
+        let pingsBuffer: MTLBuffer? = pings.count == 0 ? nil : device.makeBuffer(bytes: pings, length: pings.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)
+
         // Create command buffer and render command encoder.
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
               let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
@@ -206,6 +205,10 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
 
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setVertexBuffer(universeBuffer, offset: 0, index: 0)
+        if let pingsBuffer {
+            renderEncoder.setVertexBuffer(pingsBuffer, offset: 0, index: 1)
+            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: pings.count)
+        }
         renderEncoder.setVertexBuffer(objectsBuffer, offset: 0, index: 1)
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: objects.count)
         renderEncoder.endEncoding()
