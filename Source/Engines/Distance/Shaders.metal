@@ -43,9 +43,8 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
     
     MetalObject obj = objects[instanceID];
 
-    const float size = obj.type == 0 ? 20 : 2; // Particle size
+    const float size = obj.type == 0 ? 20 : 2;
 
-    // Define local offsets for quad corners
     float2 localOffsets[4] = {
         float2(-1.0, -1.0), // Bottom-left
         float2(1.0, -1.0),  // Bottom-right
@@ -53,28 +52,19 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
         float2(1.0, 1.0)    // Top-right
     };
 
-    // Fetch the particle data
-
-    // Compute world position for each vertex of the quad
     float2 worldPosition = obj.position + localOffsets[vertexID] * size;
 
-    // Convert to clip space
     float2 normalizedPosition = (worldPosition - universe.cameraPos) / (universe.bounds * 0.5);
-    normalizedPosition.y *= -1.0; // Flip y-axis if necessary
+    normalizedPosition.y *= -1.0;
     float2 clipPosition = normalizedPosition;
     
-//    float2 clipPosition = (worldPosition - universe.cameraPos) / universe.bounds * 2.0 - 1.0;
-
-    // Output a simple packet for the fragment shader
     FragmentPacket out;
     out.position = float4(clipPosition, 0.0, 1.0);
     out.local = localOffsets[vertexID];
-    out.type = obj.type; // Pass through type to fragment shader
+    out.type = obj.type;
     return out;
 }
 fragment float4 em_fragment_shader(FragmentPacket in [[stage_in]]) {
-    // Assign colors based on type, just for testing
-    
     float dist = length(in.local);
     const float innerRadius = 0.7;
     const float outerRadius = 1.0;

@@ -87,6 +87,13 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        pipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
+        pipelineDescriptor.colorAttachments[0].rgbBlendOperation = .add
+        pipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
+        pipelineDescriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        pipelineDescriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        pipelineDescriptor.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
+        pipelineDescriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
         
         guard let pipelineState = try? device.makeRenderPipelineState(descriptor: pipelineDescriptor) else {
             return nil
