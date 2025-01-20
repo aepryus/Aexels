@@ -18,7 +18,7 @@ class DistanceExplorer: Explorer {
     let controlsView: UIView = UIView()
 
     private var metalView: MTKView!
-    private var renderer: ParticleRenderer!
+    private var renderer: ElectromagnetismRenderer!
 
     init() { super.init(key: "distance") }
 
@@ -37,7 +37,7 @@ class DistanceExplorer: Explorer {
         metalView.isOpaque = false
         view.addSubview(metalView)
         
-        renderer = ParticleRenderer(metalView: metalView)
+        renderer = ElectromagnetismRenderer(metalView: metalView)
 
         cyto.cells = [
             LimboCell(content: metalView, c: 0, r: 0),

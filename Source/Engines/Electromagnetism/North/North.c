@@ -376,7 +376,7 @@ void NCUniverseTic(NCUniverse* universe) {
         // Pong Collision; Photon Reflection
         for (int j = 0; j < universe->pongCount; j++) {
             NCPong* pong = universe->pongs[j];
-            if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 10)) {
+            if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 20)) {
 
                 double beforeHyle = NCTeslonHyle(teslon);
                 // NCTeslonAddMomentum(teslon, 0.1, pong->cupola);

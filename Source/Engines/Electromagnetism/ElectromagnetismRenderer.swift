@@ -1,5 +1,5 @@
 //
-//  ParticleRenderer.swift
+//  ElectromagnetismRenderer.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 1/15/25.
@@ -9,37 +9,24 @@
 import MetalKit
 import simd
 
-//struct Vertex {
-//    var position: SIMD4<Float>
-//    var localCoord: SIMD2<Float>
-//}
-//
-//struct Uniforms {
-//    var position: SIMD2<Float>
-//    var velocity: SIMD2<Float>
-//    var bounds:   SIMD2<Float>
-//}
-
-
-
 struct MetalUniverse {
-    var bounds: SIMD2<Float>    // Screen dimensions
-    var cameraPos: SIMD2<Float> // Camera position
+    var bounds: SIMD2<Float>
+    var cameraPos: SIMD2<Float>
 };
 
 struct MetalObject {
-    var position: SIMD2<Float>  // Position
-    var velocity: SIMD2<Float>  // Velocity
-    var type: Int               // 0=teslon, 1=ping, 2=pong, 3=photon
-    var speed: Float            // Speed magnitude
-    var orient: Float           // Orientation (angle in radians)
-    var cupola: Float           // Type-specific attribute
-    var hyle: Float             // Energy/intensity
+    var position: SIMD2<Float>
+    var velocity: SIMD2<Float>
+    var type: Int
+    var speed: Float
+    var orient: Float
+    var cupola: Float
+    var hyle: Float
     var pad1: Float
     var pad2: Float
 };
 
-class ParticleRenderer: NSObject, MTKViewDelegate {
+class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
     private let pipelineState: MTLRenderPipelineState
@@ -47,13 +34,10 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
     var universe: UnsafeMutablePointer<NCUniverse>
     var camera: UnsafeMutablePointer<NCCamera>
     
-    // Position now represents pixels.
     private var position: SIMD2<Float>
-    // Velocity is in pixels per second.
     private var lastUpdateTime: CFTimeInterval
     
     private let universeBuffer: MTLBuffer
-    // A flag to ensure we initialize the particle’s position once we know the drawable size.
     private var initialized: Bool = false
     
     init?(metalView: MTKView) {
@@ -66,19 +50,13 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
         self.commandQueue = commandQueue
         metalView.device = device
         
-        // We’ll initialize position in the first draw call, once we know the drawable size.
         position = SIMD2<Float>(0, 0)
-        // Set velocity to, for example, 300 pixels/sec horizontally and 400 pixels/sec vertically.
         lastUpdateTime = CACurrentMediaTime()
         
-        // Create uniforms buffer.
-        guard let universeBuffer = device.makeBuffer(length: MemoryLayout<Universe>.size,
-                                                     options: .storageModeShared) else {
-            return nil
-        }
+        guard let universeBuffer = device.makeBuffer(length: MemoryLayout<Universe>.size, options: .storageModeShared) else { return nil }
+        
         self.universeBuffer = universeBuffer
         
-        // Set up render pipeline.
         let library = device.makeDefaultLibrary()!
         let vertexFunction = library.makeFunction(name: "em_vertex_shader")
         let fragmentFunction = library.makeFunction(name: "em_fragment_shader")
@@ -110,19 +88,11 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
     }
     
     var velocity: Double = 0 {
-        didSet {
-//            let v: Velocity = Velocity(speed: abs(velocity), orient: velocity > 0 ? 0 : .pi)
-            NCUniverseSetSpeed(universe, velocity)
-//            tic()
-//            onVelocityChange?(velocity)
-        }
+        didSet { NCUniverseSetSpeed(universe, velocity) }
     }
     
 // Events ==========================================================================================
-    func onPing() {
-        NCUniversePing(universe, 1000)
-    }
-
+    func onPing() { NCUniversePing(universe, 1000) }
     
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
@@ -133,7 +103,6 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
         
         NCUniverseTic(universe)
         
-        // Update uniforms: now position and bounds are in pixels.
         var metalUniverse: MetalUniverse = MetalUniverse(bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)), cameraPos: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)))
         memcpy(universeBuffer.contents(), &metalUniverse, MemoryLayout<MetalUniverse>.size)
         
@@ -204,7 +173,6 @@ class ParticleRenderer: NSObject, MTKViewDelegate {
         let objectsBuffer = device.makeBuffer(bytes: objects, length: objects.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)!
         let pingsBuffer: MTLBuffer? = pings.count == 0 ? nil : device.makeBuffer(bytes: pings, length: pings.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)
 
-        // Create command buffer and render command encoder.
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
               let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             return

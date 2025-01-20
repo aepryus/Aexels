@@ -1,5 +1,5 @@
 //
-//  Shaders.metal
+//  ElectromagnetismShaders.metal
 //  Aexels
 //
 //  Created by Joe Charlier on 1/15/25.
@@ -43,7 +43,7 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
     
     MetalObject obj = objects[instanceID];
 
-    const float size = obj.type == 0 ? 20 : 2;
+    const float size = obj.type == 0 ? 18 : 2;
 
     float2 localOffsets[4] = {
         float2(-1.0, -1.0), // Bottom-left
