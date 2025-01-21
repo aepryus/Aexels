@@ -7,6 +7,7 @@
 //
 
 import Acheron
+import MetalKit
 import UIKit
 
 class ElectromagnetismExplorer: Explorer {
@@ -21,9 +22,12 @@ class ElectromagnetismExplorer: Explorer {
     let pingButton: PulseButton = PulseButton(name: "ping")
     let pongButton: PulseButton = PulseButton(name: "pong")
     let controlsView: UIView = UIView()
+    
+    private var metalView: MTKView!
+    private var renderer: ElectromagnetismRenderer!
 
-    let engine: ElectromagnetismEngine
-    lazy var electromagneticView = ElectromagnetismView(engine: engine)
+//    let engine: ElectromagnetismEngine
+//    lazy var electromagneticView = ElectromagnetismView(engine: engine)
 
     init() {
 //        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -31,7 +35,7 @@ class ElectromagnetismExplorer: Explorer {
 //        let mainLen: CGFloat = height - 110*s
 //        let fixLen: CGFloat = Screen.width - mainLen - 10*s
 
-        engine = ElectromagnetismEngine(size: CGSize(width: 500, height: 500))
+//        engine = ElectromagnetismEngine(size: CGSize(width: 500, height: 500))
 
         super.init(key: "electromagnetism")
     }
@@ -45,9 +49,16 @@ class ElectromagnetismExplorer: Explorer {
         articleView.scrollView = articleScroll
         articleView.key = "\(key)Lab"
         articleScroll.addSubview(articleView)
+        
+        metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 850.256545593444, height: 850.256545593444)))
+        metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        metalView.isOpaque = false
+        view.addSubview(metalView)
+        
+        renderer = ElectromagnetismRenderer(metalView: metalView)
 
         cyto.cells = [
-            LimboCell(content: electromagneticView, c: 0, r: 0),
+            LimboCell(content: metalView, c: 0, r: 0),
             LimboCell(content: controlsView, c: 0, r: 1),
             MaskCell(content: articleScroll,c: 1, r: 0, h: 2, cutout: true)
         ]
@@ -61,22 +72,22 @@ class ElectromagnetismExplorer: Explorer {
         vSlider.velocity = 0
         controlsView.addSubview(vSlider)
         vSlider.onChange = { (velocity: Double) in
-            self.engine.velocity = velocity
+//            self.engine.velocity = velocity
         }
         
         playButton.playing = true
         controlsView.addSubview(playButton)
-        playButton.onPlay = { [unowned self] in
-            self.engine.play()
+        playButton.onPlay = {
+//            self.engine.play()
         }
-        playButton.onStop = { [unowned self] in
-            self.engine.stop()
+        playButton.onStop = {
+//            self.engine.stop()
         }
 
         controlsView.addSubview(resetButton)
-        resetButton.addAction(for: .touchUpInside) { [unowned self] in
+        resetButton.addAction(for: .touchUpInside) {
 //            self.engine.reset()
-            self.engine.tic()
+//            self.engine.tic()
         }
         
         controlsView.addSubview(autoSwap)
@@ -86,22 +97,22 @@ class ElectromagnetismExplorer: Explorer {
         }
 
         controlsView.addSubview(pingButton)
-        pingButton.addAction {
-            self.engine.onPing()
+        pingButton.addAction { [unowned self] in
+            self.renderer.onPing()
         }
 
         controlsView.addSubview(pongButton)
         pongButton.addAction {
-            self.engine.onPong()
+//            self.engine.onPong()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        engine.play()
+//        engine.play()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        engine.stop()
+//        engine.stop()
     }
 
 // AEViewController ================================================================================
@@ -116,7 +127,7 @@ class ElectromagnetismExplorer: Explorer {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-        engine.size = electromagneticView.frame.size
+//        engine.size = electromagneticView.frame.size
         
         articleView.load()
         articleScroll.contentSize = articleView.scrollViewContentSize

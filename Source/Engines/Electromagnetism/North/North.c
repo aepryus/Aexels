@@ -286,7 +286,6 @@ void NCUniversePing(NCUniverse* universe, int n) {
             ping->v.x = iQx;
             ping->v.y = iQy;
 
-            
             double tVx = teslon->v.x;
             double tVy = teslon->v.y;
             

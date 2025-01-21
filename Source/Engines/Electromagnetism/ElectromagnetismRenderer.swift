@@ -9,21 +9,18 @@
 import MetalKit
 import simd
 
-struct MetalUniverse {
+struct NorthCamera {
+    var position: SIMD2<Float>
     var bounds: SIMD2<Float>
-    var cameraPos: SIMD2<Float>
+    var velocity: SIMD2<Float>
 };
 
-struct MetalObject {
+struct NorthLoop {
+    var type: Int
     var position: SIMD2<Float>
     var velocity: SIMD2<Float>
-    var type: Int
-    var speed: Float
-    var orient: Float
-    var cupola: Float
+    var cupola: SIMD2<Float>
     var hyle: Float
-    var pad1: Float
-    var pad2: Float
 };
 
 class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
@@ -37,8 +34,11 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private var position: SIMD2<Float>
     private var lastUpdateTime: CFTimeInterval
     
-    private let universeBuffer: MTLBuffer
+    private let cameraBuffer: MTLBuffer
     private var initialized: Bool = false
+    
+    private let backgroundTexture: MTLTexture
+    private let backgroundPipelineState: MTLRenderPipelineState
     
     init?(metalView: MTKView) {
         guard let device = MTLCreateSystemDefaultDevice(),
@@ -53,9 +53,9 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         position = SIMD2<Float>(0, 0)
         lastUpdateTime = CACurrentMediaTime()
         
-        guard let universeBuffer = device.makeBuffer(length: MemoryLayout<Universe>.size, options: .storageModeShared) else { return nil }
+        guard let cameraBuffer = device.makeBuffer(length: MemoryLayout<NorthCamera>.size, options: .storageModeShared) else { return nil }
         
-        self.universeBuffer = universeBuffer
+        self.cameraBuffer = cameraBuffer
         
         let library = device.makeDefaultLibrary()!
         let vertexFunction = library.makeFunction(name: "em_vertex_shader")
@@ -83,6 +83,23 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
         camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
         
+        let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
+        let backgroundFragmentFunction = library.makeFunction(name: "northBackFragmentShader")
+        
+        let backgroundPipelineDescriptor = MTLRenderPipelineDescriptor()
+        backgroundPipelineDescriptor.vertexFunction = backgroundVertexFunction
+        backgroundPipelineDescriptor.fragmentFunction = backgroundFragmentFunction
+        backgroundPipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        
+        guard let backgroundPipelineState = try? device.makeRenderPipelineState(descriptor: backgroundPipelineDescriptor) else { return nil }
+        self.backgroundPipelineState = backgroundPipelineState
+        
+        // Create texture from your existing UIImage
+        let image = Engine.renderHex(size: CGSize(width: metalView.bounds.width, height: metalView.bounds.height))
+        let textureLoader = MTKTextureLoader(device: device)
+        guard let backgroundTexture = try? textureLoader.newTexture(cgImage: image.cgImage!, options: [.SRGB : false]) else { return nil }
+        self.backgroundTexture = backgroundTexture
+
         super.init()
         metalView.delegate = self
     }
@@ -92,7 +109,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     }
     
 // Events ==========================================================================================
-    func onPing() { NCUniversePing(universe, 1000) }
+    func onPing() { NCUniversePing(universe, 12*40) }
     
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
@@ -103,83 +120,76 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         
         NCUniverseTic(universe)
         
-        var metalUniverse: MetalUniverse = MetalUniverse(bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)), cameraPos: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)))
-        memcpy(universeBuffer.contents(), &metalUniverse, MemoryLayout<MetalUniverse>.size)
+        var camera: NorthCamera = NorthCamera(
+            position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),
+            bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)),
+            velocity: SIMD2<Float>(Float(camera.pointee.v.x), Float(camera.pointee.v.y))
+        )
+        memcpy(cameraBuffer.contents(), &camera, MemoryLayout<NorthCamera>.size)
         
-        var objects: [MetalObject] = []
-        var pings: [MetalObject] = []
+        var objects: [NorthLoop] = []
+        var pings: [NorthLoop] = []
 
         for i: Int in 0..<Int(universe.pointee.teslonCount) {
             let teslon: UnsafeMutablePointer<NCTeslon> = universe.pointee.teslons[i]!
-            let object: MetalObject = MetalObject(
+            let object: NorthLoop = NorthLoop(
+                type: 0,
                 position: SIMD2<Float>(Float(teslon.pointee.pos.x), Float(teslon.pointee.pos.y)),
                 velocity: SIMD2<Float>(0, 0),
-                type: 0,
-                speed: 0,
-                orient: 0,
-                cupola: 0,
-                hyle: Float(teslon.pointee.iHyle),
-                pad1: 0,
-                pad2: 0
+                cupola: SIMD2<Float>(0, 0),
+                hyle: Float(teslon.pointee.iHyle)
             )
             objects.append(object)
         }
         for i: Int in 0..<Int(universe.pointee.pingCount) {
             let ping: UnsafeMutablePointer<NCPing> = universe.pointee.pings[i]!
-            let object: MetalObject = MetalObject(
-                position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
-                velocity: SIMD2<Float>(0, 0),
+            let object: NorthLoop = NorthLoop(
                 type: 1,
-                speed: 0,
-                orient: 0,
-                cupola: 0,
-                hyle: 0,
-                pad1: 0,
-                pad2: 0
+                position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
+                velocity: SIMD2<Float>(Float(ping.pointee.v.x), Float(ping.pointee.v.y)),
+                cupola: SIMD2<Float>(Float(ping.pointee.cupola.x), Float(ping.pointee.cupola.y)),
+                hyle: 0
             )
             pings.append(object)
         }
         for i: Int in 0..<Int(universe.pointee.pongCount) {
             let pong: UnsafeMutablePointer<NCPong> = universe.pointee.pongs[i]!
-            let object: MetalObject = MetalObject(
-                position: SIMD2<Float>(Float(pong.pointee.pos.x), Float(pong.pointee.pos.y)),
-                velocity: SIMD2<Float>(0, 0),
+            let object: NorthLoop = NorthLoop(
                 type: 2,
-                speed: 0,
-                orient: 0,
-                cupola: 0,
-                hyle: 0,
-                pad1: 0,
-                pad2: 0
+                position: SIMD2<Float>(Float(pong.pointee.pos.x), Float(pong.pointee.pos.y)),
+                velocity: SIMD2<Float>(Float(pong.pointee.v.x), Float(pong.pointee.v.y)),
+                cupola: SIMD2<Float>(Float(pong.pointee.cupola.x), Float(pong.pointee.cupola.y)),
+                hyle: 0
             )
             objects.append(object)
         }
         for i: Int in 0..<Int(universe.pointee.photonCount) {
             let photon: UnsafeMutablePointer<NCPhoton> = universe.pointee.photons[i]!
-            let object: MetalObject = MetalObject(
-                position: SIMD2<Float>(Float(photon.pointee.pos.x), Float(photon.pointee.pos.y)),
-                velocity: SIMD2<Float>(0, 0),
+            let object: NorthLoop = NorthLoop(
                 type: 3,
-                speed: 0,
-                orient: 0,
-                cupola: 0,
-                hyle: Float(photon.pointee.hyle),
-                pad1: 0,
-                pad2: 0
+                position: SIMD2<Float>(Float(photon.pointee.pos.x), Float(photon.pointee.pos.y)),
+                velocity: SIMD2<Float>(Float(photon.pointee.v.x), Float(photon.pointee.v.y)),
+                cupola: SIMD2<Float>(Float(photon.pointee.cupola.x), Float(photon.pointee.cupola.y)),
+                hyle: Float(photon.pointee.hyle)
             )
             objects.append(object)
         }
         
-        let objectsBuffer = device.makeBuffer(bytes: objects, length: objects.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)!
-        let pingsBuffer: MTLBuffer? = pings.count == 0 ? nil : device.makeBuffer(bytes: pings, length: pings.count * MemoryLayout<MetalObject>.stride, options: .storageModeShared)
+        let objectsBuffer = device.makeBuffer(bytes: objects, length: objects.count * MemoryLayout<NorthLoop>.stride, options: .storageModeShared)!
+        let pingsBuffer: MTLBuffer? = pings.count == 0 ? nil : device.makeBuffer(bytes: pings, length: pings.count * MemoryLayout<NorthLoop>.stride, options: .storageModeShared)
 
         guard let commandBuffer = commandQueue.makeCommandBuffer(),
               let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
             return
         }
+        
+        renderEncoder.setRenderPipelineState(backgroundPipelineState)
+        renderEncoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
+        renderEncoder.setFragmentTexture(backgroundTexture, index: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
 
         renderEncoder.setRenderPipelineState(pipelineState)
-        renderEncoder.setVertexBuffer(universeBuffer, offset: 0, index: 0)
+        renderEncoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
         if let pingsBuffer {
             renderEncoder.setVertexBuffer(pingsBuffer, offset: 0, index: 1)
             renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: pings.count)
