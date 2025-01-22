@@ -38,6 +38,8 @@
 		D87C0DD32931A8250005B44D /* Contraction.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD22931A8250005B44D /* Contraction.latex */; };
 		D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881B7B8294BDED2004DE0DD /* CloseButton.swift */; };
 		D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88878BF2B7CBAF900BB3D09 /* Interchange.swift */; };
+		D896C9942D4096130058585C /* StepButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9932D40960B0058585C /* StepButton.swift */; };
+		D896C9962D4096940058585C /* TimeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9952D4096900058585C /* TimeControl.swift */; };
 		D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */; };
 		D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A472B79D5B800C28F93 /* ArticleView.swift */; };
 		D8AA5A512B7AEFD700282522 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA5A502B7AEFD700282522 /* Article.swift */; };
@@ -138,6 +140,8 @@
 		D87C0DD22931A8250005B44D /* Contraction.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Contraction.latex; sourceTree = "<group>"; };
 		D881B7B8294BDED2004DE0DD /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		D88878BF2B7CBAF900BB3D09 /* Interchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interchange.swift; sourceTree = "<group>"; };
+		D896C9932D40960B0058585C /* StepButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepButton.swift; sourceTree = "<group>"; };
+		D896C9952D4096900058585C /* TimeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControl.swift; sourceTree = "<group>"; };
 		D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphsView.swift; sourceTree = "<group>"; };
 		D8A63A472B79D5B800C28F93 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		D8AA5A502B7AEFD700282522 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
@@ -324,6 +328,17 @@
 			path = LaTeX;
 			sourceTree = "<group>";
 		};
+		D896C9922D4095030058585C /* TimeControl */ = {
+			isa = PBXGroup;
+			children = (
+				D896C9952D4096900058585C /* TimeControl.swift */,
+				D8AE17CD2814F1EC00E74CB8 /* PlayButton.swift */,
+				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
+				D896C9932D40960B0058585C /* StepButton.swift */,
+			);
+			path = TimeControl;
+			sourceTree = "<group>";
+		};
 		D8AA5A4F2B7AEFC200282522 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				D8DA98CB2B71DE0700A4AA8F /* Cells */,
+				D896C9922D4095030058585C /* TimeControl */,
 				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
 				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
@@ -424,8 +440,6 @@
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
 				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
 				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
-				D8AE17CD2814F1EC00E74CB8 /* PlayButton.swift */,
-				D8AE17E52814F20500E74CB8 /* ResetButton.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
@@ -760,6 +774,7 @@
 				D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */,
 				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
+				D896C9942D4096130058585C /* StepButton.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
@@ -787,6 +802,7 @@
 				D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
 				D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */,
+				D896C9962D4096940058585C /* TimeControl.swift in Sources */,
 				D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */,
 				D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,

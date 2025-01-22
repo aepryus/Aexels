@@ -14,6 +14,10 @@ class AXButton: UIControl {
 		super.init(frame: CGRect.zero)
 		backgroundColor = UIColor.clear
 	}
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor.clear
+    }
     @available(*, unavailable)
     required public init?(coder aDecoder: NSCoder) { fatalError() }
 

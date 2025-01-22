@@ -11,7 +11,15 @@ import MetalKit
 import UIKit
 
 class ElectromagnetismExplorer: Explorer {
-    let cyto: Cyto = Cyto(rows: 2, cols: 2)
+    private let cyto: Cyto = Cyto(rows: 4, cols: 2)
+    
+    private var metalView: MTKView!
+    let titleView: UIView = UIView()
+    let experimentView: UIView = UIView()
+    let controlsView: UIView = UIView()
+
+    let timeControl: TimeControl = TimeControl()
+    
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
     let cSlider: CSlider = CSlider()
@@ -21,9 +29,7 @@ class ElectromagnetismExplorer: Explorer {
     let autoSwap: BoolButton = BoolButton(text: "auto")
     let pingButton: PulseButton = PulseButton(name: "ping")
     let pongButton: PulseButton = PulseButton(name: "pong")
-    let controlsView: UIView = UIView()
     
-    private var metalView: MTKView!
     private var renderer: ElectromagnetismRenderer!
 
 //    let engine: ElectromagnetismEngine
@@ -58,25 +64,26 @@ class ElectromagnetismExplorer: Explorer {
         renderer = ElectromagnetismRenderer(metalView: metalView)
 
         cyto.cells = [
-            LimboCell(content: metalView, c: 0, r: 0),
-            LimboCell(content: controlsView, c: 0, r: 1),
-            MaskCell(content: articleScroll,c: 1, r: 0, h: 2, cutout: true)
+            LimboCell(content: metalView, c: 0, r: 0, h: 4),
+            MaskCell(content: titleView, c: 1, r: 0, cutout: true),
+            LimboCell(content: experimentView, c: 1, r: 1, h: 2),
+            LimboCell(content: controlsView, c: 1, r: 3),
         ]
         view.addSubview(cyto)
         
-        controlsView.addSubview(cSlider)
+//        controlsView.addSubview(cSlider)
         cSlider.onChange = { (speedOfLight: Double) in
 //            self.engine.speedOfLight = speedOfLight
         }
                 
         vSlider.velocity = 0
-        controlsView.addSubview(vSlider)
+//        controlsView.addSubview(vSlider)
         vSlider.onChange = { (velocity: Double) in
 //            self.engine.velocity = velocity
         }
         
         playButton.playing = true
-        controlsView.addSubview(playButton)
+//        controlsView.addSubview(playButton)
         playButton.onPlay = {
 //            self.engine.play()
         }
@@ -84,17 +91,19 @@ class ElectromagnetismExplorer: Explorer {
 //            self.engine.stop()
         }
 
-        controlsView.addSubview(resetButton)
+//        controlsView.addSubview(resetButton)
         resetButton.addAction(for: .touchUpInside) {
 //            self.engine.reset()
 //            self.engine.tic()
         }
         
-        controlsView.addSubview(autoSwap)
+//        controlsView.addSubview(autoSwap)
         autoSwap.addAction(for: .touchUpInside) { [unowned self] in
             self.autoSwap.rotateView()
 //            self.engine.autoOn = !self.engine.autoOn
         }
+
+        controlsView.addSubview(timeControl)
 
         controlsView.addSubview(pingButton)
         pingButton.addAction { [unowned self] in
@@ -103,8 +112,9 @@ class ElectromagnetismExplorer: Explorer {
 
         controlsView.addSubview(pongButton)
         pongButton.addAction {
-//            self.engine.onPong()
+            self.renderer.onPong()
         }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -120,14 +130,16 @@ class ElectromagnetismExplorer: Explorer {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)
-        let universeWidth: CGFloat = cytoSize.height - 110*s
+        let universeWidth: CGFloat = cytoSize.height
 
         cyto.Xs = [universeWidth]
-        cyto.Ys = [universeWidth]
+        cyto.Ys = [70*s, universeWidth/2-70*s, universeWidth/2-110*s, 110*s]
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
 //        engine.size = electromagneticView.frame.size
+        
+        timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         
         articleView.load()
         articleScroll.contentSize = articleView.scrollViewContentSize
@@ -141,8 +153,8 @@ class ElectromagnetismExplorer: Explorer {
         cSlider.topLeft(dx: resetButton.right+18*s, dy: 1*s, width: 140*s, height: 40*s)
         vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
         autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
-        pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
-        pongButton.right(dx: -85*s, width: 60*s, height: 80*s)
+        pingButton.right(dx: -85*s, width: 60*s, height: 80*s)
+        pongButton.right(dx: -15*s, width: 60*s, height: 80*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.0)

@@ -110,6 +110,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     
 // Events ==========================================================================================
     func onPing() { NCUniversePing(universe, 12*40) }
+    func onPong() { NCUniversePong(universe) }
     
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
