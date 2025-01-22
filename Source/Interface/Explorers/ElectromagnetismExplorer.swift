@@ -10,7 +10,7 @@ import Acheron
 import MetalKit
 import UIKit
 
-class ElectromagnetismExplorer: Explorer {
+class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     private let cyto: Cyto = Cyto(rows: 4, cols: 2)
     
     private var metalView: MTKView!
@@ -32,17 +32,7 @@ class ElectromagnetismExplorer: Explorer {
     
     private var renderer: ElectromagnetismRenderer!
 
-//    let engine: ElectromagnetismEngine
-//    lazy var electromagneticView = ElectromagnetismView(engine: engine)
-
     init() {
-//        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
-//        let s: CGFloat = height / 748
-//        let mainLen: CGFloat = height - 110*s
-//        let fixLen: CGFloat = Screen.width - mainLen - 10*s
-
-//        engine = ElectromagnetismEngine(size: CGSize(width: 500, height: 500))
-
         super.init(key: "electromagnetism")
     }
     
@@ -56,7 +46,7 @@ class ElectromagnetismExplorer: Explorer {
         articleView.key = "\(key)Lab"
         articleScroll.addSubview(articleView)
         
-        metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 850.256545593444, height: 850.256545593444)))
+        metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
         metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         metalView.isOpaque = false
         view.addSubview(metalView)
@@ -103,6 +93,8 @@ class ElectromagnetismExplorer: Explorer {
 //            self.engine.autoOn = !self.engine.autoOn
         }
 
+        timeControl.playButton.playing = true
+        timeControl.delegate = self
         controlsView.addSubview(timeControl)
 
         controlsView.addSubview(pingButton)
@@ -158,5 +150,21 @@ class ElectromagnetismExplorer: Explorer {
 
         cSlider.setTo(60)
         vSlider.setTo(0.0)
+    }
+    
+// TimeControlDelegate =============================================================================
+    func onPlay() {
+        metalView.isPaused = false
+    }
+    func onStep() {
+        metalView.draw()
+    }
+    func onReset() {
+        renderer.onReset()
+        metalView.draw()
+        timeControl.playButton.stop()
+    }
+    func onStop() {
+        metalView.isPaused = true
     }
 }

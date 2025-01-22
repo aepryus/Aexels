@@ -14,8 +14,7 @@ import UIKit
 class ResetButton: AXButton {
     
     override init() {
-        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 34*Screen.s * 0.7)))
-//        backgroundColor = .red
+        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 26*Screen.s)))
     }
 
 // UIView ==========================================================================================
@@ -68,9 +67,5 @@ class ResetButton: AXButton {
         c.setStrokeColor(stroke.cgColor)
         c.setLineWidth(2*s)
         c.drawPath(using: .fillStroke)
-        
-        print("iy9:\(iy9/s)")
-        print("p:\(p/s)")
-
     }
 }

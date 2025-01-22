@@ -9,7 +9,22 @@
 import Acheron
 import UIKit
 
+protocol TimeControlDelegate: AnyObject {
+    func onPlay()
+    func onStep()
+    func onReset()
+    func onStop()
+}
+extension TimeControlDelegate {
+    func onPlay() {}
+    func onStep() {}
+    func onReset() {}
+    func onStop() {}
+}
+
 class TimeControl: AEView {
+    weak var delegate: TimeControlDelegate?
+    
     let playButton: PlayButton = PlayButton()
     let resetButton: ResetButton = ResetButton()
     let stepButton: StepButton = StepButton()
@@ -20,9 +35,15 @@ class TimeControl: AEView {
         super.init()
         backgroundColor = .clear
         renderPath()
+        
+        playButton.onPlay = { self.delegate?.onPlay() }
+        stepButton.addAction { self.delegate?.onStep() }
+        resetButton.addAction { self.delegate?.onReset() }
+        playButton.onStop = { self.delegate?.onStop() }
+
         addSubview(playButton)
-        addSubview(resetButton)
         addSubview(stepButton)
+        addSubview(resetButton)
     }
     
     func renderPath() {
@@ -51,10 +72,8 @@ class TimeControl: AEView {
     }
     override func layoutSubviews() {
         playButton.center(size: playButton.bounds.size)
-        resetButton.center(dx: -33*s, size: resetButton.bounds.size)
         stepButton.center(dx: 33*s, size: stepButton.bounds.size)
-        
-        print("qq:\(playButton.frame)")
+        resetButton.center(dx: -33*s, size: resetButton.bounds.size)
     }
     override func draw(_ rect: CGRect) {
         let stroke = UIColor.white

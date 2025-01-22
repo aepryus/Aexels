@@ -304,10 +304,14 @@ void NCUniversePong(NCUniverse* universe) {
         NCPing* ping = universe->pings[j];
         NCPong* pong = NCUniverseCreatePongWithPos(universe, ping->pos);
         pong->pos = ping->pos;
-        pong->v.x = -(2 * ping->cupola.x - ping->v.x);
-        pong->v.y = -(2 * ping->cupola.y - ping->v.y);
-        pong->cupola.x = -ping->cupola.x;
-        pong->cupola.y = -ping->cupola.y;
+        float dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
+        float dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
+        float scale = 2.0f * dot / dot2;
+        pong->v.x = ping->v.x - scale * ping->cupola.x;
+        pong->v.y = ping->v.y - scale * ping->cupola.y;
+        
+        pong->cupola.x = 0;
+        pong->cupola.y = 0;
         ping->recycle = 1;
     }
 }

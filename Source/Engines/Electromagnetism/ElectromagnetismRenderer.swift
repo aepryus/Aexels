@@ -40,7 +40,11 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let backgroundTexture: MTLTexture
     private let backgroundPipelineState: MTLRenderPipelineState
     
+    private weak var metalView: MTKView?
+    
     init?(metalView: MTKView) {
+        self.metalView = metalView
+        
         guard let device = MTLCreateSystemDefaultDevice(),
               let commandQueue = device.makeCommandQueue() else {
             return nil
@@ -111,6 +115,14 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
 // Events ==========================================================================================
     func onPing() { NCUniversePing(universe, 12*40) }
     func onPong() { NCUniversePong(universe) }
+    func onReset() {        
+        guard let metalView else { return }
+        NCUniverseRelease(universe)
+        universe = NCUniverseCreate(metalView.width, metalView.height)
+        NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
+        NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
+        camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
+    }
     
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}

@@ -13,8 +13,7 @@ import UIKit
 class StepButton: AXButton {
     
     override init() {
-        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 29*Screen.s*0.9)))
-//        backgroundColor = .red
+        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 26*Screen.s)))
     }
     
 // UIView ==========================================================================================
@@ -24,7 +23,7 @@ class StepButton: AXButton {
         let bw: CGFloat = 3*s                // bar width
         let mw: CGFloat = 3*s                // margin width
         
-        let x1: CGFloat = 20*s
+        let x1: CGFloat = 13*s
         let x3 = x1+bw
         let x2 = (x1+x3)/2
         let x4 = x3+mw

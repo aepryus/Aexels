@@ -22,8 +22,6 @@
 		D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngine.swift */; };
 		D818929F2C7195FE0018E4B9 /* Start in Resources */ = {isa = PBXBuildFile; fileRef = D818929E2C7195FE0018E4B9 /* Start */; };
 		D81892A12C729DAC0018E4B9 /* Original in Resources */ = {isa = PBXBuildFile; fileRef = D81892A02C729DAC0018E4B9 /* Original */; };
-		D823A2612D0A900700A72DDF /* ElectromagentismEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */; };
-		D823A2642D0A915000A72DDF /* ElectromagnetismView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */; };
 		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
@@ -123,8 +121,6 @@
 		D813B7682AA6B892003851AE /* GravityEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngine.swift; sourceTree = "<group>"; };
 		D818929E2C7195FE0018E4B9 /* Start */ = {isa = PBXFileReference; lastKnownFileType = text; path = Start; sourceTree = "<group>"; wrapsLines = 1; };
 		D81892A02C729DAC0018E4B9 /* Original */ = {isa = PBXFileReference; lastKnownFileType = text; path = Original; sourceTree = "<group>"; wrapsLines = 1; };
-		D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagentismEngine.swift; sourceTree = "<group>"; };
-		D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismView.swift; sourceTree = "<group>"; };
 		D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
 		D823A2682D0ABE2700A72DDF /* North.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = North.h; sourceTree = "<group>"; };
 		D823A2692D0ABE3E00A72DDF /* North.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = North.c; sourceTree = "<group>"; };
@@ -269,7 +265,6 @@
 				D8FA8B002D375E1400211980 /* Distance */,
 				D8AE17592814EB3600E74CB8 /* Gravity */,
 				D8AE175A2814EB3E00E74CB8 /* Dilation */,
-				D823A2622D0A913000A72DDF /* Electromagnetism */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,14 +276,6 @@
 				D81892A02C729DAC0018E4B9 /* Original */,
 			);
 			path = Claude;
-			sourceTree = "<group>";
-		};
-		D823A2622D0A913000A72DDF /* Electromagnetism */ = {
-			isa = PBXGroup;
-			children = (
-				D823A2632D0A914900A72DDF /* ElectromagnetismView.swift */,
-			);
-			path = Electromagnetism;
 			sourceTree = "<group>";
 		};
 		D823A2672D0ABDE300A72DDF /* North */ = {
@@ -590,7 +577,6 @@
 				D823A2672D0ABDE300A72DDF /* North */,
 				D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */,
 				D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */,
-				D823A2602D0A8FFC00A72DDF /* ElectromagentismEngine.swift */,
 			);
 			path = Electromagnetism;
 			sourceTree = "<group>";
@@ -765,7 +751,6 @@
 				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D850F44C293F2EB30091F15A /* DilationEngine.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
-				D823A2642D0A915000A72DDF /* ElectromagnetismView.swift in Sources */,
 				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,
 				D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
@@ -794,7 +779,6 @@
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D8FA8B022D375EF500211980 /* DistanceView.swift in Sources */,
-				D823A2612D0A900700A72DDF /* ElectromagentismEngine.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,

@@ -23,7 +23,7 @@ class PlayButton: AXButton {
 		self.onPlay = {}
 		self.onStop = {}
 		color = UIColor(red: 0.99, green: 0.99, blue: 0.99, alpha: 1)
-        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 32*Screen.s)))
+        super.init(frame: CGRect(origin: .zero, size: CGSize(width: 32*Screen.s, height: 30*Screen.s)))
 		addAction(for: .touchUpInside) {
 			self.playing = !self.playing
 			self.setNeedsDisplay()
@@ -33,9 +33,7 @@ class PlayButton: AXButton {
 				self.onStop()
 			}
 		}
-//        backgroundColor = .red
 	}
-	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 	func play() {
 		if playing {return}
@@ -65,7 +63,7 @@ class PlayButton: AXButton {
             let x4: CGFloat = frame.size.width/2
             let ix10: CGFloat = CGFloat(x4-pl)
             let ix11: CGFloat = x4+pr
-            let iy1: CGFloat = p
+            let iy1: CGFloat = p+1*s
             let iy2: CGFloat = iy1+ir
             let iy6: CGFloat = iy2-ph
             let iy9: CGFloat = iy2+ph
@@ -77,9 +75,6 @@ class PlayButton: AXButton {
             path.addArc(tangent1End: CGPoint(x: ix11, y: iy2), tangent2End: CGPoint(x: x4, y: iy8), radius: 2, transform: .identity)
             path.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: 2, transform: .identity)
             path.closeSubpath()
-            print("iy9:\(iy9/s)")
-            print("p:\(p/s)")
-
         } else {
             let p: CGFloat = 3*s
             let ph: CGFloat = 9*s
@@ -111,8 +106,6 @@ class PlayButton: AXButton {
             path.addArc(tangent1End: CGPoint(x: ix15, y: iy9), tangent2End: CGPoint(x: ix14, y: iy9), radius: r, transform: .identity)
             path.addArc(tangent1End: CGPoint(x: ix13, y: iy9), tangent2End: CGPoint(x: ix13, y: iy2), radius: r, transform: .identity)
             path.closeSubpath()
-            print("iy9:\(iy9/s)")
-            print("p:\(p/s)")
         }
         
         let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white

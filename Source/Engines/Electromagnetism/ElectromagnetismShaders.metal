@@ -153,10 +153,12 @@ float4 renderPong(FragmentPacket in) {
     float r = length_squared(in.local);
     
     float E = dot(in.frame, in.cupola);
-    float B = in.frame.x * in.cupola.y - in.frame.y * in.cupola.x;
-    
+    float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
+    float EE = E == 0 && B == 0 ? 0 : E/(2*(E+B));
+    float BB = E == 0 && B == 0 ? 0 : B/(2*(E+B));
+
     // draw inner circle
-    if (r < 1.0/9.0) { return float4(0.5 + E/(2*(E+B)), 0.5, 0.5 + B/(2*(E+B)), 1.0); }
+    if (r < 1.0/9.0) { return float4(0.5 + EE, 0.5, 0.5 + BB, 1.0); }
     if (r < 0.13) { return float4(0.4, 0.4, 0.4, 1.0); }
 
     // draw cupola vector
