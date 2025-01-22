@@ -1,15 +1,24 @@
 //
-//  LimboCell.swift
+//  TabsCell.swift
 //  Aexels
 //
-//  Created by Joe Charlier on 2/4/24.
-//  Copyright © 2024 Aepryus Software. All rights reserved.
+//  Created by Joe Charlier on 1/22/25.
+//  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
 import Acheron
 import UIKit
 
-class LimboCell: Cyto.Cell {
+class TabsCellTab: AEView {
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+        super.init()
+    }
+}
+
+class TabsCell: Cyto.Cell {
     class Path {
         var strokePath: CGPath!
         var shadowPath: CGPath!
@@ -28,6 +37,7 @@ class LimboCell: Cyto.Cell {
     var contentSize: CGSize? {
         didSet { layoutContent() }
     }
+    var tabs: [TabsCellTab] = []
     
     let cutout: Bool
     

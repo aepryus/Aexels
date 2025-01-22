@@ -18,8 +18,16 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let experimentView: UIView = UIView()
     let controlsView: UIView = UIView()
 
-    let timeControl: TimeControl = TimeControl()
+    // Metal ======
+    private var renderer: ElectromagnetismRenderer!
+
+    // Title ======
+    let titleLabel: UILabel = UILabel()
     
+    // Controls ===
+    let timeControl: TimeControl = TimeControl()
+    let pingButton: PulseButton = PulseButton(name: "ping")
+
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
     let cSlider: CSlider = CSlider()
@@ -27,10 +35,8 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let playButton: PlayButton = PlayButton()
     let resetButton: ResetButton = ResetButton()
     let autoSwap: BoolButton = BoolButton(text: "auto")
-    let pingButton: PulseButton = PulseButton(name: "ping")
     let pongButton: PulseButton = PulseButton(name: "pong")
     
-    private var renderer: ElectromagnetismRenderer!
 
     init() {
         super.init(key: "electromagnetism")
@@ -52,14 +58,27 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         view.addSubview(metalView)
         
         renderer = ElectromagnetismRenderer(metalView: metalView)
+        
+        let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
+        tabsCell.tabs = [
+            TabsCellTab(name: "Parameters"),
+            TabsCellTab(name: "Zoom"),
+            TabsCellTab(name: "Experiments"),
+            TabsCellTab(name: "Notes")
+        ]
 
         cyto.cells = [
             LimboCell(content: metalView, c: 0, r: 0, h: 4),
             MaskCell(content: titleView, c: 1, r: 0, cutout: true),
-            LimboCell(content: experimentView, c: 1, r: 1, h: 2),
+            tabsCell,
             LimboCell(content: controlsView, c: 1, r: 3),
         ]
         view.addSubview(cyto)
+        
+        // Title ========
+        titleLabel.text = "Electricity and Magnetism".localized
+        titleLabel.pen = Pen(font: .optima(size: 20*s), color: .white, alignment: .center)
+        titleView.addSubview(titleLabel)
         
 //        controlsView.addSubview(cSlider)
         cSlider.onChange = { (speedOfLight: Double) in
@@ -130,6 +149,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         cyto.layout()
         
 //        engine.size = electromagneticView.frame.size
+        titleLabel.center(width: 300*s, height: 24*s)
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         
