@@ -28,15 +28,11 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let timeControl: TimeControl = TimeControl()
     let pingButton: PulseButton = PulseButton(name: "ping")
 
-    let articleScroll: UIScrollView = UIScrollView()
-    let articleView: ArticleView = ArticleView()
-    let cSlider: CSlider = CSlider()
-    let vSlider: VSlider = VSlider()
-    let playButton: PlayButton = PlayButton()
-    let resetButton: ResetButton = ResetButton()
-    let autoSwap: BoolButton = BoolButton(text: "auto")
-    let pongButton: PulseButton = PulseButton(name: "pong")
-    
+    private var parametersTab: ParametersTab!
+    let zoomsTab: TabsCellTab = TabsCellTab(name: "Zooms".localized)
+    let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
+    let notesTab: NotesTab = NotesTab(key: "electromagnetism")
+
 
     init() {
         super.init(key: "electromagnetism")
@@ -46,26 +42,16 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleView.font = UIFont(name: "Verdana", size: 18*s)!
-        articleView.color = .white
-        articleView.scrollView = articleScroll
-        articleView.key = "\(key)Lab"
-        articleScroll.addSubview(articleView)
-        
         metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
         metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         metalView.isOpaque = false
         view.addSubview(metalView)
         
         renderer = ElectromagnetismRenderer(metalView: metalView)
+        parametersTab = ParametersTab(renderer: renderer)
         
         let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
-        tabsCell.tabs = [
-            TabsCellTab(name: "Parameters"),
-            TabsCellTab(name: "Zoom"),
-            TabsCellTab(name: "Experiments"),
-            TabsCellTab(name: "Notes")
-        ]
+        tabsCell.tabs = [parametersTab, zoomsTab, experimentsTab, notesTab]
 
         cyto.cells = [
             LimboCell(content: metalView, c: 0, r: 0, h: 4),
@@ -80,38 +66,6 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         titleLabel.pen = Pen(font: .optima(size: 20*s), color: .white, alignment: .center)
         titleView.addSubview(titleLabel)
         
-//        controlsView.addSubview(cSlider)
-        cSlider.onChange = { (speedOfLight: Double) in
-//            self.engine.speedOfLight = speedOfLight
-        }
-                
-        vSlider.velocity = 0
-//        controlsView.addSubview(vSlider)
-        vSlider.onChange = { (velocity: Double) in
-//            self.engine.velocity = velocity
-        }
-        
-        playButton.playing = true
-//        controlsView.addSubview(playButton)
-        playButton.onPlay = {
-//            self.engine.play()
-        }
-        playButton.onStop = {
-//            self.engine.stop()
-        }
-
-//        controlsView.addSubview(resetButton)
-        resetButton.addAction(for: .touchUpInside) {
-//            self.engine.reset()
-//            self.engine.tic()
-        }
-        
-//        controlsView.addSubview(autoSwap)
-        autoSwap.addAction(for: .touchUpInside) { [unowned self] in
-            self.autoSwap.rotateView()
-//            self.engine.autoOn = !self.engine.autoOn
-        }
-
         timeControl.playButton.playing = true
         timeControl.delegate = self
         controlsView.addSubview(timeControl)
@@ -121,10 +75,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
             self.renderer.onPing()
         }
 
-        controlsView.addSubview(pongButton)
-        pongButton.addAction {
-            self.renderer.onPong()
-        }
+//        controlsView.addSubview(pongButton)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -153,23 +104,10 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         
-        articleView.load()
-        articleScroll.contentSize = articleView.scrollViewContentSize
-        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
         
 //        let w = UIScreen.main.bounds.size.width - 10*s
 
-        let bw: CGFloat = 40*s
-        playButton.left(size: CGSize(width: bw, height: 30*s))
-        resetButton.left(dx: bw, size: CGSize(width: bw, height: 30*s))
-        cSlider.topLeft(dx: resetButton.right+18*s, dy: 1*s, width: 140*s, height: 40*s)
-        vSlider.topLeft(dx: cSlider.right+20*s, dy: cSlider.top, width: 140*s, height: 40*s)
-        autoSwap.left(dx: vSlider.right+30*s, dy: -30*s)
-        pingButton.right(dx: -85*s, width: 60*s, height: 80*s)
-        pongButton.right(dx: -15*s, width: 60*s, height: 80*s)
-
-        cSlider.setTo(60)
-        vSlider.setTo(0.0)
+        pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
     }
     
 // TimeControlDelegate =============================================================================

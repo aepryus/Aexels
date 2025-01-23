@@ -10,7 +10,7 @@ import Acheron
 import OoviumEngine
 import UIKit
 
-class BoolButton: UIControl {
+class BoolButtonOld: UIControl {
     let swapButton: SwapButton = SwapButton(expandHitBox: false)
     let label: UILabel = UILabel()
     
