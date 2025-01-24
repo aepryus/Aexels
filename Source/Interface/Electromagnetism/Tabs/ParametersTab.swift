@@ -19,7 +19,7 @@ class ParametersTab: TabsCellTab {
 
     let speedOfLightSlider: CSlider = CSlider()
     let speedOfAetherSlider: VSlider = VSlider()
-    let volliesPerSecondSlider: Slider = Slider()
+    let timeStepsPerVolleySlider: Slider = Slider()
     let pingsPerVolleySlider: Slider = Slider()
     
     let autoSwap: BoolButtonOld = BoolButtonOld(text: "auto volley")
@@ -31,7 +31,7 @@ class ParametersTab: TabsCellTab {
         self.renderer = renderer
         super.init(name: "Parameters".localized)
         
-        let pen: Pen = Pen(font: .avenir(size: 13*s), color: .white)
+        let pen: Pen = Pen(font: .avenir(size: 13*s), color: .white, alignment: .right)
         
         speedOfLightLabel.text = "speed of light".localized
         speedOfLightLabel.pen = pen
@@ -45,20 +45,30 @@ class ParametersTab: TabsCellTab {
         pingsPerVolleyLabel.pen = pen
         addSubview(pingsPerVolleyLabel)
 
-        volliesPerSecondLabel.text = "volley frequency".localized
+        volliesPerSecondLabel.text = "time steps per volley".localized
         volliesPerSecondLabel.pen = pen
         
         addSubview(volliesPerSecondLabel)
         
-        
         addSubview(speedOfLightSlider)
+        speedOfLightSlider.onChange = { (speedOfLight: Double) in
+        }
+        
         addSubview(speedOfAetherSlider)
+        speedOfAetherSlider.onChange = { (speedOfAether: Double) in
+        }
         
         pingsPerVolleySlider.options = [12, 24, 36, 48, 60, 120, 240, 360, 480, 600, 900, 1200]
         addSubview(pingsPerVolleySlider)
+        pingsPerVolleySlider.onChange = { (pingsPerVolley: Int) in
+            self.renderer.pingsPerVolley = Int32(pingsPerVolley)
+        }
 
-        volliesPerSecondSlider.options = [10, 12, 15, 20, 30, 60, 120, 180, 240, 480, 960, 1920]
-        addSubview(volliesPerSecondSlider)
+        timeStepsPerVolleySlider.options = [10, 12, 15, 20, 30, 60, 120, 180, 240, 480, 960, 1920]
+        addSubview(timeStepsPerVolleySlider)
+        timeStepsPerVolleySlider.onChange = { (timeStepsPerVolley: Int) in
+            self.renderer.timeStepsPerVolley = timeStepsPerVolley
+        }
 
         addSubview(autoSwap)
         addSubview(hyleOnSwap)
@@ -86,6 +96,10 @@ class ParametersTab: TabsCellTab {
             self.renderer.onPong()
         }
 
+        speedOfLightSlider.setTo(60)
+        speedOfAetherSlider.setTo(0.0)
+        pingsPerVolleySlider.setTo(480)
+        timeStepsPerVolleySlider.setTo(60)
     }
     
 // UIView ==========================================================================================
@@ -93,33 +107,35 @@ class ParametersTab: TabsCellTab {
         
         var y: CGFloat = 20*s
         
-        speedOfLightLabel.topLeft(dx: 14*s, dy: y, width: 120*s, height: 18*s)
+        speedOfLightLabel.topRight(dx: -14*s, dy: y, width: 120*s, height: 18*s)
         y += 12*s
         speedOfLightSlider.top(dy: y, width: 300*s, height: 40*s)
         y += 50*s
         
-        speedOfAetherLabel.topLeft(dx: 14*s, dy: y, width: 120*s, height: 18*s)
+        speedOfAetherLabel.topRight(dx: -14*s, dy: y, width: 120*s, height: 18*s)
         y += 12*s
         speedOfAetherSlider.top(dy: y, width: 300*s, height: 40*s)
         y += 50*s
         
-        pingsPerVolleyLabel.topLeft(dx: 14*s, dy: y, width: 120*s, height: 18*s)
+        pingsPerVolleyLabel.topRight(dx: -14*s, dy: y, width: 120*s, height: 18*s)
         y += 12*s
         pingsPerVolleySlider.top(dy: y, width: 300*s, height: 40*s)
         y += 50*s
 
-        autoSwap.topLeft(dx: 10*s, dy: y)
-        y += 30*s
-        volliesPerSecondLabel.topLeft(dx: 14*s, dy: y, width: 120*s, height: 18*s)
+        volliesPerSecondLabel.topRight(dx: -14*s, dy: y, width: 120*s, height: 18*s)
         y += 12*s
-        volliesPerSecondSlider.top(dy: y, width: 300*s, height: 40*s)
+        timeStepsPerVolleySlider.top(dy: y, width: 300*s, height: 40*s)
         y += 50*s
 
+        autoSwap.topLeft(dx: 10*s, dy: y)
+        y += 30*s
         hyleOnSwap.topLeft(dx: 10*s, dy: y)
 
         pongButton.bottomRight(dx: -30*s, dy: -100*s, width: 60*s, height: 80*s)
 
         speedOfLightSlider.setTo(60)
         speedOfAetherSlider.setTo(0.0)
+        pingsPerVolleySlider.setTo(480)
+        timeStepsPerVolleySlider.setTo(60)
     }
 }

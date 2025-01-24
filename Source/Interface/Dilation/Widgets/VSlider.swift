@@ -29,6 +29,8 @@ class VSlider: UIView, UIGestureRecognizerDelegate {
     
     func setTo(_ value: Double) {
         position = CGFloat(availableVelocities.firstIndex(where: { $0 == value }) ?? 0)/CGFloat(availableVelocities.count)
+        velocity = availableVelocities[Int(round(CGFloat(availableVelocities.count-1) * position))]
+        setNeedsDisplay()
     }
     
 // Events ==========================================================================================

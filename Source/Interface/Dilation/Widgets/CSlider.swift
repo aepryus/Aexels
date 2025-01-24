@@ -29,6 +29,8 @@ class CSlider: UIView, UIGestureRecognizerDelegate {
     
     func setTo(_ value: Double) {
         position = CGFloat(availableSpeedsOfLight.firstIndex(where: { $0 == value }) ?? 0)
+        speedOfLight = availableSpeedsOfLight[Int(round(CGFloat(availableSpeedsOfLight.count-1) * position))]
+        setNeedsDisplay()
     }
     
 // Events ==========================================================================================

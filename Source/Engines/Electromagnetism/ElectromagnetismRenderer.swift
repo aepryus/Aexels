@@ -45,7 +45,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     var t: Int = 0
     
     var autoOn: Bool = true
-    var volleyPeriod: Int = 60
+    var timeStepsPerVolley: Int = 60
     var pingsPerVolley: Int32 = 480
     
     init?(metalView: MTKView) {
@@ -138,7 +138,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         else { return }
         
         t += 1
-        if autoOn && t % volleyPeriod == 0 { NCUniversePing(universe, pingsPerVolley) }
+        if autoOn && t % timeStepsPerVolley == 0 { NCUniversePing(universe, pingsPerVolley) }
         
         NCUniverseTic(universe)
         

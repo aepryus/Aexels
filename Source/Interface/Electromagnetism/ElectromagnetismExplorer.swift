@@ -34,9 +34,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let notesTab: NotesTab = NotesTab(key: "electromagnetism")
 
 
-    init() {
-        super.init(key: "electromagnetism")
-    }
+    init() { super.init(key: "electromagnetism") }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
@@ -74,17 +72,6 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         pingButton.addAction { [unowned self] in
             self.renderer.onPing()
         }
-
-//        controlsView.addSubview(pongButton)
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        engine.play()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        engine.stop()
     }
 
 // AEViewController ================================================================================
@@ -99,14 +86,10 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-//        engine.size = electromagneticView.frame.size
         titleLabel.center(width: 300*s, height: 24*s)
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         
-        
-//        let w = UIScreen.main.bounds.size.width - 10*s
-
         pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
     }
     

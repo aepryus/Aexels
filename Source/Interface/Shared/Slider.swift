@@ -35,6 +35,8 @@ class Slider: UIView, UIGestureRecognizerDelegate {
     
     func setTo(_ value: Int) {
         position = CGFloat(options.firstIndex(where: { $0 == value }) ?? 0)/CGFloat(options.count)
+        option = options[Int(round(CGFloat(options.count-1) * position))]
+        setNeedsDisplay()
     }
     
 // Events ==========================================================================================
