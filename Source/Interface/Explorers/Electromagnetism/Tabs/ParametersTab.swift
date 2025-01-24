@@ -54,9 +54,10 @@ class ParametersTab: TabsCellTab {
         addSubview(speedOfLightSlider)
         addSubview(speedOfAetherSlider)
         
-        pingsPerVolleySlider.options = Array(stride(from: 12, through: 1200, by: 12))
+        pingsPerVolleySlider.options = [12, 24, 36, 48, 60, 120, 240, 360, 480, 600, 900, 1200]
         addSubview(pingsPerVolleySlider)
 
+        volliesPerSecondSlider.options = [10, 12, 15, 20, 30, 60, 120, 180, 240, 480, 960, 1920]
         addSubview(volliesPerSecondSlider)
 
         addSubview(autoSwap)

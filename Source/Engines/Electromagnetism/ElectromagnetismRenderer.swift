@@ -42,6 +42,12 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     
     private weak var metalView: MTKView?
     
+    var t: Int = 0
+    
+    var autoOn: Bool = true
+    var volleyPeriod: Int = 60
+    var pingsPerVolley: Int32 = 480
+    
     init?(metalView: MTKView) {
         self.metalView = metalView
         
@@ -115,7 +121,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
 // Events ==========================================================================================
     func onPing() { NCUniversePing(universe, 12*40) }
     func onPong() { NCUniversePong(universe) }
-    func onReset() {        
+    func onReset() {
         guard let metalView else { return }
         NCUniverseRelease(universe)
         universe = NCUniverseCreate(metalView.width, metalView.height)
@@ -131,7 +137,11 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
               let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor
         else { return }
         
+        t += 1
+        if autoOn && t % volleyPeriod == 0 { NCUniversePing(universe, pingsPerVolley) }
+        
         NCUniverseTic(universe)
+        
         
         var camera: NorthCamera = NorthCamera(
             position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),

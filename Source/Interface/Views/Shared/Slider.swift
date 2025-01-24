@@ -15,7 +15,7 @@ class Slider: UIView, UIGestureRecognizerDelegate {
 
     var pen2: Pen = Pen(font: .avenir(size: 15*Screen.s), color: .white, alignment: .center)
     var pen3: Pen = Pen(font: .avenir(size: 11*Screen.s), color: .white, alignment: .center)
-    var pen4: Pen = Pen(font: .avenir(size: 8*Screen.s), color: .white, alignment: .center)
+    var pen4: Pen = Pen(font: .avenir(size: 9*Screen.s), color: .white, alignment: .center)
 
     private var position: CGFloat = 1
 
@@ -91,7 +91,7 @@ class Slider: UIView, UIGestureRecognizerDelegate {
 
         if option < 100 { "\(option)".draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), pen: pen2) }
         else if option < 1000 { "\(option)".draw(in: CGRect(x: x2+6*s, y: y1+5*s, width: 20*s, height: 16*s), pen: pen3) }
-        else { "\(option)".draw(in: CGRect(x: x2+6*s, y: y1+7*s, width: 20*s, height: 16*s), pen: pen4) }
+        else { "\(option)".draw(in: CGRect(x: x2+4*s, y: y1+6*s, width: 24*s, height: 12*s), pen: pen4) }
             
     }
 
