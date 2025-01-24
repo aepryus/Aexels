@@ -120,6 +120,7 @@ class ExplorerViewController: AEViewController {
         rampVolume()
     }
     func stopMusic() {
+        guard Aexels.settings.musicOn else { return }
         musicOn = false
         rampVolume()
     }

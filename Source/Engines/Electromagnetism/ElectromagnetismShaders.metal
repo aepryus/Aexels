@@ -121,7 +121,7 @@ float4 renderTeslon(FragmentPacket in) {
     
     if ((dist < innerRadius || dist > outerRadius)) { return float4(0.0, 0.0, 0.0, 0.0); }
     
-    return float4(0.7, 0.8, 0.9, 1.0);
+    return float4(1.0, 1.0, 1.0, 1.0);
 }
 float4 renderPing(FragmentPacket in) {
     float r = length_squared(in.local);
@@ -154,11 +154,11 @@ float4 renderPong(FragmentPacket in) {
     
     float E = dot(in.frame, in.cupola);
     float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
-    float EE = E == 0 && B == 0 ? 0 : E/(2*(E+B));
-    float BB = E == 0 && B == 0 ? 0 : B/(2*(E+B));
+    float EE = E == 0 && B == 0 ? 0 : 0.7 * E/(E+B);
+    float BB = E == 0 && B == 0 ? 0 : 0.7 * B/(E+B);
 
     // draw inner circle
-    if (r < 1.0/9.0) { return float4(0.5 + EE, 0.5, 0.5 + BB, 1.0); }
+    if (r < 1.0/9.0) { return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0); }
     if (r < 0.13) { return float4(0.4, 0.4, 0.4, 1.0); }
 
     // draw cupola vector
@@ -183,12 +183,11 @@ float4 renderPong(FragmentPacket in) {
 }
 float4 renderPhoton(FragmentPacket in) {
     float dist = length(in.local);
-    const float innerRadius = 0.7;
     const float outerRadius = 1.0;
     
-    if ((dist < innerRadius || dist > outerRadius)) { return float4(0.0, 0.0, 0.0, 0.0); }
+    if (dist > outerRadius) { return float4(0.0, 0.0, 0.0, 0.0); }
     
-    return float4(0.7, 0.8, 0.9, 1.0);
+    return float4(1.0, 1.0, 1.0, 1.0);
 }
 fragment float4 em_fragment_shader(FragmentPacket in [[stage_in]]) {
     if (in.type == 0) return renderTeslon(in);

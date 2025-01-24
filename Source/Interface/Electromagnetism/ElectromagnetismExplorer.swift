@@ -43,7 +43,6 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
         metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         metalView.isOpaque = false
-        view.addSubview(metalView)
         
         renderer = ElectromagnetismRenderer(metalView: metalView)
         parametersTab = ParametersTab(renderer: renderer)
@@ -55,7 +54,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
             LimboCell(content: metalView, c: 0, r: 0, h: 4),
             MaskCell(content: titleView, c: 1, r: 0, cutout: true),
             tabsCell,
-            LimboCell(content: controlsView, c: 1, r: 3),
+            LimboCell(content: controlsView, c: 1, r: 3)
         ]
         view.addSubview(cyto)
         

@@ -22,8 +22,15 @@ class ParametersTab: TabsCellTab {
     let timeStepsPerVolleySlider: Slider = Slider()
     let pingsPerVolleySlider: Slider = Slider()
     
-    let autoSwap: BoolButtonOld = BoolButtonOld(text: "auto volley")
-    let hyleOnSwap: BoolButtonOld = BoolButtonOld(text: "hyle exchange")
+    let autoBoolButton: BoolButton = BoolButton(name: "auto volley")
+    let hyleBoolButton: BoolButton = BoolButton(name: "hyle exchange")
+    let aetherBoolButton: BoolButton = BoolButton(name: "aether frame")
+    let wallsBoolButton: BoolButton = BoolButton(name: "camera walls")
+
+    let pingsBoolButton: BoolButton = BoolButton(name: "pings")
+    let pongsBoolButton: BoolButton = BoolButton(name: "pongs")
+    let photonsBoolButton: BoolButton = BoolButton(name: "photons")
+    
 
     let pongButton: PulseButton = PulseButton(name: "pong")
 
@@ -64,15 +71,21 @@ class ParametersTab: TabsCellTab {
             self.renderer.pingsPerVolley = Int32(pingsPerVolley)
         }
 
-        timeStepsPerVolleySlider.options = [10, 12, 15, 20, 30, 60, 120, 180, 240, 480, 960, 1920]
+        timeStepsPerVolleySlider.options = [10, 12, 15, 20, 30, 60, 120, 180, 240, 480, 960]
         addSubview(timeStepsPerVolleySlider)
         timeStepsPerVolleySlider.onChange = { (timeStepsPerVolley: Int) in
             self.renderer.timeStepsPerVolley = timeStepsPerVolley
         }
 
-        addSubview(autoSwap)
-        addSubview(hyleOnSwap)
-        
+        addSubview(autoBoolButton)
+        addSubview(hyleBoolButton)
+        addSubview(aetherBoolButton)
+        addSubview(wallsBoolButton)
+
+        addSubview(pingsBoolButton)
+        addSubview(pongsBoolButton)
+        addSubview(photonsBoolButton)
+
         addSubview(pongButton)
         
         //        controlsView.addSubview(cSlider)
@@ -127,11 +140,22 @@ class ParametersTab: TabsCellTab {
         timeStepsPerVolleySlider.top(dy: y, width: 300*s, height: 40*s)
         y += 50*s
 
-        autoSwap.topLeft(dx: 10*s, dy: y)
+        y += 10*s
+        autoBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
-        hyleOnSwap.topLeft(dx: 10*s, dy: y)
+        hyleBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        aetherBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        wallsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 40*s
+        pingsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        pongsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        photonsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
 
-        pongButton.bottomRight(dx: -30*s, dy: -100*s, width: 60*s, height: 80*s)
+        pongButton.bottomRight(dx: -30*s, dy: -50*s, width: 60*s, height: 80*s)
 
         speedOfLightSlider.setTo(60)
         speedOfAetherSlider.setTo(0.0)
