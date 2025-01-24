@@ -257,30 +257,15 @@
 		D80ED6AE2B679A4100EF4F8D /* Engines */ = {
 			isa = PBXGroup;
 			children = (
+				D823A26B2D0BCB3B00A72DDF /* Engine.swift */,
 				D8C14CD42D3DE8C700F83F28 /* Aether */,
 				D8C14CD52D3DE8FF00F83F28 /* CellularAutomata */,
 				D8FA8B052D3762E400211980 /* Distance */,
 				D8C14CD62D3DE93D00F83F28 /* Gravity */,
 				D8C14CD72D3DE95400F83F28 /* Dilation */,
 				D8C14CD82D3DE96600F83F28 /* Electromagnetism */,
-				D823A26B2D0BCB3B00A72DDF /* Engine.swift */,
 			);
 			path = Engines;
-			sourceTree = "<group>";
-		};
-		D80ED6AF2B679B4A00EF4F8D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D8AE17532814EAFD00E74CB8 /* Shared */,
-				D8AE17552814EB0D00E74CB8 /* Nexus */,
-				D8DDAC6C2A8C345100100633 /* Aether */,
-				D8AE17572814EB2300E74CB8 /* Cellular Automata */,
-				D8AE17582814EB2F00E74CB8 /* Kinematics */,
-				D8FA8B002D375E1400211980 /* Distance */,
-				D8AE17592814EB3600E74CB8 /* Gravity */,
-				D8AE175A2814EB3E00E74CB8 /* Dilation */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		D818929D2C7195D90018E4B9 /* Claude */ = {
@@ -299,6 +284,35 @@
 				D823A2692D0ABE3E00A72DDF /* North.c */,
 			);
 			path = North;
+			sourceTree = "<group>";
+		};
+		D85762C72D436E320025E070 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D8DA98CB2B71DE0700A4AA8F /* Cells */,
+				D896C9922D4095030058585C /* TimeControl */,
+				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
+				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
+				D896C9AA2D42290E0058585C /* BoolButton.swift */,
+				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
+				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
+				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
+				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
+				D8AE17C62814F1C700E74CB8 /* Explorer.swift */,
+				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
+				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
+				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
+				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
+				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
+				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
+				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
+				D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */,
+				D8AE17632814F08400E74CB8 /* Simulation.swift */,
+				D896C9AC2D426C720058585C /* Slider.swift */,
+				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
+				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		D8656C0C2A8CF6F7003FC9A3 /* Ionian */ = {
@@ -352,6 +366,7 @@
 		D896C99A2D41F7E40058585C /* Aether */ = {
 			isa = PBXGroup;
 			children = (
+				D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */,
 				D8DDAC6D2A8C35BC00100633 /* AetherExplorer.swift */,
 			);
 			path = Aether;
@@ -360,6 +375,7 @@
 		D896C99B2D41F7ED0058585C /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
+				D8656C112A8CF907003FC9A3 /* GravityView.swift */,
 				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 			);
 			path = Gravity;
@@ -368,6 +384,7 @@
 		D896C99C2D41F7F60058585C /* Distance */ = {
 			isa = PBXGroup;
 			children = (
+				D8FA8B012D375EF300211980 /* DistanceView.swift */,
 				D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */,
 			);
 			path = Distance;
@@ -376,6 +393,8 @@
 		D896C99D2D41F7FF0058585C /* Cellular */ = {
 			isa = PBXGroup;
 			children = (
+				D8FB29832B73ED53003E89E5 /* OoviumView.swift */,
+				D8AE17E22814F20500E74CB8 /* CellularView.swift */,
 				D8AE17E12814F20500E74CB8 /* CellularExplorer.swift */,
 			);
 			path = Cellular;
@@ -384,6 +403,10 @@
 		D896C99E2D41F8080058585C /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
+				D8C1CC08293D7669001881F5 /* Widgets */,
+				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
+				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
+				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
 				D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */,
 			);
 			path = Kinematics;
@@ -392,6 +415,8 @@
 		D896C99F2D41F80F0058585C /* Dilation */ = {
 			isa = PBXGroup;
 			children = (
+				D8C1CC07293D7654001881F5 /* Widgets */,
+				D8042F10293AEB0200453B8E /* DilationView.swift */,
 				D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */,
 			);
 			path = Dilation;
@@ -446,8 +471,8 @@
 			isa = PBXGroup;
 			children = (
 				D8AE174F2814EACC00E74CB8 /* Extensions */,
-				D80ED6AE2B679A4100EF4F8D /* Engines */,
 				D8AA5A4F2B7AEFC200282522 /* Domain */,
+				D80ED6AE2B679A4100EF4F8D /* Engines */,
 				D8AE17522814EAED00E74CB8 /* Interface */,
 				D8AE17512814EADC00E74CB8 /* Global */,
 			);
@@ -493,42 +518,8 @@
 		D8AE17522814EAED00E74CB8 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				D80ED6AF2B679B4A00EF4F8D /* Views */,
-				D8AE17542814EB0400E74CB8 /* Explorers */,
-				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
-			);
-			path = Interface;
-			sourceTree = "<group>";
-		};
-		D8AE17532814EAFD00E74CB8 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				D8DA98CB2B71DE0700A4AA8F /* Cells */,
-				D896C9922D4095030058585C /* TimeControl */,
-				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
-				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
-				D896C9AA2D42290E0058585C /* BoolButton.swift */,
-				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
-				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
-				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
-				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
-				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
-				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
-				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
-				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
-				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
-				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
-				D8AE17632814F08400E74CB8 /* Simulation.swift */,
-				D896C9AC2D426C720058585C /* Slider.swift */,
-				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
-				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		D8AE17542814EB0400E74CB8 /* Explorers */ = {
-			isa = PBXGroup;
-			children = (
+				D85762C72D436E320025E070 /* Shared */,
+				D8AE17552814EB0D00E74CB8 /* Nexus */,
 				D896C99A2D41F7E40058585C /* Aether */,
 				D896C99D2D41F7FF0058585C /* Cellular */,
 				D896C99E2D41F8080058585C /* Kinematics */,
@@ -537,10 +528,8 @@
 				D896C99F2D41F80F0058585C /* Dilation */,
 				D896C9A02D41F8150058585C /* Contraction */,
 				D896C9992D41F7DA0058585C /* Electromagnetism */,
-				D8AE17C62814F1C700E74CB8 /* Explorer.swift */,
-				D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */,
 			);
-			path = Explorers;
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		D8AE17552814EB0D00E74CB8 /* Nexus */ = {
@@ -553,43 +542,6 @@
 				D88878BF2B7CBAF900BB3D09 /* Interchange.swift */,
 			);
 			path = Nexus;
-			sourceTree = "<group>";
-		};
-		D8AE17572814EB2300E74CB8 /* Cellular Automata */ = {
-			isa = PBXGroup;
-			children = (
-				D8FB29832B73ED53003E89E5 /* OoviumView.swift */,
-				D8AE17E22814F20500E74CB8 /* CellularView.swift */,
-			);
-			path = "Cellular Automata";
-			sourceTree = "<group>";
-		};
-		D8AE17582814EB2F00E74CB8 /* Kinematics */ = {
-			isa = PBXGroup;
-			children = (
-				D8C1CC08293D7669001881F5 /* Widgets */,
-				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
-				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
-				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
-			);
-			path = Kinematics;
-			sourceTree = "<group>";
-		};
-		D8AE17592814EB3600E74CB8 /* Gravity */ = {
-			isa = PBXGroup;
-			children = (
-				D8656C112A8CF907003FC9A3 /* GravityView.swift */,
-			);
-			path = Gravity;
-			sourceTree = "<group>";
-		};
-		D8AE175A2814EB3E00E74CB8 /* Dilation */ = {
-			isa = PBXGroup;
-			children = (
-				D8C1CC07293D7654001881F5 /* Widgets */,
-				D8042F10293AEB0200453B8E /* DilationView.swift */,
-			);
-			path = Dilation;
 			sourceTree = "<group>";
 		};
 		D8AE17662814F0D300E74CB8 /* en.lproj */ = {
@@ -704,28 +656,12 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		D8DDAC6C2A8C345100100633 /* Aether */ = {
-			isa = PBXGroup;
-			children = (
-				D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */,
-			);
-			path = Aether;
-			sourceTree = "<group>";
-		};
 		D8DEF8A72D346F0900298D26 /* PDFs */ = {
 			isa = PBXGroup;
 			children = (
 				D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */,
 			);
 			path = PDFs;
-			sourceTree = "<group>";
-		};
-		D8FA8B002D375E1400211980 /* Distance */ = {
-			isa = PBXGroup;
-			children = (
-				D8FA8B012D375EF300211980 /* DistanceView.swift */,
-			);
-			path = Distance;
 			sourceTree = "<group>";
 		};
 		D8FA8B052D3762E400211980 /* Distance */ = {
