@@ -299,14 +299,12 @@
 				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
 				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
 				D8AE17C62814F1C700E74CB8 /* Explorer.swift */,
-				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
 				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
 				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
 				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
 				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
-				D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D896C9AC2D426C720058585C /* Slider.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
@@ -540,6 +538,8 @@
 				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
 				D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */,
 				D88878BF2B7CBAF900BB3D09 /* Interchange.swift */,
+				D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */,
+				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
 			);
 			path = Nexus;
 			sourceTree = "<group>";

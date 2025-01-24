@@ -237,8 +237,9 @@ class NexusExplorer: AEViewController {
         
         view.addSubview(musicButton)
         musicButton.addAction {
-            if Aexels.explorerViewController.musicOn { Aexels.explorerViewController.stopMusic() }
-            else { Aexels.explorerViewController.startMusic() }
+            Loom.transact { Aexels.settings.musicOn = !Aexels.settings.musicOn }
+            if Aexels.settings.musicOn { Aexels.explorerViewController.startMusic() }
+            else { Aexels.explorerViewController.stopMusic() }
         }
         
         view.addSubview(claudeButton)

@@ -16,6 +16,8 @@ class Aexels {
     static var sync: AESync = AESync()
 	static let basket: Basket = Basket(SQLitePersist("pequod"))
     
+    static var settings: Settings!
+    
     static var explorerViewController: ExplorerViewController = ExplorerViewController()
     static let nexusExplorer: NexusExplorer = NexusExplorer()
     static let aetherExplorer: AetherExplorer = AetherExplorer()
@@ -40,6 +42,13 @@ class Aexels {
         Math.start()
 		Loom.start(basket: Aexels.basket, namespaces: ["Aexels", "OoviumEngine"])
 		Skin.skin = IvorySkin()
+        
+        if let iden: String = Loom.get(key: "settingsIden"), let settings: Settings = Loom.selectBy(iden: iden) {
+            Aexels.settings = settings
+        } else {
+            Loom.transact { settings = Loom.create() }
+            Loom.set(key: "settingsIden", value: settings.iden)
+        }
 
 		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()

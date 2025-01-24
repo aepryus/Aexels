@@ -115,6 +115,7 @@ class ExplorerViewController: AEViewController {
         }
     }
     func startMusic() {
+        guard Aexels.settings.musicOn else { return }
         musicOn = true
         rampVolume()
     }
