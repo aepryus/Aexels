@@ -13,6 +13,11 @@ struct NorthCamera {
     float2 position;
     float2 bounds;
     float2 velocity;
+    bool pingVectorsOn;
+    bool pongVectorsOn;
+    bool photonVectorsOn;
+    bool padding1;
+    int padding2;
 };
 
 struct NorthLoop {
@@ -31,6 +36,9 @@ struct FragmentPacket {
     float2 frame [[flat]];
     float2 cupola [[flat]];
     float hyle [[flat]];
+    bool pingVectorsOn [[flat]];
+    bool pongVectorsOn [[flat]];
+    bool photonVectorsOn [[flat]];
 };
 
 struct NorthBackPacket {
@@ -57,9 +65,9 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]],
     NorthBackPacket out;
     out.position = float4(positions[vertexID], 0.0, 1.0);
     
-    // Adjust camera position to be relative to top-left instead of center
-    float2 adjustedPos = camera.position + camera.bounds * 0.5;
-    float2 scrolledUV = uvs[vertexID] + adjustedPos / camera.bounds;
+    // Adjust camera position to be relative to top-left instead of center 41.1486908813112
+    float2 scrolledUV = uvs[vertexID];
+    scrolledUV.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
     out.uv = scrolledUV;
     
     return out;
@@ -69,11 +77,10 @@ fragment float4 northBackFragmentShader(NorthBackPacket in [[stage_in]],
                                   texture2d<float> backgroundTexture [[texture(0)]]) {
     constexpr sampler textureSampler(mag_filter::linear,
                                     min_filter::linear,
-                                    address::repeat);
+                                     address::mirrored_repeat);
     
     return backgroundTexture.sample(textureSampler, in.uv);
 }
-
 
 vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
                                        uint instanceID [[instance_id]],
@@ -111,6 +118,9 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
     out.frame = loop.velocity - camera.velocity;
     out.cupola = loop.cupola;
     out.hyle = loop.hyle;
+    out.pingVectorsOn = camera.pingVectorsOn;
+    out.pongVectorsOn = camera.pongVectorsOn;
+    out.photonVectorsOn = camera.photonVectorsOn;
     return out;
 }
 
@@ -126,26 +136,30 @@ float4 renderTeslon(FragmentPacket in) {
 float4 renderPing(FragmentPacket in) {
     float r = length_squared(in.local);
 
-    // draw cupola vector
-//    float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
-//    float2 projected = in.cupola * projection;
-//    float2 perpendicular = in.local - projected;
-//    if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
-
-    // draw frame vector
-//    projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
-//    projected = in.frame * projection;
-//    perpendicular = in.local - projected;
-//    if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
-
+    if (in.pingVectorsOn) {
+        // draw cupola vector
+        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
+        float2 projected = in.cupola * projection;
+        float2 perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
+        
+        // draw frame vector
+        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
+        projected = in.frame * projection;
+        perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
+    }
+        
     // draw inner circle
     if (r < 1.0/9.0) { return float4(0.4, 0.4, 0.4, 1.0); }
     
-    // draw aether vector
-//    projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
-//    projected = in.velocity * projection;
-//    perpendicular = in.local - projected;
-//    if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+    if (in.pingVectorsOn) {
+        // draw aether vector
+        float projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
+        float2 projected = in.velocity * projection;
+        float2 perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+    }
 
     return float4(0.0, 0.0, 0.0, 0.0);
 }
@@ -161,23 +175,25 @@ float4 renderPong(FragmentPacket in) {
     if (r < 1.0/9.0) { return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0); }
     if (r < 0.13) { return float4(0.4, 0.4, 0.4, 1.0); }
 
-    // draw cupola vector
-    float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
-    float2 projected = in.cupola * projection;
-    float2 perpendicular = in.local - projected;
-    if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
-
-    // draw frame vector
-    projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
-    projected = in.frame * projection;
-    perpendicular = in.local - projected;
-    if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
-
-    // draw aether vector
-    projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
-    projected = in.velocity * projection;
-    perpendicular = in.local - projected;
-    if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+    if (in.pongVectorsOn) {
+        // draw cupola vector
+        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
+        float2 projected = in.cupola * projection;
+        float2 perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
+        
+        // draw frame vector
+        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
+        projected = in.frame * projection;
+        perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
+        
+        // draw aether vector
+        projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
+        projected = in.velocity * projection;
+        perpendicular = in.local - projected;
+        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+    }
 
     return float4(0.0, 0.0, 0.0, 0.0);
 }

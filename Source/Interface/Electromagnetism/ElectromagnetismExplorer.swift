@@ -28,7 +28,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let timeControl: TimeControl = TimeControl()
     let pingButton: PulseButton = PulseButton(name: "ping")
 
-    private var parametersTab: ParametersTab!
+    private var controlsTab: ControlsTab!
     let zoomsTab: TabsCellTab = TabsCellTab(name: "Zooms".localized)
     let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
     let notesTab: NotesTab = NotesTab(key: "electromagnetism")
@@ -45,10 +45,10 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         metalView.isOpaque = false
         
         renderer = ElectromagnetismRenderer(metalView: metalView)
-        parametersTab = ParametersTab(renderer: renderer)
+        controlsTab = ControlsTab(renderer: renderer)
         
         let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
-        tabsCell.tabs = [parametersTab, zoomsTab, experimentsTab, notesTab]
+        tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
 
         cyto.cells = [
             LimboCell(content: metalView, c: 0, r: 0, h: 4),
@@ -101,6 +101,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     }
     func onReset() {
         renderer.onReset()
+        controlsTab.applyControls()
         metalView.draw()
         timeControl.playButton.stop()
     }

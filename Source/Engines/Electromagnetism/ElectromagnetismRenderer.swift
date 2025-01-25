@@ -13,6 +13,11 @@ struct NorthCamera {
     var position: SIMD2<Float>
     var bounds: SIMD2<Float>
     var velocity: SIMD2<Float>
+    var pingVectorsOn: Bool
+    var pongVectorsOn: Bool
+    var photonVectorsOn: Bool
+    var padding1: Bool
+    var padding2: Int
 };
 
 struct NorthLoop {
@@ -44,10 +49,22 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     
     var t: Int = 0
     
+    var speedOfLight: Int = 1 {
+        didSet { NCUniverseSetC(universe, Double(speedOfLight)) }
+    }
     var autoOn: Bool = true
+    var wallsOn: Bool = true {
+        didSet { NCCameraSetWalls(camera, wallsOn ? 1 : 0) }
+    }
+    var hyleExchangeOn: Bool = true {
+        didSet { NCUniverseSetHyleExchange(universe, hyleExchangeOn ? 1 : 0) }
+    }
     var timeStepsPerVolley: Int = 60
     var pingsPerVolley: Int32 = 480
-    
+    var pingVectorsOn: Bool = false
+    var pongVectorsOn: Bool = true
+    var photonVectorsOn: Bool = true
+
     init?(metalView: MTKView) {
         self.metalView = metalView
         
@@ -92,6 +109,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
         camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
+        NCCameraSetWalls(camera, 1)
         
         let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
         let backgroundFragmentFunction = library.makeFunction(name: "northBackFragmentShader")
@@ -119,7 +137,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     }
     
 // Events ==========================================================================================
-    func onPing() { NCUniversePing(universe, 12*40) }
+    func onPing() { NCUniversePing(universe, pingsPerVolley) }
     func onPong() { NCUniversePong(universe) }
     func onReset() {
         guard let metalView else { return }
@@ -128,6 +146,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
         camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
+        NCCameraSetWalls(camera, 1)
     }
     
 // MTKViewDelegate =================================================================================
@@ -146,7 +165,12 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         var camera: NorthCamera = NorthCamera(
             position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),
             bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)),
-            velocity: SIMD2<Float>(Float(camera.pointee.v.x), Float(camera.pointee.v.y))
+            velocity: SIMD2<Float>(Float(camera.pointee.v.x), Float(camera.pointee.v.y)),
+            pingVectorsOn: pingVectorsOn,
+            pongVectorsOn: pongVectorsOn,
+            photonVectorsOn: photonVectorsOn,
+            padding1: true,
+            padding2: 0
         )
         memcpy(cameraBuffer.contents(), &camera, MemoryLayout<NorthCamera>.size)
         

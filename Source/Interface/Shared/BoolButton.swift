@@ -7,10 +7,14 @@
 //
 
 import Acheron
+import OoviumEngine
 import UIKit
 
 class BoolView: AEView {
-    var on: Bool = false
+    var on: Bool = false {
+        didSet { setNeedsDisplay() }
+    }
+    var isHighlighted: Bool = false
     
     override init() {
         super.init()
@@ -33,6 +37,8 @@ class BoolView: AEView {
         let y2 = x1 + m
         let y4 = height - p
         let y3 = x4 - m
+        
+        let color: UIColor = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
 
         let c = UIGraphicsGetCurrentContext()!
         c.move(to: CGPoint(x: x1, y: (y1+y4)/2))
@@ -43,7 +49,7 @@ class BoolView: AEView {
         c.closePath()
         
         c.setLineWidth(1.5*s)
-        c.setStrokeColor(UIColor.white.cgColor)
+        c.setStrokeColor(color.cgColor)
         c.drawPath(using: .stroke)
         
         if on {
@@ -55,11 +61,14 @@ class BoolView: AEView {
             c.closePath()
             
             c.setLineWidth(1.0*s)
-            c.setStrokeColor(UIColor.white.cgColor)
-            c.setFillColor(UIColor.white.cgColor)
+            c.setStrokeColor(color.cgColor)
+            c.setFillColor(color.cgColor)
             c.drawPath(using: .fillStroke)
         }
     }
+}
+
+protocol BoolButtonDelegate {
 }
 
 class BoolButton: AXButton {
@@ -68,20 +77,43 @@ class BoolButton: AXButton {
     let boolView: BoolView = BoolView()
     let label: UILabel = UILabel()
     
+    var on: Bool = false {
+        didSet {
+            self.boolView.on = self.on
+            self.onChange?(self.on)
+        }
+    }
+
+    var onChange: ((Bool)->())?
+    
     init(name: String) {
         self.name = name
         super.init()
         
+        boolView.isUserInteractionEnabled = false
         addSubview(boolView)
         
         label.text = name
         label.pen = Pen(font: .avenir(size: 12*s), color: .white)
         addSubview(label)
+        
+        addAction {
+            self.on = !self.on
+            self.boolView.on = self.on
+            self.onChange?(self.on)
+        }
     }
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
         boolView.left(size: CGSize(width: 20*s, height: 20*s))
         label.left(dx: boolView.right+3*s, width: 200*s, height: height)
+    }
+    override var isHighlighted: Bool {
+        didSet {
+            boolView.isHighlighted = isHighlighted
+            boolView.setNeedsDisplay()
+            label.textColor = isHighlighted ? OOColor.lavender.uiColor : .white
+        }
     }
 }

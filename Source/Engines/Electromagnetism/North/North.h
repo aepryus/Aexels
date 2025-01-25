@@ -35,7 +35,7 @@ typedef struct NCTeslon {
 NCTeslon* NCTeslonCreate(void);
 void NCTeslonRelease(NCTeslon* teslon);
 double NCTeslonHyle(NCTeslon* teslon);
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double x, double y);
+void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola);
 
 typedef struct NCPing {
     CV2 pos;
@@ -76,10 +76,12 @@ typedef struct NCCamera {
     CV2 v;
     double width;
     double height;
+    unsigned char walls;
 } NCCamera;
 
 NCCamera* NCCameraCreate(void);
 void NCCameraRelease(NCCamera* camera);
+void NCCameraSetWalls(NCCamera* camera, unsigned char walls);
 
 typedef struct NCUniverse {
     double width;
@@ -87,6 +89,7 @@ typedef struct NCUniverse {
     double speed;
     double c;
     double boundrySquared;
+    unsigned char hyleExchange;
     int teslonCount;
     int teslonCapacity;
     NCTeslon** teslons;
@@ -102,6 +105,7 @@ typedef struct NCUniverse {
     int cameraCount;
     int cameraCapacity;
     NCCamera** cameras;
+    NCCamera* camera;
 } NCUniverse;
 
 NCUniverse* NCUniverseCreate(double width, double height);
@@ -117,7 +121,9 @@ NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon);
 NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, double speed, double orient);
 int NCUniverseOutsideOf(NCUniverse* universe, CV2 pos);
 int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos, double radius);
+void NCUniverseSetC(NCUniverse* universe, double c);
 void NCUniverseSetSpeed(NCUniverse* universe, double speed);
+void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange);
 void NCUniversePing(NCUniverse* universe, int n);
 void NCUniversePong(NCUniverse* universe);
 void NCUniverseTic(NCUniverse* universe);

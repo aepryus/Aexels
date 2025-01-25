@@ -45,14 +45,13 @@ double HyleOrientX(double hyle, double orient) {
 double HyleOrientY(double hyle, double orient) {
     return hyle * sin(orient);
 }
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, double x, double y) {
-//    double iHyle = teslon->iHyle;
-//    double tHyle = iHyle * CV2Gamma(teslon->v);
-//    double pX = tHyle*teslon->v.x + hyle*x;
-//    double pY = tHyle*teslon->v.y + hyle*y;
-//    double mag = sqrt(x*x+y*y);
-//    teslon->v.speed = mag/sqrt(iHyle*iHyle+mag*mag);
-//    teslon->v.orient = atan2(y, x);
+void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola) {
+    double iHyle = teslon->iHyle;
+    double tHyle = iHyle * CV2Gamma(teslon->v);
+    double pX = tHyle*teslon->v.x + hyle*cupola.x;
+    double pY = tHyle*teslon->v.y + hyle*cupola.y;
+    teslon->v.x += pX;
+    teslon->v.y += pY;
 }
 
 // Ping ============================================================================================
@@ -92,6 +91,9 @@ NCCamera* NCCameraCreate(void) {
 void NCCameraRelease(NCCamera* camera) {
     free(camera);
 }
+void NCCameraSetWalls(NCCamera* camera, unsigned char walls) {
+    camera->walls = walls;
+}
 
 // Universe ========================================================================================
 NCUniverse* NCUniverseCreate(double width, double height) {
@@ -100,6 +102,7 @@ NCUniverse* NCUniverseCreate(double width, double height) {
     universe->height = height;
     universe->c = 1;
     universe->speed = 0;
+    universe->hyleExchange = 0;
     
     universe->teslonCount = 0;
     universe->teslonCapacity = 2;
@@ -169,6 +172,9 @@ void NCUniverseAddPhoton(NCUniverse* universe, NCPhoton* photon) {
     }
     universe->photons[universe->photonCount-1] = photon;
 }
+void NCUniverseSetCamera(NCUniverse* universe, int i) {
+    universe->camera = universe->cameras[i];
+}
 void NCUniverseAddCamera(NCUniverse* universe, NCCamera* camera) {
     universe->cameraCount++;
     if (universe->cameraCount > universe->cameraCapacity) {
@@ -176,6 +182,7 @@ void NCUniverseAddCamera(NCUniverse* universe, NCCamera* camera) {
         universe->cameras = (NCCamera**)realloc(universe->cameras, sizeof(NCCamera*)*universe->cameraCapacity);
     }
     universe->cameras[universe->cameraCount-1] = camera;
+    if (universe->cameraCount == 1) NCUniverseSetCamera(universe, 0);
 }
 
 NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed) {
@@ -236,6 +243,7 @@ NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, doubl
     camera->pos.y = y;
     camera->v.x = speed * cos(orient);
     camera->v.y = orient * sin(orient);
+    camera->walls = 0;
     NCUniverseAddCamera(universe, camera);
     return camera;
 }
@@ -256,12 +264,19 @@ int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos, double radius) {
     return dx*dx+dy*dy < radius*radius;
 }
 
+void NCUniverseSetC(NCUniverse* universe, double c) {
+    universe->c = c;
+}
 void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
     double delta = speed - universe->speed;
     universe->speed += delta;
     for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
     for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x += delta;
 }
+void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange) {
+    universe->hyleExchange = hyleExchange;
+}
+
 
 void NCUniversePing(NCUniverse* universe, int n) {
     int pingI = universe->pingCount;
@@ -319,35 +334,37 @@ void NCUniversePong(NCUniverse* universe) {
 void NCUniverseTic(NCUniverse* universe) {
     // Basic Translation
     for (int i=0;i<universe->teslonCount;i++) {
-        universe->teslons[i]->pos.x += universe->teslons[i]->v.x;
-        universe->teslons[i]->pos.y += universe->teslons[i]->v.y;
+        universe->teslons[i]->pos.x += universe->teslons[i]->v.x * universe->c;
+        universe->teslons[i]->pos.y += universe->teslons[i]->v.y * universe->c;
     }
     for (int i=0;i<universe->pingCount;i++) {
-        universe->pings[i]->pos.x += universe->pings[i]->v.x;
-        universe->pings[i]->pos.y += universe->pings[i]->v.y;
+        universe->pings[i]->pos.x += universe->pings[i]->v.x * universe->c;
+        universe->pings[i]->pos.y += universe->pings[i]->v.y * universe->c;
     }
     for (int i=0;i<universe->pongCount;i++) {
-        universe->pongs[i]->pos.x += universe->pongs[i]->v.x;
-        universe->pongs[i]->pos.y += universe->pongs[i]->v.y;
+        universe->pongs[i]->pos.x += universe->pongs[i]->v.x * universe->c;
+        universe->pongs[i]->pos.y += universe->pongs[i]->v.y * universe->c;
     }
     for (int i=0;i<universe->photonCount;i++) {
-        universe->photons[i]->pos.x += universe->photons[i]->v.x;
-        universe->photons[i]->pos.y += universe->photons[i]->v.y;
+        universe->photons[i]->pos.x += universe->photons[i]->v.x * universe->c;
+        universe->photons[i]->pos.y += universe->photons[i]->v.y * universe->c;
     }
     for (int i=0;i<universe->cameraCount;i++) {
-        universe->cameras[i]->pos.x += universe->cameras[i]->v.x;
-        universe->cameras[i]->pos.y += universe->cameras[i]->v.y;
+        universe->cameras[i]->pos.x += universe->cameras[i]->v.x * universe->c;
+        universe->cameras[i]->pos.y += universe->cameras[i]->v.y * universe->c;
     }
 
     for (int i=0;i<universe->teslonCount;i++) {
         NCTeslon* teslon = universe->teslons[i];
 
         // Teslon Bounce
-        if (teslon->pos.x < 0 || teslon->pos.x > universe->width) {
-            teslon->v.x = -teslon->v.x;
-        }
-        if (teslon->pos.y < 0 || teslon->pos.y > universe->height) {
-            teslon->v.y = -teslon->v.y;
+        if (universe->camera->walls) {
+            if (teslon->pos.x < universe->camera->pos.x - universe->width/2 || teslon->pos.x > universe->camera->pos.x + universe->width/2) {
+                teslon->v.x = 2*universe->camera->v.x - teslon->v.x;
+            }
+            if (teslon->pos.y < universe->camera->pos.y - universe->height/2 || teslon->pos.y > universe->camera->pos.y + universe->height/2) {
+                teslon->v.y = 2*universe->camera->v.y - teslon->v.y;
+            }
         }
         
         // Ping Collision; Pong Reflection
@@ -382,7 +399,7 @@ void NCUniverseTic(NCUniverse* universe) {
             if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 20)) {
 
                 double beforeHyle = NCTeslonHyle(teslon);
-                // NCTeslonAddMomentum(teslon, 0.1, pong->cupola);
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.1, pong->cupola); }
                 double afterHyle = NCTeslonHyle(teslon);
 
                 NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);

@@ -40,7 +40,7 @@
 		D896C9962D4096940058585C /* TimeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9952D4096900058585C /* TimeControl.swift */; };
 		D896C9982D413EAF0058585C /* TabsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9972D413EA80058585C /* TabsCell.swift */; };
 		D896C9A32D41F89C0058585C /* NotesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9A22D41F8980058585C /* NotesTab.swift */; };
-		D896C9A52D420BC70058585C /* ParametersTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9A42D420BC20058585C /* ParametersTab.swift */; };
+		D896C9A52D420BC70058585C /* ControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9A42D420BC20058585C /* ControlsTab.swift */; };
 		D896C9A72D420BD30058585C /* ExperimentsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9A62D420BCE0058585C /* ExperimentsTab.swift */; };
 		D896C9A92D420BDE0058585C /* ZoomsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9A82D420BD80058585C /* ZoomsTab.swift */; };
 		D896C9AB2D4229190058585C /* BoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896C9AA2D42290E0058585C /* BoolButton.swift */; };
@@ -147,7 +147,7 @@
 		D896C9952D4096900058585C /* TimeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeControl.swift; sourceTree = "<group>"; };
 		D896C9972D413EA80058585C /* TabsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsCell.swift; sourceTree = "<group>"; };
 		D896C9A22D41F8980058585C /* NotesTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesTab.swift; sourceTree = "<group>"; };
-		D896C9A42D420BC20058585C /* ParametersTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersTab.swift; sourceTree = "<group>"; };
+		D896C9A42D420BC20058585C /* ControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsTab.swift; sourceTree = "<group>"; };
 		D896C9A62D420BCE0058585C /* ExperimentsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentsTab.swift; sourceTree = "<group>"; };
 		D896C9A82D420BD80058585C /* ZoomsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomsTab.swift; sourceTree = "<group>"; };
 		D896C9AA2D42290E0058585C /* BoolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButton.swift; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 		D896C9A12D41F87D0058585C /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				D896C9A42D420BC20058585C /* ParametersTab.swift */,
+				D896C9A42D420BC20058585C /* ControlsTab.swift */,
 				D896C9A82D420BD80058585C /* ZoomsTab.swift */,
 				D896C9A62D420BCE0058585C /* ExperimentsTab.swift */,
 				D896C9A22D41F8980058585C /* NotesTab.swift */,
@@ -845,7 +845,7 @@
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,
 				D8042F15293B085500453B8E /* Thracian.c in Sources */,
 				D8AE17EC2814F20500E74CB8 /* GuideButton.swift in Sources */,
-				D896C9A52D420BC70058585C /* ParametersTab.swift in Sources */,
+				D896C9A52D420BC70058585C /* ControlsTab.swift in Sources */,
 				D8AE17F52814F20E00E74CB8 /* KinematicsView.swift in Sources */,
 				D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */,
 				D8AE17DE2814F1EC00E74CB8 /* SliderView.swift in Sources */,
