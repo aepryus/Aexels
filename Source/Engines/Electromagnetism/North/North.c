@@ -271,7 +271,7 @@ void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
     double delta = speed - universe->speed;
     universe->speed += delta;
     for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
-    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x += delta;
+    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x = speed;
 }
 void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange) {
     universe->hyleExchange = hyleExchange;

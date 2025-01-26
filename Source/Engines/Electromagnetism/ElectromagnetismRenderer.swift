@@ -6,6 +6,7 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
+import UIKit
 import MetalKit
 import simd
 
@@ -122,8 +123,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         guard let backgroundPipelineState = try? device.makeRenderPipelineState(descriptor: backgroundPipelineDescriptor) else { return nil }
         self.backgroundPipelineState = backgroundPipelineState
         
-        // Create texture from your existing UIImage
-        let image = Engine.renderHex(size: CGSize(width: metalView.bounds.width, height: metalView.bounds.height))
+        let image: UIImage = Engine.renderHex(size: CGSize(width: metalView.bounds.width+16, height: metalView.bounds.height))
         let textureLoader = MTKTextureLoader(device: device)
         guard let backgroundTexture = try? textureLoader.newTexture(cgImage: image.cgImage!, options: [.SRGB : false]) else { return nil }
         self.backgroundTexture = backgroundTexture
@@ -145,7 +145,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         universe = NCUniverseCreate(metalView.width, metalView.height)
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
+        camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, 0, 0)
         NCCameraSetWalls(camera, 1)
     }
     

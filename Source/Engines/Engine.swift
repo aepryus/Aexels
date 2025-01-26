@@ -93,10 +93,10 @@ class Engine {
         let sn: CGFloat = d*CGFloat(sin(Double.pi/6))
         let cs: CGFloat = d*CGFloat(cos(Double.pi/6))
         
-        let tw: CGFloat = size.width+100+2*(d+sn)
+        let tw: CGFloat = size.width+2*(d+sn)
         let rp: CGFloat = 3*d
         let w: CGFloat = ceil(tw / rp) * rp
-        let h: CGFloat = size.height+100+2*cs
+        let h: CGFloat = size.height+2*cs
         let n = (Int(w/(2*(d+sn))))+1
         let m = (Int(h/(2*cs)))+1
         var x: CGFloat = 1

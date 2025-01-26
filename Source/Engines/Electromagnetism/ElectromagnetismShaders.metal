@@ -46,8 +46,7 @@ struct NorthBackPacket {
     float2 uv;
 };
 
-vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]],
-                                           constant NorthCamera &camera [[buffer(0)]]) {
+vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], constant NorthCamera &camera [[buffer(0)]]) {
     float2 positions[4] = {
         float2(-1.0, -1.0),
         float2(1.0, -1.0),
@@ -65,20 +64,15 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]],
     NorthBackPacket out;
     out.position = float4(positions[vertexID], 0.0, 1.0);
     
-    // Adjust camera position to be relative to top-left instead of center 41.1486908813112
-    float2 scrolledUV = uvs[vertexID];
-    scrolledUV.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
-    out.uv = scrolledUV;
+    float2 uv = uvs[vertexID] * 0.96;
+    uv.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
+    out.uv = uv;
     
     return out;
 }
 
-fragment float4 northBackFragmentShader(NorthBackPacket in [[stage_in]],
-                                  texture2d<float> backgroundTexture [[texture(0)]]) {
-    constexpr sampler textureSampler(mag_filter::linear,
-                                    min_filter::linear,
-                                     address::mirrored_repeat);
-    
+fragment float4 northBackFragmentShader(NorthBackPacket in [[stage_in]], texture2d<float> backgroundTexture [[texture(0)]]) {
+    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear, address::repeat);
     return backgroundTexture.sample(textureSampler, in.uv);
 }
 
