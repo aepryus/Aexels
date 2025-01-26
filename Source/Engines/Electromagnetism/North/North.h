@@ -123,6 +123,7 @@ int NCUniverseOutsideOf(NCUniverse* universe, CV2 pos);
 int NCTeslonInsideOf(NCTeslon* teslon, CV2 pos, double radius);
 void NCUniverseSetC(NCUniverse* universe, double c);
 void NCUniverseSetSpeed(NCUniverse* universe, double speed);
+void NCUniverseSetSize(NCUniverse* universe, double width, double height);
 void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange);
 void NCUniversePing(NCUniverse* universe, int n);
 void NCUniversePong(NCUniverse* universe);

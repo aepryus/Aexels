@@ -13,13 +13,18 @@ import UIKit
 class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     private let cyto: Cyto = Cyto(rows: 4, cols: 2)
     
-    private var metalView: MTKView!
+    private let systemCell: LimboCell = LimboCell(c: 0, r: 0, h: 4)
+    private let aetherCell: LimboCell = LimboCell(c: 0, r: 2, h: 2)
+    private let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
+    
+    private var systemView: MTKView!
+    private var aetherView: MTKView?
     let titleView: UIView = UIView()
     let experimentView: UIView = UIView()
     let controlsView: UIView = UIView()
 
     // Metal ======
-    private var renderer: ElectromagnetismRenderer!
+    var renderer: ElectromagnetismRenderer!
 
     // Title ======
     let titleLabel: UILabel = UILabel()
@@ -32,26 +37,74 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let zoomsTab: TabsCellTab = TabsCellTab(name: "Zooms".localized)
     let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
     let notesTab: NotesTab = NotesTab(key: "electromagnetism")
+    
+    private var aetherFrameOn: Bool = false
+    
+    private static let fullSize: CGSize = CGSize(width: 1001.1350788249184, height: 1001.1350788249184)
+    private static let halfSize: CGSize = CGSize(width: 1001.1350788249184, height: 479.9931939718036)
 
+    init() {
+        super.init(key: "electromagnetism")
+        aetherCell.alpha = 0
+    }
+    
+    func swapAetherFrame() {
+        aetherFrameOn = !aetherFrameOn
+        
+        let duration: CGFloat = 0.5
+        
+        if aetherFrameOn {
+            UIView.animate(withDuration: duration) {
+                self.systemCell.alpha = 0
+            } completion: { (complete: Bool) in
+                self.renderer.size = ElectromagnetismExplorer.halfSize
+                self.systemCell.h = 2
+                self.cyto.cells.append(self.aetherCell)
+                self.cyto.layout()
+                print("\(self.systemView.frame)")
+                UIView.animate(withDuration: duration) {
+                    self.systemCell.alpha = 1
+                    self.aetherCell.alpha = 1
+                }
+            }
+        } else {
+            UIView.animate(withDuration: duration) {
+                self.systemCell.alpha = 0
+                self.aetherCell.alpha = 0
+            } completion: { (complete: Bool) in
+                self.renderer.size = ElectromagnetismExplorer.fullSize
+                self.systemCell.h = 4
+                self.aetherCell.removeFromSuperview()
+                self.cyto.cells.remove(object: self.aetherCell)
+                self.cyto.layout()
+                UIView.animate(withDuration: duration) {
+                    self.systemCell.alpha = 1
+                }
+            }
 
-    init() { super.init(key: "electromagnetism") }
+        }
+    }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        metalView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
-        metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
-        metalView.isOpaque = false
+        systemView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
+        systemView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        systemView.isOpaque = false
         
-        renderer = ElectromagnetismRenderer(metalView: metalView)
-        controlsTab = ControlsTab(renderer: renderer)
+//        aetherView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
+//        aetherView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+//        aetherView.isOpaque = false
+
+        renderer = ElectromagnetismRenderer(systemView: systemView, aetherView: aetherView)
+        controlsTab = ControlsTab(explorer: self)
         
-        let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
+        systemCell.content = systemView
         tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
 
         cyto.cells = [
-            LimboCell(content: metalView, c: 0, r: 0, h: 4),
+            systemCell,
             MaskCell(content: titleView, c: 1, r: 0, cutout: true),
             tabsCell,
             LimboCell(content: controlsView, c: 1, r: 3)
@@ -94,18 +147,18 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     
 // TimeControlDelegate =============================================================================
     func onPlay() {
-        metalView.isPaused = false
+        systemView.isPaused = false
     }
     func onStep() {
-        metalView.draw()
+        systemView.draw()
     }
     func onReset() {
         renderer.onReset()
         controlsTab.applyControls()
-        metalView.draw()
+        systemView.draw()
         timeControl.playButton.stop()
     }
     func onStop() {
-        metalView.isPaused = true
+        systemView.isPaused = true
     }
 }

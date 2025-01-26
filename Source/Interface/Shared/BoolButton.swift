@@ -100,7 +100,6 @@ class BoolButton: AXButton {
         addAction {
             self.on = !self.on
             self.boolView.on = self.on
-            self.onChange?(self.on)
         }
     }
     

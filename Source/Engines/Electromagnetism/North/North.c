@@ -273,6 +273,14 @@ void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
     for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
     for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x = speed;
 }
+void NCUniverseSetSize(NCUniverse* universe, double width, double height) {
+    universe->width = width;
+    universe->height = height;
+    for (int i=0;i<universe->cameraCount;i++) {
+        universe->cameras[i]->width = width;
+        universe->cameras[i]->height = height;
+    }
+}
 void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange) {
     universe->hyleExchange = hyleExchange;
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
-import UIKit
 import MetalKit
 import simd
 
@@ -46,7 +45,8 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let backgroundTexture: MTLTexture
     private let backgroundPipelineState: MTLRenderPipelineState
     
-    private weak var metalView: MTKView?
+    private weak var systemView: MTKView?
+    private weak var aetherView: MTKView?
     
     var t: Int = 0
     
@@ -66,8 +66,8 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     var pongVectorsOn: Bool = true
     var photonVectorsOn: Bool = true
 
-    init?(metalView: MTKView) {
-        self.metalView = metalView
+    init?(systemView: MTKView, aetherView: MTKView?) {
+        self.systemView = systemView
         
         guard let device = MTLCreateSystemDefaultDevice(),
               let commandQueue = device.makeCommandQueue() else {
@@ -76,7 +76,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         
         self.device = device
         self.commandQueue = commandQueue
-        metalView.device = device
+        systemView.device = device
         
         position = SIMD2<Float>(0, 0)
         lastUpdateTime = CACurrentMediaTime()
@@ -92,7 +92,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
-        pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        pipelineDescriptor.colorAttachments[0].pixelFormat = systemView.colorPixelFormat
         pipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
         pipelineDescriptor.colorAttachments[0].rgbBlendOperation = .add
         pipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
@@ -106,10 +106,10 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         }
         self.pipelineState = pipelineState
         
-        universe = NCUniverseCreate(metalView.width, metalView.height)
+        universe = NCUniverseCreate(systemView.width, systemView.height)
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, velocity, 0)
+        camera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
         NCCameraSetWalls(camera, 1)
         
         let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
@@ -118,34 +118,37 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         let backgroundPipelineDescriptor = MTLRenderPipelineDescriptor()
         backgroundPipelineDescriptor.vertexFunction = backgroundVertexFunction
         backgroundPipelineDescriptor.fragmentFunction = backgroundFragmentFunction
-        backgroundPipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
+        backgroundPipelineDescriptor.colorAttachments[0].pixelFormat = systemView.colorPixelFormat
         
         guard let backgroundPipelineState = try? device.makeRenderPipelineState(descriptor: backgroundPipelineDescriptor) else { return nil }
         self.backgroundPipelineState = backgroundPipelineState
         
-        let image: UIImage = Engine.renderHex(size: CGSize(width: metalView.bounds.width+16, height: metalView.bounds.height))
+        let image: UIImage = Engine.renderHex(size: CGSize(width: systemView.bounds.width+16, height: systemView.bounds.height))
         let textureLoader = MTKTextureLoader(device: device)
         guard let backgroundTexture = try? textureLoader.newTexture(cgImage: image.cgImage!, options: [.SRGB : false]) else { return nil }
         self.backgroundTexture = backgroundTexture
 
         super.init()
-        metalView.delegate = self
+        systemView.delegate = self
     }
     
     var velocity: Double = 0 {
         didSet { NCUniverseSetSpeed(universe, velocity) }
+    }
+    var size: CGSize = .zero {
+        didSet { NCUniverseSetSize(universe, size.width, size.height) }
     }
     
 // Events ==========================================================================================
     func onPing() { NCUniversePing(universe, pingsPerVolley) }
     func onPong() { NCUniversePong(universe) }
     func onReset() {
-        guard let metalView else { return }
+        guard let systemView else { return }
         NCUniverseRelease(universe)
-        universe = NCUniverseCreate(metalView.width, metalView.height)
+        universe = NCUniverseCreate(systemView.width, systemView.height)
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        camera = NCUniverseCreateCamera(universe, metalView.width/2, metalView.height/2, 0, 0)
+        camera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
         NCCameraSetWalls(camera, 1)
     }
     
@@ -160,7 +163,6 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         if autoOn && t % timeStepsPerVolley == 0 { NCUniversePing(universe, pingsPerVolley) }
         
         NCUniverseTic(universe)
-        
         
         var camera: NorthCamera = NorthCamera(
             position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),

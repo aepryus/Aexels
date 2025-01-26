@@ -67,8 +67,8 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], consta
     float2 uv = uvs[vertexID] * 0.96;
     uv.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
     float aspect = camera.bounds.x / camera.bounds.y;
-    if (aspect > 1.0) { uv.x /= aspect; }
-    else { uv.y *= aspect; }
+    if (aspect > 1.0) { uv.y /= aspect; }
+    else { uv.x *= aspect; }
     out.uv = uv;
     
     return out;
@@ -161,39 +161,98 @@ float4 renderPing(FragmentPacket in) {
     return float4(0.0, 0.0, 0.0, 0.0);
 }
 float4 renderPong(FragmentPacket in) {
-    float r = length_squared(in.local);
-    
+    // Define football shape parameters
+    float longAxisScale = 1.64559615; // Elongation factor for the long axis
+    float shortAxisScale = 1.0; // Scale for the short axis
+
+    // Transform the local coordinates to create the football shape
+    float cupolaLengthSquared = dot(in.cupola, in.cupola);
+    float2 cupolaNormalized = in.cupola / sqrt(cupolaLengthSquared);
+    float2 perpToCupola = float2(-cupolaNormalized.y, cupolaNormalized.x); // Perpendicular to cupola
+
+    // Project local onto the football axes
+    float longAxisProj = dot(in.local, cupolaNormalized) / longAxisScale;
+    float shortAxisProj = dot(in.local, perpToCupola) / shortAxisScale;
+
+    // Calculate the football-shaped "distance" (scaled ellipse)
+    float rFootball = longAxisProj * longAxisProj + shortAxisProj * shortAxisProj;
+
     float E = dot(in.frame, in.cupola);
     float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
-    float EE = E == 0 && B == 0 ? 0 : 0.7 * E/(E+B);
-    float BB = E == 0 && B == 0 ? 0 : 0.7 * B/(E+B);
+    float EE = E == 0 && B == 0 ? 0 : 0.7 * E / (E + B);
+    float BB = E == 0 && B == 0 ? 0 : 0.7 * B / (E + B);
 
-    // draw inner circle
-    if (r < 1.0/9.0) { return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0); }
-    if (r < 0.13) { return float4(0.4, 0.4, 0.4, 1.0); }
+    // Draw football-shaped regions
+    if (rFootball < (1.0 / 9.0)) {
+        return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0);
+    }
+    if (rFootball < 0.2) {
+        return float4(EE, 0.0, BB, 1.0);
+    }
 
     if (in.pongVectorsOn) {
-        // draw cupola vector
+        // Draw cupola vector
         float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
         float2 projected = in.cupola * projection;
         float2 perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
-        
-        // draw frame vector
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && rFootball < 0.6) {
+            return float4(1.0, 1.0, 1.0, 1.0);
+        }
+
+        // Draw frame vector
         projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
         projected = in.frame * projection;
         perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
-        
-        // draw aether vector
+        if (length_squared(perpendicular) < 0.001 && projection >= 0 && rFootball < 0.6) {
+            return float4(0.0, 0.0, 0.0, 1.0);
+        }
+
+        // Draw aether vector
         projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
         projected = in.velocity * projection;
         perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+        if (length_squared(perpendicular) < 0.016 && projection >= 0 && rFootball < 1.0) {
+            return float4(0.4, 0.4, 0.4, 1.0);
+        }
     }
 
     return float4(0.0, 0.0, 0.0, 0.0);
 }
+
+//float4 renderPong(FragmentPacket in) {
+//    float r = length_squared(in.local);
+//    
+//    float E = dot(in.frame, in.cupola);
+//    float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
+//    float EE = E == 0 && B == 0 ? 0 : 0.7 * E/(E+B);
+//    float BB = E == 0 && B == 0 ? 0 : 0.7 * B/(E+B);
+//
+//    // draw inner circle
+//    if (r < 1.0/9.0) { return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0); }
+//    if (r < 0.2) { return float4(EE, 0.0, BB, 1.0); }
+//
+//    if (in.pongVectorsOn) {
+//        // draw cupola vector
+//        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
+//        float2 projected = in.cupola * projection;
+//        float2 perpendicular = in.local - projected;
+//        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
+//        
+//        // draw frame vector
+//        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
+//        projected = in.frame * projection;
+//        perpendicular = in.local - projected;
+//        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
+//        
+//        // draw aether vector
+//        projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
+//        projected = in.velocity * projection;
+//        perpendicular = in.local - projected;
+//        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
+//    }
+//
+//    return float4(0.0, 0.0, 0.0, 0.0);
+//}
 float4 renderPhoton(FragmentPacket in) {
     float dist = length(in.local);
     const float outerRadius = 1.0;
