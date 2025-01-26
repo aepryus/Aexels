@@ -182,7 +182,8 @@ void NCUniverseAddCamera(NCUniverse* universe, NCCamera* camera) {
         universe->cameras = (NCCamera**)realloc(universe->cameras, sizeof(NCCamera*)*universe->cameraCapacity);
     }
     universe->cameras[universe->cameraCount-1] = camera;
-    if (universe->cameraCount == 1) NCUniverseSetCamera(universe, 0);
+//    if (universe->cameraCount == 1) NCUniverseSetCamera(universe, 0);
+    NCUniverseSetCamera(universe, 0);
 }
 
 NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed) {
@@ -242,7 +243,7 @@ NCCamera* NCUniverseCreateCamera(NCUniverse* universe, double x, double y, doubl
     camera->pos.x = x;
     camera->pos.y = y;
     camera->v.x = speed * cos(orient);
-    camera->v.y = orient * sin(orient);
+    camera->v.y = speed * sin(orient);
     camera->walls = 0;
     NCUniverseAddCamera(universe, camera);
     return camera;
@@ -271,7 +272,7 @@ void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
     double delta = speed - universe->speed;
     universe->speed += delta;
     for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
-    for (int i=0;i<universe->cameraCount;i++) universe->cameras[i]->v.x = speed;
+    universe->camera->v.x = speed;
 }
 void NCUniverseSetSize(NCUniverse* universe, double width, double height) {
     universe->width = width;
@@ -284,7 +285,6 @@ void NCUniverseSetSize(NCUniverse* universe, double width, double height) {
 void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange) {
     universe->hyleExchange = hyleExchange;
 }
-
 
 void NCUniversePing(NCUniverse* universe, int n) {
     int pingI = universe->pingCount;
@@ -479,5 +479,12 @@ void NCUniverseTic(NCUniverse* universe) {
             if (k != i) universe->photons[k] = universe->photons[i];
             k++;
         }
+    }
+}
+void NCUniverseCameraChasing(NCUniverse* universe, NCCamera* camera, NCCamera* chasing) {
+    if (chasing->pos.x - camera->pos.x > universe->width/2) {
+        camera->pos.x += universe->width;
+    } else if (camera->pos.x - chasing->pos.x > universe->width/2) {
+        camera->pos.x -= universe->width;
     }
 }

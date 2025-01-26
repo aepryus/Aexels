@@ -34,19 +34,21 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let pipelineState: MTLRenderPipelineState
     
     var universe: UnsafeMutablePointer<NCUniverse>
-    var camera: UnsafeMutablePointer<NCCamera>
+    var systemCamera: UnsafeMutablePointer<NCCamera>
+    var aetherCamera: UnsafeMutablePointer<NCCamera>
     
     private var position: SIMD2<Float>
     private var lastUpdateTime: CFTimeInterval
     
-    private let cameraBuffer: MTLBuffer
+    private let systemCameraBuffer: MTLBuffer
+    private let aetherCameraBuffer: MTLBuffer
     private var initialized: Bool = false
     
     private let backgroundTexture: MTLTexture
     private let backgroundPipelineState: MTLRenderPipelineState
     
-    private weak var systemView: MTKView?
-    private weak var aetherView: MTKView?
+    weak var systemView: MTKView?
+    weak var aetherView: MTKView?
     
     var t: Int = 0
     
@@ -55,7 +57,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     }
     var autoOn: Bool = true
     var wallsOn: Bool = true {
-        didSet { NCCameraSetWalls(camera, wallsOn ? 1 : 0) }
+        didSet { NCCameraSetWalls(systemCamera, wallsOn ? 1 : 0) }
     }
     var hyleExchangeOn: Bool = true {
         didSet { NCUniverseSetHyleExchange(universe, hyleExchangeOn ? 1 : 0) }
@@ -66,7 +68,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     var pongVectorsOn: Bool = true
     var photonVectorsOn: Bool = true
 
-    init?(systemView: MTKView, aetherView: MTKView?) {
+    init?(systemView: MTKView, aetherView: MTKView) {
         self.systemView = systemView
         
         guard let device = MTLCreateSystemDefaultDevice(),
@@ -77,13 +79,19 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         self.device = device
         self.commandQueue = commandQueue
         systemView.device = device
+        aetherView.device = device
         
         position = SIMD2<Float>(0, 0)
         lastUpdateTime = CACurrentMediaTime()
         
         guard let cameraBuffer = device.makeBuffer(length: MemoryLayout<NorthCamera>.size, options: .storageModeShared) else { return nil }
         
-        self.cameraBuffer = cameraBuffer
+        self.systemCameraBuffer = cameraBuffer
+        
+        guard let cameraBuffer = device.makeBuffer(length: MemoryLayout<NorthCamera>.size, options: .storageModeShared) else { return nil }
+        
+        self.aetherCameraBuffer = cameraBuffer
+
         
         let library = device.makeDefaultLibrary()!
         let vertexFunction = library.makeFunction(name: "em_vertex_shader")
@@ -109,8 +117,9 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         universe = NCUniverseCreate(systemView.width, systemView.height)
         NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
         NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        camera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
-        NCCameraSetWalls(camera, 1)
+        systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
+        NCCameraSetWalls(systemCamera, 1)
+        aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
         
         let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
         let backgroundFragmentFunction = library.makeFunction(name: "northBackFragmentShader")
@@ -130,6 +139,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
 
         super.init()
         systemView.delegate = self
+        aetherView.delegate = self
     }
     
     var velocity: Double = 0 {
@@ -146,10 +156,11 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         guard let systemView else { return }
         NCUniverseRelease(universe)
         universe = NCUniverseCreate(systemView.width, systemView.height)
-        NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
-        NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        camera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
-        NCCameraSetWalls(camera, 1)
+        NCUniverseCreateTeslon(universe, systemView.width/2, systemView.height/2-120, 0, 0, 1)
+        NCUniverseCreateTeslon(universe, systemView.width/2, systemView.height/2+120, 0, 0, 1)
+        systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
+        NCCameraSetWalls(systemCamera, 1)
+        aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
     }
     
 // MTKViewDelegate =================================================================================
@@ -159,12 +170,21 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
               let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor
         else { return }
         
-        t += 1
-        if autoOn && t % timeStepsPerVolley == 0 { NCUniversePing(universe, pingsPerVolley) }
+        let camera: UnsafeMutablePointer<NCCamera>
+        let cameraBuffer: MTLBuffer
+        if view === systemView {
+            t += 1
+            if autoOn && t % timeStepsPerVolley == 0 { NCUniversePing(universe, pingsPerVolley) }            
+            NCUniverseTic(universe)
+            NCUniverseCameraChasing(universe, aetherCamera, systemCamera);
+            camera = systemCamera
+            cameraBuffer = systemCameraBuffer
+        } else /*if view === aetherView*/ {
+            camera = aetherCamera
+            cameraBuffer = aetherCameraBuffer
+        }
         
-        NCUniverseTic(universe)
-        
-        var camera: NorthCamera = NorthCamera(
+        var northCamera: NorthCamera = NorthCamera(
             position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),
             bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)),
             velocity: SIMD2<Float>(Float(camera.pointee.v.x), Float(camera.pointee.v.y)),
@@ -174,7 +194,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
             padding1: true,
             padding2: 0
         )
-        memcpy(cameraBuffer.contents(), &camera, MemoryLayout<NorthCamera>.size)
+        memcpy(cameraBuffer.contents(), &northCamera, MemoryLayout<NorthCamera>.size)
         
         var objects: [NorthLoop] = []
         var pings: [NorthLoop] = []

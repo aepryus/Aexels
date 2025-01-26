@@ -18,7 +18,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     private let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
     
     private var systemView: MTKView!
-    private var aetherView: MTKView?
+    private var aetherView: MTKView!
     let titleView: UIView = UIView()
     let experimentView: UIView = UIView()
     let controlsView: UIView = UIView()
@@ -61,7 +61,6 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
                 self.systemCell.h = 2
                 self.cyto.cells.append(self.aetherCell)
                 self.cyto.layout()
-                print("\(self.systemView.frame)")
                 UIView.animate(withDuration: duration) {
                     self.systemCell.alpha = 1
                     self.aetherCell.alpha = 1
@@ -89,18 +88,20 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        systemView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
+        systemView = MTKView(frame: CGRect(origin: .zero, size: ElectromagnetismExplorer.fullSize))
         systemView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         systemView.isOpaque = false
         
-//        aetherView = MTKView(frame: CGRect(origin: .zero, size: CGSize(width: 1001.1350788249184, height: 1001.1350788249184)))
-//        aetherView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
-//        aetherView.isOpaque = false
+        let aetherView: MTKView = MTKView(frame: CGRect(origin: .zero, size: ElectromagnetismExplorer.halfSize))
+        aetherView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        aetherView.isOpaque = false
+        self.aetherView = aetherView
 
         renderer = ElectromagnetismRenderer(systemView: systemView, aetherView: aetherView)
         controlsTab = ControlsTab(explorer: self)
         
         systemCell.content = systemView
+        aetherCell.content = aetherView
         tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
 
         cyto.cells = [
@@ -148,17 +149,21 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
 // TimeControlDelegate =============================================================================
     func onPlay() {
         systemView.isPaused = false
+        aetherView.isPaused = false
     }
     func onStep() {
         systemView.draw()
+        aetherView.draw()
     }
     func onReset() {
         renderer.onReset()
         controlsTab.applyControls()
         systemView.draw()
+        aetherView.draw()
         timeControl.playButton.stop()
     }
     func onStop() {
         systemView.isPaused = true
+        aetherView.isPaused = true
     }
 }

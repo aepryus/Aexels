@@ -128,3 +128,4 @@ void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange)
 void NCUniversePing(NCUniverse* universe, int n);
 void NCUniversePong(NCUniverse* universe);
 void NCUniverseTic(NCUniverse* universe);
+void NCUniverseCameraChasing(NCUniverse* universe, NCCamera* camera, NCCamera* chasing);
