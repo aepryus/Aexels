@@ -19,10 +19,6 @@ class NotesTab: TabsCellTab {
         
         super.init(name: "Notes".localized)
         
-//        backgroundColor = .red
-//        articleScroll.backgroundColor = .green
-//        articleView.backgroundColor = .blue
-        
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white
         articleView.scrollView = articleScroll

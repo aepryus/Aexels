@@ -106,7 +106,6 @@
 		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
 		D8DEF8A92D346F2200298D26 /* 2103.04335v3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */; };
 		D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEF8AE2D35189500298D26 /* Settings.swift */; };
-		D8FA8B022D375EF500211980 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B012D375EF300211980 /* DistanceView.swift */; };
 		D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */; };
 		D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
@@ -217,7 +216,6 @@
 		D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 2103.04335v3.pdf; sourceTree = "<group>"; };
 		D8DEF8AE2D35189500298D26 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
-		D8FA8B012D375EF300211980 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 		D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismRenderer.swift; sourceTree = "<group>"; };
 		D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ElectromagnetismShaders.metal; sourceTree = "<group>"; };
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
@@ -382,7 +380,6 @@
 		D896C99C2D41F7F60058585C /* Distance */ = {
 			isa = PBXGroup;
 			children = (
-				D8FA8B012D375EF300211980 /* DistanceView.swift */,
 				D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */,
 			);
 			path = Distance;
@@ -807,7 +804,6 @@
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
-				D8FA8B022D375EF500211980 /* DistanceView.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,

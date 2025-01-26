@@ -10,33 +10,48 @@ import Acheron
 import MetalKit
 import UIKit
 
-class DistanceExplorer: Explorer {
-    let cyto: Cyto = Cyto(rows: 2, cols: 2)
-    let articleScroll: UIScrollView = UIScrollView()
-    let articleView: ArticleView = ArticleView()
-//    let pingButton: PulseButton = PulseButton(name: "ping")
-    let controlsView: UIView = UIView()
+class DistanceExplorer: Explorer, TimeControlDelegate {
+    let cyto: Cyto = Cyto(rows: 3, cols: 2)
 
+    // Title ======
+    let titleView: UIView = UIView()
+    let titleLabel: UILabel = UILabel()
+
+    // Tabs =======
+    let tabsCell: TabsCell = TabsCell(c: 1, r: 1)
+
+    let controlsTab: TabsCellTab = TabsCellTab(name: "Controls".localized)
+    let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
+    let notesTab: NotesTab = NotesTab(key: "distance")
+    
+    // Quick ======
+    let quickView: UIView = UIView()
+    let timeControl: TimeControl = TimeControl()
+    
     init() { super.init(key: "distance") }
-
+    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        articleView.font = UIFont(name: "Verdana", size: 18*s)!
-        articleView.color = .white
-        articleView.scrollView = articleScroll
-        articleView.key = "\(key)Lab"
-        articleScroll.addSubview(articleView)
         
+        tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
+
         cyto.cells = [
-            LimboCell(c: 0, r: 0),
-            LimboCell(content: controlsView, c: 0, r: 1),
-            MaskCell(content: articleScroll,c: 1, r: 0, h: 2, cutout: true)
+            LimboCell(c: 0, r: 0, h: 3),
+            MaskCell(content: titleView, c: 1, r: 0, cutout: true),
+            tabsCell,
+            LimboCell(content: quickView, c: 1, r: 2)
         ]
         view.addSubview(cyto)
         
-//        controlsView.addSubview(pingButton)
+        // Title ========
+        titleLabel.text = "Distance and Radius".localized
+        titleLabel.pen = Pen(font: .optima(size: 20*s), color: .white, alignment: .center)
+        titleView.addSubview(titleLabel)
+        
+        timeControl.playButton.playing = true
+        timeControl.delegate = self
+        quickView.addSubview(timeControl)
     }
 
 // AEViewController ================================================================================
@@ -44,18 +59,15 @@ class DistanceExplorer: Explorer {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)
-        let universeWidth: CGFloat = cytoSize.height - 110*s
+        let universeWidth: CGFloat = cytoSize.height
 
         cyto.Xs = [universeWidth]
-        cyto.Ys = [universeWidth]
+        cyto.Ys = [70*s, universeWidth-70*s-110*s, 110*s]
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-        articleView.load()
-        articleScroll.contentSize = articleView.scrollViewContentSize
-        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
+        titleLabel.center(width: 300*s, height: 24*s)
         
-//        pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
-
+        timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
     }
 }
