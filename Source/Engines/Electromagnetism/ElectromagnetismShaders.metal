@@ -66,6 +66,9 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], consta
     
     float2 uv = uvs[vertexID] * 0.96;
     uv.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
+    float aspect = camera.bounds.x / camera.bounds.y;
+    if (aspect > 1.0) { uv.x /= aspect; }
+    else { uv.y *= aspect; }
     out.uv = uv;
     
     return out;
