@@ -78,10 +78,7 @@ class BoolButton: AXButton {
     let label: UILabel = UILabel()
     
     var on: Bool = false {
-        didSet {
-            self.boolView.on = self.on
-            self.onChange?(self.on)
-        }
+        didSet { self.boolView.on = self.on }
     }
 
     var onChange: ((Bool)->())?
@@ -99,7 +96,7 @@ class BoolButton: AXButton {
         
         addAction {
             self.on = !self.on
-            self.boolView.on = self.on
+            self.onChange?(self.on)
         }
     }
     

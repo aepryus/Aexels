@@ -67,6 +67,10 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     var pingVectorsOn: Bool = false
     var pongVectorsOn: Bool = true
     var photonVectorsOn: Bool = true
+    
+    var experiment: Experiment? {
+        didSet { loadExperiment() }
+    }
 
     init?(systemView: MTKView, aetherView: MTKView) {
         self.systemView = systemView
@@ -149,19 +153,24 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         didSet { NCUniverseSetSize(universe, size.width, size.height) }
     }
     
-// Events ==========================================================================================
-    func onPing() { NCUniversePing(universe, pingsPerVolley) }
-    func onPong() { NCUniversePong(universe) }
-    func onReset() {
-        guard let systemView else { return }
+    func loadExperiment() {
+        guard let experiment, let electromagnetism = experiment.electromagnetism, let systemView else { return }
         NCUniverseRelease(universe)
         universe = NCUniverseCreate(systemView.width, systemView.height)
-        NCUniverseCreateTeslon(universe, systemView.width/2, systemView.height/2-120, 0, 0, 1)
-        NCUniverseCreateTeslon(universe, systemView.width/2, systemView.height/2+120, 0, 0, 1)
+        let velocity: Double = Double(electromagnetism.aetherVelocity)/100
         systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
         NCCameraSetWalls(systemCamera, 1)
         aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
+        NCUniverseSetSpeed(universe, velocity)
+        electromagnetism.teslons.forEach { (teslon: Teslon) in
+            NCUniverseCreateTeslon(universe, teslon.pX, teslon.pY, teslon.speed, teslon.orient, 0)
+        }
     }
+    
+// Events ==========================================================================================
+    func onPing() { NCUniversePing(universe, pingsPerVolley) }
+    func onPong() { NCUniversePong(universe) }
+    func onReset() { loadExperiment() }
     
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}

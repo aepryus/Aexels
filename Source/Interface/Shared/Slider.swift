@@ -84,23 +84,7 @@ class Slider: UIView, UIGestureRecognizerDelegate {
             option = options[index]
             onChange?(option)
             setNeedsDisplay()
-
         }
-        
-        
-        
-//        p = 0
-//        x1 = 0
-//        width = 100
-//        crx = 10
-//        x5 = 80
-//        tw = 80
-//        options.count = 8
-//        tw = 10
-//        position from 0 to 80
-//        index = position / ow = 80 / 10 = 8
-        
-        
     }
     
 // UIView ==========================================================================================

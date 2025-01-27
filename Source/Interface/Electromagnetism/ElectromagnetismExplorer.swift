@@ -35,10 +35,20 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
 
     private var controlsTab: ControlsTab!
     let zoomsTab: TabsCellTab = TabsCellTab(name: "Zooms".localized)
-    let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
+    private var experimentsTab: ExperimentsTab!
     let notesTab: NotesTab = NotesTab(key: "electromagnetism")
     
     private var aetherFrameOn: Bool = false
+    
+    var experiments: [Experiment] = []
+    var experiment: Experiment? = nil {
+        didSet {
+            onStop()
+            if let electromagnetism = experiment?.electromagnetism, electromagnetism.aetherFrameOn != aetherFrameOn {
+                swapAetherFrame { self.applyExperiment() }
+            } else { applyExperiment() }
+        }
+    }
     
     private static let fullSize: CGSize = CGSize(width: 1001.1350788249184, height: 1001.1350788249184)
     private static let halfSize: CGSize = CGSize(width: 1001.1350788249184, height: 479.9931939718036)
@@ -46,9 +56,24 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     init() {
         super.init(key: "electromagnetism")
         aetherCell.alpha = 0
+        
+        experiments.append(Experiment.teslonsInABox(size: ElectromagnetismExplorer.fullSize))
+        experiments.append(Experiment.whatIsMagnetism(size: ElectromagnetismExplorer.halfSize))
+        experiments.append(Experiment.whatIsPotentialEnergy(size: ElectromagnetismExplorer.fullSize))
+        experiments.append(Experiment.dilationRedux(size: ElectromagnetismExplorer.fullSize))
+        experiments.append(Experiment.contractionRedux(size: ElectromagnetismExplorer.fullSize))
     }
     
-    func swapAetherFrame() {
+    func applyExperiment() {
+        controlsTab.experiment = experiment
+        renderer.experiment = experiment
+        systemView.draw()
+        aetherView.draw()
+        timeControl.playButton.stop()
+        controlsTab.applyControls()
+    }
+    
+    func swapAetherFrame(_ onComplete: @escaping ()->() = {}) {
         aetherFrameOn = !aetherFrameOn
         
         let duration: CGFloat = 0.5
@@ -61,6 +86,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
                 self.systemCell.h = 2
                 self.cyto.cells.append(self.aetherCell)
                 self.cyto.layout()
+                onComplete()
                 UIView.animate(withDuration: duration) {
                     self.systemCell.alpha = 1
                     self.aetherCell.alpha = 1
@@ -76,6 +102,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
                 self.aetherCell.removeFromSuperview()
                 self.cyto.cells.remove(object: self.aetherCell)
                 self.cyto.layout()
+                onComplete()
                 UIView.animate(withDuration: duration) {
                     self.systemCell.alpha = 1
                 }
@@ -99,6 +126,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
 
         renderer = ElectromagnetismRenderer(systemView: systemView, aetherView: aetherView)
         controlsTab = ControlsTab(explorer: self)
+        experimentsTab = ExperimentsTab(explorer: self)
         
         systemCell.content = systemView
         aetherCell.content = aetherView

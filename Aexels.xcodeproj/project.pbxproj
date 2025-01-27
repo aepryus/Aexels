@@ -30,6 +30,9 @@
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DilationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DilationEngine.swift */; };
 		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
+		D85762C92D46F3380025E070 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762C82D46F3340025E070 /* Experiment.swift */; };
+		D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762CA2D46F7F10025E070 /* Electromagnetism.swift */; };
+		D85762CD2D471B700025E070 /* Teslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762CC2D471B6E0025E070 /* Teslon.swift */; };
 		D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */ = {isa = PBXBuildFile; fileRef = D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */; };
 		D8656C122A8CF907003FC9A3 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8656C112A8CF907003FC9A3 /* GravityView.swift */; };
 		D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD02931A7AE0005B44D /* Dilation.latex */; };
@@ -135,6 +138,9 @@
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DilationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationEngine.swift; sourceTree = "<group>"; };
 		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
+		D85762C82D46F3340025E070 /* Experiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
+		D85762CA2D46F7F10025E070 /* Electromagnetism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electromagnetism.swift; sourceTree = "<group>"; };
+		D85762CC2D471B6E0025E070 /* Teslon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teslon.swift; sourceTree = "<group>"; };
 		D8656C0E2A8CF7C1003FC9A3 /* Myrtoan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Myrtoan.h; sourceTree = "<group>"; };
 		D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Myrtoan.c; sourceTree = "<group>"; };
 		D8656C112A8CF907003FC9A3 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
@@ -440,7 +446,10 @@
 			isa = PBXGroup;
 			children = (
 				D8AA5A502B7AEFD700282522 /* Article.swift */,
+				D85762CA2D46F7F10025E070 /* Electromagnetism.swift */,
+				D85762C82D46F3340025E070 /* Experiment.swift */,
 				D8DEF8AE2D35189500298D26 /* Settings.swift */,
+				D85762CC2D471B6E0025E070 /* Teslon.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -795,11 +804,13 @@
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
 				D813B7692AA6B892003851AE /* GravityEngine.swift in Sources */,
+				D85762CD2D471B700025E070 /* Teslon.swift in Sources */,
 				D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */,
 				D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */,
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
+				D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
@@ -817,6 +828,7 @@
 				D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */,
 				D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */,
 				D896C9AB2D4229190058585C /* BoolButton.swift in Sources */,
+				D85762C92D46F3380025E070 /* Experiment.swift in Sources */,
 				D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */,
 				D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */,
 				D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */,
