@@ -12,12 +12,13 @@ using namespace metal;
 struct NorthCamera {
     float2 position;
     float2 bounds;
+    float2 hexBounds;
     float2 velocity;
+    float hexWidth;
     bool pingVectorsOn;
     bool pongVectorsOn;
     bool photonVectorsOn;
-    bool padding1;
-    int padding2;
+    char padding[1];
 };
 
 struct NorthLoop {
@@ -54,28 +55,28 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], consta
         float2(1.0, 1.0)
     };
     
+    float right = camera.bounds.x / camera.hexBounds.x;
+    float bottom = camera.bounds.y / camera.hexBounds.y;
+    
     float2 uvs[4] = {
-        float2(0.0, 1.0),
-        float2(1.0, 1.0),
+        float2(0.0, bottom),
+        float2(right, bottom),
         float2(0.0, 0.0),
-        float2(1.0, 0.0)
+        float2(right, 0.0)
     };
     
     NorthBackPacket out;
     out.position = float4(positions[vertexID], 0.0, 1.0);
     
-    float2 uv = uvs[vertexID] * 0.96;
-    uv.x += fmod(camera.position.x, 41.1486908813112) / camera.bounds.x;
-    float aspect = camera.bounds.x / camera.bounds.y;
-    if (aspect > 1.0) { uv.y /= aspect; }
-    else { uv.x *= aspect; }
+    float2 uv = uvs[vertexID];
+    uv.x += fmod(camera.position.x, camera.hexWidth * camera.bounds.x / camera.hexBounds.x) / camera.bounds.x;
     out.uv = uv;
     
     return out;
 }
 
 fragment float4 northBackFragmentShader(NorthBackPacket in [[stage_in]], texture2d<float> backgroundTexture [[texture(0)]]) {
-    constexpr sampler textureSampler(mag_filter::linear, min_filter::linear, address::repeat);
+    constexpr sampler textureSampler(mag_filter::nearest, min_filter::nearest, address::clamp_to_zero);
     return backgroundTexture.sample(textureSampler, in.uv);
 }
 

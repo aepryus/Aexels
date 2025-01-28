@@ -24,6 +24,8 @@ class Electromagnetism: Domain {
     @objc dynamic var pongRenderModeToken: String = ""
     @objc dynamic var photonRenderModeToken: String = ""
     @objc dynamic var teslons: [Teslon] = []
+    
+    var generateTeslons: (CGSize)->([Teslon]) = { (size: CGSize) in [] }
 
     var pingRenderMode: RenderMode {
         set { pingRenderModeToken = newValue.toString() }
@@ -36,6 +38,10 @@ class Electromagnetism: Domain {
     var photonRenderMode: RenderMode {
         set { photonRenderModeToken = newValue.toString() }
         get { RenderMode.from(string: photonRenderModeToken) ?? .full }
+    }
+    
+    func regenerateTeslons(size: CGSize) {
+        teslons = generateTeslons(size)
     }
 
 // Domain ==========================================================================================

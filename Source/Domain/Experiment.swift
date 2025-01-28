@@ -26,17 +26,17 @@ class Experiment: Anchor {
     override var properties: [String] { super.properties + ["explorerToken", "name", "notes", "electromagnetism"] }
     
 // Experiments =====================================================================================
-    static func teslonsInABox(size: CGSize) -> Experiment {
+    static func teslonsInABox() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism
         experiment.name = "Teslons in a Box"
         experiment.notes = ""
         
         let electromagnetism: Electromagnetism = Electromagnetism()
-        electromagnetism.speedOfLight = 1
+        electromagnetism.speedOfLight = 2
         electromagnetism.aetherVelocity = 0
         electromagnetism.pingsPerVolley = 480
-        electromagnetism.timeStepsPerVolley = 60
+        electromagnetism.timeStepsPerVolley = 30
         electromagnetism.autoVolleyOn = true
         electromagnetism.cameraWallsOn = true
         electromagnetism.hyleExchangeOn = false
@@ -45,14 +45,16 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
-        electromagnetism.teslons.append(Teslon(pX: 360, pY: 240, speed: 0.35, orient: 0.3))
-        electromagnetism.teslons.append(Teslon(pX: 360, pY: 400, speed:-0.35, orient: 0.3))
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: 360, pY: 240, speed: 0.35, orient: 0.3),
+            Teslon(pX: 360, pY: 400, speed:-0.35, orient: 0.3)
+        ]}
 
         experiment.electromagnetism = electromagnetism
 
         return experiment
     }
-    static func whatIsMagnetism(size: CGSize) -> Experiment {
+    static func whatIsMagnetism() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism
         experiment.name = "What is Magnetism?"
@@ -71,14 +73,16 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .hidden
         
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/2+120, speed: 0.99, orient: 0))
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/2-120, speed: 0.99, orient: 0))
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: size.width/2, pY: size.height/2 + 120.0, speed: 0.99, orient: 0),
+            Teslon(pX: size.width/2, pY: size.height/2 - 120.0, speed: 0.99, orient: 0)
+        ]}
 
         experiment.electromagnetism = electromagnetism
 
         return experiment
     }
-    static func whatIsPotentialEnergy(size: CGSize) -> Experiment {
+    static func whatIsPotentialEnergy() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism
         experiment.name = "What is Potential Energy?"
@@ -97,14 +101,16 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
-        electromagnetism.teslons.append(Teslon(pX: 0, pY: size.height/2, speed: 0.2, orient: 0))
-        electromagnetism.teslons.append(Teslon(pX: size.width, pY: size.height/2, speed: -0.2, orient: 0))
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: 0, pY: size.height/2, speed: 0.2, orient: 0),
+            Teslon(pX: size.width, pY: size.height/2, speed: -0.2, orient: 0)
+        ]}
 
         experiment.electromagnetism = electromagnetism
 
         return experiment
     }
-    static func dilationRedux(size: CGSize) -> Experiment {
+    static func dilationRedux() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism
         experiment.name = "Dilation Redux"
@@ -123,14 +129,16 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/2, speed: 0.2, orient: 0))
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/4, speed: 0.2, orient: 0))
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: size.width/2, pY: size.height/2, speed: 0.2, orient: 0),
+            Teslon(pX: size.width/2, pY: size.height/4, speed: 0.2, orient: 0)
+        ]}
 
         experiment.electromagnetism = electromagnetism
 
         return experiment
     }
-    static func contractionRedux(size: CGSize) -> Experiment {
+    static func contractionRedux() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism
         experiment.name = "Contraction Redux"
@@ -149,9 +157,11 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/2, speed: 0.5, orient: 0))
-        electromagnetism.teslons.append(Teslon(pX: size.width/2, pY: size.height/4, speed: 0.5, orient: 0))
-        electromagnetism.teslons.append(Teslon(pX: size.width/2+size.width/4/(1/sqrt(1-0.5*0.5)), pY: size.height/2, speed: 0.5, orient: 0))
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: size.width/2, pY: size.height/2, speed: 0.5, orient: 0),
+            Teslon(pX: size.width/2, pY: size.height/4, speed: 0.5, orient: 0),
+            Teslon(pX: size.width/2+size.width/4/(1/sqrt(1-0.5*0.5)), pY: size.height/2, speed: 0.5, orient: 0)
+        ]}
 
         experiment.electromagnetism = electromagnetism
 

@@ -6,18 +6,20 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import MetalKit
 import simd
 
 struct NorthCamera {
     var position: SIMD2<Float>
     var bounds: SIMD2<Float>
+    var hexBounds: SIMD2<Float>
     var velocity: SIMD2<Float>
+    var hexWidth: Float
     var pingVectorsOn: Bool
     var pongVectorsOn: Bool
     var photonVectorsOn: Bool
-    var padding1: Bool
-    var padding2: Int
+    var padding: Int8 = 0
 };
 
 struct NorthLoop {
@@ -33,9 +35,9 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let commandQueue: MTLCommandQueue
     private let pipelineState: MTLRenderPipelineState
     
-    var universe: UnsafeMutablePointer<NCUniverse>
-    var systemCamera: UnsafeMutablePointer<NCCamera>
-    var aetherCamera: UnsafeMutablePointer<NCCamera>
+    var universe: UnsafeMutablePointer<NCUniverse>?
+    var systemCamera: UnsafeMutablePointer<NCCamera>?
+    var aetherCamera: UnsafeMutablePointer<NCCamera>?
     
     private var position: SIMD2<Float>
     private var lastUpdateTime: CFTimeInterval
@@ -44,7 +46,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     private let aetherCameraBuffer: MTLBuffer
     private var initialized: Bool = false
     
-    private let backgroundTexture: MTLTexture
+    private var backgroundTexture: MTLTexture
     private let backgroundPipelineState: MTLRenderPipelineState
     
     weak var systemView: MTKView?
@@ -117,14 +119,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
             return nil
         }
         self.pipelineState = pipelineState
-        
-        universe = NCUniverseCreate(systemView.width, systemView.height)
-        NCUniverseCreateTeslon(universe, 360, 240, 0.35, 0.3, 1)
-        NCUniverseCreateTeslon(universe, 360, 400, -0.35, 0.3, 1)
-        systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
-        NCCameraSetWalls(systemCamera, 1)
-        aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
-        
+                
         let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
         let backgroundFragmentFunction = library.makeFunction(name: "northBackFragmentShader")
         
@@ -136,12 +131,13 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         guard let backgroundPipelineState = try? device.makeRenderPipelineState(descriptor: backgroundPipelineDescriptor) else { return nil }
         self.backgroundPipelineState = backgroundPipelineState
         
-        let image: UIImage = Engine.renderHex(size: CGSize(width: systemView.bounds.width+16, height: systemView.bounds.height))
+        let image: UIImage = Engine.renderHex(size: CGSize(width: Screen.height, height: Screen.height))
         let textureLoader = MTKTextureLoader(device: device)
         guard let backgroundTexture = try? textureLoader.newTexture(cgImage: image.cgImage!, options: [.SRGB : false]) else { return nil }
         self.backgroundTexture = backgroundTexture
 
         super.init()
+        
         systemView.delegate = self
         aetherView.delegate = self
     }
@@ -150,18 +146,22 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         didSet { NCUniverseSetSpeed(universe, velocity) }
     }
     var size: CGSize = .zero {
-        didSet { NCUniverseSetSize(universe, size.width, size.height) }
+        didSet {
+            guard let universe else { return }
+            NCUniverseSetSize(universe, size.width, size.height)
+        }
     }
     
     func loadExperiment() {
         guard let experiment, let electromagnetism = experiment.electromagnetism, let systemView else { return }
-        NCUniverseRelease(universe)
-        universe = NCUniverseCreate(systemView.width, systemView.height)
+        if let universe { NCUniverseRelease(universe) }
+        universe = NCUniverseCreate(systemView.drawableSize.width / systemView.contentScaleFactor, systemView.drawableSize.height / systemView.contentScaleFactor)
         let velocity: Double = Double(electromagnetism.aetherVelocity)/100
         systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
         NCCameraSetWalls(systemCamera, 1)
         aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
         NCUniverseSetSpeed(universe, velocity)
+        electromagnetism.regenerateTeslons(size: systemView.bounds.size)
         electromagnetism.teslons.forEach { (teslon: Teslon) in
             NCUniverseCreateTeslon(universe, teslon.pX, teslon.pY, teslon.speed, teslon.orient, 0)
         }
@@ -173,10 +173,20 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     func onReset() { loadExperiment() }
     
 // MTKViewDelegate =================================================================================
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.height / view.contentScaleFactor)
+        
+        guard let experiment, let electromagnetism = experiment.electromagnetism else { return }
+//        NCUniverseSetSize(universe, size.width, size.height)
+        electromagnetism.regenerateTeslons(size: size)
+        loadExperiment()
+    }
     func draw(in view: MTKView) {
         guard let drawable: CAMetalDrawable = view.currentDrawable,
-              let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor
+              let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor,
+              let universe,
+              let systemCamera,
+              let aetherCamera
         else { return }
         
         let camera: UnsafeMutablePointer<NCCamera>
@@ -196,12 +206,12 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         var northCamera: NorthCamera = NorthCamera(
             position: SIMD2<Float>(Float(camera.pointee.pos.x), Float(camera.pointee.pos.y)),
             bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height)),
+            hexBounds: SIMD2<Float>(Float(backgroundTexture.width), Float(backgroundTexture.height)),
             velocity: SIMD2<Float>(Float(camera.pointee.v.x), Float(camera.pointee.v.y)),
+            hexWidth: Float(10.0 * Screen.s * 3),
             pingVectorsOn: pingVectorsOn,
             pongVectorsOn: pongVectorsOn,
-            photonVectorsOn: photonVectorsOn,
-            padding1: true,
-            padding2: 0
+            photonVectorsOn: photonVectorsOn
         )
         memcpy(cameraBuffer.contents(), &northCamera, MemoryLayout<NorthCamera>.size)
         

@@ -128,11 +128,6 @@ class ControlsTab: TabsCellTab {
         pongButton.addAction {
             self.explorer.renderer.onPong()
         }
-
-        speedOfLightSlider.setTo(1)
-        aetherVelocitySlider.setTo(0)
-        pingsPerVolleySlider.setTo(480)
-        timeStepsPerVolleySlider.setTo(60)
     }
     
     func applyControls() {
@@ -190,10 +185,5 @@ class ControlsTab: TabsCellTab {
         photonsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
 
         pongButton.bottomRight(dx: -30*s, dy: -50*s, width: 60*s, height: 80*s)
-
-        speedOfLightSlider.setTo(1)
-        aetherVelocitySlider.setTo(0)
-        pingsPerVolleySlider.setTo(480)
-        timeStepsPerVolleySlider.setTo(60)
     }
 }
