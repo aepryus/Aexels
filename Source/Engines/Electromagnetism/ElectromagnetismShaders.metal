@@ -69,6 +69,7 @@ vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], consta
     out.position = float4(positions[vertexID], 0.0, 1.0);
     
     float2 uv = uvs[vertexID];
+    // the hexWidth is in the hex space and needs to be converted to the camera space
     uv.x += fmod(camera.position.x, camera.hexWidth * camera.bounds.x / camera.hexBounds.x) / camera.bounds.x;
     out.uv = uv;
     
