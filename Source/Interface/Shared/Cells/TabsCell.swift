@@ -127,7 +127,7 @@ class TabsCell: Cyto.Cell {
         let y1 = p
         let y3 = height - p
         let y2 = (y1 + y3) / 2
-        let y4 = y3 - 20*s
+        let y4 = y3 - 24*s
         
         let r: CGFloat = 10*s
 
@@ -220,8 +220,8 @@ class TabsCell: Cyto.Cell {
         var x: CGFloat = p
         tabButtons.forEach {
             $0.sizeToFit()
-            if $0.tabsCellTab.selected { $0.bottomLeft(dx: x, dy: -10*s) }
-            else { $0.bottomLeft(dx: x, dy: -8*s) }
+            if $0.tabsCellTab.selected { $0.bottomLeft(dx: x, dy: -9*s, height: 20*s) }
+            else { $0.bottomLeft(dx: x, dy: -7*s, height: 20*s) }
             x += $0.width + m
         }
         renderPaths()

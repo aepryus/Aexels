@@ -56,6 +56,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         aetherCell.alpha = 0
         
         experiments.append(Experiment.teslonsInABox())
+        experiments.append(Experiment.exploringThePing())
         experiments.append(Experiment.whatIsMagnetism())
         experiments.append(Experiment.whatIsPotentialEnergy())
         experiments.append(Experiment.dilationRedux())

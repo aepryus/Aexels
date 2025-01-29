@@ -100,8 +100,8 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
 
         
         let library = device.makeDefaultLibrary()!
-        let vertexFunction = library.makeFunction(name: "em_vertex_shader")
-        let fragmentFunction = library.makeFunction(name: "em_fragment_shader")
+        let vertexFunction = library.makeFunction(name: "northLoopVertexShader")
+        let fragmentFunction = library.makeFunction(name: "northLoopFragmentShader")
         
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
@@ -120,8 +120,8 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         }
         self.pipelineState = pipelineState
                 
-        let backgroundVertexFunction = library.makeFunction(name: "northBackVertexShader")
-        let backgroundFragmentFunction = library.makeFunction(name: "northBackFragmentShader")
+        let backgroundVertexFunction = library.makeFunction(name: "northAetherVertexShader")
+        let backgroundFragmentFunction = library.makeFunction(name: "northAetherFragmentShader")
         
         let backgroundPipelineDescriptor = MTLRenderPipelineDescriptor()
         backgroundPipelineDescriptor.vertexFunction = backgroundVertexFunction

@@ -14,6 +14,9 @@ class Teslon: Domain {
     @objc dynamic var pY: Double = 0
     @objc dynamic var speed: Double = 0
     @objc dynamic var orient: Double = 0
+    @objc dynamic var hyle: Double = 0
+    @objc dynamic var pinger: Bool = true
+    @objc dynamic var contractor: Bool = true
     
     init(pX: Double, pY: Double, speed: Double, orient: Double) {
         self.pX = pX

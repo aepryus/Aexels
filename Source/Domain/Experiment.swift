@@ -26,6 +26,33 @@ class Experiment: Anchor {
     override var properties: [String] { super.properties + ["explorerToken", "name", "notes", "electromagnetism"] }
     
 // Experiments =====================================================================================
+    static func exploringThePing() -> Experiment {
+        let experiment: Experiment = Experiment()
+        experiment.explorer = .electromagnetism
+        experiment.name = "Exploring the Ping"
+        experiment.notes = ""
+        
+        let electromagnetism: Electromagnetism = Electromagnetism()
+        electromagnetism.speedOfLight = 1
+        electromagnetism.aetherVelocity = 70
+        electromagnetism.pingsPerVolley = 24
+        electromagnetism.timeStepsPerVolley = 60
+        electromagnetism.autoVolleyOn = true
+        electromagnetism.cameraWallsOn = false
+        electromagnetism.hyleExchangeOn = false
+        electromagnetism.aetherFrameOn = true
+        electromagnetism.pingRenderMode = .full
+        electromagnetism.pongRenderMode = .full
+        electromagnetism.photonRenderMode = .full
+        
+        electromagnetism.generateTeslons = { (size: CGSize) in [
+            Teslon(pX: size.width/2, pY: size.height/2, speed: 0.7, orient: 0),
+        ]}
+
+        experiment.electromagnetism = electromagnetism
+
+        return experiment
+    }
     static func teslonsInABox() -> Experiment {
         let experiment: Experiment = Experiment()
         experiment.explorer = .electromagnetism

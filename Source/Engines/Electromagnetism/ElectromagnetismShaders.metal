@@ -21,6 +21,34 @@ struct NorthCamera {
     char padding[1];
 };
 
+// Aether Shaders ==================================================================================
+struct NorthAetherPacket {
+    float4 position [[position]];
+    float2 uv;
+};
+
+vertex NorthAetherPacket northAetherVertexShader(uint vertexID [[vertex_id]], constant NorthCamera &camera [[buffer(0)]]) {
+    float2 positions[4] = { float2(-1.0, -1.0), float2(1.0, -1.0), float2(-1.0, 1.0), float2(1.0, 1.0) };
+    
+    float right = camera.bounds.x / camera.hexBounds.x;
+    float bottom = camera.bounds.y / camera.hexBounds.y;
+    float2 uvs[4] = { float2(0.0, bottom), float2(right, bottom), float2(0.0, 0.0), float2(right, 0.0) };
+    
+    NorthAetherPacket out;
+    out.position = float4(positions[vertexID], 0.0, 1.0);
+    
+    float2 uv = uvs[vertexID];
+    uv.x += fmod(camera.position.x, camera.hexWidth) / camera.hexBounds.x;
+    out.uv = uv;
+    
+    return out;
+}
+fragment float4 northAetherFragmentShader(NorthAetherPacket in [[stage_in]], texture2d<float> backgroundTexture [[texture(0)]]) {
+    constexpr sampler textureSampler(mag_filter::nearest, min_filter::nearest, address::clamp_to_zero);
+    return backgroundTexture.sample(textureSampler, in.uv);
+}
+
+// Loop Shaders ====================================================================================
 struct NorthLoop {
     int type;
     float2 position;
@@ -28,8 +56,7 @@ struct NorthLoop {
     float2 cupola;
     float hyle;
 };
-
-struct FragmentPacket {
+struct NorthLoopPacket {
     float4 position [[position]];
     float2 local;
     int type [[flat]];
@@ -41,60 +68,15 @@ struct FragmentPacket {
     bool pongVectorsOn [[flat]];
     bool photonVectorsOn [[flat]];
 };
-
-struct NorthBackPacket {
-    float4 position [[position]];
-    float2 uv;
+struct NorthLoopResult {
+    bool rendered;
+    float4 color;
 };
 
-vertex NorthBackPacket northBackVertexShader(uint vertexID [[vertex_id]], constant NorthCamera &camera [[buffer(0)]]) {
-    float2 positions[4] = {
-        float2(-1.0, -1.0),
-        float2(1.0, -1.0),
-        float2(-1.0, 1.0),
-        float2(1.0, 1.0)
-    };
-    
-    float right = camera.bounds.x / camera.hexBounds.x;
-    float bottom = camera.bounds.y / camera.hexBounds.y;
-    
-    float2 uvs[4] = {
-        float2(0.0, bottom),
-        float2(right, bottom),
-        float2(0.0, 0.0),
-        float2(right, 0.0)
-    };
-    
-    NorthBackPacket out;
-    out.position = float4(positions[vertexID], 0.0, 1.0);
-    
-    float2 uv = uvs[vertexID];
-    // the hexWidth is in the hex space and needs to be converted to the camera space
-    uv.x += fmod(camera.position.x, camera.hexWidth * camera.bounds.x / camera.hexBounds.x) / camera.bounds.x;
-    out.uv = uv;
-    
-    return out;
-}
-
-fragment float4 northBackFragmentShader(NorthBackPacket in [[stage_in]], texture2d<float> backgroundTexture [[texture(0)]]) {
-    constexpr sampler textureSampler(mag_filter::nearest, min_filter::nearest, address::clamp_to_zero);
-    return backgroundTexture.sample(textureSampler, in.uv);
-}
-
-vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
-                                       uint instanceID [[instance_id]],
-                                       constant NorthCamera &camera [[buffer(0)]],
-                                       constant NorthLoop *loops [[buffer(1)]]) {
-    
+vertex NorthLoopPacket northLoopVertexShader(uint vertexID [[vertex_id]], uint instanceID [[instance_id]], constant NorthCamera &camera [[buffer(0)]], constant NorthLoop *loops [[buffer(1)]]) {
     NorthLoop loop = loops[instanceID];
 
-    float size = 0;
-    switch (loop.type) {
-        case 0: size = 18; break;
-        case 1: size = 8; break;
-        case 2: size = 8;  break;
-        case 3: size = 2;  break;
-    }
+    float size = 18;
 
     const float2 localOffsets[4] = {
         float2(-1.0, -1.0), // Bottom-left
@@ -109,7 +91,7 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
     normalizedPosition.y *= -1.0;
     float2 clipPosition = normalizedPosition;
     
-    FragmentPacket out;
+    NorthLoopPacket out;
     out.type = loop.type;
     out.position = float4(clipPosition, 0.0, 1.0);
     out.local = localOffsets[vertexID];
@@ -123,7 +105,53 @@ vertex FragmentPacket em_vertex_shader(uint vertexID [[vertex_id]],
     return out;
 }
 
-float4 renderTeslon(FragmentPacket in) {
+NorthLoopResult renderVector(NorthLoopPacket in, float2 vector, float4 color, float lengthSquared) {
+    NorthLoopResult result;
+    
+    float projection = dot(in.local, vector) / dot(vector, vector);
+    float2 projected = vector * projection;
+    float2 perpendicular = in.local - projected;
+    
+    if (length_squared(perpendicular) < 0.002 && projection >= 0 && length_squared(in.local) < lengthSquared) {
+        result.rendered = 1;
+        result.color = color;
+        return result;
+    }
+
+    result.rendered = 0;
+    return result;
+}
+
+NorthLoopResult renderBody(NorthLoopPacket in, float4 fill, float4 stroke, float scale) {
+    NorthLoopResult result;
+
+    float theDuke = 1.64559615;
+    
+    float squared = dot(in.cupola, in.cupola);
+    float2 orthogonal = float2(-in.cupola.y, in.cupola.x);
+    float majorProjection = dot(in.local, in.cupola);
+    float minorProjection = dot(in.local, orthogonal);
+    float minorScale = squared;
+    float majorScale = squared * theDuke * theDuke;
+    float radius = majorProjection * majorProjection / majorScale + minorProjection * minorProjection / minorScale;
+
+    if (radius < 0.03 * scale) {
+        result.rendered = 1;
+        result.color = fill;
+        return result;
+    }
+    if (radius < 0.05 * scale) {
+        result.rendered = 1;
+        result.color = stroke;
+        return result;
+    }
+    
+    result.rendered = 0;
+
+    return result;
+}
+
+float4 renderTeslon(NorthLoopPacket in) {
     float dist = length(in.local);
     const float innerRadius = 0.7;
     const float outerRadius = 1.0;
@@ -132,139 +160,63 @@ float4 renderTeslon(FragmentPacket in) {
     
     return float4(1.0, 1.0, 1.0, 1.0);
 }
-float4 renderPing(FragmentPacket in) {
-    float r = length_squared(in.local);
-
+float4 renderPing(NorthLoopPacket in) {
     if (in.pingVectorsOn) {
-        // draw cupola vector
-        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
-        float2 projected = in.cupola * projection;
-        float2 perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
+        NorthLoopResult result = renderBody(in, float4(0.3, 0.3, 0.3, 1.0), float4(0.7, 0.7, 0.7, 1.0), 1);
+        if (result.rendered) { return result.color; }
         
-        // draw frame vector
-        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
-        projected = in.frame * projection;
-        perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
+        result = renderVector(in, in.frame, float4(1.0, 1.0, 1.0, 1.0), 0.3);
+        if (result.rendered) { return result.color; }
+        
+        result = renderVector(in, in.velocity, float4(0.2, 0.2, 0.2, 1.0), 0.3);
+        if (result.rendered) { return result.color; }
+
+    } else {
+//        if (length_squared(in.local) < 0.01) { return float4(0.4, 0.4, 0.4, 1.0); }
+        NorthLoopResult result = renderBody(in, float4(0.4, 0.4, 0.4, 1.0), float4(0.4, 0.4, 0.4, 1.0), 0.3);
+        if (result.rendered) { return result.color; }
     }
-        
-    // draw inner circle
-    if (r < 1.0/9.0) { return float4(0.4, 0.4, 0.4, 1.0); }
     
-    if (in.pingVectorsOn) {
-        // draw aether vector
-        float projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
-        float2 projected = in.velocity * projection;
-        float2 perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
-    }
-
     return float4(0.0, 0.0, 0.0, 0.0);
 }
-float4 renderPong(FragmentPacket in) {
-    // Define football shape parameters
-    float longAxisScale = 1.64559615; // Elongation factor for the long axis
-    float shortAxisScale = 1.0; // Scale for the short axis
 
-    // Transform the local coordinates to create the football shape
-    float cupolaLengthSquared = dot(in.cupola, in.cupola);
-    float2 cupolaNormalized = in.cupola / sqrt(cupolaLengthSquared);
-    float2 perpToCupola = float2(-cupolaNormalized.y, cupolaNormalized.x); // Perpendicular to cupola
-
-    // Project local onto the football axes
-    float longAxisProj = dot(in.local, cupolaNormalized) / longAxisScale;
-    float shortAxisProj = dot(in.local, perpToCupola) / shortAxisScale;
-
-    // Calculate the football-shaped "distance" (scaled ellipse)
-    float rFootball = longAxisProj * longAxisProj + shortAxisProj * shortAxisProj;
-
+float4 renderPong(NorthLoopPacket in) {
     float E = dot(in.frame, in.cupola);
     float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
     float EE = E == 0 && B == 0 ? 0 : 0.7 * E / (E + B);
     float BB = E == 0 && B == 0 ? 0 : 0.7 * B / (E + B);
-
-    // Draw football-shaped regions
-    if (rFootball < (1.0 / 9.0)) {
-        return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0);
-    }
-    if (rFootball < 0.2) {
-        return float4(EE, 0.0, BB, 1.0);
-    }
-
+    
     if (in.pongVectorsOn) {
-        // Draw cupola vector
-        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
-        float2 projected = in.cupola * projection;
-        float2 perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && rFootball < 0.6) {
-            return float4(1.0, 1.0, 1.0, 1.0);
-        }
+        NorthLoopResult result = renderVector(in, in.cupola, float4(EE, 0.0, BB, 1.0), 0.15);
+        if (result.rendered) { return result.color; }
 
-        // Draw frame vector
-        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
-        projected = in.frame * projection;
-        perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.001 && projection >= 0 && rFootball < 0.6) {
-            return float4(0.0, 0.0, 0.0, 1.0);
-        }
+        result = renderBody(in, float4(0.3 + EE, 0.3, 0.3 + BB, 1.0), float4(EE, 0.0, BB, 1.0), 1);
+        if (result.rendered) { return result.color; }
+        
+        result = renderVector(in, in.frame, float4(1.0, 1.0, 1.0, 1.0), 0.3);
+        if (result.rendered) { return result.color; }
+        
+        result = renderVector(in, in.velocity, float4(0.2, 0.2, 0.2, 1.0), 0.3);
+        if (result.rendered) { return result.color; }
 
-        // Draw aether vector
-        projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
-        projected = in.velocity * projection;
-        perpendicular = in.local - projected;
-        if (length_squared(perpendicular) < 0.016 && projection >= 0 && rFootball < 1.0) {
-            return float4(0.4, 0.4, 0.4, 1.0);
-        }
+    } else {
+        NorthLoopResult result = renderBody(in, float4(0.3 + EE, 0.3, 0.3 + BB, 1.0), float4(EE, 0.0, BB, 1.0), 0.5);
+        if (result.rendered) { return result.color; }
     }
 
     return float4(0.0, 0.0, 0.0, 0.0);
 }
-
-//float4 renderPong(FragmentPacket in) {
-//    float r = length_squared(in.local);
-//    
-//    float E = dot(in.frame, in.cupola);
-//    float B = abs(in.frame.x * in.cupola.y - in.frame.y * in.cupola.x);
-//    float EE = E == 0 && B == 0 ? 0 : 0.7 * E/(E+B);
-//    float BB = E == 0 && B == 0 ? 0 : 0.7 * B/(E+B);
-//
-//    // draw inner circle
-//    if (r < 1.0/9.0) { return float4(0.3 + EE, 0.3, 0.3 + BB, 1.0); }
-//    if (r < 0.2) { return float4(EE, 0.0, BB, 1.0); }
-//
-//    if (in.pongVectorsOn) {
-//        // draw cupola vector
-//        float projection = dot(in.local, in.cupola) / dot(in.cupola, in.cupola);
-//        float2 projected = in.cupola * projection;
-//        float2 perpendicular = in.local - projected;
-//        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(1.0, 1.0, 1.0, 1.0); }
-//        
-//        // draw frame vector
-//        projection = dot(in.local, in.frame) / dot(in.frame, in.frame);
-//        projected = in.frame * projection;
-//        perpendicular = in.local - projected;
-//        if (length_squared(perpendicular) < 0.001 && projection >= 0 && r < 0.6) { return float4(0.0, 0.0, 0.0, 1.0); }
-//        
-//        // draw aether vector
-//        projection = dot(in.local, in.velocity) / dot(in.velocity, in.velocity);
-//        projected = in.velocity * projection;
-//        perpendicular = in.local - projected;
-//        if (length_squared(perpendicular) < 0.016 && projection >= 0 && r < 1.0) { return float4(0.4, 0.4, 0.4, 1.0); }
-//    }
-//
-//    return float4(0.0, 0.0, 0.0, 0.0);
-//}
-float4 renderPhoton(FragmentPacket in) {
-    float dist = length(in.local);
-    const float outerRadius = 1.0;
+float4 renderPhoton(NorthLoopPacket in) {
+    float dist = length_squared(in.local);
+    const float outerRadius = 0.01;
     
     if (dist > outerRadius) { return float4(0.0, 0.0, 0.0, 0.0); }
     
     return float4(1.0, 1.0, 1.0, 1.0);
 }
-fragment float4 em_fragment_shader(FragmentPacket in [[stage_in]]) {
-    if (in.type == 0) return renderTeslon(in);
+
+fragment float4 northLoopFragmentShader(NorthLoopPacket in [[stage_in]]) {
+         if (in.type == 0) return renderTeslon(in);
     else if (in.type == 1) return renderPing(in);
     else if (in.type == 2) return renderPong(in);
     else if (in.type == 3) return renderPhoton(in);
