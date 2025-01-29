@@ -185,7 +185,6 @@ float4 renderPing(NorthLoopPacket in) {
         if (result.rendered) { return result.color; }
 
     } else {
-//        if (length_squared(in.local) < 0.01) { return float4(0.4, 0.4, 0.4, 1.0); }
         NorthLoopResult result = renderBody(in, float4(0.4, 0.4, 0.4, 1.0), float4(0.4, 0.4, 0.4, 1.0), 0.2);
         if (result.rendered) { return result.color; }
     }
