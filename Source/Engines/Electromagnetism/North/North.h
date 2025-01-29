@@ -28,8 +28,9 @@ double MomentumY(Momentum* momentum);
 typedef struct NCTeslon {
     CV2 pos;
     CV2 v;
-    double iHyle;                  // innate hyle
-    unsigned char fixed;
+    double hyle;                  // innate hyle
+    unsigned char pings;
+    unsigned char contracts;
 } NCTeslon;
 
 NCTeslon* NCTeslonCreate(void);
@@ -114,7 +115,7 @@ void NCUniverseAddTeslon(NCUniverse* universe, NCTeslon* teslon);
 void NCUniverseAddPing(NCUniverse* universe, NCPing* ping);
 void NCUniverseAddPong(NCUniverse* universe, NCPong* pong);
 void NCUniverseAddPhoton(NCUniverse* universe, NCPhoton* photon);
-NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed);
+NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, double hyle, unsigned char pings, unsigned char contracts);
 NCPing* NCUniverseCreatePing(NCUniverse* universe, NCTeslon* teslon);
 NCPong* NCUniverseCreatePong(NCUniverse* universe, NCTeslon* teslon);
 NCPhoton* NCUniverseCreatePhoton(NCUniverse* universe, NCTeslon* teslon);

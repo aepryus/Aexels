@@ -163,7 +163,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         NCUniverseSetSpeed(universe, velocity)
         electromagnetism.regenerateTeslons(size: systemView.bounds.size)
         electromagnetism.teslons.forEach { (teslon: Teslon) in
-            NCUniverseCreateTeslon(universe, teslon.pX, teslon.pY, teslon.speed, teslon.orient, 0)
+            NCUniverseCreateTeslon(universe, teslon.pX, teslon.pY, teslon.speed, teslon.orient, teslon.hyle, teslon.pings ? 1 : 0, teslon.contracts ? 1 : 0)
         }
     }
     
@@ -223,9 +223,9 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
             let object: NorthLoop = NorthLoop(
                 type: 0,
                 position: SIMD2<Float>(Float(teslon.pointee.pos.x), Float(teslon.pointee.pos.y)),
-                velocity: SIMD2<Float>(0, 0),
+                velocity: SIMD2<Float>(Float(teslon.pointee.v.x), Float(teslon.pointee.v.y)),
                 cupola: SIMD2<Float>(0, 0),
-                hyle: Float(teslon.pointee.iHyle)
+                hyle: Float(teslon.pointee.hyle)
             )
             objects.append(object)
         }

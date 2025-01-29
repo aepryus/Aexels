@@ -6,6 +6,7 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
+#include <metal_math>
 #include <metal_stdlib>
 using namespace metal;
 
@@ -152,13 +153,25 @@ NorthLoopResult renderBody(NorthLoopPacket in, float4 fill, float4 stroke, float
 }
 
 float4 renderTeslon(NorthLoopPacket in) {
-    float dist = length(in.local);
-    const float innerRadius = 0.7;
-    const float outerRadius = 1.0;
+    constexpr float outerRadius = 1.0;
+    constexpr float innerRadius = 0.7;
+    constexpr float outerRadiusSquared = outerRadius * outerRadius;
+    constexpr float innerRadiusSquared = innerRadius * innerRadius;
+    constexpr float outerArea = M_PI_F * outerRadiusSquared;
+    constexpr float innerArea = M_PI_F * innerRadiusSquared;
+    constexpr float innateHyleArea = outerArea - innerArea;
     
-    if ((dist < innerRadius || dist > outerRadius)) { return float4(0.0, 0.0, 0.0, 0.0); }
+    float squared = length_squared(in.local);
+    float vSquared = length_squared(in.velocity);
+    float kineticHyle = in.hyle * (1/sqrt(1-vSquared) - 1);
+    float kineticArea = (kineticHyle / in.hyle) * innateHyleArea;
+    float kineticRadiusSquared = kineticArea / M_PI_F;
     
-    return float4(1.0, 1.0, 1.0, 1.0);
+    if (squared > innerRadiusSquared && squared < outerRadiusSquared) { return float4(1.0, 1.0, 1.0, 1.0); }
+    
+    if (squared < kineticRadiusSquared && squared < innerRadiusSquared) { return float4(1.0, 1.0, 1.0, 1.0); }
+    
+    return float4(0.0, 0.0, 0.0, 0.0);
 }
 float4 renderPing(NorthLoopPacket in) {
     if (in.pingVectorsOn) {
@@ -173,7 +186,7 @@ float4 renderPing(NorthLoopPacket in) {
 
     } else {
 //        if (length_squared(in.local) < 0.01) { return float4(0.4, 0.4, 0.4, 1.0); }
-        NorthLoopResult result = renderBody(in, float4(0.4, 0.4, 0.4, 1.0), float4(0.4, 0.4, 0.4, 1.0), 0.3);
+        NorthLoopResult result = renderBody(in, float4(0.4, 0.4, 0.4, 1.0), float4(0.4, 0.4, 0.4, 1.0), 0.2);
         if (result.rendered) { return result.color; }
     }
     

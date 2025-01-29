@@ -37,7 +37,7 @@ void NCTeslonRelease(NCTeslon* teslon) {
     free(teslon);
 }
 double NCTeslonHyle(NCTeslon* teslon) {
-    return teslon->iHyle * CV2Gamma(teslon->v);
+    return teslon->hyle * CV2Gamma(teslon->v);
 }
 double HyleOrientX(double hyle, double orient) {
     return hyle * cos(orient);
@@ -46,7 +46,7 @@ double HyleOrientY(double hyle, double orient) {
     return hyle * sin(orient);
 }
 void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola) {
-    double iHyle = teslon->iHyle;
+    double iHyle = teslon->hyle;
     double tHyle = iHyle * CV2Gamma(teslon->v);
     double pX = tHyle*teslon->v.x + hyle*cupola.x;
     double pY = tHyle*teslon->v.y + hyle*cupola.y;
@@ -182,18 +182,18 @@ void NCUniverseAddCamera(NCUniverse* universe, NCCamera* camera) {
         universe->cameras = (NCCamera**)realloc(universe->cameras, sizeof(NCCamera*)*universe->cameraCapacity);
     }
     universe->cameras[universe->cameraCount-1] = camera;
-//    if (universe->cameraCount == 1) NCUniverseSetCamera(universe, 0);
-    NCUniverseSetCamera(universe, 0);
+    if (universe->cameraCount == 1) NCUniverseSetCamera(universe, 0);
 }
 
-NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, unsigned char fixed) {
+NCTeslon* NCUniverseCreateTeslon(NCUniverse* universe, double x, double y, double speed, double orient, double hyle, unsigned char pings, unsigned char contracts) {
     NCTeslon* teslon = NCTeslonCreate();
     teslon->pos.x = x;
     teslon->pos.y = y;
     teslon->v.x = speed * cos(orient);
     teslon->v.y = speed * sin(orient);
-    teslon->fixed = fixed;
-    teslon->iHyle = 1;
+    teslon->hyle = hyle;
+    teslon->pings = pings;
+    teslon->contracts = contracts;
     NCUniverseAddTeslon(universe, teslon);
     return teslon;
 }
@@ -288,7 +288,14 @@ void NCUniverseSetHyleExchange(NCUniverse* universe, unsigned char hyleExchange)
 
 void NCUniversePing(NCUniverse* universe, int n) {
     int pingI = universe->pingCount;
-    universe->pingCount += n * universe->teslonCount;
+    
+    int pingingTeslons = 0;
+    for (int i=0;i<universe->teslonCount;i++) {
+        NCTeslon* teslon = universe->teslons[i];
+        if (teslon->pings) pingingTeslons++;
+    }
+    
+    universe->pingCount += n * pingingTeslons;
     if (universe->pingCount > universe->pingCapacity) {
         while (universe->pingCount > universe->pingCapacity) universe->pingCapacity *= 2;
         universe->pings = (NCPing**)realloc(universe->pings, sizeof(NCPing*)*universe->pingCapacity);
@@ -296,6 +303,7 @@ void NCUniversePing(NCUniverse* universe, int n) {
     
     for (int i=0;i<universe->teslonCount;i++) {
         NCTeslon* teslon = universe->teslons[i];
+        if (!teslon->pings) continue;
         double iQ = CV2Orient(teslon->v);
         double dQ = 2*M_PI/n;
         

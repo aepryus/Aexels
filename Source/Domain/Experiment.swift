@@ -186,8 +186,8 @@ class Experiment: Anchor {
         
         electromagnetism.generateTeslons = { (size: CGSize) in [
             Teslon(pX: size.width/2, pY: size.height/2, speed: 0.5, orient: 0),
-            Teslon(pX: size.width/2, pY: size.height/4, speed: 0.5, orient: 0),
-            Teslon(pX: size.width/2+size.width/4/(1/sqrt(1-0.5*0.5)), pY: size.height/2, speed: 0.5, orient: 0)
+            Teslon(pX: size.width/2, pY: size.height/4, speed: 0.5, orient: 0, pings: false),
+            Teslon(pX: size.width/2+size.width/4/(1/sqrt(1-0.5*0.5)), pY: size.height/2, speed: 0.5, orient: 0, pings: false)
         ]}
 
         experiment.electromagnetism = electromagnetism
