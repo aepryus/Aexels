@@ -48,10 +48,8 @@ double HyleOrientY(double hyle, double orient) {
 void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola) {
     double iHyle = teslon->hyle;
     double tHyle = iHyle * CV2Gamma(teslon->v);
-    double pX = tHyle*teslon->v.x + hyle*cupola.x;
-    double pY = tHyle*teslon->v.y + hyle*cupola.y;
-    teslon->v.x += pX;
-    teslon->v.y += pY;
+    teslon->v.x += cupola.x * hyle/tHyle;
+    teslon->v.y += cupola.y * hyle/tHyle;
 }
 
 // Ping ============================================================================================
@@ -415,7 +413,7 @@ void NCUniverseTic(NCUniverse* universe) {
             if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 20)) {
 
                 double beforeHyle = NCTeslonHyle(teslon);
-                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.1, pong->cupola); }
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.01, pong->cupola); }
                 double afterHyle = NCTeslonHyle(teslon);
 
                 NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);
@@ -427,14 +425,8 @@ void NCUniverseTic(NCUniverse* universe) {
                 photon->v.x = pong->v.x - scale * pong->cupola.x;
                 photon->v.y = pong->v.y - scale * pong->cupola.y;
 
-                double iQx = photon->v.x;
-                double iQy = photon->v.y;
-
-                double tVx = teslon->v.x;
-                double tVy = teslon->v.y;
-
-                photon->cupola.x = iQx - tVx;
-                photon->cupola.y = iQy - tVy;
+                photon->cupola.x = -pong->cupola.x;
+                photon->cupola.y = -pong->cupola.y;
 
                 photon->hyle = beforeHyle - afterHyle;
 
@@ -446,6 +438,9 @@ void NCUniverseTic(NCUniverse* universe) {
         for (int j=0;j<universe->photonCount;j++) {
             NCPhoton* photon = universe->photons[j];
             if (photon->source != teslon && !photon->recycle && NCTeslonInsideOf(teslon, photon->pos, 20)) {
+                
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, photon->hyle, photon->cupola); }
+                
                 photon->recycle = 1;
             }
         }

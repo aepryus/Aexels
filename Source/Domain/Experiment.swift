@@ -122,10 +122,10 @@ class Experiment: Anchor {
         electromagnetism.timeStepsPerVolley = 60
         electromagnetism.autoVolleyOn = true
         electromagnetism.cameraWallsOn = false
-        electromagnetism.hyleExchangeOn = false
+        electromagnetism.hyleExchangeOn = true
         electromagnetism.aetherFrameOn = false
         electromagnetism.pingRenderMode = .minimal
-        electromagnetism.pongRenderMode = .full
+        electromagnetism.pongRenderMode = .minimal
         electromagnetism.photonRenderMode = .full
         
         electromagnetism.generateTeslons = { (size: CGSize) in [

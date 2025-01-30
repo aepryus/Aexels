@@ -224,7 +224,8 @@ float4 renderPhoton(NorthLoopPacket in) {
     
     if (dist > outerRadius) { return float4(0.0, 0.0, 0.0, 0.0); }
     
-    return float4(1.0, 1.0, 1.0, 1.0);
+    if (in.hyle > 0) { return float4(1.0, 1.0, 1.0, 1.0); }
+    else { return float4(0.0, 0.0, 0.0, 1.0); }
 }
 
 fragment float4 northLoopFragmentShader(NorthLoopPacket in [[stage_in]]) {
