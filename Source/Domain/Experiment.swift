@@ -174,19 +174,17 @@ class Experiment: Anchor {
         let electromagnetism: Electromagnetism = Electromagnetism()
         electromagnetism.speedOfLight = 1
         electromagnetism.aetherVelocity = 0
-        electromagnetism.pingsPerVolley = 120
-        electromagnetism.timeStepsPerVolley = 120
-        electromagnetism.autoVolleyOn = false
+        electromagnetism.pingsPerVolley = 1200
+        electromagnetism.timeStepsPerVolley = 600
+        electromagnetism.autoVolleyOn = true
         electromagnetism.cameraWallsOn = false
         electromagnetism.hyleExchangeOn = false
         electromagnetism.aetherFrameOn = false
         electromagnetism.pingRenderMode = .minimal
-        electromagnetism.pongRenderMode = .full
+        electromagnetism.pongRenderMode = .minimal
         electromagnetism.photonRenderMode = .full
         
         electromagnetism.generateTeslons = { (size: CGSize) in
-            print("C:\(size.width)")
-            
             let d: CGFloat = size.width/4
             return [
                 Teslon(pX: size.width/2, pY: size.height/2, speed: 0, orient: 0),

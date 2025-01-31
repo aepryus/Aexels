@@ -66,7 +66,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     }
     
     func applyExperiment() {
-        timeControl.playButton.stop()
+//        timeControl.playButton.stop()
         experiment?.electromagnetism?.regenerateTeslons(size: systemView.drawableSize / systemView.contentScaleFactor)
         controlsTab.experiment = experiment
         renderer.experiment = experiment
@@ -181,7 +181,6 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-        print("B:\(systemView.drawableSize.width)")
 //        imageView.image = Engine.renderHex(size: imageView.bounds.size)
 
         
