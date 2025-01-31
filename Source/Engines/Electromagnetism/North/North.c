@@ -267,9 +267,18 @@ void NCUniverseSetC(NCUniverse* universe, double c) {
     universe->c = c;
 }
 void NCUniverseSetSpeed(NCUniverse* universe, double speed) {
-    double delta = speed - universe->speed;
-    universe->speed += delta;
-    for (int i=0;i<universe->teslonCount;i++) universe->teslons[i]->v.x += delta;
+    double fromGamma = 1/sqrt(1 - universe->speed*universe->speed);
+    double toGamma = 1/sqrt(1 - speed*speed);
+    double cx = universe->cameras[0]->pos.x;
+    
+    for (int i=0;i<universe->teslonCount;i++) {
+        NCTeslon* teslon = universe->teslons[i];
+        teslon->pos.x = cx + (teslon->pos.x - cx) * fromGamma / toGamma;
+        universe->teslons[i]->v.x = speed + (universe->teslons[i]->v.x - universe->speed) * (fromGamma*fromGamma)/(toGamma*toGamma);
+        universe->teslons[i]->v.y = universe->teslons[i]->v.y * fromGamma/toGamma;
+    }
+    
+    universe->speed = speed;
     universe->camera->v.x = speed;
 }
 void NCUniverseSetSize(NCUniverse* universe, double width, double height) {
@@ -347,6 +356,10 @@ void NCUniversePong(NCUniverse* universe) {
 
 void NCUniverseTic(NCUniverse* universe) {
     // Basic Translation
+    for (int i=0;i<universe->cameraCount;i++) {
+        universe->cameras[i]->pos.x += universe->cameras[i]->v.x * universe->c;
+        universe->cameras[i]->pos.y += universe->cameras[i]->v.y * universe->c;
+    }
     for (int i=0;i<universe->teslonCount;i++) {
         universe->teslons[i]->pos.x += universe->teslons[i]->v.x * universe->c;
         universe->teslons[i]->pos.y += universe->teslons[i]->v.y * universe->c;
@@ -363,11 +376,7 @@ void NCUniverseTic(NCUniverse* universe) {
         universe->photons[i]->pos.x += universe->photons[i]->v.x * universe->c;
         universe->photons[i]->pos.y += universe->photons[i]->v.y * universe->c;
     }
-    for (int i=0;i<universe->cameraCount;i++) {
-        universe->cameras[i]->pos.x += universe->cameras[i]->v.x * universe->c;
-        universe->cameras[i]->pos.y += universe->cameras[i]->v.y * universe->c;
-    }
-
+    
     for (int i=0;i<universe->teslonCount;i++) {
         NCTeslon* teslon = universe->teslons[i];
 
@@ -381,10 +390,12 @@ void NCUniverseTic(NCUniverse* universe) {
             }
         }
         
+        double collisionRadius = 20;
+        
         // Ping Collision; Pong Reflection
         for (int j = 0; j < universe->pingCount; j++) {
             NCPing* ping = universe->pings[j];
-            if (ping->source != teslon && !ping->recycle && NCTeslonInsideOf(teslon, ping->pos, 20)) {
+            if (ping->source != teslon && !ping->recycle && NCTeslonInsideOf(teslon, ping->pos, collisionRadius)) {
                 NCPong* pong = NCUniverseCreatePong(universe, teslon);
                 pong->pos = ping->pos;
 
@@ -410,10 +421,10 @@ void NCUniverseTic(NCUniverse* universe) {
         // Pong Collision; Photon Reflection
         for (int j = 0; j < universe->pongCount; j++) {
             NCPong* pong = universe->pongs[j];
-            if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, 20)) {
+            if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, collisionRadius)) {
 
                 double beforeHyle = NCTeslonHyle(teslon);
-                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.01, pong->cupola); }
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.0005, pong->cupola); }
                 double afterHyle = NCTeslonHyle(teslon);
 
                 NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);
@@ -437,7 +448,7 @@ void NCUniverseTic(NCUniverse* universe) {
         // Photon Collision; Photon Absorption
         for (int j=0;j<universe->photonCount;j++) {
             NCPhoton* photon = universe->photons[j];
-            if (photon->source != teslon && !photon->recycle && NCTeslonInsideOf(teslon, photon->pos, 20)) {
+            if (photon->source != teslon && !photon->recycle && NCTeslonInsideOf(teslon, photon->pos, collisionRadius)) {
                 
                 if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, photon->hyle, photon->cupola); }
                 

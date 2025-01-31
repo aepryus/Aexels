@@ -166,7 +166,7 @@ float4 renderTeslon(NorthLoopPacket in) {
     float kineticHyle = in.hyle * (1/sqrt(1-vSquared) - 1);
     float kineticArea = (kineticHyle / in.hyle) * innateHyleArea;
     float kineticRadiusSquared = kineticArea / M_PI_F;
-    
+
     if (squared > innerRadiusSquared && squared < outerRadiusSquared) { return float4(1.0, 1.0, 1.0, 1.0); }
     
     if (squared < kineticRadiusSquared && squared < innerRadiusSquared) { return float4(1.0, 1.0, 1.0, 1.0); }
@@ -224,7 +224,7 @@ float4 renderPhoton(NorthLoopPacket in) {
     
     if (dist > outerRadius) { return float4(0.0, 0.0, 0.0, 0.0); }
     
-    if (in.hyle > 0) { return float4(1.0, 1.0, 1.0, 1.0); }
+    if (in.hyle >= 0) { return float4(1.0, 1.0, 1.0, 1.0); }
     else { return float4(0.0, 0.0, 0.0, 1.0); }
 }
 

@@ -55,16 +55,19 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         super.init(key: "electromagnetism")
         aetherCell.alpha = 0
         
-        experiments.append(Experiment.teslonsInABox())
-        experiments.append(Experiment.exploringThePing())
-        experiments.append(Experiment.whatIsMagnetism())
-        experiments.append(Experiment.whatIsPotentialEnergy())
-        experiments.append(Experiment.dilationRedux())
-        experiments.append(Experiment.contractionRedux())
+        experiments.append(.teslonsInABox())
+        experiments.append(.exploringThePing())
+        experiments.append(.whatIsMagnetism())
+        experiments.append(.whatIsPotentialEnergy())
+        experiments.append(.dilationRedux())
+        experiments.append(.contractionRedux())
+        experiments.append(.understandingFrames())
+        experiments.append(.hondaAndTesla())
     }
     
     func applyExperiment() {
-        experiment?.electromagnetism?.regenerateTeslons(size: systemView.bounds.size)
+        timeControl.playButton.stop()
+        experiment?.electromagnetism?.regenerateTeslons(size: systemView.drawableSize / systemView.contentScaleFactor)
         controlsTab.experiment = experiment
         renderer.experiment = experiment
         systemView.draw()
@@ -109,6 +112,11 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
             }
 
         }
+    }
+    
+    func drawAllMetalViews() {
+        systemView.draw()
+        aetherView.draw()
     }
     
 // UIViewController ================================================================================
@@ -173,7 +181,7 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-//        print("Q:\(imageView.bounds)")
+        print("B:\(systemView.drawableSize.width)")
 //        imageView.image = Engine.renderHex(size: imageView.bounds.size)
 
         

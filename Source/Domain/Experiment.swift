@@ -116,10 +116,10 @@ class Experiment: Anchor {
         experiment.notes = ""
         
         let electromagnetism: Electromagnetism = Electromagnetism()
-        electromagnetism.speedOfLight = 1
+        electromagnetism.speedOfLight = 6
         electromagnetism.aetherVelocity = 0
         electromagnetism.pingsPerVolley = 480
-        electromagnetism.timeStepsPerVolley = 60
+        electromagnetism.timeStepsPerVolley = 10
         electromagnetism.autoVolleyOn = true
         electromagnetism.cameraWallsOn = false
         electromagnetism.hyleExchangeOn = true
@@ -173,7 +173,7 @@ class Experiment: Anchor {
         
         let electromagnetism: Electromagnetism = Electromagnetism()
         electromagnetism.speedOfLight = 1
-        electromagnetism.aetherVelocity = 50
+        electromagnetism.aetherVelocity = 0
         electromagnetism.pingsPerVolley = 120
         electromagnetism.timeStepsPerVolley = 120
         electromagnetism.autoVolleyOn = false
@@ -184,11 +184,77 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
+        electromagnetism.generateTeslons = { (size: CGSize) in
+            print("C:\(size.width)")
+            
+            let d: CGFloat = size.width/4
+            return [
+                Teslon(pX: size.width/2, pY: size.height/2, speed: 0, orient: 0),
+                Teslon(pX: size.width/2, pY: size.height/2 - d, speed: 0, orient: 0, pings: false),
+                Teslon(pX: size.width/2 + d, pY: size.height/2, speed: 0, orient: 0, pings: false)
+            ]
+        }
+
+        experiment.electromagnetism = electromagnetism
+
+        return experiment
+    }
+    static func understandingFrames() -> Experiment {
+        let experiment: Experiment = Experiment()
+        experiment.explorer = .electromagnetism
+        experiment.name = "Understanding Frames"
+        experiment.notes = ""
+        
+        let electromagnetism: Electromagnetism = Electromagnetism()
+        electromagnetism.speedOfLight = 8
+        electromagnetism.aetherVelocity = 0
+        electromagnetism.pingsPerVolley = 120
+        electromagnetism.timeStepsPerVolley = 120
+        electromagnetism.autoVolleyOn = false
+        electromagnetism.cameraWallsOn = false
+        electromagnetism.hyleExchangeOn = false
+        electromagnetism.aetherFrameOn = true
+        electromagnetism.pingRenderMode = .minimal
+        electromagnetism.pongRenderMode = .minimal
+        electromagnetism.photonRenderMode = .minimal
+        
         electromagnetism.generateTeslons = { (size: CGSize) in [
-            Teslon(pX: size.width/2, pY: size.height/2, speed: 0.5, orient: 0),
-            Teslon(pX: size.width/2, pY: size.height/4, speed: 0.5, orient: 0, pings: false),
-            Teslon(pX: size.width/2+size.width/4/(1/sqrt(1-0.5*0.5)), pY: size.height/2, speed: 0.5, orient: 0, pings: false)
+            Teslon(pX: size.width * 3.0/4.0, pY: size.height * 1.0/4.0, speed: -0.06, orient: 0),
+            Teslon(pX: size.width * 1.0/4.0, pY: size.height * 3.0/4.0, speed:  0.06, orient: 0, pings: false),
         ]}
+
+        experiment.electromagnetism = electromagnetism
+
+        return experiment
+    }
+    static func hondaAndTesla() -> Experiment {
+        let experiment: Experiment = Experiment()
+        experiment.explorer = .electromagnetism
+        experiment.name = "Honda and Tesla"
+        experiment.notes = ""
+        
+        let electromagnetism: Electromagnetism = Electromagnetism()
+        electromagnetism.speedOfLight = 8
+        electromagnetism.aetherVelocity = 0
+        electromagnetism.pingsPerVolley = 120
+        electromagnetism.timeStepsPerVolley = 120
+        electromagnetism.autoVolleyOn = false
+        electromagnetism.cameraWallsOn = false
+        electromagnetism.hyleExchangeOn = false
+        electromagnetism.aetherFrameOn = false
+        electromagnetism.pingRenderMode = .minimal
+        electromagnetism.pongRenderMode = .minimal
+        electromagnetism.photonRenderMode = .minimal
+        
+        electromagnetism.generateTeslons = { (size: CGSize) in
+            let d: CGFloat = size.width / 5
+            
+            return [
+                Teslon(pX: size.width/2, pY: size.height/2, speed: 0, orient: 0),
+                Teslon(pX: size.width/2+d, pY: size.height/2, speed: 0.01, orient: .pi),
+                Teslon(pX: size.width/2, pY: size.height/2-d, speed: 0.01, orient: .pi/2)
+            ]
+        }
 
         experiment.electromagnetism = electromagnetism
 

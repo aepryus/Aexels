@@ -102,6 +102,7 @@ class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
         super.init(name: "Experiments".localized)
         
         tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = true
         tableView.dataSource = self
         tableView.delegate = self
@@ -116,7 +117,7 @@ class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        tableView.frame = bounds.insetBy(dx: 10*s, dy: 10*s)
+        tableView.frame = CGRect(x: 10*s, y: 10*s, width: bounds.size.width-20*s, height: bounds.size.height-44*s)
     }
     
 // UITableViewDataSource ===========================================================================

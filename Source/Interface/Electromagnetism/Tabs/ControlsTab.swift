@@ -83,6 +83,7 @@ class ControlsTab: TabsCellTab {
         addSubview(aetherVelocitySlider)
         aetherVelocitySlider.onChange = { (speedOfAether: Int) in
             self.explorer.renderer.velocity = Double(speedOfAether)/100
+            self.explorer.drawAllMetalViews()
         }
         
         pingsPerVolleySlider.options = [12, 24, 36, 48, 60, 120, 240, 360, 480, 600, 900, 1200]

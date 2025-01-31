@@ -155,13 +155,17 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     func loadExperiment() {
         guard let experiment, let electromagnetism = experiment.electromagnetism, let systemView else { return }
         if let universe { NCUniverseRelease(universe) }
-        universe = NCUniverseCreate(systemView.drawableSize.width / systemView.contentScaleFactor, systemView.drawableSize.height / systemView.contentScaleFactor)
+        
+        let width: CGFloat = systemView.drawableSize.width / systemView.contentScaleFactor
+        let height: CGFloat = systemView.drawableSize.height / systemView.contentScaleFactor
+        
+        universe = NCUniverseCreate(width, height)
         let velocity: Double = Double(electromagnetism.aetherVelocity)/100
-        systemCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, velocity, 0)
+        systemCamera = NCUniverseCreateCamera(universe, width/2, height/2, velocity, 0)
         NCCameraSetWalls(systemCamera, 1)
-        aetherCamera = NCUniverseCreateCamera(universe, systemView.width/2, systemView.height/2, 0, 0)
+        aetherCamera = NCUniverseCreateCamera(universe, width/2, height/2, 0, 0)
         NCUniverseSetSpeed(universe, velocity)
-        electromagnetism.regenerateTeslons(size: systemView.bounds.size)
+        electromagnetism.regenerateTeslons(size: CGSize(width: width, height: height))
         electromagnetism.teslons.forEach { (teslon: Teslon) in
             NCUniverseCreateTeslon(universe, teslon.pX, teslon.pY, teslon.speed, teslon.orient, teslon.hyle, teslon.pings ? 1 : 0, teslon.contracts ? 1 : 0)
         }
