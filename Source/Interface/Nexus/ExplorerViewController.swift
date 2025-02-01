@@ -25,6 +25,8 @@ class ExplorerViewController: AEViewController {
         didSet {
             guard explorer != oldValue else { return }
             if oldValue is NexusExplorer {
+                visionBar.alwaysExpanded = false
+                self.visionBar.contract()
                 graphView.stop()
                 stopMusic()
             }
@@ -32,6 +34,8 @@ class ExplorerViewController: AEViewController {
                 oldValue?.view.alpha = 0
             } completion: { (complete: Bool) in
                 if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
+                    self.visionBar.alwaysExpanded = true
+                    self.visionBar.expand()
                     nexusExplorer.articleView.removeFromSuperview()
                     nexusExplorer.currentCapsule.removeFromSuperview()
                     nexusExplorer.articleView.alpha = 0

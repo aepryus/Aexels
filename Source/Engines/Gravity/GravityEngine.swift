@@ -7,6 +7,7 @@
 //
 
 import Acheron
+import OoviumEngine
 import UIKit
 
 class GravityEngine: Engine {
@@ -51,7 +52,7 @@ class GravityEngine: Engine {
 
         c.addArc(center: center, radius: radius, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
 
-        c.setFillColor(UIColor.green.cgColor)
+        c.setFillColor(OOColor.cobolt.uiColor.cgColor)
         c.setStrokeColor(UIColor.black.cgColor)
         c.setLineWidth(1)
         c.drawPath(using: .fillStroke)
@@ -65,7 +66,7 @@ class GravityEngine: Engine {
 
         c.addArc(center: center, radius: radius, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
 
-        c.setFillColor(UIColor.red.cgColor)
+        c.setFillColor(OOColor.marine.uiColor.cgColor)
         c.setStrokeColor(UIColor.black.cgColor)
         c.setLineWidth(1)
         c.drawPath(using: .fillStroke)

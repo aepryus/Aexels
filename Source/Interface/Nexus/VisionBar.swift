@@ -52,6 +52,7 @@ class VisionBar: AEView {
     var visionBox: VisionBox
     var selected: Vision
     var expanded: Bool
+    var alwaysExpanded: Bool = false
     
     var onSelect: (Vision)->() = {(vision: Vision) in }
     
@@ -111,7 +112,7 @@ class VisionBar: AEView {
         }
     }
     func contract() {
-        guard expanded else { return }
+        guard expanded && !alwaysExpanded else { return }
         expanded = false
         onContract()
         UIView.animate(withDuration: 0.2) {

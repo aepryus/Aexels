@@ -377,6 +377,7 @@
 		D896C99B2D41F7ED0058585C /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
+				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
 				D8656C112A8CF907003FC9A3 /* GravityView.swift */,
 				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 			);
@@ -606,7 +607,6 @@
 		D8C14CD62D3DE93D00F83F28 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
-				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
 				D813B7682AA6B892003851AE /* GravityEngine.swift */,
 			);
 			path = Gravity;

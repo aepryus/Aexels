@@ -255,7 +255,7 @@ class NexusExplorer: AEViewController {
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
         interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
         
-        musicButton.topLeft(dx: 700*s, dy: 30*s, width: 20*s, height: 20*s)
+        musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
         claudeButton.topLeft(dx: musicButton.right+8*s, dy: musicButton.top, width: 175*s, height: 20*s)
     }
     override func layoutRatio133() {
@@ -268,7 +268,7 @@ class NexusExplorer: AEViewController {
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
         interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
         
-        musicButton.topLeft(dx: 700*s, dy: 30*s, width: 20*s, height: 20*s)
-        claudeButton.topLeft(dx: musicButton.right+8*s, dy: musicButton.top, width: 175*s, height: 20*s)
+        musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
+        claudeButton.topLeft(dx: 700*s, dy: 30*s, width: 175*s, height: 20*s)
     }
 }
