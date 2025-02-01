@@ -12,7 +12,9 @@ import UIKit
 // The main crop circle control of the nexus explorer.
 
 class GlyphsView: AEView {
-    var glyphs: [GlyphView] = []
+    var glyphs: [GlyphView] = [] {
+        didSet { glyphs.forEach { addSubview($0) } }
+    }
     var focus: GlyphView? = nil {
         didSet {
             if let focus {
@@ -26,12 +28,7 @@ class GlyphsView: AEView {
     
     override init() {
         super.init()
-        backgroundColor = .clear
-    }
-    
-    func add(glyph: GlyphView) {
-        glyphs.append(glyph)
-        addSubview(glyph)
+        backgroundColor = .black.alpha(0.1)
     }
     
 // AEView ==========================================================================================

@@ -19,9 +19,12 @@ class NexusExplorer: AEViewController {
     let articleView: ArticleView = ArticleView()
     let interchange: Interchange = Interchange()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
+    var contextGlyphsView: GlyphsView? = nil
 
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
+    
+    var glyphs: [GlyphView] = []
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
@@ -95,30 +98,8 @@ class NexusExplorer: AEViewController {
         claudeButton.alpha = 1
         glyphsView.alpha = 1
     }
-
-// Events ==========================================================================================
-    @objc func onTouch(gesture: TouchingGesture) {
-        if gesture.state == .began {
-            UIView.animate(withDuration: 0.2) {
-                self.versionLabel.alpha = 1
-            }
-        } else if gesture.state == .ended {
-            UIView.animate(withDuration: 0.2) {
-                self.versionLabel.alpha = 0
-            }
-        }
-    }
-        
-// UIViewController ================================================================================
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                
-        view.addSubview(aexelsLabel)
-        aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
-        
-        versionLabel.alpha = 0
-        view.addSubview(versionLabel)
-
+    
+    func defineGlyphs() {
         let p: CGFloat = 3*s
         
         let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 110*s+2*p, x: 70*s, y: 30*s)
@@ -153,37 +134,37 @@ class NexusExplorer: AEViewController {
         let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1570*s)
         let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 240*s, y: 1710*s)
 
-        glyphsView.add(glyph: universeXGlyph)
-        glyphsView.add(glyph: aetherGlyph)
-        glyphsView.add(glyph: cellularGlyph)
-        glyphsView.add(glyph: kinematicsGlyph)
-        glyphsView.add(glyph: gravityGlyph)
-        glyphsView.add(glyph: darknessGlyph)
-        glyphsView.add(glyph: hyleGlyph)
-        glyphsView.add(glyph: dilationGlyph)
-        glyphsView.add(glyph: contractionGlyph)
-        glyphsView.add(glyph: electromagnetismGlyph)
-        glyphsView.add(glyph: bellTHooftGlyph)
-        glyphsView.add(glyph: epilogueGlyph)
+        glyphs.append(universeXGlyph)
+        glyphs.append(aetherGlyph)
+        glyphs.append(cellularGlyph)
+        glyphs.append(kinematicsGlyph)
+        glyphs.append(gravityGlyph)
+        glyphs.append(darknessGlyph)
+        glyphs.append(hyleGlyph)
+        glyphs.append(dilationGlyph)
+        glyphs.append(contractionGlyph)
+        glyphs.append(electromagnetismGlyph)
+        glyphs.append(bellTHooftGlyph)
+        glyphs.append(epilogueGlyph)
 
-        glyphsView.add(glyph: aetherExpGlyph)
-        glyphsView.add(glyph: cellularExpGlyph)
-        glyphsView.add(glyph: kinematicsExpGlyph)
-        glyphsView.add(glyph: distanceExpGlyph)
-        glyphsView.add(glyph: gravityExpGlyph)
-        glyphsView.add(glyph: dilationExpGlyph)
-        glyphsView.add(glyph: contractionExpGlyph)
-        glyphsView.add(glyph: electromagnetismExpGlyph)
+        glyphs.append(aetherExpGlyph)
+        glyphs.append(cellularExpGlyph)
+        glyphs.append(kinematicsExpGlyph)
+        glyphs.append(distanceExpGlyph)
+        glyphs.append(gravityExpGlyph)
+        glyphs.append(dilationExpGlyph)
+        glyphs.append(contractionExpGlyph)
+        glyphs.append(electromagnetismExpGlyph)
 
-        glyphsView.add(glyph: forwardGlyph)
-        glyphsView.add(glyph: claudeGlyph)
-        glyphsView.add(glyph: blackHoleGlyph)
-        glyphsView.add(glyph: chronosGlyph)
-        glyphsView.add(glyph: floatingLeafGlyph)
-        glyphsView.add(glyph: fourClocksGlyph)
-        glyphsView.add(glyph: narwhalGlyph)
-        glyphsView.add(glyph: thooftGlyph)
-        glyphsView.add(glyph: glossaryGlyph)
+        glyphs.append(forwardGlyph)
+        glyphs.append(claudeGlyph)
+        glyphs.append(blackHoleGlyph)
+        glyphs.append(chronosGlyph)
+        glyphs.append(floatingLeafGlyph)
+        glyphs.append(fourClocksGlyph)
+        glyphs.append(narwhalGlyph)
+        glyphs.append(thooftGlyph)
+        glyphs.append(glossaryGlyph)
 
         universeXGlyph.link(to: aetherGlyph)
         universeXGlyph.link(to: forwardGlyph)
@@ -224,6 +205,33 @@ class NexusExplorer: AEViewController {
         bellTHooftGlyph.link(to: thooftGlyph)
         
         epilogueGlyph.link(to: glossaryGlyph)
+    }
+
+// Events ==========================================================================================
+    @objc func onTouch(gesture: TouchingGesture) {
+        if gesture.state == .began {
+            UIView.animate(withDuration: 0.2) {
+                self.versionLabel.alpha = 1
+            }
+        } else if gesture.state == .ended {
+            UIView.animate(withDuration: 0.2) {
+                self.versionLabel.alpha = 0
+            }
+        }
+    }
+        
+// UIViewController ================================================================================
+    override func viewDidLoad() {
+        super.viewDidLoad()
+                
+        view.addSubview(aexelsLabel)
+        aexelsLabel.addGestureRecognizer(TouchingGesture(target: self, action: #selector(onTouch)))
+        
+        versionLabel.alpha = 0
+        view.addSubview(versionLabel)
+        
+        defineGlyphs()
+        glyphsView.glyphs = glyphs
         
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false
@@ -269,6 +277,6 @@ class NexusExplorer: AEViewController {
         interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
         
         musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
-        claudeButton.topLeft(dx: 700*s, dy: 30*s, width: 175*s, height: 20*s)
+        claudeButton.topLeft(dx: musicButton.left, dy: musicButton.top - 30*s, width: 175*s, height: 20*s)
     }
 }

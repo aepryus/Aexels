@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4C62D2CC61400F259BB /* ClaudeButton.swift */; };
-		D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4C82D2D221E00F259BB /* MusicButton.swift */; };
 		D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D802E4CA2D2DE8A600F259BB /* ImageButton.swift */; };
 		D8042F11293AEB0200453B8E /* DilationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8042F10293AEB0200453B8E /* DilationView.swift */; };
 		D8042F15293B085500453B8E /* Thracian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8042F14293B085500453B8E /* Thracian.c */; };
@@ -116,7 +115,6 @@
 
 /* Begin PBXFileReference section */
 		D802E4C62D2CC61400F259BB /* ClaudeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeButton.swift; sourceTree = "<group>"; };
-		D802E4C82D2D221E00F259BB /* MusicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicButton.swift; sourceTree = "<group>"; };
 		D802E4CA2D2DE8A600F259BB /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D8042F10293AEB0200453B8E /* DilationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationView.swift; sourceTree = "<group>"; };
 		D8042F13293B085500453B8E /* Thracian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thracian.h; sourceTree = "<group>"; };
@@ -293,7 +291,7 @@
 		D85762C72D436E320025E070 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D8DA98CB2B71DE0700A4AA8F /* Cells */,
+				D8DA98CB2B71DE0700A4AA8F /* Cyto */,
 				D896C9922D4095030058585C /* TimeControl */,
 				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
@@ -302,19 +300,27 @@
 				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
 				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
 				D8AE17E32814F20500E74CB8 /* DilatorView.swift */,
-				D8AE17C62814F1C700E74CB8 /* Explorer.swift */,
 				D8AE17E62814F20500E74CB8 /* GuideButton.swift */,
 				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
 				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
-				D802E4C82D2D221E00F259BB /* MusicButton.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D896C9AC2D426C720058585C /* Slider.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		D85EDC362D4DAA87007771A7 /* Chassis */ = {
+			isa = PBXGroup;
+			children = (
+				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
+				D8AE17C62814F1C700E74CB8 /* Explorer.swift */,
+				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
+			);
+			path = Chassis;
 			sourceTree = "<group>";
 		};
 		D8656C0C2A8CF6F7003FC9A3 /* Ionian */ = {
@@ -524,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				D85762C72D436E320025E070 /* Shared */,
+				D85EDC362D4DAA87007771A7 /* Chassis */,
 				D8AE17552814EB0D00E74CB8 /* Nexus */,
 				D896C99A2D41F7E40058585C /* Aether */,
 				D896C99D2D41F7FF0058585C /* Cellular */,
@@ -542,11 +549,9 @@
 			children = (
 				D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */,
 				D8AE17C42814F1C700E74CB8 /* NexusLabel.swift */,
-				D8AFFA9E2B74B30C00588196 /* VisionBar.swift */,
 				D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */,
 				D88878BF2B7CBAF900BB3D09 /* Interchange.swift */,
 				D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */,
-				D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */,
 			);
 			path = Nexus;
 			sourceTree = "<group>";
@@ -651,15 +656,15 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		D8DA98CB2B71DE0700A4AA8F /* Cells */ = {
+		D8DA98CB2B71DE0700A4AA8F /* Cyto */ = {
 			isa = PBXGroup;
 			children = (
-				D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */,
 				D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */,
 				D8DA98C72B6F40BB00A4AA8F /* MaskCell.swift */,
 				D896C9972D413EA80058585C /* TabsCell.swift */,
+				D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */,
 			);
-			path = Cells;
+			path = Cyto;
 			sourceTree = "<group>";
 		};
 		D8DEF8A72D346F0900298D26 /* PDFs */ = {
@@ -816,7 +821,6 @@
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
-				D802E4C92D2D222300F259BB /* MusicButton.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,

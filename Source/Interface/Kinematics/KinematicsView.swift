@@ -212,6 +212,8 @@ class KinematicsView: UIView, Simulation {
 	}
 	
 	func tic() {
+        guard w != 0 else { return }
+        
 		let d: Double = 30.0*Double(s)
 		let sn: Double = d*sin(Double.pi/6)
 		let cs: Double = d*cos(Double.pi/6)
