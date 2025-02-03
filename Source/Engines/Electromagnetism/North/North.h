@@ -13,6 +13,7 @@ typedef struct CV2 {
     double y;
 } CV2;
 
+double CV2Length(CV2 a);
 double CV2Orient(CV2 a);
 double CV2Gamma(CV2 a);
 
@@ -36,7 +37,8 @@ typedef struct NCTeslon {
 NCTeslon* NCTeslonCreate(void);
 void NCTeslonRelease(NCTeslon* teslon);
 double NCTeslonHyle(NCTeslon* teslon);
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola);
+//void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola);
+void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola, unsigned char bounded);
 
 typedef struct NCPing {
     CV2 pos;
