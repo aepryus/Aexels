@@ -140,7 +140,7 @@ class ExplorerViewController: AEViewController {
     override func layoutRatio133() {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
-        let a: CGFloat = 0.8
+        let a: CGFloat = 0.7
         graphView.bottomRight(dx: -10*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
