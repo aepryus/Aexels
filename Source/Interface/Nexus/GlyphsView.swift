@@ -9,48 +9,41 @@
 import Acheron
 import UIKit
 
-// The main crop circle control of the nexus explorer.
 
-class GlyphsView: AEView {
-    var glyphs: [GlyphView] = [] {
-        didSet { glyphs.forEach { addSubview($0) } }
-    }
-    var focus: GlyphView? = nil {
-        didSet {
-            if let focus {
-                glyphs.forEach { $0.turnedOn = $0 === focus || focus.isLinked(to: $0) }
-            } else {
-                glyphs.forEach { $0.turnedOn = true }
-            }
-            glyphs.forEach({ $0.isHidden = !$0.turnedOn })
-        }
-    }
+class GlyphsBorderView: AEView {
+    let glyphsView: GlyphsView
     
-    override init() {
+    var dP: CGPoint = .zero
+    
+    init(glyphView: GlyphsView) {
+        self.glyphsView = glyphView
         super.init()
-        backgroundColor = .black.alpha(0.1)
+        backgroundColor = .clear
     }
     
 // AEView ==========================================================================================
     override func draw(_ rect: CGRect) {
-        guard let first: GlyphView = focus ?? glyphs.first else { return }
+        guard let first: GlyphView = glyphsView.focus ?? glyphsView.glyphs.first else { return }
+        
+        let ss: CGFloat = glyphsView.scale
+        let s: CGFloat = super.s * ss
         
         let moat: CGFloat = 8*s
         let a: CGFloat = 5*s
         var point: GlyphView = first
-        var angle: CGFloat = 0
+        var angle: CGFloat = -0.2
         var comingFrom: GlyphView? = nil
         var movingTo: GlyphView! = nil
         
         let path: CGMutablePath = CGMutablePath()
-        path.move(to: point.center + (point.radius/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
+        path.move(to: point.center + (point.radius*ss/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
 
         while true {
             if point === first && comingFrom == nil {
                 movingTo = point.sortedLinkedTo[0]
             } else if point === first && comingFrom == point.sortedLinkedTo.last! {
                 let angleTo: CGFloat = 2 * .pi
-                let radius: CGFloat = point.radius/2+moat
+                let radius: CGFloat = point.radius*ss/2+moat
                 let dq: CGFloat = asin(a/radius)
                 path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
                 path.closeSubpath()
@@ -59,7 +52,7 @@ class GlyphsView: AEView {
                 movingTo = point.linkAfter(comingFrom!)
             }
             let angleTo: CGFloat = point.spoke(to: movingTo)
-            let radius: CGFloat = point.radius/2+moat
+            let radius: CGFloat = point.radius*ss/2+moat
             let dq: CGFloat = asin(a/radius)
             path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
             let angleBack: CGFloat = movingTo.spoke(to: point)
@@ -70,25 +63,88 @@ class GlyphsView: AEView {
 
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)
-        c.setLineWidth(2)
+        c.setLineWidth(2*ss)
         c.setStrokeColor(UIColor.black.tint(0.5).cgColor)
         c.strokePath()
     }
 }
 
+// The main crop circle control of the nexus explorer.
+class GlyphsView: AEView {
+    var glyphs: [GlyphView] = [] {
+        didSet {
+            glyphLookup = [:]
+            glyphs.forEach {
+                $0.glyphsView = self
+                addSubview($0)
+                glyphLookup[$0.key] = $0
+            }
+        }
+    }
+    var glyphLookup: [String:GlyphView] = [:]
+    var focus: GlyphView? = nil {
+        didSet {
+            if let focus { glyphs.forEach { $0.turnedOn = $0 === focus || focus.isLinked(to: $0) } }
+            else { glyphs.forEach { $0.turnedOn = true } }
+            var minX: CGFloat! = nil
+            var minY: CGFloat! = nil
+            glyphs.forEach({
+                $0.isHidden = !$0.turnedOn
+                if $0.turnedOn {
+                    if minX == nil || minX > $0.x { minX = $0.x }
+                    if minY == nil || minY > $0.y { minY = $0.y }
+                }
+            })
+            let p: CGFloat = 8*s
+            glyphs.forEach({
+                $0.frame = CGRect(x: $0.x*scale - minX*scale + p, y: $0.y*scale - minY*scale + p, width: $0.radius*scale, height: $0.radius*scale)
+            })
+            borderView.setNeedsDisplay()
+        }
+    }
+    
+    var borderView: GlyphsBorderView!
+    
+    var scale: CGFloat = 1
+    var onTapGlyph: ((GlyphView)->())? = nil
+    
+    override init() {
+        super.init()
+        backgroundColor = .black.alpha(0.1)
+        borderView = GlyphsBorderView(glyphView: self)
+        addSubview(borderView)
+    }
+    
+    func setFocus(key: String) {
+        focus = glyphLookup[key]
+    }
+    
+// UIView ==========================================================================================
+    override func layoutSubviews() {
+        borderView.frame = bounds
+    }
+}
+
 class GlyphView: AEView {
+    let x: CGFloat
+    let y: CGFloat
     let radius: CGFloat
     var linkedTo: [GlyphView] = []
     var turnedOn: Bool = true
     
+    unowned var glyphsView: GlyphsView!
+    
     init(radius: CGFloat, x: CGFloat, y: CGFloat) {
+        self.x = x
+        self.y = y
         self.radius = radius
         super.init()
         frame = CGRect(x: x, y: y, width: radius, height: radius)
         backgroundColor = .clear
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap)))
     }
     
+    var key: String { "" }
     var color: UIColor { UIColor.black.tint(0.5) }
 
     func link(to other: GlyphView) {
@@ -117,6 +173,10 @@ class GlyphView: AEView {
         fatalError()
     }
     
+    @objc func tap() {
+        glyphsView?.onTapGlyph?(self)
+    }
+    
 // Events ==========================================================================================
     @objc func onTap() {}
 }
@@ -130,13 +190,10 @@ class ArticleGlyph: GlyphView {
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
-        layer.borderWidth = 2
         
-        label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
         label.text = article.name
         label.numberOfLines = -1
         label.layer.borderColor = color.cgColor
-        label.layer.borderWidth = 5
         addSubview(label)
     }
     
@@ -145,8 +202,18 @@ class ArticleGlyph: GlyphView {
         Aexels.nexusExplorer.show(article: article)
     }
     
+// GlyphView =======================================================================================
+    override var key: String { "art::\(article.key)" }
+    
 // UIView ==========================================================================================
     override func layoutSubviews() {
+        let s: CGFloat = super.s * glyphsView.scale
+
+        layer.borderWidth = 2 * glyphsView.scale
+
+        label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
+        label.layer.borderWidth = 5*s
+
         label.center(width: width-10*s, height: height-10*s)
         layer.cornerRadius = width/2
         label.layer.cornerRadius = label.width/2
@@ -176,6 +243,9 @@ class ExplorerGlyph: GlyphView {
     override func onTap() {
         Aexels.explorerViewController.explorer = explorer
     }
+    
+// GlyphView =======================================================================================
+    override var key: String { "exp::\(explorer.key)" }
         
 // UIView ==========================================================================================
     override func layoutSubviews() {
@@ -194,9 +264,7 @@ class AsideGlyph: GlyphView {
         super.init(radius: radius, x: x, y: y)
 
         layer.borderColor = color.cgColor
-        layer.borderWidth = 3
         
-        label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
         label.text = article.name
         label.numberOfLines = -1
         addSubview(label)
@@ -207,8 +275,15 @@ class AsideGlyph: GlyphView {
         Aexels.nexusExplorer.show(article: article)
     }
         
+// GlyphView =======================================================================================
+    override var key: String { "asd::\(article.key)" }
+            
 // UIView ==========================================================================================
     override func layoutSubviews() {
+        let s: CGFloat = super.s * glyphsView.scale
+        
+        label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
+        layer.borderWidth = 3*glyphsView.scale
         label.center(width: width-15*s, height: height-15*s)
         layer.cornerRadius = width/2
     }

@@ -13,6 +13,10 @@
 #import <stdio.h>
 
 // CV2 =============================================================================================
+CV2 CV2Neg(CV2 a) {
+    CV2 b = {-a.x, -a.y};
+    return b;
+}
 double CV2Length(CV2 a) {
     return sqrt(a.x*a.x+a.y*a.y);
 }
@@ -22,13 +26,8 @@ double CV2Orient(CV2 a) {
 double CV2Gamma(CV2 a) {
     return 1/sqrt(1 - (a.x*a.x+a.y*a.y));
 }
-
-// Momentum ========================================================================================
-double MomentumX(Momentum* momentum) {
-    return momentum->hyle * momentum->speed * cos(momentum->orient);
-}
-double MomentumY(Momentum* momentum) {
-    return momentum->hyle * momentum->speed * -sin(momentum->orient);
+double CV2Dot(CV2 a, CV2 b) {
+    return a.x*b.x+a.y*b.y;
 }
 
 // Teslon ==========================================================================================
@@ -42,75 +41,45 @@ void NCTeslonRelease(NCTeslon* teslon) {
 double NCTeslonHyle(NCTeslon* teslon) {
     return teslon->hyle * CV2Gamma(teslon->v);
 }
+CV2 NCTeslonMomentum(NCTeslon* teslon) {
+    double hyle = NCTeslonHyle(teslon);
+    CV2 momentum = {hyle * teslon->v.x, hyle * teslon->v.y};
+    return momentum;
+}
 double HyleOrientX(double hyle, double orient) {
     return hyle * cos(orient);
 }
 double HyleOrientY(double hyle, double orient) {
     return hyle * sin(orient);
 }
-//void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola, unsigned char bounded) {
-//    double iHyle = teslon->hyle;
-//    double tHyle = iHyle * CV2Gamma(teslon->v);
-//
-//    CV2 v0;
-//    
-//    v0.x = teslon->v.x;
-//    v0.y = teslon->v.y;
-//    
+
+void NCTeslonAddMomentum(NCTeslon* teslon, CV2 momentum, unsigned char bounded) {
+    double iHyle = teslon->hyle;
+    
+    double g0 = CV2Gamma(teslon->v);
+
+    CV2 v0 = {teslon->v.x, teslon->v.y};
+    CV2 p0 = {teslon->v.x * g0, teslon->v.y * g0};
+    
 //    CV2 nC;
 //    double lC = sqrt(cupola.x*cupola.x + cupola.y*cupola.y);
-//    nC.x = cupola.x / fabs(lC);
-//    nC.y = cupola.y / fabs(lC);
-//    
-//    CV2 v1;
-//    v1.x = v0.x + nC.x * hyle / tHyle;
-//    v1.y = v0.y + nC.y * hyle / tHyle;
-//    
-//    double l2v0 = v0.x*v0.x + v0.y*v0.y;
-//    double l2v1 = v1.x*v1.x + v1.y*v1.y;
-//    
-//    double t = 1;
-//    if (bounded) {
-//        if (l2v0 < 0.0000001 || l2v1 < 0.0000001) {
-//            teslon->v.x = 0;
-//            teslon->v.y = 0;
-//            return;
-//        }
-//        if (l2v0 > l2v1) t = 2*(teslon->v.x * v1.x + teslon->v.y*v1.y) / l2v1;
-//    }
-//    
-//    teslon->v.x = v1.x * t;
-//    teslon->v.y = v1.y * t;
-//}
-
-
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola, unsigned char bounded) {
-    double iHyle = teslon->hyle;
-    double tHyle = iHyle * CV2Gamma(teslon->v);
-
-    CV2 v0;
+//    nC.x = cupola.x / lC;
+//    nC.y = cupola.y / lC;
     
-    v0.x = teslon->v.x;
-    v0.y = teslon->v.y;
+    CV2 p1 = {p0.x + momentum.x,  p0.y + momentum.y};
     
-    CV2 nC;
-    double lC = sqrt(cupola.x*cupola.x + cupola.y*cupola.y);
-    nC.x = cupola.x / fabs(lC);
-    nC.y = cupola.y / fabs(lC);
-    
-    CV2 v1;
-    v1.x = v0.x + nC.x * hyle / tHyle;
-    v1.y = v0.y + nC.y * hyle / tHyle;
-    
-    CV2 dv;
-    dv.x = v1.x - v0.x;
-    dv.y = v1.y - v0.y;
-    
-    double l2v0 = v0.x*v0.x + v0.y*v0.y;
-    double l2v1 = v1.x*v1.x + v1.y*v1.y;
+    double l2p1 = p1.x*p1.x + p1.y*p1.y;
+    double den = sqrt(iHyle*iHyle + l2p1);
+    CV2 v1 = {p1.x/den, p1.y/den};
+    CV2 dv = {v1.x - v0.x, v1.y - v0.y};
     
     double t = 1;
     if (bounded) {
+        if (CV2Dot(CV2Neg(v0), dv) <= 0) { return; }
+        
+        double l2v0 = v0.x*v0.x + v0.y*v0.y;
+        double l2v1 = v1.x*v1.x + v1.y*v1.y;
+
         if (l2v0 < 0.0000001 || l2v1 < 0.0000001) {
             teslon->v.x = 0;
             teslon->v.y = 0;
@@ -119,16 +88,9 @@ void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola, unsigned cha
         
         if (l2v1 > l2v0) t = 2*(teslon->v.x * v1.x + teslon->v.y*v1.y) / l2v1;
     }
-    
-    
-    double oldSpeed = CV2Length(teslon->v);
+        
     teslon->v.x = v0.x + dv.x * t;
     teslon->v.y = v0.y + dv.y * t;
-    double newSpeed = CV2Length(teslon->v);
-    
-    if (fabs(oldSpeed - newSpeed) > 0.1) {
-        printf("wtf\n");
-    }
 }
 
 // Ping ============================================================================================
@@ -421,9 +383,9 @@ void NCUniversePong(NCUniverse* universe) {
         NCPing* ping = universe->pings[j];
         NCPong* pong = NCUniverseCreatePongWithPos(universe, ping->pos);
         pong->pos = ping->pos;
-        float dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
-        float dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
-        float scale = 2.0f * dot / dot2;
+        double dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
+        double dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
+        double scale = 2.0f * dot / dot2;
         pong->v.x = ping->v.x - scale * ping->cupola.x;
         pong->v.y = ping->v.y - scale * ping->cupola.y;
         
@@ -478,9 +440,9 @@ void NCUniverseTic(NCUniverse* universe) {
                 NCPong* pong = NCUniverseCreatePong(universe, teslon);
                 pong->pos = ping->pos;
 
-                float dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
-                float dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
-                float scale = 2.0f * dot / dot2;
+                double dot = ping->v.x * ping->cupola.x + ping->v.y * ping->cupola.y;  // A·B
+                double dot2 = ping->cupola.x * ping->cupola.x + ping->cupola.y * ping->cupola.y;  // B·B
+                double scale = 2.0f * dot / dot2;
                 pong->v.x = ping->v.x - scale * ping->cupola.x;
                 pong->v.y = ping->v.y - scale * ping->cupola.y;
                 
@@ -501,28 +463,45 @@ void NCUniverseTic(NCUniverse* universe) {
         for (int j = 0; j < universe->pongCount; j++) {
             NCPong* pong = universe->pongs[j];
             if (pong->source != teslon && !pong->recycle && NCTeslonInsideOf(teslon, pong->pos, collisionRadius)) {
-
-                double beforeHyle = NCTeslonHyle(teslon);
-                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, 0.0005, pong->cupola, 1); }
-                double afterHyle = NCTeslonHyle(teslon);
                 
-                if (afterHyle < beforeHyle) {
+                double h0 = NCTeslonHyle(teslon);
+                CV2 p0 = NCTeslonMomentum(teslon);
+                
+                double lc = CV2Length(pong->cupola);
+                CV2 momentum = {pong->cupola.x/lc*0.0005 , pong->cupola.y/lc*0.0005};
+                
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, momentum, 1); }
+                double h1 = NCTeslonHyle(teslon);
+                CV2 p1 = NCTeslonMomentum(teslon);
+                double dh = h0 - h1;
+                CV2 dp = {p0.x-p1.x, p0.y-p1.y};
+                
+                if (h1 < h0) {
                     NCPhoton* photon = NCUniverseCreatePhoton(universe, teslon);
                     photon->pos = pong->pos;
                     
-                    float dot = pong->v.x * pong->cupola.x + pong->v.y * pong->cupola.y;  // A·B
-                    float dot2 = pong->cupola.x * pong->cupola.x + pong->cupola.y * pong->cupola.y;  // B·B
-                    float scale = 2.0f * dot / dot2;
+                    double dot = pong->v.x * pong->cupola.x + pong->v.y * pong->cupola.y;  // A·B
+                    double dot2 = pong->cupola.x * pong->cupola.x + pong->cupola.y * pong->cupola.y;  // B·B
+                    double scale = 2.0f * dot / dot2;
                     photon->v.x = pong->v.x - scale * pong->cupola.x;
                     photon->v.y = pong->v.y - scale * pong->cupola.y;
                     
-                    photon->cupola.x = -pong->cupola.x;
-                    photon->cupola.y = -pong->cupola.y;
+                    double iQx = photon->v.x;
+                    double iQy = photon->v.y;
+
+                    double tVx = teslon->v.x;
+                    double tVy = teslon->v.y;
+
+                    photon->cupola.x = iQx - tVx;
+                    photon->cupola.y = iQy - tVy;
                     
-                    photon->hyle = beforeHyle - afterHyle;
+                    photon->momentum.x = dp.x;
+                    photon->momentum.y = dp.y;
                     
-                    pong->recycle = 1;
+                    photon->hyle = dh;
+
                 }
+                pong->recycle = 1;
             }
         }
         
@@ -530,31 +509,47 @@ void NCUniverseTic(NCUniverse* universe) {
         for (int j=0;j<universe->photonCount;j++) {
             NCPhoton* photon = universe->photons[j];
             if (photon->source != teslon && !photon->recycle && NCTeslonInsideOf(teslon, photon->pos, collisionRadius)) {
+                
+                double h0 = NCTeslonHyle(teslon);
+                CV2 p0 = NCTeslonMomentum(teslon);
+                
+                double lc = CV2Length(photon->cupola);
+                CV2 momentum = {photon->cupola.x/lc*0.0005 , photon->cupola.y/lc*0.0005};
+                
+                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, momentum, 1); }
+                double h1 = NCTeslonHyle(teslon);
+                CV2 p1 = NCTeslonMomentum(teslon);
+                double dh = h0 - h1;
+                CV2 dp = {p0.x-p1.x, p0.y-p1.y};
 
-                double beforeHyle = NCTeslonHyle(teslon) + photon->hyle;
-                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, photon->hyle, photon->cupola, 0); }
-                double afterHyle = NCTeslonHyle(teslon);
                 
-                if (afterHyle > beforeHyle + photon->hyle) {
-                    printf("wtf\n");
-                }
-                
-                if (afterHyle < beforeHyle) {
+//                double beforeHyle = NCTeslonHyle(teslon) + photon->hyle;
+//                if (universe->hyleExchange) { NCTeslonAddMomentum(teslon, photon->hyle, photon->momentum, 0); }
+//                double afterHyle = NCTeslonHyle(teslon);
+
+                if (h1 < h0) {
                     NCPhoton* bounce = NCUniverseCreatePhoton(universe, teslon);
                     bounce->pos = photon->pos;
                     
-                    float dot = photon->v.x * photon->cupola.x + photon->v.y * photon->cupola.y;  // A·B
-                    float dot2 = photon->cupola.x * photon->cupola.x + photon->cupola.y * photon->cupola.y;  // B·B
-                    float scale = 2.0f * dot / dot2;
+                    double dot = photon->v.x * photon->cupola.x + photon->v.y * photon->cupola.y;  // A·B
+                    double dot2 = photon->cupola.x * photon->cupola.x + photon->cupola.y * photon->cupola.y;  // B·B
+                    double scale = 2.0f * dot / dot2;
                     bounce->v.x = photon->v.x - scale * photon->cupola.x;
                     bounce->v.y = photon->v.y - scale * photon->cupola.y;
                     
-                    bounce->cupola.x = -photon->cupola.x;
-                    bounce->cupola.y = -photon->cupola.y;
+                    double iQx = bounce->v.x;
+                    double iQy = bounce->v.y;
+
+                    double tVx = teslon->v.x;
+                    double tVy = teslon->v.y;
+
+                    bounce->cupola.x = iQx - tVx;
+                    bounce->cupola.y = iQy - tVy;
                     
-                    bounce->hyle = beforeHyle - afterHyle;
-                    
-                    photon->recycle = 1;
+                    photon->momentum.x = dp.x;
+                    photon->momentum.y = dp.y;
+
+                    bounce->hyle = dh;
                 }
 
                 photon->recycle = 1;
@@ -607,3 +602,53 @@ void NCUniverseCameraChasing(NCUniverse* universe, NCCamera* camera, NCCamera* c
         camera->pos.x -= universe->width;
     }
 }
+
+//void NCTest(void) {
+//    NCTeslon* teslon = NCTeslonCreate();
+//    
+//    teslon->v.x = -0.02;
+//    teslon->v.y = 0;
+//    teslon->hyle = 1;
+//    
+//    double hyle = 0.0005;
+//
+//    CV2 cupola;
+//    cupola.x = 1;
+//    cupola.y = 0;
+//        
+//    double h0 = NCTeslonHyle(teslon);
+//    double g0 = CV2Gamma(teslon->v);
+//    CV2 p0 = NCTeslonMomentum(teslon);
+//    CV2 v0 = teslon->v;
+//    double ke0 = 1.0/2*h0*CV2Dot(v0, v0);
+//    NCTeslonAddMomentum(teslon, hyle, cupola, 1);
+//    double h1 = NCTeslonHyle(teslon);
+//    double g1 = CV2Gamma(teslon->v);
+//    CV2 p1 = NCTeslonMomentum(teslon);
+//    CV2 v1 = teslon->v;
+//    double ke1 = 1.0/2*h1*CV2Dot(v1, v1);
+//
+//    printf("=================================\n");
+//    printf("hyle: %lf\n", hyle);
+//    printf("h0: %lf\n", h0);
+//    printf("h1: %lf\n", h1);
+//    printf("dh: %lf\n", h1-h0);
+//    printf("--------------------\n");
+//    printf("g0: %lf\n", g0);
+//    printf("g1: %lf\n", g1);
+//    printf("dg: %lf\n", g1-g0);
+//    printf("--------------------\n");
+//    printf("ke0: %lf\n", ke0);
+//    printf("ke1: %lf\n", ke1);
+//    printf("dke: %lf\n", ke1-ke0);
+//    printf("--------------------\n");
+//    printf("p0: (%lf, %lf)\n", p0.x, p0.y);
+//    printf("p1: (%lf, %lf)\n", p1.x, p1.y);
+//    printf("dp: (%lf, %lf)\n", p1.x-p0.x, p1.y-p0.y);
+//    printf("--------------------\n");
+//    printf("v0: (%lf, %lf)\n", v0.x, v0.y);
+//    printf("v1: (%lf, %lf)\n", v1.x, v1.y);
+//    printf("dv: (%lf, %lf)\n", v1.x-v0.x, v1.y-v0.y);
+//
+//    NCTeslonRelease(teslon);
+//}

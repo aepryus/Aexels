@@ -257,6 +257,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         }
         for i: Int in 0..<Int(universe.pointee.photonCount) {
             let photon: UnsafeMutablePointer<NCPhoton> = universe.pointee.photons[i]!
+            
             let object: NorthLoop = NorthLoop(
                 type: 3,
                 position: SIMD2<Float>(Float(photon.pointee.pos.x), Float(photon.pointee.pos.y)),

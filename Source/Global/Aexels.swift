@@ -36,6 +36,8 @@ class Aexels {
 	static var version: String { Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0" }
 	
 	static func start() {
+//        NCTest()
+        
         print("==================== [ Aexels ] =============================================")
         _ = ChainResponder.hasExternalKeyboard
 

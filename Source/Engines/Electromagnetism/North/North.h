@@ -13,18 +13,11 @@ typedef struct CV2 {
     double y;
 } CV2;
 
+CV2 CV2Neg(CV2 a);
 double CV2Length(CV2 a);
 double CV2Orient(CV2 a);
 double CV2Gamma(CV2 a);
-
-typedef struct Momentum {
-    double hyle;
-    double speed;
-    double orient;
-} Momentum;
-
-double MomentumX(Momentum* momentum);
-double MomentumY(Momentum* momentum);
+double CV2Dot(CV2 a, CV2 b);
 
 typedef struct NCTeslon {
     CV2 pos;
@@ -37,8 +30,8 @@ typedef struct NCTeslon {
 NCTeslon* NCTeslonCreate(void);
 void NCTeslonRelease(NCTeslon* teslon);
 double NCTeslonHyle(NCTeslon* teslon);
-//void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola);
-void NCTeslonAddMomentum(NCTeslon* teslon, double hyle, CV2 cupola, unsigned char bounded);
+CV2 NCTeslonMomentum(NCTeslon* teslon);
+void NCTeslonAddMomentum(NCTeslon* teslon, CV2 momentum, unsigned char bounded);
 
 typedef struct NCPing {
     CV2 pos;
@@ -66,6 +59,7 @@ typedef struct NCPhoton {
     CV2 pos;
     CV2 v;
     CV2 cupola;
+    CV2 momentum;
     double hyle;
     unsigned char recycle;
     NCTeslon* source;
@@ -132,3 +126,5 @@ void NCUniversePing(NCUniverse* universe, int n);
 void NCUniversePong(NCUniverse* universe);
 void NCUniverseTic(NCUniverse* universe);
 void NCUniverseCameraChasing(NCUniverse* universe, NCCamera* camera, NCCamera* chasing);
+
+//void NCTest(void);

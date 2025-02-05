@@ -19,7 +19,7 @@ class NexusExplorer: AEViewController {
     let articleView: ArticleView = ArticleView()
     let interchange: Interchange = Interchange()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
-    var contextGlyphsView: GlyphsView? = nil
+    var contextGlyphsView: GlyphsView = GlyphsView()
 
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
@@ -99,7 +99,7 @@ class NexusExplorer: AEViewController {
         glyphsView.alpha = 1
     }
     
-    func defineGlyphs() {
+    func defineGlyphs() -> [GlyphView] {
         let p: CGFloat = 3*s
         
         let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 110*s+2*p, x: 70*s, y: 30*s)
@@ -134,6 +134,8 @@ class NexusExplorer: AEViewController {
         let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1570*s)
         let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 240*s, y: 1710*s)
 
+        var glyphs: [GlyphView] = []
+        
         glyphs.append(universeXGlyph)
         glyphs.append(aetherGlyph)
         glyphs.append(cellularGlyph)
@@ -205,6 +207,8 @@ class NexusExplorer: AEViewController {
         bellTHooftGlyph.link(to: thooftGlyph)
         
         epilogueGlyph.link(to: glossaryGlyph)
+        
+        return glyphs
     }
 
 // Events ==========================================================================================
@@ -230,13 +234,24 @@ class NexusExplorer: AEViewController {
         versionLabel.alpha = 0
         view.addSubview(versionLabel)
         
-        defineGlyphs()
-        glyphsView.glyphs = glyphs
+        glyphsView.glyphs = defineGlyphs()
+        glyphsView.onTapGlyph = { (glyphView: GlyphView) in
+            self.contextGlyphsView.setFocus(key: glyphView.key)
+        }
         
+        contextGlyphsView.scale = 0.7
+        contextGlyphsView.glyphs = defineGlyphs()
+        contextGlyphsView.onTapGlyph = { (glyphView: GlyphView) in
+            print("\(glyphView.key) tapped from contextGlyphsView")
+        }
+
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false
         view.addSubview(scrollView)
         articleView.scrollView = scrollView
+        
+        view.addSubview(contextGlyphsView)
+        contextGlyphsView.backgroundColor = .black.alpha(0.1)
         
         currentCapsule.transform = CGAffineTransform(rotationAngle: -.pi/2)
         view.addSubview(currentCapsule)
@@ -269,9 +284,11 @@ class NexusExplorer: AEViewController {
     override func layoutRatio133() {
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
-        glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 510*s, height: 2187*s)
-        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
+        glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)
+        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 1050*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
+//        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
+        contextGlyphsView.topLeft(dx: 700*s, dy: 60*s, width: 320*s, height: 400*s)
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
         interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
