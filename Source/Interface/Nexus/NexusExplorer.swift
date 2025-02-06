@@ -52,8 +52,9 @@ class NexusExplorer: AEViewController {
 //            self.claudeButton.removeFromSuperview()
             self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
-            self.scrollView.contentOffset = .zero
             self.scrollView.addSubview(self.articleView)
+//            self.scrollView.contentOffset = .zero
+            self.scrollView.contentOffset = CGPoint(x: 0, y: -1000)
             UIView.animate(withDuration: 0.5) {
                 self.articleView.alpha = 1
                 self.currentCapsule.alpha = 1
@@ -115,18 +116,18 @@ class NexusExplorer: AEViewController {
     func defineGlyphs() -> [GlyphView] {
         let p: CGFloat = 3*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 110*s+2*p, x: 70*s, y: 30*s)
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(article: Article.aether, radius: 80*s+2*p, x: 50*s, y: 180*s)
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(article: Article.cellular, radius: 100*s+2*p, x: 230*s, y: 330*s)
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(article: Article.kinematics, radius: 110*s+2*p, x: 30*s, y: 480*s)
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 112*s+2*p, x: 70*s, y: 30*s)
+        let aetherGlyph: ArticleGlyph = ArticleGlyph(article: Article.aether, radius: 82*s+2*p, x: 50*s, y: 180*s)
+        let cellularGlyph: ArticleGlyph = ArticleGlyph(article: Article.cellular, radius: 102*s+2*p, x: 230*s, y: 330*s)
+        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(article: Article.kinematics, radius: 112*s+2*p, x: 30*s, y: 480*s)
         let gravityGlyph: ArticleGlyph = ArticleGlyph(article: Article.gravity, radius: 90*s+2*p, x: 200*s, y: 630*s)
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 120*s+2*p, x: 80*s, y: 760*s)
-        let hyleGlyph: ArticleGlyph = ArticleGlyph(article: .hyle, radius: 70*s+2*p, x: 280*s, y: 860*s)
+        let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 110*s+2*p, x: 80*s, y: 760*s)
+        let hyleGlyph: ArticleGlyph = ArticleGlyph(article: .hyle, radius: 72*s+2*p, x: 280*s, y: 860*s)
         let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 260*s, y: 1040*s)
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 130*s+2*p, x: 100*s, y: 1000*s)
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 110*s+2*p, x: 210*s, y: 1290*s)
-        let bellTHooftGlyph: ArticleGlyph = ArticleGlyph(article: Article.bellTHooft, radius: 100*s+2*p, x: 50*s, y: 1430*s)
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 270*s, y: 1580*s)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 110*s+2*p, x: 100*s, y: 1000*s)
+        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 116*s+2*p, x: 210*s, y: 1290*s)
+        let bellTHooftGlyph: ArticleGlyph = ArticleGlyph(article: Article.bellTHooft, radius: 102*s+2*p, x: 50*s, y: 1430*s)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 96*s+2*p, x: 270*s, y: 1580*s)
 
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
@@ -221,6 +222,8 @@ class NexusExplorer: AEViewController {
         
         epilogueGlyph.link(to: glossaryGlyph)
         
+        contractionGlyph.contract = true
+        
         return glyphs
     }
 
@@ -261,7 +264,7 @@ class NexusExplorer: AEViewController {
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false
         view.addSubview(scrollView)
-        articleView.maxWidth = 800
+        articleView.maxWidth = Screen.width - 500
         articleView.scrollView = scrollView
 //        articleView.backgroundColor = .black.alpha(0.1)
 //        scrollView.backgroundColor = .black.alpha(0.1)

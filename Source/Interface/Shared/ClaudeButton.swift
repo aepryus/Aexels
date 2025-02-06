@@ -96,6 +96,15 @@ class ClaudeButton: AEView {
         }
     }
     func onCopy() {
+        if !Screen.mac {
+            UIView.animate(withDuration: 2) {
+                self.hover.alpha = 1
+                UIView.animate(withDuration: 5) {
+                    self.hover.alpha = 0
+                }
+            }
+        }
+        
         imageButton.spin()
         if let article { UIPasteboard.general.string = article.article }
         else {

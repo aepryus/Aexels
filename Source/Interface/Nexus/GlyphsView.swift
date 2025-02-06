@@ -200,6 +200,7 @@ class ArticleGlyph: GlyphView {
     let article: Article
     let halo: AEView = AEView()
     let label: UILabel = UILabel()
+    var contract: Bool = false
     
     init(article: Article, radius: CGFloat, x: CGFloat, y: CGFloat) {
         self.article = article
@@ -238,12 +239,15 @@ class ArticleGlyph: GlyphView {
         halo.center(width: label.width-20*s, height: label.height-20*s)
         halo.layer.cornerRadius = halo.width/2
 
+        let pen: Pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
         if isCurrentFocus {
             halo.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
-            label.pen = Pen(font: .ax(size: 14*s), color: .white, alignment: .center)
+            label.pen = pen.clone(color: .white)
+            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(color: .white, kern: -3)) }
         } else {
             halo.layer.backgroundColor = UIColor.clear.cgColor
-            label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
+            label.pen = pen
+            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(kern: -3)) }
         }
     }
 }
