@@ -44,7 +44,6 @@ class ArticleView: AEView {
         pdfView.isHidden = false
         
         let pathString: String = key[...(key.count-5)]
-        print(pathString)
         if let path = Bundle.main.url(forResource: pathString, withExtension: "pdf"),
            let document = PDFDocument(url: path),
             let firstPage = document.page(at: 0) {

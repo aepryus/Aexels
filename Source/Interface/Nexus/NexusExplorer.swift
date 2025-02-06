@@ -123,7 +123,7 @@ class NexusExplorer: AEViewController {
         let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 120*s+2*p, x: 80*s, y: 760*s)
         let hyleGlyph: ArticleGlyph = ArticleGlyph(article: .hyle, radius: 70*s+2*p, x: 280*s, y: 860*s)
         let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 260*s, y: 1040*s)
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 120*s+2*p, x: 100*s, y: 1000*s)
+        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 130*s+2*p, x: 100*s, y: 1000*s)
         let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 110*s+2*p, x: 210*s, y: 1290*s)
         let bellTHooftGlyph: ArticleGlyph = ArticleGlyph(article: Article.bellTHooft, radius: 100*s+2*p, x: 50*s, y: 1430*s)
         let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 90*s+2*p, x: 270*s, y: 1580*s)

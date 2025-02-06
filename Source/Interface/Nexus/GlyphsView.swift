@@ -7,8 +7,9 @@
 //
 
 import Acheron
+import OoviumEngine
+import OoviumKit
 import UIKit
-
 
 class GlyphsBorderView: AEView {
     let glyphsView: GlyphsView
@@ -23,7 +24,7 @@ class GlyphsBorderView: AEView {
     
 // AEView ==========================================================================================
     override func draw(_ rect: CGRect) {
-        guard let first: GlyphView = glyphsView.focus ?? glyphsView.glyphs.first else { return }
+        guard let first: GlyphView = glyphsView.anchor ?? glyphsView.glyphs.first else { return }
         
         let ss: CGFloat = glyphsView.scale
         let s: CGFloat = super.s * ss
@@ -82,9 +83,19 @@ class GlyphsView: AEView {
         }
     }
     var glyphLookup: [String:GlyphView] = [:]
+    var anchor: GlyphView? = nil
     var focus: GlyphView? = nil {
         didSet {
-            if let focus { glyphs.forEach { $0.turnedOn = $0 === focus || focus.isLinked(to: $0) } }
+            oldValue?.setNeedsLayout()
+            focus?.setNeedsLayout()
+            
+            if let focus: ArticleGlyph = focus as? ArticleGlyph {
+                anchor = focus
+            } else if let focus: AsideGlyph = focus as? AsideGlyph, let parent: Article = focus.article.parent {
+                anchor = glyphLookup["art::\(parent.key)"]
+            } else { anchor = nil }
+            
+            if let anchor { glyphs.forEach { $0.turnedOn = $0 === anchor || anchor.isLinked(to: $0) } }
             else { glyphs.forEach { $0.turnedOn = true } }
             var minX: CGFloat! = nil
             var minY: CGFloat! = nil
@@ -146,7 +157,7 @@ class GlyphView: AEView {
     
     var key: String { "" }
     var color: UIColor { UIColor.black.tint(0.5) }
-
+    
     func link(to other: GlyphView) {
         linkedTo.append(other)
         other.linkedTo.append(self)
@@ -156,13 +167,15 @@ class GlyphView: AEView {
         let result: CGFloat = .pi/2 - atan2(-(other.center.y-center.y), other.center.x-center.x) + 2 * .pi
         return result.truncatingRemainder(dividingBy: 2 * .pi)
     }
-
+    
     static func toClock(_ angle: CGFloat) -> CGFloat { .pi/2 - angle }
     static func fromClock(_ angle: CGFloat) -> CGFloat { -(angle - .pi/2) }
     
     var sortedLinkedTo: [GlyphView] {
         linkedTo.filter({ $0.turnedOn }).sorted(by: { spoke(to: $0) < spoke(to: $1) })
     }
+    
+    var isCurrentFocus: Bool { glyphsView.focus === self }
     
     func linkAfter(_ glyphView: GlyphView) -> GlyphView {
         for i in 0..<sortedLinkedTo.count {
@@ -185,6 +198,7 @@ class GlyphView: AEView {
 
 class ArticleGlyph: GlyphView {
     let article: Article
+    let halo: AEView = AEView()
     let label: UILabel = UILabel()
     
     init(article: Article, radius: CGFloat, x: CGFloat, y: CGFloat) {
@@ -192,6 +206,9 @@ class ArticleGlyph: GlyphView {
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
+        
+        halo.backgroundColor = .clear
+        addSubview(halo)
         
         label.text = article.name
         label.numberOfLines = -1
@@ -212,12 +229,22 @@ class ArticleGlyph: GlyphView {
 
         layer.borderWidth = 2 * glyphsView.scale
 
-        label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
         label.layer.borderWidth = 5*s
 
         label.center(width: width-10*s, height: height-10*s)
         layer.cornerRadius = width/2
         label.layer.cornerRadius = label.width/2
+        
+        halo.center(width: label.width-20*s, height: label.height-20*s)
+        halo.layer.cornerRadius = halo.width/2
+
+        if isCurrentFocus {
+            halo.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
+            label.pen = Pen(font: .ax(size: 14*s), color: .white, alignment: .center)
+        } else {
+            halo.layer.backgroundColor = UIColor.clear.cgColor
+            label.pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
+        }
     }
 }
 
@@ -285,9 +312,17 @@ class AsideGlyph: GlyphView {
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale
         
-        label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
         layer.borderWidth = 3*glyphsView.scale
         label.center(width: width-15*s, height: height-15*s)
+        label.layer.cornerRadius = label.width/2
         layer.cornerRadius = width/2
+        
+        if isCurrentFocus {
+            label.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
+            label.pen = Pen(font: .ax(size: 9*s), color: .white, alignment: .center)
+        } else {
+            label.layer.backgroundColor = UIColor.clear.cgColor
+            label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
+        }
     }
 }
