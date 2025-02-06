@@ -9,13 +9,59 @@
 import Acheron
 import UIKit
 
+class ClaudeButtonHover: AEView {
+    let label: UILabel = UILabel()
+    
+    static let pen: Pen = Pen(font: .optima(size: 12*Screen.s), color: .black.tint(0.9))
+    
+    override init() {
+        super.init()
+        
+        backgroundColor = .clear
+        isUserInteractionEnabled = false
+        
+        label.text = "copy to discuss with Claude"
+        label.pen = ClaudeButtonHover.pen
+        addSubview(label)
+    }
+    
+// UIView ==========================================================================================
+    override func layoutSubviews() {
+        layer.cornerRadius = height/2
+        label.left(dx: 25*s, width: 200*s, height: 16*s)
+    }
+    override func draw(_ rect: CGRect) {
+        let p: CGFloat = 0
+        
+        let x1 = p
+        let x2 = 12*s
+        let x4 = width - 2*p
+        let x3 = (x1+x4)/2
+        
+        let y1 = p
+        let y3 = height - 2*p
+        let y2 = (y1+y3)/2
+        
+        let c = UIGraphicsGetCurrentContext()!
+        c.move(to: CGPoint(x: x1, y: y2))
+        c.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x3, y: y1), radius: height/2)
+        c.addArc(tangent1End: CGPoint(x: x4, y: y1), tangent2End: CGPoint(x: x4, y: y2), radius: height/2)
+        c.addArc(tangent1End: CGPoint(x: x4, y: y3), tangent2End: CGPoint(x: x3, y: y3), radius: height/2)
+        c.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: height/2)
+        c.closePath()
+        
+        c.addArc(center: CGPoint(x: x2, y: y2), radius: 9*s, startAngle: 2 * .pi, endAngle: 0, clockwise: true)
+
+        c.setFillColor(UIColor.black.tint(0.3).alpha(0.9).cgColor)
+        c.drawPath(using: .fill)
+    }
+}
+
 class ClaudeButton: AEView {
     var article: Article?
 
     let imageButton: ImageButton = ImageButton(named: "claude")
-    let label: UILabel = UILabel()
-    
-    static let pen: Pen = Pen(font: .optima(size: 12*Screen.s), color: .black.tint(0.4))
+    let hover: ClaudeButtonHover = ClaudeButtonHover()
     
     override init() {
         super.init()
@@ -34,19 +80,17 @@ class ClaudeButton: AEView {
         imageButton.addGestureRecognizer(gesture)
 //        imageView.isUserInteractionEnabled = true
         
-        label.alpha = 0
-        label.text = "copy to discuss with Claude"
-        label.pen = ClaudeButton.pen
-        addSubview(label)
+        hover.alpha = 0
+        addSubview(hover)
     }
     
 // Events ==========================================================================================
     @objc func onHover(_ recognizer: UIHoverGestureRecognizer) {
         switch recognizer.state {
             case .began:
-                UIView.animate(withDuration: 0.5) { self.label.alpha = 1 }
+                UIView.animate(withDuration: 0.5) { self.hover.alpha = 1 }
             case .ended:
-                UIView.animate(withDuration: 0.5) { self.label.alpha = 0 }
+                UIView.animate(withDuration: 0.5) { self.hover.alpha = 0 }
             default:
                 break
         }
@@ -66,8 +110,7 @@ class ClaudeButton: AEView {
 
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        imageButton.left(width: height, height: height)
-        
-        label.left(dx: imageButton.right+5*s, width: 150*s, height: height)
+        imageButton.left(dx: 5*s, width: 14*s, height: 14*s)
+        hover.left(width: width, height: height)
     }
 }

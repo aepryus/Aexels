@@ -23,7 +23,24 @@ class ExplorerViewController: AEViewController {
     
     var explorer: AEViewController? = nil {
         didSet {
-            guard explorer != oldValue else { return }
+            if explorer == oldValue {
+                guard let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer else { return }
+                UIView.animate(withDuration: 0.5) {
+                    nexusExplorer.view.alpha = 0
+                } completion: { (complete: Bool) in
+                    self.visionBar.alwaysExpanded = true
+                    self.visionBar.expand()
+                    nexusExplorer.articleView.removeFromSuperview()
+                    nexusExplorer.currentCapsule.removeFromSuperview()
+                    nexusExplorer.articleView.alpha = 0
+                    nexusExplorer.currentCapsule.alpha = 0
+                    nexusExplorer.snapGlyphs()
+                    self.graphView.start()
+                    DispatchQueue.main.async { self.startMusic() }
+                    UIView.animate(withDuration: 0.5) { nexusExplorer.view.alpha = 1 }
+                }
+                return
+            }
             if oldValue is NexusExplorer {
                 visionBar.alwaysExpanded = false
                 self.visionBar.contract()
@@ -40,7 +57,8 @@ class ExplorerViewController: AEViewController {
                     nexusExplorer.currentCapsule.removeFromSuperview()
                     nexusExplorer.articleView.alpha = 0
                     nexusExplorer.currentCapsule.alpha = 0
-                    nexusExplorer.interchange.alpha = 0
+                    nexusExplorer.contextGlyphsView.alpha = 0
+//                    nexusExplorer.interchange.alpha = 0
                     nexusExplorer.snapGlyphs()
                     self.graphView.start()
                     DispatchQueue.main.async { self.startMusic() }
@@ -141,7 +159,7 @@ class ExplorerViewController: AEViewController {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
         let a: CGFloat = 0.7
-        graphView.bottomRight(dx: -10*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
+        graphView.bottomRight(dx: -30*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
     

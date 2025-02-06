@@ -25,6 +25,7 @@ class ArticleView: AEView {
     private let pdfView: PDFView = PDFView()
 
     var scrollViewContentSize: CGSize = .zero
+    var maxWidth: CGFloat? = nil
 
     override init() {
         super.init()
@@ -92,7 +93,14 @@ class ArticleView: AEView {
         }
         
         let p: CGFloat = 10*s
-        let width: CGFloat = scrollView != nil ? scrollView!.width - 2*p : 500*s
+        let width: CGFloat
+        if let scrollView {
+            if let maxWidth { width = min(scrollView.width - 2*p, maxWidth) }
+            else { width = scrollView.width - 2*p }
+        } else {
+            width = 500*s
+        }
+        
         let w = width - p*2
         var y: CGFloat = 5*s
         var tHs: [CGFloat] = []

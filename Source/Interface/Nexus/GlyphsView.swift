@@ -110,7 +110,7 @@ class GlyphsView: AEView {
     
     override init() {
         super.init()
-        backgroundColor = .black.alpha(0.1)
+//        backgroundColor = .black.alpha(0.1)
         borderView = GlyphsBorderView(glyphView: self)
         addSubview(borderView)
     }
@@ -177,6 +177,8 @@ class GlyphView: AEView {
         glyphsView?.onTapGlyph?(self)
     }
     
+    func execute() {}
+    
 // Events ==========================================================================================
     @objc func onTap() {}
 }
@@ -197,13 +199,12 @@ class ArticleGlyph: GlyphView {
         addSubview(label)
     }
     
-// Events ==========================================================================================
-    override func onTap() {
-        Aexels.nexusExplorer.show(article: article)
-    }
-    
 // GlyphView =======================================================================================
     override var key: String { "art::\(article.key)" }
+
+    override func execute() {
+        Aexels.nexusExplorer.show(article: article)
+    }
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
@@ -229,26 +230,29 @@ class ExplorerGlyph: GlyphView {
         super.init(radius: radius, x: x, y: y)
         
         layer.borderColor = color.cgColor
-        layer.borderWidth = 3
         
         imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = color.cgColor
-        imageView.layer.borderWidth = 3
         imageView.image = explorer.icon
         imageView.layer.masksToBounds = true
         addSubview(imageView)
     }
 
-// Events ==========================================================================================
-    override func onTap() {
-        Aexels.explorerViewController.explorer = explorer
-    }
-    
 // GlyphView =======================================================================================
     override var key: String { "exp::\(explorer.key)" }
         
+    override func execute() {
+        Aexels.explorerViewController.explorer = explorer
+    }
+
 // UIView ==========================================================================================
     override func layoutSubviews() {
+        let ss: CGFloat = glyphsView.scale
+        let s: CGFloat = super.s * ss
+        
+        layer.borderWidth = 3*ss
+        imageView.layer.borderWidth = 3*ss
+
         imageView.center(width: width-15*s, height: height-15*s)
         layer.cornerRadius = width/2
         imageView.layer.cornerRadius = imageView.width/2
@@ -270,14 +274,13 @@ class AsideGlyph: GlyphView {
         addSubview(label)
     }
     
-// Events ==========================================================================================
-    override func onTap() {
-        Aexels.nexusExplorer.show(article: article)
-    }
-        
 // GlyphView =======================================================================================
     override var key: String { "asd::\(article.key)" }
             
+    override func execute() {
+        Aexels.nexusExplorer.show(article: article)
+    }
+
 // UIView ==========================================================================================
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale

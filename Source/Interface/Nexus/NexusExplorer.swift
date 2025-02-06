@@ -17,7 +17,7 @@ class NexusExplorer: AEViewController {
     let scrollView: UIScrollView = UIScrollView()
     let glyphsView: GlyphsView = GlyphsView()
     let articleView: ArticleView = ArticleView()
-    let interchange: Interchange = Interchange()
+//    let interchange: Interchange = Interchange()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
     var contextGlyphsView: GlyphsView = GlyphsView()
 
@@ -28,21 +28,28 @@ class NexusExplorer: AEViewController {
 
     func show(article: Article) {
         guard article.key != articleView.key else { return }
-        if interchange.superview == nil { view.addSubview(interchange) }
+//        if interchange.superview == nil { view.addSubview(interchange) }
+        if contextGlyphsView.superview == nil {
+            self.contextGlyphsView.alpha = 0
+            view.addSubview(contextGlyphsView)
+        }
         if currentCapsule.superview == nil { view.addSubview(currentCapsule) }
         UIView.animate(withDuration: 0.5) {
             self.musicButton.alpha = 0
-            self.claudeButton.alpha = 0
+//            self.claudeButton.alpha = 0
             self.glyphsView.alpha = 0
             self.currentCapsule.alpha = 0
             self.articleView.alpha = 0
-            self.interchange.alpha = 0
+//            self.interchange.alpha = 0
+            self.contextGlyphsView.alpha = 0
         } completion: { (complete: Bool) in
+            self.contextGlyphsView.setFocus(key: "\(article.parent == nil ? "art" : "asd")::\(article.key)")
             self.articleView.key = article.key
+            self.claudeButton.article = article
             self.currentCapsule.article = article
-            self.interchange.article = article
+//            self.interchange.article = article
             self.musicButton.removeFromSuperview()
-            self.claudeButton.removeFromSuperview()
+//            self.claudeButton.removeFromSuperview()
             self.glyphsView.removeFromSuperview()
             self.scrollView.contentSize = self.articleView.scrollViewContentSize
             self.scrollView.contentOffset = .zero
@@ -50,12 +57,15 @@ class NexusExplorer: AEViewController {
             UIView.animate(withDuration: 0.5) {
                 self.articleView.alpha = 1
                 self.currentCapsule.alpha = 1
-                self.interchange.alpha = 1
+//                self.interchange.alpha = 1
+                self.contextGlyphsView.alpha = 1
             }
         }
     }
     
     func showGlyphs() {
+        claudeButton.article = nil
+
         musicButton.alpha = 0
         claudeButton.alpha = 0
         glyphsView.alpha = 0
@@ -65,12 +75,13 @@ class NexusExplorer: AEViewController {
         
         UIView.animate(withDuration: 0.5) {
             self.currentCapsule.alpha = 0
-            self.interchange.alpha = 0
+//            self.interchange.alpha = 0
+            self.contextGlyphsView.alpha = 0
             self.articleView.alpha = 0
         } completion: { (complete: Bool) in
             self.articleView.removeFromSuperview()
             self.currentCapsule.removeFromSuperview()
-            self.interchange.removeFromSuperview()
+//            self.interchange.removeFromSuperview()
             self.articleView.key = nil
             self.scrollView.contentSize = self.glyphsView.frame.size
             self.scrollView.contentOffset = .zero
@@ -81,12 +92,14 @@ class NexusExplorer: AEViewController {
                 self.glyphsView.alpha = 1
             }
         }
-
     }
     func snapGlyphs() {
+        claudeButton.article = nil
+
         articleView.removeFromSuperview()
         currentCapsule.removeFromSuperview()
-        interchange.removeFromSuperview()
+//        interchange.removeFromSuperview()
+        contextGlyphsView.removeFromSuperview()
         view.addSubview(musicButton)
         view.addSubview(claudeButton)
         scrollView.addSubview(glyphsView)
@@ -236,27 +249,30 @@ class NexusExplorer: AEViewController {
         
         glyphsView.glyphs = defineGlyphs()
         glyphsView.onTapGlyph = { (glyphView: GlyphView) in
-            self.contextGlyphsView.setFocus(key: glyphView.key)
+            glyphView.execute()
         }
         
         contextGlyphsView.scale = 0.7
         contextGlyphsView.glyphs = defineGlyphs()
         contextGlyphsView.onTapGlyph = { (glyphView: GlyphView) in
-            print("\(glyphView.key) tapped from contextGlyphsView")
+            glyphView.execute()
         }
 
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false
         view.addSubview(scrollView)
+        articleView.maxWidth = 800
         articleView.scrollView = scrollView
-        
+//        articleView.backgroundColor = .black.alpha(0.1)
+//        scrollView.backgroundColor = .black.alpha(0.1)
+
         view.addSubview(contextGlyphsView)
-        contextGlyphsView.backgroundColor = .black.alpha(0.1)
+//        contextGlyphsView.backgroundColor = .black.alpha(0.1)
         
         currentCapsule.transform = CGAffineTransform(rotationAngle: -.pi/2)
         view.addSubview(currentCapsule)
         
-        view.addSubview(interchange)
+//        view.addSubview(interchange)
         
         view.addSubview(musicButton)
         musicButton.addAction {
@@ -276,7 +292,7 @@ class NexusExplorer: AEViewController {
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
-        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
+//        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
         
         musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
         claudeButton.topLeft(dx: musicButton.right+8*s, dy: musicButton.top, width: 175*s, height: 20*s)
@@ -285,15 +301,15 @@ class NexusExplorer: AEViewController {
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)
-        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 1050*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
+        scrollView.frame = CGRect(x: 44*s, y: Screen.mac ? Screen.safeTop: 0, width: 1050*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
 //        scrollView.frame = CGRect(x: 34*s, y: Screen.mac ? Screen.safeTop: 0, width: 570*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         contextGlyphsView.topLeft(dx: 700*s, dy: 60*s, width: 320*s, height: 400*s)
         currentCapsule.render()
-        currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)
-        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
+        currentCapsule.topLeft(dx: 15*s, dy: Screen.safeTop+19*s)
+//        interchange.topLeft(dx: 600*s, dy: Screen.safeTop+15*s, width: 360*s, height: 240*s)
         
         musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
-        claudeButton.topLeft(dx: musicButton.left, dy: musicButton.top - 30*s, width: 175*s, height: 20*s)
+        claudeButton.bottomLeft(dx: 10*s, dy: -10*s, width: 180*s, height: 24*s)
     }
 }
