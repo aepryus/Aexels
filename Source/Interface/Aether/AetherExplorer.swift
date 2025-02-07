@@ -46,7 +46,7 @@ class AetherExplorer: Explorer {
     
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
-    let cyto: Cyto = Cyto(rows: 2, cols: 2)
+    var cyto: Cyto!
 
     init() { super.init(key: "aether") }
 
@@ -54,6 +54,12 @@ class AetherExplorer: Explorer {
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Screen.iPhone {
+            cyto = Cyto(rows: 3, cols: 1)
+        } else {
+           cyto = Cyto(rows: 2, cols: 2)
+        }
         
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white
@@ -214,5 +220,11 @@ class AetherExplorer: Explorer {
         expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
         expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
         expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
+        
+//        cyto.Xs = []
+//        cyto.Ys = []
+//        cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
+//        cyto.layout()
+
 	}
 }
