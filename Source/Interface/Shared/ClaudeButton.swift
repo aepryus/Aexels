@@ -12,7 +12,7 @@ import UIKit
 class ClaudeButtonHover: AEView {
     let label: UILabel = UILabel()
     
-    static let pen: Pen = Pen(font: .optima(size: 12*Screen.s), color: .black.tint(0.9))
+    static let pen: Pen = Pen(font: .optima(size: Screen.iPhone ? 16*Screen.s : 12*Screen.s), color: .black.tint(0.9))
     
     override init() {
         super.init()
@@ -28,9 +28,14 @@ class ClaudeButtonHover: AEView {
 // UIView ==========================================================================================
     override func layoutSubviews() {
         layer.cornerRadius = height/2
-        label.left(dx: 25*s, width: 200*s, height: 16*s)
+        if Screen.iPhone {
+            label.left(dx: 32*s, width: 200*s, height: 16*s)
+        } else {
+            label.left(dx: 25*s, width: 200*s, height: 16*s)
+        }
     }
     override func draw(_ rect: CGRect) {
+        guard !Screen.iPhone else { super.draw(rect); return }
         let p: CGFloat = 0
         
         let x1 = p
@@ -60,7 +65,7 @@ class ClaudeButtonHover: AEView {
 class ClaudeButton: AEView {
     var article: Article?
 
-    let imageButton: ImageButton = ImageButton(named: "claude")
+    let imageButton: ImageButton = ImageButton(named: "claude", overrideColor: Screen.iPhone ? .white : nil)
     let hover: ClaudeButtonHover = ClaudeButtonHover()
     
     override init() {
@@ -78,7 +83,6 @@ class ClaudeButton: AEView {
         }
         let gesture = UIHoverGestureRecognizer(target: self, action: #selector(onHover(_:)))
         imageButton.addGestureRecognizer(gesture)
-//        imageView.isUserInteractionEnabled = true
         
         hover.alpha = 0
         addSubview(hover)
@@ -119,7 +123,8 @@ class ClaudeButton: AEView {
 
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        imageButton.left(dx: 5*s, width: 14*s, height: 14*s)
+        let d: CGFloat = Screen.iPhone ? 20*s : 14*s
+        imageButton.left(dx: 5*s, width: d, height: d)
         hover.left(width: width, height: height)
     }
 }

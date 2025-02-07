@@ -808,7 +808,13 @@ So, this gives us 3 classes of 'Same Inertial Frame':
 
 - Type 1: part of a contiguous ping / pong cloud.
 - Type 2: isolated , but having the same dilation and contraction factors and aligned contraction axes.
-- Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axes.";
+- Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axes.
+
+
+
+
+
+";
 
 "symmetric_name" = "Symmetric Frames";
 "symmetric_article" = "Symmetric Frames

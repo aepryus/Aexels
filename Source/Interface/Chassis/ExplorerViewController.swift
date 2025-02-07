@@ -20,24 +20,45 @@ class ExplorerViewController: AEViewController {
         graphView.alpha = 0.2
         return graphView
     }()
+    let aexelsLabel: NexusLabel = NexusLabel(text: "Aexels", size: 48*Screen.s)
+    let versionLabel: NexusLabel = NexusLabel(text: "v\(Aexels.version)", size:16*Screen.s)
+    var iPhoneTabGesture: UITapGestureRecognizer!
     
     var explorer: AEViewController? = nil {
         didSet {
             if explorer == oldValue {
                 guard let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer else { return }
-                UIView.animate(withDuration: 0.5) {
-                    nexusExplorer.view.alpha = 0
-                } completion: { (complete: Bool) in
-                    self.visionBar.alwaysExpanded = true
-                    self.visionBar.expand()
-                    nexusExplorer.articleView.removeFromSuperview()
-                    nexusExplorer.currentCapsule.removeFromSuperview()
-                    nexusExplorer.articleView.alpha = 0
-                    nexusExplorer.currentCapsule.alpha = 0
-                    nexusExplorer.snapGlyphs()
-                    self.graphView.start()
-                    DispatchQueue.main.async { self.startMusic() }
-                    UIView.animate(withDuration: 0.5) { nexusExplorer.view.alpha = 1 }
+                if Screen.iPhone {
+                    UIView.animate(withDuration: 0.5) {
+                        nexusExplorer.articleView.alpha = 0
+                        nexusExplorer.currentCapsule.alpha = 0
+                    } completion: { (complete: Bool) in
+                        nexusExplorer.articleView.removeFromSuperview()
+                        nexusExplorer.currentCapsule.removeFromSuperview()
+                        nexusExplorer.snapGlyphs()
+                        nexusExplorer.glyphsView.alpha = 0
+                        nexusExplorer.scrollView.contentOffset = nexusExplorer.glyphsOffset
+                        UIView.animate(withDuration: 0.5) {
+                            nexusExplorer.glyphsView.alpha = 1
+                        }
+                    }
+                } else {
+                    UIView.animate(withDuration: 0.5) {
+                        nexusExplorer.view.alpha = 0
+                    } completion: { (complete: Bool) in
+                        if !Screen.iPhone {
+                            self.visionBar.alwaysExpanded = true
+                            self.visionBar.expand()
+                        }
+                        nexusExplorer.articleView.removeFromSuperview()
+                        nexusExplorer.currentCapsule.removeFromSuperview()
+                        nexusExplorer.articleView.alpha = 0
+                        nexusExplorer.currentCapsule.alpha = 0
+                        nexusExplorer.snapGlyphs()
+                        self.graphView.start()
+                        DispatchQueue.main.async { self.startMusic() }
+                        UIView.animate(withDuration: 0.5) { nexusExplorer.view.alpha = 1 }
+                    }
                 }
                 return
             }
@@ -51,8 +72,10 @@ class ExplorerViewController: AEViewController {
                 oldValue?.view.alpha = 0
             } completion: { (complete: Bool) in
                 if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
-                    self.visionBar.alwaysExpanded = true
-                    self.visionBar.expand()
+                    if !Screen.iPhone {
+                        self.visionBar.alwaysExpanded = true
+                        self.visionBar.expand()
+                    }
                     nexusExplorer.articleView.removeFromSuperview()
                     nexusExplorer.currentCapsule.removeFromSuperview()
                     nexusExplorer.articleView.alpha = 0
@@ -60,8 +83,8 @@ class ExplorerViewController: AEViewController {
                     nexusExplorer.contextGlyphsView.alpha = 0
 //                    nexusExplorer.interchange.alpha = 0
                     nexusExplorer.snapGlyphs()
-                    self.graphView.start()
-                    DispatchQueue.main.async { self.startMusic() }
+                    if !Screen.iPhone { self.graphView.start() }
+                    if !Screen.iPhone { DispatchQueue.main.async { self.startMusic() } }
                 }
                 if let oldValue { oldValue.view.removeFromSuperview() }
 
@@ -75,12 +98,11 @@ class ExplorerViewController: AEViewController {
                 } else {
                     self.view.addSubview(explorer.view)
                 }
-                self.view.bringSubviewToFront(self.tripWire)
+//                self.view.bringSubviewToFront(self.tripWire)
                 self.view.bringSubviewToFront(self.visionBar)
 
                 UIView.animate(withDuration: 0.5) { explorer.view.alpha = 1 }
             }
-
         }
     }
     
@@ -103,7 +125,7 @@ class ExplorerViewController: AEViewController {
         return visionBar
     }()
     
-    lazy var tripWire: TripWire = TripWire() { self.visionBar.contract() }
+//    lazy var tripWire: TripWire = TripWire() { self.visionBar.contract() }
     
     func initMusic() {
         guard let url: URL = Bundle.main.url(forResource: "Aexels3", withExtension: "mp3") else { return }
@@ -147,34 +169,73 @@ class ExplorerViewController: AEViewController {
         rampVolume()
     }
     
+// Events ==========================================================================================
+    var graphOn: Bool = false
+    @objc func onTap() {
+        view.removeGestureRecognizer(iPhoneTabGesture)
+        stopMusic()
+        UIView.animate(withDuration: 1.0) {
+            self.graphView.alpha = 0
+            self.aexelsLabel.alpha = 0
+            self.versionLabel.alpha = 0
+        } completion: { (complete: Bool) in
+            self.graphView.stop()
+            self.graphView.removeFromSuperview()
+            self.aexelsLabel.removeFromSuperview()
+            self.versionLabel.removeFromSuperview()
+            self.explorer = Aexels.nexusExplorer
+        }
+    }
+    
 // AEViewController ================================================================================
     override func layoutRatio056() {
         imageView.frame = view.bounds
-        tripWire.frame = view.bounds
         let a: CGFloat = 0.7
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
-        visionBar.topRight(dx: -10*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
     }
     override func layoutRatio133() {
         imageView.frame = view.bounds
-        tripWire.frame = view.bounds
+//        tripWire.frame = view.bounds
         let a: CGFloat = 0.7
         graphView.bottomRight(dx: -30*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
+        aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(imageView)
         view.addSubview(graphView)
-        view.addSubview(tripWire)
-        view.addSubview(visionBar)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
+        view.addSubview(aexelsLabel)
+        view.addSubview(versionLabel)
+//        view.addSubview(tripWire)
+        
+        if !Screen.iPhone {
+            view.addSubview(visionBar)
+            visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
+            explorer = Aexels.nexusExplorer
+        }
 
-        explorer = Aexels.nexusExplorer
+        graphView.start()
         
         initMusic()
         startMusic()
+        
+        layout()
+        
+        if Screen.iPhone {
+            iPhoneTabGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
+            view.addGestureRecognizer(iPhoneTabGesture)
+        } else {
+            UIView.animate(withDuration: 5, delay: 5) {
+                self.aexelsLabel.alpha = 0
+                self.versionLabel.alpha = 0
+            }
+        }
     }
 }

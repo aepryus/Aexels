@@ -106,12 +106,15 @@ class GlyphsView: AEView {
                     if minY == nil || minY > $0.y { minY = $0.y }
                 }
             })
-            let p: CGFloat = 8*s
+            let p: CGFloat = 10*s
             glyphs.forEach({
                 $0.frame = CGRect(x: $0.x*scale - minX*scale + p, y: $0.y*scale - minY*scale + p, width: $0.radius*scale, height: $0.radius*scale)
             })
             borderView.setNeedsDisplay()
         }
+    }
+    var finderPrint: GlyphView? = nil {
+        didSet { glyphs.forEach({ $0.setNeedsLayout() }) }
     }
     
     var borderView: GlyphsBorderView!
@@ -176,7 +179,8 @@ class GlyphView: AEView {
     }
     
     var isCurrentFocus: Bool { glyphsView.focus === self }
-    
+    var isCurrentFingerPrint: Bool { glyphsView.finderPrint === self }
+
     func linkAfter(_ glyphView: GlyphView) -> GlyphView {
         for i in 0..<sortedLinkedTo.count {
             guard sortedLinkedTo[i] === glyphView else { continue }
@@ -221,6 +225,7 @@ class ArticleGlyph: GlyphView {
     override var key: String { "art::\(article.key)" }
 
     override func execute() {
+        if Screen.iPhone { glyphsView.finderPrint = self }
         Aexels.nexusExplorer.show(article: article)
     }
     
@@ -240,7 +245,7 @@ class ArticleGlyph: GlyphView {
         halo.layer.cornerRadius = halo.width/2
 
         let pen: Pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
-        if isCurrentFocus {
+        if isCurrentFocus || isCurrentFingerPrint {
             halo.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
             label.pen = pen.clone(color: .white)
             if contract { label.attributedText = label.text?.attributed(pen: pen.clone(color: .white, kern: -3)) }
@@ -309,6 +314,7 @@ class AsideGlyph: GlyphView {
     override var key: String { "asd::\(article.key)" }
             
     override func execute() {
+        if Screen.iPhone { glyphsView.finderPrint = self }
         Aexels.nexusExplorer.show(article: article)
     }
 
@@ -321,7 +327,7 @@ class AsideGlyph: GlyphView {
         label.layer.cornerRadius = label.width/2
         layer.cornerRadius = width/2
         
-        if isCurrentFocus {
+        if isCurrentFocus || isCurrentFingerPrint {
             label.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
             label.pen = Pen(font: .ax(size: 9*s), color: .white, alignment: .center)
         } else {
