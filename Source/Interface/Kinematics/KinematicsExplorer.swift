@@ -265,7 +265,7 @@ class KinematicsExplorer: Explorer {
 
         cyto.cells = [
             universeCell,
-            MaskCell(content: articleScroll, c: 4, r: 0, h: 2, cutout: true),
+            MaskCell(content: articleScroll, c: 4, r: 0, h: 2, cutouts: [.upperRight]),
             LimboCell(content: zoneB, c: 0, r: 1),
             LimboCell(content: zoneA, c: 1, r: 1),
             LimboCell(content: zoneC, c: 2, r: 1),

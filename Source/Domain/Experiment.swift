@@ -72,10 +72,17 @@ class Experiment: Anchor {
         electromagnetism.pongRenderMode = .full
         electromagnetism.photonRenderMode = .full
         
-        electromagnetism.generateTeslons = { (size: CGSize) in [
-            Teslon(pX: 360, pY: 240, speed: 0.35, orient: 0.3),
-            Teslon(pX: 360, pY: 400, speed:-0.35, orient: 0.3)
-        ]}
+        if Screen.iPhone {
+            electromagnetism.generateTeslons = { (size: CGSize) in [
+                Teslon(pX: size.width/2 - 100.0, pY: 240, speed: 0.35, orient: 0.7),
+                Teslon(pX: size.width/2 - 100.0, pY: 400, speed:-0.35, orient: 0.7)
+            ]}
+        } else {
+            electromagnetism.generateTeslons = { (size: CGSize) in [
+                Teslon(pX: 360, pY: 240, speed: 0.35, orient: 0.3),
+                Teslon(pX: 360, pY: 400, speed:-0.35, orient: 0.3)
+            ]}
+        }
 
         experiment.electromagnetism = electromagnetism
 

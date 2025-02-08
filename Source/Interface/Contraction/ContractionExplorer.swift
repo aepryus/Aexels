@@ -183,7 +183,7 @@ class ContractionExplorer: Explorer {
         
         cyto.cells = [
             LimboCell(content: dilationView, c: 0, r: 0),
-            MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutout: true),
+            MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutouts: [.upperRight]),
             LimboCell(content: controlsView, c: 0, r: 1),
         ]
         view.addSubview(cyto)

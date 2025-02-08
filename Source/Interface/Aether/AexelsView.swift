@@ -103,7 +103,7 @@ class AexelsView: UIView {
     }
 
 	func renderImage() {
-		guard renderMode == .started else {return}
+        guard renderMode == .started && bounds.size != .zero else { return }
 		renderMode = .rendering
 		
 		UIGraphicsBeginImageContext(bounds.size)

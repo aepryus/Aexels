@@ -138,11 +138,19 @@ class AetherExplorer: Explorer {
         }
         expView.addSubview(expJButton)
         
-        cyto.cells = [
-            LimboCell(content: aexelsView, c: 0, r: 0),
-            MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutout: true),
-            LimboCell(content: expView, c: 0, r: 1)
-        ]
+        if Screen.iPhone {
+            cyto.cells = [
+                LimboCell(content: aexelsView, c: 0, r: 0),
+                LimboCell(content: expView, c: 0, r: 1),
+                LimboCell(content: UIView(), c: 0, r: 2)
+            ]
+        } else {
+            cyto.cells = [
+                LimboCell(content: aexelsView, c: 0, r: 0),
+                MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutouts: [.upperRight]),
+                LimboCell(content: expView, c: 0, r: 1)
+            ]
+        }
         
         view.addSubview(cyto)
     }
@@ -156,13 +164,33 @@ class AetherExplorer: Explorer {
     }
         
 // AEViewController ================================================================================
+    override func layout375x667() {
+        cyto.Ys = [Screen.height-140*s - Screen.safeBottom - Screen.safeTop, 84*s]
+        cyto.frame = CGRect(x: 5*s, y: Screen.safeTop, width: view.width-10*s, height: view.height-Screen.safeTop-Screen.safeBottom)
+        cyto.layout()
+
+        let om = 0*s
+        let im = 2*s
+        let bw = (expView.width-2*om-9*im)/10
+        let bh = (expView.height-2*om)/1
+
+        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
+        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
+        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
+        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
+        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
+        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
+        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
+        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
+        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
+        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
+    }
     override func layout1024x768() {
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let height = Screen.height - topY - botY
         let s = height / 748
         
-//        let p: CGFloat = 5*s
         let uw: CGFloat = height - 110*s
 
         let om = 6*s
@@ -189,42 +217,4 @@ class AetherExplorer: Explorer {
         articleScroll.contentSize = articleView.scrollViewContentSize
         articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
     }
-    
-// =================================================================================================
-// =================================================================================================
-// =================================================================================================
-// =================================================================================================
-// =================================================================================================
-
-
-	
-// Explorer ========================================================================================
-	override func layout375x667() {
-        let size = UIScreen.main.bounds.size
-        
-        let w = size.width - 10*s
-
-        expView.frame = CGRect(x: 5*s, y: Screen.height-140*s-Screen.safeBottom, width: w, height: 140*s)
-
-        let om = 15*s
-        let im = 6*s
-        let bw = (expView.width-2*om-9*im)/10
-        let bh = (expView.height-2*om)/1-60*s
-        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
-        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
-        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
-        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
-        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
-        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
-        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
-        
-//        cyto.Xs = []
-//        cyto.Ys = []
-//        cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
-//        cyto.layout()
-
-	}
 }

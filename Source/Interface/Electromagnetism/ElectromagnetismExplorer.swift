@@ -11,11 +11,11 @@ import MetalKit
 import UIKit
 
 class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
-    private let cyto: Cyto = Cyto(rows: 4, cols: 2)
+    private let cyto: Cyto = !Screen.iPhone ? Cyto(rows: 4, cols: 2) : Cyto(rows: 3, cols: 1)
     
-    private let systemCell: LimboCell = LimboCell(c: 0, r: 0, h: 4)
-    private let aetherCell: LimboCell = LimboCell(c: 0, r: 2, h: 2)
-    private let tabsCell: TabsCell = TabsCell(c: 1, r: 1, h: 2)
+    private let systemCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 0, h: 4) : LimboCell(c: 0, r: 0, h: 2)
+    private let aetherCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 2, h: 2) : LimboCell(c: 0, r: 1)
+    private let tabsCell: TabsCell = !Screen.iPhone ? TabsCell(c: 1, r: 1, h: 2) : TabsCell()
     
     private var systemView: MTKView!
     private var aetherView: MTKView!
@@ -23,8 +23,10 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     let experimentView: UIView = UIView()
     let controlsView: UIView = UIView()
     
-    let imageView = UIImageView()
-
+    let swapButton: SwapButton = SwapButton()
+    let swapperButton: CircleButton
+    let glyphsButton: CircleButton
+    
     // Metal ======
     var renderer: ElectromagnetismRenderer!
 
@@ -52,6 +54,13 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     }
     
     init() {
+        swapButton.bounds = CGRect(origin: .zero, size: CGSize(width: 26*Screen.s, height: 26*Screen.s))
+        swapperButton = CircleButton(view: swapButton)
+        
+        let imageView: UIImageView = UIImageView(image: UIImage(named: "glyphs_icon")!)
+        imageView.bounds = CGRect(origin: .zero, size: CGSize(width: 30*Screen.s, height: 30*Screen.s))
+        glyphsButton = CircleButton(view: imageView)
+        
         super.init(key: "electromagnetism")
         aetherCell.alpha = 0
         
@@ -66,13 +75,11 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
     }
     
     func applyExperiment() {
-//        timeControl.playButton.stop()
         experiment?.electromagnetism?.regenerateTeslons(size: systemView.drawableSize / systemView.contentScaleFactor)
         controlsTab.experiment = experiment
         renderer.experiment = experiment
         systemView.draw()
         aetherView.draw()
-//        timeControl.playButton.stop()
         controlsTab.applyControls()
     }
     
@@ -140,17 +147,20 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         aetherCell.content = aetherView
         tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
         
-        cyto.cells = [
-//            LimboCell(content: imageView, c: 0, r: 0, h: 4),
-            systemCell,
-            MaskCell(content: titleView, c: 1, r: 0, cutout: true),
-            tabsCell,
-            LimboCell(content: controlsView, c: 1, r: 3)
-        ]
+        if Screen.iPhone {
+            cyto.cells = [
+                systemCell,
+                MaskCell(content: controlsView, c: 0, r: 2, cutouts: [.lowerLeft, .lowerRight])
+            ]
+        } else {
+            cyto.cells = [
+                systemCell,
+                MaskCell(content: titleView, c: 1, r: 0, cutouts: [.upperRight]),
+                tabsCell,
+                LimboCell(content: controlsView, c: 1, r: 3)
+            ]
+        }
         view.addSubview(cyto)
-        
-
-
         
         // Title ========
         titleLabel.text = "Electricity and Magnetism".localized
@@ -167,9 +177,37 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         }
         
         timeControl.playButton.play()
+        
+        if Screen.iPhone {
+            view.addSubview(swapperButton)
+            swapButton.addAction { [unowned swapButton] in
+                swapButton.rotateView()
+            }
+            
+            view.addSubview(glyphsButton)
+            glyphsButton.addAction {
+                Aexels.explorerViewController.explorer = Aexels.nexusExplorer
+            }
+        }
     }
 
 // AEViewController ================================================================================
+    override func layoutRatio056() {
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let uh: CGFloat = height - 100*s
+        
+        cyto.Ys = [uh/2, uh/2]
+        cyto.layout()
+        cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: height)
+        
+        timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
+        pingButton.right(dx: -84*s, width: 60*s, height: 80*s)
+        
+        swapperButton.bottomLeft(dx: -2*s, dy: -25*s, width: 54*s, height: 54*s)
+        glyphsButton.bottomRight(dx:  2*s, dy: -25*s, width: 54*s, height: 54*s)
+
+        experiment = experiments[0]
+    }
     override func layout1024x768() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
@@ -181,13 +219,8 @@ class ElectromagnetismExplorer: Explorer, TimeControlDelegate {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
         cyto.layout()
         
-//        imageView.image = Engine.renderHex(size: imageView.bounds.size)
-
-        
         titleLabel.center(width: 300*s, height: 24*s)
-        
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
-        
         pingButton.right(dx: -15*s, width: 60*s, height: 80*s)
         
         experiment = experiments[0]

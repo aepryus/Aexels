@@ -37,7 +37,7 @@ class DilationExplorer: Explorer {
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
     
-    lazy var messageCell: MaskCell = MaskCell(content: articleScroll, c: 1, r: 0, h: 3, cutout: true)
+    lazy var messageCell: MaskCell = MaskCell(content: articleScroll, c: 1, r: 0, h: 3, cutouts: [.upperRight])
     lazy var fixedCell: LimboCell = LimboCell(content: fixedView, c: 1, r: 1, h: 2)
     let cyto: Cyto = Cyto(rows: 3, cols: 2)
 

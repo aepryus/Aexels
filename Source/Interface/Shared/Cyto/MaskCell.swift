@@ -13,9 +13,9 @@ import UIKit
 class MaskCell: LimboCell {
     let evMaskView: MaskView
     
-    init(content: UIView, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, cutout: Bool = false) {
+    init(content: UIView, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, cutouts: [Cutout] = []) {
         evMaskView = MaskView(content: content)
-        super.init(content: evMaskView, c: c, r: r, w: w, h: h, cutout: cutout)
+        super.init(content: evMaskView, c: c, r: r, w: w, h: h, cutouts: cutouts)
         addSubview(self.evMaskView)
     }
     init(frame: CGRect, content: UIView) {

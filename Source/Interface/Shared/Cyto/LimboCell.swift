@@ -10,6 +10,7 @@ import Acheron
 import UIKit
 
 class LimboCell: Cyto.Cell {
+    enum Cutout: CaseIterable, Equatable { case upperRight, lowerLeft, lowerRight }
     class Path {
         var strokePath: CGPath!
         var shadowPath: CGPath!
@@ -29,14 +30,14 @@ class LimboCell: Cyto.Cell {
         didSet { layoutContent() }
     }
     
-    let cutout: Bool
+    let cutouts: [Cutout]
     
     let p: CGFloat
     
-    init(content: UIView? = nil, size: CGSize? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, p: CGFloat = 15*Screen.s, cutout: Bool = false) {
+    init(content: UIView? = nil, size: CGSize? = nil, c: Int = 0, r: Int = 0, w: Int = 1, h: Int = 1, p: CGFloat = 15*Screen.s, cutouts: [Cutout] = []) {
         self.contentSize = size
         self.p = p
-        self.cutout = cutout
+        self.cutouts = cutouts
         
         super.init(c: c, r: r, w: w, h: h)
 
@@ -71,14 +72,24 @@ class LimboCell: Cyto.Cell {
 
         path.move(to: CGPoint(x: x1, y: y1+r))
         path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
-        if !cutout {
+        if !cutouts.contains(.upperRight) {
             path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: r)
         } else {
             let radius: CGFloat = 24*s
             path.addArc(center: CGPoint(x: width-20*s, y: 20*s), radius: radius, startAngle: 3/2 * .pi - atan(radius/20), endAngle: atan(radius/20), clockwise: true)
         }
-        path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: r)
-        path.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: r)
+        if !cutouts.contains(.lowerRight) {
+            path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: r)
+        } else {
+            let radius: CGFloat = 29*s
+            path.addArc(center: CGPoint(x: width-20*s, y: height-20*s), radius: radius, startAngle: -atan(radius/20), endAngle: 1/2 * .pi + atan(radius/20), clockwise: true)
+        }
+        if !cutouts.contains(.lowerLeft) {
+            path.addArc(tangent1End: CGPoint(x: x1, y: y3), tangent2End: CGPoint(x: x1, y: y2), radius: r)
+        } else {
+            let radius: CGFloat = 29*s
+            path.addArc(center: CGPoint(x: 20*s, y: height-20*s), radius: radius, startAngle: 1/2 * .pi - atan(radius/20), endAngle: .pi + atan(radius/20), clockwise: true)
+        }
         path.closeSubpath()
         
         return path

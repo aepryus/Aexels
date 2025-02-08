@@ -122,7 +122,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 3, h: 2),
             LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 3),
             LimboCell(content: controlsView, c: 1, r: 4),
-            MaskCell(content: articleScroll, c: 2, r: 0, cutout: true),
+            MaskCell(content: articleScroll, c: 2, r: 0, cutouts: [.upperRight]),
             LimboCell(content: dilatorView, c: 2, r: 1, p: 12),
             ooviumCell
         ]

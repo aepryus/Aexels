@@ -27,7 +27,6 @@ class NexusExplorer: AEViewController {
     var glyphsOffset: CGPoint = .zero
 
     func show(article: Article) {
-        if glyphsView.alpha == 1 { glyphsOffset = scrollView.contentOffset }
         if !Screen.iPhone {
             guard article.key != articleView.key else { return }
             if contextGlyphsView.superview == nil {
@@ -241,19 +240,6 @@ class NexusExplorer: AEViewController {
         return glyphs
     }
 
-// Events ==========================================================================================
-//    @objc func onTouch(gesture: TouchingGesture) {
-//        if gesture.state == .began {
-//            UIView.animate(withDuration: 0.2) {
-//                self.versionLabel.alpha = 1
-//            }
-//        } else if gesture.state == .ended {
-//            UIView.animate(withDuration: 0.2) {
-//                self.versionLabel.alpha = 0
-//            }
-//        }
-//    }
-        
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -262,6 +248,7 @@ class NexusExplorer: AEViewController {
         glyphsView.glyphs = defineGlyphs()
         glyphsView.focus = nil
         glyphsView.onTapGlyph = { (glyphView: GlyphView) in
+            if self.glyphsView.alpha == 1 { self.glyphsOffset = self.scrollView.contentOffset }
             glyphView.execute()
         }
         
@@ -291,7 +278,7 @@ class NexusExplorer: AEViewController {
                 else { Aexels.explorerViewController.stopMusic() }
             }
         } else {
-            articleControls.backgroundColor = .black.alpha(0.7)
+            articleControls.backgroundColor = .black.tint(0.3).alpha(0.7)
             view.addSubview(articleControls)
         }
         

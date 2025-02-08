@@ -50,6 +50,7 @@
 		D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */; };
 		D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A472B79D5B800C28F93 /* ArticleView.swift */; };
 		D8AA5A512B7AEFD700282522 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA5A502B7AEFD700282522 /* Article.swift */; };
+		D8AB74FF2D56CD6A00A7E234 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -158,6 +159,7 @@
 		D8A63A452B76D8AC00C28F93 /* GlyphsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphsView.swift; sourceTree = "<group>"; };
 		D8A63A472B79D5B800C28F93 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		D8AA5A502B7AEFD700282522 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
 				D896C9AA2D42290E0058585C /* BoolButton.swift */,
+				D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */,
 				D802E4C62D2CC61400F259BB /* ClaudeButton.swift */,
 				D881B7B8294BDED2004DE0DD /* CloseButton.swift */,
 				D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */,
@@ -814,6 +817,7 @@
 				D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */,
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
+				D8AB74FF2D56CD6A00A7E234 /* CircleButton.swift in Sources */,
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
 				D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,

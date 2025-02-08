@@ -38,7 +38,7 @@ class DistanceExplorer: Explorer, TimeControlDelegate {
 
         cyto.cells = [
             LimboCell(c: 0, r: 0, h: 3),
-            MaskCell(content: titleView, c: 1, r: 0, cutout: true),
+            MaskCell(content: titleView, c: 1, r: 0, cutouts: [.upperRight]),
             tabsCell,
             LimboCell(content: quickView, c: 1, r: 2)
         ]
