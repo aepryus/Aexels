@@ -208,7 +208,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 
     let closeButton: CloseButton = CloseButton()
 	let swapper = Limbo()
-	let swapButton = SwapButton()
     let deadLimbo: Limbo = Limbo()
 
 	let guide = GuideButton()

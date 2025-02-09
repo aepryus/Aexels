@@ -23,6 +23,10 @@ class ExperimentView: AXButton {
     static let notesPen: Pen = Pen(font: .optima(size: 12*Screen.s), color: .white)
 
 // UIView ==========================================================================================
+    override var isHighlighted: Bool {
+        didSet { setNeedsDisplay() }
+    }
+    
     override func draw(_ rect: CGRect) {
         let p: CGFloat = 3*s
         let radius: CGFloat = 8*s
@@ -114,6 +118,7 @@ class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
 // Events ==========================================================================================
     func onSelected(experiment: Experiment) {
         explorer.experiment = experiment
+        if Screen.iPhone { explorer.tapSwapButton() }
     }
     
 // UIView ==========================================================================================

@@ -32,7 +32,6 @@ class ContractionExplorer: Explorer {
     let lambdaLabel: UILabel = UILabel()
     
     let swapper: Limbo = Limbo()
-    let swapButton: SwapButton = SwapButton()
     var first: [Limbo] = []
     var second: [Limbo] = []
     var isFirst: Bool = false

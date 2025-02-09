@@ -26,7 +26,7 @@ class NexusLabel: AEView {
 	override func draw(_ rect: CGRect) {
 		let c = UIGraphicsGetCurrentContext()!
 		c.setShadow(offset: CGSize.zero, blur: 4, color: UIColor(white: 0.2, alpha: 0.8).cgColor)
-		let pen = Pen(font: UIFont.ax(size: size), color: .black.tint(0.25), alignment: .right)
+		let pen = Pen(font: UIFont.ax(size: size), color: .black.tint(0.35), alignment: .right)
 		(text as NSString).draw(in: rect.insetBy(dx: 4, dy: 4), withAttributes: pen.attributes)
 	}
 }

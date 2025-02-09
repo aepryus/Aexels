@@ -11,9 +11,9 @@ import OoviumEngine
 import UIKit
 
 class PulseButton: AXButton {
-    let name: String
+    let name: String?
     
-    init(name: String) {
+    init(name: String?) {
         self.name = name
         super.init()
     }
@@ -29,7 +29,7 @@ class PulseButton: AXButton {
         c.addPath(path)
         
         path = CGMutablePath()
-        let center = CGPoint(x: width/2, y: height/2+10*s*ss)
+        let center = CGPoint(x: width/2, y: height/2+(name == nil ? 0 : 10*s*ss))
         let ir: CGFloat = 10*ss
         let or: CGFloat = 20*ss
         let n: Int = 8
@@ -49,7 +49,9 @@ class PulseButton: AXButton {
         c.setLineWidth(3*ss)
         c.strokePath()
 
-        let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s*ss)!, color: stroke, alignment: .center)
-        name.draw(in: CGRect(x: (width-50*s*ss)/2, y: 10*s*ss, width: 50*s*ss, height: 20*s*ss), pen: pen)
+        if let name {
+            let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s*ss)!, color: stroke, alignment: .center)
+            name.draw(in: CGRect(x: (width-50*s*ss)/2, y: 10*s*ss, width: 50*s*ss, height: 20*s*ss), pen: pen)
+        }
     }
 }

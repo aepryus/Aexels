@@ -39,7 +39,6 @@ class AetherExplorer: Explorer {
     ] }()
     
     let swapper: Limbo = Limbo()
-    let swapButton: SwapButton = SwapButton()
     var first: [Limbo] = [Limbo]()
     var second: [Limbo] = [Limbo]()
     var isFirst: Bool = false

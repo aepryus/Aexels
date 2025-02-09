@@ -31,7 +31,6 @@ class DilationExplorer: Explorer {
     
     var cameraOn: Bool = false
 
-    let swapButton: SwapButton = SwapButton()
     var isFirst: Bool = false
     
     let articleScroll: UIScrollView = UIScrollView()

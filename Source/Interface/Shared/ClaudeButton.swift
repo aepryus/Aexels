@@ -35,7 +35,6 @@ class ClaudeButtonHover: AEView {
         }
     }
     override func draw(_ rect: CGRect) {
-        guard !Screen.iPhone else { super.draw(rect); return }
         let p: CGFloat = 0
         
         let x1 = p
@@ -68,6 +67,8 @@ class ClaudeButton: AEView {
     let imageButton: ImageButton = ImageButton(named: "claude", overrideColor: Screen.iPhone ? .white : nil)
     let hover: ClaudeButtonHover = ClaudeButtonHover()
     
+    var flashView: UIView? = nil
+    
     override init() {
         super.init()
         
@@ -86,6 +87,7 @@ class ClaudeButton: AEView {
         
         hover.alpha = 0
         addSubview(hover)
+        flashView = hover
     }
     
 // Events ==========================================================================================
@@ -102,9 +104,9 @@ class ClaudeButton: AEView {
     func onCopy() {
         if !Screen.mac {
             UIView.animate(withDuration: 2) {
-                self.hover.alpha = 1
+                self.flashView?.alpha = 1
                 UIView.animate(withDuration: 5) {
-                    self.hover.alpha = 0
+                    self.flashView?.alpha = 0
                 }
             }
         }

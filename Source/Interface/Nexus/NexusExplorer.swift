@@ -17,14 +17,28 @@ class NexusExplorer: AEViewController {
     let articleView: ArticleView = ArticleView()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
     var contextGlyphsView: GlyphsView = GlyphsView()
-    let articleControls: AEView = AEView()
 
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
-    let glyphsButton: ImageButton = ImageButton(named: "glyphs_icon", overrideColor: .white)
-    
+    let claudeCircle: CircleButton
+    let claudeHover: Limbo = Limbo()
+    let glyphsCircle: CircleButton
+
     var glyphs: [GlyphView] = []
     var glyphsOffset: CGPoint = .zero
+    
+    override init() {
+        claudeCircle = CircleButton(view: claudeButton)
+        
+        let imageView: UIImageView = UIImageView(image: UIImage(named: "glyphs_icon")!)
+        imageView.bounds = CGRect(origin: .zero, size: CGSize(width: 30*Screen.s, height: 30*Screen.s))
+        glyphsCircle = CircleButton(view: imageView)
+        glyphsCircle.addAction {
+            Aexels.explorerViewController.explorer = Aexels.nexusExplorer
+        }
+
+        super.init()
+    }
 
     func show(article: Article) {
         if !Screen.iPhone {
@@ -96,7 +110,6 @@ class NexusExplorer: AEViewController {
             self.articleView.key = nil
             self.scrollView.contentSize = self.glyphsView.frame.size
             self.scrollView.contentOffset = self.glyphsOffset
-            print("a:\(self.glyphsOffset)")
             self.scrollView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
                 self.musicButton.alpha = 1
@@ -277,19 +290,23 @@ class NexusExplorer: AEViewController {
                 if Aexels.settings.musicOn { Aexels.explorerViewController.startMusic() }
                 else { Aexels.explorerViewController.stopMusic() }
             }
-        } else {
-            articleControls.backgroundColor = .black.tint(0.3).alpha(0.7)
-            view.addSubview(articleControls)
         }
         
         if Screen.iPhone {
-            articleControls.addSubview(claudeButton)
+            claudeButton.flashView = claudeHover
+            view.addSubview(claudeCircle)
             
-            articleControls.addSubview(glyphsButton)
-            glyphsButton.addAction {
-                Aexels.explorerViewController.explorer = Aexels.nexusExplorer
-            }
+            claudeHover.alpha = 0
+            view.addSubview(claudeHover)
             
+            let label: UILabel = UILabel()
+            label.text = "copy to discuss with Claude"
+            label.pen = Pen(font: .optima(size: Screen.iPhone ? 16*Screen.s : 12*Screen.s), color: .black.tint(0.9))
+            claudeHover.addSubview(label)
+            claudeHover.bounds = CGRect(origin: .zero, size: CGSize(width: 10, height: 40*s))
+            label.left(dx: 14*s, width: 200*s, height: 17*s)
+            
+            view.addSubview(glyphsCircle)
         } else {
             view.addSubview(claudeButton)
         }
@@ -301,9 +318,11 @@ class NexusExplorer: AEViewController {
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)        
-        articleControls.bottom(size: CGSize(width: view.width, height: Screen.safeBottom + 48*s))
-        claudeButton.left(dx: 8*s, dy: -10*s, width: 175*s, height: 30*s)
-        glyphsButton.right(dx: -18*s, dy: -10*s, width: 40*s, height: 40*s)
+        claudeCircle.bottomLeft(dx: -2*s, dy: -25*s, width: 54*s, height: 54*s)
+        glyphsCircle.bottomRight(dx: 2*s, dy: -25*s, width: 54*s, height: 54*s)
+        claudeButton.center(width: 30*s, height: 30*s)
+        
+        claudeHover.bottomLeft(dx: 54*s, dy: -32*s, width: 221*s, height: 40*s)
     }
     override func layoutRatio133() {
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)

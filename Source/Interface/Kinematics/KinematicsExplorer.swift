@@ -31,7 +31,6 @@ class KinematicsExplorer: Explorer {
 	let expAButton = ExpButton(name: "Exp\nA")
 	let expBButton = ExpButton(name: "Exp\nB")
 	let swapper = Limbo()
-	let swapButton = SwapButton()
     let close = LimboButton(title: "Close")
     let closeButton: CloseButton = CloseButton()
 	let aetherLabel = UILabel()

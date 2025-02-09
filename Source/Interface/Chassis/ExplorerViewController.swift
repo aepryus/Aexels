@@ -192,8 +192,8 @@ class ExplorerViewController: AEViewController {
         imageView.frame = view.bounds
         let a: CGFloat = 0.7
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
-        aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
-        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
+        aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
+        versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
     }
     override func layoutRatio133() {
         imageView.frame = view.bounds
