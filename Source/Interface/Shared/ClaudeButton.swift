@@ -105,7 +105,7 @@ class ClaudeButton: AEView {
         if !Screen.mac {
             UIView.animate(withDuration: 2) {
                 self.flashView?.alpha = 1
-                UIView.animate(withDuration: 5) {
+                UIView.animate(withDuration: 5, delay: Screen.iPhone ? 2 : 0) {
                     self.flashView?.alpha = 0
                 }
             }

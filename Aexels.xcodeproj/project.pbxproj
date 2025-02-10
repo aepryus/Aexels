@@ -79,7 +79,6 @@
 		D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */; };
 		D8AE17D92814F1EC00E74CB8 /* LimboButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */; };
 		D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D12814F1EC00E74CB8 /* AXButton.swift */; };
-		D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D22814F1EC00E74CB8 /* MaskView.swift */; };
 		D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */; };
 		D8AE17DD2814F1EC00E74CB8 /* Limbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D42814F1EC00E74CB8 /* Limbo.swift */; };
 		D8AE17DE2814F1EC00E74CB8 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D52814F1EC00E74CB8 /* SliderView.swift */; };
@@ -190,7 +189,6 @@
 		D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwapButton.swift; sourceTree = "<group>"; };
 		D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimboButton.swift; sourceTree = "<group>"; };
 		D8AE17D12814F1EC00E74CB8 /* AXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXButton.swift; sourceTree = "<group>"; };
-		D8AE17D22814F1EC00E74CB8 /* MaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskView.swift; sourceTree = "<group>"; };
 		D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentLimbo.swift; sourceTree = "<group>"; };
 		D8AE17D42814F1EC00E74CB8 /* Limbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Limbo.swift; sourceTree = "<group>"; };
 		D8AE17D52814F1EC00E74CB8 /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
-				D8AE17D22814F1EC00E74CB8 /* MaskView.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D896C9AC2D426C720058585C /* Slider.swift */,
 				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
@@ -791,7 +788,6 @@
 			files = (
 				D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */,
 				D8042F11293AEB0200453B8E /* DilationView.swift in Sources */,
-				D8AE17DB2814F1EC00E74CB8 /* MaskView.swift in Sources */,
 				D850F44C293F2EB30091F15A /* DilationEngine.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
 				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,

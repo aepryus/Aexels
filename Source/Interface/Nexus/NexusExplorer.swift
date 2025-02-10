@@ -17,11 +17,14 @@ class NexusExplorer: AEViewController {
     let articleView: ArticleView = ArticleView()
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
     var contextGlyphsView: GlyphsView = GlyphsView()
+    
+    let articleCell: MaskCell
+    let cyto: Cyto = Cyto(rows: 1, cols: 1)
 
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
     let claudeCircle: CircleButton
-    let claudeHover: Limbo = Limbo()
+    let claudeHover: UIView = UIView()
     let glyphsCircle: CircleButton
 
     var glyphs: [GlyphView] = []
@@ -36,6 +39,8 @@ class NexusExplorer: AEViewController {
         glyphsCircle.addAction {
             Aexels.explorerViewController.explorer = Aexels.nexusExplorer
         }
+        
+        articleCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight])
 
         super.init()
     }
@@ -63,7 +68,7 @@ class NexusExplorer: AEViewController {
                 self.glyphsView.removeFromSuperview()
                 self.scrollView.contentSize = self.articleView.scrollViewContentSize
                 self.scrollView.addSubview(self.articleView)
-                self.scrollView.contentOffset = CGPoint(x: 0, y: Screen.iPhone ? -Screen.safeTop : -1000)
+                self.scrollView.contentOffset = CGPoint(x: 0, y: Screen.iPhone ? 0 : -1000)
                 UIView.animate(withDuration: 0.5) {
                     self.articleView.alpha = 1
                     self.currentCapsule.alpha = 1
@@ -80,7 +85,7 @@ class NexusExplorer: AEViewController {
                 self.glyphsView.removeFromSuperview()
                 self.scrollView.contentSize = self.articleView.scrollViewContentSize
                 self.scrollView.addSubview(self.articleView)
-                self.scrollView.contentOffset = CGPoint(x: 0, y: Screen.iPhone ? -Screen.safeTop : -1000)
+                self.scrollView.contentOffset = CGPoint(x: 0, y: Screen.iPhone ? 0 : -1000)
                 UIView.animate(withDuration: 0.5) {
                     self.articleView.alpha = 1
                 }
@@ -170,7 +175,7 @@ class NexusExplorer: AEViewController {
         let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1110*s)
         let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 350*s, y: 1180*s)
         let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 280*s, y: 1210*s)
-        let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 60*s+2*p, x: 30*s, y: 1140*s)
+        let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
         let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1570*s)
         let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 240*s, y: 1710*s)
 
@@ -257,7 +262,7 @@ class NexusExplorer: AEViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                         
-        if Screen.iPhone { glyphsView.scale = 0.8 }
+        if Screen.iPhone { glyphsView.scale = 0.78 }
         glyphsView.glyphs = defineGlyphs()
         glyphsView.focus = nil
         glyphsView.onTapGlyph = { (glyphView: GlyphView) in
@@ -273,9 +278,9 @@ class NexusExplorer: AEViewController {
 
         scrollView.addSubview(glyphsView)
         scrollView.showsVerticalScrollIndicator = false
-        view.addSubview(scrollView)
+        if !Screen.iPhone { view.addSubview(scrollView) }
         if !Screen.iPhone { articleView.maxWidth = min(Screen.width - 500, 800) }
-        else { articleView.maxWidth = Screen.width - 10*s }
+        else { articleView.maxWidth = Screen.width-30*s }
         articleView.scrollView = scrollView
 
         if !Screen.iPhone { view.addSubview(contextGlyphsView) }
@@ -293,7 +298,17 @@ class NexusExplorer: AEViewController {
         }
         
         if Screen.iPhone {
+            articleView.font = UIFont(name: "Verdana", size: 18*s)!
+            articleView.color = .white
+
+            cyto.cells = [articleCell]
+            view.addSubview(cyto)
+
             claudeButton.flashView = claudeHover
+            claudeHover.layer.backgroundColor = UIColor.black.tint(0.15).cgColor
+            claudeHover.layer.cornerRadius = 25*s
+            claudeHover.layer.borderWidth = 2*s
+            claudeHover.layer.borderColor = UIColor.white.cgColor
             view.addSubview(claudeCircle)
             
             claudeHover.alpha = 0
@@ -303,8 +318,8 @@ class NexusExplorer: AEViewController {
             label.text = "copy to discuss with Claude"
             label.pen = Pen(font: .optima(size: Screen.iPhone ? 16*Screen.s : 12*Screen.s), color: .black.tint(0.9))
             claudeHover.addSubview(label)
-            claudeHover.bounds = CGRect(origin: .zero, size: CGSize(width: 10, height: 40*s))
-            label.left(dx: 14*s, width: 200*s, height: 17*s)
+            claudeHover.bounds = CGRect(origin: .zero, size: CGSize(width: 225*s, height: 75*s))
+            label.center(width: 200*s, height: 17*s)
             
             view.addSubview(glyphsCircle)
         } else {
@@ -313,8 +328,11 @@ class NexusExplorer: AEViewController {
     }
     
     override func layoutRatio056() {
-        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: 510*s, height: Screen.iPhone ? 1640*s : 2187*s)
-        scrollView.frame = CGRect(x: 5*s, y: 0, width: 570*s, height: view.height)
+        cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: Screen.height - Screen.safeTop - Screen.safeBottom)
+        cyto.layout()
+
+        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: Screen.iPhone ? articleCell.width-10*s : 510*s, height: Screen.iPhone ? 1640*s : 2187*s)
+        articleView.frame = CGRect(x: 10*s, y: 5*s, width: scrollView.width-20*s, height: scrollView.height-10*s)
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)        
@@ -322,7 +340,7 @@ class NexusExplorer: AEViewController {
         glyphsCircle.bottomRight(dx: 2*s, dy: -25*s, width: 54*s, height: 54*s)
         claudeButton.center(width: 30*s, height: 30*s)
         
-        claudeHover.bottomLeft(dx: 54*s, dy: -32*s, width: 221*s, height: 40*s)
+        claudeHover.center(width: 225*s, height: 75*s)
     }
     override func layoutRatio133() {
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)

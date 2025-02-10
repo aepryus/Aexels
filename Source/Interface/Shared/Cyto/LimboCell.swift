@@ -59,7 +59,7 @@ class LimboCell: Cyto.Cell {
         else { content.center(size: CGSize(width: width-2*p, height: height-2*p)) }
     }
     
-    private func buildPath(p: CGFloat, q: CGFloat) -> CGPath {
+    private func buildPath(p: CGFloat) -> CGPath {
         let path = CGMutablePath()
         
         let x1 = p
@@ -98,9 +98,9 @@ class LimboCell: Cyto.Cell {
         let a: CGFloat = 6*Screen.s
         let b: CGFloat = 2*Screen.s
 
-        path.strokePath = buildPath(p: a, q: 0)
-        path.maskPath = buildPath(p: a, q: a-b)
-        path.shadowPath = buildPath(p: b, q: 0)
+        path.strokePath = buildPath(p: a)
+        path.maskPath = buildPath(p: a)
+        path.shadowPath = buildPath(p: b)
         
         self.layer.shadowPath = path.shadowPath
         setNeedsDisplay()

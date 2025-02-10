@@ -65,7 +65,7 @@ class GlyphsBorderView: AEView {
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)
         c.setLineWidth(2*ss)
-        c.setStrokeColor(UIColor.black.tint(0.5).cgColor)
+        c.setStrokeColor(Screen.iPhone ? UIColor.white.cgColor : UIColor.black.tint(0.5).cgColor)
         c.strokePath()
     }
 }
@@ -159,8 +159,8 @@ class GlyphView: AEView {
     }
     
     var key: String { "" }
-    var color: UIColor { UIColor.black.tint(0.5) }
-    
+    var color: UIColor { Screen.iPhone ? .white : .black.tint(0.5) }
+
     func link(to other: GlyphView) {
         linkedTo.append(other)
         other.linkedTo.append(self)
@@ -244,15 +244,15 @@ class ArticleGlyph: GlyphView {
         halo.center(width: label.width-20*s, height: label.height-20*s)
         halo.layer.cornerRadius = halo.width/2
 
-        let pen: Pen = Pen(font: .ax(size: 14*s), color: color, alignment: .center)
+        let pen: Pen = Pen(font: Screen.iPhone ? .avenir(size: 18*s) : .ax(size: 14*s), color: color, alignment: .center)
         if isCurrentFocus || isCurrentFingerPrint {
             halo.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
             label.pen = pen.clone(color: .white)
-            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(color: .white, kern: -3)) }
+            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(color: .white, kern: Screen.iPhone ? -1 : -3)) }
         } else {
             halo.layer.backgroundColor = UIColor.clear.cgColor
             label.pen = pen
-            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(kern: -3)) }
+            if contract { label.attributedText = label.text?.attributed(pen: pen.clone(kern: Screen.iPhone ? -1 : -3)) }
         }
     }
 }
@@ -329,10 +329,10 @@ class AsideGlyph: GlyphView {
         
         if isCurrentFocus || isCurrentFingerPrint {
             label.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
-            label.pen = Pen(font: .ax(size: 9*s), color: .white, alignment: .center)
+            label.pen = Pen(font: Screen.iPhone ? .avenir(size: 11*s) : .ax(size: 9*s), color: .white, alignment: .center)
         } else {
             label.layer.backgroundColor = UIColor.clear.cgColor
-            label.pen = Pen(font: .ax(size: 9*s), color: color, alignment: .center)
+            label.pen = Pen(font: Screen.iPhone ? .avenir(size: 11*s) : .ax(size: 9*s), color: color, alignment: .center)
         }
     }
 }

@@ -33,7 +33,6 @@ class MaskCell: LimboCell {
         didSet {
             guard bounds != CGRect.zero else {return}
             evMaskView.frame = bounds
-//            evMaskView.path = CGPath(roundedRect: bounds.insetBy(dx: 7*s, dy: 7*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
             evMaskView.path = path.maskPath
         }
     }
