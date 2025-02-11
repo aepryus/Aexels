@@ -153,6 +153,7 @@ class Engine {
     }
     
     func renderImage() {
+        guard size !=  .zero else { return }
         if back == nil {
             switch background {
                 case .square:

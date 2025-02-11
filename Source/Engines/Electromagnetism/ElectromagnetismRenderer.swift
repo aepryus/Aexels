@@ -153,7 +153,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     }
     
     func loadExperiment() {
-        guard let experiment, let electromagnetism = experiment.electromagnetism, let systemView else { return }
+        guard let experiment: ElectromagnetismExperiment = experiment as? ElectromagnetismExperiment, let electromagnetism = experiment.electromagnetism, let systemView else { return }
         if let universe { NCUniverseRelease(universe) }
         
         let width: CGFloat = systemView.drawableSize.width / systemView.contentScaleFactor
@@ -180,7 +180,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.height / view.contentScaleFactor)
         
-        guard let experiment, let electromagnetism = experiment.electromagnetism else { return }
+        guard let experiment: ElectromagnetismExperiment = experiment as? ElectromagnetismExperiment, let electromagnetism = experiment.electromagnetism else { return }
 //        NCUniverseSetSize(universe, size.width, size.height)
         electromagnetism.regenerateTeslons(size: size)
         loadExperiment()

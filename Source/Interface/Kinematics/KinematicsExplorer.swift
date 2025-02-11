@@ -40,13 +40,14 @@ class KinematicsExplorer: Explorer {
     
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
-    let cyto: Cyto = Cyto(rows: 2, cols: 5)
 
 	init() { super.init(key: "kinematics") }
 
 // UIVIewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cyto = Cyto(rows: 2, cols: 5)
         
         kinematicsView.onTic = { [unowned self] (velocity: V2) in
             self.loopVector.vector = velocity

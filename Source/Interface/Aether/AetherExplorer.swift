@@ -25,7 +25,7 @@ class AetherExplorer: Explorer {
     let expJButton: ExpButton = ExpButton(shape: .nothing)
     let expView: UIView = UIView()
 
-    lazy var experiments: [ExpButton] = { [
+    lazy var experimentsOld: [ExpButton] = { [
         expAButton,
         expBButton,
         expCButton,
@@ -45,20 +45,35 @@ class AetherExplorer: Explorer {
     
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
-    var cyto: Cyto!
+    
+    var experimentsTab: ExperimentsTab!
+    let notesTab: NotesTab = NotesTab(key: "aether")
+    
+//    var experiments: [AetherExperiment] = []
+//    var experiment: AetherExperiment? = nil {
+//        didSet {
+//            guard experiment !== oldValue else { return }
+//        }
+//    }
 
-    init() { super.init(key: "aether") }
-
+    init() {
+        super.init(key: "aether")    
+        experiments = AetherExperiment.experiments
+    }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
+        
+        cyto = Screen.iPhone ? Cyto(rows: 2, cols: 1) : Cyto(rows: 2, cols: 2)
+        view.addSubview(cyto)
+        
+        tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 1, r: 1)
+
         super.viewDidLoad()
         
-        if Screen.iPhone {
-            cyto = Cyto(rows: 3, cols: 1)
-        } else {
-           cyto = Cyto(rows: 2, cols: 2)
-        }
+        experimentsTab = ExperimentsTab(explorer: self)
+        
+        tabsCell.tabs = [experimentsTab, notesTab]
         
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white
@@ -67,7 +82,7 @@ class AetherExplorer: Explorer {
         articleScroll.addSubview(articleView)
 
         expAButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentA()
             self.expAButton.activated = true
         }
@@ -75,63 +90,63 @@ class AetherExplorer: Explorer {
         expView.addSubview(expAButton)
 
         expBButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentB()
             self.expBButton.activated = true
         }
         expView.addSubview(expBButton)
 
         expCButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentC()
             self.expCButton.activated = true
         }
         expView.addSubview(expCButton)
 
         expDButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentD()
             self.expDButton.activated = true
         }
         expView.addSubview(expDButton)
 
         expEButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentE()
             self.expEButton.activated = true
         }
         expView.addSubview(expEButton)
 
         expFButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentF()
             self.expFButton.activated = true
         }
         expView.addSubview(expFButton)
 
         expGButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentG()
             self.expGButton.activated = true
         }
         expView.addSubview(expGButton)
 
         expHButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentH()
             self.expHButton.activated = true
         }
         expView.addSubview(expHButton)
 
         expIButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentI()
             self.expIButton.activated = true
         }
         expView.addSubview(expIButton)
         
         expJButton.addAction {
-            self.experiments.forEach { $0.activated = false }
+            self.experimentsOld.forEach { $0.activated = false }
             self.aexelsView.experimentJ()
             self.expJButton.activated = true
         }
@@ -140,8 +155,11 @@ class AetherExplorer: Explorer {
         if Screen.iPhone {
             cyto.cells = [
                 LimboCell(content: aexelsView, c: 0, r: 0),
-                LimboCell(content: expView, c: 0, r: 1),
-                LimboCell(content: UIView(), c: 0, r: 2)
+                MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
+            ]
+            configCyto.cells = [
+                tabsCell,
+                titleCell
             ]
         } else {
             cyto.cells = [
@@ -150,8 +168,6 @@ class AetherExplorer: Explorer {
                 LimboCell(content: expView, c: 0, r: 1)
             ]
         }
-        
-        view.addSubview(cyto)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -164,25 +180,27 @@ class AetherExplorer: Explorer {
         
 // AEViewController ================================================================================
     override func layout375x667() {
-        cyto.Ys = [Screen.height-140*s - Screen.safeBottom - Screen.safeTop, 84*s]
-        cyto.frame = CGRect(x: 5*s, y: Screen.safeTop, width: view.width-10*s, height: view.height-Screen.safeTop-Screen.safeBottom)
-        cyto.layout()
+//        cyto.Ys = [Screen.height-140*s - Screen.safeBottom - Screen.safeTop, 84*s]
+//        cyto.frame = CGRect(x: 5*s, y: Screen.safeTop, width: view.width-10*s, height: view.height-Screen.safeTop-Screen.safeBottom)
+//        cyto.layout()
+        
+        super.layout375x667()
 
-        let om = 0*s
-        let im = 2*s
-        let bw = (expView.width-2*om-9*im)/10
-        let bh = (expView.height-2*om)/1
-
-        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
-        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
-        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
-        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
-        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
-        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
-        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
+//        let om = 0*s
+//        let im = 2*s
+//        let bw = (expView.width-2*om-9*im)/10
+//        let bh = (expView.height-2*om)/1
+//
+//        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
+//        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
+//        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
+//        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
+//        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
+//        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
+//        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
+//        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
+//        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
+//        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
     }
     override func layout1024x768() {
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)

@@ -25,6 +25,10 @@
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
 		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */; };
+		D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9332D5B706600E7B029 /* AetherExperiment.swift */; };
+		D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9352D5B790800E7B029 /* DistanceExperiment.swift */; };
+		D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9392D5B792500E7B029 /* GravityExperiment.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DilationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DilationEngine.swift */; };
@@ -132,6 +136,10 @@
 		D823A2682D0ABE2700A72DDF /* North.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = North.h; sourceTree = "<group>"; };
 		D823A2692D0ABE3E00A72DDF /* North.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = North.c; sourceTree = "<group>"; };
 		D823A26B2D0BCB3B00A72DDF /* Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
+		D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExperiment.swift; sourceTree = "<group>"; };
+		D830B9332D5B706600E7B029 /* AetherExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AetherExperiment.swift; sourceTree = "<group>"; };
+		D830B9352D5B790800E7B029 /* DistanceExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceExperiment.swift; sourceTree = "<group>"; };
+		D830B9392D5B792500E7B029 /* GravityExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExperiment.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DilationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationEngine.swift; sourceTree = "<group>"; };
@@ -286,6 +294,39 @@
 				D823A2692D0ABE3E00A72DDF /* North.c */,
 			);
 			path = North;
+			sourceTree = "<group>";
+		};
+		D830B9312D5B6FF700E7B029 /* Electromagnetism */ = {
+			isa = PBXGroup;
+			children = (
+				D85762CA2D46F7F10025E070 /* Electromagnetism.swift */,
+				D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */,
+			);
+			path = Electromagnetism;
+			sourceTree = "<group>";
+		};
+		D830B9322D5B704A00E7B029 /* Aether */ = {
+			isa = PBXGroup;
+			children = (
+				D830B9332D5B706600E7B029 /* AetherExperiment.swift */,
+			);
+			path = Aether;
+			sourceTree = "<group>";
+		};
+		D830B9372D5B791400E7B029 /* Distance */ = {
+			isa = PBXGroup;
+			children = (
+				D830B9352D5B790800E7B029 /* DistanceExperiment.swift */,
+			);
+			path = Distance;
+			sourceTree = "<group>";
+		};
+		D830B9382D5B791900E7B029 /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				D830B9392D5B792500E7B029 /* GravityExperiment.swift */,
+			);
+			path = Gravity;
 			sourceTree = "<group>";
 		};
 		D85762C72D436E320025E070 /* Shared */ = {
@@ -452,8 +493,11 @@
 		D8AA5A4F2B7AEFC200282522 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D830B9322D5B704A00E7B029 /* Aether */,
+				D830B9372D5B791400E7B029 /* Distance */,
+				D830B9312D5B6FF700E7B029 /* Electromagnetism */,
+				D830B9382D5B791900E7B029 /* Gravity */,
 				D8AA5A502B7AEFD700282522 /* Article.swift */,
-				D85762CA2D46F7F10025E070 /* Electromagnetism.swift */,
 				D85762C82D46F3340025E070 /* Experiment.swift */,
 				D8DEF8AE2D35189500298D26 /* Settings.swift */,
 				D85762CC2D471B6E0025E070 /* Teslon.swift */,
@@ -798,8 +842,11 @@
 				D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */,
 				D850F44A293EEDD60091F15A /* VSlider.swift in Sources */,
 				D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */,
+				D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */,
 				D896C9942D4096130058585C /* StepButton.swift in Sources */,
+				D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
+				D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */,
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */,
@@ -824,6 +871,7 @@
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
+				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
 				D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
 				D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */,

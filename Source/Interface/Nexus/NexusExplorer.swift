@@ -315,11 +315,11 @@ class NexusExplorer: AEViewController {
             view.addSubview(claudeHover)
             
             let label: UILabel = UILabel()
-            label.text = "copy to discuss with Claude"
-            label.pen = Pen(font: .optima(size: Screen.iPhone ? 16*Screen.s : 12*Screen.s), color: .black.tint(0.9))
+            label.text = "copied to discuss with Claude"
+            label.pen = Pen(font: .optima(size: Screen.iPhone ? 16*Screen.s : 12*Screen.s), color: .black.tint(0.9), alignment: .center)
             claudeHover.addSubview(label)
-            claudeHover.bounds = CGRect(origin: .zero, size: CGSize(width: 225*s, height: 75*s))
-            label.center(width: 200*s, height: 17*s)
+            claudeHover.bounds = CGRect(origin: .zero, size: CGSize(width: 250*s, height: 75*s))
+            label.center(width: claudeHover.width * 0.9, height: 17*s)
             
             view.addSubview(glyphsCircle)
         } else {
@@ -340,7 +340,7 @@ class NexusExplorer: AEViewController {
         glyphsCircle.bottomRight(dx: 2*s, dy: -25*s, width: 54*s, height: 54*s)
         claudeButton.center(width: 30*s, height: 30*s)
         
-        claudeHover.center(width: 225*s, height: 75*s)
+        claudeHover.center(width: 250*s, height: 75*s)
     }
     override func layoutRatio133() {
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)

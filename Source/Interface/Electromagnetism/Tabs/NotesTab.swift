@@ -24,12 +24,14 @@ class NotesTab: TabsCellTab {
         articleView.scrollView = articleScroll
         articleView.key = "\(key)Lab"
         articleScroll.addSubview(articleView)
+        
+        articleScroll.showsVerticalScrollIndicator = false
         addSubview(articleScroll)
     }
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        articleScroll.frame = bounds
+        articleScroll.frame = CGRect(x: 5*s, y: 10*s, width: bounds.size.width-10*s, height: bounds.size.height-44*s)
         
         articleView.load()
         articleScroll.contentSize = articleView.scrollViewContentSize

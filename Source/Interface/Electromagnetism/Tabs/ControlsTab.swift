@@ -36,7 +36,7 @@ class ControlsTab: TabsCellTab {
     
     var experiment: Experiment? {
         didSet {
-            guard let experiment, let electromagnetism = experiment.electromagnetism else { return }
+            guard let experiment: ElectromagnetismExperiment = experiment as? ElectromagnetismExperiment, let electromagnetism = experiment.electromagnetism else { return }
             speedOfLightSlider.setTo(electromagnetism.speedOfLight)
             aetherVelocitySlider.setTo(electromagnetism.aetherVelocity)
             timeStepsPerVolleySlider.setTo(electromagnetism.timeStepsPerVolley)

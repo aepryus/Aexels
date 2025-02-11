@@ -1490,3 +1490,8 @@ While editing an expression, anchor with one finger and tap the expression with 
 "lexAsinh" = "hyperbolic arcsine";
 "lexAcosh" = "hyperbolic arccosine";
 "lexAtanh" = "hyperbolic arctangent";
+
+"aether_lab_name" = "Aether and Aexels";
+"distance_lab_name" = "Distance and Radius";
+"gravity_lab_name" = "Gravity";
+"electromagnetism_lab_name" = "Electricity and Magnetism";

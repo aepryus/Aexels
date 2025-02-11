@@ -38,7 +38,6 @@ class DilationExplorer: Explorer {
     
     lazy var messageCell: MaskCell = MaskCell(content: articleScroll, c: 1, r: 0, h: 3, cutouts: [.upperRight])
     lazy var fixedCell: LimboCell = LimboCell(content: fixedView, c: 1, r: 1, h: 2)
-    let cyto: Cyto = Cyto(rows: 3, cols: 2)
 
 	init() {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -60,6 +59,8 @@ class DilationExplorer: Explorer {
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cyto = Cyto(rows: 3, cols: 2)
 
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white

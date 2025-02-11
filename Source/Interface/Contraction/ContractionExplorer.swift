@@ -38,7 +38,6 @@ class ContractionExplorer: Explorer {
     
     let articleScroll: UIScrollView = UIScrollView()
     let articleView: ArticleView = ArticleView()
-    let cyto: Cyto = Cyto(rows: 2, cols: 2)
 
     init() {
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
@@ -59,7 +58,9 @@ class ContractionExplorer: Explorer {
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        cyto = Cyto(rows: 2, cols: 2)
         
         articleView.font = UIFont(name: "Verdana", size: 18*s)!
         articleView.color = .white

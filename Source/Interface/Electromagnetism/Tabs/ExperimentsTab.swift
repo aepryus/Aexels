@@ -98,11 +98,11 @@ class ExperimentsCell: UITableViewCell {
 }
 
 class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
-    unowned let explorer: ElectromagnetismExplorer!
+    unowned let explorer: Explorer!
     
     let tableView: UITableView = AETableView()
     
-    init(explorer: ElectromagnetismExplorer) {
+    init(explorer: Explorer) {
         self.explorer = explorer
         super.init(name: "Experiments".localized)
         

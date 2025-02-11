@@ -81,7 +81,6 @@ class ExplorerViewController: AEViewController {
                     nexusExplorer.articleView.alpha = 0
                     nexusExplorer.currentCapsule.alpha = 0
                     nexusExplorer.contextGlyphsView.alpha = 0
-//                    nexusExplorer.interchange.alpha = 0
                     nexusExplorer.snapGlyphs()
                     if !Screen.iPhone { self.graphView.start() }
                     if !Screen.iPhone { DispatchQueue.main.async { self.startMusic() } }
@@ -98,7 +97,7 @@ class ExplorerViewController: AEViewController {
                 } else {
                     self.view.addSubview(explorer.view)
                 }
-//                self.view.bringSubviewToFront(self.tripWire)
+                self.view.bringSubviewToFront(self.tripWire)
                 self.view.bringSubviewToFront(self.visionBar)
 
                 UIView.animate(withDuration: 0.5) { explorer.view.alpha = 1 }
@@ -125,7 +124,7 @@ class ExplorerViewController: AEViewController {
         return visionBar
     }()
     
-//    lazy var tripWire: TripWire = TripWire() { self.visionBar.contract() }
+    lazy var tripWire: TripWire = TripWire() { self.visionBar.contract() }
     
     func initMusic() {
         guard let url: URL = Bundle.main.url(forResource: "Aexels3", withExtension: "mp3") else { return }
@@ -175,12 +174,12 @@ class ExplorerViewController: AEViewController {
         view.removeGestureRecognizer(iPhoneTabGesture)
         stopMusic()
         UIView.animate(withDuration: 1.0) {
-            self.graphView.alpha = 0
+//            self.graphView.alpha = 0
             self.aexelsLabel.alpha = 0
             self.versionLabel.alpha = 0
         } completion: { (complete: Bool) in
             self.graphView.stop()
-            self.graphView.removeFromSuperview()
+//            self.graphView.removeFromSuperview()
             self.aexelsLabel.removeFromSuperview()
             self.versionLabel.removeFromSuperview()
             self.explorer = Aexels.nexusExplorer
@@ -190,6 +189,7 @@ class ExplorerViewController: AEViewController {
 // AEViewController ================================================================================
     override func layoutRatio056() {
         imageView.frame = view.bounds
+        tripWire.frame = view.bounds
         let a: CGFloat = 0.7
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
@@ -197,7 +197,7 @@ class ExplorerViewController: AEViewController {
     }
     override func layoutRatio133() {
         imageView.frame = view.bounds
-//        tripWire.frame = view.bounds
+        tripWire.frame = view.bounds
         let a: CGFloat = 0.7
         graphView.bottomRight(dx: -30*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
@@ -213,7 +213,7 @@ class ExplorerViewController: AEViewController {
         view.addSubview(graphView)
         view.addSubview(aexelsLabel)
         view.addSubview(versionLabel)
-//        view.addSubview(tripWire)
+        view.addSubview(tripWire)
         
         if !Screen.iPhone {
             view.addSubview(visionBar)

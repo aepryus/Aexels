@@ -39,8 +39,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     lazy var ooviumView: OoviumView = OoviumView(aetherView: aetherView)
     lazy var ooviumCell: MaskCell = MaskCell(content: ooviumView, c: 2, r: 2, h: 3)
     
-    let cyto: Cyto = Cyto(rows: 5, cols: 3)
-    
     let largeView: CellularView = CellularView()
     let mediumView: CellularView = CellularView()
     let smallView: CellularView = CellularView()
@@ -55,6 +53,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cyto = Cyto(rows: 5, cols: 3)
 
         _ = Facade.create(space: Space.local) as! SpaceFacade
         let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
