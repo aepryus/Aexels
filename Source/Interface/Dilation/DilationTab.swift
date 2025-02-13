@@ -26,7 +26,7 @@ class DilationTab: TabsCellTab {
     
     let autoSwap: BoolButton = BoolButton(name: "auto")
     let tailsSwap: BoolButton = BoolButton(name: "tails")
-    let cameraSwap: BoolButton = BoolButton(name: "fixed")
+    let cameraSwap: BoolButton = BoolButton(name: "aether frame")
     let contractSwap: BoolButton = BoolButton(name: "contract")
     
     let lightSpeedLabel: UILabel = UILabel()
@@ -122,13 +122,13 @@ class DilationTab: TabsCellTab {
         vSlider.top(dy: y, width: 300*s, height: 40*s)
         y += 100*s
 
-        autoSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
+        autoSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
         y += 30*s
-        tailsSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
+        tailsSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
         y += 30*s
-        cameraSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
+        cameraSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
         y += 30*s
-        contractSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
+        contractSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.5)

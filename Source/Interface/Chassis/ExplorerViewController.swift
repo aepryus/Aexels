@@ -39,6 +39,7 @@ class ExplorerViewController: AEViewController {
                         nexusExplorer.glyphsView.alpha = 0
                         nexusExplorer.scrollView.contentOffset = nexusExplorer.glyphsOffset
                         UIView.animate(withDuration: 0.5) {
+                            self.visionBar.alpha = 1
                             nexusExplorer.glyphsView.alpha = 1
                         }
                     }
@@ -46,10 +47,8 @@ class ExplorerViewController: AEViewController {
                     UIView.animate(withDuration: 0.5) {
                         nexusExplorer.view.alpha = 0
                     } completion: { (complete: Bool) in
-                        if !Screen.iPhone {
-                            self.visionBar.alwaysExpanded = true
-                            self.visionBar.expand()
-                        }
+                        self.visionBar.alwaysExpanded = true
+                        self.visionBar.expand()
                         nexusExplorer.articleView.removeFromSuperview()
                         nexusExplorer.currentCapsule.removeFromSuperview()
                         nexusExplorer.articleView.alpha = 0
@@ -69,12 +68,20 @@ class ExplorerViewController: AEViewController {
                 stopMusic()
             }
             UIView.animate(withDuration: 0.5) {
+                if Screen.iPhone && oldValue is NexusExplorer { self.visionBar.alpha = 0 }
                 oldValue?.view.alpha = 0
             } completion: { (complete: Bool) in
                 if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
                     if !Screen.iPhone {
                         self.visionBar.alwaysExpanded = true
                         self.visionBar.expand()
+                    } else {
+                        if oldValue == nil {
+                            self.visionBar.alpha = 0
+                            self.view.addSubview(self.visionBar)
+                            self.visionBar.topRight(dx: -5*self.s, dy: Screen.safeTop+5*self.s)
+                        }
+                        self.visionBar.snap(to: Aexels.nexusExplorer.vision)
                     }
                     nexusExplorer.articleView.removeFromSuperview()
                     nexusExplorer.currentCapsule.removeFromSuperview()
@@ -100,7 +107,10 @@ class ExplorerViewController: AEViewController {
                 self.view.bringSubviewToFront(self.tripWire)
                 self.view.bringSubviewToFront(self.visionBar)
 
-                UIView.animate(withDuration: 0.5) { explorer.view.alpha = 1 }
+                UIView.animate(withDuration: 0.5) {
+                    if Screen.iPhone && explorer is NexusExplorer { self.visionBar.alpha = 1 }
+                    explorer.view.alpha = 1
+                }
             }
         }
     }
@@ -108,7 +118,7 @@ class ExplorerViewController: AEViewController {
     lazy var visionBar: VisionBar = {
         let visions: [[Vision?]] = [
             [
-                ExplorerVision(explorer: Aexels.nexusExplorer),
+                Aexels.nexusExplorer.vision,
                 Aexels.aetherExplorer.vision,
                 Aexels.cellularExplorer.vision,
                 Aexels.kinematicsExplorer.vision,
@@ -174,12 +184,10 @@ class ExplorerViewController: AEViewController {
         view.removeGestureRecognizer(iPhoneTabGesture)
         stopMusic()
         UIView.animate(withDuration: 1.0) {
-//            self.graphView.alpha = 0
             self.aexelsLabel.alpha = 0
             self.versionLabel.alpha = 0
         } completion: { (complete: Bool) in
             self.graphView.stop()
-//            self.graphView.removeFromSuperview()
             self.aexelsLabel.removeFromSuperview()
             self.versionLabel.removeFromSuperview()
             self.explorer = Aexels.nexusExplorer
@@ -216,11 +224,12 @@ class ExplorerViewController: AEViewController {
         view.addSubview(versionLabel)
         view.addSubview(tripWire)
         
-//        if !Screen.iPhone {
+
+        if !Screen.iPhone {
             view.addSubview(visionBar)
             visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
             explorer = Aexels.nexusExplorer
-//        }
+        }
 
         graphView.start()
         

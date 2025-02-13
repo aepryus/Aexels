@@ -12,10 +12,6 @@ import OoviumKit
 import UIKit
 
 class DilationExplorer: Explorer, DilationTabDelegate {
-//    let engine: DilationEngine
-//    lazy var dilationView: DilationView = DilationView(engine: engine)
-//    lazy var fixedView: DilationView = DilationView(engine: engine, chaseCameraOn: true)
-    
     // Metal ======
     var renderer: DilationRenderer!
     var dilationMetal: MTKView!
@@ -25,32 +21,13 @@ class DilationExplorer: Explorer, DilationTabDelegate {
     private let aetherCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 2, h: 2) : LimboCell(c: 0, r: 1)
     
     var cameraOn: Bool = false
-//    var isFirst: Bool = false
-    
-//    let articleScroll: UIScrollView = UIScrollView()
-//    let articleView: ArticleView = ArticleView()
-    
-    let pingButton: PulseButton = PulseButton(name: "pulse")
-    
+
+    let pingButton: PulseButton = PulseButton(name: Screen.iPhone ? nil : "ping")
+
     var dilationTab: DilationTab!
     let notesTab: NotesTab = NotesTab(key: "dilation")
 
-	init() {
-//        let s: CGFloat = Screen.s
-//        let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-//        let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-//        let universeWidth: CGFloat = Screen.height - safeTop - safeBottom
-
-//        engine = DilationEngine(size: CGSize(width: universeWidth*2, height: universeWidth))
-        
-        super.init(key: "dilation")
-        
-//        engine.onVelocityChange = { (v: TCVelocity) in
-//            let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .right)
-//            let sb = italicPen.format("γ = \(String(format: "%3.2f", TCGamma(self.engine.velocity)))")
-//            self.dilationTab.lambdaLabel.attributedText = sb
-//        }
-    }
+	init() { super.init(key: "dilation") }
     
     func swapAetherFrame(_ onComplete: @escaping ()->() = {}) {
         cameraOn = !cameraOn
@@ -78,7 +55,6 @@ class DilationExplorer: Explorer, DilationTabDelegate {
                     self.systemCell.h = 2
                     self.cyto.cells.append(self.aetherCell)
                     self.cyto.layout()
-//                    self.engine.reset()
                     onComplete()
                     UIView.animate(withDuration: duration) {
                         self.systemCell.alpha = 1
@@ -94,7 +70,6 @@ class DilationExplorer: Explorer, DilationTabDelegate {
                     self.aetherCell.removeFromSuperview()
                     self.cyto.cells.remove(object: self.aetherCell)
                     self.cyto.layout()
-//                    self.engine.reset()
                     onComplete()
                     UIView.animate(withDuration: duration) {
                         self.systemCell.alpha = 1
@@ -133,15 +108,12 @@ class DilationExplorer: Explorer, DilationTabDelegate {
         tabsCell.tabs = [dilationTab, notesTab]
         
         quickView.addSubview(pingButton)
-        pingButton.addAction {
-            self.renderer.onPing()
-//            self.engine.pulse()
-        }
+        pingButton.addAction { self.renderer.onPing() }
         
         if Screen.iPhone {
             cyto.cells = [
                 systemCell,
-                MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
+                MaskCell(content: quickView, c: 0, r: 2, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
                 tabsCell,
@@ -158,9 +130,16 @@ class DilationExplorer: Explorer, DilationTabDelegate {
     }
 
 // AEViewController ================================================================================
-//    override func layoutRatio056() {
-//        super.layoutRatio056()
-//    }
+    override func layoutRatio056() {
+        super.layoutRatio056()
+        
+        let uh: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom - 80*s
+        cyto.Ys = [uh/2, uh/2]
+        cyto.layout()
+        
+        timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
+        pingButton.right(dx: -84*s, width: 60*s, height: 60*s)
+    }
     override func layout1024x768() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)

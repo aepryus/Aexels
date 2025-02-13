@@ -144,6 +144,16 @@ class VisionBar: AEView {
             contract()
         } else { expand() }
     }
+    func snap(to vision: Vision) {
+        selected.alpha = 0
+        selected.frame = CGRect(origin: selectedOrigin(), size: selected.bounds.size)
+        selected.removeFromSuperview()
+        
+        selected = vision
+        selected.topLeft(dx: (self.noOfColumns-1)*40*self.s, width: 40*self.s, height: 40*self.s)
+        selected.alpha = 1
+        addSubview(selected)
+    }
     
 // Events ==========================================================================================
     func onExpand() {}

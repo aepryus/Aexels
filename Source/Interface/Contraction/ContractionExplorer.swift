@@ -23,8 +23,8 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
     
     var cameraOn: Bool = false
 
-    let pingButton: PulseButton = PulseButton(name: "pulse")
-    
+    let pingButton: PulseButton = PulseButton(name: Screen.iPhone ? nil : "ping")
+
     var dilationTab: DilationTab!
     let notesTab: NotesTab = NotesTab(key: "contraction")
 
@@ -79,11 +79,10 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
             }
         }
     }
-    
+
 // UIViewController ================================================================================
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
         cyto = Screen.iPhone ? Cyto(rows: 3, cols: 1) : Cyto(rows: 4, cols: 2)
         view.addSubview(cyto)
 
@@ -119,7 +118,7 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
         if Screen.iPhone {
             cyto.cells = [
                 systemCell,
-                MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
+                MaskCell(content: quickView, c: 0, r: 2, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
                 tabsCell,
@@ -136,6 +135,16 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
     }
 
 // AEViewController ================================================================================
+    override func layoutRatio056() {
+        super.layoutRatio056()
+        
+        let uh: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom - 80*s
+        cyto.Ys = [uh/2, uh/2]
+        cyto.layout()
+        
+        timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
+        pingButton.right(dx: -84*s, width: 60*s, height: 60*s)
+    }
     override func layout1024x768() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)

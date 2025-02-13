@@ -30,6 +30,8 @@ class NexusExplorer: AEViewController {
     var glyphs: [GlyphView] = []
     var glyphsOffset: CGPoint = .zero
     
+    lazy var vision: Vision = ExplorerVision(explorer: Aexels.nexusExplorer)
+    
     override init() {
         claudeCircle = CircleButton(view: claudeButton)
         

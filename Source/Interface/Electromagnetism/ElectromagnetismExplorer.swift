@@ -13,12 +13,10 @@ import UIKit
 class ElectromagnetismExplorer: Explorer {
     private let systemCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 0, h: 4) : LimboCell(c: 0, r: 0, h: 2)
     private let aetherCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 2, h: 2) : LimboCell(c: 0, r: 1)
-//    private let titleCell: MaskCell = !Screen.iPhone ? MaskCell(content: UIView(), c: 1, r: 0, cutouts: [.upperRight]) : MaskCell(content: UIView(), c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
     
     private var systemView: MTKView!
     private var aetherView: MTKView!
     let experimentView: UIView = UIView()
-//    let controlsView: UIView = UIView()
     
     // Metal ======
     var renderer: ElectromagnetismRenderer!
@@ -117,43 +115,6 @@ class ElectromagnetismExplorer: Explorer {
         aetherView.draw()
     }
     
-//    func toConfiguration() {
-//        UIView.animate(withDuration: 0.2) {
-//            self.cyto.alpha = 0
-//        } completion: { (complete: Bool) in
-//            self.cyto.isHidden = true
-//            self.configCyto.isHidden = false
-//            UIView.animate(withDuration: 0.2) {
-//                self.configCyto.alpha = 1
-//            }
-//        }
-//    }
-//    func toSimulation() {
-//        UIView.animate(withDuration: 0.2) {
-//            self.configCyto.alpha = 0
-//        } completion: { (complete: Bool) in
-//            self.configCyto.isHidden = true
-//            self.cyto.isHidden = false
-//            UIView.animate(withDuration: 0.2) {
-//                self.cyto.alpha = 1
-//            }
-//        }
-//    }
-//    
-//    func swapLimbos() {
-//        if mode == .simulation {
-//            mode = .configuration
-//            toConfiguration()
-//        } else {
-//            mode = .simulation
-//            toSimulation()
-//        }
-//    }
-//    func tapSwapButton() {
-//        swapButton.rotateView()
-//        swapLimbos()
-//    }
-    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         cyto = !Screen.iPhone ? Cyto(rows: 4, cols: 2) : Cyto(rows: 3, cols: 1)
@@ -229,7 +190,8 @@ class ElectromagnetismExplorer: Explorer {
         cyto.Ys = [uh/2, uh/2]
         cyto.layout()
         
-        timeControl.center(width: 114*s, height: 54*s)
+        timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
+        pingButton.right(dx: -84*s, width: 60*s, height: 60*s)
 
         experiment = experiments[0]
     }

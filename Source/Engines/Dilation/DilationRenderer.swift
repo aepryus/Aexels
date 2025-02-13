@@ -61,7 +61,8 @@ class DilationRenderer: NSObject, MTKViewDelegate {
     var velocity: Double = 0.2 {
         didSet {
             TCUniverseSetSpeed(universe, velocity)
-            horizontal?.pointee.p = TCV2(x: source!.pointee.p.x + size.width/5/(contractOn ? TCGamma(velocity) : 1), y: source!.pointee.p.y)
+            let d: CGFloat = Screen.iPhone ? size.width/3 : size.width/5
+            horizontal?.pointee.p = TCV2(x: source!.pointee.p.x + d/(contractOn ? TCGamma(velocity) : 1), y: source!.pointee.p.y)
         }
     }
     var size: CGSize = .zero
@@ -162,8 +163,9 @@ class DilationRenderer: NSObject, MTKViewDelegate {
     func loadExperiment() {
         universe = TCUniverseCreate(size.width, size.height, 1)
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
-        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.width/5, velocity, .pi/2)
-        if horizontalOn { horizontal = TCUniverseCreateTeslon(universe, size.width/2 + size.width/5/TCGamma(velocity), size.height/2, velocity, .pi/2) }
+        let d: CGFloat = Screen.iPhone ? size.width/3 : size.width/5
+        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - d, velocity, .pi/2)
+        if horizontalOn { horizontal = TCUniverseCreateTeslon(universe, size.width/2 + d/TCGamma(velocity), size.height/2, velocity, .pi/2) }
         systemCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
         aetherCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
     }
