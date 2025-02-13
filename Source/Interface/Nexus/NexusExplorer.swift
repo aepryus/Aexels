@@ -40,7 +40,7 @@ class NexusExplorer: AEViewController {
             Aexels.explorerViewController.explorer = Aexels.nexusExplorer
         }
         
-        articleCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight])
+        articleCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight, .upperRight])
 
         super.init()
     }

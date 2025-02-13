@@ -194,6 +194,7 @@ class ExplorerViewController: AEViewController {
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
+        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
     override func layoutRatio133() {
         imageView.frame = view.bounds
@@ -215,11 +216,11 @@ class ExplorerViewController: AEViewController {
         view.addSubview(versionLabel)
         view.addSubview(tripWire)
         
-        if !Screen.iPhone {
+//        if !Screen.iPhone {
             view.addSubview(visionBar)
             visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
             explorer = Aexels.nexusExplorer
-        }
+//        }
 
         graphView.start()
         

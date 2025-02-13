@@ -9,8 +9,17 @@
 import Acheron
 import UIKit
 
+protocol DilationTabDelegate: AnyObject {
+    var contractionOn: Bool { get }
+    var renderer: DilationRenderer! { get }
+    func swapAetherFrame(_ onComplete: @escaping ()->())
+}
+extension DilationTabDelegate {
+    var contractionOn: Bool { false }
+}
+
 class DilationTab: TabsCellTab {
-    unowned let explorer: DilationExplorer!
+    unowned let delegate: DilationTabDelegate
 
     let cSlider: CSlider = CSlider()
     let vSlider: VSlider = VSlider()
@@ -18,47 +27,57 @@ class DilationTab: TabsCellTab {
     let autoSwap: BoolButton = BoolButton(name: "auto")
     let tailsSwap: BoolButton = BoolButton(name: "tails")
     let cameraSwap: BoolButton = BoolButton(name: "fixed")
+    let contractSwap: BoolButton = BoolButton(name: "contract")
     
     let lightSpeedLabel: UILabel = UILabel()
     let cLabel: UILabel = UILabel()
     let velocityLabel: UILabel = UILabel()
     let lambdaLabel: UILabel = UILabel()
     
-    init(explorer: DilationExplorer) {
-        self.explorer = explorer
+    init(delegate: DilationTabDelegate) {
+        self.delegate = delegate
         
         super.init(name: "Controls".localized)
         
         addSubview(cSlider)
         cSlider.onChange = { (speedOfLight: Double) in
-            self.explorer.renderer.speedOfLight = Int(speedOfLight)
+            self.delegate.renderer.speedOfLight = Int(speedOfLight)
         }
 
         addSubview(vSlider)
         vSlider.onChange = { (velocity: Double) in
-            self.explorer.renderer.velocity = velocity
+            self.delegate.renderer.velocity = velocity
             
             let s: CGFloat = self.s
             let italicPen: Pen = Pen(font: UIFont(name: "Verdana-Italic", size: 10*s)!, color: .white, alignment: .right)
-            self.lambdaLabel.attributedText = italicPen.format("γ = \(String(format: "%3.2f", TCGamma(explorer.renderer.velocity)))")
+            self.lambdaLabel.attributedText = italicPen.format("γ = \(String(format: "%3.2f", TCGamma(delegate.renderer.velocity)))")
         }
 
         tailsSwap.on = true
         addSubview(tailsSwap)
         tailsSwap.onChange = { (tailsOn: Bool) in
-            self.explorer.renderer.tailsOn = tailsOn
+            self.delegate.renderer.tailsOn = tailsOn
         }
 
         autoSwap.on = true
         addSubview(autoSwap)
         autoSwap.onChange = { (autoOn: Bool) in
-            self.explorer.renderer.autoOn = autoOn
+            self.delegate.renderer.autoOn = autoOn
         }
 
         cameraSwap.on = false
         addSubview(cameraSwap)
         cameraSwap.onChange = { (cameraOn: Bool) in
-            self.explorer.swapAetherFrame()
+            self.delegate.swapAetherFrame({})
+        }
+        
+        if delegate.contractionOn {
+            contractSwap.on = true
+            addSubview(contractSwap)
+            contractSwap.onChange = { (contractOn: Bool) in
+                self.delegate.renderer.contractOn = contractOn
+                self.delegate.renderer.velocity = self.delegate.renderer.velocity
+            }
         }
         
         // Labels
@@ -77,7 +96,7 @@ class DilationTab: TabsCellTab {
         velocityLabel.attributedText = sb
         addSubview(velocityLabel)
         
-        sb = italicPen.format("γ = \(String(format: "%3.2f", TCGamma(explorer.renderer.velocity)))")
+        sb = italicPen.format("γ = \(String(format: "%3.2f", TCGamma(delegate.renderer.velocity)))")
         lambdaLabel.attributedText = sb
         addSubview(lambdaLabel)
     }
@@ -108,6 +127,8 @@ class DilationTab: TabsCellTab {
         tailsSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
         y += 30*s
         cameraSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
+        y += 30*s
+        contractSwap.topLeft(dx: 30*s, dy: y, width: 100*s, height: 24*s)
 
         cSlider.setTo(60)
         vSlider.setTo(0.5)

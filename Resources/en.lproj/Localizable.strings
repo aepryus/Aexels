@@ -1495,4 +1495,5 @@ While editing an expression, anchor with one finger and tap the expression with 
 "distance_lab_name" = "Distance and Radius";
 "gravity_lab_name" = "Gravity";
 "dilation_lab_name" = "Dilation";
+"contraction_lab_name" = "Contraction";
 "electromagnetism_lab_name" = "Electricity and Magnetism";

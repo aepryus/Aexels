@@ -11,7 +11,7 @@ import MetalKit
 import OoviumKit
 import UIKit
 
-class DilationExplorer: Explorer {
+class DilationExplorer: Explorer, DilationTabDelegate {
 //    let engine: DilationEngine
 //    lazy var dilationView: DilationView = DilationView(engine: engine)
 //    lazy var fixedView: DilationView = DilationView(engine: engine, chaseCameraOn: true)
@@ -25,8 +25,7 @@ class DilationExplorer: Explorer {
     private let aetherCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 2, h: 2) : LimboCell(c: 0, r: 1)
     
     var cameraOn: Bool = false
-
-    var isFirst: Bool = false
+//    var isFirst: Bool = false
     
 //    let articleScroll: UIScrollView = UIScrollView()
 //    let articleView: ArticleView = ArticleView()
@@ -129,7 +128,7 @@ class DilationExplorer: Explorer {
         systemCell.content = dilationMetal
         aetherCell.content = fixedMetal
 
-        dilationTab = DilationTab(explorer: self)
+        dilationTab = DilationTab(delegate: self)
         
         tabsCell.tabs = [dilationTab, notesTab]
         
@@ -156,14 +155,6 @@ class DilationExplorer: Explorer {
                 LimboCell(content: quickView, c: 1, r: 3)
             ]
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        engine.play()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        engine.stop()
     }
 
 // AEViewController ================================================================================
@@ -197,7 +188,6 @@ class DilationExplorer: Explorer {
     }
     override func onReset() {
         renderer.onReset()
-//        controlsTab.applyControls()
         dilationMetal.draw()
         fixedMetal.draw()
         timeControl.playButton.stop()

@@ -36,6 +36,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
     var universe: UnsafeMutablePointer<TCUniverse>?
     var source: UnsafeMutablePointer<TCTeslon>?
     var vertical: UnsafeMutablePointer<TCTeslon>?
+    var horizontal: UnsafeMutablePointer<TCTeslon>?
     var systemCamera: UnsafeMutablePointer<TCCamera>?
     var aetherCamera: UnsafeMutablePointer<TCCamera>?
     
@@ -58,7 +59,10 @@ class DilationRenderer: NSObject, MTKViewDelegate {
         didSet { TCUniverseSetC(universe, Double(speedOfLight)) }
     }
     var velocity: Double = 0.2 {
-        didSet { TCUniverseSetSpeed(universe, velocity) }
+        didSet {
+            TCUniverseSetSpeed(universe, velocity)
+            horizontal?.pointee.p = TCV2(x: source!.pointee.p.x + size.width/5/(contractOn ? TCGamma(velocity) : 1), y: source!.pointee.p.y)
+        }
     }
     var size: CGSize = .zero
 //    {
@@ -74,6 +78,8 @@ class DilationRenderer: NSObject, MTKViewDelegate {
             pongVectorsOn = tailsOn
         }
     }
+    var horizontalOn: Bool = false
+    var contractOn: Bool = true
 
     var timeStepsPerVolley: Int = 120
     var pingsPerVolley: Int32 = 99
@@ -157,6 +163,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
         universe = TCUniverseCreate(size.width, size.height, 1)
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
         vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.width/5, velocity, .pi/2)
+        if horizontalOn { horizontal = TCUniverseCreateTeslon(universe, size.width/2 + size.width/5/TCGamma(velocity), size.height/2, velocity, .pi/2) }
         systemCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
         aetherCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
     }
@@ -226,7 +233,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
             pings.append(object)
         }
         for i: Int in 0..<Int(universe.pointee.photonCount) {
-            let pong: UnsafeMutablePointer<TCPhoton> = universe.pointee.photons[i]!
+            let pong: UnsafeMutablePointer<TCPong> = universe.pointee.photons[i]!
             let object: ThracianLoop = ThracianLoop(
                 type: 2,
                 position: SIMD2<Float>(Float(pong.pointee.p.x), Float(pong.pointee.p.y)),

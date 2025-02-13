@@ -57,12 +57,12 @@ void TCPingRelease(TCPing* ping) {
 }
 
 // Photon ==========================================================================================
-TCPhoton* TCPhotonCreate(void) {
-    TCPhoton* photon = (TCPhoton*)malloc(sizeof(TCPhoton));
+TCPong* TCPongCreate(void) {
+    TCPong* photon = (TCPong*)malloc(sizeof(TCPong));
     photon->recycle = 0;
     return photon;
 }
-void TCPhotonRelease(TCPhoton* photon) {
+void TCPongRelease(TCPong* photon) {
     free(photon);
 }
 
@@ -102,7 +102,7 @@ TCUniverse* TCUniverseCreate(double width, double height, double c) {
     universe->pingCount = 0;
     universe->pings = (TCPing**)malloc(sizeof(TCPing*)*0);
     universe->photonCount = 0;
-    universe->photons = (TCPhoton**)malloc(sizeof(TCPhoton*)*0);
+    universe->photons = (TCPong**)malloc(sizeof(TCPong*)*0);
     universe->teslonCount = 0;
     universe->teslons = (TCTeslon**)malloc(sizeof(TCTeslon*)*0);
     universe->cameraCount = 0;
@@ -233,7 +233,7 @@ void TCUniverseTic(TCUniverse* universe) {
     int pC = universe->photonCount;
     for (int i=0; i<pC; i++) {
         if (universe->photons[i]->recycle) {
-            TCPhotonRelease(universe->photons[i]);
+            TCPongRelease(universe->photons[i]);
             universe->photonCount--;
             continue;
         }
@@ -244,13 +244,13 @@ void TCUniverseTic(TCUniverse* universe) {
 //    printf("pings [%d]\tphotons [%d]\n", universe->pingCount, universe->photonCount);
 }
 
-void TCUniverseAddPhoton(TCUniverse* universe, TCPhoton* photon) {
+void TCUniverseAddPhoton(TCUniverse* universe, TCPong* photon) {
     universe->photonCount++;
-    universe->photons = (TCPhoton**)realloc(universe->photons, sizeof(TCPhoton*)*universe->photonCount);
+    universe->photons = (TCPong**)realloc(universe->photons, sizeof(TCPong*)*universe->photonCount);
     universe->photons[universe->photonCount-1] = photon;
 }
-TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH) {
-    TCPhoton* photon = TCPhotonCreate();
+TCPong* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH) {
+    TCPong* photon = TCPongCreate();
     photon->p = p;
     photon->o = p;
     photon->v = v;

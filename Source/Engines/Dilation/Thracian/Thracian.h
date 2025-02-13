@@ -40,7 +40,7 @@ typedef struct TCPing {
 TCPing* TCPingCreate(void);
 void TCPingRelease(TCPing* ping);
 
-typedef struct TCPhoton {
+typedef struct TCPong {
     TCV2 o;
     TCV2 p;
     TCVelocity v;
@@ -48,10 +48,10 @@ typedef struct TCPhoton {
     double e;
     char vOrh;
     unsigned char recycle;
-} TCPhoton;
+} TCPong;
 
-TCPhoton* TCPhotonCreate(void);
-void TCPhotonRelease(TCPhoton* photon);
+TCPong* TCPongCreate(void);
+void TCPongRelease(TCPong* photon);
 
 typedef struct TCTeslon {
     TCV2 o;
@@ -80,7 +80,7 @@ typedef struct TCUniverse {
     int pingCount;
     TCPing** pings;
     int photonCount;
-    TCPhoton** photons;
+    TCPong** photons;
     int teslonCount;
     TCTeslon** teslons;
     int cameraCount;
@@ -90,11 +90,10 @@ typedef struct TCUniverse {
 TCUniverse* TCUniverseCreate(double width, double height, double c);
 void TCUniverseRelease(TCUniverse* universe);
 void TCUniverseTic(TCUniverse* universe);
-TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH);
+TCPong* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, double q, char vOrH);
 TCTeslon* TCUniverseCreateTeslon(TCUniverse* universe, double x, double y, double s, double q);
 TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, double s, double q);
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n);
 void TCUniverseSetC(TCUniverse* universe, double c);
 void TCUniverseSetSpeed(TCUniverse* universe, double speed);
 void TCUniverseCameraChasing(TCUniverse* universe, TCCamera* camera, TCCamera* chasing);
-
