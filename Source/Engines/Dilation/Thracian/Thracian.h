@@ -96,4 +96,5 @@ TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, doubl
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n);
 void TCUniverseSetC(TCUniverse* universe, double c);
 void TCUniverseSetSpeed(TCUniverse* universe, double speed);
+void TCUniverseCameraChasing(TCUniverse* universe, TCCamera* camera, TCCamera* chasing);
 

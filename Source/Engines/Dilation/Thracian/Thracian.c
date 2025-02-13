@@ -96,7 +96,7 @@ TCUniverse* TCUniverseCreate(double width, double height, double c) {
     universe->height = height;
     universe->c = c;
     
-    double a = (width > height ? width : height)/2*1.5;
+    double a = (width > height ? width : height);
     universe->boundrySquared = a*a;
     
     universe->pingCount = 0;
@@ -212,10 +212,10 @@ void TCUniverseTic(TCUniverse* universe) {
         }
     }
     
-    for (int i=0;i<universe->cameraCount;i++) {
-        universe->cameras[i]->p.x += universe->c*universe->cameras[i]->v.s*sin(universe->cameras[i]->v.q);
-        universe->cameras[i]->p.y += universe->c*universe->cameras[i]->v.s*(-cos(universe->cameras[i]->v.q));
-    }
+//    for (int i=0;i<universe->cameraCount;i++) {
+    universe->cameras[0]->p.x += universe->c*universe->cameras[0]->v.s*sin(universe->cameras[0]->v.q);
+    universe->cameras[0]->p.y += universe->c*universe->cameras[0]->v.s*(-cos(universe->cameras[0]->v.q));
+//    }
     
     int k = 0;
     int mC = universe->pingCount;
@@ -375,4 +375,12 @@ void TCUniverseSetSpeed(TCUniverse* universe, double speed) {
     TCCamera* camera = universe->cameras[0];
     camera->v.s = fabs(speed);
     camera->v.q = speed > 0 ? M_PI/2 : 3 * M_PI/2;
+}
+
+void TCUniverseCameraChasing(TCUniverse* universe, TCCamera* camera, TCCamera* chasing) {
+    if (chasing->p.x - camera->p.x > universe->width/2) {
+        camera->p.x += universe->width;
+    } else if (camera->p.x - chasing->p.x > universe->width/2) {
+        camera->p.x -= universe->width;
+    }
 }

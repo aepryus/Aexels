@@ -156,7 +156,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
     func loadExperiment() {
         universe = TCUniverseCreate(size.width, size.height, 1)
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
-        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.height/5, velocity, .pi/2)
+        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.width/5, velocity, .pi/2)
         systemCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
         aetherCamera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
     }
@@ -184,7 +184,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
             t += 1
             if autoOn && t % timeStepsPerVolley == 0 { TCUniversePulse(universe, source, pingsPerVolley) }
             TCUniverseTic(universe)
-//            TCUniverseCameraChasing(universe, aetherCamera, systemCamera);
+            TCUniverseCameraChasing(universe, aetherCamera, systemCamera);
             camera = systemCamera
             cameraBuffer = systemCameraBuffer
         } else /*if view === aetherView*/ {
