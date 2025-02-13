@@ -36,7 +36,7 @@ class DilationEngine {
         
         universe = TCUniverseCreate(size.width, size.height, 1)
         source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
-        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
+        vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.height/5, velocity, .pi/2)
         camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
         if horizontalOn { initializeHorizontal() }
     }
@@ -59,11 +59,11 @@ class DilationEngine {
     }
     
     func initializeHorizontal() {
-        horizontal = TCUniverseCreateTeslon(universe, size.width/2 + size.height/4, size.height/2, velocity, .pi/2)
+        horizontal = TCUniverseCreateTeslon(universe, size.width/2 + size.height/5, size.height/2, velocity, .pi/2)
         positionHorizontal()
     }
     func positionHorizontal() {
-        horizontal?.pointee.p = TCV2(x: source.pointee.p.x + size.height/4/(contractOn ? TCGamma(velocity) : 1), y: source.pointee.p.y)
+        horizontal?.pointee.p = TCV2(x: source.pointee.p.x + size.height/5/(contractOn ? TCGamma(velocity) : 1), y: source.pointee.p.y)
     }
     func swapContract() {
         contractOn = !contractOn
@@ -80,7 +80,7 @@ class DilationEngine {
             
             universe = TCUniverseCreate(size.width, size.height, 1)
             source = TCUniverseCreateTeslon(universe, size.width/2, size.height/2, velocity, .pi/2)
-            vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/4, velocity, .pi/2)
+            vertical = TCUniverseCreateTeslon(universe, size.width/2, size.height/2 - size.height/5, velocity, .pi/2)
             camera = TCUniverseCreateCamera(universe, size.width/2, size.height/2, velocity, .pi/2)
             if horizontalOn { initializeHorizontal() }
         }
@@ -129,7 +129,7 @@ class DilationEngine {
         let ll: CGFloat = 10
 
         for i in from..<to {
-            let maxton: UnsafeMutablePointer<TCMaxton> = universe.pointee.maxtons![i]!
+            let maxton: UnsafeMutablePointer<TCPing> = universe.pointee.pings![i]!
                 
             let a: TCV2 = TCV2Sub(maxton.pointee.o, maxton.pointee.p)
             let b: Double = TCV2Length(a)
@@ -158,7 +158,7 @@ class DilationEngine {
 
         let ll: CGFloat = 10
         
-        let noOfMaxtons: Int = Int(universe.pointee.maxtonCount)
+        let noOfMaxtons: Int = Int(universe.pointee.pingCount)
         if noOfMaxtons > 0 {
             if tailsOn {
                 let stride: Int = noOfMaxtons / iterations + (noOfMaxtons % iterations == 0 ? 0 : 1)
@@ -168,7 +168,7 @@ class DilationEngine {
                 
                 DispatchQueue.global(qos: .userInitiated).async {
                     DispatchQueue.concurrentPerform(iterations: iterations, execute: { (i: Int) in
-                        self.findEnds(from: i*stride, to: i == iterations-1 ? Int(self.universe.pointee.maxtonCount) : (i+1)*stride)
+                        self.findEnds(from: i*stride, to: i == iterations-1 ? Int(self.universe.pointee.pingCount) : (i+1)*stride)
                     })
                     semaphore.signal()
                 }
@@ -176,8 +176,8 @@ class DilationEngine {
                 semaphore.wait()
             }
             
-            for i in 0..<Int(universe.pointee.maxtonCount) {
-                let maxton: UnsafeMutablePointer<TCMaxton> = universe.pointee.maxtons![i]!
+            for i in 0..<Int(universe.pointee.pingCount) {
+                let maxton: UnsafeMutablePointer<TCPing> = universe.pointee.pings![i]!
                 let center: CGPoint = CGPoint(x: dx+maxton.pointee.p.x, y: dy+maxton.pointee.p.y)
                 if !tailsOn {
                     let path: CGMutablePath = CGMutablePath(ellipseIn: CGRect(origin: center+CGPoint(x: -1.5, y: -1.5), size: CGSize(width: 3, height: 3)), transform: nil)

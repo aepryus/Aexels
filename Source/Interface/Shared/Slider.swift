@@ -123,9 +123,9 @@ class Slider: UIView, UIGestureRecognizerDelegate {
         c?.setLineWidth(3)
         c?.strokePath()
 
-        if option < 100 { "\(option)".draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), pen: pen2) }
-        else if option < 1000 { "\(option)".draw(in: CGRect(x: x2+6*s, y: y1+5*s, width: 20*s, height: 16*s), pen: pen3) }
-        else { "\(option)".draw(in: CGRect(x: x2+4*s, y: y1+6*s, width: 24*s, height: 12*s), pen: pen4) }
+        if option < 100 { "\(abs(option))".draw(in: CGRect(x: x2+6*s, y: y1+2*s, width: 20*s, height: 16*s), pen: pen2) }
+        else if option < 1000 { "\(abs(option))".draw(in: CGRect(x: x2+6*s, y: y1+5*s, width: 20*s, height: 16*s), pen: pen3) }
+        else { "\(abs(option))".draw(in: CGRect(x: x2+4*s, y: y1+6*s, width: 24*s, height: 12*s), pen: pen4) }
     }
 
 // UIGestureRecognizerDelegate =====================================================================

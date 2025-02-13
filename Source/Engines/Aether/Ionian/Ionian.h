@@ -158,6 +158,7 @@ Universe* AXUniverseCreateI(double width, double height, double relaxed);
 Universe* AXUniverseCreateJ(double width, double height, double relaxed);
 void AXUniverseRelease(Universe* universe);
 void AXUniverseDemarcate(Universe* universe);
+void AXUniverseReset(Universe* universe);
 void AXUniverseHadronFindCenter(Universe* universe, Hadron* hadron);
 byte AXUniverseUsing(Universe* universe, ICAexel* aexel);
 ICAexel* AXUniverseAexelNear(Universe* universe, Vector v);

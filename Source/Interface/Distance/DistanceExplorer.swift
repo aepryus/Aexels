@@ -27,6 +27,7 @@ class DistanceExplorer: Explorer {
         tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 1, r: 1)
 
         super.viewDidLoad()
+        
                 
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 
@@ -65,7 +66,6 @@ class DistanceExplorer: Explorer {
         cyto.layout()
         
         titleLabel.center(width: 300*s, height: 24*s)
-        
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
     }
 }

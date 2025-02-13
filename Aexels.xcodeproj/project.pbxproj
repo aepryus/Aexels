@@ -29,6 +29,9 @@
 		D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9332D5B706600E7B029 /* AetherExperiment.swift */; };
 		D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9352D5B790800E7B029 /* DistanceExperiment.swift */; };
 		D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9392D5B792500E7B029 /* GravityExperiment.swift */; };
+		D830B93C2D5C23E400E7B029 /* DilationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B93B2D5C23DD00E7B029 /* DilationTab.swift */; };
+		D830B93E2D5C7D3500E7B029 /* DilationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B93D2D5C7D2E00E7B029 /* DilationRenderer.swift */; };
+		D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D850F44C293F2EB30091F15A /* DilationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F44B293F2EB30091F15A /* DilationEngine.swift */; };
@@ -140,6 +143,9 @@
 		D830B9332D5B706600E7B029 /* AetherExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AetherExperiment.swift; sourceTree = "<group>"; };
 		D830B9352D5B790800E7B029 /* DistanceExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceExperiment.swift; sourceTree = "<group>"; };
 		D830B9392D5B792500E7B029 /* GravityExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExperiment.swift; sourceTree = "<group>"; };
+		D830B93B2D5C23DD00E7B029 /* DilationTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationTab.swift; sourceTree = "<group>"; };
+		D830B93D2D5C7D2E00E7B029 /* DilationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationRenderer.swift; sourceTree = "<group>"; };
+		D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = DilationShaders.metal; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D850F44B293F2EB30091F15A /* DilationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationEngine.swift; sourceTree = "<group>"; };
@@ -465,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				D8C1CC07293D7654001881F5 /* Widgets */,
+				D830B93B2D5C23DD00E7B029 /* DilationTab.swift */,
 				D8042F10293AEB0200453B8E /* DilationView.swift */,
 				D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */,
 			);
@@ -665,6 +672,8 @@
 			isa = PBXGroup;
 			children = (
 				D8042F12293B06A800453B8E /* Thracian */,
+				D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */,
+				D830B93D2D5C7D2E00E7B029 /* DilationRenderer.swift */,
 				D850F44B293F2EB30091F15A /* DilationEngine.swift */,
 			);
 			path = Dilation;
@@ -847,10 +856,13 @@
 				D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */,
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
 				D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */,
+				D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */,
 				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
+				D830B93C2D5C23E400E7B029 /* DilationTab.swift in Sources */,
+				D830B93E2D5C7D3500E7B029 /* DilationRenderer.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,

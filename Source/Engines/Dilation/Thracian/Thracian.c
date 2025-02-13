@@ -47,13 +47,13 @@ double TCV2Angle(TCV2 a,TCV2 b) {
 
 
 // Maxton ==========================================================================================
-TCMaxton* TCMaxtonCreate(void) {
-    TCMaxton* maxton = (TCMaxton*)malloc(sizeof(TCMaxton));
-    maxton->recycle = 0;
-    return maxton;
+TCPing* TCPingCreate(void) {
+    TCPing* ping = (TCPing*)malloc(sizeof(TCPing));
+    ping->recycle = 0;
+    return ping;
 }
-void TCMaxtonRelease(TCMaxton* maxton) {
-    free(maxton);
+void TCPingRelease(TCPing* ping) {
+    free(ping);
 }
 
 // Photon ==========================================================================================
@@ -99,8 +99,8 @@ TCUniverse* TCUniverseCreate(double width, double height, double c) {
     double a = (width > height ? width : height)/2*1.5;
     universe->boundrySquared = a*a;
     
-    universe->maxtonCount = 0;
-    universe->maxtons = (TCMaxton**)malloc(sizeof(TCMaxton*)*0);
+    universe->pingCount = 0;
+    universe->pings = (TCPing**)malloc(sizeof(TCPing*)*0);
     universe->photonCount = 0;
     universe->photons = (TCPhoton**)malloc(sizeof(TCPhoton*)*0);
     universe->teslonCount = 0;
@@ -112,7 +112,7 @@ TCUniverse* TCUniverseCreate(double width, double height, double c) {
 }
 void TCUniverseRelease(TCUniverse* universe) {
     if (universe == 0) return;
-    free(universe->maxtons);
+    free(universe->pings);
     free(universe->photons);
     free(universe->teslons);
     free(universe);
@@ -124,62 +124,62 @@ void TCUniverseTic(TCUniverse* universe) {
         universe->teslons[i]->p.y += universe->c*universe->teslons[i]->v.s*(-cos(universe->teslons[i]->v.q));
     }
 
-    for (int i=0;i<universe->maxtonCount;i++) {
-        universe->maxtons[i]->p.x += universe->c*sin(universe->maxtons[i]->v.q);
-        universe->maxtons[i]->p.y += universe->c*(-cos(universe->maxtons[i]->v.q));
+    for (int i=0;i<universe->pingCount;i++) {
+        universe->pings[i]->p.x += universe->c*sin(universe->pings[i]->v.q);
+        universe->pings[i]->p.y += universe->c*(-cos(universe->pings[i]->v.q));
         
         TCTeslon* center = universe->teslons[0];
-        if (TCV2LengthSquared(TCV2Sub(center->p, universe->maxtons[i]->p)) > universe->boundrySquared) {
-            universe->maxtons[i]->recycle = 1;
+        if (TCV2LengthSquared(TCV2Sub(center->p, universe->pings[i]->p)) > universe->boundrySquared) {
+            universe->pings[i]->recycle = 1;
         }
         
         if (
-            TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->maxtons[i]->p)) < 49 &&
-            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))
+            TCV2LengthSquared(TCV2Sub(universe->teslons[1]->p, universe->pings[i]->p)) < 49 &&
+            TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->pings[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p))
         ) {
-            universe->maxtons[i]->recycle = 1;
+            universe->pings[i]->recycle = 1;
             
             TCTeslon* teslon = universe->teslons[1];
-            TCMaxton* maxton = universe->maxtons[i];
+            TCPing* ping = universe->pings[i];
             
             TCV2 p;
-            p.x = 2*teslon->p.x - maxton->p.x;
-            p.y = maxton->p.y;
+            p.x = 2*teslon->p.x - ping->p.x;
+            p.y = ping->p.y;
             TCVelocity v;
-            v.s = maxton->v.s;
-            v.q = 2*teslon->v.q - maxton->v.q;
+            v.s = ping->v.s;
+            v.q = 2*teslon->v.q - ping->v.q;
             TCUniverseCreatePhoton(universe, p, v, v.q, 0);
         }
         
         if (universe->teslonCount == 3) {
             if (
-                TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->maxtons[i]->p)) < 49 &&
-                TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->maxtons[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p))
+                TCV2LengthSquared(TCV2Sub(universe->teslons[2]->p, universe->pings[i]->p)) < 49 &&
+                TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->pings[i]->p)) > TCV2LengthSquared(TCV2Sub(universe->teslons[0]->p, universe->teslons[2]->p))
             ) {
-                universe->maxtons[i]->recycle = 1;
+                universe->pings[i]->recycle = 1;
                 
                 TCTeslon* teslon = universe->teslons[2];
-                TCMaxton* maxton = universe->maxtons[i];
+                TCPing* ping = universe->pings[i];
                 
                 TCV2 position;
-                position.x = maxton->p.x;
-                position.y = 2*teslon->p.y - maxton->p.y;
+                position.x = ping->p.x;
+                position.y = 2*teslon->p.y - ping->p.y;
                 TCVelocity velocity;
-                velocity.s = maxton->v.s;
+                velocity.s = ping->v.s;
                 
                 double c = universe->c;
                 double v = universe->c*universe->teslons[2]->v.s*(universe->teslons[2]->v.q == M_PI/2 ? 1 : -1);
-                double x = maxton->p.y - universe->teslons[2]->p.y;
+                double x = ping->p.y - universe->teslons[2]->p.y;
                 if (x == 0) {
-                    velocity.q = M_PI+maxton->v.q;
+                    velocity.q = M_PI+ping->v.q;
                 } else {
-                    double theta = M_PI/2 - fabs(M_PI/2 - maxton->v.q);
+                    double theta = M_PI/2 - fabs(M_PI/2 - ping->v.q);
                     double z = x / cos(theta);
                     double t1 = z / c;
                     double y = x * tan(theta);
                     double p = v * t1;
                     double r = y - p;
-                    double s = maxton->v.q > M_PI/2 ? 1 : -1;
+                    double s = ping->v.q > M_PI/2 ? 1 : -1;
                     double phi = atan2(
                         (-v*x + c*c*r*r*v*x/(c*c*r*r+c*c*x*x) + c*r*sqrt(-c*c*x*x*(-c*c*r*r-c*c*x*x+v*v*x*x))/(c*c*r*r+c*c*x*x))/(c*x),
                         s*(c*r*v*x + sqrt(c*c*c*c*r*r*x*x+c*c*c*c*x*x*x*x-c*c*v*v*x*x*x*x))/(c*c*r*r+c*c*x*x)
@@ -218,14 +218,14 @@ void TCUniverseTic(TCUniverse* universe) {
     }
     
     int k = 0;
-    int mC = universe->maxtonCount;
+    int mC = universe->pingCount;
     for (int i=0; i<mC; i++) {
-        if (universe->maxtons[i]->recycle) {
-            TCMaxtonRelease(universe->maxtons[i]);
-            universe->maxtonCount--;
+        if (universe->pings[i]->recycle) {
+            TCPingRelease(universe->pings[i]);
+            universe->pingCount--;
             continue;
         }
-        if (k != i) universe->maxtons[k] = universe->maxtons[i];
+        if (k != i) universe->pings[k] = universe->pings[i];
         k++;
     }
     
@@ -241,7 +241,7 @@ void TCUniverseTic(TCUniverse* universe) {
         k++;
     }
 
-//    printf("maxtons [%d]\tphotons [%d]\n", universe->maxtonCount, universe->photonCount);
+//    printf("pings [%d]\tphotons [%d]\n", universe->pingCount, universe->photonCount);
 }
 
 void TCUniverseAddPhoton(TCUniverse* universe, TCPhoton* photon) {
@@ -293,27 +293,27 @@ TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, doubl
 
 
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n) {
-    universe->maxtonCount += n;
-    universe->maxtons = (TCMaxton**)realloc(universe->maxtons, sizeof(TCMaxton*)*universe->maxtonCount);
+    universe->pingCount += n;
+    universe->pings = (TCPing**)realloc(universe->pings, sizeof(TCPing*)*universe->pingCount);
     
     int i=0;
-    int j = universe->maxtonCount-n+i;
-    TCMaxton* maxton = TCMaxtonCreate();
-    maxton->p.x = teslon->p.x;
-    maxton->p.y = teslon->p.y;
-    maxton->o = maxton->p;
-    maxton->v.s = universe->c;
-    maxton->v.q = M_PI/2;
-    maxton->q = maxton->v.q;
-    universe->maxtons[j] = maxton;
+    int j = universe->pingCount-n+i;
+    TCPing* ping = TCPingCreate();
+    ping->p.x = teslon->p.x;
+    ping->p.y = teslon->p.y;
+    ping->o = ping->p;
+    ping->v.s = universe->c;
+    ping->v.q = M_PI/2;
+    ping->q = ping->v.q;
+    universe->pings[j] = ping;
     i++;
     
-    j = universe->maxtonCount-n+i;
-    maxton = TCMaxtonCreate();
-    maxton->p.x = teslon->p.x;
-    maxton->p.y = teslon->p.y;
-    maxton->o = maxton->p;
-    maxton->v.s = universe->c;
+    j = universe->pingCount-n+i;
+    ping = TCPingCreate();
+    ping->p.x = teslon->p.x;
+    ping->p.y = teslon->p.y;
+    ping->o = ping->p;
+    ping->v.s = universe->c;
     
     double d = TCV2Length(TCV2Sub(universe->teslons[0]->p, universe->teslons[1]->p));
     double v = universe->teslons[0]->v.s;
@@ -321,43 +321,58 @@ void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n) {
     double c = 1;
     double lambda = TCGamma(v);
     
-    maxton->v.q = atan2(s*v*d/c*lambda, d);
+    ping->v.q = atan2(s*v*d/c*lambda, d);
     
-    maxton->q = maxton->v.q;
-    universe->maxtons[j] = maxton;
+    ping->q = ping->v.q;
+    universe->pings[j] = ping;
     i++;
     
-    double iQ = maxton->q;
+    double iQ = ping->q;
     double dQ = M_PI/2 - iQ;
     int nA = round(dQ/2/M_PI*(n-2));
     
     double dq = dQ/(double)(nA+1);
     double q = iQ+dq;
     for (;i<nA+2;i++) {
-        int j = universe->maxtonCount-n+i;
-        TCMaxton* maxton = TCMaxtonCreate();
-        maxton->p.x = teslon->p.x;
-        maxton->p.y = teslon->p.y;
-        maxton->o = maxton->p;
-        maxton->v.s = universe->c;
-        maxton->v.q = q;
-        maxton->q = q;
-        universe->maxtons[j] = maxton;
+        int j = universe->pingCount-n+i;
+        TCPing* ping = TCPingCreate();
+        ping->p.x = teslon->p.x;
+        ping->p.y = teslon->p.y;
+        ping->o = ping->p;
+        ping->v.s = universe->c;
+        ping->v.q = q;
+        ping->q = q;
+        universe->pings[j] = ping;
         q += dq;
     }
     
     dq = (2*M_PI-dQ)/(double)((n-nA-2)+1);
     q = M_PI/2+dq;
     for (;i<n;i++) {
-        int j = universe->maxtonCount-n+i;
-        TCMaxton* maxton = TCMaxtonCreate();
-        maxton->p.x = teslon->p.x;
-        maxton->p.y = teslon->p.y;
-        maxton->o = maxton->p;
-        maxton->v.s = universe->c;
-        maxton->v.q = q;
-        maxton->q = q;
-        universe->maxtons[j] = maxton;
+        int j = universe->pingCount-n+i;
+        TCPing* ping = TCPingCreate();
+        ping->p.x = teslon->p.x;
+        ping->p.y = teslon->p.y;
+        ping->o = ping->p;
+        ping->v.s = universe->c;
+        ping->v.q = q;
+        ping->q = q;
+        universe->pings[j] = ping;
         q += dq;
     }
+}
+
+void TCUniverseSetC(TCUniverse* universe, double c) {
+    universe->c = c;
+}
+void TCUniverseSetSpeed(TCUniverse* universe, double speed) {
+    for (int i=0;i<universe->teslonCount;i++) {
+        TCTeslon* teslon = universe->teslons[i];
+        teslon->v.s = fabs(speed);
+        teslon->v.q = speed > 0 ? M_PI/2 : 3 * M_PI/2;
+    }
+    
+    TCCamera* camera = universe->cameras[0];
+    camera->v.s = fabs(speed);
+    camera->v.q = speed > 0 ? M_PI/2 : 3 * M_PI/2;
 }

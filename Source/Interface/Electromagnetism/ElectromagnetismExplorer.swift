@@ -178,6 +178,7 @@ class ElectromagnetismExplorer: Explorer {
         
         systemCell.content = systemView
         aetherCell.content = aetherView
+        
         tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
         
         if Screen.iPhone {
@@ -200,8 +201,8 @@ class ElectromagnetismExplorer: Explorer {
         
 //        configCyto.alpha = 0
 //        configCyto.isHidden = true
-//        view.addSubview(configCyto)
-//        
+//        view.addSubview(configCyto)        
+//
         quickView.addSubview(pingButton)
         pingButton.addAction { [unowned self] in
             self.renderer.onPing()
@@ -251,22 +252,22 @@ class ElectromagnetismExplorer: Explorer {
     }
     
 // TimeControlDelegate =============================================================================
-    func onPlay() {
+    override func onPlay() {
         systemView.isPaused = false
         aetherView.isPaused = false
     }
-    func onStep() {
+    override func onStep() {
         systemView.draw()
         aetherView.draw()
     }
-    func onReset() {
+    override func onReset() {
         renderer.onReset()
         controlsTab.applyControls()
         systemView.draw()
         aetherView.draw()
         timeControl.playButton.stop()
     }
-    func onStop() {
+    override func onStop() {
         systemView.isPaused = true
         aetherView.isPaused = true
     }

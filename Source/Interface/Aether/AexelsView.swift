@@ -52,9 +52,9 @@ class AexelsView: UIView {
 	func stop() {
 		Aexels.sync.stop()
 	}
-	private func reset(next: UnsafeMutablePointer<Universe>) {
-		AXUniverseRelease(universe)
-		universe = next
+	func reset(next: UnsafeMutablePointer<Universe>) {
+        AXUniverseRelease(universe)
+        universe = next
 		self.renderMode = .started
 		self.renderImage()
 		setNeedsDisplay()

@@ -1494,4 +1494,5 @@ While editing an expression, anchor with one finger and tap the expression with 
 "aether_lab_name" = "Aether and Aexels";
 "distance_lab_name" = "Distance and Radius";
 "gravity_lab_name" = "Gravity";
+"dilation_lab_name" = "Dilation";
 "electromagnetism_lab_name" = "Electricity and Magnetism";

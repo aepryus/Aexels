@@ -28,17 +28,17 @@ typedef struct TCVelocity {
     double q;               // theta
 } TCVelocity;
 
-typedef struct TCMaxton {
+typedef struct TCPing {
     TCV2 o;                 // old - last position
     TCV2 e;                 // end - of tail (fixed length not just old position)
     TCV2 p;                 // position
     TCVelocity v;           // velocity
     double q;               // theta?
     unsigned char recycle;
-} TCMaxton;
+} TCPing;
 
-TCMaxton* TCMaxtonCreate(void);
-void TCMaxtonRelease(TCMaxton* maxton);
+TCPing* TCPingCreate(void);
+void TCPingRelease(TCPing* ping);
 
 typedef struct TCPhoton {
     TCV2 o;
@@ -77,8 +77,8 @@ typedef struct TCUniverse {
 //    double v;
     double c;
     double boundrySquared;
-    int maxtonCount;
-    TCMaxton** maxtons;
+    int pingCount;
+    TCPing** pings;
     int photonCount;
     TCPhoton** photons;
     int teslonCount;
@@ -94,3 +94,6 @@ TCPhoton* TCUniverseCreatePhoton(TCUniverse* universe, TCV2 p, TCVelocity v, dou
 TCTeslon* TCUniverseCreateTeslon(TCUniverse* universe, double x, double y, double s, double q);
 TCCamera* TCUniverseCreateCamera(TCUniverse* universe, double x, double y, double s, double q);
 void TCUniversePulse(TCUniverse* universe, TCTeslon* teslon, int n);
+void TCUniverseSetC(TCUniverse* universe, double c);
+void TCUniverseSetSpeed(TCUniverse* universe, double speed);
+

@@ -7,70 +7,29 @@
 //
 
 class AetherExperiment: Experiment {
-    var name: String = ""
-    var notes: String = ""
+    enum Letter { case A, B, C, D, E, F, G, H, I, J }
+    
+    let name: String
+    let notes: String
+    let letter: Letter
+
+    init(name: String, notes: String, letter: Letter) {
+        self.name = name
+        self.notes = notes
+        self.letter = letter
+    }
 
 // Static ==========================================================================================
-    static var aexels12: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "12 Aexels"
-        experiment.notes = ""
-        return experiment
-    }
-    static var aexels60: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "60 Aexels"
-        experiment.notes = ""
-        return experiment
-    }
-    static var aexels360: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "360 Aexels"
-        experiment.notes = ""
-        return experiment
-    }
-    static var gameOfLife: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Game of Life"
-        experiment.notes = ""
-        return experiment
-    }
-    static var line: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Line"
-        experiment.notes = ""
-        return experiment
-    }
-    static var rectangle: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Rectangle"
-        experiment.notes = ""
-        return experiment
-    }
-    static var card: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Card"
-        experiment.notes = ""
-        return experiment
-    }
-    static var circle: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Circle"
-        experiment.notes = ""
-        return experiment
-    }
-    static var disk: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Disk"
-        experiment.notes = ""
-        return experiment
-    }
-    static var blank: AetherExperiment {
-        let experiment: AetherExperiment = AetherExperiment()
-        experiment.name = "Blank"
-        experiment.notes = ""
-        return experiment
-    }
+    static var aexels12: AetherExperiment { AetherExperiment(name: "12 Aexels", notes: "", letter: .A) }
+    static var aexels60: AetherExperiment { AetherExperiment(name: "60 Aexels", notes: "", letter: .B) }
+    static var aexels360: AetherExperiment { AetherExperiment(name: "360 Aexels", notes: "", letter: .C) }
+    static var gameOfLife: AetherExperiment { AetherExperiment(name: "Game of Life", notes: "", letter: .D) }
+    static var line: AetherExperiment { AetherExperiment(name: "Line", notes: "", letter: .E) }
+    static var rectangle: AetherExperiment { AetherExperiment(name: "Rectangle", notes: "", letter: .F) }
+    static var card: AetherExperiment { AetherExperiment(name: "Card", notes: "", letter: .G) }
+    static var circle: AetherExperiment { AetherExperiment(name: "Circle", notes: "", letter: .H) }
+    static var disk: AetherExperiment { AetherExperiment(name: "Disk", notes: "", letter: .I) }
+    static var blank: AetherExperiment { AetherExperiment(name: "Blank", notes: "", letter: .J) }
     
     static var experiments: [Experiment] { [
         aexels12,

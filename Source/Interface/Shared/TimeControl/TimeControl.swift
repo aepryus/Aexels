@@ -77,10 +77,8 @@ class TimeControl: AEView {
     }
     override func draw(_ rect: CGRect) {
         let stroke = UIColor.white
-//        let fill = stroke.shade(0.5)
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)
-//        c.setFillColor(fill.cgColor)
         c.setStrokeColor(stroke.cgColor)
         c.setLineWidth(2)
         c.drawPath(using: .stroke)

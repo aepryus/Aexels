@@ -40,11 +40,7 @@ class Explorer: AEViewController, TimeControlDelegate {
     let glyphsButton: CircleButton
     
     var experiments: [Experiment] = []
-    var experiment: Experiment? = nil {
-        didSet {
-            guard experiment !== oldValue else { return }
-        }
-    }
+    var experiment: Experiment? = nil
     
 	init(key: String) {
 		self.key = key
@@ -154,4 +150,10 @@ class Explorer: AEViewController, TimeControlDelegate {
             view.addSubview(glyphsButton)
         }
     }
+    
+// TimeControlDelegate =============================================================================
+    func onPlay() {}
+    func onStep() {}
+    func onReset() {}
+    func onStop() {}
 }

@@ -13,31 +13,7 @@ import UIKit
 class AetherExplorer: Explorer {
     
     let aexelsView: AexelsView = AexelsView()
-    let expAButton: ExpButton = ExpButton(name: Screen.iPhone ? "12" : "12\nAexels")
-    let expBButton: ExpButton = ExpButton(name: Screen.iPhone ? "60" : "60\nAexels")
-    let expCButton: ExpButton = ExpButton(name: Screen.iPhone ? "360" : "360\nAexels")
-    let expDButton: ExpButton = ExpButton(name: Screen.iPhone ? "G\no\nL" : "Game\nof\nLife")
-    let expEButton: ExpButton = ExpButton(shape: .line)
-    let expFButton: ExpButton = ExpButton(shape: .rectangle)
-    let expGButton: ExpButton = ExpButton(shape: .box)
-    let expHButton: ExpButton = ExpButton(shape: .ring)
-    let expIButton: ExpButton = ExpButton(shape: .circle)
-    let expJButton: ExpButton = ExpButton(shape: .nothing)
-    let expView: UIView = UIView()
 
-    lazy var experimentsOld: [ExpButton] = { [
-        expAButton,
-        expBButton,
-        expCButton,
-        expDButton,
-        expEButton,
-        expFButton,
-        expGButton,
-        expHButton,
-        expIButton,
-        expJButton
-    ] }()
-    
     let swapper: Limbo = Limbo()
     var first: [Limbo] = [Limbo]()
     var second: [Limbo] = [Limbo]()
@@ -49,18 +25,58 @@ class AetherExplorer: Explorer {
     var experimentsTab: ExperimentsTab!
     let notesTab: NotesTab = NotesTab(key: "aether")
     
-//    var experiments: [AetherExperiment] = []
-//    var experiment: AetherExperiment? = nil {
-//        didSet {
-//            guard experiment !== oldValue else { return }
-//        }
-//    }
-
     init() {
         super.init(key: "aether")    
         experiments = AetherExperiment.experiments
     }
     
+    func initExperiment() {
+        guard let experiment: AetherExperiment = experiment as? AetherExperiment else { return }
+        
+        switch experiment.letter {
+            case .A: aexelsView.experimentA()
+            case .B: aexelsView.experimentB()
+            case .C: aexelsView.experimentC()
+            case .D: aexelsView.experimentD()
+            case .E: aexelsView.experimentE()
+            case .F: aexelsView.experimentF()
+            case .G: aexelsView.experimentG()
+            case .H: aexelsView.experimentH()
+            case .I: aexelsView.experimentI()
+            case .J: aexelsView.experimentJ()
+       }
+    }
+    
+// Explorer ========================================================================================
+    override var experiment: Experiment? {
+        didSet { initExperiment() }
+    }
+    
+    
+// AEViewController ================================================================================
+    override func layoutRatio056() {
+        super.layoutRatio056()
+        experiment = experiments[0]
+    }
+    override func layout1024x768() {
+        super.layout1024x768()
+        
+        let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+        let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+        let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)
+        let universeWidth: CGFloat = cytoSize.height
+
+        cyto.Xs = [universeWidth]
+        cyto.Ys = [70*s, universeWidth-70*s-110*s, 110*s]
+        cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: cytoSize.height)
+        cyto.layout()
+        
+        titleLabel.center(width: 300*s, height: 24*s)
+        timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
+
+        experiment = experiments[0]
+    }
+
 // UIViewController ================================================================================
     override func viewDidLoad() {
         
@@ -79,78 +95,7 @@ class AetherExplorer: Explorer {
         articleView.color = .white
         articleView.scrollView = articleScroll
         articleView.key = "aetherLab"
-        articleScroll.addSubview(articleView)
-
-        expAButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentA()
-            self.expAButton.activated = true
-        }
-        self.expAButton.activated = true
-        expView.addSubview(expAButton)
-
-        expBButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentB()
-            self.expBButton.activated = true
-        }
-        expView.addSubview(expBButton)
-
-        expCButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentC()
-            self.expCButton.activated = true
-        }
-        expView.addSubview(expCButton)
-
-        expDButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentD()
-            self.expDButton.activated = true
-        }
-        expView.addSubview(expDButton)
-
-        expEButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentE()
-            self.expEButton.activated = true
-        }
-        expView.addSubview(expEButton)
-
-        expFButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentF()
-            self.expFButton.activated = true
-        }
-        expView.addSubview(expFButton)
-
-        expGButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentG()
-            self.expGButton.activated = true
-        }
-        expView.addSubview(expGButton)
-
-        expHButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentH()
-            self.expHButton.activated = true
-        }
-        expView.addSubview(expHButton)
-
-        expIButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentI()
-            self.expIButton.activated = true
-        }
-        expView.addSubview(expIButton)
-        
-        expJButton.addAction {
-            self.experimentsOld.forEach { $0.activated = false }
-            self.aexelsView.experimentJ()
-            self.expJButton.activated = true
-        }
-        expView.addSubview(expJButton)
+        articleScroll.addSubview(articleView)        
         
         if Screen.iPhone {
             cyto.cells = [
@@ -163,9 +108,10 @@ class AetherExplorer: Explorer {
             ]
         } else {
             cyto.cells = [
-                LimboCell(content: aexelsView, c: 0, r: 0),
-                MaskCell(content: articleScroll, c: 1, r: 0, h: 2, cutouts: [.upperRight]),
-                LimboCell(content: expView, c: 0, r: 1)
+                LimboCell(content: aexelsView, c: 0, r: 0, h: 3),
+                titleCell,
+                tabsCell,
+                LimboCell(content: quickView, c: 1, r: 2)
             ]
         }
     }
@@ -177,61 +123,10 @@ class AetherExplorer: Explorer {
         super.viewWillDisappear(animated)
         aexelsView.stop()
     }
-        
-// AEViewController ================================================================================
-    override func layout375x667() {
-//        cyto.Ys = [Screen.height-140*s - Screen.safeBottom - Screen.safeTop, 84*s]
-//        cyto.frame = CGRect(x: 5*s, y: Screen.safeTop, width: view.width-10*s, height: view.height-Screen.safeTop-Screen.safeBottom)
-//        cyto.layout()
-        
-        super.layout375x667()
-
-//        let om = 0*s
-//        let im = 2*s
-//        let bw = (expView.width-2*om-9*im)/10
-//        let bh = (expView.height-2*om)/1
-//
-//        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-//        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-//        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-//        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
-//        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
-//        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
-//        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
-//        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
-//        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
-//        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
-    }
-    override func layout1024x768() {
-        let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
-        let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
-        let height = Screen.height - topY - botY
-        let s = height / 748
-        
-        let uw: CGFloat = height - 110*s
-
-        let om = 6*s
-        let im = 6*s
-        let bw = (expView.width-2*om-9*im)/10
-        let bh = (expView.height-2*om)/1
-        expAButton.topLeft(dx: om, dy: om, width: bw, height: bh)
-        expBButton.topLeft(dx: om+bw+im, dy: om, width: bw, height: bh)
-        expCButton.topLeft(dx: om+2*bw+2*im, dy: om, width: bw, height: bh)
-        expDButton.topLeft(dx: om+3*bw+3*im, dy: om, width: bw, height: bh)
-        expEButton.topLeft(dx: om+4*bw+4*im, dy: om, width: bw, height: bh)
-        expFButton.topLeft(dx: om+5*bw+5*im, dy: om, width: bw, height: bh)
-        expGButton.topLeft(dx: om+6*bw+6*im, dy: om, width: bw, height: bh)
-        expHButton.topLeft(dx: om+7*bw+7*im, dy: om, width: bw, height: bh)
-        expIButton.topLeft(dx: om+8*bw+8*im, dy: om, width: bw, height: bh)
-        expJButton.topLeft(dx: om+9*bw+9*im, dy: om, width: bw, height: bh)
-
-        cyto.Xs = [uw]
-        cyto.Ys = [uw]
-        cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
-        cyto.layout()
-        
-        articleView.load()
-        articleScroll.contentSize = articleView.scrollViewContentSize
-        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
-    }
+    
+// TimeControlDelegate =============================================================================
+    override func onPlay() { aexelsView.play() }
+    override func onStep() { aexelsView.tic() }
+    override func onReset() { initExperiment() }
+    override func onStop() { aexelsView.stop() }
 }
