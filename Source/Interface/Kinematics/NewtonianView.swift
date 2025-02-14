@@ -10,7 +10,7 @@ import OoviumEngine
 import OoviumKit
 import UIKit
 
-class NewtownianView: UIView, Simulation {
+class NewtonianView: UIView, Simulation {
 	var x: V2
 	var v: V2
 	var w: Double = 0

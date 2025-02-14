@@ -52,7 +52,6 @@ class AetherExplorer: Explorer {
         didSet { initExperiment() }
     }
     
-    
 // AEViewController ================================================================================
     override func layoutRatio056() {
         super.layoutRatio056()

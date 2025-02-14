@@ -10,9 +10,6 @@ import Acheron
 import UIKit
 
 class GravityExplorer: Explorer {
-    // Title ======
-    let titleView: UIView = UIView()
-
     // Tabs =======
     let controlsTab: TabsCellTab = TabsCellTab(name: "Controls".localized)
     let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
@@ -47,7 +44,7 @@ class GravityExplorer: Explorer {
         } else {
             cyto.cells = [
                 LimboCell(content: gravityView, c: 0, r: 0, h: 3),
-                MaskCell(content: titleView, c: 1, r: 0, cutouts: [.upperRight]),
+                titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
             ]

@@ -1492,6 +1492,7 @@ While editing an expression, anchor with one finger and tap the expression with 
 "lexAtanh" = "hyperbolic arctangent";
 
 "aether_lab_name" = "Aether and Aexels";
+"kinematics_lab_name" = "Kinematics";
 "distance_lab_name" = "Distance and Radius";
 "gravity_lab_name" = "Gravity";
 "dilation_lab_name" = "Dilation";

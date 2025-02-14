@@ -31,6 +31,8 @@
 		D830B93C2D5C23E400E7B029 /* DilationTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B93B2D5C23DD00E7B029 /* DilationTab.swift */; };
 		D830B93E2D5C7D3500E7B029 /* DilationRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B93D2D5C7D2E00E7B029 /* DilationRenderer.swift */; };
 		D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */; };
+		D830B9422D5EC9FB00E7B029 /* KinematicsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9412D5EC9F800E7B029 /* KinematicsTab.swift */; };
+		D830B9452D5EDB0E00E7B029 /* KinematicsExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9442D5EDB0300E7B029 /* KinematicsExperiment.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
@@ -96,7 +98,6 @@
 		D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */; };
 		D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17EE2814F20E00E74CB8 /* VectorView.swift */; };
 		D8AE17F52814F20E00E74CB8 /* KinematicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */; };
-		D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F02814F20E00E74CB8 /* ExpButton.swift */; };
 		D8AE17F72814F20E00E74CB8 /* NetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F12814F20E00E74CB8 /* NetButton.swift */; };
 		D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */; };
 		D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */; };
@@ -143,6 +144,8 @@
 		D830B93B2D5C23DD00E7B029 /* DilationTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationTab.swift; sourceTree = "<group>"; };
 		D830B93D2D5C7D2E00E7B029 /* DilationRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DilationRenderer.swift; sourceTree = "<group>"; };
 		D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = DilationShaders.metal; sourceTree = "<group>"; };
+		D830B9412D5EC9F800E7B029 /* KinematicsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsTab.swift; sourceTree = "<group>"; };
+		D830B9442D5EDB0300E7B029 /* KinematicsExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsExperiment.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
@@ -211,7 +214,6 @@
 		D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonianView.swift; sourceTree = "<group>"; };
 		D8AE17EE2814F20E00E74CB8 /* VectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorView.swift; sourceTree = "<group>"; };
 		D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsView.swift; sourceTree = "<group>"; };
-		D8AE17F02814F20E00E74CB8 /* ExpButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpButton.swift; sourceTree = "<group>"; };
 		D8AE17F12814F20E00E74CB8 /* NetButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetButton.swift; sourceTree = "<group>"; };
 		D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KinematicsExplorer.swift; sourceTree = "<group>"; };
 		D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilationExplorer.swift; sourceTree = "<group>"; };
@@ -329,6 +331,14 @@
 				D830B9392D5B792500E7B029 /* GravityExperiment.swift */,
 			);
 			path = Gravity;
+			sourceTree = "<group>";
+		};
+		D830B9432D5EDAF900E7B029 /* Kinematics */ = {
+			isa = PBXGroup;
+			children = (
+				D830B9442D5EDB0300E7B029 /* KinematicsExperiment.swift */,
+			);
+			path = Kinematics;
 			sourceTree = "<group>";
 		};
 		D85762C72D436E320025E070 /* Shared */ = {
@@ -455,10 +465,10 @@
 		D896C99E2D41F8080058585C /* Kinematics */ = {
 			isa = PBXGroup;
 			children = (
-				D8C1CC08293D7669001881F5 /* Widgets */,
-				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
-				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
 				D8AE17EF2814F20E00E74CB8 /* KinematicsView.swift */,
+				D8AE17ED2814F20E00E74CB8 /* NewtonianView.swift */,
+				D8C1CC08293D7669001881F5 /* Widgets */,
+				D830B9412D5EC9F800E7B029 /* KinematicsTab.swift */,
 				D8AE17F22814F20E00E74CB8 /* KinematicsExplorer.swift */,
 			);
 			path = Kinematics;
@@ -497,6 +507,7 @@
 			isa = PBXGroup;
 			children = (
 				D830B9322D5B704A00E7B029 /* Aether */,
+				D830B9432D5EDAF900E7B029 /* Kinematics */,
 				D830B9372D5B791400E7B029 /* Distance */,
 				D830B9312D5B6FF700E7B029 /* Electromagnetism */,
 				D830B9382D5B791900E7B029 /* Gravity */,
@@ -697,8 +708,8 @@
 		D8C1CC08293D7669001881F5 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				D8AE17F02814F20E00E74CB8 /* ExpButton.swift */,
 				D8AE17F12814F20E00E74CB8 /* NetButton.swift */,
+				D8AE17EE2814F20E00E74CB8 /* VectorView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -849,7 +860,6 @@
 				D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */,
 				D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */,
 				D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */,
-				D8AE17F62814F20E00E74CB8 /* ExpButton.swift in Sources */,
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
@@ -863,6 +873,7 @@
 				D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */,
 				D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */,
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
+				D830B9452D5EDB0E00E7B029 /* KinematicsExperiment.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
 				D8AB74FF2D56CD6A00A7E234 /* CircleButton.swift in Sources */,
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
@@ -906,6 +917,7 @@
 				D896C9AD2D426C740058585C /* Slider.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
 				D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */,
+				D830B9422D5EC9FB00E7B029 /* KinematicsTab.swift in Sources */,
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,
 				D8042F15293B085500453B8E /* Thracian.c in Sources */,
 				D8AE17EC2814F20500E74CB8 /* GuideButton.swift in Sources */,

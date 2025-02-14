@@ -28,7 +28,6 @@ class DistanceExplorer: Explorer {
 
         super.viewDidLoad()
         
-                
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 
         if Screen.iPhone {

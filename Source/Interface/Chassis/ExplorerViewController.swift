@@ -242,7 +242,7 @@ class ExplorerViewController: AEViewController {
             iPhoneTabGesture = UITapGestureRecognizer(target: self, action: #selector(onTap))
             view.addGestureRecognizer(iPhoneTabGesture)
         } else {
-            UIView.animate(withDuration: 5, delay: 5) {
+            UIView.animate(withDuration: 3, delay: 5) {
                 self.aexelsLabel.alpha = 0
                 self.versionLabel.alpha = 0
             }
