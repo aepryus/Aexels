@@ -55,23 +55,27 @@ class Article {
     static let dilation: Article = Article(key: "dilation")
     static let contraction: Article = Article(key: "contraction")
     static let electromagnetism: Article = Article(key: "electromagnetism")
-    static let bellTHooft : Article = Article(key: "bellTHooft")
+    static let quantum: Article = Article(key: "quantum")
+    static let nuclear: Article = Article(key: "nuclear")
     static let epilogue: Article = Article(key: "epilogue")
     
     static let forward: Article = Article(key: "forward", parent: intro)
     static let claude: Article = Article(key: "claude", parent: intro)
     static let blackHole : Article = Article(key: "blackHole", parent: gravity)
+    static let G: Article = Article(key: "G", parent: gravity)
     static let chronos : Article = Article(key: "chronos", parent: dilation)
     static let floatingLeaf: Article = Article(key: "floatingLeaf", parent: dilation)
     static let fourClocks : Article = Article(key: "fourClocks", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
-    static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: bellTHooft)
+    static let magnetism: Article = Article(key: "magnetism", parent: electromagnetism)
+    static let bellTHooft : Article = Article(key: "bellTHooft", parent: quantum)
+    static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: quantum)
     static let glossary : Article = Article(key: "glossary", parent: epilogue)
 
     static var articles: [Article] = [
         intro, aether, cellular, kinematics, gravity, darkness, hyle, dilation, contraction,
-        electromagnetism, bellTHooft, epilogue, forward, claude, blackHole, chronos, floatingLeaf,
-        fourClocks, narwhal, glossary
+        electromagnetism, quantum, nuclear, epilogue, forward, claude, blackHole, G, chronos, floatingLeaf,
+        fourClocks, narwhal, magnetism, bellTHooft, glossary
     ]
     
     static func wire() {

@@ -707,6 +707,60 @@ As such the interior of a black hole will be pure light (or some other form of e
 
 ";
 
+"G_name" = "G";
+"G_article" = "G
+
+A physicist developers a theory that A relates to B proportionally.  He tests that theory and confirms he is correct.  Also, while running the experiment, he measures the proportionality constant q.  He then tosses in whatever units are necessary to make equation workout correctly and is left with:
+
+    A = qB
+
+But, what is q?  Does it have any physical meaning?  Does q have any structure itself?  Might it break down into multiple constants each with their own tangible physical meaning?
+
+Newton's Law of Gravity states that:
+
+    F = G m1 m2 / r^2
+
+But, in Universe X we have come to realize that Gravity is not a force.  Just as Galileo observed, Gravity is perhaps better described as an acceleration:
+
+    A = G m / r^2
+
+In Universe X Gravity is caused by the destruction of aexels by mass; the aexels crystalline nature causing more aexels to be pulled in resulting in the perceived tug on everything sitting upon those same aexels.
+
+This hints at a natural constant; the rate at which aexels are destroyed per unit of mass per units of time.  Now the number of aexels could be represented by a volume of space.  This would result in the a constant in MKS of m^3/kg/s; volume per kilogram per second.
+
+Out of curiosity, let's look up G.  G is 6.67430(15) x 10^-11 m^3 / kg / s^2.
+
+Interestingly (and perhaps shockingly) G is almost the exact units of our hypothetical natural constant, with just an extra 1/s.  By why the extra 1/s?  Perhaps G is a composite constant with structure.  Let's name our aexel destruction constant G_0.  And let us posit that G is a composite constant that can be written qG_1, where q = 1/1s and G_1 has units m^3 /kg /s.      G = q G_1
+    q = 1 / 1s
+
+Now Newton's gravitation becomes:
+
+    A = q G_1 m / r^2
+
+So, breaking this down, the units of G_1 m = m^3 / kg / s x kg = m^3 / s, which is a volume per second.  Perhaps the total \"space\" destroyed per second.
+
+And now if we add the 1 / r^2 squared term, G_1 m / r^2 = m^3 / s / m^2 = m/s, a length per second.  Perhaps this represents the length of aexels that must be pulled through each point of the shell surrounding the mass.  And in that case G_1 = G_0 / 4 pi.  This gives us: 
+    G_0 = 4 pi G_1
+    A = q G_0 m / (4 pi r^2)
+
+Or
+
+    dv / dt = q G_0 m / (4 pi r^2)
+
+Let's integrate:
+
+    v(t) = v_0 + G_0 m / (4 pi r^2) * (t / 1s)
+
+Perhaps leaving us with a much more physically meaningful version of Newton's Law of Gravitation.
+
+And also perhaps indicating that the mechanism of Gravity was hiding in plain sight for centuries.
+
+
+
+
+
+";
+
 "chronos_name" = "Chronos";
 "chronos_article" = "Chronos
 
@@ -809,29 +863,6 @@ So, this gives us 3 classes of 'Same Inertial Frame':
 - Type 1: part of a contiguous ping / pong cloud.
 - Type 2: isolated , but having the same dilation and contraction factors and aligned contraction axes.
 - Type 3: isolated and with same dilation and contraction factors, but with unaligned contraction axes.
-
-
-
-
-
-";
-
-"symmetric_name" = "Symmetric Frames";
-"symmetric_article" = "Symmetric Frames
-
-One of the first steps in the derivation of General Relativity is to define a 4-vector with time and 3 spacial dimensions and define a value
- and then assert that
- is an invariant value in all inertial frames.
-
-It is quite easy to devise a thought experiment in Universe X and see that
- would not be invariant in all frames in Universe X.
-
-So, once again it seems we've found a discrepancy! But, just as before I have been unable to find any experimental verification of Minkowski's assertion that
- is invariant in our Universe.
-
-(And the fact that we see the ISS's clocks moving faster and they see our clocks moving slower seems to directly counter Minkowski's assertion.)
-
-The result being that I still have not been able to find an experiment that would net different results in Universe X and our Universe.
 
 
 
@@ -1490,6 +1521,11 @@ While editing an expression, anchor with one finger and tap the expression with 
 "lexAsinh" = "hyperbolic arcsine";
 "lexAcosh" = "hyperbolic arccosine";
 "lexAtanh" = "hyperbolic arctangent";
+
+"G_name" = "G";
+"magnetism_name" = "Magnetism";
+"quantum_name" = "Quantum";
+"nuclear_name" = "Nuclear";
 
 "aether_lab_name" = "Aether and Aexels";
 "cellular_lab_name" = "Cellular Automata";

@@ -159,8 +159,9 @@ class NexusExplorer: AEViewController {
         let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 260*s, y: 1040*s)
         let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 110*s+2*p, x: 100*s, y: 1000*s)
         let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 116*s+2*p, x: 210*s, y: 1290*s)
-        let bellTHooftGlyph: ArticleGlyph = ArticleGlyph(article: Article.bellTHooft, radius: 102*s+2*p, x: 50*s, y: 1430*s)
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 96*s+2*p, x: 270*s, y: 1580*s)
+        let quantumGlyph: ArticleGlyph = ArticleGlyph(article: .quantum, radius: 100*s, x: 100*s, y: 1430*s)
+        let nuclearGlyph: ArticleGlyph = ArticleGlyph(article: .nuclear, radius: 94*s, x: 250*s, y: 1560*s)
+        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 96*s+2*p, x: 330*s, y: 1687*s)
 
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
         let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
@@ -174,12 +175,15 @@ class NexusExplorer: AEViewController {
         let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
         let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 200*s, y: 150*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
+        let gGlyph: AsideGlyph = AsideGlyph(article: .G, radius: 36*s, x: 260*s, y: 770*s)
         let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1110*s)
         let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 350*s, y: 1180*s)
         let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 280*s, y: 1210*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
-        let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1570*s)
-        let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 240*s, y: 1710*s)
+        let magnetismGlyph: AsideGlyph = AsideGlyph(article: .magnetism, radius: 74*s, x: 100*s, y: 1230*s)
+        let bellTHooftGlyph: AsideGlyph = AsideGlyph(article: Article.bellTHooft, radius: 60*s+2*p, x: 90*s, y: 1340*s)
+        let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1560*s)
+        let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 250*s, y: 1830*s)
 
         var glyphs: [GlyphView] = []
         
@@ -193,7 +197,8 @@ class NexusExplorer: AEViewController {
         glyphs.append(dilationGlyph)
         glyphs.append(contractionGlyph)
         glyphs.append(electromagnetismGlyph)
-        glyphs.append(bellTHooftGlyph)
+        glyphs.append(quantumGlyph)
+        glyphs.append(nuclearGlyph)
         glyphs.append(epilogueGlyph)
 
         glyphs.append(aetherExpGlyph)
@@ -208,10 +213,13 @@ class NexusExplorer: AEViewController {
         glyphs.append(forwardGlyph)
         glyphs.append(claudeGlyph)
         glyphs.append(blackHoleGlyph)
+        glyphs.append(gGlyph)
         glyphs.append(chronosGlyph)
         glyphs.append(floatingLeafGlyph)
         glyphs.append(fourClocksGlyph)
         glyphs.append(narwhalGlyph)
+        glyphs.append(magnetismGlyph)
+        glyphs.append(bellTHooftGlyph)
         glyphs.append(thooftGlyph)
         glyphs.append(glossaryGlyph)
 
@@ -232,6 +240,7 @@ class NexusExplorer: AEViewController {
         gravityGlyph.link(to: distanceExpGlyph)
         gravityGlyph.link(to: gravityExpGlyph)
         gravityGlyph.link(to: blackHoleGlyph)
+        gravityGlyph.link(to: gGlyph)
         
         darknessGlyph.link(to: hyleGlyph)
         
@@ -247,11 +256,15 @@ class NexusExplorer: AEViewController {
         contractionGlyph.link(to: contractionExpGlyph)
         contractionGlyph.link(to: narwhalGlyph)
         
+        electromagnetismGlyph.link(to: quantumGlyph)
         electromagnetismGlyph.link(to: electromagnetismExpGlyph)
-        electromagnetismGlyph.link(to: bellTHooftGlyph)
+        electromagnetismGlyph.link(to: magnetismGlyph)
         
-        bellTHooftGlyph.link(to: epilogueGlyph)
-        bellTHooftGlyph.link(to: thooftGlyph)
+        quantumGlyph.link(to: nuclearGlyph)
+        quantumGlyph.link(to: bellTHooftGlyph)
+        quantumGlyph.link(to: thooftGlyph)
+        
+        nuclearGlyph.link(to: epilogueGlyph)
         
         epilogueGlyph.link(to: glossaryGlyph)
         

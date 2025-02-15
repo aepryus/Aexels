@@ -286,12 +286,17 @@ class ExplorerGlyph: GlyphView {
         let ss: CGFloat = glyphsView.scale
         let s: CGFloat = super.s * ss
         
-        layer.borderWidth = 3*ss
-        imageView.layer.borderWidth = 3*ss
-
-        imageView.center(width: width-15*s, height: height-15*s)
-        layer.cornerRadius = width/2
-        imageView.layer.cornerRadius = imageView.width/2
+        if Screen.iPhone {
+            imageView.layer.borderWidth = 3*ss
+            imageView.center(width: width, height: height)
+            imageView.layer.cornerRadius = imageView.width/2
+        } else {
+            layer.borderWidth = 3*ss
+            imageView.layer.borderWidth = 3*ss
+            imageView.center(width: width-15*s, height: height-15*s)
+            layer.cornerRadius = width/2
+            imageView.layer.cornerRadius = imageView.width/2
+        }
     }
 }
 
