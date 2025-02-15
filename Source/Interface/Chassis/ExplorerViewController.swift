@@ -195,7 +195,7 @@ class ExplorerViewController: AEViewController {
     }
     
 // AEViewController ================================================================================
-    override func layoutRatio056() {
+    override func layoutRatio046() {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
         let a: CGFloat = 0.7
@@ -204,7 +204,7 @@ class ExplorerViewController: AEViewController {
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
     }
-    override func layoutRatio133() {
+    override func layoutRatio143() {
         imageView.frame = view.bounds
         tripWire.frame = view.bounds
         let a: CGFloat = 0.7

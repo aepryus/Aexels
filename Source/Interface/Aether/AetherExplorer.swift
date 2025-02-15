@@ -53,12 +53,12 @@ class AetherExplorer: Explorer {
     }
     
 // AEViewController ================================================================================
-    override func layoutRatio056() {
-        super.layoutRatio056()
+    override func layoutRatio046() {
+        super.layoutRatio046()
         experiment = experiments[0]
     }
-    override func layout1024x768() {
-        super.layout1024x768()
+    override func layoutRatio143() {
+        super.layoutRatio143()
         
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)

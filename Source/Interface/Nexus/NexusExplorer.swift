@@ -329,7 +329,7 @@ class NexusExplorer: AEViewController {
         }
     }
     
-    override func layoutRatio056() {
+    override func layoutRatio046() {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: Screen.height - Screen.safeTop - Screen.safeBottom)
         cyto.layout()
 
@@ -338,13 +338,12 @@ class NexusExplorer: AEViewController {
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
         currentCapsule.topLeft(dx: 10*s, dy: Screen.safeTop+19*s)        
-        claudeCircle.bottomLeft(dx: -2*s, dy: -25*s, width: 54*s, height: 54*s)
-        glyphsCircle.bottomRight(dx: 2*s, dy: -25*s, width: 54*s, height: 54*s)
+        claudeCircle.bottomLeft(dx: -2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
+        glyphsCircle.bottomRight(dx: 2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
         claudeButton.center(width: 30*s, height: 30*s)
-        
         claudeHover.center(width: 250*s, height: 75*s)
     }
-    override func layoutRatio133() {
+    override func layoutRatio143() {
         glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2187*s)
         scrollView.frame = CGRect(x: 44*s, y: Screen.mac ? Screen.safeTop: 0, width: 1050*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }

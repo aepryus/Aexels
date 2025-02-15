@@ -130,8 +130,8 @@ class DilationExplorer: Explorer, DilationTabDelegate {
     }
 
 // AEViewController ================================================================================
-    override func layoutRatio056() {
-        super.layoutRatio056()
+    override func layoutRatio046() {
+        super.layoutRatio046()
         
         let uh: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom - 80*s
         cyto.Ys = [uh/2, uh/2]
@@ -140,7 +140,7 @@ class DilationExplorer: Explorer, DilationTabDelegate {
         timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
         pingButton.right(dx: -84*s, width: 60*s, height: 60*s)
     }
-    override func layout1024x768() {
+    override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)

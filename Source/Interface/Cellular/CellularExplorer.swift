@@ -95,7 +95,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         cyto = Screen.iPhone ? Cyto(rows: 4, cols: 2) : Cyto(rows: 5, cols: 4)
         view.addSubview(cyto)
         
-        titleCell.c = 3
+        if !Screen.iPhone { titleCell.c = 3 }
         tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 3, r: 1, h: 3)
 
         super.viewDidLoad()
@@ -152,7 +152,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
                 LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 1, h: 2),
                 LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 1),
                 LimboCell(c: 1, r: 2),
-                MaskCell(content: quickView, c: 0, r: 3, cutouts: [.lowerLeft, .lowerRight])
+                MaskCell(content: quickView, c: 0, r: 3, w: 2, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
                 tabsCell,
@@ -187,19 +187,42 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     }
     
 // AEViewController ================================================================================
-    override func layoutRatio056() {
-        super.layoutRatio056()
+    override func layoutRatio046() {
+        super.layoutRatio046()
 
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
-        let uh: CGFloat = height - 80*s
         
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: height)
         configCyto.frame = cyto.frame
 
-        cyto.Ys = [uh]
+        let lw: CGFloat = Screen.width-10*s
+        let mw: CGFloat = 221*s
+        let sw: CGFloat = lw-mw
+        
+        let x1 = lw
+        let x2 = lw+sw
+        let x3 = lw+mw
+        
+        cyto.Xs = [mw]
+        cyto.Ys = [x1, x2-x1, x3-x2]
+
         cyto.layout()
+        configCyto.layout()
+        
+        let dy: CGFloat = -20*s
+        timeControl.left(dx: 20*s, dy: dy, width: 114*s, height: 54*s)
+        guide.left(dx: 130*s, dy: dy, size: CGSize(width: 50*(height / 748), height: 30*s))
+        dilatorView.left(dx: 180*s, dy: dy, width: 150*s, height: 40*s)
     }
-    override func layout1024x768() {
+    override func layoutRatio056() {
+        self.layoutRatio046()
+        
+        timeControl.left(dx: 50*s, width: 114*s, height: 54*s)
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        guide.left(dx: 160*s, size: CGSize(width: 50*(height / 748), height: 30*s))
+        dilatorView.left(dx: 205*s, width: 105*s, height: 40*s)
+    }
+    override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)
@@ -209,7 +232,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let height = Screen.height - topY - botY
         let oS = height / 748
-        let bw: CGFloat = 50*oS
+        let bw: CGFloat = 50*(height / 748)
         
         aetherView.renderToolBars()
         aetherView.placeToolBars()
@@ -233,12 +256,12 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
-        
-        guide.left(dx: 120*s, size: CGSize(width: bw, height: 30*s))
-        dilatorView.left(dx: 170*s, width: 150*s, height: 40*s)
-        
+                
         titleLabel.center(width: 300*s, height: 24*s)
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
+        guide.left(dx: 120*s, size: CGSize(width: bw, height: 30*s))
+        dilatorView.left(dx: 170*s, width: 150*s, height: 40*s)
+
 //        experiment = experiments[0]
     }
     

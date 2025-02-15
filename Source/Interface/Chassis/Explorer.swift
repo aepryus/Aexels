@@ -103,7 +103,7 @@ class Explorer: AEViewController, TimeControlDelegate {
     }
     
 // AEViewController ================================================================================
-    override func layoutRatio056() {        
+    override func layoutRatio046() {        
         let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
         let uh: CGFloat = height - 80*s
         
@@ -116,8 +116,8 @@ class Explorer: AEViewController, TimeControlDelegate {
         configCyto.Ys = [uh]
         configCyto.layout()
 
-        swapperButton.bottomLeft(dx: -2*s, dy: -25*s, width: 54*s, height: 54*s)
-        glyphsButton.bottomRight(dx:  2*s, dy: -25*s, width: 54*s, height: 54*s)
+        swapperButton.bottomLeft(dx: -2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
+        glyphsButton.bottomRight(dx:  2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
 
         titleLabel.center(width: 300*s, height: 24*s)
         timeControl.center(width: 114*s, height: 54*s)
