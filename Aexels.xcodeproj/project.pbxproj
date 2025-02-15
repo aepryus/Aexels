@@ -33,6 +33,8 @@
 		D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */; };
 		D830B9422D5EC9FB00E7B029 /* KinematicsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9412D5EC9F800E7B029 /* KinematicsTab.swift */; };
 		D830B9452D5EDB0E00E7B029 /* KinematicsExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9442D5EDB0300E7B029 /* KinematicsExperiment.swift */; };
+		D830B9472D5FF6B200E7B029 /* OoviumTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9462D5FF6AE00E7B029 /* OoviumTab.swift */; };
+		D830B94A2D5FFA1000E7B029 /* CellularExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9492D5FFA0900E7B029 /* CellularExperiment.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
 		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
@@ -146,6 +148,8 @@
 		D830B93F2D5C7D4E00E7B029 /* DilationShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = DilationShaders.metal; sourceTree = "<group>"; };
 		D830B9412D5EC9F800E7B029 /* KinematicsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsTab.swift; sourceTree = "<group>"; };
 		D830B9442D5EDB0300E7B029 /* KinematicsExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KinematicsExperiment.swift; sourceTree = "<group>"; };
+		D830B9462D5FF6AE00E7B029 /* OoviumTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumTab.swift; sourceTree = "<group>"; };
+		D830B9492D5FFA0900E7B029 /* CellularExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularExperiment.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
 		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
@@ -341,6 +345,14 @@
 			path = Kinematics;
 			sourceTree = "<group>";
 		};
+		D830B9482D5FF9EE00E7B029 /* Cellular */ = {
+			isa = PBXGroup;
+			children = (
+				D830B9492D5FFA0900E7B029 /* CellularExperiment.swift */,
+			);
+			path = Cellular;
+			sourceTree = "<group>";
+		};
 		D85762C72D436E320025E070 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +467,7 @@
 		D896C99D2D41F7FF0058585C /* Cellular */ = {
 			isa = PBXGroup;
 			children = (
+				D830B9462D5FF6AE00E7B029 /* OoviumTab.swift */,
 				D8FB29832B73ED53003E89E5 /* OoviumView.swift */,
 				D8AE17E22814F20500E74CB8 /* CellularView.swift */,
 				D8AE17E12814F20500E74CB8 /* CellularExplorer.swift */,
@@ -507,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				D830B9322D5B704A00E7B029 /* Aether */,
+				D830B9482D5FF9EE00E7B029 /* Cellular */,
 				D830B9432D5EDAF900E7B029 /* Kinematics */,
 				D830B9372D5B791400E7B029 /* Distance */,
 				D830B9312D5B6FF700E7B029 /* Electromagnetism */,
@@ -884,6 +898,7 @@
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
+				D830B94A2D5FFA1000E7B029 /* CellularExperiment.swift in Sources */,
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
@@ -910,6 +925,7 @@
 				D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */,
 				D8AE17EA2814F20500E74CB8 /* CellularEngine.swift in Sources */,
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
+				D830B9472D5FF6B200E7B029 /* OoviumTab.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */,

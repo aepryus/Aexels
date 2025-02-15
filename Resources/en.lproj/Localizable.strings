@@ -1009,7 +1009,7 @@ Universe X - the universe where all these objects interact with one another.
 
 ";
 
-"gameOfLife_article" = "Cellular Automata Lab
+"cellularLab_article" = "Cellular Automata Lab
 
 This is a cellular automata lab.  Here users can run predefined automata as well as define their own.
 
@@ -1492,6 +1492,7 @@ While editing an expression, anchor with one finger and tap the expression with 
 "lexAtanh" = "hyperbolic arctangent";
 
 "aether_lab_name" = "Aether and Aexels";
+"cellular_lab_name" = "Cellular Automata";
 "kinematics_lab_name" = "Kinematics";
 "distance_lab_name" = "Distance and Radius";
 "gravity_lab_name" = "Gravity";

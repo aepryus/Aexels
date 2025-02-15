@@ -153,7 +153,23 @@ class CellularEngine {
 	}
 
 	private var working: Bool = false
-	private func step(_ complete: @escaping ()->()) {
+    func doStep() {
+        self.step {
+            DispatchQueue.global(qos: .userInitiated).async {
+                DispatchQueue.concurrentPerform(iterations: self.views.count, execute: { (i: Int) in
+                    self.views[i].start()
+                    self.views[i].renderImage()
+                })
+                DispatchQueue.main.async {
+                    self.views.forEach {
+                        guard $0.renderMode == .rendered else { return }
+                        $0.setNeedsDisplay()
+                    }
+                }
+            }
+        }
+    }
+	func step(_ complete: @escaping ()->()) {
 //		guard !working else {print("step skipped");return}
 		guard !working else { return }
 		working = true

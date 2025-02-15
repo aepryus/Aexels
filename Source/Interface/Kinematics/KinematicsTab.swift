@@ -21,9 +21,6 @@ class KinematicsTab: TabsCellTab {
     let aetherVector = VectorView()
     let loopVector = VectorView()
     let netButton = NetButton()
-    let swapper = Limbo()
-    let close = LimboButton(title: "Close")
-    let closeButton: CloseButton = CloseButton()
     let aetherLabel = UILabel()
     let loopLabel = UILabel()
 
@@ -157,7 +154,6 @@ class KinematicsTab: TabsCellTab {
         var dy: CGFloat = 30*s
         let zw: CGFloat = 160*s
         let zh: CGFloat = 100*s
-//        let zp: CGFloat = 20*s
         
         zoneB.top(dy: dy, width: zw, height: zh)
         dy += 140*s

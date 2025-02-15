@@ -37,24 +37,71 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         return aetherView
     }()
     lazy var ooviumView: OoviumView = OoviumView(aetherView: aetherView)
-    lazy var ooviumCell: MaskCell = MaskCell(content: ooviumView, c: 2, r: 2, h: 3)
     
     let largeView: CellularView = CellularView()
     let mediumView: CellularView = CellularView()
     let smallView: CellularView = CellularView()
-    let articleScroll: UIScrollView = UIScrollView()
-    let articleView: ArticleView = ArticleView()
     let dilatorView: DilatorView = DilatorView()
     let controlsView: UIView = UIView()
     
+    let guide = GuideButton()
+    
+    // Tabs =======
+    let ooviumTab: OoviumTab = OoviumTab()
+    var experimentsTab: ExperimentsTab!
+    let notesTab: NotesTab = NotesTab(key: "cellular")
+    
+    init() {
+        super.init(key: "cellular")
+        experiments = CellularExperiment.loadExperiments()
+    }
+    
+    func open(aether: Aether) {
+        timeControl.playButton.stop()
+
+        engine.removeAllViews()
+
+        engine.addView(largeView)
+        engine.addView(mediumView)
+        engine.addView(smallView)
+
+        engine.compile(aether: aether)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.engine.reset()
+            let a = self.largeView.width/2
+            self.largeView.zoom(at: CGPoint(x: a, y: a))
+        }
+    }
+    private func floorQ(x: CGFloat, to: Int) -> Int { Int(floor(x/CGFloat(to))*CGFloat(to)) }
+    
 // Explorer ========================================================================================
     override var shortName: String { "Automata" }
-    
+    override var experiment: Experiment? {
+        didSet {
+            guard let experiment: CellularExperiment = experiment as? CellularExperiment else { return }
+            Space.local.loadAether(facade: experiment.facade) { (json: String?) in
+                guard let json else { return }
+                let aether: Aether = Aether(json: json)
+                self.aetherView.swapToAether(aether: aether)
+                self.engine.needsCompile = true
+                self.open(aether: aether)
+            }
+        }
+    }
+
 // UIViewController ================================================================================
     override func viewDidLoad() {
+        cyto = Screen.iPhone ? Cyto(rows: 4, cols: 2) : Cyto(rows: 5, cols: 4)
+        view.addSubview(cyto)
+        
+        titleCell.c = 3
+        tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 3, r: 1, h: 3)
+
         super.viewDidLoad()
         
-        cyto = Cyto(rows: 5, cols: 3)
+        experimentsTab = ExperimentsTab(explorer: self)
+        tabsCell.tabs = [ooviumTab, experimentsTab, notesTab]
 
         _ = Facade.create(space: Space.local) as! SpaceFacade
         let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
@@ -63,6 +110,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.open(aether: Aether(json: json))
         }
         
+        ooviumTab.ooviumView = ooviumView
+
         largeView.zoomView = mediumView
         mediumView.parentView = largeView
         mediumView.zoomView = smallView
@@ -82,29 +131,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             mediumView.points = floorQ(x: 256*s, to: 2)
             smallView.points = floorQ(x: 144*s, to: 4)
         }
-        
-        articleView.font = UIFont(name: "Verdana", size: 18*s)!
-        articleView.color = .white
-        articleView.scrollView = articleScroll
-        articleScroll.addSubview(articleView)
-        
-        play.onPlay = { [unowned self] in
-            self.engine.start(aether: self.aetherView.aether)
-        }
-        play.onStop = { [unowned self] in
-            self.engine.stop()
-        }
-        controlsView.addSubview(play)
-        
-        controlsView.addSubview(reset)
-        reset.addAction(for: .touchUpInside) { [unowned self] in
-            self.play.stop()
-            self.engine.configureViews()
-            self.engine.reset()
-            self.engine.needsCompile = true
-        }
-        
-        controlsView.addSubview(guide)
+
+        quickView.addSubview(guide)
         guide.addAction(for: .touchUpInside) { [unowned self] in
             self.engine.guideOn = !self.engine.guideOn
             self.guide.stateOn = self.engine.guideOn
@@ -113,21 +141,35 @@ class CellularExplorer: Explorer, AetherViewDelegate {
             self.mediumView.flash()
         }
         
+        quickView.addSubview(dilatorView)
         dilatorView.onChange = { (frameRate: Int) in
             self.engine.frameRate = frameRate
         }
-
-        cyto.cells = [
-            LimboCell(content: largeView, size: CGSize(width: largeView.points, height: largeView.points), c: 0, r: 0, w: 2, h: 3),
-            LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 3, h: 2),
-            LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 3),
-            LimboCell(content: controlsView, c: 1, r: 4),
-            MaskCell(content: articleScroll, c: 2, r: 0, cutouts: [.upperRight]),
-            LimboCell(content: dilatorView, c: 2, r: 1, p: 12),
-            ooviumCell
-        ]
-        cyto.layout()
-        view.addSubview(cyto)
+        
+        if Screen.iPhone {
+            cyto.cells = [
+                LimboCell(content: largeView, size: CGSize(width: largeView.points, height: largeView.points), c: 0, r: 0, w: 2),
+                LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 0, r: 1, h: 2),
+                LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 1, r: 1),
+                LimboCell(c: 1, r: 2),
+                MaskCell(content: quickView, c: 0, r: 3, cutouts: [.lowerLeft, .lowerRight])
+            ]
+            configCyto.cells = [
+                tabsCell,
+                titleCell
+            ]
+        } else {
+            cyto.cells = [
+                LimboCell(c: 0, r: 0, h: 5),
+                LimboCell(content: largeView, size: CGSize(width: largeView.points, height: largeView.points), c: 1, r: 0, w: 2, h: 2),
+                LimboCell(content: mediumView, size: CGSize(width: mediumView.points, height: mediumView.points), c: 1, r: 2, h: 3),
+                LimboCell(content: smallView, size: CGSize(width: smallView.points, height: smallView.points), c: 2, r: 2),
+                LimboCell(c: 2, r: 3, h: 2),
+                titleCell,
+                tabsCell,
+                LimboCell(content: quickView, c: 3, r: 4)
+            ]
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -141,43 +183,63 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         super.viewWillDisappear(animated)
         aetherView.dismissAetherPicker()
         aetherView.snuffToolBars()
-        play.stop()
+        timeControl.playButton.stop()
     }
     
 // AEViewController ================================================================================
+    override func layoutRatio056() {
+        super.layoutRatio056()
+
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let uh: CGFloat = height - 80*s
+        
+        cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: height)
+        configCyto.frame = cyto.frame
+
+        cyto.Ys = [uh]
+        cyto.layout()
+    }
     override func layout1024x768() {
+        let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
+        let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
+        let cytoSize: CGSize = CGSize(width: view.width-10*s, height: Screen.height - safeTop - safeBottom)
+        let universeWidth: CGFloat = cytoSize.height
+
         let topY: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let botY: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
         let height = Screen.height - topY - botY
-        let s = height / 748
-        let y: CGFloat = 360*s
-        let ch: CGFloat = 72*s
-        let bw: CGFloat = 50*s
-        let sw: CGFloat = 176*s
-        let q: CGFloat = 26*s
+        let oS = height / 748
+        let bw: CGFloat = 50*oS
         
-        let lW: CGFloat = 462*s
-
         aetherView.renderToolBars()
         aetherView.placeToolBars()
         aetherView.showToolBars()
         aetherView.invokeAetherPicker()
         aetherView.stretch()
+        
+        cyto.Xs = [universeWidth-286*oS-176*oS, 286*oS, 176*oS]
 
-        cyto.Xs = [286*s, 176*s]
-        cyto.Ys = [768*s-20*s-y-ch, ch, lW-ch-(768*s-20*s-y-ch), 176*s]
+        let titleH = 70*s
+        let largeH = 462*oS
+        let smallH = 176*oS
+        let quickH = 110*s
+        
+        let x1 = titleH
+        let x2 = largeH
+        let x3 = largeH+smallH
+        let x4 = universeWidth-quickH
+        
+        cyto.Ys = [x1, x2-x1, x3-x2, x4-x3]
+        
         cyto.frame = CGRect(x: 5*s, y: topY, width: view.width-10*s, height: view.height-topY-botY)
         cyto.layout()
         
-        articleView.load()
-        articleScroll.contentSize = articleView.scrollViewContentSize
-        articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
+        guide.left(dx: 120*s, size: CGSize(width: bw, height: 30*s))
+        dilatorView.left(dx: 170*s, width: 150*s, height: 40*s)
         
-        play.left(dx: sw/2-q-bw-15*s, size: CGSize(width: bw, height: 30*s))
-        reset.left(dx: sw/2-bw/2-15*s, size: CGSize(width: bw, height: 30*s))
-        guide.left(dx: sw/2+q-15*s, size: CGSize(width: bw, height: 30*s))
-        
-        aetherView.aetherPickerOffset = UIOffset(horizontal: -ooviumCell.left-cyto.left-10*s, vertical: -ooviumCell.top-cyto.top+12*s)
+        titleLabel.center(width: 300*s, height: 24*s)
+        timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
+//        experiment = experiments[0]
     }
     
 // AetherViewDelegate ==============================================================================
@@ -195,79 +257,21 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         self.open(aether: aether)
     }
     func onSave(aetherView: AetherView, aether: Aether) {}
-
-
     
-// =================================================================================================
-// =================================================================================================
-// =================================================================================================
-
-	var first = [Limbo]()
-	var second = [Limbo]()
-	var isFirst: Bool = true
-
-    let closeButton: CloseButton = CloseButton()
-	let swapper = Limbo()
-    let deadLimbo: Limbo = Limbo()
-
-	let guide = GuideButton()
-	let reset = ResetButton()
-	let play = PlayButton()
-    
-	
-    init() { super.init(key: "cellular") }
-	
-	func open(aether: Aether) {
-		play.stop()
-
-		engine.removeAllViews()
-
-		engine.addView(largeView)
-		engine.addView(mediumView)
-		engine.addView(smallView)
-
-		engine.compile(aether: aether)
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-			self.engine.reset()
-			let a = self.largeView.width/2
-			self.largeView.zoom(at: CGPoint(x: a, y: a))
-		}
-		
-		if aether.name == "Game of Life" {
-            articleView.key = "gameOfLife"
-		} else if aether.name == "Demons" {
-            articleView.key = "demons"
-		} else {
-            articleView.key = "oovium"
-		}
-        articleView.load()
-        articleScroll.contentSize = articleView.scrollViewContentSize
-        articleScroll.contentOffset = .zero
-	}
-	
-	private func floorQ(x: CGFloat, to: Int) -> Int { Int(floor(x/CGFloat(to))*CGFloat(to)) }
-	
-// Events ==========================================================================================
-//	override func onOpen() {
-//		Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
-//		engine.defineOnFire()
-//		aetherView.layoutAetherPicker()
-//	}
-//	override func onOpening() {
-//		aetherView.snapAetherPicker()
-//		aetherView.showToolBars()
-//	}
-//	override func onOpened() {}
-//	override func onClose() {
-//		aetherView.dismissAetherPicker()
-//		aetherView.snuffToolBars()
-//		play.stop()
-//	}
-	
-// Explorer ========================================================================================
-    override func layout375x667() {
+// TimeControlDelegate =============================================================================
+    override func onPlay() {
+        engine.start(aether: self.aetherView.aether)
     }
-    override func layout375x812() {
+    override func onStep() {
+        engine.doStep()
+    }
+    override func onReset() {
+        timeControl.playButton.stop()
+        engine.configureViews()
+        engine.reset()
+        engine.needsCompile = true
+    }
+    override func onStop() {
+        engine.stop()
     }
 }
