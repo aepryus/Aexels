@@ -988,6 +988,26 @@ And further with the Schwarzschild Metric declaring W != Z it becomes apparent t
 
 ";
 
+"magnetism_name" = "Magnetism";
+
+"magnetism_article" = "Magnetism
+
+Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
+
+To the boys in the pickup truck, the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
+
+Each time a boy tosses the ball an impulse force is applied to the football.  The pickup truck boys see the force as directly horizontal between the two of them.  The side of the road boy sees the force as pointing diagonally and not aligning with the axis of the football.
+
+But, this is the same force; simply from two different perspectives.  One perspective sees it as a purely straight \"electrical\" force; the other as a partially straight \"electrical\" force and a partially perpendicular \"magnetic\" force.
+
+The magnetic component is the cross product of the footballs axis and the frame dependent vector of translation.  When the translation and the axis align this magnetic vector is zero.  It is at a maximum when the two vectors are orthogonal.  But, this magnetic vector which is perpendicular to the plane defined by the axis of the football and the translation vector is purely mathematical.  There is nothing physically happening in this direction.
+
+The Lorentz force when applied is happening perpendicular to this mathematical vector.  Which means that force is happening in the same plane as specified by the two vectors.  It's not really a perpendicular force; only perpendicular to this non physical magnetic vector.
+
+Ultimately, this \"magnetic force\" is simply a mathematical trick that is applied to make a system operating in a different frame \"make sense\" in an alternate frame.
+
+";
+
 "bellTHooft_name" = "Bell and ’t Hooft";
 "bellTHooft_article" = "Bell and ’t Hooft
 
