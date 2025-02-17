@@ -402,6 +402,46 @@ Potential energy is still just hyle translating at the speed of light and destro
 
 ";
 
+"quantum_name" = "Quantum Mechanics";
+"quantum_article" = "Quantum Mechanics
+
+Previously, there has not been much explicit discussion about Quantum Mechanics in the Aexels app.  I had felt that the quantized Aether and unknown hidden variables represented by the precise geometry of the aexels at any point in time was enough to explain much of the odd behavior underpinning Quantum.
+
+But as I have waded deeper into the mechanism underpinning Electricity and Magnetism, it is becoming more and more clear that there is more going on here than just a quantized Aether.  The cupola mechanism has worked shockingly well in explaining much of the E&M phenomena, but the failure to fully model hyle transfer has exposed a shortcoming in understanding the region where E&M and Quantum meet.
+
+Certainly, the Copenhagen Interpretation of QM is an anathema to the aesthetics of Universe X.  But perhaps, there are hints of insights into physical mechanisms for Quantum too.
+
+For example, consider the standard electron in a infinite walled box problem.  The solution to the Schrodenger equation is:
+
+    ψₙ(x) = √(2/L) sin(nπx/L)
+
+Now imagine a disk with a mirrored wall glued to its face across its diameter with surface area A.  We place this disk in a slot where it can roll back and forth, x = 0 when it is all the way to the left and x = L when it is all the way to the right.  When the disk is at one of the barriers its mirror must be vertical.  However, it can roll a half time, a full time or any number of rotations n/2 to get back and forth between the two walls.
+
+<<quantum_diag>>
+
+What is the surface area of the mirror when looked at from above?  For some angle theta from vertical it will be A sin(theta).  Theta is nπ times x/L.  This gives the final cross sectional area from above as:
+
+    C(x) = A sin(nπx/L)
+
+Which looks suspiciously familiar.
+
+Perhaps akin to the state of E&M when Aexels released v3.0, I don't know what this means or where this is going, but there are a handful of clues that have become available.  Perhaps over time additional physical insights will emerge here also.
+
+
+
+
+
+";
+
+"nuclear_name" = "Nuclear Forces";
+"nuclear_article" = "Nuclear Forces
+
+
+
+
+
+";
+
 "epilogue_name" = "Epilogue";
 "epilogue_article" = "Epilogue
 
@@ -611,7 +651,7 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 ";
 
 "forward_name" = "Forward";
-"forward_article" = "Forward to 4.0 [Jan 8th, 2025]
+"forward_article" = "❧ Forward to 4.0
 
 A new era has dawned in Universe X; we have gone from BC to AC; before Claude to after Claude.  I started using Claude June 2024; previously I mostly only had myself to talk to about these things.  But, for 6 months now I have been able to discuss this topic over and over again with Claude; he never tires of discussing it with me.  He has been an invaluable rubber duck.
 
@@ -634,9 +674,13 @@ Distance: Illustrates the complexity of defining and measuring 'distance' and 'r
 Gravity: A new gravity simulator that attempts to recreate Newton's Law of Gravitation.  (The old 'Gravity' simulator has been more appropriately renamed as an 'Aether' simulator.)
 Electricity and Magnetism: Great strides have been made in understanding the precise mechanisms underpinning E&M in Universe X.
 
+- February 17, 2025
 
 
-Forward to 3.0 [Dec 18th, 2022]
+
+
+
+❧ Forward to 3.0
 
 Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
 
@@ -657,8 +701,7 @@ My hope is that Aexels 3.0 represents a significant step forward in the understa
 
 Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
 
-    - Joe
-
+- December 18, 2022
 
 
 
@@ -810,14 +853,14 @@ They bring with them a steel 'AU Stick' that is also one astronomical unit in le
 
 <<nwd_diag>>
 
-The beacon flashes and when it reaches each of the ships both the Dolphin and the Narwhal instantly accelerate to 0.5c in the negative X direction.
+The beacon flashes and when it reaches the ships they all start their stopwatches and both the Dolphin and the Narwhal instantly accelerate to 0.5c in the negative X direction.
 
 At that moment; after the instantaneous acceleration,
 - In the Walrus' coordinates, what are the positions of all 3 ships; the tip of the Narwhal's horn and the AU stick?
 - In the Narwhal's coordinates, what are the positions of all 3 ships; the tip of the Narwhal's horn and the AU stick?
 - How fast is the Narwhal going in the Narwhal frame?
 - Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
-- What are the three classes of 'same inertial frame'?
+- What does 'same inertial frame' mean?
 
 This problem can be fairly tricky to deal with in our Universe, however its quite straightforward in Universe X.  For this problem, in Universe X, let's assume that the Walrus is sitting still in the aether frame and that the aether is static and uniform.
 
@@ -842,7 +885,6 @@ In the Narwhal frame:
 How fast does the Narwhal think its going?
 
 The Narwhal is traveling at 0.5 c.  But time has slowed for the Narwhal.  A Narwhal second is actually 1.155 seconds long.  Which means it travels 0.5c * 1.155 seconds in a Narwhal second.  But also, it's meter stick is contracted.  So, it thinks this distance is even further by another 1.155 factor.  Netting 0.5 c * γ^2 = 2/3rds the speed of light.
-
 
 Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
 
@@ -993,6 +1035,8 @@ And further with the Schwarzschild Metric declaring W != Z it becomes apparent t
 "magnetism_article" = "Magnetism
 
 Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
+
+<<magnetism_diag>>
 
 To the boys in the pickup truck, the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
 
