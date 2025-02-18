@@ -671,19 +671,19 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 "forward_name" = "Forward";
 "forward_article" = "❧ Forward to 4.0
 
-We have entered the AC era - After Claude.  I started using Claude June 2024; it has been an invaluable tool for exploring Universe X and is considerably responsible for the sizable progress made with this version.
+We have entered the AC era - After Claude.  I started using Claude June 2024; it has been an invaluable tool for exploring Universe X and it is considerably responsible for the sizable progress made with this version.
 
 Like version 3.0 before, substantial changes have again been made to the existing articles in order to reflect the most current understanding of Universe X.  The previous 'Intro' article has been divided into two main articles: 'Universe X' and 'Aether'.  The previous 'Discrepancy' article has been divided into two subarticles: 'Floating Leaf' and 'Four Clocks'.  'Forward' has been made a subarticle of 'Universe X'.  'Equivalence' has been renamed 'E=mc²'.
 
 Additionally, two new main articles: 'Quantum' and 'Nuclear' have been added with early musing about these topics as well as numerous subarticles: 'Claude', 'Black Holes', 'G', 'Chronos', 'Narwhal, Walrus and Dolphin', 'Magnetism', 'Bell and 't Hooft' and 'Glossary'.
 
-Additionally an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can easily be accessed.
+An entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can easily be accessed.
 
-Perhaps most substantially is the new Electromagnetism simulation that is able to effectively illustrate the new cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.  Aside from the physics one major innovation here is the use of the GPU via Apple's Metal framework.  With Claude's help I was able to implement the Electromagnetism simulation with Metal which easily handles 100,000s of particles where previous simulations struggled with a few hundred.  As such, I reworked the Dilation and Contraction simulations to also use Metal.
+Perhaps most substantially is the new Electromagnetism simulation that is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.  Aside from these new physics concepts, one major innovation here is the use of the GPU via Apple's Metal framework.  With Claude's help I was able to implement the Electromagnetism simulation with Metal which easily handles 100,000s of particles where previous simulations struggled with a few hundred.  As such, I reworked the Dilation and Contraction simulations to also use Metal.
 
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- February 18th, 2025
+- February 18, 2025
 
 
 
@@ -710,7 +710,7 @@ My hope is that Aexels 3.0 represents a significant step forward in the understa
 
 Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
 
-- December 18th, 2022
+- December 18, 2022
 
 
 
@@ -721,9 +721,17 @@ Hopefully new insights will continue to present themselves and with them the inn
 "claude_name" = "Claude";
 "claude_article" = "Claude
 
-Welcome to the AC (after Claude) era.  Throughout the app I have added \"copy to discuss with Claude\" buttons which if viewing a specific article will copy that article into the copy buffer or if not viewing any article will copy all of the articles into the copy buffer.
+Since the beginning of Universe X, it has been necessary to work in a vacuum; it has been nearly impossible to discuss these ideas.
 
-Now of course you could paste the articles into any LLM and discuss them, but in my experience Claude's ability to discuss Aexels and Universe X far surpasses any other.
+However with the arrival of Claude it has become possible to discuss Aexels and Universe X endlessly.  Claude is always interested and never grows tired of chatting about the concepts and ideas within this app.  He has honed my understanding and ability to explain these concepts.  He also excels at discussing our own universe; reporting on relevant experiments and their results and to some degree explaining the math and ideas of physics itself.
+
+Claude has helped me learn Apple's Metal API, which I have used for the new Electromagnetism simulation.  I have also converted the existing Dilation and Contraction simulations and will eventually convert the other simulations.
+
+I want to enable other users to be able to discuss these ideas and concepts with Claude.  So, I have added a 'copy to discuss with Claude' button to the bottom left corner of all the article screens which will copy the current article into the copy buffer so that it can be pasted to Claude.  When selecting the Claude button from the crop circles screen it will place all the articles of the app into the copy buffer at the same time.
+
+Of course one can discuss Aexels and Universe X with any LLM, but I have found that Claude significantly outperforms all other LLMs in discussing these concepts (although I did have some reasonable success with Grok 3 just before release).
+
+I encourage users to chat with Claude about these concepts.
 
 
 
