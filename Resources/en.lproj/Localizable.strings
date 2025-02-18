@@ -21,6 +21,8 @@ Universe X is quite different from our own.  Our universe can, at times, seem qu
 
 In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
 
+The Aexel
+
 Universe X consists of a large number of a single entity called an 'aexel'.
 
 These aexels have state, they can move and flow, they can form bonds with their nearby neighbors and they can send signals to those neighbors.
@@ -29,11 +31,15 @@ They also can be created or destroyed as a result of those signals.
 
 The entire DNA of the universe is contained in each one of these aexels.
 
+Space and Time
+
 However, aside from these aexels, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
 
-Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X, space and time are entirely separate notions that are not intertwined at all.
+Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X space and time are entirely separate, entirely intuitive notions.
 
-Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Answering these questions and many more will be the primary focus of this app for years to come.
+Motive
+
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Ultimately, the primary focus of this app for years past and years to come is to discover the source code for the aexel; the DNA of Universe X.
 
 As such, let our exploration begin...
 
@@ -665,28 +671,19 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 "forward_name" = "Forward";
 "forward_article" = "❧ Forward to 4.0
 
-A new era has dawned in Universe X; we have gone from BC to AC; before Claude to after Claude.  I started using Claude June 2024; previously I mostly only had myself to talk to about these things.  But, for 6 months now I have been able to discuss this topic over and over again with Claude; he never tires of discussing it with me.  He has been an invaluable rubber duck.
+We have entered the AC era - After Claude.  I started using Claude June 2024; it has been an invaluable tool for exploring Universe X and is considerably responsible for the sizable progress made with this version.
 
-The result has been a significant improvement in the understanding (and explaining) of existing concepts in Universe X and a significant increase in the rate of discovering new concepts.  Most substantially, this version represents a massive increase in the understanding of Electricity and Magnetism.  All existing articles have been overhauled, numerous new ones have been added and 3 new explorers have been developed:
+Like version 3.0 before, substantial changes have again been made to the existing articles in order to reflect the most current understanding of Universe X.  The previous 'Intro' article has been divided into two main articles: 'Universe X' and 'Aether'.  The previous 'Discrepancy' article has been divided into two subarticles: 'Floating Leaf' and 'Four Clocks'.  'Forward' has been made a subarticle of 'Universe X'.  'Equivalence' has been renamed 'E=mc²'.
 
-Articles:
-Universe X
-Aether
+Additionally, two new main articles: 'Quantum' and 'Nuclear' have been added with early musing about these topics as well as numerous subarticles: 'Claude', 'Black Holes', 'G', 'Chronos', 'Narwhal, Walrus and Dolphin', 'Magnetism', 'Bell and 't Hooft' and 'Glossary'.
 
-Subarticles:
-Claude
-Black Holes
-Chronos
-Narwhal, Walrus and Dolphin
-The W, X, Y and Z Clocks
-Bell and 't Hooft
+Additionally an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can easily be accessed.
 
-Explorers:
-Distance: Illustrates the complexity of defining and measuring 'distance' and 'radius' in Universe X.
-Gravity: A new gravity simulator that attempts to recreate Newton's Law of Gravitation.  (The old 'Gravity' simulator has been more appropriately renamed as an 'Aether' simulator.)
-Electricity and Magnetism: Great strides have been made in understanding the precise mechanisms underpinning E&M in Universe X.
+Perhaps most substantially is the new Electromagnetism simulation that is able to effectively illustrate the new cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.  Aside from the physics one major innovation here is the use of the GPU via Apple's Metal framework.  With Claude's help I was able to implement the Electromagnetism simulation with Metal which easily handles 100,000s of particles where previous simulations struggled with a few hundred.  As such, I reworked the Dilation and Contraction simulations to also use Metal.
 
-- February 17, 2025
+I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
+
+- February 18th, 2025
 
 
 
@@ -713,7 +710,8 @@ My hope is that Aexels 3.0 represents a significant step forward in the understa
 
 Hopefully new insights will continue to present themselves and with them the inner working of Universe X will continue to come into focus.
 
-- December 18, 2022
+- December 18th, 2022
+
 
 
 
