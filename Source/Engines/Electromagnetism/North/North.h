@@ -13,6 +13,7 @@ typedef struct CV2 {
     double y;
 } CV2;
 
+CV2 CV2Add(CV2 a, CV2 b);
 CV2 CV2Neg(CV2 a);
 double CV2Length(CV2 a);
 double CV2Orient(CV2 a);

@@ -13,6 +13,10 @@
 #import <stdio.h>
 
 // CV2 =============================================================================================
+CV2 CV2Add(CV2 a, CV2 b) {
+    CV2 c = {a.x + b.x, a.y + b.y};
+    return c;
+}
 CV2 CV2Neg(CV2 a) {
     CV2 b = {-a.x, -a.y};
     return b;

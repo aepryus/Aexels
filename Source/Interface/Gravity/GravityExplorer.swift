@@ -7,6 +7,7 @@
 //
 
 import Acheron
+import MetalKit
 import UIKit
 
 class GravityExplorer: Explorer {
@@ -17,7 +18,10 @@ class GravityExplorer: Explorer {
     
     // Universe ===
     let engine: GravityEngine = GravityEngine(size: .zero)
-    lazy var gravityView = GravityView(engine: engine)
+    lazy var gravityViewQ = GravityView(engine: engine)
+    
+    private var gravityMetal: MTKView!
+    var renderer: GravityRenderer!
 
     init() { super.init(key: "gravity") }
     
@@ -29,12 +33,19 @@ class GravityExplorer: Explorer {
         tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 1, r: 1)
 
         super.viewDidLoad()
+        
+        gravityMetal = MTKView(frame: view.bounds)
+        gravityMetal.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        gravityMetal.isOpaque = false
+        
+        renderer = GravityRenderer(view: gravityMetal)
+
 
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
-                LimboCell(content: gravityView, c: 0, r: 0),
+                LimboCell(content: gravityMetal, c: 0, r: 0),
                 MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
@@ -43,7 +54,7 @@ class GravityExplorer: Explorer {
             ]
         } else {
             cyto.cells = [
-                LimboCell(content: gravityView, c: 0, r: 0, h: 3),
+                LimboCell(content: gravityMetal, c: 0, r: 0, h: 3),
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
@@ -63,7 +74,7 @@ class GravityExplorer: Explorer {
     override func layoutRatio046() {
         super.layoutRatio046()
                 
-        engine.size = gravityView.frame.size
+//        engine.size = gravityView.frame.size
     }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -80,6 +91,6 @@ class GravityExplorer: Explorer {
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         
-        engine.size = gravityView.frame.size
+//        engine.size = gravityView.frame.size
     }
 }
