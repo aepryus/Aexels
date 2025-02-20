@@ -33,13 +33,13 @@ The entire DNA of the universe is contained in each one of these aexels.
 
 Space and Time
 
-However, aside from these aexels, Universe X also has two other aspects: space and time.  Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
+Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
 
 Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X space and time are entirely separate, entirely intuitive notions.
 
 The Goal
 
-Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Ultimately, the primary focus of this app for years past and years to come is to discover the source code for the aexel; the DNA of Universe X.
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Ultimately, the primary focus of this app from years past and for years to come is to discover the source code for the aexel; the DNA of Universe X.
 
 As such, let our exploration begin...
 
@@ -101,7 +101,7 @@ The matter of Universe X is not fundamental.  It is not made up of point particl
 
 However, there are also some differences between Universe X and most cellular automata.  Unlike the static cells of Conway's game of life, the cells of Universe X are dynamic; they can move, they can be created and they can be destroyed.  The creation and destruction of aexels creates density imbalances which are the ultimate cause of the flow of the aether.
 
-In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring a state change from one aexel to its neighbors.  This delay is called a 'tic'.
+In a cellular automaton, a computer will calculate each time step in its entirety before moving the system forward.  There is no such master computer in Universe X.  There is simply a time delay in transferring information from one aexel to its neighbors.  This delay is called a 'tic'.
 
 Each aexel can only directly affect its neighbors and this effect takes one tic of time to occur.  Therefore the fastest a signal can move across a field of aexels is one aexel per tic.
 
@@ -116,19 +116,40 @@ In Universe X, one aexel per tic is referred to as 'the speed of light'.
 "kinematics_name" = "Kinematics";
 "kinematics_article" = "Kinematics
 
-Kinematics is the study of motion absent of force.  In our universe, such motion is quite straightforward.  Generally things in Universe X are less complicated than in our own universe, but in this case things in Universe X are considerably more complicated.
+In our universe (non quantum) motion without forces is quite straightforward; each object has a position and a velocity and that's all there is to it.  Most things in Universe X are substantially less complicated than in our universe.  In this case, Universe X is considerably more complicated.
 
-In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at some later time.  However, this definition is perhaps unnecessarily restrictive.
+In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at a later time.  However, this definition is perhaps unnecessarily restrictive.
 
-If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting; does not do so in place; it \"moves\".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting, does not do so in place; it \"moves\".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
 
-Similarly, all of the stable state loops in Universe X have the ability to translate across a field of aexels.  However, due to the 'tic' time delay in transferring state from one aexel to its neighbor, this motion is strictly bound by the 'speed of light' (i.e., one aexel per tic).  This translation is one of the forms of motion possible in Universe X.
+{{GameOfLife}}
 
-But there is another entirely different way in which a stable state loop can move.  Since the aexels themselves can move, it is possible for a stable state loop that is not translating across an aexel field at all, to simply move along with aexels it is sitting upon, like a leaf floating down a stream.  And since this motion is not dependent on the signal delay between neighboring aexels, its speed is in no way bounded.
+The matter of Universe X is made up of analogous stable state loops; loops that can translate across the aexels while continuing their existence.  But, this translation of the stable state loop is only one of the ways it can change its position.
 
-And of course a stable state loop could be (and most of the time probably is) experiencing both of these forms of motion simultaneously.
+Since the aexels themselves can move, it is possible for a stable state loop sitting on top of those aexels to move along with them, like a leaf floating down a stream.  It may also be the case (and most likely usually is) that both types of these motions are happening simultaneously.
 
-There are some rather sticky ramifications to all of this.  In our universe a single particle moving in the absence of force can be described entirely by a velocity vector (ignoring quantum effects for the time being).  In Universe X, in order to accurately understand the motion of a stable state loop it is necessary to know the translating velocity of the loop measured in aexels per time as well as both the velocity of the aexels measured in distance per time and density of those same aexels, which in a simple system could be constant, but in more complex situations could vary from place to place.
+
+Translating Stable State Loop
+
+Conway's Game of Life's 'glider' is a translating stable state loop.  The matter of Universe X is made of analogous translating stable state loops.  Obviously 'translating stable state loop' will quickly get unwieldy, so let's simply refer to them as 'loops' or 'particles' interchangeably (in order to better interact with the physics of our universe).  Just keep in mind 'translating stable state loop' is what is meant and that the particles of Universe X are not point particles.
+
+
+How Big are Particles?
+
+If the particles of Universe X are not point particles, then how big are they?  In our universe there is a notion of minimum distance called the Planck length.  I think we can assume that the distance between any two bound aexels is equal to the Planck length, the minimum measurable distance.
+
+Now there is a lot of fuzziness on the exact numerical value of the Planck length, but perhaps we can assume that at least the magnitude is in the ballpark.  This length is spectacularly small (1.616 x 10^-35m); much smaller than the radius of a proton.
+
+Consider this, if we were to increase the Planck length to 1 nm, a proton placed at the center of the solar system would extend to 35% of the distance to the Earth.  Which is to say that the particles of Universe X are gargantuan compared to the aexels.
+
+
+Edisons and Teslons
+
+The fastest a signal can move in Universe X is one aexel per tic, referred to as the speed of light.  Certain particles move at the speed of light, others move at less than the speed of light, but no particle can do both; this seems like a good way to classify particles.
+
+A frisbee flies through the air at a velocity v, but the frisbee is also spinning while it flies.  The parts of the frisbee are moving at various velocities, some greater than v, some less than v (a few at precisely v).  In order for the frisbee to travel at c some of its parts would need to travel at greater than c.  Since nothing can travel greater than c, the frisbee itself would never be able to travel at c.
+
+Perhaps this is what differentiates particles that travel at c and those that travel at less than c.  Some particles move in a straight line directly from one point to another at c; let's refer to these particles as edisons.  Other particles have internal structure and alternate their motion back and forth in some manner resulting in a net velocity of less than c; let's refer to these particles as teslons.
 
 
 
@@ -704,7 +725,7 @@ Another innovation with this version is its use of the GPU via Apple's Metal fra
 
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- February 19, 2025
+- February 20, 2025
 
 
 
