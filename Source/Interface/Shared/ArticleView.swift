@@ -20,6 +20,7 @@ class ArticleView: AEView {
     weak var scrollView: UIScrollView? = nil
     var color: UIColor = .black.tint(0.4)
     var font: UIFont = .optima(size: 16*Screen.s)
+    var italicFont: UIFont = .optimaItalic(size: 13*Screen.s)
 
     private let imageView: UIImageView = UIImageView()
     private let pdfView: PDFView = PDFView()
@@ -71,17 +72,31 @@ class ArticleView: AEView {
         let template = "\(key)_article".localized
         var texts: [String] = []
         var images: [UIImage] = []
+        
+        let indentWidth: CGFloat = 70*s
 
         var i: Int = 0
         while i < template.count {
             let leftA: Int? = template.loc(of: "<<", after: i)
             let leftB: Int? = template.loc(of: "{{", after: i)
+            let leftC: Int? = template.loc(of: "**", after: i)
             
-            if let leftA, leftB == nil || leftA < leftB!, let right: Int = template.loc(of: ">>", after: leftA) {
+            let markers = [leftA, leftB, leftC].compactMap { $0 }
+            guard let closest = markers.min() else {
+                texts.append(template[i...template.count-1])
+                i = template.count
+                continue
+            }
+            
+            if let leftC, closest == leftC, let right: Int = template.loc(of: "**", after: leftC + 2) {
+                texts.append(template[i...leftC-1])
+                texts.append("§" + template[leftC+2...right-1] + "§")
+                i = right + 2
+            } else if let leftA, closest == leftA, let right: Int = template.loc(of: ">>", after: leftA) {
                 texts.append(template[i...leftA-1])
                 images.append(UIImage(named: template[leftA+2...right-1])!.withTintColor(color))
                 i = right+2
-            } else if let leftB, let right: Int = template.loc(of: "}}", after: leftB) {
+            } else if let leftB, closest == leftB, let right: Int = template.loc(of: "}}", after: leftB) {
                 texts.append(template[i...leftB-1])
                 images.append(UIImage(named: template[leftB+2...right-1])!)
                 i = right+2
@@ -108,10 +123,17 @@ class ArticleView: AEView {
         var h: CGFloat = y
         
         let pen = Pen(font: font, color: color, alignment: .left)
+        let italicPen = Pen(font: italicFont, color: color, alignment: .left)
 
         for i in 0..<texts.count {
-            let height: CGFloat = texts[i].boundingRect(with: CGSize(width: w, height: 19999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size.height
-            h += height
+            let height: CGFloat
+            if texts[i].hasPrefix("§") && texts[i].hasSuffix("§") {
+                height = texts[i].boundingRect(with: CGSize(width: w - indentWidth, height: 19999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: italicPen.attributes, context: nil).size.height
+                h += height
+            } else {
+                height = texts[i].boundingRect(with: CGSize(width: w, height: 19999), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: pen.attributes, context: nil).size.height
+                h += height
+            }
             tHs.append(height)
             if i < images.count {
                 let w: CGFloat = min(images[i].size.width, width * 0.84)
@@ -130,7 +152,12 @@ class ArticleView: AEView {
             c.setFillColor(UIColor.white.cgColor)
 
             for i in 0..<texts.count {
-                texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
+                if texts[i].hasPrefix("§") && texts[i].hasSuffix("§") {
+                    let styledText = String(texts[i].dropFirst().dropLast())
+                    styledText.draw(in: CGRect(x: indentWidth, y: y, width: w-indentWidth, height: tHs[i]), pen: italicPen)
+                } else {
+                    texts[i].draw(in: CGRect(x: 0, y: y, width: w, height: tHs[i]), pen: pen)
+                }
                 y += tHs[i]
                 if i < images.count {
                     let w: CGFloat = min(images[i].size.width, width * 0.84)

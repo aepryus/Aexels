@@ -131,7 +131,7 @@ Since the aexels themselves can move, it is possible for a stable state loop sit
 
 Translating Stable State Loop
 
-Conway's Game of Life's 'glider' is a translating stable state loop.  The matter of Universe X is made of analogous translating stable state loops.  Obviously 'translating stable state loop' will quickly get unwieldy, so let's simply refer to them as 'loops' or 'particles' interchangeably (in order to better interact with the physics of our universe).  Just keep in mind 'translating stable state loop' is what is meant and that the particles of Universe X are not point particles.
+Conway's Game of Life's 'glider' is a translating stable state loop.  The matter of Universe X is made of analogous translating stable state loops.  Obviously the term 'translating stable state loop' will quickly get unwieldy, so let's simply refer to them as 'loops' or 'particles' interchangeably (in order to better interact with the physics of our universe).  Just keep in mind 'translating stable state loop' is what is meant and that the particles of Universe X are not point particles.
 
 
 How Big are Particles?
@@ -160,28 +160,20 @@ Perhaps this is what differentiates particles that travel at c and those that tr
 "gravity_name" = "Gravity";
 "gravity_article" = "Gravity
 
+\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
+       - Isaac Newton
+
 Gravity is the tendency of objects with mass to move towards one another.
 
-Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.  But, he acknowledged some discomfort with this idea:
+Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.
 
-\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
-
-When Albert Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
+When Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
 
 But, even with Newton and Einstein's contributions to Gravity we still really don't understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
 
-But, in Universe X, Gravity is a quite simple and mundane phenomenon.
+However, in Universe X, Gravity is a quite simple and mundane phenomenon.
 
-In Universe X there exists many different types of stable state loops.  There are potentially three ways these loops could interact with the aexels:
-
-- they could destroy aexels:
-It is quite certain that there are loops that destroy aexels in Universe X.  In Universe X these loops are referred to as 'matter'.  This article, 'Gravity', pertains to these types of loops.
-
-- they could create aexels:
-That there exists loops that create aexels in Universe X is somewhat speculative, but for a number of reasons not a tremendous leap.  The article 'Darkness' pertains to these type of loops.
-
-- they could do neither:
-Given the cellular automata analogy to Universe X, it's easy to imagine the existence of loops that don't affect the aexels; that neither create or destroy them.  However, perhaps it is necessary to consider the possibility that these loops are less prevalent than one might initially guess.  The 'Equivalence' and 'Electromagnetism' articles discuss these possibilities further.
+In Universe X there exists many different types of loops.  There are potentially three ways these loops could interact with the aexels: they could destroy them (discussed here in the Gravity article), they could create them (speculated about in the Darkness article) or they could do neither (as mentioned in the Electromagnetism article).
 
 Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
 
@@ -190,6 +182,85 @@ Imagine a round table with a table cloth upon it.  On the table cloth there are 
 In Universe X as various concentrations of matter continually destroy the aether between one another that matter itself will continually tend to clump together.  As that clump of matter gets bigger and bigger (or perhaps more precisely, more and more dense) the velocity at which the aether is pulled towards the clump will increase.
 
 At some point, certain clumps in Universe X get so big (dense) and the velocity of the aexels flowing towards the clump becomes so great that a signal moving at one aexel per tic ('the speed of light') will not be able to escape the clump.  In Universe X, any clump that draws aether in at the speed of light is referred to as a black hole.
+
+
+
+
+
+";
+
+"darkness_name" = "Darkness";
+"darkness_article" = "Darkness
+
+Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
+
+From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
+
+Luckily, once again, Universe X isn't nearly so magical.
+
+Previously, we have mentioned 3 types of stable state loops:
+
+- Loops that destroy aexels
+- Loops that create aexels
+- Loops that do neither
+
+This article concerns the 'loops that create aexels'.  Let's call those loops 'antimatter'.
+
+In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If a matter loop destroys aexels then perhaps it's the case that an antimatter loop creates them.
+
+And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
+
+It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.  And if a matter loop destroys aexels at the same rate that an antimatter loop creates them then perhaps the total number of aexels is always in balance.
+
+This net teleportation of aexels from inside of galaxies to outside of galaxies could then account for a red shift of photons traveling through the antimatter dust; making a steady state universe appear to be expanding.
+
+Alternatively, Universe X may have been initially seeded with more antimatter loops or perhaps the rate that antimatter loops create aexels is greater than the rate the matter loops destroy them and Universe X really is expanding.
+
+If this explains the 'Dark Energy' of Universe X, what about the 'Dark Matter'?
+
+The aexels of Universe X form a crystal like lattice.  They sit in a potential well not wanting to get too far away from one another, but also not wanting to get too close.  It can be difficult to tell the difference between a pull and a push.
+
+The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
+
+As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
+
+
+
+
+
+";
+
+"hyle_name" = "E=mc²";
+"hyle_article" = "E=mc²
+
+\"When the Inuit go fishing they don't look for fish.  They look for the blue heron, because there is no way to see the fish.  But, if there is fish there is going to be birds fishing.\"
+       - Dr. House
+
+A young lady places a playing card in the spokes of her bike using a clothes pin; her tires are wet because she just rode through a puddle.  Assuming she is always moving at a constant speed, the bike draws tire marks on the road at a constant rate while the card is clicking at a constant volume.  As such the proportion of tire marks being drawn to sound being made is constant.  If the number of bicycles doubles, both the volume of the clicking and rate of tire marks drawn each double while their proportion stays the same.
+
+{{bicycle}}
+
+If she rides around and around in a circle it is easier to hear the sound (because it's nearby) and more difficult to see the tire marks (because she keeps riding over the same marks).  If she rides in a straight line it is easier to see the tire marks and harder to hear the sound.
+
+But no matter how she is riding, the bike is always drawing tire marks and always making sound and always in the same proportion.  Just because she starts riding in a straight line, sound isn't suddenly converted into tire marks and just because she starts riding in a circle, tire marks aren't suddenly converted into sound.
+
+If one measures the sound or if one measures the tire marks; what they are really measuring is the number of bikes by observing the effects of those bikes.
+
+In Universe X there is a conserved quantity; let's call it 'hyle' (a nod to Aristotle).  Hyle always translates at the speed of light and always destroys aexels as it translates and always in the same proportion.  Two separate effects of a single entity; the translation effect associated with energy, the aexel destruction effect associated with mass.
+
+There are two types of particles in Universe X, teslons that have internal motion and thus always must travel at less than c (an aexel per tic) and edisons that simply move in a straight line always at exactly c.  But, the hyle in teslons and edisons is always moving (at c) and always destroying aexels and always in the same proportions.
+
+The motion of the hyle in the teslon is less obvious because it's mostly bouncing back and forth.  The destruction of aexels in the edisons is less obvious because it's always happening in the edison's wake, never internal to itself.  But, in both cases both effects are always occurring and always in the same proportion.
+
+Consider our own sun, which loses about 4 x 10^9 kg of mass every second through the fusion process; radiating about 3.6 x 10^26 joules of photons.  Since photons are supposedly massless, this process is often described as mass being converted into energy.  But in looking at Universe X, we can see that is not what is happening.
+
+During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 antineutrinos).
+
+The hyle is going from bouncing back and forth within the hydrogen atoms to translating in a straight line within the photon.  It is still translating at the speed of light; it is still destroying aexels.  Nothing has been converted into anything else.  The only thing that has changed is the hyle has gone from bouncing around to moving in a straight line.
+
+And while the destruction of aexels isn't happening inside the photons themselves, it is happening in their wake.  The photons are still causing the mass effect.  The photons have mass.
+
+It is not mass that prevents something from moving at the speed of light, but rather internal motion.
 
 
 
@@ -302,85 +373,6 @@ Measuring the speed of light with a meter stick is essentially a tautological ex
 One other important thing to note, is that this contraction only applies to the physical items in the system that is translating, not to the rest of the non-translating universe that happens to lie along the direction of translation.
 
 If a ship is heading towards some distant star, the amount of contracted meter sticks that will fit between the ship and the star will increase as the translation speed of the ship increases.  The distance to the star itself will not contract and therefore the distance to the star will appear to increase as the ship's speed increases.
-
-
-
-
-
-";
-
-"darkness_name" = "Darkness";
-"darkness_article" = "Darkness
-
-Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
-
-From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
-
-Luckily, once again, Universe X isn't nearly so magical.
-
-Previously, we have mentioned 3 types of stable state loops:
-
-- Loops that destroy aexels
-- Loops that create aexels
-- Loops that do neither
-
-This article concerns the 'loops that create aexels'.  Let's call those loops 'antimatter'.
-
-In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If a matter loop destroys aexels then perhaps it's the case that an antimatter loop creates them.
-
-And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
-
-It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.  And if a matter loop destroys aexels at the same rate that an antimatter loop creates them then perhaps the total number of aexels is always in balance.
-
-This net teleportation of aexels from inside of galaxies to outside of galaxies could then account for a red shift of photons traveling through the antimatter dust; making a steady state universe appear to be expanding.
-
-Alternatively, Universe X may have been initially seeded with more antimatter loops or perhaps the rate that antimatter loops create aexels is greater than the rate the matter loops destroy them and Universe X really is expanding.
-
-If this explains the 'Dark Energy' of Universe X, what about the 'Dark Matter'?
-
-The aexels of Universe X form a crystal like lattice.  They sit in a potential well not wanting to get too far away from one another, but also not wanting to get too close.  It can be difficult to tell the difference between a pull and a push.
-
-The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
-
-As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
-
-
-
-
-
-";
-
-"hyle_name" = "E=mc²";
-"hyle_article" = "E=mc²
-
-\"When the Inuit go fishing they don't look for fish.  They look for the blue heron, because there is no way to see the fish.  But, if there is fish there is going to be birds fishing.\"
-       - Dr. House
-
-A young lady places a playing card in the spokes of her bike using a clothes pin; her tires are wet because she just rode through a puddle.  Assuming she is always moving at a constant speed, the bike draws tire marks on the road at a constant rate while the card is clicking at a constant volume.  As such the proportion of tire marks being drawn to sound being made is constant.  If the number of bicycles doubles, both the volume of the clicking and rate of tire marks drawn each double while their proportion stays the same.
-
-{{bicycle}}
-
-If she rides around and around in a circle it is easier to hear the sound (because it's nearby) and more difficult to see the tire marks (because she keeps riding over the same marks).  If she rides in a straight line it is easier to see the tire marks and harder to hear the sound.
-
-But no matter how she is riding, the bike is always drawing tire marks and always making sound and always in the same proportion.  Just because she starts riding in a straight line, sound isn't suddenly converted into tire marks and just because she starts riding in a circle, tire marks aren't suddenly converted into sound.
-
-If one measures the sound or if one measures the tire marks; what they are really measuring is the number of bikes by observing the effects of those bikes.
-
-In Universe X there is a conserved quantity; let's call it 'hyle' (a nod to Aristotle).  Hyle always translates at the speed of light and always destroys aexels as it translates and always in the same proportion.  Two separate effects of a single entity; the translation effect associated with energy, the aexel destruction effect associated with mass.
-
-There are two types of particles in Universe X, teslons that have internal motion and thus always must travel at less than c (an aexel per tic) and edisons that simply move in a straight line always at exactly c.  But, the hyle in teslons and edisons is always moving (at c) and always destroying aexels and always in the same proportions.
-
-The motion of the hyle in the teslon is less obvious because it's mostly bouncing back and forth.  The destruction of aexels in the edisons is less obvious because it's always happening in the edison's wake, never internal to itself.  But, in both cases both effects are always occurring and always in the same proportion.
-
-Consider our own sun, which loses about 4 x 10^9 kg of mass every second through the fusion process; radiating about 3.6 x 10^26 joules of photons.  Since photons are supposedly massless, this process is often described as mass being converted into energy.  But in looking at Universe X, we can see that is not what is happening.
-
-During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 antineutrinos).
-
-The hyle is going from bouncing back and forth within the hydrogen atoms to translating in a straight line within the photon.  It is still translating at the speed of light; it is still destroying aexels.  Nothing has been converted into anything else.  The only thing that has changed is the hyle has gone from bouncing around to moving in a straight line.
-
-And while the destruction of aexels isn't happening inside the photons themselves, it is happening in their wake.  The photons are still causing the mass effect.  The photons have mass.
-
-It is not mass that prevents something from moving at the speed of light, but rather internal motion.
 
 
 
@@ -782,27 +774,34 @@ I encourage users to chat with Claude about these concepts.
 ";
 
 "blackHole_name" = "Black Holes";
-"blackHole_article" = "What is Inside a Black Hole?
+"blackHole_article" = "What's Inside of a Black Hole?
 
-In our universe the interior of a black hole is quite a mystery.  Perhaps there is a singularity inside; perhaps a portal to a worm hole or another universe.
+There have been times when I thought I had a handle on this topic, but each time I have found fatal flaws that brought each of the ideas crashing down.  This will be a set of musings and questions as opposed to answers.
 
-But, in Universe X, once again things are not so mysterious; by considering the mechanisms in play we can infer a lot about the interior of a black hole.
+In Universe X at the event horizon the aexels are flowing inward at one aexel per tic, which is why light cannot escape, because an edison traveling outward would fall back into the black hole like a runner running on a treadmill set too high.
 
-In Universe X, a black hole is any accumulation of mass that is dense enough to draw the aexels in at the speed of light; or more accurately to cause them to flow across the horizon at one aexel per tic.
+For a constant density sphere, once inside, the gravitational force would drop off linearly, but the escape velocity would continue to increase all the way to the center.
 
-Perhaps before we get to black holes we should consider something a bit easier to think about such as a planet with uniform density.  As we get closer and closer to a planet the gravitational force continually increases as well as the escape velocity which in Universe X is equal to rate of flow of the aexels inward.  The escape velocity will be greatest at the surface and then drop off the further you get away from the planet's surface.
+The only way to prevent the escape velocity from continuing to increase in the interior is to have the black hole be a perfect shell.  If it isn't a perfect shell then the escape velocity continues to increase its velocity beyond c.
 
-Once we pass through the surface of the planet and start to dig towards the center there will still be a gravitational force inward and as such the escape velocity will continue to increase.  But the gravitational force will begin to fall off until you reach the center of the planet where it will be zero.  But, the gravity itself will never point outwards; the escape velocity will always be increasing and therefore the aexels will never slow down.
+Just as a teslon cannot move at the speed of light, a teslon cannot sit still on aexels flowing at the speed of light.  It would seem that there can be no teslons in the interior of the black hole; all hyle must be converted into edisons.
 
-So the first question is can their be vacuum inside the even horizon?  Since we know that the escape velocity is greatest at the surface of a mass in order for their to be space inside the horizon the aexels would need to flow at greater than one aexel per tic at the surface.  But it is impossible for teslons to sit still on aexels flowing at the the speed of light or greater and so there could be no solid surface.  Similarly it is not possible for edisons to sit still on aexels moving faster than the speed of light.
+But while edisons could potentially sit still on aexels flowing at c, they certainly couldn't sit still on aexels flowing at greater than c.  If the aexels are flowing at greater than c then it would seem that all the hyle would be sent to a point at the center of the black hole.
 
-From this we can say that teslons can not be at the surface with the aexel flow at the speed of light or greater and while edisons can be at the surface of aexels flowing at the speed of light they can't be at the surface of edisons greater than the speed of light.  So, the surface of a black hole must be made up of edisons.
+Instead perhaps the black hole is a perfect shell of edisons.  Due to the shell theorem all the aexels inside are being pulled equally in all directions leaving them motionless.  All of the destroyed aexels being pulled exclusively from the exterior.  Any hyle falling into the black hole may quickly cross the interior but will then be trapped at the horizon on the other side.
 
-At the horizon of the black hole the aexels are flowing in at one aexel per tic.  Where no teslon could sit.  In order for a teslon to sit in the interior of the black hole the aexels would need to slow down.  But slowing down would require a gravitational force pushing outward which as discussed above is counter to how gravity works.
+Also, if all teslons are converted into edisons how are baryon and lepton numbers conserved?  Are there edisons that can maintain the conservation of these and other numbers?
 
-As such the aexels must continually flow at the speed of light within the interior of the black hole and as such all matter within the black hole must be in the form of edisons.  Which is to say that all teslons (protons, neutrons and electrons) will be converted into edisons (protons) when crossing over the horizon.
 
-As such the interior of a black hole will be pure light (or some other form of edison).
+A Mildly Interesting Aside
+
+I had always assumed that the Earth was close enough to a uniform density sphere that its gravitational field was strongest at its surface.  But, in researching this question I found out that it isn't true.
+
+Here is a plot of the gravitational field of the Earth at r using the PREM model.
+
+{{EarthPREM}} **Image: Allen McCloud (Wikimedia Commons user AllenMcC). Licensed under Attribution 3.0 Unported (https://creativecommons.org/licenses/by/3.0/deed.en)**
+
+According to this model the field strength actually increases until ~0.54 r before it starts quickly falling off.
 
 
 
