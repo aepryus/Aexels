@@ -61,11 +61,11 @@ class Article {
     
     static let forward: Article = Article(key: "forward", parent: intro)
     static let claude: Article = Article(key: "claude", parent: intro)
-    static let blackHole : Article = Article(key: "blackHole", parent: gravity)
     static let G: Article = Article(key: "G", parent: gravity)
     static let chronos : Article = Article(key: "chronos", parent: dilation)
     static let floatingLeaf: Article = Article(key: "floatingLeaf", parent: dilation)
     static let fourClocks : Article = Article(key: "fourClocks", parent: dilation)
+    static let blackHole : Article = Article(key: "blackHole", parent: dilation)
     static let narwhal : Article = Article(key: "narwhal", parent: contraction)
     static let magnetism: Article = Article(key: "magnetism", parent: electromagnetism)
     static let bellTHooft : Article = Article(key: "bellTHooft", parent: quantum)

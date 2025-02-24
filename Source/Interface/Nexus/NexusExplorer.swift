@@ -174,11 +174,11 @@ class NexusExplorer: AEViewController {
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
         let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 200*s, y: 150*s)
-        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 350*s, y: 770*s)
-        let gGlyph: AsideGlyph = AsideGlyph(article: .G, radius: 36*s, x: 260*s, y: 770*s)
-        let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1110*s)
-        let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 350*s, y: 1180*s)
-        let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 280*s, y: 1210*s)
+        let gGlyph: AsideGlyph = AsideGlyph(article: .G, radius: 36*s, x: 300*s, y: 760*s)
+        let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1040*s)
+        let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 396*s, y: 1142*s)
+        let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 336*s, y: 1190*s)
+        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 270*s, y: 1200*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
         let magnetismGlyph: AsideGlyph = AsideGlyph(article: .magnetism, radius: 74*s, x: 100*s, y: 1230*s)
         let bellTHooftGlyph: AsideGlyph = AsideGlyph(article: Article.bellTHooft, radius: 60*s+2*p, x: 90*s, y: 1340*s)
@@ -239,7 +239,6 @@ class NexusExplorer: AEViewController {
         gravityGlyph.link(to: darknessGlyph)
         gravityGlyph.link(to: distanceExpGlyph)
         gravityGlyph.link(to: gravityExpGlyph)
-        gravityGlyph.link(to: blackHoleGlyph)
         gravityGlyph.link(to: gGlyph)
         
         darknessGlyph.link(to: hyleGlyph)
@@ -251,6 +250,7 @@ class NexusExplorer: AEViewController {
         dilationGlyph.link(to: chronosGlyph)
         dilationGlyph.link(to: floatingLeafGlyph)
         dilationGlyph.link(to: fourClocksGlyph)
+        dilationGlyph.link(to: blackHoleGlyph)
 
         contractionGlyph.link(to: electromagnetismGlyph)
         contractionGlyph.link(to: contractionExpGlyph)

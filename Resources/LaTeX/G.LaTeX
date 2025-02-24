@@ -1,0 +1,13 @@
+A=qB
+F=G\frac{m_1m_2}{r^2}
+A=G\frac{m}{r^2}
+G=qG_1
+q=\frac{1}{1s}
+A=\frac{qG_1m}{r^2}
+[G_1]=\frac{m^3}{kg \cdot s}
+[m]=kg
+[G_1 \cdot m]=\frac{m^3}{kg \cdot s} \times kg=\frac{m^3}{s}
+[G_1 \cdot m / r^2]=\frac{m^3}{s} \times \frac{1}{m^2}=\frac{m}{s}
+G_1=\frac{G_0}{4 \pi}
+A=\frac{dv}{dt}=\frac{qG_0m}{4 \pi r^2}
+v(t)=v_0+\frac{G_0m}{4 \pi r^2} \times \frac{t}{1s}

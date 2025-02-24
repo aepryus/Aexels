@@ -20,6 +20,8 @@
 		D813B7692AA6B892003851AE /* GravityEngineOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngineOld.swift */; };
 		D818929F2C7195FE0018E4B9 /* Start in Resources */ = {isa = PBXBuildFile; fileRef = D818929E2C7195FE0018E4B9 /* Start */; };
 		D81892A12C729DAC0018E4B9 /* Original in Resources */ = {isa = PBXBuildFile; fileRef = D81892A02C729DAC0018E4B9 /* Original */; };
+		D81D4B942D6C3BC000D1986D /* BlackHoles.LaTeX in Resources */ = {isa = PBXBuildFile; fileRef = D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */; };
+		D81D4B962D6C573B00D1986D /* G.LaTeX in Resources */ = {isa = PBXBuildFile; fileRef = D81D4B952D6C573400D1986D /* G.LaTeX */; };
 		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
@@ -138,6 +140,8 @@
 		D813B7682AA6B892003851AE /* GravityEngineOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngineOld.swift; sourceTree = "<group>"; };
 		D818929E2C7195FE0018E4B9 /* Start */ = {isa = PBXFileReference; lastKnownFileType = text; path = Start; sourceTree = "<group>"; wrapsLines = 1; };
 		D81892A02C729DAC0018E4B9 /* Original */ = {isa = PBXFileReference; lastKnownFileType = text; path = Original; sourceTree = "<group>"; wrapsLines = 1; };
+		D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlackHoles.LaTeX; sourceTree = "<group>"; };
+		D81D4B952D6C573400D1986D /* G.LaTeX */ = {isa = PBXFileReference; lastKnownFileType = text; path = G.LaTeX; sourceTree = "<group>"; };
 		D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
 		D823A2682D0ABE2700A72DDF /* North.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = North.h; sourceTree = "<group>"; };
 		D823A2692D0ABE3E00A72DDF /* North.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = North.c; sourceTree = "<group>"; };
@@ -417,6 +421,8 @@
 		D87C0DCF2931A7720005B44D /* LaTeX */ = {
 			isa = PBXGroup;
 			children = (
+				D81D4B952D6C573400D1986D /* G.LaTeX */,
+				D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */,
 				D87C0DD22931A8250005B44D /* Contraction.latex */,
 				D87C0DD02931A7AE0005B44D /* Dilation.latex */,
 				D849E0532934E4250012D0AC /* Discrepancy.latex */,
@@ -842,6 +848,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81D4B942D6C3BC000D1986D /* BlackHoles.LaTeX in Resources */,
 				D8AE17942814F0D300E74CB8 /* Sweetness.oo in Resources */,
 				D8AE17B82814F0D300E74CB8 /* Game of Life iP.oo in Resources */,
 				D8AE179C2814F0D300E74CB8 /* WalledCities iP.oo in Resources */,
@@ -850,6 +857,7 @@
 				D8AE17972814F0D300E74CB8 /* Game of Life.oo in Resources */,
 				D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */,
 				D818929F2C7195FE0018E4B9 /* Start in Resources */,
+				D81D4B962D6C573B00D1986D /* G.LaTeX in Resources */,
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
 				D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */,
