@@ -126,7 +126,7 @@ struct MyrtoanVertexOut {
 };
 
 vertex MyrtoanVertexOut vertexShader(MyrtoanVertexIn in [[stage_in]], constant MyrtoanRingIn* rings [[buffer(1)]], constant uint& ringIndex [[buffer(2)]]) {
-    constant MyrtoanRingIn& ring = rings[0];    
+    constant MyrtoanRingIn& ring = rings[ringIndex];    
     MyrtoanVertexOut out;
     out.pos = float4(in.pos, 0.0, 1.0);
     out.center = ring.center;
@@ -136,7 +136,7 @@ vertex MyrtoanVertexOut vertexShader(MyrtoanVertexIn in [[stage_in]], constant M
 }
 fragment float4 fragmentShader(MyrtoanVertexOut in [[stage_in]]) {
     float d = length(in.pos.xy - in.center);
-    if (d > in.iR && d < in.oR) { return float4(0.8, 0.8, 0.8, 1.0); }
+    if (d > in.iR && d < in.oR) { return float4(0.6, 0.6, 0.8, 1.0); }
     discard_fragment();
     return float4(0.0, 0.0, 0.0, 0.0);
 }

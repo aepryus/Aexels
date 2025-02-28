@@ -54,7 +54,6 @@ class GravityRenderer: NSObject, MTKViewDelegate {
     private let moonCircleBuffer: MTLBuffer
     
     private let ringPipelineState: MTLRenderPipelineState
-//    private let ringBuffer: MTLBuffer
     
     private let pipelineState: MTLRenderPipelineState
     
@@ -173,12 +172,12 @@ class GravityRenderer: NSObject, MTKViewDelegate {
     func loadExperiment() {
         universe = MCUniverseCreate(size.width, size.height)
         MCUniverseCreateRing(universe, 350, 270, 54)
-//        MCUniverseCreateRing(universe, 270, 210, 42)
-//        MCUniverseCreateRing(universe, 210, 170, 30)
-//        MCUniverseCreateRing(universe, 170, 140, 24)
-//        MCUniverseCreateRing(universe, 140, 120, 18)
-//        MCUniverseCreateRing(universe, 120, 100, 12)
-//        MCUniverseCreateRing(universe, 100,  80,  6)
+        MCUniverseCreateRing(universe, 270, 210, 42)
+        MCUniverseCreateRing(universe, 210, 170, 30)
+        MCUniverseCreateRing(universe, 170, 140, 24)
+        MCUniverseCreateRing(universe, 140, 120, 20)
+        MCUniverseCreateRing(universe, 120, 100, 18)
+        MCUniverseCreateRing(universe, 100,  80, 15)
         MCUniverseCreateMoon(universe, -160, -120, 20)
     }
 
@@ -249,7 +248,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 center: normalizedCenter,
                 iR: iR,
                 oR: oR,
-                color: i % 2 == 0 ? UIColor.blue.tone(0.9).simd4 : UIColor.blue.tone(0.9).tint(0.2).simd4
+                color: i % 2 == 0 ? UIColor.blue.tone(0.9).simd4 : UIColor.blue.tone(0.9).tint(0.1).simd4
             ))
         }
         
@@ -261,6 +260,19 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: rings.count)
 
         // Hexes ===================================================================================
+        rings = []
+        for i in 0..<universe.pointee.ringCount {
+            let ring: UnsafeMutablePointer<MCRing> = universe.pointee.rings[Int(i)]!
+            rings.append(MyrtoanRingIn(
+                center: SIMD2<Float>(Float(size.width), Float(size.height)),
+                iR: Float(ring.pointee.iR+2)*2,
+                oR: Float(ring.pointee.oR-2)*2,
+                color: UIColor.blue.tone(0.9).simd4
+            ))
+        }
+
+        let ringsBuffer2 = device.makeBuffer(bytes: rings, length: rings.count * MemoryLayout<MyrtoanRingIn>.stride, options: .storageModeShared)!
+
         var vI: UInt16
         var rI: UInt16
         var qI: UInt16
@@ -283,9 +295,9 @@ class GravityRenderer: NSObject, MTKViewDelegate {
             var ringIndex = UInt32(i)
             let ringIndexBuffer = device.makeBuffer(bytes: &ringIndex, length: MemoryLayout<UInt32>.size, options: .storageModeShared)!
 
-            renderEncoder.setVertexBuffer(ringsBuffer, offset: 0, index: 1)
+            renderEncoder.setVertexBuffer(ringsBuffer2, offset: 0, index: 1)
             renderEncoder.setVertexBuffer(ringIndexBuffer, offset: 0, index: 2)
-            renderEncoder.setFragmentBuffer(ringsBuffer, offset: 0, index: 1)
+            renderEncoder.setFragmentBuffer(ringsBuffer2, offset: 0, index: 1)
             renderEncoder.setFragmentBuffer(ringIndexBuffer, offset: 0, index: 2)
             
             var vertices: [MyratoanVertexIn] = []
