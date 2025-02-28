@@ -160,12 +160,13 @@ Perhaps this is what differentiates particles that travel at c and those that tr
 "gravity_name" = "Gravity";
 "gravity_article" = "Gravity
 
-\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
-       - Isaac Newton
-
 Gravity is the tendency of objects with mass to move towards one another.
 
 Isaac Newton first described the Gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.
+
+But, he acknowledged some discomfort with this idea:
+
+\"That one body may act upon another at a distance through a vacuum without the mediation of anything else, by and through which their action and force may be conveyed from one another, is to me so great an absurdity that, I believe, no man who has in philosophic matters a competent faculty of thinking could ever fall into it.\"
 
 When Einstein described his theory of Relativity he shifted our understanding of Gravity.  He described gravity as being a result of the warping of spacetime caused by all objects with mass.
 

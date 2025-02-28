@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aepryus Software. All rights reserved.
 //
 
-//#import <math.h>
+#import <math.h>
 #import <stdio.h>
 #import <stdlib.h>
 #include "Myrtoan.h"
@@ -77,9 +77,13 @@ void MCUniverseAddRing(MCUniverse* universe, MCRing* ring) {
     }
     universe->rings[universe->ringCount-1] = ring;
 }
-MCRing* MCUniverseCreateRing(MCUniverse* universe, double radius) {
+MCRing* MCUniverseCreateRing(MCUniverse* universe, double oR, double iR, int n) {
+    double nQ = n*3;
     MCRing* ring = MCRingCreate();
-    ring->radius = radius;
+    ring->oR = oR;
+    ring->iR = iR;
+    ring->dQ = 2*M_PI/nQ;
+    ring->dR = ring->dQ * (iR+oR)/2 * sqrt(3)/2;
     MCUniverseAddRing(universe, ring);
     return ring;
 }

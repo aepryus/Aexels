@@ -17,7 +17,6 @@
 		D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */; };
 		D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */; };
 		D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */; };
-		D813B7692AA6B892003851AE /* GravityEngineOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D813B7682AA6B892003851AE /* GravityEngineOld.swift */; };
 		D818929F2C7195FE0018E4B9 /* Start in Resources */ = {isa = PBXBuildFile; fileRef = D818929E2C7195FE0018E4B9 /* Start */; };
 		D81892A12C729DAC0018E4B9 /* Original in Resources */ = {isa = PBXBuildFile; fileRef = D81892A02C729DAC0018E4B9 /* Original */; };
 		D81D4B942D6C3BC000D1986D /* BlackHoles.LaTeX in Resources */ = {isa = PBXBuildFile; fileRef = D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */; };
@@ -39,12 +38,15 @@
 		D830B94A2D5FFA1000E7B029 /* CellularExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9492D5FFA0900E7B029 /* CellularExperiment.swift */; };
 		D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */ = {isa = PBXBuildFile; fileRef = D849E0532934E4250012D0AC /* Discrepancy.latex */; };
 		D850F44A293EEDD60091F15A /* VSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D850F449293EEDD60091F15A /* VSlider.swift */; };
+		D85195602D6EFE7A00C340B8 /* GravityRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D851955F2D6EFE7300C340B8 /* GravityRenderer.swift */; };
+		D85195662D6EFE9D00C340B8 /* GravityShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = D85195652D6EFE9D00C340B8 /* GravityShader.metal */; };
 		D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */; };
 		D85762C92D46F3380025E070 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762C82D46F3340025E070 /* Experiment.swift */; };
 		D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762CA2D46F7F10025E070 /* Electromagnetism.swift */; };
 		D85762CD2D471B700025E070 /* Teslon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85762CC2D471B6E0025E070 /* Teslon.swift */; };
 		D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */ = {isa = PBXBuildFile; fileRef = D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */; };
-		D8656C122A8CF907003FC9A3 /* GravityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8656C112A8CF907003FC9A3 /* GravityView.swift */; };
+		D86F72762D714E8600987057 /* UIColor+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F72752D714E7C00987057 /* UIColor+Aexels.swift */; };
+		D86F72782D714E8F00987057 /* OOColor+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F72772D714E8A00987057 /* OOColor+Aexels.swift */; };
 		D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD02931A7AE0005B44D /* Dilation.latex */; };
 		D87C0DD32931A8250005B44D /* Contraction.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD22931A8250005B44D /* Contraction.latex */; };
 		D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881B7B8294BDED2004DE0DD /* CloseButton.swift */; };
@@ -107,9 +109,6 @@
 		D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */; };
 		D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */; };
 		D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFFA9E2B74B30C00588196 /* VisionBar.swift */; };
-		D8B55CBE2D65AF6900B80ED1 /* Caspian.c in Sources */ = {isa = PBXBuildFile; fileRef = D8B55CBD2D65AF6400B80ED1 /* Caspian.c */; };
-		D8B55CC02D65B02800B80ED1 /* GravityShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8B55CBF2D65B02800B80ED1 /* GravityShaders.metal */; };
-		D8B55CC22D65B06A00B80ED1 /* GravityRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B55CC12D65B06400B80ED1 /* GravityRenderer.swift */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
 		D8D2E1282944BC4E00EC1719 /* BoolButtonOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */; };
@@ -137,7 +136,6 @@
 		D80ED6B02B679C6A00EF4F8D /* NexusExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexusExplorer.swift; sourceTree = "<group>"; };
 		D80ED6B32B679D8000EF4F8D /* ExplorerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorerViewController.swift; sourceTree = "<group>"; };
 		D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceExplorer.swift; sourceTree = "<group>"; };
-		D813B7682AA6B892003851AE /* GravityEngineOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityEngineOld.swift; sourceTree = "<group>"; };
 		D818929E2C7195FE0018E4B9 /* Start */ = {isa = PBXFileReference; lastKnownFileType = text; path = Start; sourceTree = "<group>"; wrapsLines = 1; };
 		D81892A02C729DAC0018E4B9 /* Original */ = {isa = PBXFileReference; lastKnownFileType = text; path = Original; sourceTree = "<group>"; wrapsLines = 1; };
 		D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlackHoles.LaTeX; sourceTree = "<group>"; };
@@ -159,13 +157,16 @@
 		D830B9492D5FFA0900E7B029 /* CellularExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularExperiment.swift; sourceTree = "<group>"; };
 		D849E0532934E4250012D0AC /* Discrepancy.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Discrepancy.latex; sourceTree = "<group>"; };
 		D850F449293EEDD60091F15A /* VSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSlider.swift; sourceTree = "<group>"; };
+		D851955F2D6EFE7300C340B8 /* GravityRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityRenderer.swift; sourceTree = "<group>"; };
+		D85195652D6EFE9D00C340B8 /* GravityShader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GravityShader.metal; sourceTree = "<group>"; };
 		D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
 		D85762C82D46F3340025E070 /* Experiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experiment.swift; sourceTree = "<group>"; };
 		D85762CA2D46F7F10025E070 /* Electromagnetism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Electromagnetism.swift; sourceTree = "<group>"; };
 		D85762CC2D471B6E0025E070 /* Teslon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teslon.swift; sourceTree = "<group>"; };
 		D8656C0E2A8CF7C1003FC9A3 /* Myrtoan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Myrtoan.h; sourceTree = "<group>"; };
 		D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Myrtoan.c; sourceTree = "<group>"; };
-		D8656C112A8CF907003FC9A3 /* GravityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityView.swift; sourceTree = "<group>"; };
+		D86F72752D714E7C00987057 /* UIColor+Aexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Aexels.swift"; sourceTree = "<group>"; };
+		D86F72772D714E8A00987057 /* OOColor+Aexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OOColor+Aexels.swift"; sourceTree = "<group>"; };
 		D87C0DD02931A7AE0005B44D /* Dilation.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dilation.latex; sourceTree = "<group>"; };
 		D87C0DD22931A8250005B44D /* Contraction.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Contraction.latex; sourceTree = "<group>"; };
 		D881B7B8294BDED2004DE0DD /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -231,10 +232,6 @@
 		D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContractionExplorer.swift; sourceTree = "<group>"; };
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AFFA9E2B74B30C00588196 /* VisionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionBar.swift; sourceTree = "<group>"; };
-		D8B55CBC2D65AF5400B80ED1 /* Caspian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Caspian.h; sourceTree = "<group>"; };
-		D8B55CBD2D65AF6400B80ED1 /* Caspian.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Caspian.c; sourceTree = "<group>"; };
-		D8B55CBF2D65B02800B80ED1 /* GravityShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GravityShaders.metal; sourceTree = "<group>"; };
-		D8B55CC12D65B06400B80ED1 /* GravityRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityRenderer.swift; sourceTree = "<group>"; };
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
 		D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButtonOld.swift; sourceTree = "<group>"; };
@@ -462,8 +459,6 @@
 		D896C99B2D41F7ED0058585C /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
-				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
-				D8656C112A8CF907003FC9A3 /* GravityView.swift */,
 				D8534B0F2A8CDA0200342F61 /* GravityExplorer.swift */,
 			);
 			path = Gravity;
@@ -596,6 +591,8 @@
 		D8AE174F2814EACC00E74CB8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D86F72772D714E8A00987057 /* OOColor+Aexels.swift */,
+				D86F72752D714E7C00987057 /* UIColor+Aexels.swift */,
 				D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */,
 			);
 			path = Extensions;
@@ -678,15 +675,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		D8B55CBB2D65AE9000B80ED1 /* Caspian */ = {
-			isa = PBXGroup;
-			children = (
-				D8B55CBC2D65AF5400B80ED1 /* Caspian.h */,
-				D8B55CBD2D65AF6400B80ED1 /* Caspian.c */,
-			);
-			path = Caspian;
-			sourceTree = "<group>";
-		};
 		D8C14CD42D3DE8C700F83F28 /* Aether */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,10 +694,9 @@
 		D8C14CD62D3DE93D00F83F28 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
-				D8B55CBB2D65AE9000B80ED1 /* Caspian */,
-				D813B7682AA6B892003851AE /* GravityEngineOld.swift */,
-				D8B55CBF2D65B02800B80ED1 /* GravityShaders.metal */,
-				D8B55CC12D65B06400B80ED1 /* GravityRenderer.swift */,
+				D8656C0D2A8CF74F003FC9A3 /* Myrtoan */,
+				D85195652D6EFE9D00C340B8 /* GravityShader.metal */,
+				D851955F2D6EFE7300C340B8 /* GravityRenderer.swift */,
 			);
 			path = Gravity;
 			sourceTree = "<group>";
@@ -885,13 +872,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8B55CC22D65B06A00B80ED1 /* GravityRenderer.swift in Sources */,
 				D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */,
 				D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */,
 				D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */,
 				D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */,
 				D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */,
-				D8B55CC02D65B02800B80ED1 /* GravityShaders.metal in Sources */,
 				D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */,
 				D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */,
 				D802E4CB2D2DE8AE00F259BB /* ImageButton.swift in Sources */,
@@ -906,25 +891,27 @@
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
+				D86F72762D714E8600987057 /* UIColor+Aexels.swift in Sources */,
 				D830B93C2D5C23E400E7B029 /* DilationTab.swift in Sources */,
 				D830B93E2D5C7D3500E7B029 /* DilationRenderer.swift in Sources */,
 				D8AE17D62814F1EC00E74CB8 /* PlayButton.swift in Sources */,
 				D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */,
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
-				D813B7692AA6B892003851AE /* GravityEngineOld.swift in Sources */,
 				D85762CD2D471B700025E070 /* Teslon.swift in Sources */,
 				D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */,
 				D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */,
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
 				D830B9452D5EDB0E00E7B029 /* KinematicsExperiment.swift in Sources */,
 				D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */,
+				D85195602D6EFE7A00C340B8 /* GravityRenderer.swift in Sources */,
+				D86F72782D714E8F00987057 /* OOColor+Aexels.swift in Sources */,
 				D8AB74FF2D56CD6A00A7E234 /* CircleButton.swift in Sources */,
 				D8A63A462B76D8AC00C28F93 /* GlyphsView.swift in Sources */,
 				D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */,
+				D85195662D6EFE9D00C340B8 /* GravityShader.metal in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
-				D8B55CBE2D65AF6900B80ED1 /* Caspian.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
 				D8DA98C82B6F40BB00A4AA8F /* MaskCell.swift in Sources */,
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
@@ -951,7 +938,6 @@
 				D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */,
 				D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */,
 				D896C9A92D420BDE0058585C /* ZoomsTab.swift in Sources */,
-				D8656C122A8CF907003FC9A3 /* GravityView.swift in Sources */,
 				D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */,
 				D8AE17EA2814F20500E74CB8 /* CellularEngine.swift in Sources */,
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,

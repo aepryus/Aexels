@@ -17,9 +17,6 @@ class GravityExplorer: Explorer {
     let notesTab: NotesTab = NotesTab(key: "gravity")
     
     // Universe ===
-    let engine: GravityEngine = GravityEngine(size: .zero)
-    lazy var gravityViewQ = GravityView(engine: engine)
-    
     private var gravityMetal: MTKView!
     var renderer: GravityRenderer!
 
@@ -40,7 +37,6 @@ class GravityExplorer: Explorer {
         
         renderer = GravityRenderer(view: gravityMetal)
 
-
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 
         if Screen.iPhone {
@@ -55,27 +51,15 @@ class GravityExplorer: Explorer {
         } else {
             cyto.cells = [
                 LimboCell(content: gravityMetal, c: 0, r: 0, h: 3),
+//                LimboCell(content: gravityView, c: 0, r: 0, h: 3),
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
             ]
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        engine.play()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        engine.stop()
-    }
 
 // AEViewController ================================================================================
-    override func layoutRatio046() {
-        super.layoutRatio046()
-                
-//        engine.size = gravityView.frame.size
-    }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
@@ -90,7 +74,5 @@ class GravityExplorer: Explorer {
         titleLabel.center(width: 300*s, height: 24*s)
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
-        
-//        engine.size = gravityView.frame.size
     }
 }
