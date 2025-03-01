@@ -170,17 +170,23 @@ class GravityRenderer: NSObject, MTKViewDelegate {
     }
     
     func loadExperiment() {
+        if universe == nil { MCUniverseRelease(universe) }
         universe = MCUniverseCreate(size.width, size.height)
-        MCUniverseCreateRing(universe, 350, 270, 54)
-        MCUniverseCreateRing(universe, 270, 210, 42)
-        MCUniverseCreateRing(universe, 210, 170, 30)
-        MCUniverseCreateRing(universe, 170, 140, 24)
-        MCUniverseCreateRing(universe, 140, 120, 20)
-        MCUniverseCreateRing(universe, 120, 100, 18)
-        MCUniverseCreateRing(universe, 100,  80, 15)
-        MCUniverseCreateMoon(universe, -160, -120, 20)
+        let dC: Double = 0.4
+        MCUniverseCreateRing(universe, 500, 350, 72, 1*dC)
+        MCUniverseCreateRing(universe, 350, 270, 54, 2*dC)
+        MCUniverseCreateRing(universe, 270, 210, 42, 3*dC)
+        MCUniverseCreateRing(universe, 210, 170, 30, 4*dC)
+        MCUniverseCreateRing(universe, 170, 140, 24, 5*dC)
+        MCUniverseCreateRing(universe, 140, 120, 20, 6*dC)
+        MCUniverseCreateRing(universe, 120, 100, 18, 7*dC)
+        MCUniverseCreateRing(universe, 100,  80, 15, 8*dC)
+        MCUniverseCreateMoon(universe, -160, -120, 1, -1, 20)
     }
 
+// Events ==========================================================================================
+    func onReset() { loadExperiment() }
+        
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.height / view.contentScaleFactor)
@@ -191,6 +197,8 @@ class GravityRenderer: NSObject, MTKViewDelegate {
               let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor,
               let universe
         else { return }
+        
+        MCUniverseTic(universe)
         
         // Cartesian ===============================================================================
         var myrtoanUniverse: MyrtoanUniverse = MyrtoanUniverse(
@@ -287,7 +295,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
             
             let ring: UnsafeMutablePointer<MCRing> = universe.pointee.rings[Int(i)]!
             
-            ring.pointee.o = (ring.pointee.o - 0.1).truncatingRemainder(dividingBy: ring.pointee.dR*2)
+//            ring.pointee.o = (ring.pointee.o - 0.1).truncatingRemainder(dividingBy: ring.pointee.dR*2)
             
             var r: Float = Float(ring.pointee.iR + ring.pointee.o)
             

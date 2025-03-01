@@ -75,4 +75,20 @@ class GravityExplorer: Explorer {
         
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
     }
+    
+// TimeControlDelegate =============================================================================
+    override func onPlay() {
+        gravityMetal.isPaused = false
+    }
+    override func onStep() {
+        gravityMetal.draw()
+    }
+    override func onReset() {
+        renderer.onReset()
+        gravityMetal.draw()
+        timeControl.playButton.stop()
+    }
+    override func onStop() {
+        gravityMetal.isPaused = true
+    }
 }
