@@ -12,7 +12,7 @@ import UIKit
 class VSlider: UIView, UIGestureRecognizerDelegate {
     var position: CGFloat = 1
     var availableVelocities: [Double] = [-0.99, -0.9, -0.7, -0.5, -0.2, -0.1, 0, 0.1, 0.2, 0.5, 0.7, 0.9, 0.99]
-    lazy var velocity: Double = 0.5
+    lazy var velocity: Double = 0.7
 
     var onChange: ((Double)->())?
     
@@ -28,10 +28,29 @@ class VSlider: UIView, UIGestureRecognizerDelegate {
     required init?(coder aDecoder: NSCoder) {fatalError()}
     
     func setTo(_ value: Double) {
-        position = CGFloat(availableVelocities.firstIndex(where: { $0 == value }) ?? 0)/CGFloat(availableVelocities.count)
-        velocity = availableVelocities[Int(round(CGFloat(availableVelocities.count-1) * position))]
+        velocity = value
+        guard width != 0 else { return }
+        
+        let p: CGFloat = 3*Screen.s
+        let crx: CGFloat = 16*s
+
+        let x1: CGFloat = p
+        let x5: CGFloat = width - 2*p - 2*crx
+        
+        let tw: CGFloat = x5 - x1
+        let ow: CGFloat = tw / CGFloat(availableVelocities.count)
+        
+        let index: Int = availableVelocities.firstIndex(where: { $0 == value }) ?? 0
+        
+        if index == 0 { position = 0 }
+        else if index == availableVelocities.count - 1 { position = x5 }
+        else { position = (CGFloat(index)+0.5)*ow }
+        
+        position /= tw
+
         setNeedsDisplay()
     }
+
     
 // Events ==========================================================================================
     @objc func onPan(gesture: UIPanGestureRecognizer) {

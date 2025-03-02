@@ -18,10 +18,10 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
     var dilationMetal: MTKView!
     var fixedMetal: MTKView!
     
-    private let systemCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 0, h: 4) : LimboCell(c: 0, r: 0, h: 2)
+    private let systemCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 0, h: 2) : LimboCell(c: 0, r: 0, h: 1)
     private let aetherCell: LimboCell = !Screen.iPhone ? LimboCell(c: 0, r: 2, h: 2) : LimboCell(c: 0, r: 1)
     
-    var cameraOn: Bool = false
+    var cameraOn: Bool = true
 
     let pingButton: PulseButton = PulseButton(name: Screen.iPhone ? nil : "ping")
 
@@ -90,7 +90,7 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
 
         super.viewDidLoad()
         
-        aetherCell.alpha = 0
+        aetherCell.alpha = 1
 
         dilationMetal = MTKView(frame: view.bounds)
         dilationMetal.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
@@ -118,6 +118,7 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
         if Screen.iPhone {
             cyto.cells = [
                 systemCell,
+                aetherCell,
                 MaskCell(content: quickView, c: 0, r: 2, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
@@ -127,6 +128,7 @@ class ContractionExplorer: Explorer, DilationTabDelegate {
         } else {
             cyto.cells = [
                 systemCell,
+                aetherCell,
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 3)

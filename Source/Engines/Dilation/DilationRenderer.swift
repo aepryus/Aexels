@@ -58,7 +58,7 @@ class DilationRenderer: NSObject, MTKViewDelegate {
     var speedOfLight: Int = 1 {
         didSet { TCUniverseSetC(universe, Double(speedOfLight)) }
     }
-    var velocity: Double = 0.2 {
+    var velocity: Double = 0.8 {
         didSet {
             TCUniverseSetSpeed(universe, velocity)
             let d: CGFloat = Screen.iPhone ? size.width/3 : size.width/5
@@ -66,12 +66,6 @@ class DilationRenderer: NSObject, MTKViewDelegate {
         }
     }
     var size: CGSize = .zero
-//    {
-//        didSet {
-//            guard let universe else { return }
-//            TCUniverseSetSize(universe, size.width, size.height)
-//        }
-//    }
     var autoOn: Bool = true
     var tailsOn: Bool = true {
         didSet {

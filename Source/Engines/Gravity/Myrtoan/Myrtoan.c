@@ -68,6 +68,7 @@ void MCUniverseRelease(MCUniverse* universe) {
     free(universe);
 }
 void MCUniverseTic(MCUniverse* universe) {
+    // flow the ring's aether
     for (int i=0;i<universe->ringCount;i++) {
         MCRing* ring = universe->rings[i];
         ring->o = fmod((ring->o - 0.1*ring->current), ring->dR*2);
@@ -76,10 +77,12 @@ void MCUniverseTic(MCUniverse* universe) {
     for (int i=0;i<universe->moonCount;i++) {
         MCMoon* moon = universe->moons[i];
 
+        // adjust moon's position
         MCRing* oldRing = MCUniverseRingAt(universe, moon->pos);
         moon->pos = CV2Add(moon->pos, moon->v);
         MCRing* newRing = MCUniverseRingAt(universe, moon->pos);
         
+        // adjust moon's velocity
         if (oldRing != newRing) {
             double oldV = oldRing ? oldRing->current : 0;
             double newV = newRing ? newRing->current : 0;
@@ -88,6 +91,7 @@ void MCUniverseTic(MCUniverse* universe) {
             moon->v = CV2Add(moon->v, dV);
         }
         
+        // bounce moon off of walls
         if ((moon->pos.x < -universe->width/2 && moon->v.x < 0 ) || (moon->pos.x > universe->width/2 && moon->v.x > 0)) {
             moon->v.x = -moon->v.x;
         }

@@ -65,7 +65,7 @@ class DilationTab: TabsCellTab {
             self.delegate.renderer.autoOn = autoOn
         }
 
-        cameraSwap.on = false
+        cameraSwap.on = true
         addSubview(cameraSwap)
         cameraSwap.onChange = { (cameraOn: Bool) in
             self.delegate.swapAetherFrame({})
@@ -131,6 +131,6 @@ class DilationTab: TabsCellTab {
         contractSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
 
         cSlider.setTo(60)
-        vSlider.setTo(0.5)
+        vSlider.setTo(0.7)
     }
 }

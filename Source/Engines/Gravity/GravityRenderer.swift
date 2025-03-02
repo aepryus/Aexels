@@ -173,7 +173,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         if universe == nil { MCUniverseRelease(universe) }
         universe = MCUniverseCreate(size.width, size.height)
         let dC: Double = 0.4
-        MCUniverseCreateRing(universe, 500, 350, 72, 1*dC)
+        MCUniverseCreateRing(universe, 450, 350, 72, 1*dC)
         MCUniverseCreateRing(universe, 350, 270, 54, 2*dC)
         MCUniverseCreateRing(universe, 270, 210, 42, 3*dC)
         MCUniverseCreateRing(universe, 210, 170, 30, 4*dC)
@@ -189,7 +189,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.height / view.contentScaleFactor)
+        self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.width / view.contentScaleFactor)
         loadExperiment()
     }
     func draw(in view: MTKView) {
@@ -219,10 +219,10 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         
         // Planet ==================================================================================
         if let planet = universe.pointee.planet {
-            let centerPoint = SIMD2<Float>(Float(size.width/2), Float(size.height/2))
+            let centerPoint = SIMD2<Float>(Float(size.width/2), Float(size.width/2))
             let normalizedCenter = SIMD2<Float>(
                 (centerPoint.x / Float(size.width) * 2) - 1,
-                -((centerPoint.y / Float(size.height) * 2) - 1)
+                -((centerPoint.y / Float(size.width) * 2) - 1)
             )
             
             var planetCircle = MyrtoanCirclePacket(
@@ -243,14 +243,14 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         for i in 0..<universe.pointee.ringCount {
             let ring: UnsafeMutablePointer<MCRing> = universe.pointee.rings[Int(i)]!
             
-            let centerPoint: SIMD2<Float> = SIMD2<Float>(Float(size.width/2), Float(size.height/2))
+            let centerPoint: SIMD2<Float> = SIMD2<Float>(Float(size.width/2), Float(size.width/2))
             let normalizedCenter: SIMD2<Float> = SIMD2<Float>(
                 (centerPoint.x / Float(size.width) * 2) - 1,
-                -((centerPoint.y / Float(size.height) * 2) - 1)
+                -((centerPoint.y / Float(size.width) * 2) - 1)
             )
             
-            let iR: Float = Float(ring.pointee.iR) / Float(min(size.width, size.height)) * 2
-            let oR: Float = Float(ring.pointee.oR) / Float(min(size.width, size.height)) * 2
+            let iR: Float = Float(ring.pointee.iR) / Float(size.width) * 2
+            let oR: Float = Float(ring.pointee.oR) / Float(size.width) * 2
             
             rings.append(MyrtoanRingIn(
                 center: normalizedCenter,
@@ -272,9 +272,9 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         for i in 0..<universe.pointee.ringCount {
             let ring: UnsafeMutablePointer<MCRing> = universe.pointee.rings[Int(i)]!
             rings.append(MyrtoanRingIn(
-                center: SIMD2<Float>(Float(size.width), Float(size.height)),
-                iR: Float(ring.pointee.iR+2)*2,
-                oR: Float(ring.pointee.oR-2)*2,
+                center: SIMD2<Float>(Float(size.width*view.contentScaleFactor/2), Float(size.width*view.contentScaleFactor/2)),
+                iR: Float(ring.pointee.iR+2)*Float(view.contentScaleFactor),
+                oR: Float(ring.pointee.oR-2)*Float(view.contentScaleFactor),
                 color: UIColor.blue.tone(0.9).simd4
             ))
         }
@@ -294,8 +294,6 @@ class GravityRenderer: NSObject, MTKViewDelegate {
             qW = 0
             
             let ring: UnsafeMutablePointer<MCRing> = universe.pointee.rings[Int(i)]!
-            
-//            ring.pointee.o = (ring.pointee.o - 0.1).truncatingRemainder(dividingBy: ring.pointee.dR*2)
             
             var r: Float = Float(ring.pointee.iR + ring.pointee.o)
             
@@ -317,11 +315,11 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 
                 while q < 2 * .pi - Float(ring.pointee.dQ / 3) {
                     let x = Float(size.width/2) + r * cos(q)
-                    let y = Float(size.height/2) + r * sin(q)
+                    let y = Float(size.width/2) + r * sin(q)
                     
                     let normalizedPos = SIMD2<Float>(
                         (x / Float(size.width) * 2) - 1,
-                        -((y / Float(size.height) * 2) - 1)
+                        -((y / Float(size.width) * 2) - 1)
                     )
                     vertices.append(MyratoanVertexIn(position: normalizedPos))
 
@@ -375,7 +373,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
             let moon: UnsafeMutablePointer<MCMoon> = universe.pointee.moons[Int(i)]!
             let centerPoint = SIMD2<Float>(
                 Float(size.width/2) + Float(moon.pointee.pos.x),
-                Float(size.height/2) + Float(moon.pointee.pos.y)
+                Float(size.width/2) + Float(moon.pointee.pos.y)
             )
             let normalizedCenter = SIMD2<Float>(
                 (centerPoint.x / Float(size.width) * 2) - 1,

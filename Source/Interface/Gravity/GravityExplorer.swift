@@ -24,7 +24,7 @@ class GravityExplorer: Explorer {
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
-        cyto = Screen.iPhone ? Cyto(rows: 2, cols: 1) : Cyto(rows: 3, cols: 2)
+        cyto = Screen.iPhone ? Cyto(rows: 3, cols: 1) : Cyto(rows: 3, cols: 2)
         view.addSubview(cyto)
         
         tabsCell = Screen.iPhone ? TabsCell(c: 0, r: 0) : TabsCell(c: 1, r: 1)
@@ -41,8 +41,9 @@ class GravityExplorer: Explorer {
 
         if Screen.iPhone {
             cyto.cells = [
-                LimboCell(content: gravityMetal, c: 0, r: 0),
-                MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
+                LimboCell(c: 0, r: 0),
+                LimboCell(content: gravityMetal, c: 0, r: 1),
+                MaskCell(content: quickView, c: 0, r: 2, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
                 tabsCell,
@@ -51,7 +52,6 @@ class GravityExplorer: Explorer {
         } else {
             cyto.cells = [
                 LimboCell(content: gravityMetal, c: 0, r: 0, h: 3),
-//                LimboCell(content: gravityView, c: 0, r: 0, h: 3),
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
@@ -60,6 +60,18 @@ class GravityExplorer: Explorer {
     }
 
 // AEViewController ================================================================================
+    override func layoutRatio046() {
+        super.layoutRatio046()
+
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let uh: CGFloat = height - 80*s
+        let uw: CGFloat = view.width-10*s
+
+        cyto.Ys = [uh-uw, uw]
+        cyto.layout()
+        
+        timeControl.center(width: 114*s, height: 54*s)
+    }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
