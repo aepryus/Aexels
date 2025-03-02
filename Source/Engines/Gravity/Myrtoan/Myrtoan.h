@@ -19,6 +19,7 @@ typedef struct MCRing {
     double dQ;
     double dR;
     double o;
+    unsigned char focus;
 } MCRing;
 
 MCRing* MCRingCreate(void);
@@ -63,3 +64,4 @@ MCRing* MCUniverseCreateRing(MCUniverse* universe, double oR, double iR, int n, 
 void MCUniverseAddMoon(MCUniverse* universe, MCMoon* moon);
 MCMoon* MCUniverseCreateMoon(MCUniverse* universe, double x, double y, double vx, double vy, double radius);
 MCRing* MCUniverseRingAt(MCUniverse* universe, CV2 pos);
+void MCUniverseSetFocusRing(MCUniverse* universe, MCRing* ring);

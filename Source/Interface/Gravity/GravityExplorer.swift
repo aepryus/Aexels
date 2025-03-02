@@ -22,6 +22,17 @@ class GravityExplorer: Explorer {
 
     init() { super.init(key: "gravity") }
     
+// Events ==========================================================================================
+    @objc func onTap(_ gesture: UITapGestureRecognizer) {
+        let point: CGPoint = gesture.location(in: gravityMetal) - CGPoint(x: gravityMetal.width/2, y: gravityMetal.height/2)
+        let ring: UnsafeMutablePointer<MCRing>? = MCUniverseRingAt(renderer.universe, CV2(x: point.x, y: point.y))
+        if let ring { MCUniverseSetFocusRing(renderer.universe, ring) }
+    }
+    @objc func onDoubleTap(_ gesture: UITapGestureRecognizer) {
+        let point: CGPoint = gesture.location(in: gravityMetal) - CGPoint(x: gravityMetal.width/2, y: gravityMetal.height/2)
+        MCUniverseCreateMoon(renderer.universe, point.x, point.y, 1, 1, 10)
+    }
+
 // UIViewController ================================================================================
     override func viewDidLoad() {
         cyto = Screen.iPhone ? Cyto(rows: 3, cols: 1) : Cyto(rows: 3, cols: 2)
@@ -34,7 +45,12 @@ class GravityExplorer: Explorer {
         gravityMetal = MTKView(frame: view.bounds)
         gravityMetal.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         gravityMetal.isOpaque = false
+        gravityMetal.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap(_:))))
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(_:)))
+        gesture.numberOfTapsRequired = 2
+        gravityMetal.addGestureRecognizer(gesture)
+
         renderer = GravityRenderer(view: gravityMetal)
 
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]

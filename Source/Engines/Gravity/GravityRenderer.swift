@@ -23,18 +23,19 @@ struct MyrtoanCirclePacket {
     var color: SIMD4<Float>
 }
 
-struct MyrtoanRingPacket {
-    var center: SIMD2<Float>
-    var innerRadius: Float
-    var outerRadius: Float
-    var fillColor: SIMD4<Float>
-}
+//struct MyrtoanRingPacket {
+//    var center: SIMD2<Float>
+//    var innerRadius: Float
+//    var outerRadius: Float
+//    var fillColor: SIMD4<Float>
+//}
 
 struct MyrtoanRingIn {
     var center: SIMD2<Float>
     var iR: Float
     var oR: Float
     var color: SIMD4<Float>
+    var focus: UInt8
 }
 
 struct MyratoanVertexIn {
@@ -218,6 +219,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
         
         // Planet ==================================================================================
+        var planets: [MyrtoanCirclePacket] = []
         if let planet = universe.pointee.planet {
             let centerPoint = SIMD2<Float>(Float(size.width/2), Float(size.width/2))
             let normalizedCenter = SIMD2<Float>(
@@ -225,19 +227,21 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 -((centerPoint.y / Float(size.width) * 2) - 1)
             )
             
-            var planetCircle = MyrtoanCirclePacket(
+            let planetCircle = MyrtoanCirclePacket(
                 center: normalizedCenter,
                 radius: Float(planet.pointee.radius) / Float(size.width) * 2,
                 color: OOColor.cobolt.simd4
             )
-            memcpy(planetCircleBuffer.contents(), &planetCircle, MemoryLayout<MyrtoanCirclePacket>.size)
-            
-            renderEncoder.setRenderPipelineState(circlePipelineState)
-            renderEncoder.setVertexBuffer(planetCircleBuffer, offset: 0, index: 0)
-            renderEncoder.setFragmentBuffer(planetCircleBuffer, offset: 0, index: 0)
-            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+            planets.append(planetCircle)
         }
-            
+        
+        let planetsBuffer = device.makeBuffer(bytes: planets, length: planets.count * MemoryLayout<MyrtoanCirclePacket>.stride, options: .storageModeShared)!
+        
+        renderEncoder.setRenderPipelineState(circlePipelineState)
+        renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
+        renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
+
         // Rings ===================================================================================
         var rings: [MyrtoanRingIn] = []
         for i in 0..<universe.pointee.ringCount {
@@ -256,7 +260,8 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 center: normalizedCenter,
                 iR: iR,
                 oR: oR,
-                color: i % 2 == 0 ? UIColor.blue.tone(0.9).simd4 : UIColor.blue.tone(0.9).tint(0.1).simd4
+                color: i % 2 == 0 ? UIColor.blue.tone(0.9).simd4 : UIColor.blue.tone(0.9).tint(0.1).simd4,
+                focus: ring.pointee.focus
             ))
         }
         
@@ -275,7 +280,8 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 center: SIMD2<Float>(Float(size.width*view.contentScaleFactor/2), Float(size.width*view.contentScaleFactor/2)),
                 iR: Float(ring.pointee.iR+2)*Float(view.contentScaleFactor),
                 oR: Float(ring.pointee.oR-2)*Float(view.contentScaleFactor),
-                color: UIColor.blue.tone(0.9).simd4
+                color: UIColor.blue.tone(0.9).simd4,
+                focus: ring.pointee.focus
             ))
         }
 
@@ -369,6 +375,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         }
         
         // Moons ===================================================================================
+        var moonCircles: [MyrtoanCirclePacket] = []
         for i in 0..<universe.pointee.moonCount {
             let moon: UnsafeMutablePointer<MCMoon> = universe.pointee.moons[Int(i)]!
             let centerPoint = SIMD2<Float>(
@@ -380,19 +387,21 @@ class GravityRenderer: NSObject, MTKViewDelegate {
                 -((centerPoint.y / Float(size.height) * 2) - 1)
             )
             
-            var moonCircle = MyrtoanCirclePacket(
+            let moonCircle: MyrtoanCirclePacket = MyrtoanCirclePacket(
                 center: normalizedCenter,
                 radius: Float(moon.pointee.radius) / Float(size.width) * 2,
                 color: OOColor.marine.simd4
             )
-            memcpy(moonCircleBuffer.contents(), &moonCircle, MemoryLayout<MyrtoanCirclePacket>.size)
-            
-            renderEncoder.setRenderPipelineState(circlePipelineState)
-            renderEncoder.setVertexBuffer(moonCircleBuffer, offset: 0, index: 0)
-            renderEncoder.setFragmentBuffer(moonCircleBuffer, offset: 0, index: 0)
-            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+            moonCircles.append(moonCircle)
         }
-
+        
+        let moonsBuffer = device.makeBuffer(bytes: moonCircles, length: moonCircles.count * MemoryLayout<MyrtoanCirclePacket>.stride, options: .storageModeShared)!
+        
+        renderEncoder.setRenderPipelineState(circlePipelineState)
+        renderEncoder.setVertexBuffer(moonsBuffer, offset: 0, index: 0)
+        renderEncoder.setFragmentBuffer(moonsBuffer, offset: 0, index: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: moonCircles.count)
+        
         // Final Commit ============================================================================
         
         renderEncoder.endEncoding()

@@ -116,6 +116,7 @@ MCRing* MCUniverseCreateRing(MCUniverse* universe, double oR, double iR, int n, 
     ring->dQ = 2*M_PI/nQ;
     ring->dR = ring->dQ * (iR+oR)/2 * sqrt(3)/2;
     ring->current = current;
+    ring->focus = 0;
     MCUniverseAddRing(universe, ring);
     return ring;
 }
@@ -146,4 +147,11 @@ MCRing* MCUniverseRingAt(MCUniverse* universe, CV2 pos) {
         if (d2 > iR2 && d2 <= oR2) return ring;
     }
     return 0;
+}
+
+void MCUniverseSetFocusRing(MCUniverse* universe, MCRing* ring) {
+    for (int i=0;i<universe->ringCount;i++) {
+        MCRing* iRing = universe->rings[i];
+        iRing->focus = iRing == ring;
+    }
 }

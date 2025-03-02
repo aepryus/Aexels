@@ -49,9 +49,12 @@ struct MyrtoanCirclePacket {
 struct MyrtoanCircleResult {
     float4 position [[position]];
     float2 localPos;
+    uint instanceID;
 };
 
-vertex MyrtoanCircleResult myrtoanCircleVectorShader(uint vertexID [[vertex_id]], constant MyrtoanCirclePacket &circle [[buffer(0)]]) {
+vertex MyrtoanCircleResult myrtoanCircleVectorShader(uint vertexID [[vertex_id]], uint instanceID [[instance_id]], constant MyrtoanCirclePacket *circles [[buffer(0)]]) {
+    constant MyrtoanCirclePacket &circle = circles[instanceID];
+    
     float2 positions[4] = {
         float2(-1.0, -1.0), float2(1.0, -1.0),
         float2(-1.0, 1.0), float2(1.0, 1.0)
@@ -62,9 +65,12 @@ vertex MyrtoanCircleResult myrtoanCircleVectorShader(uint vertexID [[vertex_id]]
     MyrtoanCircleResult result;
     result.position = float4(pos, 0.0, 1.0);
     result.localPos = positions[vertexID];
+    result.instanceID = instanceID;
     return result;
 }
-fragment float4 myrtoanCircleFragmentShader(MyrtoanCircleResult in [[stage_in]], constant MyrtoanCirclePacket &circle [[buffer(0)]]) {
+fragment float4 myrtoanCircleFragmentShader(MyrtoanCircleResult in [[stage_in]], constant MyrtoanCirclePacket *circles [[buffer(0)]]) {
+    constant MyrtoanCirclePacket &circle = circles[in.instanceID];
+
     float distSquared = dot(in.localPos, in.localPos);
     if (distSquared <= 0.97) { return circle.color; }
     else if (distSquared < 1.00) { return float4(0.0, 0.0, 0.0, 1.0); }
@@ -80,6 +86,7 @@ struct MyrtoanRingIn {
     float iR;
     float oR;
     float4 color;
+    uint focus;
 };
 
 struct MyrtoanRingVertex {
@@ -106,7 +113,10 @@ fragment float4 myrtoanRingFragmentShader(MyrtoanRingVertex in [[stage_in]], con
     
     float2 posFromCenter = in.localPos - ring.center;
     float d = length(posFromCenter);
-    if (d >= ring.iR+0.003 && d <= ring.oR-0.003) { return ring.color; }
+    if (d >= ring.iR+0.003 && d <= ring.oR-0.003) {
+        if (ring.focus == 0) return ring.color;
+        else return float4(0.3, 0.5, 0.8, 1.0);
+    }
     else if (d >= ring.iR && d <= ring.oR) { return float4(0.0, 0.0, 0.0, 1.0); }
     else {
         discard_fragment();
