@@ -13,12 +13,12 @@
 
 // Ring =========
 typedef struct MCRing {
-    double iR;
-    double oR;
-    double current;
-    double dQ;
-    double dR;
-    double o;
+    double iR;              // inner radius
+    double oR;              // outer radius
+    double I;               // current
+    double dQ;              // delta theta
+    double dR;              // delta radius
+    double o;               // radial offset
     unsigned char focus;
 } MCRing;
 
@@ -65,3 +65,4 @@ void MCUniverseAddMoon(MCUniverse* universe, MCMoon* moon);
 MCMoon* MCUniverseCreateMoon(MCUniverse* universe, double x, double y, double vx, double vy, double radius);
 MCRing* MCUniverseRingAt(MCUniverse* universe, CV2 pos);
 void MCUniverseSetFocusRing(MCUniverse* universe, MCRing* ring);
+void MCUniverseReport(MCUniverse* universe);

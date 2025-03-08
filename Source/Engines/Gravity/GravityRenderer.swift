@@ -174,6 +174,7 @@ class GravityRenderer: NSObject, MTKViewDelegate {
         if universe == nil { MCUniverseRelease(universe) }
         universe = MCUniverseCreate(size.width, size.height)
         let dC: Double = 0.4
+//        let dC: Double = 0.01
         MCUniverseCreateRing(universe, 450, 350, 72, 1*dC)
         MCUniverseCreateRing(universe, 350, 270, 54, 2*dC)
         MCUniverseCreateRing(universe, 270, 210, 42, 3*dC)

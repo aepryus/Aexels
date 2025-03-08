@@ -71,7 +71,8 @@ void MCUniverseTic(MCUniverse* universe) {
     // flow the ring's aether
     for (int i=0;i<universe->ringCount;i++) {
         MCRing* ring = universe->rings[i];
-        ring->o = fmod((ring->o - 0.1*ring->current), ring->dR*2);
+        ring->o = fmod((ring->o - 0.1*ring->I), ring->dR*2);
+//        ring->o = fmod((ring->o - ring->I*ring->dR), ring->dR*2);
     }
     
     for (int i=0;i<universe->moonCount;i++) {
@@ -84,8 +85,10 @@ void MCUniverseTic(MCUniverse* universe) {
         
         // adjust moon's velocity
         if (oldRing != newRing) {
-            double oldV = oldRing ? oldRing->current : 0;
-            double newV = newRing ? newRing->current : 0;
+            double oldV = oldRing ? oldRing->I : 0;
+            double newV = newRing ? newRing->I : 0;
+//            double oldV = oldRing ? oldRing->I*oldRing->dR : 0;
+//            double newV = newRing ? newRing->I*newRing->dR : 0;
             double dv = fabs(newV - oldV);
             CV2 dV = CV2ofLength(CV2Neg(moon->pos), dv);
             moon->v = CV2Add(moon->v, dV);
@@ -108,14 +111,14 @@ void MCUniverseAddRing(MCUniverse* universe, MCRing* ring) {
     }
     universe->rings[universe->ringCount-1] = ring;
 }
-MCRing* MCUniverseCreateRing(MCUniverse* universe, double oR, double iR, int n, double current) {
+MCRing* MCUniverseCreateRing(MCUniverse* universe, double oR, double iR, int n, double I) {
     double nQ = n*3;
     MCRing* ring = MCRingCreate();
     ring->oR = oR;
     ring->iR = iR;
     ring->dQ = 2*M_PI/nQ;
     ring->dR = ring->dQ * (iR+oR)/2 * sqrt(3)/2;
-    ring->current = current;
+    ring->I = I;
     ring->focus = 0;
     MCUniverseAddRing(universe, ring);
     return ring;
@@ -152,6 +155,27 @@ MCRing* MCUniverseRingAt(MCUniverse* universe, CV2 pos) {
 void MCUniverseSetFocusRing(MCUniverse* universe, MCRing* ring) {
     for (int i=0;i<universe->ringCount;i++) {
         MCRing* iRing = universe->rings[i];
-        iRing->focus = iRing == ring;
+        if (iRing == ring && iRing->focus) iRing->focus = 0;
+        else iRing->focus = iRing == ring;
+    }
+}
+
+void MCUniverseReport(MCUniverse* universe) {
+    printf("\n\n==============================================================================\n");
+    printf("==== Universe                                                             ====\n");
+    printf("==============================================================================\n");
+    for (int i=0;i<universe->ringCount;i++) {
+        MCRing* ring = universe->rings[i];
+        printf("R: %lf\n", (ring->iR+ring->oR)/2);
+        double n = 2*M_PI/ring->dQ;
+        printf("n: %lf\n", n);
+        double r = n / (2*M_PI);
+        printf("r: %lf\n", r);
+        printf("dR: %lf\n", ring->dR);
+        printf("I: %lf\n", ring->I);
+        printf("dV: %lf\n", ring->I*ring->dR);
+//        printf("ρ: %lf\n", );
+        printf("φ: %lf\n", 2*M_PI/ring->dQ*ring->I);
+        printf("===============================================\n");
     }
 }

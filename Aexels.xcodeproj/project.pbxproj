@@ -47,6 +47,8 @@
 		D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */ = {isa = PBXBuildFile; fileRef = D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */; };
 		D86F72762D714E8600987057 /* UIColor+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F72752D714E7C00987057 /* UIColor+Aexels.swift */; };
 		D86F72782D714E8F00987057 /* OOColor+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F72772D714E8A00987057 /* OOColor+Aexels.swift */; };
+		D86F727A2D76FB7400987057 /* CylinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F72792D76FB6F00987057 /* CylinderView.swift */; };
+		D86F72802D76FEDB00987057 /* Baltic.c in Sources */ = {isa = PBXBuildFile; fileRef = D86F727F2D76FEDB00987057 /* Baltic.c */; };
 		D87C0DD12931A7AE0005B44D /* Dilation.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD02931A7AE0005B44D /* Dilation.latex */; };
 		D87C0DD32931A8250005B44D /* Contraction.latex in Resources */ = {isa = PBXBuildFile; fileRef = D87C0DD22931A8250005B44D /* Contraction.latex */; };
 		D881B7B9294BDED2004DE0DD /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881B7B8294BDED2004DE0DD /* CloseButton.swift */; };
@@ -167,6 +169,9 @@
 		D8656C0F2A8CF7C1003FC9A3 /* Myrtoan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Myrtoan.c; sourceTree = "<group>"; };
 		D86F72752D714E7C00987057 /* UIColor+Aexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Aexels.swift"; sourceTree = "<group>"; };
 		D86F72772D714E8A00987057 /* OOColor+Aexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OOColor+Aexels.swift"; sourceTree = "<group>"; };
+		D86F72792D76FB6F00987057 /* CylinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CylinderView.swift; sourceTree = "<group>"; };
+		D86F727E2D76FEDB00987057 /* Baltic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baltic.h; sourceTree = "<group>"; };
+		D86F727F2D76FEDB00987057 /* Baltic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Baltic.c; sourceTree = "<group>"; };
 		D87C0DD02931A7AE0005B44D /* Dilation.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Dilation.latex; sourceTree = "<group>"; };
 		D87C0DD22931A8250005B44D /* Contraction.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Contraction.latex; sourceTree = "<group>"; };
 		D881B7B8294BDED2004DE0DD /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -415,6 +420,15 @@
 			path = Myrtoan;
 			sourceTree = "<group>";
 		};
+		D86F727B2D76FDE300987057 /* Baltic */ = {
+			isa = PBXGroup;
+			children = (
+				D86F727E2D76FEDB00987057 /* Baltic.h */,
+				D86F727F2D76FEDB00987057 /* Baltic.c */,
+			);
+			path = Baltic;
+			sourceTree = "<group>";
+		};
 		D87C0DCF2931A7720005B44D /* LaTeX */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +481,7 @@
 		D896C99C2D41F7F60058585C /* Distance */ = {
 			isa = PBXGroup;
 			children = (
+				D86F72792D76FB6F00987057 /* CylinderView.swift */,
 				D80FB2E92B80DFC400F7DF17 /* DistanceExplorer.swift */,
 			);
 			path = Distance;
@@ -762,6 +777,7 @@
 		D8FA8B052D3762E400211980 /* Distance */ = {
 			isa = PBXGroup;
 			children = (
+				D86F727B2D76FDE300987057 /* Baltic */,
 			);
 			path = Distance;
 			sourceTree = "<group>";
@@ -889,6 +905,7 @@
 				D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */,
 				D830B9402D5C7D4E00E7B029 /* DilationShaders.metal in Sources */,
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
+				D86F727A2D76FB7400987057 /* CylinderView.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* DistanceExplorer.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
 				D86F72762D714E8600987057 /* UIColor+Aexels.swift in Sources */,
@@ -919,6 +936,7 @@
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* GravityExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
+				D86F72802D76FEDB00987057 /* Baltic.c in Sources */,
 				D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */,
 				D80ED6B12B679C6A00EF4F8D /* NexusExplorer.swift in Sources */,
 				D802E4C72D2CC61900F259BB /* ClaudeButton.swift in Sources */,

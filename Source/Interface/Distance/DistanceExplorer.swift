@@ -17,6 +17,8 @@ class DistanceExplorer: Explorer {
     let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
     let notesTab: NotesTab = NotesTab(key: "distance")
     
+    let cylinderView: UIView = CylinderView()
+    
     init() { super.init(key: "distance") }
     
 // UIViewController ================================================================================
@@ -32,7 +34,7 @@ class DistanceExplorer: Explorer {
 
         if Screen.iPhone {
             cyto.cells = [
-                LimboCell(c: 0, r: 0),
+                LimboCell(content: cylinderView, c: 0, r: 0),
                 MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
@@ -41,7 +43,7 @@ class DistanceExplorer: Explorer {
             ]
         } else {
             cyto.cells = [
-                LimboCell(c: 0, r: 0, h: 3),
+                LimboCell(content: cylinderView, c: 0, r: 0, h: 3),
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
