@@ -172,8 +172,9 @@ class NexusExplorer: AEViewController {
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 30*s, y: 920*s)
         let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 380*s, y: 1420*s)
 
-        let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 270*s, y: 90*s)
-        let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 200*s, y: 150*s)
+        let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
+        let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 250*s, y: 120*s)
+        let aestheticsGlyph: AsideGlyph = AsideGlyph(article: .aesthetics, radius: 64*s+2*p, x: 170*s, y: 170*s)
         let gGlyph: AsideGlyph = AsideGlyph(article: .G, radius: 36*s, x: 300*s, y: 760*s)
         let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1040*s)
         let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 396*s, y: 1142*s)
@@ -212,6 +213,7 @@ class NexusExplorer: AEViewController {
 
         glyphs.append(forwardGlyph)
         glyphs.append(claudeGlyph)
+        glyphs.append(aestheticsGlyph)
         glyphs.append(blackHoleGlyph)
         glyphs.append(gGlyph)
         glyphs.append(chronosGlyph)
@@ -226,6 +228,7 @@ class NexusExplorer: AEViewController {
         universeXGlyph.link(to: aetherGlyph)
         universeXGlyph.link(to: forwardGlyph)
         universeXGlyph.link(to: claudeGlyph)
+        universeXGlyph.link(to: aestheticsGlyph)
         
         aetherGlyph.link(to: cellularGlyph)
         aetherGlyph.link(to: aetherExpGlyph)
