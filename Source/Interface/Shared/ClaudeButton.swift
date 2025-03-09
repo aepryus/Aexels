@@ -115,7 +115,7 @@ class ClaudeButton: AEView {
         if let article { UIPasteboard.general.string = article.article }
         else {
             var sb: String = ""
-            Article.articles.forEach {
+            Concepts.articles.forEach {
                 sb.append("===================================================================\n")
                 sb.append($0.article)
             }

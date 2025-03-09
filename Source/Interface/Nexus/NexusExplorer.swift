@@ -12,6 +12,8 @@ import OoviumKit
 import UIKit
 
 class NexusExplorer: AEViewController {
+    enum Mode { case concepts, pathOfDiscovery }
+    
     let scrollView: UIScrollView = UIScrollView()
     let glyphsView: GlyphsView = GlyphsView()
     let articleView: ArticleView = ArticleView()
@@ -21,13 +23,14 @@ class NexusExplorer: AEViewController {
     let articleCell: MaskCell
     let cyto: Cyto = Cyto(rows: 1, cols: 1)
 
+    let pathButton: ImageButton = ImageButton(named: "aepryus")
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
     let claudeCircle: CircleButton
     let claudeHover: UIView = UIView()
     let glyphsCircle: CircleButton
 
-    var glyphs: [GlyphView] = []
+    var mode: Mode = .concepts
     var glyphsOffset: CGPoint = .zero
     
     lazy var vision: Vision = ExplorerVision(explorer: Aexels.nexusExplorer)
@@ -56,6 +59,7 @@ class NexusExplorer: AEViewController {
             }
             if currentCapsule.superview == nil { view.addSubview(currentCapsule) }
             UIView.animate(withDuration: 0.5) {
+                self.pathButton.alpha = 0
                 self.musicButton.alpha = 0
                 self.glyphsView.alpha = 0
                 self.currentCapsule.alpha = 0
@@ -66,6 +70,7 @@ class NexusExplorer: AEViewController {
                 self.articleView.key = article.key
                 self.claudeButton.article = article
                 self.currentCapsule.article = article
+                self.pathButton.removeFromSuperview()
                 self.musicButton.removeFromSuperview()
                 self.glyphsView.removeFromSuperview()
                 self.scrollView.contentSize = self.articleView.scrollViewContentSize
@@ -98,10 +103,12 @@ class NexusExplorer: AEViewController {
     func showGlyphs() {
         claudeButton.article = nil
 
+        pathButton.alpha = 0
         musicButton.alpha = 0
         claudeButton.alpha = 0
         glyphsView.alpha = 0
         if !Screen.iPhone {
+            view.addSubview(pathButton)
             view.addSubview(musicButton)
             view.addSubview(claudeButton)
         }
@@ -119,6 +126,7 @@ class NexusExplorer: AEViewController {
             self.scrollView.contentOffset = self.glyphsOffset
             self.scrollView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
+                self.pathButton.alpha = 1
                 self.musicButton.alpha = 1
                 self.claudeButton.alpha = 1
                 self.glyphsView.alpha = 1
@@ -133,6 +141,7 @@ class NexusExplorer: AEViewController {
         contextGlyphsView.removeFromSuperview()
         
         if !Screen.iPhone {
+            view.addSubview(pathButton)
             view.addSubview(musicButton)
             view.addSubview(claudeButton)
         }
@@ -141,147 +150,31 @@ class NexusExplorer: AEViewController {
         scrollView.contentSize = self.glyphsView.frame.size
         scrollView.contentOffset = self.glyphsOffset
         scrollView.addSubview(self.articleView)
+        pathButton.alpha = 1
         musicButton.alpha = 1
         claudeButton.alpha = 1
         glyphsView.alpha = 1
     }
-    
-    func defineGlyphs() -> [GlyphView] {
-        let p: CGFloat = 3*s
-        
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: Article.intro, radius: 112*s+2*p, x: 70*s, y: 30*s)
-        let aetherGlyph: ArticleGlyph = ArticleGlyph(article: Article.aether, radius: 82*s+2*p, x: 50*s, y: 180*s)
-        let cellularGlyph: ArticleGlyph = ArticleGlyph(article: Article.cellular, radius: 102*s+2*p, x: 230*s, y: 330*s)
-        let kinematicsGlyph: ArticleGlyph = ArticleGlyph(article: Article.kinematics, radius: 112*s+2*p, x: 30*s, y: 480*s)
-        let gravityGlyph: ArticleGlyph = ArticleGlyph(article: Article.gravity, radius: 90*s+2*p, x: 200*s, y: 630*s)
-        let darknessGlyph: ArticleGlyph = ArticleGlyph(article: Article.darkness, radius: 110*s+2*p, x: 80*s, y: 760*s)
-        let hyleGlyph: ArticleGlyph = ArticleGlyph(article: .hyle, radius: 72*s+2*p, x: 280*s, y: 860*s)
-        let dilationGlyph: ArticleGlyph = ArticleGlyph(article: Article.dilation, radius: 100*s+2*p, x: 260*s, y: 1040*s)
-        let contractionGlyph: ArticleGlyph = ArticleGlyph(article: Article.contraction, radius: 110*s+2*p, x: 100*s, y: 1000*s)
-        let electromagnetismGlyph: ArticleGlyph = ArticleGlyph(article: Article.electromagnetism, radius: 116*s+2*p, x: 210*s, y: 1290*s)
-        let quantumGlyph: ArticleGlyph = ArticleGlyph(article: .quantum, radius: 100*s, x: 100*s, y: 1430*s)
-        let nuclearGlyph: ArticleGlyph = ArticleGlyph(article: .nuclear, radius: 94*s, x: 250*s, y: 1560*s)
-        let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: Article.epilogue, radius: 96*s+2*p, x: 330*s, y: 1687*s)
-
-        let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 315*s)
-        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
-        let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.kinematicsExplorer, radius: 50*s+2*p, x: 230*s, y: 530*s)
-        let distanceExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.distanceExplorer, radius: 50*s+2*p, x: 320*s, y: 600*s)
-        let gravityExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.gravityExplorer, radius: 50*s+2*p, x: 380*s, y: 670*s)
-        let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 380*s, y: 960*s)
-        let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 30*s, y: 920*s)
-        let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 380*s, y: 1420*s)
-
-        let forwardGlyph: AsideGlyph = AsideGlyph(article: Article.forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
-        let claudeGlyph: AsideGlyph = AsideGlyph(article: Article.claude, radius: 56*s+2*p, x: 250*s, y: 120*s)
-        let aestheticsGlyph: AsideGlyph = AsideGlyph(article: .aesthetics, radius: 64*s+2*p, x: 170*s, y: 170*s)
-        let gGlyph: AsideGlyph = AsideGlyph(article: .G, radius: 36*s, x: 300*s, y: 760*s)
-        let chronosGlyph: AsideGlyph = AsideGlyph(article: Article.chronos, radius: 60*s+2*p, x: 400*s, y: 1040*s)
-        let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: .floatingLeaf, radius: 62*s, x: 396*s, y: 1142*s)
-        let fourClocksGlyph: AsideGlyph = AsideGlyph(article: Article.fourClocks, radius: 46*s+2*p, x: 336*s, y: 1190*s)
-        let blackHoleGlyph: AsideGlyph = AsideGlyph(article: Article.blackHole, radius: 40*s+2*p, x: 270*s, y: 1200*s)
-        let narwhalGlyph: AsideGlyph = AsideGlyph(article: Article.narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
-        let magnetismGlyph: AsideGlyph = AsideGlyph(article: .magnetism, radius: 74*s, x: 100*s, y: 1230*s)
-        let bellTHooftGlyph: AsideGlyph = AsideGlyph(article: Article.bellTHooft, radius: 60*s+2*p, x: 90*s, y: 1340*s)
-        let thooftGlyph: AsideGlyph = AsideGlyph(article: Article.thooft, radius: 60*s, x: 110*s, y: 1560*s)
-        let glossaryGlyph: AsideGlyph = AsideGlyph(article: Article.glossary, radius: 60*s+2*p, x: 250*s, y: 1830*s)
-
-        var glyphs: [GlyphView] = []
-        
-        glyphs.append(universeXGlyph)
-        glyphs.append(aetherGlyph)
-        glyphs.append(cellularGlyph)
-        glyphs.append(kinematicsGlyph)
-        glyphs.append(gravityGlyph)
-        glyphs.append(darknessGlyph)
-        glyphs.append(hyleGlyph)
-        glyphs.append(dilationGlyph)
-        glyphs.append(contractionGlyph)
-        glyphs.append(electromagnetismGlyph)
-        glyphs.append(quantumGlyph)
-        glyphs.append(nuclearGlyph)
-        glyphs.append(epilogueGlyph)
-
-        glyphs.append(aetherExpGlyph)
-        glyphs.append(cellularExpGlyph)
-        glyphs.append(kinematicsExpGlyph)
-        glyphs.append(distanceExpGlyph)
-        glyphs.append(gravityExpGlyph)
-        glyphs.append(dilationExpGlyph)
-        glyphs.append(contractionExpGlyph)
-        glyphs.append(electromagnetismExpGlyph)
-
-        glyphs.append(forwardGlyph)
-        glyphs.append(claudeGlyph)
-        glyphs.append(aestheticsGlyph)
-        glyphs.append(blackHoleGlyph)
-        glyphs.append(gGlyph)
-        glyphs.append(chronosGlyph)
-        glyphs.append(floatingLeafGlyph)
-        glyphs.append(fourClocksGlyph)
-        glyphs.append(narwhalGlyph)
-        glyphs.append(magnetismGlyph)
-        glyphs.append(bellTHooftGlyph)
-        glyphs.append(thooftGlyph)
-        glyphs.append(glossaryGlyph)
-
-        universeXGlyph.link(to: aetherGlyph)
-        universeXGlyph.link(to: forwardGlyph)
-        universeXGlyph.link(to: claudeGlyph)
-        universeXGlyph.link(to: aestheticsGlyph)
-        
-        aetherGlyph.link(to: cellularGlyph)
-        aetherGlyph.link(to: aetherExpGlyph)
-
-        cellularGlyph.link(to: kinematicsGlyph)
-        cellularGlyph.link(to: cellularExpGlyph)
-        
-        kinematicsGlyph.link(to: gravityGlyph)
-        kinematicsGlyph.link(to: kinematicsExpGlyph)
-        
-        gravityGlyph.link(to: darknessGlyph)
-        gravityGlyph.link(to: distanceExpGlyph)
-        gravityGlyph.link(to: gravityExpGlyph)
-        gravityGlyph.link(to: gGlyph)
-        
-        darknessGlyph.link(to: hyleGlyph)
-        
-        hyleGlyph.link(to: dilationGlyph)
-        
-        dilationGlyph.link(to: contractionGlyph)
-        dilationGlyph.link(to: dilationExpGlyph)
-        dilationGlyph.link(to: chronosGlyph)
-        dilationGlyph.link(to: floatingLeafGlyph)
-        dilationGlyph.link(to: fourClocksGlyph)
-        dilationGlyph.link(to: blackHoleGlyph)
-
-        contractionGlyph.link(to: electromagnetismGlyph)
-        contractionGlyph.link(to: contractionExpGlyph)
-        contractionGlyph.link(to: narwhalGlyph)
-        
-        electromagnetismGlyph.link(to: quantumGlyph)
-        electromagnetismGlyph.link(to: electromagnetismExpGlyph)
-        electromagnetismGlyph.link(to: magnetismGlyph)
-        
-        quantumGlyph.link(to: nuclearGlyph)
-        quantumGlyph.link(to: bellTHooftGlyph)
-        quantumGlyph.link(to: thooftGlyph)
-        
-        nuclearGlyph.link(to: epilogueGlyph)
-        
-        epilogueGlyph.link(to: glossaryGlyph)
-        
-        contractionGlyph.contract = true
-        
-        return glyphs
+    func swapGlyphs() {
+        if mode == .concepts {
+            mode = .pathOfDiscovery
+            glyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
+            contextGlyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
+        } else {
+            mode = .concepts
+            glyphsView.glyphs = Concepts.glyphs(s: s)
+            contextGlyphsView.glyphs = Concepts.glyphs(s: s)
+        }
+        layout()
     }
+    
 
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
                         
         if Screen.iPhone { glyphsView.scale = 0.78 }
-        glyphsView.glyphs = defineGlyphs()
+        glyphsView.glyphs = Concepts.glyphs(s: s)
         glyphsView.focus = nil
         glyphsView.onTapGlyph = { (glyphView: GlyphView) in
             if self.glyphsView.alpha == 1 { self.glyphsOffset = self.scrollView.contentOffset }
@@ -289,7 +182,7 @@ class NexusExplorer: AEViewController {
         }
         
         contextGlyphsView.scale = 0.7
-        contextGlyphsView.glyphs = defineGlyphs()
+        contextGlyphsView.glyphs = Concepts.glyphs(s: s)
         contextGlyphsView.onTapGlyph = { (glyphView: GlyphView) in
             glyphView.execute()
         }
@@ -307,6 +200,9 @@ class NexusExplorer: AEViewController {
         view.addSubview(currentCapsule)
         
         if !Screen.iPhone {
+            view.addSubview(pathButton)
+            pathButton.addAction { self.swapGlyphs() }
+
             view.addSubview(musicButton)
             musicButton.addAction {
                 Loom.transact { Aexels.settings.musicOn = !Aexels.settings.musicOn }
@@ -367,6 +263,7 @@ class NexusExplorer: AEViewController {
         currentCapsule.render()
         currentCapsule.topLeft(dx: 15*s, dy: Screen.safeTop+19*s)
         
+        pathButton.topLeft(dx: 10*s, dy: Screen.safeTop + 10*s, width: 20*s, height: 20*s)
         musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
         claudeButton.bottomLeft(dx: 10*s, dy: -10*s, width: 180*s, height: 24*s)
     }

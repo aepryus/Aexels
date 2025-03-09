@@ -56,8 +56,6 @@ class Aexels {
 		window.makeKeyAndVisible()
 		window.rootViewController = explorerViewController
 
-        Article.wire()
-
         let oldVersion: String? = Aexels.basket.get(key: "version")
 		if oldVersion == nil { Local.archiveXML() }
 		if oldVersion != Aexels.version {

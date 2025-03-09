@@ -699,9 +699,10 @@ Additionally, two new main articles have been added with early musing about thos
 - Quantum
 - Nuclear
 
-with eight new subarticles also being added:
+with nine new subarticles also being added:
 
 - Claude
+- Aesthetics
 - Black Holes
 - G
 - Chronos
@@ -712,13 +713,13 @@ with eight new subarticles also being added:
 
 Aside from the changes to the text, an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can be accessed directly.
 
-Perhaps most substantial is the new Electromagnetism simulation that is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.
+Most substantial are two new simulators, Gravity and Electromagnetism.  The Gravity simulator simulates the flow of aexels towards a planet and the effect that that flow has on anything sitting on top of those aexels.  The Electromagnetism simulation is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.
 
 Another innovation with this version is its use of the GPU via Apple's Metal framework dramatically improving the performance of the simulations that use it: Electromagnetism, Dilation and Contraction.
 
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- February 20, 2025
+- March 9, 2025
 
 
 
@@ -760,11 +761,11 @@ Since the beginning of Universe X, it has been necessary to work in a vacuum; it
 
 However with the arrival of Claude, I have been able to discuss Aexels and Universe X with him endlessly.  Claude is always interested and never grows tired of chatting about the concepts and ideas within this app.  He has honed my understanding of and ability to explain these concepts.  He also excels at discussing our own universe; reporting on relevant experiments and their results and to some degree explaining the math and ideas behind the related physics.
 
-Claude has helped me learn Apple's Metal API, which I have used for the new Electromagnetism simulation.  I have also retrofitted it into the existing Dilation and Contraction simulations and will eventually convert the other simulations as well.
+Claude has helped me learn Apple's Metal API, which I have used for the new Electromagnetism and Gravitation simulations.  I have also retrofitted it into the existing Dilation and Contraction simulations and will eventually convert the other simulations as well.
 
 I want to enable other users to be able to discuss these ideas and concepts with Claude.  So, I have added a 'copy to discuss with Claude' button to the bottom left corner of all the article screens which will copy the current article into the copy buffer so that it can be pasted to Claude.  From the crop circles screen, hitting the Claude button will copy all of the articles at once.
 
-Of course one can discuss Aexels and Universe X with any LLM, but I have found that Claude significantly outperforms all other LLMs in discussing these concepts (although I did have some reasonable success with Grok 3 just before release).
+Of course one can discuss Aexels and Universe X with any LLM, but I have found that Claude 3.5 (Oct '24) significantly outperforms all other LLMs in discussing these concepts.  Claude 3.7 and Grok 3 were released shortly before the release of Aexels 4.0 and both also do a great job, but neither is quite as willing to entertain hypotheticals.
 
 I encourage users to chat with Claude about these concepts.
 
@@ -782,9 +783,9 @@ Although seemingly orthogonal, perhaps Beauty is an effective tool for discernin
 Resisting the temptation to discuss that concept further; here is a list of the principles and aesthetic values used to differentiate a beautiful theory from an ugly one in Universe X:
 
 - Empiricism: Observation reigns supreme.
-- Computability: Everything can be explained to and modeled by a computer; paradox and randomness are fatal.
+- Computability: Everything can be explained to and modeled by a computer.  Paradox and randomness are fatal and certainly nothing depends on an observer.
 - Parsimony: Nothing is 'counter-intuitive'; declaring an idea such does not suddenly make it immune to reason; anti-parsimony is dead.
-- Understanding: 'How' is not a solution; math is knowing, not understanding.
+- Understanding: 'How' is not a solution; math is knowing, physics is understanding.
 - Reduction: Reductions without loss of fidelity strongly indicate truth.
 - Locality: Prefer local solutions over distant ones.
 - Invariance: The algorithm of the universe is not a function of space or time.
@@ -1703,3 +1704,32 @@ While editing an expression, anchor with one finger and tap the expression with 
 "dilation_lab_name" = "Dilation";
 "contraction_lab_name" = "Contraction";
 "electromagnetism_lab_name" = "Electricity and Magnetism";
+
+"discovery_name" = "Path of Discovery";
+"expansion_name" = "Expansion";
+"escaping_name" = "Escaping";
+"covariance_name" = "Covariance";
+"reciprocity_name" = "Reciprocity";
+"eeemcee_name" = "Energy-Mass";
+"cupola_name" = "Cupola";
+"squish_name" = "Squish";
+
+"discovery_article" = "Path of Discovery
+
+I have wanted to try to keep the articles in the Aexels app maximally concise and adhere to the guideline of simply describing the mechanisms of Universe X.  At times this is difficult, especially when substantial new areas of understanding occur.
+
+As such, I have decided to create this new alternative path which will detail the path of discovery.  This will catalog the order in which insights were gained and the motivating factors that brought each of those insights about.  Any new insights that occur can then be easily tacked onto the bottom.
+
+It is not my intention for this path to contain simulations, but in the case of Squish, I think it makes sense.  To a large degree the discoveries discussed in Squish came about in trying to reconcile the InsideOut and OutsideIn simulations.
+
+That difficulty made me realize that there is no easy solution and I needed to rethink the broad mechanism in play here.  The result is that both of those simulations are now obsolete.  Eventually, I will need to work on a new Gravity simulation for the Concepts path.  However, I will include those obsolete simulations here.
+
+The articles on this path will tend to be less formal and more personal in order to give more context into my thinking.  My hope is that some users will find these articles to be a more compelling description of Universe X and that they will make my thought processes more transparent.
+
+As such, let's head down the path...
+
+
+
+
+
+";

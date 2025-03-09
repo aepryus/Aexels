@@ -74,12 +74,14 @@ class GlyphsBorderView: AEView {
 class GlyphsView: AEView {
     var glyphs: [GlyphView] = [] {
         didSet {
+            oldValue.forEach { $0.removeFromSuperview() }
             glyphLookup = [:]
             glyphs.forEach {
                 $0.glyphsView = self
                 addSubview($0)
                 glyphLookup[$0.key] = $0
             }
+            borderView.setNeedsDisplay()
         }
     }
     var glyphLookup: [String:GlyphView] = [:]
