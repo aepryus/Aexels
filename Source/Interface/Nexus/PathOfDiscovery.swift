@@ -27,8 +27,8 @@ class PathOfDiscovery {
         
         let discoveryGlyph: ArticleGlyph = ArticleGlyph(article: discovery, radius: 112*s+2*p, x: 200*s, y: 30*s)
         let expansionGlyph: ArticleGlyph = ArticleGlyph(article: expansion, radius: 112*s+2*p, x: 70*s, y: 180*s)
-        let escapingGlyph: ArticleGlyph = ArticleGlyph(article: escaping, radius: 90*s+2*p, x: 200*s, y: 270*s)
-        let covarianceGlyph: ArticleGlyph = ArticleGlyph(article: covariance, radius: 112*s+2*p, x: 230*s, y: 410*s)
+        let escapingGlyph: ArticleGlyph = ArticleGlyph(article: escaping, radius: 96*s+2*p, x: 200*s, y: 270*s)
+        let covarianceGlyph: ArticleGlyph = ArticleGlyph(article: covariance, radius: 118*s+2*p, x: 230*s, y: 410*s)
         let reciprocityGlyph: ArticleGlyph = ArticleGlyph(article: reciprocity, radius: 112*s+2*p, x: 70*s, y: 580*s)
         let eeemceeGlyph: ArticleGlyph = ArticleGlyph(article: eeemcee, radius: 120*s+2*p, x: 150*s, y: 730*s)
         let cupolaGlyph: ArticleGlyph = ArticleGlyph(article: cupola, radius: 80*s+2*p, x: 70*s, y: 930*s)

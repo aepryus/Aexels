@@ -114,6 +114,7 @@
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8CC48C42D7D689000593737 /* Concepts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C32D7D688800593737 /* Concepts.swift */; };
 		D8CC48C62D7D68A500593737 /* PathOfDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C52D7D689E00593737 /* PathOfDiscovery.swift */; };
+		D8CC48C82D7E6FD600593737 /* Escaping.latex in Resources */ = {isa = PBXBuildFile; fileRef = D8CC48C72D7E6FCE00593737 /* Escaping.latex */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
 		D8D2E1282944BC4E00EC1719 /* BoolButtonOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */; };
 		D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */; };
@@ -242,6 +243,7 @@
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
 		D8CC48C32D7D688800593737 /* Concepts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concepts.swift; sourceTree = "<group>"; };
 		D8CC48C52D7D689E00593737 /* PathOfDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathOfDiscovery.swift; sourceTree = "<group>"; };
+		D8CC48C72D7E6FCE00593737 /* Escaping.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Escaping.latex; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
 		D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButtonOld.swift; sourceTree = "<group>"; };
 		D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cyto.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 		D87C0DCF2931A7720005B44D /* LaTeX */ = {
 			isa = PBXGroup;
 			children = (
+				D8CC48C72D7E6FCE00593737 /* Escaping.latex */,
 				D81D4B952D6C573400D1986D /* G.LaTeX */,
 				D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */,
 				D87C0DD22931A8250005B44D /* Contraction.latex */,
@@ -869,6 +872,7 @@
 				D81D4B962D6C573B00D1986D /* G.LaTeX in Resources */,
 				D8AE17AE2814F0D300E74CB8 /* Day & Night iP.oo in Resources */,
 				D8AE17982814F0D300E74CB8 /* Demons.oo in Resources */,
+				D8CC48C82D7E6FD600593737 /* Escaping.latex in Resources */,
 				D849E0542934E4250012D0AC /* Discrepancy.latex in Resources */,
 				D8AE17B12814F0D300E74CB8 /* Demons iP.oo in Resources */,
 				D8AE179E2814F0D300E74CB8 /* WalledCities.oo in Resources */,
