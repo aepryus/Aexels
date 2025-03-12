@@ -121,7 +121,11 @@ class GlyphsView: AEView {
     
     var borderView: GlyphsBorderView!
     
-    var scale: CGFloat = 1
+    var scale: CGFloat = 1 {
+        didSet {
+            print("\(scale)")
+        }
+    }
     var onTapGlyph: ((GlyphView)->())? = nil
     
     override init() {
@@ -232,8 +236,15 @@ class ArticleGlyph: GlyphView {
     }
     
 // UIView ==========================================================================================
+    override var frame: CGRect {
+        didSet {
+            guard article === Concepts.intro else { return }
+            print("f:\(frame)")
+        }
+    }
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale
+        print("b:(\(glyphsView.scale), \(s))")
 
         layer.borderWidth = 2 * glyphsView.scale
 
@@ -287,7 +298,8 @@ class ExplorerGlyph: GlyphView {
     override func layoutSubviews() {
         let ss: CGFloat = glyphsView.scale
         let s: CGFloat = super.s * ss
-        
+        print("c:(\(glyphsView.scale), \(s))")
+
         if Screen.iPhone {
             imageView.layer.borderWidth = 3*ss
             imageView.center(width: width, height: height)
@@ -328,7 +340,8 @@ class AsideGlyph: GlyphView {
 // UIView ==========================================================================================
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale
-        
+        print("a:(\(glyphsView.scale), \(s))")
+
         layer.borderWidth = 3*glyphsView.scale
         label.center(width: width-15*s, height: height-15*s)
         label.layer.cornerRadius = label.width/2

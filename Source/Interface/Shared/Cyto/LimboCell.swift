@@ -10,7 +10,7 @@ import Acheron
 import UIKit
 
 class LimboCell: Cyto.Cell {
-    enum Cutout: CaseIterable, Equatable { case upperRight, lowerLeft, lowerRight }
+    enum Cutout: CaseIterable, Equatable { case upperLeft, upperRight, lowerLeft, lowerRight }
     class Path {
         var strokePath: CGPath!
         var shadowPath: CGPath!
@@ -70,8 +70,13 @@ class LimboCell: Cyto.Cell {
         let y2 = (y1 + y3) / 2
         let r: CGFloat = 10*s
 
-        path.move(to: CGPoint(x: x1, y: y1+r))
-        path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
+        path.move(to: CGPoint(x: x1, y: y2))
+        if !cutouts.contains(.upperLeft) {
+            path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
+        } else {
+            let radius: CGFloat = 29*s
+            path.addArc(center: CGPoint(x: 20*s, y: 20*s), radius: radius, startAngle: 1/2 * .pi + atan(radius/20), endAngle: -atan(radius/20), clockwise: true)
+        }
         if !cutouts.contains(.upperRight) {
             path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: r)
         } else {
