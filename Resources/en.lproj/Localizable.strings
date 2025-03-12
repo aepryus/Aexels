@@ -1912,3 +1912,45 @@ Thus the concept of hyle was born and the already existing concepts of Teslons a
 
 
 ";
+
+"cupola_article" = "Electricity, Magnetism and the Cupola
+
+When I released Aexel 3.0 in December of 2022 it included the new Dilation and Contraction simulations.  Implementing these simulations took my explanations for Dilation and Contraction from hand waving to a rigorous implementation; supporting my long held contention: the best way to make sure you understand something is to explain it to a computer.
+
+But, for those two simulations I used a very specific configuration of the particles.  Those configurations made calculating the angle of the pong responses quite easy.  Trying to handle any two particles traveling at any two speeds in any two directions was daunting.  I figured there must be some way to encode enough information to allow the target teslon to find the source teslon again, but I had no idea what that would be at that point.
+
+Even before the Aexels concept began I had some vague notion of parallel and perpendicular vectors some how being involved in Electricity and Magnetism, Linear and Angular Momentum, Div and Curl.
+
+Back in school when I first heard of magnetic and electric forces being frame dependent I experienced great consternation and received no satisfactory explanation of what was really going on.  But, combining all these bits of conceptual information, the cupola vector began to take form.
+
+I realized that the B field was just the cross product of the cupola vector and the frame dependent translation vector; and with that the frame dependence of the B and E fields finally made sense.
+
+There is an equation of physics that just appears to come out of left field.
+
+    F = qv × B
+
+Not only is this force applied *perpendicular* to the B field, but is a function of v!  And while in Universe X the v of the Lorentz transformations represents the rate of the translation across the aexels, what does this v represent?  Two substantial mysteries in one small equation.
+
+The first mystery is relatively easy to dismantle in Universe X.  The B field being just the cross of the cupola and frame dependent translation vector means its just a short hand way of representing two vectors.  The force is actually not perpendicular at all; it's in the exact same plane as the cupola and translation vectors.
+
+As far as the velocity dependence of the force, if one plays with the numbers when dealing with the force one teslon exerts on another one can see that ultimately all E&M forces are essentially coulomb forces in the frame of the source teslon.
+
+The B component of the force only comes into play when trying to make sense of that E force in another frame.  It's a mathematical trick to make the force make sense on other frames and that amount of correction that is needed here is a function of the velocity difference between the source teslon frame and the target teslon frame.
+
+When I finally sat down to explain all this to my computer I eventually came to the problem of how to calculate the cupola and then how to determine the response angle.
+
+Using the Dilation simulation configuration and a little geometry one can see that the cupola is just the transmission vector from the source teslon minus the source teslons translation vector.  This simple math will ensure all teslons co-moving with the source teslon will see the pings pointed parallel to the frame translation vector, and thus appear as a pure E field.
+
+Once the cupola is correctly calculated and after a little pondering one can see that by reflecting the pongs incoming trajectory over the cupola vector will give the exact angle needed to intercept the source teslon.
+
+The implementation of that shockingly simple algorithm provided a visceral confirmation that E&M without field was possible and elegant.
+
+Unfortunately, modeling the hyle exchange was not nearly as straightforward.  The problem is that in natural units the momentum and energy carried by a photon is always equal.  But the momentum and energy lost by a teslon is never equal.  So how do you maintain local conservation through proton exchange?
+
+Here I think we have butted up against the mysteries of Quantum Mechanics and will be left to be tacked in some future version of Aexels.
+
+
+
+
+
+";
