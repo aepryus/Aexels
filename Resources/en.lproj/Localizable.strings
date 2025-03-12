@@ -1822,3 +1822,93 @@ And with that, the solution to the baryogenesis problem became obvious.
 
 
 ";
+
+"covariance_article" = "Lorentz Covariance
+
+About a year went by without any substantial new insights after the initial burst.  And while many things in physics that had previously seemed mysterious now made sense, there were several aspects even within relativity that were still not understood in the context of Universe X.
+
+One open question was: \"Is Universe X saying anything new or is it just saying it a different way?\"  I really wasn't sure what the answer was, so I began to look for ways to differentiate Universe X from 'our universe'.
+
+One potential differentiator was the flow of aexels directly into the Earth.  Because the flow was directly vertical into the Earth, It made sense that Michelson and Morley hadn't detected an aether running tangentially along the surface.  Perhaps, if they had compared the speed of light running vertically to the speed of light running horizontally they would have found their discrepancy.
+
+I spent a bunch of time trying to figure out how to run such an experiment, which for various reasons is actually quite technically challenging even with cutting edge modern equipment.  Ultimately, however, such an experiment was irrelevant.  I realized that a vertical MMX would return the same null result as the horizontal version did.
+
+I had begun to pin down the Geometry and math of signals bouncing back and forth across the aexels.  At first I worked on the the case where two objects are situated orthogonal to the direction of translation:
+
+<<DilaSketch>>
+
+Which resulted in the familiar gamma transform.
+
+I then considered the case were objects were situated parallel to the direction of translation:  <<ContraSketch>> 
+I found that whether the target was leading or trailing the source the time delay was gamma^2, which of course didn't match the orthogonal case.  Only after contracting all lengths in the parallel case did the signal delay in both directions match.
+
+This meant that the MMX doesn't return null results because the speed of light is always constant.  It returns null results for two reasons: it doesn't measure the one way speed of light only the roundtrip speed of light and length contraction precisely masks any difference that exists.
+
+With this length contraction was finally understood in the context of Universe X and a possible avenue of differentiation was closed.
+
+But, also a mechanical mechanism underpinning dilation and contraction was beginning to emerge.  Where as previously it was a hand wavy 'something must be slowing things down', now we had the beginnings of an actual mechanism.
+
+This also showed why Lorentz covariance holds in Universe X even though for a translating system the speed of light is different in each direction.
+
+
+
+
+
+";
+
+
+"reciprocity_article" = "Reciprocity
+
+After the success of predicting the dilation at the surface of a planet I was looking for other calculations I could perform in Universe X that could then be compared to calculations in our universe.  I realized there was a very easy to perform calculation available in Universe X.
+
+A clock free falling from infinity to a planet would experience all sorts of gravitational field strengths and all sorts of velocities along the way.  In our universe the dilation a clock would feel during such a journey would perhaps be quite complicated.  But in Universe X, gravity not being a force, the clock would simply flow along with the aexels down to the planet never translating at all.  It was easy to see that it would experience no dilation what-so-ever at any point in the journey.
+
+For our universe, however, the calculation differed:
+
+<<RecEq1>>
+
+Furthermore, for the opposite case where the clock is blasting off to infinity, Universe X predicts dilation of γ(2vₑ) while our universe predicts the exact same dilation as the falling case listed above.
+
+At first I was unsure what to make of this result.  To some degree I'm not sure how well I actually understood that reciprocity (which seemed transparently wrong to me) reigned in our universe.
+
+In Einstein's 1905 paper on Special Relativity he states: \"It is clear that the same results hold good of bodies at rest in the 'stationary' system, viewed from a system in uniform motion.\"
+
+That \"It is clear...\" is carrying a lot of weight here.  With no further justification he states that two observers in relative motion to one another will both perceive the same thing.  Namely, they will both see the other's clocks dilated and the other's lengths contracted.  My guess is that he was motivated by trying to maintain the Reciprocity of Galilean relativity.
+
+But for Universe X (and any universe with an absolute reference frame) Reciprocity is simply not true.
+
+Universe X was not just describing the same thing using different words, but was fundamentally describing different physics.
+
+Furthermore, beyond just being an interesting thought experiment, this provides a clear mechanistic explanation for why the equivalence principle is true, as opposed to simply accepting it as an axiom.
+
+And at the same time seems to illustrate a substantial contradiction with the EFE themselves.  How can a clock falling from infinity feel any dilation if the equivalence principle says there is no difference between free falling and simply sitting still in free space (where certainly no dilation would be felt)
+
+
+
+
+
+";
+
+"eeemcee_article" = "Energy-Mass Equivalence
+
+One remaining aspect of relativity remained elusive for a considerable time:
+
+     E=mc²
+
+The other aspects had fallen out automatically while exploring Universe X, but mass-energy equivalence never did.  In this case I finally decided to actively go and figure out where it fit in.  The implications of this equation really were relatively easy to plug into Universe X once it was fully understood.
+
+To that point I had thought that 'mass destroys aexels' and that any particle that moved less than the speed of light contained mass.  Consequently any particle that did move at the speed of light did not destroy aexels.
+
+But realizing that the gravitational pull of an entire star-photon system emitting photons does not change even after the star itself looses mass to the escaping photons, made the ramifications clear: photons also destroy aexels.
+
+That point was particularly easy to see once one considers the photons in a massless mirrored box thought experiment.  If the mirrored box system still projects a gravitational field, it must be the case that photons also destroy aexels.
+
+Combined with the already existing idea that particles with mass represented a particle with some sort of internal motion, it was a fairly short jump to see that there was some conserved substance that translated at the speed of light and destroyed aexels at a constant rate.
+
+Thus the concept of hyle was born and the already existing concepts of Teslons and Edisons were finally given names.  The translation of that hyle representing what we think of as energy and the destruction of aexels by that hyle what we think of as mass.
+
+
+
+
+
+";
