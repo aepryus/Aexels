@@ -1954,3 +1954,37 @@ Here I think we have butted up against the mysteries of Quantum Mechanics and wi
 
 
 ";
+
+"squish_article" = "Gravity, Inside Out, Outside In and the Squish
+
+Since the very first insight, detailed in the 'Expansion' article, the Gauss problem has hung over this entire Universe X concept.  The problem that the aexel flux through each shell (the area of a sphere times the flow rate of the aexels) is not a constant and as such the aexels, as they flow inward, can't be conserved.
+
+In addition to that, no progress had been made on understanding anything about aexel dynamics: Did they have momentum?  How did they exert a force on one another?  What is the mechanism for their destruction and creation?
+
+New experimental data became available that took me by surprise.  Increasing evidence seemed to indicate that the gravitational force traveled at the speed of light.  The observation of gravitational waves by the LIGO sensor in 2017 showed that they too traveled at about the speed of light.  Certainly, there was nothing in Universe X that said gravitational waves couldn't travel at the speed of light, but also there was nothing that said they had to.
+
+And one last thing I couldn't figure out, if the aexels are being pulled towards concentrations of mass like a table cloth won't they be less dense not more dense as you get closer to the mass?
+
+Into this mix, I had two new tools available to me, LLMs and the ability to develop simulations using the GPU which greatly increased the number of particles I could model.  It was time to explain this idea to my computer; it was time to figure out what was really going on here.
+
+There were two conflicting mechanisms that needed to be reconciled somehow, that I refer to as Inside Out and Outside In.
+
+The Inside Out mechanism started with an aexel sink at the location of the mass.  Each second that mass would destroy a fixed number of aexels.  Those missing aexels would need to be replaced, so each shell surrounding the mass would need to have those missing aexels flowing through it each second.  At every point a distance r from the center there would be a specific velocity and acceleration of those aexels.
+
+The Outside In mechanism started with the aexel flow.  It posited that the dilation at any point is an indication of the velocity of the aexels flowing through that point.  From that velocity the acceleration at every point could be calculated.
+
+When you do those calculations the Inside Out mechanism gives a 1/r^2 relation for the velocity.  The Outside In mechanism gives a 1/r^2 relation for the acceleration.  How can these two be reconciled?
+
+My thought since the very beginning of Universe X is that I would be able to resolve this through density variations, but when it came time to actually explain this to my computer I realized two things.  One, given the aexel model of distance, there actually is zero density wiggle room.  You can't increase density without increasing distance.  The Cartesian distance is irrelevant, the only thing that matters is the number of aexels you must jump to, to get from one point to the other.
+
+The other issue is that, for example, for the Earth the aexel compression is quite mild.  The gravitational radius of the Earth is only 4mm greater than the circumference radius.  Even if there was wiggle room in the density there is no way the severe correction that was required could be accommodated in this slight squeeze.
+
+My mind boggled; is space actually 4D?  Are we living on the 3D surface of some 4D pond?  The thought of abandoning the entirely 3D sand box of Universe X was horrifying.
+
+And then finally, the solution came.  I had long posited that Gravity was not a force, but rather was an emergent phenomena caused by the flow of aexels.  But, this was wrong and also sort of right.  Gravity *is* a force, but not a force on teslons and edisons, but instead a force on the aexels themselves with the teslons and edisons coming along for the ride.
+
+
+
+
+
+";
