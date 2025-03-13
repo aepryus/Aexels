@@ -115,17 +115,13 @@ class GlyphsView: AEView {
             borderView.setNeedsDisplay()
         }
     }
-    var finderPrint: GlyphView? = nil {
+    var fingerPrint: GlyphView? = nil {
         didSet { glyphs.forEach({ $0.setNeedsLayout() }) }
     }
     
     var borderView: GlyphsBorderView!
     
-    var scale: CGFloat = 1 {
-        didSet {
-            print("\(scale)")
-        }
-    }
+    var scale: CGFloat = 1
     var onTapGlyph: ((GlyphView)->())? = nil
     
     override init() {
@@ -185,7 +181,7 @@ class GlyphView: AEView {
     }
     
     var isCurrentFocus: Bool { glyphsView.focus === self }
-    var isCurrentFingerPrint: Bool { glyphsView.finderPrint === self }
+    var isCurrentFingerPrint: Bool { glyphsView.fingerPrint === self }
 
     func linkAfter(_ glyphView: GlyphView) -> GlyphView {
         for i in 0..<sortedLinkedTo.count {
@@ -231,20 +227,13 @@ class ArticleGlyph: GlyphView {
     override var key: String { "art::\(article.key)" }
 
     override func execute() {
-        if Screen.iPhone { glyphsView.finderPrint = self }
+        if Screen.iPhone { glyphsView.fingerPrint = self }
         Aexels.nexusExplorer.show(article: article)
     }
     
 // UIView ==========================================================================================
-    override var frame: CGRect {
-        didSet {
-            guard article === Concepts.intro else { return }
-            print("f:\(frame)")
-        }
-    }
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale
-        print("b:(\(glyphsView.scale), \(s))")
 
         layer.borderWidth = 2 * glyphsView.scale
 
@@ -298,8 +287,7 @@ class ExplorerGlyph: GlyphView {
     override func layoutSubviews() {
         let ss: CGFloat = glyphsView.scale
         let s: CGFloat = super.s * ss
-        print("c:(\(glyphsView.scale), \(s))")
-
+        
         if Screen.iPhone {
             imageView.layer.borderWidth = 3*ss
             imageView.center(width: width, height: height)
@@ -333,15 +321,14 @@ class AsideGlyph: GlyphView {
     override var key: String { "asd::\(article.key)" }
             
     override func execute() {
-        if Screen.iPhone { glyphsView.finderPrint = self }
+        if Screen.iPhone { glyphsView.fingerPrint = self }
         Aexels.nexusExplorer.show(article: article)
     }
 
 // UIView ==========================================================================================
     override func layoutSubviews() {
         let s: CGFloat = super.s * glyphsView.scale
-        print("a:(\(glyphsView.scale), \(s))")
-
+        
         layer.borderWidth = 3*glyphsView.scale
         label.center(width: width-15*s, height: height-15*s)
         label.layer.cornerRadius = label.width/2

@@ -74,14 +74,20 @@ class LimboCell: Cyto.Cell {
         if !cutouts.contains(.upperLeft) {
             path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
         } else {
+            let center: CGPoint = CGPoint(x: 20*s, y: 20*s)
             let radius: CGFloat = 29*s
-            path.addArc(center: CGPoint(x: 20*s, y: 20*s), radius: radius, startAngle: 1/2 * .pi + atan(radius/20), endAngle: -atan(radius/20), clockwise: true)
+            let dy: CGFloat = center.y - y1
+            let Q: CGFloat = asin(dy/radius)
+            path.addArc(center: center, radius: radius, startAngle: 1/2 * .pi + Q, endAngle: 2 * .pi - Q, clockwise: true)
         }
         if !cutouts.contains(.upperRight) {
             path.addArc(tangent1End: CGPoint(x: x3, y: y1), tangent2End: CGPoint(x: x3, y: y2), radius: r)
         } else {
+            let center: CGPoint = CGPoint(x: 20*s, y: 20*s)
             let radius: CGFloat = 24*s
-            path.addArc(center: CGPoint(x: width-20*s, y: 20*s), radius: radius, startAngle: 3/2 * .pi - atan(radius/20), endAngle: atan(radius/20), clockwise: true)
+            let dy: CGFloat = center.y - y1
+            let Q: CGFloat = asin(dy/radius)
+            path.addArc(center: CGPoint(x: width-20*s, y: 20*s), radius: radius, startAngle: .pi + Q, endAngle: .pi/2 - Q, clockwise: true)
         }
         if !cutouts.contains(.lowerRight) {
             path.addArc(tangent1End: CGPoint(x: x3, y: y3), tangent2End: CGPoint(x: x2, y: y3), radius: r)

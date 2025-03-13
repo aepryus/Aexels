@@ -20,6 +20,7 @@ class NexusExplorer: AEViewController {
     var currentCapsule: ArticleCapsule = ArticleCapsule("◎", article: Article(key: ""))
     var contextGlyphsView: GlyphsView = GlyphsView()
     
+    let glyphsCell: MaskCell
     let articleCell: MaskCell
     let cyto: Cyto = Cyto(rows: 1, cols: 1)
 
@@ -47,7 +48,10 @@ class NexusExplorer: AEViewController {
             Aexels.explorerViewController.explorer = Aexels.nexusExplorer
         }
         
-        articleCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight, .upperRight, .upperLeft])
+        glyphsCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight, .upperRight, .upperLeft])
+        articleCell = MaskCell(content: scrollView, c: 0, r: 0, cutouts: [.lowerLeft, .lowerRight, .upperRight])
+        articleCell.alpha = 0
+        cyto.addSubview(articleCell)
 
         super.init()
     }
@@ -86,6 +90,8 @@ class NexusExplorer: AEViewController {
             }
         } else {
             UIView.animate(withDuration: 0.5) {
+                self.glyphsCell.alpha = 0
+                self.pathCircle.alpha = 0
                 self.glyphsView.alpha = 0
                 self.articleView.alpha = 0
             } completion: { (complete: Bool) in
@@ -96,6 +102,7 @@ class NexusExplorer: AEViewController {
                 self.scrollView.addSubview(self.articleView)
                 self.scrollView.contentOffset = CGPoint(x: 0, y: Screen.iPhone ? 0 : -1000)
                 UIView.animate(withDuration: 0.5) {
+                    self.articleCell.alpha = 1
                     self.articleView.alpha = 1
                 }
             }
@@ -128,6 +135,7 @@ class NexusExplorer: AEViewController {
             self.scrollView.contentOffset = self.glyphsOffset
             self.scrollView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
+                self.pathCircle.alpha = 1
                 self.pathButton.alpha = 1
                 self.musicButton.alpha = 1
                 self.claudeButton.alpha = 1
@@ -152,6 +160,7 @@ class NexusExplorer: AEViewController {
         scrollView.contentSize = self.glyphsView.frame.size
         scrollView.contentOffset = self.glyphsOffset
         scrollView.addSubview(self.articleView)
+        pathCircle.alpha = 1
         pathButton.alpha = 1
         musicButton.alpha = 1
         claudeButton.alpha = 1
@@ -161,14 +170,14 @@ class NexusExplorer: AEViewController {
         if mode == .concepts {
             mode = .pathOfDiscovery
             glyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
-            contextGlyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
             glyphsView.focus = nil
+            contextGlyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
             contextGlyphsView.focus = nil
         } else {
             mode = .concepts
             glyphsView.glyphs = Concepts.glyphs(s: s)
-            contextGlyphsView.glyphs = Concepts.glyphs(s: s)
             glyphsView.focus = nil
+            contextGlyphsView.glyphs = Concepts.glyphs(s: s)
             contextGlyphsView.focus = nil
         }
         layout()
@@ -221,7 +230,7 @@ class NexusExplorer: AEViewController {
             articleView.font = UIFont(name: "Verdana", size: 18*s)!
             articleView.color = .white
 
-            cyto.cells = [articleCell]
+            cyto.cells = [glyphsCell]
             view.addSubview(cyto)
             
             view.addSubview(pathCircle)
@@ -252,8 +261,9 @@ class NexusExplorer: AEViewController {
     override func layoutRatio046() {
         cyto.frame = CGRect(x: 5*s, y: safeTop, width: view.width-10*s, height: Screen.height - Screen.safeTop - Screen.safeBottom)
         cyto.layout()
+        articleCell.frame = glyphsCell.frame
 
-        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: Screen.iPhone ? articleCell.width-10*s : 510*s, height: Screen.iPhone ? 1640*s : 2187*s)
+        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: Screen.iPhone ? glyphsCell.width-10*s : 510*s, height: Screen.iPhone ? 1640*s : 2187*s)
         articleView.frame = CGRect(x: 10*s, y: 5*s, width: scrollView.width-20*s, height: scrollView.height-10*s)
         if glyphsView.superview != nil { scrollView.contentSize = glyphsView.frame.size }
         currentCapsule.render()
