@@ -35,12 +35,11 @@ class ExplorerViewController: AEViewController {
                     } completion: { (complete: Bool) in
                         nexusExplorer.articleView.removeFromSuperview()
                         nexusExplorer.currentCapsule.removeFromSuperview()
-                        nexusExplorer.snapGlyphs()
                         nexusExplorer.glyphsView.alpha = 0
-                        nexusExplorer.scrollView.contentOffset = nexusExplorer.glyphsOffset
+                        nexusExplorer.glyphsScroll.contentOffset = nexusExplorer.glyphsOffset
                         UIView.animate(withDuration: 0.5) {
                             self.visionBar.alpha = 1
-                            nexusExplorer.glyphsView.alpha = 1
+                            nexusExplorer.snapGlyphs()
                         }
                     }
                 } else {
