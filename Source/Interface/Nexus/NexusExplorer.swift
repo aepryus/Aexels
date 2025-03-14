@@ -181,7 +181,7 @@ class NexusExplorer: AEViewController {
         claudeButton.alpha = 1
         glyphsView.alpha = 1
     }
-    func swapGlyphs() {
+    func snapSwapPaths() {
         if mode == .concepts {
             mode = .pathOfDiscovery
             glyphsView.glyphs = PathOfDiscovery.glyphs(s: s)
@@ -196,6 +196,17 @@ class NexusExplorer: AEViewController {
             contextGlyphsView.focus = nil
         }
         layout()
+    }
+    func swapPaths() {
+        UIView.animate(withDuration: 0.2) {
+            self.glyphsView.alpha = 0
+        } completion: { (completed: Bool) in
+            self.snapSwapPaths()
+            UIView.animate(withDuration: 0.2) {
+                self.glyphsView.alpha = 1
+            }
+        }
+
     }
     
 
@@ -232,7 +243,7 @@ class NexusExplorer: AEViewController {
         currentCapsule.transform = CGAffineTransform(rotationAngle: -.pi/2)
         view.addSubview(currentCapsule)
         
-        pathButton.addAction { self.swapGlyphs() }
+        pathButton.addAction { self.swapPaths() }
         if !Screen.iPhone {
             view.addSubview(pathButton)
 
