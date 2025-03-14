@@ -27,8 +27,6 @@ class OutsideInExplorer: Explorer {
         let point: CGPoint = gesture.location(in: gravityMetal) - CGPoint(x: gravityMetal.width/2, y: gravityMetal.height/2)
         let ring: UnsafeMutablePointer<MCRing>? = MCUniverseRingAt(renderer.universe, CV2(x: point.x, y: point.y))
         if let ring { MCUniverseSetFocusRing(renderer.universe, ring) }
-        
-        MCUniverseReport(renderer.universe)
     }
     @objc func onDoubleTap(_ gesture: UITapGestureRecognizer) {
         let point: CGPoint = gesture.location(in: gravityMetal) - CGPoint(x: gravityMetal.width/2, y: gravityMetal.height/2)
