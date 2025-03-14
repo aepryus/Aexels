@@ -10,17 +10,17 @@ import Acheron
 import MetalKit
 import UIKit
 
-class GravityExplorer: Explorer {
+class OutsideInExplorer: Explorer {
     // Tabs =======
     let controlsTab: TabsCellTab = TabsCellTab(name: "Controls".localized)
     let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
-    let notesTab: NotesTab = NotesTab(key: "gravity")
+    let notesTab: NotesTab = NotesTab(key: "outsideIn")
     
     // Universe ===
     private var gravityMetal: MTKView!
     var renderer: GravityRenderer!
 
-    init() { super.init(key: "gravity") }
+    init() { super.init(key: "outsideIn") }
         
 // Events ==========================================================================================
     @objc func onTap(_ gesture: UITapGestureRecognizer) {

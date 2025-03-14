@@ -62,16 +62,18 @@ class CylinderView: AEView {
         )
     }
     
-// Events ==========================================================================================
-    @objc private func onTap(_ gesture: UITapGestureRecognizer) {
-//        for cylinder in cylinders {
-//            guard cylinder.pointee.volume > 0 else { continue }
-//            BCCylinderDrain(cylinder, 10)
-//            setNeedsDisplay()
-//            return
-//        }
+    func drainCylinders() {
         cylinders.forEach { BCCylinderDrain($0, 80) }
         setNeedsDisplay()
+    }
+    func resetCylinders() {
+        cylinders.forEach { BCCylinderSetLiquidHeight($0, 16) }
+        setNeedsDisplay()
+    }
+    
+// Events ==========================================================================================
+    @objc private func onTap(_ gesture: UITapGestureRecognizer) {
+        drainCylinders()
     }
     
 // UIView ==========================================================================================

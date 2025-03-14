@@ -19,4 +19,5 @@ typedef struct BCCylinder {
 BCCylinder* BCCylinderCreate(double oR, double iR, double height);
 void BCCylinderRelease(BCCylinder* cylinder);
 double BCCylinderLiquidHeight(BCCylinder* cylinder);
+void BCCylinderSetLiquidHeight(BCCylinder* cylinder, double height);
 void BCCylinderDrain(BCCylinder* cylinder, double volume);

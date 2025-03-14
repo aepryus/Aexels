@@ -1,5 +1,5 @@
 //
-//  GravityShader.metal
+//  OutsideInShader.metal
 //  Aexels
 //
 //  Created by Joe Charlier on 2/26/25.

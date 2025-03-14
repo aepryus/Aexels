@@ -198,17 +198,16 @@ class NexusExplorer: AEViewController {
         layout()
     }
     func swapPaths() {
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.4) {
             self.glyphsView.alpha = 0
         } completion: { (completed: Bool) in
             self.snapSwapPaths()
-            UIView.animate(withDuration: 0.2) {
+            UIView.animate(withDuration: 0.4) {
                 self.glyphsView.alpha = 1
             }
         }
 
     }
-    
 
 // UIViewController ================================================================================
     override func viewDidLoad() {

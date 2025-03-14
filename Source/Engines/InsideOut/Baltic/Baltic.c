@@ -25,6 +25,10 @@ double BCCylinderLiquidHeight(BCCylinder* cylinder) {
     double area = M_PI * (cylinder->oR * cylinder->oR - cylinder->iR * cylinder->iR);
     return cylinder->volume / area;
 }
+void BCCylinderSetLiquidHeight(BCCylinder* cylinder, double height) {
+    cylinder->height = height;
+    cylinder->volume = M_PI * (cylinder->oR * cylinder->oR - cylinder->iR * cylinder->iR) * height;
+}
 void BCCylinderDrain(BCCylinder* cylinder, double volume) {
     cylinder->volume -= fmin(volume, cylinder->volume);
 }

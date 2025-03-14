@@ -121,8 +121,8 @@ class ExplorerViewController: AEViewController {
                 Aexels.aetherExplorer.vision,
                 Aexels.cellularExplorer.vision,
                 Aexels.kinematicsExplorer.vision,
-                Aexels.distanceExplorer.vision,
-                Aexels.gravityExplorer.vision,
+                Aexels.insideOutExplorer.vision,
+                Aexels.outsideInExplorer.vision,
                 Aexels.dilationExplorer.vision,
                 Aexels.contractionExplorer.vision,
                 Aexels.electromagnetismExplorer.vision

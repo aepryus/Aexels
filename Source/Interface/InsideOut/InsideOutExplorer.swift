@@ -1,5 +1,5 @@
 //
-//  DistanceExplorer.swift
+//  InsideOutExplorer.swift
 //  Aexels
 //
 //  Created by Joe Charlier on 2/17/24.
@@ -10,16 +10,15 @@ import Acheron
 import MetalKit
 import UIKit
 
-class DistanceExplorer: Explorer {
+class InsideOutExplorer: Explorer {
 
     // Tabs =======
-    let controlsTab: TabsCellTab = TabsCellTab(name: "Controls".localized)
-    let experimentsTab: TabsCellTab = TabsCellTab(name: "Experiments".localized)
-    let notesTab: NotesTab = NotesTab(key: "distance")
+    let notesTab: NotesTab = NotesTab(key: "insideOut")
+    let sliceBoolButton: BoolButton = BoolButton(name: "Slice")
     
-    let cylinderView: UIView = CylinderView()
+    let cylinderView: CylinderView = CylinderView()
     
-    init() { super.init(key: "distance") }
+    init() { super.init(key: "insideOut") }
     
 // UIViewController ================================================================================
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class DistanceExplorer: Explorer {
 
         super.viewDidLoad()
         
-        tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
+        tabsCell.tabs = [notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
@@ -49,6 +48,20 @@ class DistanceExplorer: Explorer {
                 LimboCell(content: quickView, c: 1, r: 2)
             ]
         }
+        
+        quickView.addSubview(sliceBoolButton)
+        sliceBoolButton.onChange =  { (on: Bool) in
+            self.cylinderView.sliceOn = !self.cylinderView.sliceOn
+            self.cylinderView.setNeedsDisplay()
+        }
+        
+        Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
+            self.cylinderView.drainCylinders()
+            complete()
+        }
+        Aexels.sync.link.preferredFramesPerSecond = 3
+        
+        timeControl.playButton.playing = false
     }
 
 // AEViewController ================================================================================
@@ -68,5 +81,21 @@ class DistanceExplorer: Explorer {
         
         titleLabel.center(width: 300*s, height: 24*s)
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
+        
+        sliceBoolButton.left(dx: 200*s, width: 240*s, height: 24*s)
+    }
+    
+// TimeControlDelegate =============================================================================
+    override func onPlay() {
+        Aexels.sync.start()
+    }
+    override func onStep() {
+        cylinderView.drainCylinders()
+    }
+    override func onReset() {
+        cylinderView.resetCylinders()
+    }
+    override func onStop() {
+        Aexels.sync.stop()
     }
 }
