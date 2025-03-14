@@ -21,6 +21,11 @@
 		D81892A12C729DAC0018E4B9 /* Original in Resources */ = {isa = PBXBuildFile; fileRef = D81892A02C729DAC0018E4B9 /* Original */; };
 		D81D4B942D6C3BC000D1986D /* BlackHoles.LaTeX in Resources */ = {isa = PBXBuildFile; fileRef = D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */; };
 		D81D4B962D6C573B00D1986D /* G.LaTeX in Resources */ = {isa = PBXBuildFile; fileRef = D81D4B952D6C573400D1986D /* G.LaTeX */; };
+		D822456E2D84007900A5176F /* Caribbean.c in Sources */ = {isa = PBXBuildFile; fileRef = D822456D2D84007900A5176F /* Caribbean.c */; };
+		D82245722D8409BF00A5176F /* Sea.c in Sources */ = {isa = PBXBuildFile; fileRef = D82245712D8409BF00A5176F /* Sea.c */; };
+		D82245742D8415C100A5176F /* GravityShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D82245732D8415C100A5176F /* GravityShaders.metal */; };
+		D82245762D8415D600A5176F /* GravityRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82245752D8415D100A5176F /* GravityRenderer.swift */; };
+		D82245782D8416B000A5176F /* GravityExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82245772D8416AA00A5176F /* GravityExplorer.swift */; };
 		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
@@ -145,6 +150,13 @@
 		D81892A02C729DAC0018E4B9 /* Original */ = {isa = PBXFileReference; lastKnownFileType = text; path = Original; sourceTree = "<group>"; wrapsLines = 1; };
 		D81D4B932D6C3BB100D1986D /* BlackHoles.LaTeX */ = {isa = PBXFileReference; lastKnownFileType = text; path = BlackHoles.LaTeX; sourceTree = "<group>"; };
 		D81D4B952D6C573400D1986D /* G.LaTeX */ = {isa = PBXFileReference; lastKnownFileType = text; path = G.LaTeX; sourceTree = "<group>"; };
+		D822456C2D84007900A5176F /* Caribbean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Caribbean.h; sourceTree = "<group>"; };
+		D822456D2D84007900A5176F /* Caribbean.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Caribbean.c; sourceTree = "<group>"; };
+		D82245702D8409BF00A5176F /* Sea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sea.h; sourceTree = "<group>"; };
+		D82245712D8409BF00A5176F /* Sea.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Sea.c; sourceTree = "<group>"; };
+		D82245732D8415C100A5176F /* GravityShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GravityShaders.metal; sourceTree = "<group>"; };
+		D82245752D8415D100A5176F /* GravityRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityRenderer.swift; sourceTree = "<group>"; };
+		D82245772D8416AA00A5176F /* GravityExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityExplorer.swift; sourceTree = "<group>"; };
 		D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismExplorer.swift; sourceTree = "<group>"; };
 		D823A2682D0ABE2700A72DDF /* North.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = North.h; sourceTree = "<group>"; };
 		D823A2692D0ABE3E00A72DDF /* North.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = North.c; sourceTree = "<group>"; };
@@ -294,13 +306,15 @@
 		D80ED6AE2B679A4100EF4F8D /* Engines */ = {
 			isa = PBXGroup;
 			children = (
+				D822456F2D84097000A5176F /* Sea */,
 				D823A26B2D0BCB3B00A72DDF /* Engine.swift */,
 				D8C14CD42D3DE8C700F83F28 /* Aether */,
 				D8C14CD52D3DE8FF00F83F28 /* CellularAutomata */,
-				D8FA8B052D3762E400211980 /* InsideOut */,
-				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
+				D822456A2D83FCE500A5176F /* Gravity */,
 				D8C14CD72D3DE95400F83F28 /* Dilation */,
 				D8C14CD82D3DE96600F83F28 /* Electromagnetism */,
+				D8FA8B052D3762E400211980 /* InsideOut */,
+				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -312,6 +326,50 @@
 				D81892A02C729DAC0018E4B9 /* Original */,
 			);
 			path = Claude;
+			sourceTree = "<group>";
+		};
+		D82245692D83FCD000A5176F /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				D82245792D8416F600A5176F /* Tabs */,
+				D82245772D8416AA00A5176F /* GravityExplorer.swift */,
+			);
+			path = Gravity;
+			sourceTree = "<group>";
+		};
+		D822456A2D83FCE500A5176F /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				D822456B2D83FCF100A5176F /* Caribbean */,
+				D82245732D8415C100A5176F /* GravityShaders.metal */,
+				D82245752D8415D100A5176F /* GravityRenderer.swift */,
+			);
+			path = Gravity;
+			sourceTree = "<group>";
+		};
+		D822456B2D83FCF100A5176F /* Caribbean */ = {
+			isa = PBXGroup;
+			children = (
+				D822456C2D84007900A5176F /* Caribbean.h */,
+				D822456D2D84007900A5176F /* Caribbean.c */,
+			);
+			path = Caribbean;
+			sourceTree = "<group>";
+		};
+		D822456F2D84097000A5176F /* Sea */ = {
+			isa = PBXGroup;
+			children = (
+				D82245702D8409BF00A5176F /* Sea.h */,
+				D82245712D8409BF00A5176F /* Sea.c */,
+			);
+			path = Sea;
+			sourceTree = "<group>";
+		};
+		D82245792D8416F600A5176F /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tabs;
 			sourceTree = "<group>";
 		};
 		D823A2672D0ABDE300A72DDF /* North */ = {
@@ -639,11 +697,12 @@
 				D896C99A2D41F7E40058585C /* Aether */,
 				D896C99D2D41F7FF0058585C /* Cellular */,
 				D896C99E2D41F8080058585C /* Kinematics */,
-				D896C99C2D41F7F60058585C /* InsideOut */,
-				D896C99B2D41F7ED0058585C /* OutsideIn */,
+				D82245692D83FCD000A5176F /* Gravity */,
 				D896C99F2D41F80F0058585C /* Dilation */,
 				D896C9A02D41F8150058585C /* Contraction */,
 				D896C9992D41F7DA0058585C /* Electromagnetism */,
+				D896C99C2D41F7F60058585C /* InsideOut */,
+				D896C99B2D41F7ED0058585C /* OutsideIn */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -917,6 +976,7 @@
 				D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */,
 				D86F727A2D76FB7400987057 /* CylinderView.swift in Sources */,
 				D80FB2EA2B80DFC400F7DF17 /* InsideOutExplorer.swift in Sources */,
+				D82245782D8416B000A5176F /* GravityExplorer.swift in Sources */,
 				D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */,
 				D86F72762D714E8600987057 /* UIColor+Aexels.swift in Sources */,
 				D830B93C2D5C23E400E7B029 /* DilationTab.swift in Sources */,
@@ -938,6 +998,7 @@
 				D85762CB2D46F8010025E070 /* Electromagnetism.swift in Sources */,
 				D85195662D6EFE9D00C340B8 /* OutsideInShader.metal in Sources */,
 				D8AE17F82814F20E00E74CB8 /* KinematicsExplorer.swift in Sources */,
+				D82245742D8415C100A5176F /* GravityShaders.metal in Sources */,
 				D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */,
 				D823A26A2D0ABE4200A72DDF /* North.c in Sources */,
 				D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */,
@@ -966,6 +1027,7 @@
 				D896C9A72D420BD30058585C /* ExperimentsTab.swift in Sources */,
 				D8D2E1282944BC4E00EC1719 /* BoolButtonOld.swift in Sources */,
 				D8DDAC6F2A8C35BC00100633 /* AetherExplorer.swift in Sources */,
+				D82245762D8415D600A5176F /* GravityRenderer.swift in Sources */,
 				D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */,
 				D896C9A92D420BDE0058585C /* ZoomsTab.swift in Sources */,
 				D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */,
@@ -973,11 +1035,13 @@
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
 				D830B9472D5FF6B200E7B029 /* OoviumTab.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
+				D82245722D8409BF00A5176F /* Sea.c in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */,
 				D80ED6AD2B679A1A00EF4F8D /* Ionian.c in Sources */,
 				D896C9AD2D426C740058585C /* Slider.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
+				D822456E2D84007900A5176F /* Caribbean.c in Sources */,
 				D8656C102A8CF7C1003FC9A3 /* Myrtoan.c in Sources */,
 				D830B9422D5EC9FB00E7B029 /* KinematicsTab.swift in Sources */,
 				D8AE17F42814F20E00E74CB8 /* VectorView.swift in Sources */,

@@ -23,11 +23,12 @@ class Aexels {
     static let aetherExplorer: AetherExplorer = AetherExplorer()
     static let cellularExplorer: CellularExplorer = CellularExplorer()
     static let kinematicsExplorer: KinematicsExplorer = KinematicsExplorer()
-    static let insideOutExplorer: InsideOutExplorer = InsideOutExplorer()
-    static let outsideInExplorer: OutsideInExplorer = OutsideInExplorer()
+    static let gravityExplorer: GravityExplorer = GravityExplorer()
     static let dilationExplorer: DilationExplorer = DilationExplorer()
     static let contractionExplorer: ContractionExplorer = ContractionExplorer()
     static let electromagnetismExplorer: ElectromagnetismExplorer = ElectromagnetismExplorer()
+    static let insideOutExplorer: InsideOutExplorer = InsideOutExplorer()
+    static let outsideInExplorer: OutsideInExplorer = OutsideInExplorer()
 
     static var aetherView: AetherView? = nil
 

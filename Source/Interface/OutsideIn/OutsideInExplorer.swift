@@ -18,7 +18,7 @@ class OutsideInExplorer: Explorer {
     
     // Universe ===
     private var gravityMetal: MTKView!
-    var renderer: GravityRenderer!
+    var renderer: OutsideInRenderer!
 
     init() { super.init(key: "outsideIn") }
         
@@ -51,7 +51,7 @@ class OutsideInExplorer: Explorer {
         gesture.numberOfTapsRequired = 2
         gravityMetal.addGestureRecognizer(gesture)
 
-        renderer = GravityRenderer(view: gravityMetal)
+        renderer = OutsideInRenderer(view: gravityMetal)
 
         tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 

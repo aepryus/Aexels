@@ -6,7 +6,7 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
-// BC = Baltic Sea : Bobbing Cylinders
+// BC = Baltic Sea : Inside Out
 
 // Cylinder =========
 typedef struct BCCylinder {

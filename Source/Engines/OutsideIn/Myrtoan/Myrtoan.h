@@ -6,7 +6,7 @@
 //  Copyright © 2023 Aepryus Software. All rights reserved.
 //
 
-// MC = Myrtoan Sea : Gravity
+// MC = Myrtoan Sea : Outside In
 
 #import "Aegean.h"
 #import "North.h"

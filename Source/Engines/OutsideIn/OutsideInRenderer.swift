@@ -43,7 +43,7 @@ struct MyratoanVertexIn {
 }
 
 
-class GravityRenderer: NSObject, MTKViewDelegate {
+class OutsideInRenderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
     private var backgroundTexture: MTLTexture
