@@ -6,6 +6,8 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
+// C = Sea : Shared
+
 typedef struct CV2 {
     double x;
     double y;

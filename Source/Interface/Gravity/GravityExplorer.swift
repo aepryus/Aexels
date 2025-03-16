@@ -29,6 +29,12 @@ class GravityExplorer: Explorer {
         
         super.viewDidLoad()
         
+        metalView = MTKView(frame: view.bounds)
+        metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        metalView.isOpaque = false
+
+        renderer = GravityRenderer(view: metalView)
+        
         tabsCell.tabs = [notesTab]
 
         if Screen.iPhone {

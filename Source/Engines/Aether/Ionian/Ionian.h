@@ -10,35 +10,9 @@
 
 #import "Aegean.h"
 
-// Cellular Automata ===============================================================================
-typedef struct Automata {
-	Recipe* recipe;
-	Memory* memory;
-	int w;
-	mnimi sI;
-	mnimi aI;
-	mnimi bI;
-	mnimi cI;
-	mnimi dI;
-	mnimi eI;
-	mnimi fI;
-	mnimi gI;
-	mnimi hI;
-	mnimi rI;
-} Automata;
-
-Automata* AXAutomataCreate(Recipe* recipe, Memory* memory, int w, mnimi sI, mnimi aI, mnimi bI, mnimi cI, mnimi dI, mnimi eI, mnimi fI, mnimi gI, mnimi hI, mnimi rI);
-Automata* AXAutomataCreateClone(Automata* automata);
-void AXAutomataRelease(Automata* automata);
-void AXAutomataStep(Automata* automata, double* cells, double* next, int from, int to);
-void AXDataLoad(byte* data, double* cells, long sX, long eX, long dnX, long sY, long eY, long dnY, long zoom, double states, byte* r, byte* g, byte* b, byte* a, long cw, long dw);
-
 // Aether ==========================================================================================
 typedef struct ICAexel ICAexel;
 typedef struct Bond Bond;
-typedef struct Photon Photon;
-typedef struct Quark Quark;
-typedef struct Hadron Hadron;
 typedef struct Sector Sector;
 typedef struct Universe Universe;
 
@@ -85,40 +59,6 @@ void AXBondRelease(Bond* bond);
 ICAexel* AXBondOtherAexel(Bond bond, ICAexel* aexel);
 byte AXBondCrosses(Bond a, Bond b);
 
-// Photon ===
-typedef struct Photon {
-	ICAexel* aexel;
-	Vector v;
-} Photon;
-
-Photon* AXPhotonCreate(ICAexel* aexel);
-void AXPhotonRelease(Photon* photon);
-void AXPhotonStep(Photon* photon);
-
-// Quark ====
-typedef struct Quark {
-	ICAexel* aexel;
-	Hadron* hadron;
-	Vector pressure;
-} Quark;
-
-Quark* AXQuarkCreate(Hadron* hadron, ICAexel* aexel);
-void AXQuarkRelease(Quark* quark);
-void AXQuarkStep(Quark* quark);
-
-// Hadron ===
-typedef struct Hadron {
-	byte anti;
-	Quark quarks[3];
-	Vector v;
-	ICAexel* center;
-} Hadron;
-
-Hadron* AXHadronCreate(ICAexel* aexel, byte anti);
-void AXHadronRelease(Hadron* hadron);
-byte AXHadronUsing(Hadron* hadron, ICAexel* aexel);
-void AXHadronStep(Universe* universe, Hadron* hadron);
-
 // Sector ===
 typedef struct Sector {
 	int aexelCount;
@@ -142,10 +82,6 @@ typedef struct Universe {
 	ICAexel** aexels;
 	int bondCount;
 	Bond* bonds;
-	int photonCount;
-	Photon** photons;
-	int hadronCount;
-	Hadron** hadrons;
 	byte gol;
 } Universe;
 
@@ -159,7 +95,6 @@ Universe* AXUniverseCreateJ(double width, double height, double relaxed);
 void AXUniverseRelease(Universe* universe);
 void AXUniverseDemarcate(Universe* universe);
 void AXUniverseReset(Universe* universe);
-void AXUniverseHadronFindCenter(Universe* universe, Hadron* hadron);
 byte AXUniverseUsing(Universe* universe, ICAexel* aexel);
 ICAexel* AXUniverseAexelNear(Universe* universe, Vector v);
 void AXUniverseBind(Universe* universe);

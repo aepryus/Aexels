@@ -133,6 +133,7 @@
 		D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */; };
 		D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
+		D8FD4B882D86AF5A00A13B25 /* Okhotsk.c in Sources */ = {isa = PBXBuildFile; fileRef = D8FD4B872D86AF5A00A13B25 /* Okhotsk.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -270,6 +271,8 @@
 		D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismRenderer.swift; sourceTree = "<group>"; };
 		D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ElectromagnetismShaders.metal; sourceTree = "<group>"; };
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
+		D8FD4B862D86AF5A00A13B25 /* Okhotsk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Okhotsk.h; sourceTree = "<group>"; };
+		D8FD4B872D86AF5A00A13B25 /* Okhotsk.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Okhotsk.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -769,6 +772,7 @@
 		D8C14CD52D3DE8FF00F83F28 /* CellularAutomata */ = {
 			isa = PBXGroup;
 			children = (
+				D8FD4B852D86AB6900A13B25 /* Okhotsk */,
 				D8AE17E42814F20500E74CB8 /* CellularEngine.swift */,
 			);
 			path = CellularAutomata;
@@ -848,6 +852,15 @@
 				D86F727B2D76FDE300987057 /* Baltic */,
 			);
 			path = InsideOut;
+			sourceTree = "<group>";
+		};
+		D8FD4B852D86AB6900A13B25 /* Okhotsk */ = {
+			isa = PBXGroup;
+			children = (
+				D8FD4B862D86AF5A00A13B25 /* Okhotsk.h */,
+				D8FD4B872D86AF5A00A13B25 /* Okhotsk.c */,
+			);
+			path = Okhotsk;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -986,6 +999,7 @@
 				D8AE17F32814F20E00E74CB8 /* NewtonianView.swift in Sources */,
 				D85762CD2D471B700025E070 /* Teslon.swift in Sources */,
 				D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */,
+				D8FD4B882D86AF5A00A13B25 /* Okhotsk.c in Sources */,
 				D88878C02B7CBAF900BB3D09 /* Interchange.swift in Sources */,
 				D80ED6B42B679D8000EF4F8D /* ExplorerViewController.swift in Sources */,
 				D830B9452D5EDB0E00E7B029 /* KinematicsExperiment.swift in Sources */,
