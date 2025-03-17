@@ -51,3 +51,20 @@ fragment float4 mgAexelFragmentShader(MGAexelOut in [[stage_in]], constant MGAex
         return float4(0);
     }
 }
+
+// Bond Shaders ====================================================================================
+struct MGBondIn {
+    float2 pos [[attribute(0)]];
+};
+struct MGBondOut {
+    float4 pos [[position]];
+};
+
+vertex MGBondOut mgBondsVertexShader(MGBondIn in [[stage_in]]) {
+    MGBondOut out;
+    out.pos = float4(in.pos, 0.0, 1.0);
+    return out;
+}
+fragment float4 mgBondsFragmentShader(MGBondOut in [[stage_in]]) {
+    return float4(0.6, 0.6, 0.8, 1.0);
+}

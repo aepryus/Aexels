@@ -12,10 +12,22 @@
 // Aexel ===========================================================================================
 CCAexel* CCAexelCreate(void) {
     CCAexel* aexel = (CCAexel*)malloc(sizeof(CCAexel));
+    aexel->bondCount = 0;
+    aexel->bondCapacity = 6;
+    aexel->bonds = (CCBond**)malloc(sizeof(CCBond*)*aexel->bondCapacity);
     return aexel;
 }
 void CCAexelRelease(CCAexel* aexel) {
+    free(aexel->bonds);
     free(aexel);
+}
+void CCAexelAddBond(CCAexel* aexel, CCBond* bond) {
+    aexel->bondCount++;
+    if (aexel->bondCount > aexel->bondCapacity) {
+        aexel->bondCapacity *= 2;
+        aexel->bonds = (CCBond**)realloc(aexel->bonds, sizeof(CCBond*)*aexel->bondCapacity);
+    }
+    aexel->bonds[aexel->bondCount-1] = bond;
 }
 
 // Bond ============================================================================================
@@ -71,11 +83,30 @@ void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel) {
         universe->aexelCapacity *= 2;
         universe->aexels = (CCAexel**)realloc(universe->aexels, sizeof(CCAexel*)*universe->aexelCapacity);
     }
-    universe->aexels[universe->aexelCount-1] = aexel;
+    aexel->index = universe->aexelCount-1;
+    universe->aexels[aexel->index] = aexel;
 }
-void CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y) {
+CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y) {
     CCAexel* aexel = CCAexelCreate();
     aexel->pos.x = x;
     aexel->pos.y = y;
     CCUniverseAddAexel(universe, aexel);
+    return aexel;
+}
+void CCUniverseAddBond(CCUniverse* universe, CCBond* bond) {
+    universe->bondCount++;
+    if (universe->bondCount > universe->bondCapacity) {
+        universe->bondCapacity *= 2;
+        universe->bonds = (CCBond**)realloc(universe->bonds, sizeof(CCBond*)*universe->bondCapacity);
+    }
+    bond->index = universe->bondCount-1;
+    universe->bonds[bond->index] = bond;
+}
+void CCUniverseCreateBondBetween(CCUniverse* universe, CCAexel* a, CCAexel* b) {
+    CCBond* bond = CCBondCreate();
+    bond->a = a;
+    bond->b = b;
+    CCAexelAddBond(bond->a, bond);
+    CCAexelAddBond(bond->b, bond);
+    CCUniverseAddBond(universe, bond);
 }

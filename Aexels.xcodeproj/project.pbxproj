@@ -134,6 +134,7 @@
 		D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
 		D8FD4B882D86AF5A00A13B25 /* Okhotsk.c in Sources */ = {isa = PBXBuildFile; fileRef = D8FD4B872D86AF5A00A13B25 /* Okhotsk.c */; };
+		D8FD4B8A2D87DE4E00A13B25 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FD4B892D87DE4B00A13B25 /* Renderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -273,6 +274,7 @@
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
 		D8FD4B862D86AF5A00A13B25 /* Okhotsk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Okhotsk.h; sourceTree = "<group>"; };
 		D8FD4B872D86AF5A00A13B25 /* Okhotsk.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Okhotsk.c; sourceTree = "<group>"; };
+		D8FD4B892D87DE4B00A13B25 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +313,7 @@
 			children = (
 				D822456F2D84097000A5176F /* Sea */,
 				D823A26B2D0BCB3B00A72DDF /* Engine.swift */,
+				D8FD4B892D87DE4B00A13B25 /* Renderer.swift */,
 				D8C14CD42D3DE8C700F83F28 /* Aether */,
 				D8C14CD52D3DE8FF00F83F28 /* CellularAutomata */,
 				D822456A2D83FCE500A5176F /* Gravity */,
@@ -1020,6 +1023,7 @@
 				D8AA5A512B7AEFD700282522 /* Article.swift in Sources */,
 				D830B94A2D5FFA1000E7B029 /* CellularExperiment.swift in Sources */,
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
+				D8FD4B8A2D87DE4E00A13B25 /* Renderer.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
 				D86F72802D76FEDB00987057 /* Baltic.c in Sources */,

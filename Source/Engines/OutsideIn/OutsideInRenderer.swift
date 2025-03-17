@@ -164,7 +164,6 @@ class OutsideInRenderer: NSObject, MTKViewDelegate {
         guard let pipelineState = try? device.makeRenderPipelineState(descriptor: pipelineDescriptor) else { fatalError("Pipeline failed") }
         self.pipelineState = pipelineState
         
-        
         super.init()
         
         view.delegate = self

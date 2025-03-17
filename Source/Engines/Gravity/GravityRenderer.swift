@@ -17,128 +17,121 @@ struct MGAexelIn {
     var position: SIMD2<Float>
 }
 
-class GravityRenderer: NSObject, MTKViewDelegate {
-    var size: CGSize = .zero
+class GravityRenderer: Renderer {
     var universe: UnsafeMutablePointer<CCUniverse>?
     
-    private let device: MTLDevice
-    private let commandQueue: MTLCommandQueue
-    private let universeBuffer: MTLBuffer
-    private let aexelPipelineState: MTLRenderPipelineState
+    private var universeBuffer: MTLBuffer!
     
-    weak var view: MTKView?
-    
-    init?(view: MTKView) {
-        self.view = view
+    override init?(view: MTKView) {
+        super.init(view: view)
         
-        guard let device = MTLCreateSystemDefaultDevice(),
-              let commandQueue = device.makeCommandQueue() else {
-            return nil
-        }
-        
-        self.device = device
-        self.commandQueue = commandQueue
-        view.device = device
-        
-        guard let library = device.makeDefaultLibrary() else { return nil }
-        
-        // Create universe buffer
         guard let universeBuffer = device.makeBuffer(length: MemoryLayout<MGUniverse>.size, options: .storageModeShared) else { return nil }
         self.universeBuffer = universeBuffer
-        
-        // Create aexel rendering pipeline
-        let aexelVertexFunction = library.makeFunction(name: "mgAexelVertexShader")
-        let aexelFragmentFunction = library.makeFunction(name: "mgAexelFragmentShader")
-        
-        let aexelPipelineDescriptor = MTLRenderPipelineDescriptor()
-        aexelPipelineDescriptor.vertexFunction = aexelVertexFunction
-        aexelPipelineDescriptor.fragmentFunction = aexelFragmentFunction
-        aexelPipelineDescriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
-        
-        // Enable alpha blending
-        aexelPipelineDescriptor.colorAttachments[0].isBlendingEnabled = true
-        aexelPipelineDescriptor.colorAttachments[0].rgbBlendOperation = .add
-        aexelPipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
-        aexelPipelineDescriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        aexelPipelineDescriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-        
-        guard let aexelPipelineState = try? device.makeRenderPipelineState(descriptor: aexelPipelineDescriptor) else { return nil }
-        self.aexelPipelineState = aexelPipelineState
-        
-        super.init()
-        
-        view.delegate = self
     }
+    
+    lazy var aexelPipelineState: MTLRenderPipelineState! = {
+        guard let view else { return nil }
+        
+        let descriptor: MTLRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
+        descriptor.vertexFunction = library.makeFunction(name: "mgAexelVertexShader")
+        descriptor.fragmentFunction = library.makeFunction(name: "mgAexelFragmentShader")
+        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
+        descriptor.colorAttachments[0].isBlendingEnabled = true
+        descriptor.colorAttachments[0].rgbBlendOperation = .add
+        descriptor.colorAttachments[0].alphaBlendOperation = .add
+        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        
+        guard let state: MTLRenderPipelineState = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
+        
+        return state
+    }()
+    
+    lazy var bondsPipelineState: MTLRenderPipelineState! = {
+        guard let view else { return nil }
+        
+        let descriptor = MTLRenderPipelineDescriptor()
+        descriptor.vertexFunction = library.makeFunction(name: "mgBondsVertexShader")
+        descriptor.fragmentFunction = library.makeFunction(name: "mgBondsFragmentShader")
+        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
+        
+        descriptor.colorAttachments[0].isBlendingEnabled = true
+        descriptor.colorAttachments[0].rgbBlendOperation = .add
+        descriptor.colorAttachments[0].alphaBlendOperation = .add
+        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
 
+        let vertexDescriptor = MTLVertexDescriptor()
+        vertexDescriptor.attributes[0].format = .float2
+        vertexDescriptor.attributes[0].offset = 0
+        vertexDescriptor.attributes[0].bufferIndex = 0
+        vertexDescriptor.layouts[0].stride = MemoryLayout<SIMD2<Float>>.stride
+        descriptor.vertexDescriptor = vertexDescriptor
+
+        guard let state: MTLRenderPipelineState = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
+        
+        return state
+    }()
+    
     func loadExperiment() {
         universe = CCUniverseCreate(size.width, size.height)
-        CCUniverseCreateAexelAt(universe, 100, 100);
-        CCUniverseCreateAexelAt(universe, 200, 150);
-        CCUniverseCreateAexelAt(universe, 200, 300);
-        CCUniverseCreateAexelAt(universe, 400, 300);
+        let a = CCUniverseCreateAexelAt(universe, 100, 100)
+        let b = CCUniverseCreateAexelAt(universe, 200, 150)
+        let c = CCUniverseCreateAexelAt(universe, 200, 300)
+        let d = CCUniverseCreateAexelAt(universe, 400, 300)
+        CCUniverseCreateBondBetween(universe, a, b)
+        CCUniverseCreateBondBetween(universe, c, d)
     }
     
 // MTKViewDelegate =================================================================================
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        self.size = CGSize(width: size.width / view.contentScaleFactor, height: size.width / view.contentScaleFactor)
+    override func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        super.mtkView(view, drawableSizeWillChange: size)
         loadExperiment()
     }
-    func draw(in view: MTKView) {
-        guard let drawable = view.currentDrawable,
-                     let renderPassDescriptor = view.currentRenderPassDescriptor,
-                     let universe = universe else { return }
-               
-           // Update universe physics
-           // CCUniverseTic(universe)
-           
-           // Update Metal buffers
-           var mgUniverse = MGUniverse(
-               bounds: SIMD2<Float>(Float(size.width), Float(size.height))
-           )
-           memcpy(universeBuffer.contents(), &mgUniverse, MemoryLayout<MGUniverse>.size)
-           
-           // Create aexel buffer
-           var aexels: [MGAexelIn] = []
-           for i in 0..<Int(universe.pointee.aexelCount) {
-               let aexel = universe.pointee.aexels[i]!
-               
-               let centerPoint = SIMD2<Float>(
-                   Float(size.width/2) + Float(aexel.pointee.pos.x),
-                   Float(size.width/2) + Float(aexel.pointee.pos.y)
-               )
-               let normalizedCenter = SIMD2<Float>(
-                   (centerPoint.x / Float(size.width) * 2) - 1,
-                   -((centerPoint.y / Float(size.height) * 2) - 1)
-               )
+    
+// Renderer ========================================================================================
+    override func draw(renderEncoder: any MTLRenderCommandEncoder) {
+        guard let universe else { return }
+        
+//        var mgUniverse: MGUniverse = MGUniverse(bounds: SIMD2<Float>(Float(size.width), Float(size.height)))
+//        memcpy(universeBuffer.contents(), &mgUniverse, MemoryLayout<MGUniverse>.size)
 
-               let position = SIMD2<Float>(
-                   Float(normalizedCenter.x),
-                   Float(normalizedCenter.y)
-               )
-               aexels.append(MGAexelIn(position: position))
-           }
-           
-           guard let aexelBuffer = device.makeBuffer(bytes: aexels,
-                                                    length: aexels.count * MemoryLayout<MGAexelIn>.stride,
-                                                    options: .storageModeShared) else { return }
-           
-           // Command encoding
-           guard let commandBuffer = commandQueue.makeCommandBuffer(),
-                 let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) else {
-               return
-           }
-           
-           // Clear background
-           renderEncoder.setRenderPipelineState(aexelPipelineState)
-           
-           // Draw aexels
-           renderEncoder.setVertexBuffer(aexelBuffer, offset: 0, index: 0)
-           renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: aexels.count)
-           
-           renderEncoder.endEncoding()
-           
-           commandBuffer.present(drawable)
-           commandBuffer.commit()
+        // Bonds ================
+        var vertices: [SIMD2<Float>] = []
+        var indices: [UInt16] = []
+        
+        for i: Int32 in 0..<universe.pointee.aexelCount {
+            let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
+            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.pos.x), Float(size.width/2) + Float(aexel.pointee.pos.y))
+            vertices.append(SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1)))
+        }
+
+        for i: Int32 in 0..<universe.pointee.bondCount {
+            let bond: UnsafeMutablePointer<CCBond> = universe.pointee.bonds[Int(i)]!
+            indices.append(UInt16(bond.pointee.a.pointee.index))
+            indices.append(UInt16(bond.pointee.b.pointee.index))
+        }
+        
+        guard let vertexBuffer = device.makeBuffer(bytes: vertices, length: vertices.count * MemoryLayout<SIMD2<Float>>.stride, options: .storageModeShared) else { fatalError() }
+        guard let indexBuffer = device.makeBuffer(bytes: indices, length: indices.count * MemoryLayout<UInt16>.stride, options: .storageModeShared) else { fatalError() }
+        
+        renderEncoder.setRenderPipelineState(bondsPipelineState)
+        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        renderEncoder.drawIndexedPrimitives(type: .line, indexCount: indices.count, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
+
+        // Aexels ===============
+        var aexels: [MGAexelIn] = []
+        for i in 0..<Int(universe.pointee.aexelCount) {
+            let aexel = universe.pointee.aexels[i]!
+            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.pos.x), Float(size.width/2) + Float(aexel.pointee.pos.y))
+            let position = SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1))
+            aexels.append(MGAexelIn(position: position))
+        }
+        
+        guard let aexelBuffer: MTLBuffer = device.makeBuffer(bytes: aexels, length: aexels.count * MemoryLayout<MGAexelIn>.stride, options: .storageModeShared) else { return }
+        
+        renderEncoder.setRenderPipelineState(aexelPipelineState)
+        renderEncoder.setVertexBuffer(aexelBuffer, offset: 0, index: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: aexels.count)
     }
 }
-    
