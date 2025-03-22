@@ -74,13 +74,43 @@ class GravityRenderer: Renderer {
     }()
     
     func loadExperiment() {
-        universe = CCUniverseCreate(size.width, size.height)
-        let a = CCUniverseCreateAexelAt(universe, 100, 100)
-        let b = CCUniverseCreateAexelAt(universe, 200, 150)
-        let c = CCUniverseCreateAexelAt(universe, 200, 300)
-        let d = CCUniverseCreateAexelAt(universe, 400, 300)
-        CCUniverseCreateBondBetween(universe, a, b)
-        CCUniverseCreateBondBetween(universe, c, d)
+        guard size.width > 300 else { return }
+        
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        CCUniverseDemarcate(universe)
+        
+        let ds: Double = universe.pointee.ds
+        
+        let dx: Double = universe.pointee.radiusBond
+        let dy: Double = dx * sqrt(3)/2
+
+        let x0: Double = -Double(universe.pointee.sectorCountX) * ds/2
+        let y0: Double = -Double(universe.pointee.sectorCountY) * ds/2
+
+        var x: Double = x0
+        var y: Double = y0
+        
+        let maxX: Double = Double(universe.pointee.sectorCountX) * ds/2
+        let maxY: Double = Double(universe.pointee.sectorCountY) * ds/2
+        
+        var p: Bool = false
+        
+        while y < maxY {
+            while x < maxX {
+                CCUniverseCreateAexelAt(universe, x, y)
+                x += dx
+            }
+            x = x0 + (p ? 0 : dx/2)
+            y += dy
+            p = !p
+        }
+        
+        CCUniverseBind(universe)
+        
+//        CCUniverseCreateBondBetween(universe, a, b)
+//        CCUniverseCreateBondBetween(universe, c, d)
+        
+        self.universe = universe
     }
     
 // MTKViewDelegate =================================================================================
@@ -106,18 +136,24 @@ class GravityRenderer: Renderer {
             vertices.append(SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1)))
         }
 
-        for i: Int32 in 0..<universe.pointee.bondCount {
-            let bond: UnsafeMutablePointer<CCBond> = universe.pointee.bonds[Int(i)]!
-            indices.append(UInt16(bond.pointee.a.pointee.index))
-            indices.append(UInt16(bond.pointee.b.pointee.index))
+        for i: Int32 in 0..<universe.pointee.aexelCount {
+            let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
+            for j: Int32 in 0..<aexel.pointee.adminCount {
+                let bond: UnsafeMutablePointer<CCBond> = aexel.pointee.admin[Int(j)]!
+                indices.append(UInt16(bond.pointee.a.pointee.index))
+                indices.append(UInt16(bond.pointee.b.pointee.index))
+            }
         }
         
         guard let vertexBuffer = device.makeBuffer(bytes: vertices, length: vertices.count * MemoryLayout<SIMD2<Float>>.stride, options: .storageModeShared) else { fatalError() }
-        guard let indexBuffer = device.makeBuffer(bytes: indices, length: indices.count * MemoryLayout<UInt16>.stride, options: .storageModeShared) else { fatalError() }
+        
+        let indexBuffer: MTLBuffer? = indices.count > 0 ? device.makeBuffer(bytes: indices, length: indices.count * MemoryLayout<UInt16>.stride, options: .storageModeShared) : nil
         
         renderEncoder.setRenderPipelineState(bondsPipelineState)
         renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        renderEncoder.drawIndexedPrimitives(type: .line, indexCount: indices.count, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
+        if let indexBuffer {
+            renderEncoder.drawIndexedPrimitives(type: .line, indexCount: indices.count, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
+        }
 
         // Aexels ===============
         var aexels: [MGAexelIn] = []

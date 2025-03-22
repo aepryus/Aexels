@@ -143,6 +143,68 @@ byte AXVectorCrosses2(Vector a1, Vector a2, Vector b1, Vector b2) {
 	
 	return AXVectorIncludes(a1, a2, v) && AXVectorIncludes(b1, b2, v);
 }
+byte AXVectorCrosses_Claude(Vector a1, Vector a2, Vector b1, Vector b2) {
+    // Fast bounding box rejection test
+    double a_min_x = a1.x < a2.x ? a1.x : a2.x;
+    double a_max_x = a1.x > a2.x ? a1.x : a2.x;
+    double a_min_y = a1.y < a2.y ? a1.y : a2.y;
+    double a_max_y = a1.y > a2.y ? a1.y : a2.y;
+    
+    double b_min_x = b1.x < b2.x ? b1.x : b2.x;
+    double b_max_x = b1.x > b2.x ? b1.x : b2.x;
+    double b_min_y = b1.y < b2.y ? b1.y : b2.y;
+    double b_max_y = b1.y > b2.y ? b1.y : b2.y;
+    
+    // If bounding boxes don't overlap, segments can't intersect
+    if (a_max_x < b_min_x || b_max_x < a_min_x ||
+        a_max_y < b_min_y || b_max_y < a_min_y) {
+        return 0;
+    }
+    
+    // Compute vectors
+    double v1x = a2.x - a1.x;
+    double v1y = a2.y - a1.y;
+    double v2x = b2.x - b1.x;
+    double v2y = b2.y - b1.y;
+    
+    // Compute cross products
+    double cross_v1_v2 = v1x * v2y - v1y * v2x;
+    
+    // If cross product is zero, segments are parallel
+    if (fabs(cross_v1_v2) < 1e-10) {
+        // Check if segments are collinear
+        double cross_v1_diff = v1x * (b1.y - a1.y) - v1y * (b1.x - a1.x);
+        if (fabs(cross_v1_diff) > 1e-10) {
+            return 0;  // Parallel but not collinear
+        }
+        
+        // Collinear case - check if segments overlap
+        // Project onto x-axis if segment is more horizontal, y-axis if more vertical
+        if (fabs(v1x) > fabs(v1y)) {
+            // Project onto x-axis
+            double t0 = (b1.x - a1.x) / v1x;
+            double t1 = (b2.x - a1.x) / v1x;
+            if (v1x < 0) { double tmp = t0; t0 = t1; t1 = tmp; }
+            return (t0 <= 1.0 && t1 >= 0.0);
+        } else {
+            // Project onto y-axis
+            double t0 = (b1.y - a1.y) / v1y;
+            double t1 = (b2.y - a1.y) / v1y;
+            if (v1y < 0) { double tmp = t0; t0 = t1; t1 = tmp; }
+            return (t0 <= 1.0 && t1 >= 0.0);
+        }
+    }
+    
+    // Not parallel - compute parameters for both lines
+    double vdx = a1.x - b1.x;
+    double vdy = a1.y - b1.y;
+    
+    double t1 = (v2x * vdy - v2y * vdx) / cross_v1_v2;
+    double t2 = (v1x * vdy - v1y * vdx) / cross_v1_v2;
+    
+    // Check if intersection point is within both segments
+    return (t1 >= 0.0 && t1 <= 1.0 && t2 >= 0.0 && t2 <= 1.0);
+}
 
 #define MAXNEIGHBOR 6
 // Aexel ====

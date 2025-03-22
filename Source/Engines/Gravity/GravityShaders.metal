@@ -44,8 +44,8 @@ fragment float4 mgAexelFragmentShader(MGAexelOut in [[stage_in]], constant MGAex
 //    constant MGAexelOut &aexel = aexels[in.instanceID];
 
     float distSquared = dot(in.localPos, in.localPos);
-    if (distSquared <= 0.65) { return float4(0.5, 0.8, 0.8, 1.0); }
-    else if (distSquared < 1.00) { return float4(0.0, 1.0, 1.0, 1.0); }
+    if (distSquared <= 0.65) { return float4(0.32, 0.32, 0.32, 1.0); }
+    else if (distSquared < 1.00) { return float4(0.4, 0.4, 0.4, 1.0); }
     else {
         discard_fragment();
         return float4(0);

@@ -15,24 +15,25 @@ typedef struct CCBond CCBond;
 typedef struct CCAexel {
     CV2 pos;
     int bondCount;
-    int bondCapacity;
-    CCBond** bonds;
+    CCBond* bonds;
+    int adminCount;
+    CCBond** admin;
+    int searchSectorIndex;
     int index;
 } CCAexel;
 
 CCAexel* CCAexelCreate(void);
 void CCAexelRelease(CCAexel* aexel);
-void CCAexelAddBond(CCAexel* aexel, CCBond* bond);
+//void CCAexelAddBond(CCAexel* aexel, CCBond* bond);
 
 typedef struct CCBond {
     CCAexel* a;
     CCAexel* b;
-    int index;
+    double length2;
 } CCBond;
 
 CCBond* CCBondCreate(void);
 void CCBondRelease(CCBond* bond);
-
 
 typedef struct CCSector {
     int aexelCount;
@@ -52,14 +53,24 @@ typedef struct CCUniverse {
     double width;
     double height;
     
+    double radiusBond;
+    double radiusAexel;
+    double radiusSquish;
+    
+    double ds;
+    double originX;
+    double originY;
+    int sectorCountX;
+    int sectorCountY;
+
     int aexelCount;
     int aexelCapacity;
     CCAexel** aexels;
 
-    int bondCount;
-    int bondCapacity;
-    CCBond** bonds;
-    
+//    int bondCount;
+//    int bondCapacity;
+//    CCBond** bonds;
+//    
     int sectorCount;
     int sectorCapacity;
     CCSector** sectors;
@@ -70,4 +81,6 @@ void CCUniverseRelease(CCUniverse* universe);
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y);
 void CCUniverseAddBond(CCUniverse* universe, CCBond* bond);
-void CCUniverseCreateBondBetween(CCUniverse* universe, CCAexel* a, CCAexel* b);
+//void CCUniverseCreateBondBetween(CCUniverse* universe, CCAexel* a, CCAexel* b);
+void CCUniverseDemarcate(CCUniverse* universe);
+void CCUniverseBind(CCUniverse* universe);
