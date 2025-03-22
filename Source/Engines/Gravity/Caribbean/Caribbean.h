@@ -24,7 +24,6 @@ typedef struct CCAexel {
 
 CCAexel* CCAexelCreate(void);
 void CCAexelRelease(CCAexel* aexel);
-//void CCAexelAddBond(CCAexel* aexel, CCBond* bond);
 
 typedef struct CCBond {
     CCAexel* a;
@@ -67,10 +66,6 @@ typedef struct CCUniverse {
     int aexelCapacity;
     CCAexel** aexels;
 
-//    int bondCount;
-//    int bondCapacity;
-//    CCBond** bonds;
-//    
     int sectorCount;
     int sectorCapacity;
     CCSector** sectors;
@@ -81,6 +76,5 @@ void CCUniverseRelease(CCUniverse* universe);
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y);
 void CCUniverseAddBond(CCUniverse* universe, CCBond* bond);
-//void CCUniverseCreateBondBetween(CCUniverse* universe, CCAexel* a, CCAexel* b);
 void CCUniverseDemarcate(CCUniverse* universe);
 void CCUniverseBind(CCUniverse* universe);
