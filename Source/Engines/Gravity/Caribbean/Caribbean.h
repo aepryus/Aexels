@@ -22,7 +22,7 @@ typedef struct CCAexel {
     int index;
 } CCAexel;
 
-CCAexel* CCAexelCreate(void);
+CCAexel* CCAexelCreate(CV2 pos);
 void CCAexelRelease(CCAexel* aexel);
 
 typedef struct CCBond {
@@ -41,7 +41,7 @@ typedef struct CCSector {
     int index;
 } CCSector;
 
-CCSector* CCSectorCreate(void);
+CCSector* CCSectorCreate(int index);
 void CCSectorRelease(CCSector* sector);
 
 typedef struct CCPacket {
@@ -75,6 +75,5 @@ CCUniverse* CCUniverseCreate(double width, double height);
 void CCUniverseRelease(CCUniverse* universe);
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y);
-void CCUniverseAddBond(CCUniverse* universe, CCBond* bond);
 void CCUniverseDemarcate(CCUniverse* universe);
 void CCUniverseBind(CCUniverse* universe);

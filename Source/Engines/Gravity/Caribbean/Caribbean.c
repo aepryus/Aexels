@@ -10,14 +10,27 @@
 #include <stdlib.h>
 #include "Caribbean.h"
 
-#include <stdio.h>
+
+//typedef struct CCAexel {
+//    CV2 pos;
+//    int bondCount;
+//    CCBond* bonds;
+//    int adminCount;
+//    CCBond** admin;
+//    int searchSectorIndex;
+//    int index;
+//} CCAexel;
 
 // Aexel ===========================================================================================
-CCAexel* CCAexelCreate(void) {
+CCAexel* CCAexelCreate(CV2 pos) {
     CCAexel* aexel = (CCAexel*)malloc(sizeof(CCAexel));
+    aexel->pos = pos;
+    aexel->bondCount = 0;
     aexel->bonds = (CCBond*)malloc(sizeof(CCBond)*6);
-    aexel->admin = (CCBond**)malloc(sizeof(CCBond*)*6);
     aexel->adminCount = 0;
+    aexel->admin = (CCBond**)malloc(sizeof(CCBond*)*6);
+    aexel->searchSectorIndex = 0;
+    aexel->index = 0;
     return aexel;
 }
 void CCAexelRelease(CCAexel* aexel) {
@@ -36,14 +49,32 @@ void CCBondRelease(CCBond* bond) {
 }
 
 // Sector ==========================================================================================
-CCSector* CCSectorCreate(void) {
+//typedef struct CCSector {
+//    int aexelCount;
+//    int aexelCapacity;
+//    CCAexel** aexels;
+//    int index;
+//} CCSector;
+
+CCSector* CCSectorCreate(int index) {
     CCSector* sector = (CCSector*)malloc(sizeof(CCSector));
-    sector->aexels = (CCAexel**)malloc(sizeof(CCAexel*)*10);
+    sector->aexelCount = 0;
+    sector->aexelCapacity = 9;
+    sector->aexels = (CCAexel**)malloc(sizeof(CCAexel*) * sector->aexelCapacity);
+    sector->index = index;
     return sector;
 }
 void CCSectorRelease(CCSector* sector) {
     free(sector->aexels);
     free(sector);
+}
+void CCSectorAddAexel(CCSector* sector, CCAexel* aexel) {
+    sector->aexelCount++;
+    if (sector->aexelCount > sector->aexelCapacity) {
+        sector->aexelCapacity *= 2;
+        sector->aexels = (CCAexel**)realloc(sector->aexels, sizeof(CCAexel*)*sector->aexelCapacity);
+    }
+    sector->aexels[sector->aexelCount-1] = aexel;
 }
 
 // Universe ========================================================================================
@@ -54,7 +85,7 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     
     universe->radiusBond = 24;
     universe->radiusAexel = 10;
-    universe->radiusSquish = 9;
+    universe->radiusSquish = 18;
     
     universe->aexelCount = 0;
     universe->aexelCapacity = 2;
@@ -66,17 +97,18 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     universe->sectorCount = universe->sectorCountX * universe->sectorCountY;
     universe->sectors = (CCSector**)malloc(sizeof(CCSector*)*universe->sectorCount);
     for (int i=0;i<universe->sectorCount;i++)
-        universe->sectors[i] = CCSectorCreate();
+        universe->sectors[i] = CCSectorCreate(i);
     
     return universe;
 }
 void CCUniverseRelease(CCUniverse* universe) {
-    for (int i=0;i<universe->aexelCount;i++) CCAexelRelease(universe->aexels[i]);
-    free(universe->aexels);
     for (int i=0;i<universe->sectorCount;i++) CCSectorRelease(universe->sectors[i]);
     free(universe->sectors);
+    for (int i=0;i<universe->aexelCount;i++) CCAexelRelease(universe->aexels[i]);
+    free(universe->aexels);
     free(universe);
 }
+
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel) {
     universe->aexelCount++;
     if (universe->aexelCount > universe->aexelCapacity) {
@@ -87,12 +119,11 @@ void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel) {
     universe->aexels[aexel->index] = aexel;
 }
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y) {
-    CCAexel* aexel = CCAexelCreate();
-    aexel->pos.x = x;
-    aexel->pos.y = y;
+    CCAexel* aexel = CCAexelCreate((CV2){x,y});
     CCUniverseAddAexel(universe, aexel);
     return aexel;
 }
+
 void CCUniverseDemarcate(CCUniverse* universe) {
     for (int i=0;i<universe->sectorCount;i++) { universe->sectors[i]->aexelCount = 0; }
     
@@ -103,10 +134,12 @@ void CCUniverseDemarcate(CCUniverse* universe) {
     
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
+        
         int x = (int)((aexel->pos.x - universe->originX)/ds);
         int y = (int)((aexel->pos.y - universe->originY)/ds);
+        
         CCSector* sector = universe->sectors[y*universe->sectorCountX+x];
-        sector->aexels[sector->aexelCount++] = aexel;
+        CCSectorAddAexel(sector, aexel);
         
         int qx = (int)((aexel->pos.x - ds/2 - universe->originX)/ds);
         int qy = (int)((aexel->pos.y - ds/2 - universe->originY)/ds);
@@ -118,6 +151,7 @@ void CCUniverseDemarcate(CCUniverse* universe) {
         aexel->searchSectorIndex = qy*universe->sectorCountX+qx;
     }
 }
+
 void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
     int sectorIndexes[] = {
         aexel->searchSectorIndex,
@@ -127,7 +161,6 @@ void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
     };
     for (int i=0;i<4;i++) {
         int sectorIndex = sectorIndexes[i];
-        if (sectorIndex < 0 || sectorIndex >= universe->sectorCount) continue;
         CCSector* sector = universe->sectors[sectorIndex];
         for (int j=0;j<sector->aexelCount;j++) {
             CCAexel* other = sector->aexels[j];
@@ -146,7 +179,6 @@ void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
         }
     }
 }
-
 void CCUniverseBind(CCUniverse* universe) {
     CCUniverseDemarcate(universe);
     
