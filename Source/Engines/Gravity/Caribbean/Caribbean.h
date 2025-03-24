@@ -95,3 +95,4 @@ void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y);
 void CCUniverseDemarcate(CCUniverse* universe);
 void CCUniverseBind(CCUniverse* universe);
+void CCUniverseTic(CCUniverse* universe);

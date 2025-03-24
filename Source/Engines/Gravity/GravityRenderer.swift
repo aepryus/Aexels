@@ -149,6 +149,8 @@ class GravityRenderer: Renderer {
     override func draw(renderEncoder: any MTLRenderCommandEncoder) {
         guard let universe else { return }
         
+        CCUniverseTic(universe)
+        
 //        var mgUniverse: MGUniverse = MGUniverse(bounds: SIMD2<Float>(Float(size.width), Float(size.height)))
 //        memcpy(universeBuffer.contents(), &mgUniverse, MemoryLayout<MGUniverse>.size)
 

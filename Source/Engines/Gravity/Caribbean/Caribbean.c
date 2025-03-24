@@ -10,17 +10,6 @@
 #include <stdlib.h>
 #include "Caribbean.h"
 
-
-//typedef struct CCAexel {
-//    CV2 pos;
-//    int bondCount;
-//    CCBond* bonds;
-//    int adminCount;
-//    CCBond** admin;
-//    int searchSectorIndex;
-//    int index;
-//} CCAexel;
-
 // Aexel ===========================================================================================
 CCAexel* CCAexelCreate(CV2 position) {
     CCAexel* aexel = (CCAexel*)malloc(sizeof(CCAexel));
@@ -51,13 +40,6 @@ void CCBondRelease(CCBond* bond) {
 }
 
 // Sector ==========================================================================================
-//typedef struct CCSector {
-//    int aexelCount;
-//    int aexelCapacity;
-//    CCAexel** aexels;
-//    int index;
-//} CCSector;
-
 CCSector* CCSectorCreate(int index) {
     CCSector* sector = (CCSector*)malloc(sizeof(CCSector));
     sector->aexelCount = 0;
@@ -206,4 +188,7 @@ void CCUniverseBind(CCUniverse* universe) {
         CCAexel* aexel = universe->aexels[i];
         CCUniverseBuildBondsFor(universe, aexel);
     }
+}
+
+void CCUniverseTic(CCUniverse* universe) {
 }
