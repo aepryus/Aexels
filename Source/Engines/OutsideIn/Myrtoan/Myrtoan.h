@@ -41,7 +41,7 @@ typedef struct MCPlanet {
 } MCPlanet;
 
 MCPlanet* MCPlanetCreate(double radius);
-void MCPlanetRelease(MCPlanet* ring);
+void MCPlanetRelease(MCPlanet* planet);
 
 // Universe =====
 typedef struct MCUniverse {

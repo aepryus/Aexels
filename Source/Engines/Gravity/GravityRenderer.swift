@@ -7,10 +7,18 @@
 //
 
 import MetalKit
+import OoviumEngine
+import OoviumKit
 import simd
 
 struct MGUniverse {
     var bounds: SIMD2<Float>
+}
+
+struct MGCirclePacket {
+    var center: SIMD2<Float>
+    var radius: Float
+    var color: SIMD4<Float>
 }
 
 struct MGAexelIn {
@@ -73,6 +81,27 @@ class GravityRenderer: Renderer {
         return state
     }()
     
+    lazy var circlePipelineState: MTLRenderPipelineState! =  {
+        guard let view else { return nil }
+        
+        let descriptor = MTLRenderPipelineDescriptor()
+        descriptor.vertexFunction = library.makeFunction(name: "mgCircleVectorShader")
+        descriptor.fragmentFunction = library.makeFunction(name: "mgCircleFragmentShader")
+        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
+            
+        descriptor.colorAttachments[0].isBlendingEnabled = true
+        descriptor.colorAttachments[0].rgbBlendOperation = .add
+        descriptor.colorAttachments[0].alphaBlendOperation = .add
+        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        descriptor.colorAttachments[0].sourceAlphaBlendFactor = .one
+        descriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
+            
+        guard let state = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
+        
+        return state
+    }()
+    
     func loadExperiment() {
         guard size.width > 300 else { return }
         
@@ -107,9 +136,6 @@ class GravityRenderer: Renderer {
         
         CCUniverseBind(universe)
         
-//        CCUniverseCreateBondBetween(universe, a, b)
-//        CCUniverseCreateBondBetween(universe, c, d)
-        
         self.universe = universe
     }
     
@@ -132,7 +158,7 @@ class GravityRenderer: Renderer {
         
         for i: Int32 in 0..<universe.pointee.aexelCount {
             let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
-            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.pos.x), Float(size.width/2) + Float(aexel.pointee.pos.y))
+            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.position.x), Float(size.width/2) + Float(aexel.pointee.position.y))
             vertices.append(SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1)))
         }
 
@@ -159,7 +185,7 @@ class GravityRenderer: Renderer {
         var aexels: [MGAexelIn] = []
         for i in 0..<Int(universe.pointee.aexelCount) {
             let aexel = universe.pointee.aexels[i]!
-            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.pos.x), Float(size.width/2) + Float(aexel.pointee.pos.y))
+            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.position.x), Float(size.width/2) + Float(aexel.pointee.position.y))
             let position = SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1))
             aexels.append(MGAexelIn(position: position))
         }
@@ -169,5 +195,29 @@ class GravityRenderer: Renderer {
         renderEncoder.setRenderPipelineState(aexelPipelineState)
         renderEncoder.setVertexBuffer(aexelBuffer, offset: 0, index: 0)
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: aexels.count)
+        
+        // Planet ===============
+        var planets: [MGCirclePacket] = []
+        if let planet = universe.pointee.planet {
+            let centerPoint = SIMD2<Float>(Float(size.width/2), Float(size.width/2))
+            let normalizedCenter = SIMD2<Float>(
+                (centerPoint.x / Float(size.width) * 2) - 1,
+                -((centerPoint.y / Float(size.width) * 2) - 1)
+            )
+            
+            let planetCircle = MGCirclePacket(
+                center: normalizedCenter,
+                radius: Float(planet.pointee.radius) / Float(size.width) * 2,
+                color: OOColor.cobolt.uiColor.alpha(0.5).simd4
+            )
+            planets.append(planetCircle)
+        }
+        
+        let planetsBuffer = device.makeBuffer(bytes: planets, length: planets.count * MemoryLayout<MGCirclePacket>.stride, options: .storageModeShared)!
+        
+        renderEncoder.setRenderPipelineState(circlePipelineState)
+        renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
+        renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
+        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
     }
 }
