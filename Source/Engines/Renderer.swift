@@ -37,6 +37,22 @@ class Renderer: NSObject, MTKViewDelegate {
     }
     
     func draw(renderEncoder: MTLRenderCommandEncoder) {}
+    
+    func createNormalRenderPipelineDescriptor(vertex: String, fragment: String) -> MTLRenderPipelineDescriptor! {
+        guard let view else { return nil }
+        let descriptor: MTLRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
+        descriptor.vertexFunction = library.makeFunction(name: vertex)
+        descriptor.fragmentFunction = library.makeFunction(name: fragment)
+        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
+        descriptor.colorAttachments[0].isBlendingEnabled = true
+        descriptor.colorAttachments[0].rgbBlendOperation = .add
+        descriptor.colorAttachments[0].alphaBlendOperation = .add
+        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
+        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        descriptor.colorAttachments[0].sourceAlphaBlendFactor = .one
+        descriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
+        return descriptor
+    }
 
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {

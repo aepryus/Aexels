@@ -38,36 +38,15 @@ class GravityRenderer: Renderer {
     }
     
     lazy var aexelPipelineState: MTLRenderPipelineState! = {
-        guard let view else { return nil }
-        
-        let descriptor: MTLRenderPipelineDescriptor = MTLRenderPipelineDescriptor()
-        descriptor.vertexFunction = library.makeFunction(name: "mgAexelVertexShader")
-        descriptor.fragmentFunction = library.makeFunction(name: "mgAexelFragmentShader")
-        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
-        descriptor.colorAttachments[0].isBlendingEnabled = true
-        descriptor.colorAttachments[0].rgbBlendOperation = .add
-        descriptor.colorAttachments[0].alphaBlendOperation = .add
-        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-        
+        let descriptor: MTLRenderPipelineDescriptor = createNormalRenderPipelineDescriptor(vertex: "mgAexelVertexShader", fragment: "mgAexelFragmentShader")
         guard let state: MTLRenderPipelineState = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
-        
         return state
     }()
     
     lazy var bondsPipelineState: MTLRenderPipelineState! = {
         guard let view else { return nil }
         
-        let descriptor = MTLRenderPipelineDescriptor()
-        descriptor.vertexFunction = library.makeFunction(name: "mgBondsVertexShader")
-        descriptor.fragmentFunction = library.makeFunction(name: "mgBondsFragmentShader")
-        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
-        
-        descriptor.colorAttachments[0].isBlendingEnabled = true
-        descriptor.colorAttachments[0].rgbBlendOperation = .add
-        descriptor.colorAttachments[0].alphaBlendOperation = .add
-        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        let descriptor: MTLRenderPipelineDescriptor = createNormalRenderPipelineDescriptor(vertex: "mgBondsVertexShader", fragment: "mgBondsFragmentShader")
 
         let vertexDescriptor = MTLVertexDescriptor()
         vertexDescriptor.attributes[0].format = .float2
@@ -82,35 +61,25 @@ class GravityRenderer: Renderer {
     }()
     
     lazy var circlePipelineState: MTLRenderPipelineState! =  {
-        guard let view else { return nil }
-        
-        let descriptor = MTLRenderPipelineDescriptor()
-        descriptor.vertexFunction = library.makeFunction(name: "mgCircleVectorShader")
-        descriptor.fragmentFunction = library.makeFunction(name: "mgCircleFragmentShader")
-        descriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat
-            
-        descriptor.colorAttachments[0].isBlendingEnabled = true
-        descriptor.colorAttachments[0].rgbBlendOperation = .add
-        descriptor.colorAttachments[0].alphaBlendOperation = .add
-        descriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        descriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
-        descriptor.colorAttachments[0].sourceAlphaBlendFactor = .one
-        descriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
-            
+        let descriptor: MTLRenderPipelineDescriptor = createNormalRenderPipelineDescriptor(vertex: "mgCircleVectorShader", fragment: "mgCircleFragmentShader")
         guard let state = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
-        
         return state
     }()
     
     func loadExperiment() {
+        loadExperimentB()
+    }
+    func loadExperimentA() {
         guard size.width > 300 else { return }
+
+        if let universe { CCUniverseRelease(universe) }
         
         let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
         CCUniverseDemarcate(universe)
         
         let ds: Double = universe.pointee.ds
         
-        let dx: Double = universe.pointee.radiusBond
+        let dx: Double = universe.pointee.radiusBond * 0.8
         let dy: Double = dx * sqrt(3)/2
 
         let x0: Double = -Double(universe.pointee.sectorCountX) * ds/2
@@ -138,6 +107,65 @@ class GravityRenderer: Renderer {
         
         self.universe = universe
     }
+    func loadExperimentB() {
+        guard size.width > 300 else { return }
+
+        if let universe { CCUniverseRelease(universe) }
+        
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        CCUniverseDemarcate(universe)
+        
+        let dx: Double = universe.pointee.radiusBond * 0.65
+        let dr: Double = dx * sqrt(3)/2
+        var dQ: Double = 2 * .pi
+
+        var r: Double = 0
+        var Q: Double = 0
+        
+        let maxR: Double = Double(view!.width*sqrt(2)) / 2
+        let maxQ: Double = 2 * .pi
+        
+        var p: Bool = false
+        
+        while r < maxR {
+            while Q < maxQ {
+                let x: Double = r * cos(Q)
+                let y: Double = r * sin(Q)
+                CCUniverseCreateAexelAt(universe, x, y)
+                Q  += dQ
+            }
+            r += dr
+            dQ = 2 * .pi / round(r * 2 * .pi / dx)
+            Q = !p ? 0 : dQ/2
+            p = !p
+        }
+        
+        CCUniverseBind(universe)
+        
+        self.universe = universe
+    }
+
+    func loadExperimentC() {
+        guard size.width > 300 else { return }
+
+        if let universe { CCUniverseRelease(universe) }
+        
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        CCUniverseDemarcate(universe)
+        
+        CCUniverseCreateAexelAt(universe, 0, -70);
+        CCUniverseCreateAexelAt(universe, 0, -90);
+        CCUniverseCreateAexelAt(universe, 12, -85);
+        CCUniverseCreateAexelAt(universe, -12, -85);
+
+        CCUniverseBind(universe)
+        
+        self.universe = universe
+    }
+
+    
+// Events ==========================================================================================
+    func onReset() { loadExperiment() }
     
 // MTKViewDelegate =================================================================================
     override func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
@@ -192,11 +220,13 @@ class GravityRenderer: Renderer {
             aexels.append(MGAexelIn(position: position))
         }
         
-        guard let aexelBuffer: MTLBuffer = device.makeBuffer(bytes: aexels, length: aexels.count * MemoryLayout<MGAexelIn>.stride, options: .storageModeShared) else { return }
-        
-        renderEncoder.setRenderPipelineState(aexelPipelineState)
-        renderEncoder.setVertexBuffer(aexelBuffer, offset: 0, index: 0)
-        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: aexels.count)
+        if aexels.count > 0 {
+            let aexelBuffer: MTLBuffer = device.makeBuffer(bytes: aexels, length: aexels.count * MemoryLayout<MGAexelIn>.stride, options: .storageModeShared)!
+            
+            renderEncoder.setRenderPipelineState(aexelPipelineState)
+            renderEncoder.setVertexBuffer(aexelBuffer, offset: 0, index: 0)
+            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: aexels.count)
+        }
         
         // Planet ===============
         var planets: [MGCirclePacket] = []
@@ -215,11 +245,14 @@ class GravityRenderer: Renderer {
             planets.append(planetCircle)
         }
         
-        let planetsBuffer = device.makeBuffer(bytes: planets, length: planets.count * MemoryLayout<MGCirclePacket>.stride, options: .storageModeShared)!
+        if planets.count > 0 {
+            let planetsBuffer = device.makeBuffer(bytes: planets, length: planets.count * MemoryLayout<MGCirclePacket>.stride, options: .storageModeShared)!
+            
+            renderEncoder.setRenderPipelineState(circlePipelineState)
+            renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
+            renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
+            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
+        }
         
-        renderEncoder.setRenderPipelineState(circlePipelineState)
-        renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
-        renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
-        renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
     }
 }

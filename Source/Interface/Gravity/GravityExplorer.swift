@@ -83,6 +83,7 @@ class GravityExplorer: Explorer {
         metalView.draw()
     }
     override func onReset() {
+        renderer.onReset()
         metalView.draw()
         timeControl.playButton.stop()
     }

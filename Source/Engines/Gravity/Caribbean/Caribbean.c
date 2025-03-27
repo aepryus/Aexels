@@ -10,17 +10,21 @@
 #include <stdlib.h>
 #include "Caribbean.h"
 
+#include <stdio.h>
+
 // Aexel ===========================================================================================
 CCAexel* CCAexelCreate(CV2 position) {
     CCAexel* aexel = (CCAexel*)malloc(sizeof(CCAexel));
     aexel->position = position;
     aexel->velocity = (CV2){0,0};
     aexel->accelerant = 100;
+    aexel->delta = 0;
+    aexel->recycle = false;
+    aexel->searchSectorIndex = 0;
     aexel->bondCount = 0;
     aexel->bonds = (CCBond*)malloc(sizeof(CCBond)*6);
     aexel->adminCount = 0;
     aexel->admin = (CCBond**)malloc(sizeof(CCBond*)*6);
-    aexel->searchSectorIndex = 0;
     aexel->index = 0;
     return aexel;
 }
@@ -28,6 +32,48 @@ void CCAexelRelease(CCAexel* aexel) {
     free(aexel->bonds);
     free(aexel->admin);
     free(aexel);
+}
+bool CCAexelBondsBondsCross(CCAexel* aexel, CCBond* bond) {
+    CCAexel* anchor = CCBondOther(bond, aexel);
+    for (int i=0;i<aexel->bondCount;i++) {
+        CCBond* aexelBond = &aexel->bonds[i];
+        CCAexel* other = CCBondOther(aexelBond, aexel);
+        if (other == anchor) continue;
+        for (int j=0;j<other->bondCount;j++) {
+            CCBond* otherBond = &other->bonds[j];
+            CCAexel* otherOther = CCBondOther(otherBond, other);
+            if (otherOther == aexel || otherOther == anchor) continue;
+            if (bond->length2 < otherBond->length2) continue;
+            if (CV2LinesCross(bond->a->position, bond->b->position, otherBond->a->position, otherBond->b->position)) return true;
+        }
+    }
+    return false;
+}
+void CCAexelRemoveBondTo(CCAexel* aexel, CCAexel* other) {
+    int k = 0;
+    int bC = aexel->bondCount;
+    for (int i=0; i<bC; i++) {
+        CCBond* bond = &aexel->bonds[i];
+        CCAexel* test = CCBondOther(bond, aexel);
+        if (test == other) {
+            aexel->bondCount--;
+        } else {
+            if (k != i) aexel->bonds[k] = aexel->bonds[i];
+            k++;
+        }
+    }
+    k = 0;
+    int aC = aexel->adminCount;
+    for (int i=0; i<aC; i++) {
+        CCBond* bond = aexel->admin[i];
+        CCAexel* test = CCBondOther(bond, aexel);
+        if (test == other) {
+            aexel->adminCount--;
+        } else {
+            if (k != i) aexel->admin[k] = aexel->admin[i];
+            k++;
+        }
+    }
 }
 
 // Bond ============================================================================================
@@ -37,6 +83,13 @@ CCBond* CCBondCreate(void) {
 }
 void CCBondRelease(CCBond* bond) {
     free(bond);
+}
+CCAexel* CCBondOther(CCBond* bond, CCAexel* aexel) {
+    return bond->a == aexel ? bond->b : bond->a;
+}
+void CCBondRemoveBond(CCBond* bond) {
+    CCAexelRemoveBondTo(bond->a, bond->b);
+    CCAexelRemoveBondTo(bond->b, bond->a);
 }
 
 // Sector ==========================================================================================
@@ -70,6 +123,15 @@ CCPlanet* CCPlanetCreate(double radius) {
 void CCPlanetRelease(CCPlanet* planet) {
     free(planet);
 }
+bool CCPlanetContainsAexel(CCPlanet* planet, CCAexel* aexel) {
+    if (aexel->position.x < -planet->radius ||
+        aexel->position.x > planet->radius ||
+        aexel->position.y < -planet->radius ||
+        aexel->position.y > planet->radius) return false;
+    
+    double length2 = aexel->position.x * aexel->position.x + aexel->position.y * aexel->position.y;
+    return length2 < planet->radius * planet->radius;
+}
 
 // Universe ========================================================================================
 CCUniverse* CCUniverseCreate(double width, double height) {
@@ -77,19 +139,21 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     universe->width = width;
     universe->height = height;
     
-    universe->radiusBond = 24;
+    universe->radiusBond = 30;
     universe->radiusAexel = 10;
     universe->radiusSquish = 18;
     
     universe->planet = CCPlanetCreate(80);
+//    universe->planet = 0;
     
     universe->aexelCount = 0;
     universe->aexelCapacity = 2;
     universe->aexels = (CCAexel**)malloc(sizeof(CCAexel*)*universe->aexelCapacity);
     
     universe->ds = universe->radiusBond*2;
-    universe->sectorCountX = 2*(int)ceil(universe->width/2/universe->ds);
-    universe->sectorCountY = 2*(int)ceil(universe->height/2/universe->ds);
+    double radius = sqrt(universe->width * universe->width + universe->height * universe->height);
+    universe->sectorCountX = 2*(int)ceil(radius/universe->ds);
+    universe->sectorCountY = universe->sectorCountX;
     universe->sectorCount = universe->sectorCountX * universe->sectorCountY;
     universe->sectors = (CCSector**)malloc(sizeof(CCSector*)*universe->sectorCount);
     for (int i=0;i<universe->sectorCount;i++)
@@ -135,6 +199,11 @@ void CCUniverseDemarcate(CCUniverse* universe) {
         int x = (int)((aexel->position.x - universe->originX)/ds);
         int y = (int)((aexel->position.y - universe->originY)/ds);
         
+        if (x < 0 || x >= universe->sectorCountX || y < 0 || y >= universe->sectorCountY) {
+            aexel->searchSectorIndex = -1;
+            continue;
+        }
+        
         CCSector* sector = universe->sectors[y*universe->sectorCountX+x];
         CCSectorAddAexel(sector, aexel);
         
@@ -149,7 +218,27 @@ void CCUniverseDemarcate(CCUniverse* universe) {
     }
 }
 
+void CCUniverseRemoveBondsFor(CCUniverse* universe, CCAexel* aexel) {
+    for (int i=0;i<aexel->bondCount;i++) {
+        CCBond* bond = &aexel->bonds[i];
+        CCAexel* other = CCBondOther(bond, aexel);
+        
+        int k = 0;
+        int bC = other->bondCount;
+        for (int j=0; j<bC; j++) {
+            CCBond* otherBond = &other->bonds[j];
+            CCAexel* otherOther = CCBondOther(otherBond, other);
+            if (otherOther == aexel) {
+                other->bondCount--;
+            } else {
+                if (k != i) other->bonds[k] = other->bonds[j];
+                k++;
+            }
+        }
+    }
+}
 void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
+    if (aexel->searchSectorIndex == -1) return;
     int sectorIndexes[] = {
         aexel->searchSectorIndex,
         aexel->searchSectorIndex+1,
@@ -170,9 +259,9 @@ void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
             if (length2 > universe->radiusBond*universe->radiusBond) continue;
 
             CCBond bond = (CCBond){aexel, other, length2};
-            aexel->bonds[aexel->bondCount++] = bond;
-            other->bonds[other->bondCount++] = bond;
-            aexel->admin[aexel->adminCount++] = &aexel->bonds[aexel->bondCount-1];
+            if (aexel->bondCount < 6) aexel->bonds[aexel->bondCount++] = bond;
+            if (other->bondCount < 6) other->bonds[other->bondCount++] = bond;
+            if (aexel->adminCount < 6) aexel->admin[aexel->adminCount++] = &aexel->bonds[aexel->bondCount-1];
         }
     }
 }
@@ -188,7 +277,116 @@ void CCUniverseBind(CCUniverse* universe) {
         CCAexel* aexel = universe->aexels[i];
         CCUniverseBuildBondsFor(universe, aexel);
     }
+    
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        
+        for (int j=aexel->adminCount-1;j>=0;j--) {
+            CCBond* bond = aexel->admin[j];
+            CCAexel* other = CCBondOther(bond, aexel);
+            
+            if (CCAexelBondsBondsCross(aexel, bond) || CCAexelBondsBondsCross(other, bond)) {
+                CCBondRemoveBond(bond);
+            }
+        }
+    }
 }
 
 void CCUniverseTic(CCUniverse* universe) {
+    // Calculate Changes, but Don't Execute ========================================================
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        
+//        double n = 1;
+//        double accelerant = aexel->accelerant;
+//        for (int j=0;j<aexel->bondCount;j++) {
+//            CCAexel* other = CCBondOther(&aexel->bonds[j], aexel);
+//            if (other->accelerant < aexel->accelerant) {
+//                n++;
+//                accelerant += other->accelerant;
+//            }
+//        }
+//        double average = accelerant / n;
+//        aexel->delta += average - aexel->accelerant;
+//        for (int j=0;j<aexel->bondCount;j++) {
+//            CCAexel* other = CCBondOther(&aexel->bonds[j], aexel);
+//            if (other->accelerant < aexel->accelerant) {
+//                double delta = average - other->accelerant;
+//                other->delta += delta;
+////                CV2 dV = CV2ofLength(CV2Sub(other->position, aexel->position), delta*0.0001);
+//                double length2 = CV2LengthSquared(aexel->position);
+//                if (length2 > universe->planet->radius * universe->planet->radius) {
+//                    CV2 dV = CV2ofLength(CV2Neg(aexel->position), 1/length2);
+//                    aexel->velocity = CV2Add(aexel->velocity, dV);
+//                } else if (CV2LengthSquared(aexel->velocity) > 0) {
+//                    aexel->recycle = true;
+//                }
+//            }
+//        }
+        
+        double length2 = CV2LengthSquared(aexel->position);
+        if (universe->planet) {
+            if (length2 > universe->planet->radius * universe->planet->radius) {
+                // Gravity
+                aexel->acceleration = CV2ofLength(CV2Neg(aexel->position), 100/length2);
+            } else if (CV2LengthSquared(aexel->velocity) > 0) {
+                aexel->recycle = true;
+            }
+        }
+        
+    }
+
+    // Execute Changes - Position, Velocity and Accelerant =========================================
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        aexel->position = CV2Add(aexel->position, aexel->velocity);
+        aexel->velocity = CV2Add(aexel->velocity, aexel->acceleration);
+        aexel->acceleration = (CV2){0,0};
+        aexel->accelerant += aexel->delta;
+        aexel->delta = 0;
+//        if (CCPlanetContainsAexel(universe->planet, aexel)) { aexel->accelerant -= 1; }
+    }
+    
+    // Crystal Jump ================================================================================
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        aexel->jump = (CV2){0,0};
+
+        for (int j=0;j<aexel->bondCount;j++) {
+            CCBond* bond = &aexel->bonds[j];
+            CCAexel* other = CCBondOther(bond, aexel);
+            
+            double length2 = CV2LengthSquared(CV2Sub(other->position, aexel->position));
+            
+            double dL2 = 4*universe->radiusAexel*universe->radiusAexel - length2;
+            if (dL2 > 0) {
+                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2/1000));
+            }
+        }
+    }
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        aexel->position = CV2Add(aexel->position, aexel->jump);
+    }
+    
+    // Remove Recycled Aexels ======================================================================
+    int k = 0;
+    int aC = universe->aexelCount;
+    for (int i=0; i<aC; i++) {
+        CCAexel* aexel = universe->aexels[i];
+        if (aexel->recycle) {
+            CCUniverseRemoveBondsFor(universe, aexel);
+            CCAexelRelease(aexel);
+            universe->aexelCount--;
+        } else {
+            if (k != i) {
+                universe->aexels[k] = universe->aexels[i];
+                universe->aexels[k]->index = k;
+            }
+            k++;
+        }
+    }
+    
+    // Bind ========================================================================================
+    CCUniverseBind(universe);
 }

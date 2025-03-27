@@ -16,7 +16,11 @@ typedef struct CCBond CCBond;
 typedef struct CCAexel {
     CV2 position;
     CV2 velocity;
+    CV2 acceleration;
     double accelerant;
+    double delta;
+    CV2 jump;
+    bool recycle;
     int searchSectorIndex;
     int bondCount;
     CCBond* bonds;
@@ -37,6 +41,7 @@ typedef struct CCBond {
 
 CCBond* CCBondCreate(void);
 void CCBondRelease(CCBond* bond);
+CCAexel* CCBondOther(CCBond* bond, CCAexel* aexel);
 
 // Sector ==============
 typedef struct CCSector {
@@ -62,6 +67,7 @@ typedef struct CCPlanet {
 
 CCPlanet* CCPlanetCreate(double radius);
 void CCPlanetRelease(CCPlanet* planet);
+bool CCPlanetContainsAexel(CCPlanet* planet, CCAexel* aexel);
 
 // Universe ============
 typedef struct CCUniverse {
