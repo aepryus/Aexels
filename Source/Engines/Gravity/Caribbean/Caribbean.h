@@ -23,14 +23,14 @@ typedef struct CCAexel {
     bool recycle;
     int searchSectorIndex;
     int bondCount;
+    int bondCapacity;
     CCBond* bonds;
-    int adminCount;
-    CCBond** admin;
     int index;
 } CCAexel;
 
 CCAexel* CCAexelCreate(CV2 pos);
 void CCAexelRelease(CCAexel* aexel);
+void CCAexelAddBond(CCAexel* aexel, CCBond bond);
 
 // Bond ================
 typedef struct CCBond {

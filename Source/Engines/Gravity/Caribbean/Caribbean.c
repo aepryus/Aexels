@@ -22,16 +22,22 @@ CCAexel* CCAexelCreate(CV2 position) {
     aexel->recycle = false;
     aexel->searchSectorIndex = 0;
     aexel->bondCount = 0;
+    aexel->bondCapacity = 6;
     aexel->bonds = (CCBond*)malloc(sizeof(CCBond)*6);
-    aexel->adminCount = 0;
-    aexel->admin = (CCBond**)malloc(sizeof(CCBond*)*6);
     aexel->index = 0;
     return aexel;
 }
 void CCAexelRelease(CCAexel* aexel) {
     free(aexel->bonds);
-    free(aexel->admin);
     free(aexel);
+}
+void CCAexelAddBond(CCAexel* aexel, CCBond bond) {
+    aexel->bondCount++;
+    if (aexel->bondCount > aexel->bondCapacity) {
+        aexel->bondCapacity *= 2;
+        aexel->bonds = (CCBond*)realloc(aexel->bonds, sizeof(CCBond)*aexel->bondCapacity);
+    }
+    aexel->bonds[aexel->bondCount-1] = bond;
 }
 bool CCAexelBondsBondsCross(CCAexel* aexel, CCBond* bond) {
     CCAexel* anchor = CCBondOther(bond, aexel);
@@ -59,18 +65,6 @@ void CCAexelRemoveBondTo(CCAexel* aexel, CCAexel* other) {
             aexel->bondCount--;
         } else {
             if (k != i) aexel->bonds[k] = aexel->bonds[i];
-            k++;
-        }
-    }
-    k = 0;
-    int aC = aexel->adminCount;
-    for (int i=0; i<aC; i++) {
-        CCBond* bond = aexel->admin[i];
-        CCAexel* test = CCBondOther(bond, aexel);
-        if (test == other) {
-            aexel->adminCount--;
-        } else {
-            if (k != i) aexel->admin[k] = aexel->admin[i];
             k++;
         }
     }
@@ -259,9 +253,8 @@ void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
             if (length2 > universe->radiusBond*universe->radiusBond) continue;
 
             CCBond bond = (CCBond){aexel, other, length2};
-            if (aexel->bondCount < 6) aexel->bonds[aexel->bondCount++] = bond;
-            if (other->bondCount < 6) other->bonds[other->bondCount++] = bond;
-            if (aexel->adminCount < 6) aexel->admin[aexel->adminCount++] = &aexel->bonds[aexel->bondCount-1];
+            CCAexelAddBond(aexel, bond);
+            CCAexelAddBond(other, bond);
         }
     }
 }
@@ -271,19 +264,40 @@ void CCUniverseBind(CCUniverse* universe) {
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         aexel->bondCount = 0;
-        aexel->adminCount = 0;
     }
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         CCUniverseBuildBondsFor(universe, aexel);
+        
+//        for (int j=0;j<universe->aexelCount;j++) {
+//            CCAexel* other = universe->aexels[j];
+//            if (aexel == other) continue;
+//            
+//            double length2 = CV2LengthSquared(CV2Sub(aexel->position, other->position));
+//            if (length2 < universe->radiusBond*universe->radiusBond) {
+//                bool found = false;
+//                for (int k=0;k<aexel->bondCount;k++) {
+//                    CCBond* bond = &aexel->bonds[k];
+//                    if (other == CCBondOther(bond, aexel)) found = true;
+//                }
+//                if (!found) {
+//                    printf("wtf\n");
+//                    
+//                    
+//                    CCUniverseBuildBondsFor(universe, aexel);
+//
+//                }
+//            }
+//        }
     }
     
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         
-        for (int j=aexel->adminCount-1;j>=0;j--) {
-            CCBond* bond = aexel->admin[j];
-            CCAexel* other = CCBondOther(bond, aexel);
+        for (int j=aexel->bondCount-1;j>=0;j--) {
+            CCBond* bond = &aexel->bonds[j];
+            if (bond->a != aexel) continue;
+            CCAexel* other = bond->b;
             
             if (CCAexelBondsBondsCross(aexel, bond) || CCAexelBondsBondsCross(other, bond)) {
                 CCBondRemoveBond(bond);
@@ -360,7 +374,7 @@ void CCUniverseTic(CCUniverse* universe) {
             
             double dL2 = 4*universe->radiusAexel*universe->radiusAexel - length2;
             if (dL2 > 0) {
-                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2/1000));
+                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2/100));
             }
         }
     }

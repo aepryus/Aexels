@@ -178,7 +178,7 @@ class GravityRenderer: Renderer {
         guard let universe else { return }
         
         CCUniverseTic(universe)
-        
+
 //        var mgUniverse: MGUniverse = MGUniverse(bounds: SIMD2<Float>(Float(size.width), Float(size.height)))
 //        memcpy(universeBuffer.contents(), &mgUniverse, MemoryLayout<MGUniverse>.size)
 
@@ -194,10 +194,12 @@ class GravityRenderer: Renderer {
 
         for i: Int32 in 0..<universe.pointee.aexelCount {
             let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
-            for j: Int32 in 0..<aexel.pointee.adminCount {
-                let bond: UnsafeMutablePointer<CCBond> = aexel.pointee.admin[Int(j)]!
-                indices.append(UInt16(bond.pointee.a.pointee.index))
-                indices.append(UInt16(bond.pointee.b.pointee.index))
+            for j: Int32 in 0..<aexel.pointee.bondCount {
+                let bond: CCBond = aexel.pointee.bonds[Int(j)]
+                guard aexel == bond.a else { continue }
+                
+                indices.append(UInt16(bond.a.pointee.index))
+                indices.append(UInt16(bond.b.pointee.index))
             }
         }
         
@@ -252,7 +254,6 @@ class GravityRenderer: Renderer {
             renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
             renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
             renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
-        }
-        
+        }        
     }
 }
