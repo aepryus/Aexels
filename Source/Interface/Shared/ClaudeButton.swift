@@ -115,10 +115,19 @@ class ClaudeButton: AEView {
         if let article { UIPasteboard.general.string = article.article }
         else {
             var sb: String = ""
-            Concepts.articles.forEach {
-                sb.append("===================================================================\n")
-                sb.append($0.article)
+            
+            if Aexels.nexusExplorer.mode == .concepts {
+                Concepts.articles.forEach {
+                    sb.append("===================================================================\n")
+                    sb.append($0.article)
+                }
+            } else {
+                PathOfDiscovery.articles.forEach {
+                    sb.append("===================================================================\n")
+                    sb.append($0.article)
+                }
             }
+
             UIPasteboard.general.string = sb
         }
     }

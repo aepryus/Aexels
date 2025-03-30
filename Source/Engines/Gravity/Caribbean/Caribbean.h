@@ -37,6 +37,7 @@ typedef struct CCBond {
     CCAexel* a;
     CCAexel* b;
     double length2;
+    int stress;
 } CCBond;
 
 CCBond* CCBondCreate(void);

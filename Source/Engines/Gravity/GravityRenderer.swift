@@ -25,6 +25,12 @@ struct MGAexelIn {
     var position: SIMD2<Float>
 }
 
+struct MGBondIn {
+    var aPos: SIMD2<Float>
+    var bPos: SIMD2<Float>
+    var stress: UInt8
+}
+
 class GravityRenderer: Renderer {
     var universe: UnsafeMutablePointer<CCUniverse>?
     
@@ -79,7 +85,7 @@ class GravityRenderer: Renderer {
         
         let ds: Double = universe.pointee.ds
         
-        let dx: Double = universe.pointee.radiusBond * 0.8
+        let dx: Double = 30 * 0.8
         let dy: Double = dx * sqrt(3)/2
 
         let x0: Double = -Double(universe.pointee.sectorCountX) * ds/2
@@ -115,7 +121,7 @@ class GravityRenderer: Renderer {
         let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
         CCUniverseDemarcate(universe)
         
-        let dx: Double = universe.pointee.radiusBond * 0.65
+        let dx: Double = 30 * 0.65
         let dr: Double = dx * sqrt(3)/2
         var dQ: Double = 2 * .pi
 
@@ -183,34 +189,29 @@ class GravityRenderer: Renderer {
 //        memcpy(universeBuffer.contents(), &mgUniverse, MemoryLayout<MGUniverse>.size)
 
         // Bonds ================
-        var vertices: [SIMD2<Float>] = []
-        var indices: [UInt16] = []
+        var bonds: [MGBondIn] = []
         
-        for i: Int32 in 0..<universe.pointee.aexelCount {
-            let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
-            let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.position.x), Float(size.width/2) + Float(aexel.pointee.position.y))
-            vertices.append(SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1)))
-        }
-
         for i: Int32 in 0..<universe.pointee.aexelCount {
             let aexel: UnsafeMutablePointer<CCAexel> = universe.pointee.aexels[Int(i)]!
             for j: Int32 in 0..<aexel.pointee.bondCount {
                 let bond: CCBond = aexel.pointee.bonds[Int(j)]
                 guard aexel == bond.a else { continue }
                 
-                indices.append(UInt16(bond.a.pointee.index))
-                indices.append(UInt16(bond.b.pointee.index))
+                let aCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(bond.a.pointee.position.x), Float(size.width/2) + Float(bond.a.pointee.position.y))
+                let aPos: SIMD2<Float> = SIMD2<Float>((aCenter.x / Float(size.width) * 2) - 1, -((aCenter.y / Float(size.height) * 2) - 1))
+                let bCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(bond.b.pointee.position.x), Float(size.width/2) + Float(bond.b.pointee.position.y))
+                let bPos: SIMD2<Float> = SIMD2<Float>((bCenter.x / Float(size.width) * 2) - 1, -((bCenter.y / Float(size.height) * 2) - 1))
+                
+                bonds.append(MGBondIn(aPos: aPos, bPos: bPos, stress: UInt8(bond.stress)))
             }
         }
         
-        guard let vertexBuffer = device.makeBuffer(bytes: vertices, length: vertices.count * MemoryLayout<SIMD2<Float>>.stride, options: .storageModeShared) else { fatalError() }
-        
-        let indexBuffer: MTLBuffer? = indices.count > 0 ? device.makeBuffer(bytes: indices, length: indices.count * MemoryLayout<UInt16>.stride, options: .storageModeShared) : nil
+        let bondBuffer: MTLBuffer? = bonds.count > 0 ? device.makeBuffer(bytes: bonds, length: bonds.count * MemoryLayout<MGBondIn>.stride, options: .storageModeShared) : nil
         
         renderEncoder.setRenderPipelineState(bondsPipelineState)
-        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-        if let indexBuffer {
-            renderEncoder.drawIndexedPrimitives(type: .line, indexCount: indices.count, indexType: .uint16, indexBuffer: indexBuffer, indexBufferOffset: 0)
+        if let bondBuffer {
+            renderEncoder.setVertexBuffer(bondBuffer, offset: 0, index: 0)
+            renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: 2, instanceCount: bonds.count)
         }
 
         // Aexels ===============
@@ -254,6 +255,6 @@ class GravityRenderer: Renderer {
             renderEncoder.setVertexBuffer(planetsBuffer, offset: 0, index: 0)
             renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
             renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
-        }        
+        }
     }
 }

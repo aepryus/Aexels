@@ -56,19 +56,29 @@ fragment float4 mgAexelFragmentShader(MGAexelOut in [[stage_in]], constant MGAex
 
 // Bond Shaders ====================================================================================
 struct MGBondIn {
-    float2 pos [[attribute(0)]];
+    float2 aPos;
+    float2 bPos;
+    uchar stress;
 };
 struct MGBondOut {
     float4 pos [[position]];
+    uint stress [[flat]];
 };
 
-vertex MGBondOut mgBondsVertexShader(MGBondIn in [[stage_in]]) {
+vertex MGBondOut mgBondsVertexShader(uint vertexID [[vertex_id]], uint instanceID [[instance_id]], constant MGBondIn* bonds [[buffer(0)]]) {
+    constant MGBondIn& bond = bonds[instanceID];
+    
+    float2 position = (vertexID == 0) ? bond.aPos : bond.bPos;
+    
     MGBondOut out;
-    out.pos = float4(in.pos, 0.0, 1.0);
+    out.pos = float4(position, 0.0, 1.0);
+    out.stress = bond.stress;
     return out;
 }
 fragment float4 mgBondsFragmentShader(MGBondOut in [[stage_in]]) {
-    return float4(0.6, 0.6, 0.8, 1.0);
+    if (in.stress == 0) return float4(0.6, 0.6, 0.8, 1.0);
+    else if (in.stress == 1) return float4(0.8, 0.6, 0.6, 1.0);
+    return float4(0.99, 0.4, 0.4, 1.0);
 }
 
 // Circle Shaders ==================================================================================

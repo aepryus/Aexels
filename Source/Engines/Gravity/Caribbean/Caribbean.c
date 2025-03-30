@@ -133,9 +133,9 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     universe->width = width;
     universe->height = height;
     
-    universe->radiusBond = 30;
+    universe->radiusBond = 32;
     universe->radiusAexel = 10;
-    universe->radiusSquish = 18;
+    universe->radiusSquish = 9;
     
     universe->planet = CCPlanetCreate(80);
 //    universe->planet = 0;
@@ -251,8 +251,12 @@ void CCUniverseBuildBondsFor(CCUniverse* universe, CCAexel* aexel) {
             double length2 = dx*dx+dy*dy;
             
             if (length2 > universe->radiusBond*universe->radiusBond) continue;
-
-            CCBond bond = (CCBond){aexel, other, length2};
+            
+            int stress = 0;
+            if (length2 < 4*universe->radiusSquish*universe->radiusSquish) stress = 2;
+            else if (length2 < 4*universe->radiusAexel*universe->radiusAexel) stress = 1;
+            
+            CCBond bond = (CCBond){aexel, other, length2, stress};
             CCAexelAddBond(aexel, bond);
             CCAexelAddBond(other, bond);
         }
@@ -268,27 +272,6 @@ void CCUniverseBind(CCUniverse* universe) {
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         CCUniverseBuildBondsFor(universe, aexel);
-        
-//        for (int j=0;j<universe->aexelCount;j++) {
-//            CCAexel* other = universe->aexels[j];
-//            if (aexel == other) continue;
-//            
-//            double length2 = CV2LengthSquared(CV2Sub(aexel->position, other->position));
-//            if (length2 < universe->radiusBond*universe->radiusBond) {
-//                bool found = false;
-//                for (int k=0;k<aexel->bondCount;k++) {
-//                    CCBond* bond = &aexel->bonds[k];
-//                    if (other == CCBondOther(bond, aexel)) found = true;
-//                }
-//                if (!found) {
-//                    printf("wtf\n");
-//                    
-//                    
-//                    CCUniverseBuildBondsFor(universe, aexel);
-//
-//                }
-//            }
-//        }
     }
     
     for (int i=0;i<universe->aexelCount;i++) {
@@ -374,7 +357,7 @@ void CCUniverseTic(CCUniverse* universe) {
             
             double dL2 = 4*universe->radiusAexel*universe->radiusAexel - length2;
             if (dL2 > 0) {
-                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2/100));
+                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2 * 0.007));
             }
         }
     }
