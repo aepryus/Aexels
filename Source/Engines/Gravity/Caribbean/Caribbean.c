@@ -446,6 +446,24 @@ void CCUniverseAddMoon(CCUniverse* universe, CCMoon* moon) {
 }
 CCMoon* CCUniverseAddMoonAt(CCUniverse* universe, double x, double y, double vx, double vy, double radius) {
     CCMoon* moon = CCMoonCreate();
+    moon->radius = radius;
+    moon->velocity.x = vx;
+    moon->velocity.y = vy;
+    
+    CCAexel* closest = 0;
+    double minLength2 = 10000;
+    for (int i=0;i<universe->aexelCount;i++) {
+        CCAexel* aexel = universe->aexels[i];
+        double dx = aexel->position.x - x;
+        double dy = aexel->position.y - y;
+        double length2 = dx*dx + dy*dy;
+        if (length2 < minLength2) {
+            minLength2 = length2;
+            closest = aexel;
+        }
+    }
+    moon->aexel = closest;
+    
     CCUniverseAddMoon(universe, moon);
     return moon;
 }

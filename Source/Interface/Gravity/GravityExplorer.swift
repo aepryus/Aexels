@@ -39,6 +39,10 @@ class GravityExplorer: Explorer {
         metalView = MTKView(frame: view.bounds)
         metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         metalView.isOpaque = false
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(onDoubleTap(_:)))
+        gesture.numberOfTapsRequired = 2
+        metalView.addGestureRecognizer(gesture)
 
         renderer = GravityRenderer(view: metalView)
 

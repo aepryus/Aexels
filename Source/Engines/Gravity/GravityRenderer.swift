@@ -267,5 +267,36 @@ class GravityRenderer: Renderer {
             renderEncoder.setFragmentBuffer(planetsBuffer, offset: 0, index: 0)
             renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: planets.count)
         }
+        
+        // Moons ================
+        var moons: [MGCirclePacket] = []
+        for i in 0..<Int(universe.pointee.moonCount) {
+            let moon: UnsafeMutablePointer<CCMoon> = universe.pointee.moons[i]!
+
+            let centerPoint = SIMD2<Float>(
+                Float(size.width/2) + Float(moon.pointee.aexel.pointee.position.x),
+                Float(size.width/2) + Float(moon.pointee.aexel.pointee.position.y)
+            )
+            let normalizedCenter = SIMD2<Float>(
+                (centerPoint.x / Float(size.width) * 2) - 1,
+                -((centerPoint.y / Float(size.width) * 2) - 1)
+            )
+            
+            let moonCircle = MGCirclePacket(
+                center: normalizedCenter,
+                radius: Float(moon.pointee.radius) / Float(size.width) * 2,
+                color: OOColor.marine.uiColor.alpha(0.5).simd4
+            )
+            moons.append(moonCircle)
+        }
+        
+        if moons.count > 0 {
+            let moonsBuffer = device.makeBuffer(bytes: moons, length: moons.count * MemoryLayout<MGCirclePacket>.stride, options: .storageModeShared)!
+            
+            renderEncoder.setRenderPipelineState(circlePipelineState)
+            renderEncoder.setVertexBuffer(moonsBuffer, offset: 0, index: 0)
+            renderEncoder.setFragmentBuffer(moonsBuffer, offset: 0, index: 0)
+            renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: moons.count)
+        }
     }
 }

@@ -62,6 +62,7 @@ typedef struct CCPacket {
 
 // Moon ================
 typedef struct CCMoon {
+    double radius;
     CCAexel* aexel;
     CV2 velocity;
     CV2 internal;
