@@ -12,8 +12,8 @@ class GravityControlsTab: TabsCellTab {
     unowned let explorer: GravityExplorer!
     
     let colorBondsBoolButton: BoolButton = BoolButton(name: "color bonds")
-    let squishAexelsBoolButton: BoolButton = BoolButton(name: "squish aexels")
-    let recycleAexelsBoolButton: BoolButton = BoolButton(name: "recycle aexels")
+    let squishAexelsBoolButton: BoolButton = BoolButton(name: "squish")
+    let recycleAexelsBoolButton: BoolButton = BoolButton(name: "recycle")
 
     init(explorer: GravityExplorer) {
         self.explorer = explorer

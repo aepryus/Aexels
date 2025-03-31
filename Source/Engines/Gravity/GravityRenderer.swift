@@ -142,8 +142,6 @@ class GravityRenderer: Renderer {
         var p: Bool = false
         
         var n: Int = 0
-        var or: Double = 0
-        var odQ: Double = 0
         while r < maxR {
             n = 0
             while Q < maxQ {
@@ -153,15 +151,11 @@ class GravityRenderer: Renderer {
                 Q += dQ
                 n += 1
             }
-            or = r
-            odQ = dQ
             r += dr
             dQ = 2 * .pi / round(r * 2 * .pi / dx)
             Q = !p ? 0 : dQ/2
             p = !p
         }
-        
-        print("or: \(or), n: \(n), odQ: \(odQ), dx:\(dx), aexels: \(universe.pointee.aexelCount)")
         
         CCUniverseBind(universe)
         

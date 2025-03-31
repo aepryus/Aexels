@@ -21,6 +21,12 @@ class GravityExplorer: Explorer {
     
     init() { super.init(key: "gravity") }
     
+// Events ==========================================================================================
+    @objc func onDoubleTap(_ gesture: UITapGestureRecognizer) {
+        let point: CGPoint = gesture.location(in: metalView) - CGPoint(x: metalView.width/2, y: metalView.height/2)
+        CCUniverseAddMoonAt(renderer.universe, point.x, point.y, 1, 1, 10)
+    }
+    
 // UIViewController ================================================================================
     override func viewDidLoad() {
         cyto = Screen.iPhone ? Cyto(rows: 2, cols: 1) : Cyto(rows: 3, cols: 2)

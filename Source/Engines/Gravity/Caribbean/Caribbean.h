@@ -60,6 +60,15 @@ typedef struct CCPacket {
     CCAexel* source;
 } CCPacket;
 
+// Moon ================
+typedef struct CCMoon {
+    CCAexel* aexel;
+    CV2 velocity;
+    CV2 internal;
+} CCMoon;
+CCMoon* CCMoonCreate(void);
+void CCMoonRelease(CCMoon* moon);
+
 // Planet ==============
 typedef struct CCPlanet {
     CV2 position;
@@ -99,6 +108,11 @@ typedef struct CCUniverse {
     int sectorCount;
     int sectorCapacity;
     CCSector** sectors;
+    
+    int moonCount;
+    int moonCapacity;
+    CCMoon** moons;
+
 } CCUniverse;
 
 CCUniverse* CCUniverseCreate(double width, double height);
@@ -111,3 +125,4 @@ void CCUniverseTic(CCUniverse* universe);
 void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p);
 void CCUniverseSetSquishOn(CCUniverse* universe, bool squishOn);
 void CCUniverseSetRecycleOn(CCUniverse* universe, bool recycleOn);
+CCMoon* CCUniverseAddMoonAt(CCUniverse* universe, double x, double y, double vx, double vy, double radius);

@@ -108,6 +108,15 @@ void CCSectorAddAexel(CCSector* sector, CCAexel* aexel) {
     sector->aexels[sector->aexelCount-1] = aexel;
 }
 
+// Moon ============================================================================================
+CCMoon* CCMoonCreate(void) {
+    CCMoon* moon = (CCMoon*)malloc(sizeof(CCMoon));
+    return moon;
+}
+void CCMoonRelease(CCMoon* moon) {
+    free(moon);
+}
+
 // Planet ==========================================================================================
 CCPlanet* CCPlanetCreate(double radius) {
     CCPlanet* planet = (CCPlanet*)malloc(sizeof(CCPlanet));
@@ -158,6 +167,10 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     for (int i=0;i<universe->sectorCount;i++)
         universe->sectors[i] = CCSectorCreate(i);
     
+    universe->moonCount = 0;
+    universe->moonCapacity = 2;
+    universe->moons = (CCMoon**)malloc(sizeof(CCMoon*)*universe->moonCapacity);
+    
     return universe;
 }
 void CCUniverseRelease(CCUniverse* universe) {
@@ -165,6 +178,8 @@ void CCUniverseRelease(CCUniverse* universe) {
     free(universe->sectors);
     for (int i=0;i<universe->aexelCount;i++) CCAexelRelease(universe->aexels[i]);
     free(universe->aexels);
+    for (int i=0;i<universe->moonCount;i++) CCMoonRelease(universe->moons[i]);
+    free(universe->moons);
     free(universe->planet);
     free(universe);
 }
@@ -318,40 +333,10 @@ void CCUniverseTic(CCUniverse* universe) {
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         
-//        double n = 1;
-//        double accelerant = aexel->accelerant;
-//        for (int j=0;j<aexel->bondCount;j++) {
-//            CCAexel* other = CCBondOther(&aexel->bonds[j], aexel);
-//            if (other->accelerant < aexel->accelerant) {
-//                n++;
-//                accelerant += other->accelerant;
-//            }
-//        }
-//        double average = accelerant / n;
-//        aexel->delta += average - aexel->accelerant;
-//        for (int j=0;j<aexel->bondCount;j++) {
-//            CCAexel* other = CCBondOther(&aexel->bonds[j], aexel);
-//            if (other->accelerant < aexel->accelerant) {
-//                double delta = average - other->accelerant;
-//                other->delta += delta;
-////                CV2 dV = CV2ofLength(CV2Sub(other->position, aexel->position), delta*0.0001);
-//                double length2 = CV2LengthSquared(aexel->position);
-//                if (length2 > universe->planet->radius * universe->planet->radius) {
-//                    CV2 dV = CV2ofLength(CV2Neg(aexel->position), 1/length2);
-//                    aexel->velocity = CV2Add(aexel->velocity, dV);
-//                } else if (CV2LengthSquared(aexel->velocity) > 0) {
-//                    aexel->recycle = true;
-//                }
-//            }
-//        }
-        
         double length2 = CV2LengthSquared(aexel->position);
         if (universe->planet) {
             if (length2 > universe->planet->radius * universe->planet->radius) {
-                // Gravity
                 aexel->acceleration = CV2ofLength(CV2Neg(aexel->position), 300/length2);
-//            } else if (CV2LengthSquared(aexel->velocity) > 0) {
-//                aexel->recycle = true;
             }
         }
         
@@ -450,4 +435,17 @@ void CCUniverseSetSquishOn(CCUniverse* universe, bool squishOn) {
 }
 void CCUniverseSetRecycleOn(CCUniverse* universe, bool recycleOn) {
     universe->recycleOn = recycleOn;
+}
+void CCUniverseAddMoon(CCUniverse* universe, CCMoon* moon) {
+    universe->moonCount++;
+    if (universe->moonCount > universe->moonCapacity) {
+        universe->moonCapacity *= 2;
+        universe->moons = (CCMoon**)realloc(universe->moons, sizeof(CCMoon*)*universe->moonCapacity);
+    }
+    universe->moons[universe->moonCount-1] = moon;
+}
+CCMoon* CCUniverseAddMoonAt(CCUniverse* universe, double x, double y, double vx, double vy, double radius) {
+    CCMoon* moon = CCMoonCreate();
+    CCUniverseAddMoon(universe, moon);
+    return moon;
 }
