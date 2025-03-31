@@ -43,6 +43,14 @@ class GravityRenderer: Renderer {
         self.universeBuffer = universeBuffer
     }
     
+    var colorBondsOn: Bool = true
+    var squishAexelsOn: Bool = true {
+        didSet { CCUniverseSetSquishOn(universe, squishAexelsOn ? 1 : 0) }
+    }
+    var recycleAexelsOn: Bool = true {
+        didSet { CCUniverseSetRecycleOn(universe, recycleAexelsOn ? 1 : 0) }
+    }
+    
     lazy var aexelPipelineState: MTLRenderPipelineState! = {
         let descriptor: MTLRenderPipelineDescriptor = createNormalRenderPipelineDescriptor(vertex: "mgAexelVertexShader", fragment: "mgAexelFragmentShader")
         guard let state: MTLRenderPipelineState = try? device.makeRenderPipelineState(descriptor: descriptor) else { return nil }
@@ -101,7 +109,7 @@ class GravityRenderer: Renderer {
         
         while y < maxY {
             while x < maxX {
-                CCUniverseCreateAexelAt(universe, x, y)
+                CCUniverseCreateAexelAt(universe, x, y, 0, 0)
                 x += dx
             }
             x = x0 + (p ? 0 : dx/2)
@@ -133,18 +141,27 @@ class GravityRenderer: Renderer {
         
         var p: Bool = false
         
+        var n: Int = 0
+        var or: Double = 0
+        var odQ: Double = 0
         while r < maxR {
+            n = 0
             while Q < maxQ {
                 let x: Double = r * cos(Q)
                 let y: Double = r * sin(Q)
-                CCUniverseCreateAexelAt(universe, x, y)
-                Q  += dQ
+                CCUniverseCreateAexelAt(universe, x, y, 0, 0)
+                Q += dQ
+                n += 1
             }
+            or = r
+            odQ = dQ
             r += dr
             dQ = 2 * .pi / round(r * 2 * .pi / dx)
             Q = !p ? 0 : dQ/2
             p = !p
         }
+        
+        print("or: \(or), n: \(n), odQ: \(odQ), dx:\(dx), aexels: \(universe.pointee.aexelCount)")
         
         CCUniverseBind(universe)
         
@@ -159,10 +176,10 @@ class GravityRenderer: Renderer {
         let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
         CCUniverseDemarcate(universe)
         
-        CCUniverseCreateAexelAt(universe, 0, -70);
-        CCUniverseCreateAexelAt(universe, 0, -90);
-        CCUniverseCreateAexelAt(universe, 12, -85);
-        CCUniverseCreateAexelAt(universe, -12, -85);
+        CCUniverseCreateAexelAt(universe, 0, -70, 0, 0);
+        CCUniverseCreateAexelAt(universe, 0, -90, 0, 0);
+        CCUniverseCreateAexelAt(universe, 12, -85, 0, 0);
+        CCUniverseCreateAexelAt(universe, -12, -85, 0, 0);
 
         CCUniverseBind(universe)
         
@@ -202,7 +219,7 @@ class GravityRenderer: Renderer {
                 let bCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(bond.b.pointee.position.x), Float(size.width/2) + Float(bond.b.pointee.position.y))
                 let bPos: SIMD2<Float> = SIMD2<Float>((bCenter.x / Float(size.width) * 2) - 1, -((bCenter.y / Float(size.height) * 2) - 1))
                 
-                bonds.append(MGBondIn(aPos: aPos, bPos: bPos, stress: UInt8(bond.stress)))
+                bonds.append(MGBondIn(aPos: aPos, bPos: bPos, stress: colorBondsOn ? UInt8(bond.stress) : 0))
             }
         }
         

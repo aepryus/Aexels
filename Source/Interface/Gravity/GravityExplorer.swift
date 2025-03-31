@@ -13,6 +13,7 @@ class GravityExplorer: Explorer {
     private var metalView: MTKView!
     
     // Tabs =======
+    var controlsTab: GravityControlsTab!
     let notesTab: NotesTab = NotesTab(key: "gravity")
 
     // Metal ======
@@ -34,8 +35,10 @@ class GravityExplorer: Explorer {
         metalView.isOpaque = false
 
         renderer = GravityRenderer(view: metalView)
-        
-        tabsCell.tabs = [notesTab]
+
+        controlsTab = GravityControlsTab(explorer: self)
+
+        tabsCell.tabs = [controlsTab, notesTab]
 
         if Screen.iPhone {
             cyto.cells = [

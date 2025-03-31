@@ -133,9 +133,14 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     universe->width = width;
     universe->height = height;
     
+    universe->squishOn = true;
+    universe->recycleOn = true;
+    
+    universe->p = 0;
+    
     universe->radiusBond = 32;
     universe->radiusAexel = 10;
-    universe->radiusSquish = 9;
+    universe->radiusSquish = 5;
     
     universe->planet = CCPlanetCreate(80);
 //    universe->planet = 0;
@@ -173,8 +178,10 @@ void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel) {
     aexel->index = universe->aexelCount-1;
     universe->aexels[aexel->index] = aexel;
 }
-CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y) {
+CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y, double vx, double vy) {
     CCAexel* aexel = CCAexelCreate((CV2){x,y});
+    aexel->velocity.x = vx;
+    aexel->velocity.y = vy;
     CCUniverseAddAexel(universe, aexel);
     return aexel;
 }
@@ -290,6 +297,23 @@ void CCUniverseBind(CCUniverse* universe) {
 }
 
 void CCUniverseTic(CCUniverse* universe) {
+    
+    // Recycle =====================================================================================
+    if (universe->recycleOn) {
+        double maxR2 = 0;
+        for (int i=0;i<universe->aexelCount;i++) {
+            CCAexel* aexel = universe->aexels[i];
+            double length2 = CV2LengthSquared(aexel->position);
+            if (length2 > maxR2) maxR2 = length2;
+        }
+        double border = universe->width / 2 * sqrt(2) - universe->radiusSquish;
+        double border2 = border * border;
+        if (maxR2 < border2) {
+            CCUniverseDarkEnergy(universe, 692.3873103256594, 0.02817571886627617*2, universe->p);
+            universe->p = !universe->p;
+        }
+    }
+    
     // Calculate Changes, but Don't Execute ========================================================
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
@@ -325,9 +349,9 @@ void CCUniverseTic(CCUniverse* universe) {
         if (universe->planet) {
             if (length2 > universe->planet->radius * universe->planet->radius) {
                 // Gravity
-                aexel->acceleration = CV2ofLength(CV2Neg(aexel->position), 100/length2);
-            } else if (CV2LengthSquared(aexel->velocity) > 0) {
-                aexel->recycle = true;
+                aexel->acceleration = CV2ofLength(CV2Neg(aexel->position), 300/length2);
+//            } else if (CV2LengthSquared(aexel->velocity) > 0) {
+//                aexel->recycle = true;
             }
         }
         
@@ -355,15 +379,36 @@ void CCUniverseTic(CCUniverse* universe) {
             
             double length2 = CV2LengthSquared(CV2Sub(other->position, aexel->position));
             
-            double dL2 = 4*universe->radiusAexel*universe->radiusAexel - length2;
+            double pushRadius = (universe->radiusBond-universe->radiusAexel) * 0.5;
+            double pushRadius2 = 4 * pushRadius * pushRadius;
+            
+            double dL2 = pushRadius2 - length2;
             if (dL2 > 0) {
-                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2 * 0.007));
+                aexel->jump = CV2Add(aexel->jump, CV2ofLength(CV2Sub(aexel->position, other->position), dL2 * 0.001));
             }
         }
     }
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
         aexel->position = CV2Add(aexel->position, aexel->jump);
+    }
+    
+    // Squish ======================================================================================
+    if (universe->squishOn) {
+        for (int i=0;i<universe->aexelCount;i++) {
+            CCAexel* aexel = universe->aexels[i];
+            if (CV2Dot(aexel->position, aexel->velocity) > 0) { // Make sure the aexel doesn't pass through the planet
+                aexel->recycle = true;
+            } else {
+                for (int j=0;j<aexel->bondCount;j++) {
+                    CCBond* bond = &aexel->bonds[j];
+                    if (bond->a != aexel) continue;
+                    if (bond->length2 < 4*universe->radiusSquish*universe->radiusSquish) {
+                        bond->b->recycle = true;
+                    }
+                }
+            }
+        }
     }
     
     // Remove Recycled Aexels ======================================================================
@@ -386,4 +431,23 @@ void CCUniverseTic(CCUniverse* universe) {
     
     // Bind ========================================================================================
     CCUniverseBind(universe);
+}
+
+void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p) {
+    double maxQ = 2 * M_PI;
+    double Q = !p ? 0 : dQ/2;
+
+    while (Q < maxQ) {
+        double x = r * cos(Q);
+        double y = r * sin(Q);
+        double q = 0.0005;
+        CCUniverseCreateAexelAt(universe, x, y, -x*q, -y*q);
+        Q += dQ;
+    }
+}
+void CCUniverseSetSquishOn(CCUniverse* universe, bool squishOn) {
+    universe->squishOn = squishOn;
+}
+void CCUniverseSetRecycleOn(CCUniverse* universe, bool recycleOn) {
+    universe->recycleOn = recycleOn;
 }

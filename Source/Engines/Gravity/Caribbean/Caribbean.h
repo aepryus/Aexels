@@ -75,6 +75,11 @@ typedef struct CCUniverse {
     double width;
     double height;
     
+    bool squishOn;
+    bool recycleOn;
+    
+    bool p;
+    
     double radiusBond;
     double radiusAexel;
     double radiusSquish;
@@ -99,7 +104,10 @@ typedef struct CCUniverse {
 CCUniverse* CCUniverseCreate(double width, double height);
 void CCUniverseRelease(CCUniverse* universe);
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
-CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y);
+CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y, double vx, double vy);
 void CCUniverseDemarcate(CCUniverse* universe);
 void CCUniverseBind(CCUniverse* universe);
 void CCUniverseTic(CCUniverse* universe);
+void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p);
+void CCUniverseSetSquishOn(CCUniverse* universe, bool squishOn);
+void CCUniverseSetRecycleOn(CCUniverse* universe, bool recycleOn);

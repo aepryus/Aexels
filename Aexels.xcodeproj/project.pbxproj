@@ -130,6 +130,7 @@
 		D8DDAC702A8C35BC00100633 /* AexelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DDAC6E2A8C35BC00100633 /* AexelsView.swift */; };
 		D8DEF8A92D346F2200298D26 /* 2103.04335v3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */; };
 		D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DEF8AE2D35189500298D26 /* Settings.swift */; };
+		D8E6E1B62D99F5F10084B13C /* GravityControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E6E1B52D99F5EA0084B13C /* GravityControlsTab.swift */; };
 		D8FA8B072D37637100211980 /* ElectromagnetismRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */; };
 		D8FA8B0D2D37681500211980 /* ElectromagnetismShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */; };
 		D8FB29842B73ED53003E89E5 /* OoviumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB29832B73ED53003E89E5 /* OoviumView.swift */; };
@@ -269,6 +270,7 @@
 		D8DEF8A82D346F2200298D26 /* 2103.04335v3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = 2103.04335v3.pdf; sourceTree = "<group>"; };
 		D8DEF8AE2D35189500298D26 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D8E154D028162E650074A59B /* Aexels.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aexels.entitlements; sourceTree = "<group>"; };
+		D8E6E1B52D99F5EA0084B13C /* GravityControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityControlsTab.swift; sourceTree = "<group>"; };
 		D8FA8B062D37636D00211980 /* ElectromagnetismRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectromagnetismRenderer.swift; sourceTree = "<group>"; };
 		D8FA8B0C2D37681500211980 /* ElectromagnetismShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ElectromagnetismShaders.metal; sourceTree = "<group>"; };
 		D8FB29832B73ED53003E89E5 /* OoviumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OoviumView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		D82245792D8416F600A5176F /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				D8E6E1B52D99F5EA0084B13C /* GravityControlsTab.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1053,6 +1056,7 @@
 				D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */,
 				D830B9472D5FF6B200E7B029 /* OoviumTab.swift in Sources */,
 				D8AE17D72814F1EC00E74CB8 /* SwapButton.swift in Sources */,
+				D8E6E1B62D99F5F10084B13C /* GravityControlsTab.swift in Sources */,
 				D82245722D8409BF00A5176F /* Sea.c in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */,
