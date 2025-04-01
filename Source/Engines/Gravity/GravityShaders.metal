@@ -17,11 +17,13 @@ struct MGUniverse {
 // Aexel Shader ====================================================================================
 struct MGAexelIn {
     float2 position;
+    uchar hasMoon;
 };
 struct MGAexelOut {
     float4 position [[position]];
     float2 localPos;
     uint instanceID;
+    uchar hasMoon;
 };
 
 vertex MGAexelOut mgAexelVertexShader(uint vertexID [[vertex_id]], uint instanceID [[instance_id]], constant MGAexelIn *aexels [[buffer(0)]]) {
@@ -40,13 +42,17 @@ vertex MGAexelOut mgAexelVertexShader(uint vertexID [[vertex_id]], uint instance
     out.position = float4(pos, 0.0, 1.0);
     out.localPos = positions[vertexID];
     out.instanceID = instanceID;
+    out.hasMoon = aexel.hasMoon;
     return out;
 }
 fragment float4 mgAexelFragmentShader(MGAexelOut in [[stage_in]], constant MGAexelOut *aexels [[buffer(0)]]) {
 //    constant MGAexelOut &aexel = aexels[in.instanceID];
 
     float distSquared = dot(in.localPos, in.localPos);
-    if (distSquared <= 0.65) { return float4(0.32, 0.32, 0.32, 1.0); }
+    if (distSquared <= 0.65) {
+        if (in.hasMoon) return float4(0.32, 0.72, 0.72, 1.0);
+        return float4(0.32, 0.32, 0.32, 1.0);
+    }
     else if (distSquared < 1.00) { return float4(0.4, 0.4, 0.4, 1.0); }
     else {
         discard_fragment();

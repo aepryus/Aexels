@@ -23,6 +23,7 @@ struct MGCirclePacket {
 
 struct MGAexelIn {
     var position: SIMD2<Float>
+    var hasMoon: UInt8
 }
 
 struct MGBondIn {
@@ -231,7 +232,7 @@ class GravityRenderer: Renderer {
             let aexel = universe.pointee.aexels[i]!
             let aexelCenter: SIMD2<Float> = SIMD2<Float>(Float(size.width/2) + Float(aexel.pointee.position.x), Float(size.width/2) + Float(aexel.pointee.position.y))
             let position = SIMD2<Float>((aexelCenter.x / Float(size.width) * 2) - 1, -((aexelCenter.y / Float(size.height) * 2) - 1))
-            aexels.append(MGAexelIn(position: position))
+            aexels.append(MGAexelIn(position: position, hasMoon: aexel.pointee.moons > 0 ? 1 : 0))
         }
         
         if aexels.count > 0 {
@@ -274,8 +275,8 @@ class GravityRenderer: Renderer {
             let moon: UnsafeMutablePointer<CCMoon> = universe.pointee.moons[i]!
 
             let centerPoint = SIMD2<Float>(
-                Float(size.width/2) + Float(moon.pointee.aexel.pointee.position.x),
-                Float(size.width/2) + Float(moon.pointee.aexel.pointee.position.y)
+                Float(size.width/2) + Float(moon.pointee.position.x),
+                Float(size.width/2) + Float(moon.pointee.position.y)
             )
             let normalizedCenter = SIMD2<Float>(
                 (centerPoint.x / Float(size.width) * 2) - 1,

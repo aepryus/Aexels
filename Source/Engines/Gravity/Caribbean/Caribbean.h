@@ -20,6 +20,7 @@ typedef struct CCAexel {
     double accelerant;
     double delta;
     CV2 jump;
+    int moons;
     bool recycle;
     int searchSectorIndex;
     int bondCount;
@@ -62,10 +63,10 @@ typedef struct CCPacket {
 
 // Moon ================
 typedef struct CCMoon {
-    double radius;
-    CCAexel* aexel;
+    CV2 position;
     CV2 velocity;
-    CV2 internal;
+    CCAexel* aexel;
+    double radius;
 } CCMoon;
 CCMoon* CCMoonCreate(void);
 void CCMoonRelease(CCMoon* moon);
@@ -127,3 +128,4 @@ void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p);
 void CCUniverseSetSquishOn(CCUniverse* universe, bool squishOn);
 void CCUniverseSetRecycleOn(CCUniverse* universe, bool recycleOn);
 CCMoon* CCUniverseAddMoonAt(CCUniverse* universe, double x, double y, double vx, double vy, double radius);
+CCAexel* CCUniverseClosestAexelToMoon(CCUniverse* universe, CCMoon* moon);

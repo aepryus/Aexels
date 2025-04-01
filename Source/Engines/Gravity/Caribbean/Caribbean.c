@@ -19,6 +19,7 @@ CCAexel* CCAexelCreate(CV2 position) {
     aexel->velocity = (CV2){0,0};
     aexel->accelerant = 100;
     aexel->delta = 0;
+    aexel->moons = 0;
     aexel->recycle = false;
     aexel->searchSectorIndex = 0;
     aexel->bondCount = 0;
@@ -339,7 +340,6 @@ void CCUniverseTic(CCUniverse* universe) {
                 aexel->acceleration = CV2ofLength(CV2Neg(aexel->position), 300/length2);
             }
         }
-        
     }
 
     // Execute Changes - Position, Velocity and Accelerant =========================================
@@ -350,7 +350,6 @@ void CCUniverseTic(CCUniverse* universe) {
         aexel->acceleration = (CV2){0,0};
         aexel->accelerant += aexel->delta;
         aexel->delta = 0;
-//        if (CCPlanetContainsAexel(universe->planet, aexel)) { aexel->accelerant -= 1; }
     }
     
     // Crystal Jump ================================================================================
@@ -401,7 +400,7 @@ void CCUniverseTic(CCUniverse* universe) {
     int aC = universe->aexelCount;
     for (int i=0; i<aC; i++) {
         CCAexel* aexel = universe->aexels[i];
-        if (aexel->recycle) {
+        if (aexel->recycle && aexel->moons == 0) {
             CCUniverseRemoveBondsFor(universe, aexel);
             CCAexelRelease(aexel);
             universe->aexelCount--;
@@ -416,6 +415,65 @@ void CCUniverseTic(CCUniverse* universe) {
     
     // Bind ========================================================================================
     CCUniverseBind(universe);
+        
+    // Moons =======================================================================================
+    for (int i=0;i<universe->moonCount;i++) {
+        CCMoon* moon = universe->moons[i];
+
+        CCAexel* oldAexel = moon->aexel;
+        CV2 acceleration = CV2ofLength(CV2Neg(moon->position), 900/CV2LengthSquared(moon->position));
+        
+        moon->velocity = CV2Add(moon->velocity, acceleration);
+        moon->position = CV2Add(moon->position, moon->velocity);
+        
+        CCAexel* newAexel = CCUniverseClosestAexelToMoon(universe, moon);
+        
+        if (newAexel == 0) continue;
+        
+        if (oldAexel != newAexel) {
+            oldAexel->moons--;
+            newAexel->moons++;
+            moon->aexel = newAexel;
+
+
+            // Calculate velocity magnitudes
+//            double oldSpeed = CV2Length(oldAexel->velocity);
+//            double newSpeed = CV2Length(newAexel->velocity);
+
+            // Create a vector pointing from slow to fast aexel
+//            CV2 velocityAdjustment;
+//            if (newSpeed > oldSpeed) {
+//                // New aexel is faster, keep current calculation
+//                velocityAdjustment = CV2Sub(newAexel->velocity, oldAexel->velocity);
+//            } else {
+//                // Old aexel is faster, reverse the calculation
+//                velocityAdjustment = CV2Sub(oldAexel->velocity, newAexel->velocity);
+//            }
+
+            // Apply the velocity adjustment
+//            moon->velocity = CV2Add(moon->velocity, CV2ofLength(CV2Neg(moon->position), 300/CV2LengthSquared(moon->position)));
+//            moon->velocity = CV2Add(moon->velocity, CV2ofLength(CV2Neg(moon->position), fabs(newSpeed-oldSpeed)));
+
+        }
+        
+    }
+    
+    // Remove Recycled Moons =======================================================================
+    k = 0;
+    int mC = universe->moonCount;
+    for (int i=0; i<mC; i++) {
+        CCMoon* moon = universe->moons[i];
+        if (moon->aexel == 0) {
+            CCMoonRelease(moon);
+            universe->moonCount--;
+        } else {
+            if (k != i) {
+                universe->moons[k] = universe->moons[i];
+            }
+            k++;
+        }
+    }
+
 }
 
 void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p) {
@@ -446,24 +504,30 @@ void CCUniverseAddMoon(CCUniverse* universe, CCMoon* moon) {
 }
 CCMoon* CCUniverseAddMoonAt(CCUniverse* universe, double x, double y, double vx, double vy, double radius) {
     CCMoon* moon = CCMoonCreate();
-    moon->radius = radius;
+    moon->position.x = x;
+    moon->position.y = y;
     moon->velocity.x = vx;
     moon->velocity.y = vy;
+    moon->radius = radius;
+
+    moon->aexel = CCUniverseClosestAexelToMoon(universe, moon);
+    moon->aexel->moons++;
     
+    CCUniverseAddMoon(universe, moon);
+    return moon;
+}
+CCAexel* CCUniverseClosestAexelToMoon(CCUniverse* universe, CCMoon* moon) {
     CCAexel* closest = 0;
-    double minLength2 = 10000;
+    double minLength2 = 100000;
     for (int i=0;i<universe->aexelCount;i++) {
         CCAexel* aexel = universe->aexels[i];
-        double dx = aexel->position.x - x;
-        double dy = aexel->position.y - y;
+        double dx = aexel->position.x - moon->position.x;
+        double dy = aexel->position.y - moon->position.y;
         double length2 = dx*dx + dy*dy;
         if (length2 < minLength2) {
             minLength2 = length2;
             closest = aexel;
         }
     }
-    moon->aexel = closest;
-    
-    CCUniverseAddMoon(universe, moon);
-    return moon;
+    return closest;
 }
