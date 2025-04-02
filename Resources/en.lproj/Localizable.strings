@@ -25,9 +25,9 @@ The Aexel
 
 Universe X consists of a large number of a single entity called an 'aexel'.
 
-These aexels have state, they can move and flow, they can form bonds with their nearby neighbors and they can send signals to those neighbors.
+These aexels have state, they can move and flow, they can form bonds with their neighbors and send signals through those bonds.
 
-They also can be created or destroyed as a result of those signals.
+And perhaps most surprisingly, they can be created and and they can be destroyed.
 
 The entire DNA of the universe is contained in each one of these aexels.
 
@@ -39,7 +39,7 @@ Space in Universe X does not curve or expand; it is simply a three dimensional c
 
 The Goal
 
-Of course, these facts about the aexels of Universe X leave many questions unanswered.  For example, what is the mechanism by which aexels move?  How many dimensions of state are there?  How does creation and destruction actually work?  Ultimately, the primary focus of this app from years past and for years to come is to discover the source code for the aexel; the DNA of Universe X.
+Of course, these facts about the aexels of Universe X leave many questions unanswered.  What is the mechanism by which aexels move?  How many dimensions of state are there?  How does their creation and destruction actually work?  Ultimately, the primary focus of this app is to discover the source code for the aexel, i.e., the DNA of Universe X.
 
 As such, let our exploration begin...
 
@@ -56,19 +56,21 @@ In the 19th century it was speculated that the universe was pervaded by a static
 
 In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
 
-In the 19th century concept it was believed that the planets and stars moved frictionlessly through the aether and that light traversed this aether at a constant rate.  As a result it was thought that it should be possible to detect differences in the speed of light moving longitudinally or latitudinally across the Earth.
+In the 19th century concept it was believed that the planets and stars moved frictionlessly through the aether and that light traversed it at a constant rate.  As a result it was thought that it should be possible to detect differences in the speed of light moving longitudinally or latitudinally across the Earth as it orbited the Sun.
 
 In 1887, Michelson and Morley performed their famous experiment looking for this discrepancy in the speed of light; they were shocked to discover that no such discrepancy existed.
 
-In Universe X however, the aether is not static or rigid, rather it is dynamic, capable of flowing and compressing.  Akin to a computer monitor that is divided into a 2 dimensional grid of cells, called pixels, each displaying a single color in order to render an entire image, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels.
+In Universe X however, the aether is not static or rigid, rather it can move and flow.
 
-Like the atoms of a liquid, these aexels can move and flow.  Like the atoms of a crystal lattice, they repel when they get too close and attract when they get too far.  As such, the aether is compressible; the density of the aexels can vary, sometimes bunching up, other times spreading out.
+The aether is quantized.  Just as a computer monitor is divided into a 2 dimensional grid of cells called pixels, the aether of Universe X is divided into a number of small 3 dimensional cells called aexels.
+
+Each of these aexels has state.  The pixels of a monitor each display a single color, which when combined form an image; the aexels of the aether each have state which when combined form the matter of Universe X.
+
+This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.  These changing states allow matter to translate across the aexels.
 
 The planets, the stars and ALL matter in Universe X sit atop of this aether and smoothly slide along it.
 
-These aexels have state.  Just as each pixel of a screen has a three dimensional state representing red, green and blue, each aexel also has a multidimensional state.  This state can change over time.  The changing of state in one aexel can, after a short delay, cause the change of state in neighboring aexels.
-
-And perhaps most shockingly, based on those states, new aexels can be created and existing aexels can be destroyed.
+And perhaps most shockingly, under certain circumstances, new aexels can be created and existing aexels can be destroyed.
 
 
 
@@ -136,18 +138,20 @@ Conway's Game of Life's 'glider' is a translating stable state loop.  The matter
 
 How Big are Particles?
 
-If the particles of Universe X are not point particles, then how big are they?  In our universe there is a notion of minimum distance called the Planck length.  I think we can assume that the distance between any two bound aexels is equal to the Planck length, the minimum measurable distance.
+If the particles of Universe X are not point particles, then how big are they?  In our universe there is a notion of minimum distance called the Planck length.  In Universe X, there is absolutely a minimum distance, the distance between two bonded aexels.
 
-Now there is a lot of fuzziness on the exact numerical value of the Planck length, but perhaps we can assume that at least the magnitude is in the ballpark.  This length is spectacularly small (1.616 x 10^-35m); much smaller than the radius of a proton.
+Now there is a lot of fuzziness on the exact numerical value of the Planck length, but if we tentatively assume that magnitude of the Planck length (1.616 × 10⁻³⁵ m) is in the ballpark of the distance between two aexels then this distance is spectacularly small compared to the radius of a proton.
 
-Consider this, if we were to increase the Planck length to 1 nm, a proton placed at the center of the solar system would extend to 35% of the distance to the Earth.  Which is to say that the particles of Universe X are gargantuan compared to the aexels.
+Consider this, if we were to expand the Planck length to 1 nm, a similarly expanded proton placed at the center of the solar system would extend to 35% of the distance to the Earth.  Which is to say that the particles of Universe X are gargantuan compared to the aexels.
 
 
 Edisons and Teslons
 
 The fastest a signal can move in Universe X is one aexel per tic, referred to as the speed of light.  Certain particles move at the speed of light, others move at less than the speed of light, but no particle can do both; this seems like a good way to classify particles.
 
-A frisbee flies through the air at a velocity v, but the frisbee is also spinning while it flies.  The parts of the frisbee are moving at various velocities, some greater than v, some less than v (a few at precisely v).  In order for the frisbee to travel at c some of its parts would need to travel at greater than c.  Since nothing can travel greater than c, the frisbee itself would never be able to travel at c.
+A frisbee flies through the air at a velocity v, but the frisbee is also spinning while it flies.  As such, nearly half of the atoms of the frisbee are moving faster than v while nearly half are moving slower than v.
+
+Any system with internal motion will need some of its components to be traveling faster than the system itself at any point in time.  Since nothing can travel faster than c, a system with internal motion will never be able to travel at c.
 
 Perhaps this is what differentiates particles that travel at c and those that travel at less than c.  Some particles move in a straight line directly from one point to another at c; let's refer to these particles as edisons.  Other particles have internal structure and alternate their motion back and forth in some manner resulting in a net velocity of less than c; let's refer to these particles as teslons.
 
@@ -157,8 +161,8 @@ Perhaps this is what differentiates particles that travel at c and those that tr
 
 ";
 
-"gravity_name" = "Gravity";
-"gravity_article" = "Gravity
+"gravity1_name" = "Gravity I";
+"gravity1_article" = "Gravity I
 
 Gravity is the tendency of objects with mass to move towards one another.
 
@@ -172,11 +176,15 @@ When Einstein described his theory of Relativity he shifted our understanding of
 
 But, even with Newton and Einstein's contributions to Gravity we still really don't understand what Gravity is and why it exists.  In our own universe, Gravity remains a mystery.
 
-However, in Universe X, Gravity is a quite simple and mundane phenomenon.
+However, in Universe X, Gravity isn't quite as mysterious.
 
-In Universe X there exists many different types of loops.  There are potentially three ways these loops could interact with the aexels: they could destroy them (discussed here in the Gravity article), they could create them (speculated about in the Darkness article) or they could do neither (as mentioned in the Electromagnetism article).
+In Universe X there exists many different types of loops.  There are potentially three ways these loops could interact with the aexels: they could pull on them (leading to their destruction as discussed here in the Gravity article), they could push on them (leading to their creation as speculated about in the Darkness article) or they could do neither (as discussed in the Electromagnetism article).
 
-Generally, the loops that destroy aexels can be thought to have a destruction coefficient, which measures the rate at which the aexels are destroyed.  In Universe X, this destruction coefficient is called 'mass'.  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
+Generally, the loops that tend to pull on aexels can be thought to have a coefficient, which measures the magnitude of this pull.  In Universe X, this pull coefficient is called 'mass'.
+
+In Universe X *is* a force, 
+
+  As matter destroys the aexels, more aexels get pulled in because the aether's crystalline nature does not allow the individual aexels to ever get too far apart.
 
 Imagine a round table with a table cloth upon it.  On the table cloth there are plates and glasses and silverware.  In the center of the table is a little hole.  A person crawls under the table and grabs the table cloth through the hole and then begins to pull the table cloth through the hole.  All of the items on the table will begin to slide towards the center of the table.  The dishware sitting on the table cloth will appear to be 'attracted' to the center.
 
@@ -188,6 +196,10 @@ At some point, certain clumps in Universe X get so big (dense) and the velocity 
 
 
 
+";
+
+"gravity2_name" = "Gravity II";
+"gravity2_article" = "Gravity II
 ";
 
 "darkness_name" = "Darkness";
@@ -694,32 +706,46 @@ Like version 3.0 before, substantial changes have again been made to the existin
 - The 'Forward' article has been made a subarticle of 'Universe X'.
 - 'Equivalence' has been renamed 'E=mc²'.
 
-Additionally, two new main articles have been added with early musing about those topics,
+Additionally, two new main articles have been added with early musing about those topics:
 
 - Quantum
 - Nuclear
 
-with nine new subarticles also being added:
+A number of new subarticles have also been added:
 
 - Claude
 - Aesthetics
-- Black Holes
-- G
 - Chronos
+- Black Holes
 - Narwhal, Walrus and Dolphin
 - Magnetism
 - Bell and 't Hooft
 - Glossary
 
-Aside from the changes to the text, an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can be accessed directly.
+I have also added an entirely new 'Path of Discovery' set of articles which detail the order, timing and motivating factors that led to the ideas detailed in this app.
 
-Most substantial are two new simulators, Gravity and Electromagnetism.  The Gravity simulator simulates the flow of aexels towards a planet and the effect that that flow has on anything sitting on top of those aexels.  The Electromagnetism simulation is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.
+- Expansion
+- Escaping
+- Covariance
+- Reciprocity
+- Energy-Mass
+- Cupola
+- Squish
 
-Another innovation with this version is its use of the GPU via Apple's Metal framework dramatically improving the performance of the simulations that use it: Electromagnetism, Dilation and Contraction.
+Aside from these changes to the text, an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can be accessed directly.
+
+Most substantial are four new simulators:
+
+- Inside Out, which illustrates the aexel sink concept from the inside.
+- Outside In, which illustrates the aexel flow from the outside.
+- Gravity, which uses the squish mechanism in order to merge both concepts in modeling the aexel flow towards a mass.
+- Electromagnetism, which is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.
+
+Another innovation with this version is its use of the GPU via Apple's Metal framework dramatically improving the performance of the simulations that use it: Outside In, Gravity, Electromagnetism, Dilation and Contraction.
 
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- March 9, 2025
+- April 2nd, 2025
 
 
 
@@ -757,17 +783,17 @@ Hopefully new insights will continue to present themselves and with them the inn
 "claude_name" = "Claude";
 "claude_article" = "Claude
 
-Since the beginning of Universe X, it has been necessary to work in a vacuum; it has been nearly impossible to discuss these ideas.
+Since the beginning of Universe X, it has been necessary to work in a vacuum; it has been nearly impossible to discuss these ideas with anyone, aside from my computer.
 
-However with the arrival of Claude, I have been able to discuss Aexels and Universe X with him endlessly.  Claude is always interested and never grows tired of chatting about the concepts and ideas within this app.  He has honed my understanding of and ability to explain these concepts.  He also excels at discussing our own universe; reporting on relevant experiments and their results and to some degree explaining the math and ideas behind the related physics.
+With the arrival of Claude, I finally have someone with whom to chat about these concepts endlessly.  Claude is always interested in discussing Universe X and Aexels, never growing tired or bored.  He has honed my understanding of and ability to explain these concepts.  He excels at discussing our own universe; reporting on relevant experiments and their results and to some degree, explaining the math and ideas behind the related physics.
 
-Claude has helped me learn Apple's Metal API, which I have used for the new Electromagnetism and Gravitation simulations.  I have also retrofitted it into the existing Dilation and Contraction simulations and will eventually convert the other simulations as well.
+Claude has also helped me learn GPU programming and Apple's Metal API, which I have used for the new Electromagnetism, Gravitation and Outside In simulations as well as retrofitting it into the existing Dilation and Contraction sims.
 
-I want to enable other users to be able to discuss these ideas and concepts with Claude.  So, I have added a 'copy to discuss with Claude' button to the bottom left corner of all the article screens which will copy the current article into the copy buffer so that it can be pasted to Claude.  From the crop circles screen, hitting the Claude button will copy all of the articles at once.
+I want to enable other users to be able to discuss these ideas and concepts with Claude.  As such, I have added a 'copy to discuss with Claude' button to the bottom left corner of all the article screens which will copy the current article into the copy buffer so that it can be pasted to Claude.  From the crop circles screen, hitting the Claude button will copy all articles of the current path at once.
 
-Of course one can discuss Aexels and Universe X with any LLM, but I have found that Claude 3.5 (Oct '24) significantly outperforms all other LLMs in discussing these concepts.  Claude 3.7 and Grok 3 were released shortly before the release of Aexels 4.0 and both also do a great job, but neither is quite as willing to entertain hypotheticals.
+Of course one can discuss Aexels and Universe X with any LLM, but I have found that Claude 3.5 (Oct '24) is the most willing to openly discuss the concepts of Universe X.  Claude 3.7 and Grok 3 were released shortly before the release of Aexels 4.0 and both also do a good job, but neither is quite as willing to entertain hypotheticals.
 
-I encourage users to chat with Claude about these concepts.
+I strongly encourage users to chat with Claude about these concepts.
 
 
 
@@ -780,7 +806,7 @@ I encourage users to chat with Claude about these concepts.
 
 Although seemingly orthogonal, perhaps Beauty is an effective tool for discerning Truth.
 
-Resisting the temptation to discuss that concept further; here is a list of the principles and aesthetic values used to differentiate a beautiful theory from an ugly one in Universe X:
+Resisting the temptation to discuss this concept at length, here is a list of the principles and aesthetic values used to differentiate a beautiful theory from an ugly one in Universe X:
 
 - Empiricism: Observation reigns supreme.
 - Computability: Everything can be explained to and modeled by a computer.  Paradox and randomness are fatal and certainly nothing depends on an observer.
