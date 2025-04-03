@@ -73,7 +73,7 @@ class ArticleView: AEView {
         var texts: [String] = []
         var images: [UIImage] = []
         
-        let indentWidth: CGFloat = 70*s
+        let indentWidth: CGFloat = 30*s
 
         var i: Int = 0
         while i < template.count {
