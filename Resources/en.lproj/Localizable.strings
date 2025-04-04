@@ -384,37 +384,45 @@ If a ship is heading towards some distant star, the amount of contracted meter s
 "electromagnetism_name" = "Electro\nmagnetism";
 "electromagnetism_article" = "Electromagnetism
 
-When starting to explore Universe X, electromagnetism didn't seem like particularly fertile ground for revolution.  Its concepts weren't nearly as dissonant as relativity and quantum's were.  Perhaps there were hints of problems such as the frame dependence of whether a field was electric or magnetic or the question of how Lorentz force could conserve momentum.  But, in general it seemed mostly solid.
+1 / r²
 
-However, as the journey with Universe X continued more and more windows into electricity and magnetism opened up; the mechanisms underpinning E&M started to come into focus.  In the previous version we started to get hints as to what was going on, but now major pieces have begun to fall into place.  Unexpectedly, as this has happened a major shift in electricity and magnetism has occurred.
+Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2π r; now repeat the experiment in 3D, creating a shell of salt instead of a ring.  The amount of salt at any point on the shell will be N divided by 4π r².
 
-Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile of salt and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2πr; now repeat the experiment in 3D creating shells of salt instead of rings.  The amount of salt at any point on the shell will be N divided by 4πr².  A force that drops off at r² strongly suggests an analogous phenomena; loops being sent off evenly in all directions like the grains of salt.
+In nature, any value that falls off at 1 / r² strongly hints at being underpinned by a mechanism analogous to these salt particles that are uniformly radiating outward spherically.
 
-The E=mc^2 article established that both protons (a type of teslon) and photons (a type of edison) contain hyle.  In trying to recreate Coulomb's force it is necessary to figure out how hyle can be transferred from one teslon to another most likely via photons.
+Dilation and Contraction
 
-We know that Hyle is a conserved quantity.  Let's go further and tentatively guess it is also locally conserved; it doesn't jump from one place to another.  To get from one point to another it has to traverse all the points in between.
+The Dilation and Contraction articles showed that the dilation and contraction relativistic effects could simply be derived by noting the roundtrip time delay of light speed traveling edisons journeying between two sub light speed teslons.
 
-Perhaps a proton sitting in space continually sends out photons in all directions looking for other protons to interact with.  But, immediately we have an issue.  The proton will quickly run out of hyle.  Therefore, the initial ping must be hyleless.
+This hints at electricity and magnetism being mediated by an outgoing edison (a ping) followed by a response edison (a pong) resulting in a physics that exhibits dilation, contraction and ultimately, Lorentz covariance.
 
-Perhaps a teslon that encounters a hyleless ping sends out a photon response.  But, here too we have an issue (although perhaps a bit more subtle of one).  Consider two teslons translating inline across the aether.  They both send out pings.  The ping from the leading teslon will reach the trailing teslon first because the trailing teslon is moving up to meet it.  If the trailing teslon reacts at that point the reactions of the teslons won't be synchronized.  It is necessary for a full roundtrip handshake to occur before the teslons react so that their reactions will be synchronized.
+Hyle
 
-So, we have an omnidirectional hyleless ping followed by a hyleless pong, which then results in a directed photon.  Is the pong omnidirectional like the ping or directed like the photon?  Imagine 3 protons in the same vicinity all sending out pings omnidirectional pings.  When they receive the pings they send out omnidirectional pongs.  But, this means that teslon A will receive pongs from teslon B motivated by both his pings and also teslon C's pings.  The number of pongs received will scale with the number of teslons in the area.  This is totally counter to Coulomb.  Pongs must be directed like photons.
+The E=mc² article introduced the conserved quantity hyle and argued that hyle was contained in both teslons and photons.  It also indicated that hyle exhibits two effects: translation, associated with energy and the tugging on the aether, associated with mass.  It illustrated why these two effects are always proportional to the amount of hyle in a system and as such always proportional to one another.
 
-But, how do the teslons know which direction to send the directed pongs and photons in order to reconnect with the source teslon?  Here we have a shockingly elegant answer.  Each ping, pong and photon has cupola which points in a specific direction.  The cupola's direction is determined by adding a vector length c of the edison minus the vector representing the translation of the source teslon; a vector pointing in the direction of translation of length v.
+Additionally, we can conjecture that not only is hyle conserved universally, but perhaps it is also conserved locally at each and every point in Universe X; it never just jumps from one spot to another without moving between each point in between.
 
-Once such an edison is encounter the encountered teslons need only reflect the translation vector of the edison over the negative cupola vector.  In this way sending off a response edison is guaranteed to find the source teslon if it has not accelerated.
+The Ping
 
-In the case of a photon being directed back, if the source teslon has accelerated then the photon will miss its target and escape the interaction entirely.
+Imagine two teslons in close proximity to one another.  Each teslon has no idea where the other teslon is or even that another teslon even exists.  In E&M therefore, the very first step must be for each teslon to send out a volley of edisons out in all directions.
 
-But, that isn't the only utility of the cupola; it also indicates the direction of the 'force'.  Each edison has its absolute translation vector; its cupola vector and also a frame dependent translation vector.  When the cupola and frame dependent translation vector align they appear as a +E field.  When they counter-align they appear as a -E field.  When they're orthogonal they appear as a B field.
+{{EMImg1}}
 
-For photons the cupola represents linear momentum if it aligns and angular momentum if it is orthogonal.
+In the Gravity I article, it was conjectured that there were three types of loops: those that pulled on the aether, those that pushed on the aether and those that did neither.  Which of these types is the ping?
 
-Imagine two protons heading directly towards one another at the same speed.  Before they come close to one another they have their innate hyle and the kinetic hyle that allows them to translate.  As they near one another their pings start to find one another and they respond with pongs and eventually photons causing each to slow.
+Loops that pull on the aether contain hyle.  If pings contained hyle then a proton sitting in the middle of nowhere would quickly exhaust all of its internal hyle by sending it out in those pings.  But this does not happen; protons persist forever.  These omni directional pings must be hyleless and as a result do not push or pull on the aexels.
 
-At the moment that they both come to a stop before starting to return around they still contain their innate hyle, but their kinetic hyle is now zero.  None-the-less, hyle is conserved the previous kinetic hyle is now entirely contained in the photons being passed back and forth between the protons.
+Therefore the ping is a volley of omnidirectional hyleless edisons.
 
-Potential energy is still just hyle translating at the speed of light and destroying aexels as it goes, in this case in the space between the two protons.
+The Pong
+
+A target teslon encounters a ping sent out from another teslon and now it wants to send out a response pong back to the source teslon letting it know that it received its ping.  Is this pong response like the ping and also hyleless and omnidirectional?  Or alternatively, does it contain hyle and/or is it sent out as a single directed edison that somehow knows the exact trajectory required to reconnect with the source teslon?
+
+One of these questions we can answer definitively.  Consider three teslons in close proximity to one another: A, B and C.  Each sends out omnidirectional pings.  If C sends out omnidirectionally pongs for both the pings received from A and B, then A would receive the pongs from C not just for itself, but also those motivated by B.  As a result the Coulomb force on A from C would be the sum of all forces C has on all near by teslons.
+
+This is obviously not how the Coulomb force works.  Pongs can not be sent out omnidirectionally; they must somehow be sent out in a directed fashion so that only the motivating teslon receives their response.
+
+The answer to the question of whether pong contains hyle or not, however, is not so obvious.  
 
 
 
@@ -981,7 +989,7 @@ At that moment; after the instantaneous acceleration,
 - Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
 - What does 'same inertial frame' mean?
 
-This problem can be fairly tricky to deal with in our Universe, however its quite straightforward in Universe X.  For this problem, in Universe X, let's assume that the Walrus is sitting still in the aether frame and that the aether is static and uniform.
+This problem can be fairly tricky to deal with in our Universe, however it's quite straightforward in Universe X.  For this problem, in Universe X, let's assume that the Walrus is sitting still in the aether frame and that the aether is static and uniform.
 
 This makes answering the first part fairly straightforward:
 
@@ -997,19 +1005,19 @@ In the Narwhal frame things are only slightly more complicated.  The Narwhal's m
 In the Narwhal frame:
 - The Walrus is at (0, 0, 0)
 - The Dolphin is at (0, 0, 0)
-- The contracted Narwhal meter stick is 0.866m long and more will fit in one AU, 1 / 0.866 = 1.155.  So the Narwhal sees itself as being at (1.155 AU, 0, 0)
+- The contracted Narwhal meter stick is 0.866 m long and more will fit in one AU, 1 / 0.866 = 1.155.  So the Narwhal sees itself as being at (1.155 AU, 0, 0)
 - The AU stick has one end at (0, 0, 0) and the other at (1.155 AU, 0, 0)
 - The Narwhal still considers the horn to be 1AU, so since the Narwhal is at 1.155 AU the tip of the horn must be at (0.155AU, 0, 0)
 
 How fast does the Narwhal think its going?
 
-The Narwhal is traveling at 0.5 c.  But time has slowed for the Narwhal.  A Narwhal second is actually 1.155 seconds long.  Which means it travels 0.5c * 1.155 seconds in a Narwhal second.  But also, it's meter stick is contracted.  So, it thinks this distance is even further by another 1.155 factor.  Netting 0.5 c * γ^2 = 2/3rds the speed of light.
+The Narwhal is traveling at 0.5 c.  But time has slowed for the Narwhal.  A Narwhal second is actually 1.155 seconds long.  Which means it travels 0.5c * 1.155 seconds in a Narwhal second.  But also, its meter stick is contracted.  So, it thinks this distance is even further by another 1.155 factor.  Netting 0.5 c * γ² = 2/3rds the speed of light.
 
 Are the Narwhal and the Dolphin in the same inertial frame?  Does the distance between them contract?  Does the distance between the Narwhal and the tip of its horn contract?
 
 The distance between the Narwhal and the Dolphin does not contract, from the Narwhal's (and Dolphin's) perspective it actually expands but the distance between the Narwhal and the tip of its horn does contract.  Remember why distances contract in Universe X.  They contract because of the ping / pong / photon cloud.  High rates of translation delay and warp the cloud causing the teslons to sit closer together along the direction of translation.
 
-Contraction isn't magic its a mechanical phenomena caused by the delayed responses of the pings and pongs.
+Contraction isn't magic it's a mechanical phenomenon caused by the delayed responses of the pings and pongs.
 
 Since the tip of the horn is connected to the Narwhal as a single object; since they are all part of the same ping / pong cloud; the distances of teslons contained in that cloud will contract.
 
@@ -1017,7 +1025,7 @@ The Dolphin is not connected to the Narwhal and therefore is part of a separate 
 
 This points to an important classification of the term 'same inertial frame'.  Type 1 are particles connected via a single ping / pong cloud.  As they translate together across the aether their distances will contract.  A type 2 'same inertial frame' could be two isolated systems, such as the Dolphin and the Narwhal that experience the same dilation, experience the same contraction factor and whose contraction axis is aligned.
 
-With this definition actually if the Dolphin were to reverse direction and travel at +0.5c instead of -0.5c, they would still meet the definition of type 2 'same inertial frame' since they would experience they same dilation and the same contraction factor and the axis of contraction would align.  For type 3 'same inertial frame' consider if the Dolphin was moving orthogonal to the Narwhal along the Y axis instead.  Now it has the same dilation, but its contraction axis is no longer aligned.  One might also consider a ship sitting on the surface of a planet with escape velocity 0.5c also having type 3 'same inertial frame'.
+With this definition actually if the Dolphin were to reverse direction and travel at +0.5c instead of -0.5c, they would still meet the definition of type 2 'same inertial frame' since they would experience the same dilation and the same contraction factor and the axis of contraction would align.  For type 3 'same inertial frame' consider if the Dolphin was moving orthogonal to the Narwhal along the Y axis instead.  Now it has the same dilation, but its contraction axis is no longer aligned.  One might also consider a ship sitting on the surface of a planet with escape velocity 0.5c also having type 3 'same inertial frame'.
 
 So, this gives us 3 classes of 'Same Inertial Frame':
 
