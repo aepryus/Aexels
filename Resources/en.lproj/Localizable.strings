@@ -416,13 +416,19 @@ Therefore the ping is a volley of omnidirectional hyleless edisons.
 
 The Pong
 
-A target teslon encounters a ping sent out from another teslon and now it wants to send out a response pong back to the source teslon letting it know that it received its ping.  Is this pong response like the ping and also hyleless and omnidirectional?  Or alternatively, does it contain hyle and/or is it sent out as a single directed edison that somehow knows the exact trajectory required to reconnect with the source teslon?
+A target teslon encounters a ping sent out from another teslon and now it wants to send out a response pong back to the source teslon letting it know that it received its ping.  Is this pong response akin to the ping, hyleless and omnidirectional?  Or alternatively, does it contain hyle and/or is it sent out as a single directed edison that somehow knows the exact trajectory required to reconnect with the source teslon?
 
-One of these questions we can answer definitively.  Consider three teslons in close proximity to one another: A, B and C.  Each sends out omnidirectional pings.  If C sends out omnidirectionally pongs for both the pings received from A and B, then A would receive the pongs from C not just for itself, but also those motivated by B.  As a result the Coulomb force on A from C would be the sum of all forces C has on all near by teslons.
+One of these questions we can answer definitively.  Consider three teslons in close proximity to one another: A, B and C.  Each sends out omnidirectional pings.  If C sends out omnidirectionally pongs for both the pings received from A and B, then A would receive the pongs from C not just for itself, but also those motivated by B.  As a result the Coulomb force on A from C would be the sum of all forces C has on all nearby teslons.
 
 This is obviously not how the Coulomb force works.  Pongs can not be sent out omnidirectionally; they must somehow be sent out in a directed fashion so that only the motivating teslon receives their response.
 
-The answer to the question of whether pong contains hyle or not, however, is not so obvious.  
+The answer to the question of whether the pong contains hyle or not, however, is not so obvious.  Consider two teslons aligned parallel to the direction of translation, one following the other, translating at 0.5 c.  Both send out pings.  The leading teslons ping will arrive at the trailing teslons sooner than the trailing teslons ping will arrive at the leading teslon.  If the pong response contains hyle then each teslon will recoil when they send that pong out.  But, this reaction will not be synchronized; the trailing teslon will react sooner than the leading teslon.
+
+In order for the reactions to be synced, the pong must too be hyleless.  Once the hyleless pong is received by the source teslon, finally a hyled edison (a photon) will be released.  This photon release and the associated recoil will now be synchronized for both the leading and trailing teslons.
+
+But then, what happens when that photon arrives at the target teslon and is absorbed by it?  This photon kick will once again not be synced.
+
+Perhaps since the flow of pings and pongs is continuous these out of sync reactions are just edge effects that don't affect the dynamics.  Or perhaps there is something more sophisticated going on in this hyle exchange.
 
 
 
