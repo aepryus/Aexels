@@ -422,13 +422,33 @@ One of these questions we can answer definitively.  Consider three teslons in cl
 
 This is obviously not how the Coulomb force works.  Pongs can not be sent out omnidirectionally; they must somehow be sent out in a directed fashion so that only the motivating teslon receives their response.
 
-The answer to the question of whether the pong contains hyle or not, however, is not so obvious.  Consider two teslons aligned parallel to the direction of translation, one following the other, translating at 0.5 c.  Both send out pings.  The leading teslons ping will arrive at the trailing teslons sooner than the trailing teslons ping will arrive at the leading teslon.  If the pong response contains hyle then each teslon will recoil when they send that pong out.  But, this reaction will not be synchronized; the trailing teslon will react sooner than the leading teslon.
+The answer to the question of whether the pong contains hyle or not, however, is not so obvious.  Consider two teslons aligned parallel to the direction of translation, one following the other, translating at 0.5 c.  Both send out pings.  The leading teslon's ping will arrive at the trailing teslon sooner than the trailing teslon's ping will arrive at the leading teslon.  If the pong response contains hyle then each teslon will recoil when they send that pong out.  But, this reaction will not be synchronized; the trailing teslon will react sooner than the leading teslon.
 
 In order for the reactions to be synced, the pong must too be hyleless.  Once the hyleless pong is received by the source teslon, finally a hyled edison (a photon) will be released.  This photon release and the associated recoil will now be synchronized for both the leading and trailing teslons.
 
 But then, what happens when that photon arrives at the target teslon and is absorbed by it?  This photon kick will once again not be synced.
 
 Perhaps since the flow of pings and pongs is continuous these out of sync reactions are just edge effects that don't affect the dynamics.  Or perhaps there is something more sophisticated going on in this hyle exchange.
+
+The Cupola
+
+Imagine two teslons, S(ource) and T(arget) situated perpendicular to the direction of translation traveling at 70% the speed of light.  The ping that eventually travels from S to T will have left S at an angle theta from S's translation vector.  However, the force applied to T will be straight upward, not aligned with the translation vector of the ping.  How does the T teslon know which direction to move in response to this ping?
+
+<<EMImg2>>
+
+All pings must be encoded with a 'cupola' vector which indicates which direction the force should be applied.  Calculating this encoded cupola vector is relatively straight forward.  It is simply the absolute translation vector of the ping of length c minus the translation vector of the source teslon of length v, its rate of translation.
+
+This resultant cupola vector will tell the target teslon which direction the force is applied.  But, this cupola vector also has an additional usage, it can act as a return address enabling the target teslon to determine the exact trajectory needed to respond to the source teslon.
+
+By reflecting the absolute translation vector of the ping across the cupola vector, the pong can be sent out on a trajectory that is guaranteed to intersect the source teslon *if* it continues at a constant velocity.
+
+The below image shows each of the pings radiating from a source teslon traveling at 70% c.  The pings are rendered as little footballs whose axis is aligned with the cupola.  The white lines represent absolute vector of translation of the ping across the static aether.  One might note that while all the translation vectors point away from the location of the teslon when it released the volley (the center of the ring), the cupolas all point at the current position of the teslon.
+
+{{EMImg3}}
+
+And thus, in this small packet of information contained in the ping, both the direction of the force and the return to sender trajectory can be determined; enabling directed communication between two teslons; enabling electromagnetism without fields.
+
+But, we haven't completely exhausted the magic of the cupola quite yet...
 
 
 
