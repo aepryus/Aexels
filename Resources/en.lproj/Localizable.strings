@@ -7,39 +7,23 @@
 */
 
 "intro_name" = "Universe X";
-"intro_article" = "A universe is discovered...
-
-Universe X
-
-Come along as we explore this universe and discover the similarities and differences it has with our own.
+"intro_article" = "#[A universe is discovered...]###[Universe X]##Come along as we explore this universe and discover the similarities and differences it has with our own.
 
 There are things we know for certain about Universe X; there are things we can speculate about and there are many things yet to be discovered.  Hopefully, over the lifetime of this app we will be able to continually increase our knowledge and understanding of this new world.
-
-So what is Universe X?
-
-Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates and both are intertwined with one another; it contains dark matter and dark energy; it is expanding and expanding at an increasing rate; God plays dice with our universe.
+##[So what is Universe X?]##Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates and both are intertwined with one another; it contains dark matter and dark energy; it is expanding and expanding at an increasing rate; God plays dice with our universe.
 
 In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
-
-The Aexel
-
-Universe X consists of a large number of a single entity called an 'aexel'.
+##[The Aexel]##Universe X consists of a large number of a single entity called an 'aexel'.
 
 These aexels have state, they can move and flow, they can form bonds with their neighbors and send signals through those bonds.
 
 And perhaps most surprisingly, they can be created and and they can be destroyed.
 
 The entire DNA of the universe is contained in each one of these aexels.
-
-Space and Time
-
-Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
+##[Space and Time]##Unlike our own universe where space and time are quite magical notions, where space can curve and time can dilate and each is intimately intertwined with one another, in Universe X, space and time are quite intuitive and boring.
 
 Space in Universe X does not curve or expand; it is simply a three dimensional construct which houses the aexels.  Time in Universe X does not dilate; it is simply a one dimensional construct moving at a constant rate from past to present to future, mediating the progression of the state changes of the aexels as well as their motion.  In Universe X space and time are entirely separate, entirely intuitive notions.
-
-The Goal
-
-Of course, these facts about the aexels of Universe X leave many questions unanswered.  What is the mechanism by which aexels move?  How many dimensions of state are there?  How does their creation and destruction actually work?  Ultimately, the primary focus of this app is to discover the source code for the aexel, i.e., the DNA of Universe X.
+##[The Goal]##Of course, these facts about the aexels of Universe X leave many questions unanswered.  What is the mechanism by which aexels move?  How many dimensions of state are there?  How does their creation and destruction actually work?  Ultimately, the primary focus of this app is to discover the source code for the aexel, i.e., the DNA of Universe X.
 
 As such, let our exploration begin...
 
@@ -50,9 +34,7 @@ As such, let our exploration begin...
 ";
 
 "aether_name" = "Aether";
-"aether_article" = "Aether
-
-In the 19th century it was speculated that the universe was pervaded by a static rigid aether.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
+"aether_article" = "#[Aether]#In the 19th century it was speculated that the universe was pervaded by a static rigid aether.  This aether was the medium that allowed light waves to propagate, just as air is the medium that allows sound waves to propagate.  At the beginning of the 20th century with the discovery of Special Relativity it was realized that this aether does not exist in our universe.
 
 In Universe X, however, not only does the aether exist, fundamentally, it is the only thing that exists.  But this aether, the aether of Universe X, has very little in common with the 19th century concept of aether.
 
@@ -79,13 +61,11 @@ And perhaps most shockingly, under certain circumstances, new aexels can be crea
 ";
 
 "cellular_name" = "Cellular Automata";
-"cellular_article" = "Cellular Automata
+"cellular_article" = "#[Cellular Automata]#In the October 1970 issue of Scientific American a curious little solitaire simulation game developed by a Cambridge Math professor was presented.  The professor, John Conway explained how to 'play' it using a chess board and some counters:
 
-In the October 1970 issue of Scientific American a curious little solitaire simulation game developed by a Cambridge Math professor was presented.  The professor, John Conway explained how to \"play\" it using a chess board and some counters:
-
-\"- Survivals. Every counter with two or three neighboring counters survives for the next generation.
+**\"- Survivals. Every counter with two or three neighboring counters survives for the next generation.
 - Deaths. Each counter with four or more neighbors dies (is removed) from overpopulation. Every counter with one neighbor or none dies from isolation.
-- Births. Each empty cell adjacent to exactly three neighbors--no more, no fewer--is a birth cell. A counter is placed on it at the next move.\"
+- Births. Each empty cell adjacent to exactly three neighbors--no more, no fewer--is a birth cell. A counter is placed on it at the next move.\"**
 
 At that time it was perhaps difficult to imagine such a 'recreational mathematics' hobby project would become so influential.
 
@@ -116,13 +96,11 @@ In Universe X, one aexel per tic is referred to as 'the speed of light'.
 ";
 
 "kinematics_name" = "Kinematics";
-"kinematics_article" = "Kinematics
-
-In our universe (non quantum) motion without forces is quite straightforward; each object has a position and a velocity and that's all there is to it.  Most things in Universe X are substantially less complicated than in our universe.  In this case, Universe X is considerably more complicated.
+"kinematics_article" = "#[Kinematics]#In our universe (non quantum) motion without forces is quite straightforward; each object has a position and a velocity and that's all there is to it.  Most things in Universe X are substantially less complicated than in our universe.  In this case, Universe X is considerably more complicated.
 
 In the Cellular Automata section, a stable state loop was described as a closed set of cells with a certain state at time t, that returns to that same state at a later time.  However, this definition is perhaps unnecessarily restrictive.
 
-If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting, does not do so in place; it \"moves\".  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
+If one observes Conway's Game of Life long enough they may notice a very interesting phenomenon.  Occasionally a pattern of cells arise that while persisting, does not do so in place; it 'moves'.  The most common such stable state loop in Game of Life is called a glider, which repeats its pattern every 4 time steps while translating diagonally by one cell during those 4 time steps.
 
 {{GameOfLife}}
 
@@ -130,24 +108,15 @@ The matter of Universe X is made up of analogous stable state loops; loops that 
 
 Since the aexels themselves can move, it is possible for a stable state loop sitting on top of those aexels to move along with them, like a leaf floating down a stream.  It may also be the case (and most likely usually is) that both types of these motions are happening simultaneously.
 
+##[Translating Stable State Loop]##Conway's Game of Life's 'glider' is a translating stable state loop.  The matter of Universe X is made of analogous translating stable state loops.  Obviously the term 'translating stable state loop' will quickly get unwieldy, so let's simply refer to them as 'loops' or 'particles' interchangeably (in order to better interact with the physics of our universe).  Just keep in mind 'translating stable state loop' is what is meant and that the particles of Universe X are not point particles.
 
-Translating Stable State Loop
-
-Conway's Game of Life's 'glider' is a translating stable state loop.  The matter of Universe X is made of analogous translating stable state loops.  Obviously the term 'translating stable state loop' will quickly get unwieldy, so let's simply refer to them as 'loops' or 'particles' interchangeably (in order to better interact with the physics of our universe).  Just keep in mind 'translating stable state loop' is what is meant and that the particles of Universe X are not point particles.
-
-
-How Big are Particles?
-
-If the particles of Universe X are not point particles, then how big are they?  In our universe there is a notion of minimum distance called the Planck length.  In Universe X, there is absolutely a minimum distance, the distance between two bonded aexels.
+##[How Big are Particles?]##If the particles of Universe X are not point particles, then how big are they?  In our universe there is a notion of minimum distance called the Planck length.  In Universe X, there is absolutely a minimum distance, the distance between two bonded aexels.
 
 Now there is a lot of fuzziness on the exact numerical value of the Planck length, but if we tentatively assume that magnitude of the Planck length (1.616 × 10⁻³⁵ m) is in the ballpark of the distance between two aexels then this distance is spectacularly small compared to the radius of a proton.
 
 Consider this, if we were to expand the Planck length to 1 nm, a similarly expanded proton placed at the center of the solar system would extend to 35% of the distance to the Earth.  Which is to say that the particles of Universe X are gargantuan compared to the aexels.
 
-
-Edisons and Teslons
-
-The fastest a signal can move in Universe X is one aexel per tic, referred to as the speed of light.  Certain particles move at the speed of light, others move at less than the speed of light, but no particle can do both; this seems like a good way to classify particles.
+##[Edisons and Teslons]##The fastest a signal can move in Universe X is one aexel per tic, referred to as the speed of light.  Certain particles move at the speed of light, others move at less than the speed of light, but no particle can do both; this seems like a good way to classify particles.
 
 A frisbee flies through the air at a velocity v, but the frisbee is also spinning while it flies.  As such, nearly half of the atoms of the frisbee are moving faster than v while nearly half are moving slower than v.
 
@@ -161,9 +130,8 @@ Perhaps this is what differentiates particles that travel at c and those that tr
 
 ";
 
-"gravity1_name" = "Gravity I";
-"gravity1_article" = "Gravity I
-**Nearly all the mechanisms in Universe X are quite straightforward.  However, the exact mechanism underpinning gravity in Universe X isn't as immediately obvious.  At this point the tools needed to fully understand gravity in Universe X haven't been discussed yet.  A more complete description of gravity exists in the Gravity II article placed after those needed tools have been fully developed.  Additionally, a thorough description of the thinking behind gravity can be found in the 'Path of Discovery'.**
+"gravity1_name" = "Gravity\nI";
+"gravity1_article" = "#[Gravity I]#**Nearly all the mechanisms in Universe X are quite straightforward.  However, the exact mechanism underpinning gravity in Universe X isn't as immediately obvious.  At this point the tools needed to fully understand gravity in Universe X haven't been discussed yet.  A more complete description of gravity exists in the Gravity II article placed after those needed tools have been fully developed.  Additionally, a thorough description of the thinking behind gravity can be found in the 'Path of Discovery'.**
 Gravity is the tendency of objects with mass to move towards one another.
 
 Isaac Newton first described the gravity of our universe as a force that all objects exert on one another across any arbitrarily large distance, proportional to their mass and inversely proportional to the square of the distance between them.
@@ -194,7 +162,7 @@ At some point, certain clumps in Universe X get so big (dense) and the velocity 
 
 ";
 
-"gravity2_name" = "Gravity II";
+"gravity2_name" = "Gravity\nII";
 "gravity2_article" = "Gravity II
 ";
 
@@ -240,11 +208,8 @@ As such the antimatter dust of Universe X both causing the 'expansion' of the ae
 ";
 
 "hyle_name" = "E=mc²";
-"hyle_article" = "E=mc²
-
-\"When the Inuit go fishing they don't look for fish.  They look for the blue heron, because there is no way to see the fish.  But, if there is fish there is going to be birds fishing.\"
-       - Dr. House
-
+"hyle_article" = "#[E=mc²]#**\"When the Inuit go fishing they don't look for fish.  They look for the blue heron, because there is no way to see the fish.  But, if there is fish there is going to be birds fishing.\"
+       - Dr. House**
 A young lady places a playing card in the spokes of her bike using a clothes pin; her tires are wet because she just rode through a puddle.  Assuming she is always moving at a constant speed, the bike draws tire marks on the road at a constant rate while the card is clicking at a constant volume.  As such the proportion of tire marks being drawn to sound being made is constant.  If the number of bicycles doubles, both the volume of the clicking and rate of tire marks drawn each double while their proportion stays the same.
 
 {{bicycle}}
@@ -278,9 +243,7 @@ It is not mass that prevents something from moving at the speed of light, but ra
 ";
 
 "dilation_name" = "Dilation";
-"dilation_article" = "Dilation
-
-Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
+"dilation_article" = "#[Dilation]#Perhaps one of the most magical aspects of our universe is the phenomenon of time dilation.
 
 In our universe time dilation is the variation in the perceived rate of time of various frames of reference based on their relative velocity to one another as well as the relative difference in their gravitational field strength.  That the rate of time itself can vary in our universe is severely magical in and of itself.
 
@@ -327,9 +290,7 @@ So, for a system of loops translating across an aexial field the signals traveli
 ";
 
 "contraction_name" = "Contraction";
-"contraction_article" = "Contraction
-
-Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
+"contraction_article" = "#[Contraction]#Length Contraction is a phenomenon that causes all things to shrink in the direction of motion or in the direction of gravity.
 
 In our universe, length contraction, similar to time dilation, has no special frames of reference, length contraction is an observational phenomena.  Two parallel spaceships passing each other at high speed will both see meter sticks on the other ship as being smaller then their own.
 
@@ -382,29 +343,16 @@ If a ship is heading towards some distant star, the amount of contracted meter s
 ";
 
 "electromagnetism_name" = "Electro\nmagnetism";
-"electromagnetism_article" = "Electromagnetism
-
-1 / r²
-
-Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2π r; now repeat the experiment in 3D, creating a shell of salt instead of a ring.  The amount of salt at any point on the shell will be N divided by 4π r².
+"electromagnetism_article" = "#[Electromagnetism]###[1 / r²]##Imagine a pile of N grains of salt sitting on a table.  Push a finger into the pile and swirl it around creating a ring of salt of radius r.  The amount of salt at any point of the ring is N divided by 2π r; now repeat the experiment in 3D, creating a shell of salt instead of a ring.  The amount of salt at any point on the shell will be N divided by 4π r².
 
 In nature, any value that falls off at 1 / r² strongly hints at being underpinned by a mechanism analogous to these salt particles that are uniformly radiating outward spherically.
-
-Dilation and Contraction
-
-The Dilation and Contraction articles showed that the dilation and contraction relativistic effects could simply be derived by noting the roundtrip time delay of light speed traveling edisons journeying between two sub light speed teslons.
+##[Dilation and Contraction]##The Dilation and Contraction articles showed that the dilation and contraction relativistic effects could simply be derived by noting the roundtrip time delay of light speed traveling edisons journeying between two sub light speed teslons.
 
 This hints at electricity and magnetism being mediated by an outgoing edison (a ping) followed by a response edison (a pong) resulting in a physics that exhibits dilation, contraction and ultimately, Lorentz covariance.
-
-Hyle
-
-The E=mc² article introduced the conserved quantity hyle and argued that hyle was contained in both teslons and photons.  It also indicated that hyle exhibits two effects: translation, associated with energy and the tugging on the aether, associated with mass.  It illustrated why these two effects are always proportional to the amount of hyle in a system and as such always proportional to one another.
+##[Hyle]##The E=mc² article introduced the conserved quantity hyle and argued that hyle was contained in both teslons and photons.  It also indicated that hyle exhibits two effects: translation, associated with energy and the tugging on the aether, associated with mass.  It illustrated why these two effects are always proportional to the amount of hyle in a system and as such always proportional to one another.
 
 Additionally, we can conjecture that not only is hyle conserved universally, but perhaps it is also conserved locally at each and every point in Universe X; it never just jumps from one spot to another without moving between each point in between.
-
-The Ping
-
-Imagine two teslons in close proximity to one another.  Each teslon has no idea where the other teslon is or even that another teslon even exists.  In E&M therefore, the very first step must be for each teslon to send out a volley of edisons out in all directions.
+##[The Ping]##Imagine two teslons in close proximity to one another.  Each teslon has no idea where the other teslon is or even that another teslon even exists.  In E&M therefore, the very first step must be for each teslon to send out a volley of edisons out in all directions.
 
 {{EMImg1}}
 
@@ -413,26 +361,20 @@ In the Gravity I article, it was conjectured that there were three types of loop
 Loops that pull on the aether contain hyle.  If pings contained hyle then a proton sitting in the middle of nowhere would quickly exhaust all of its internal hyle by sending it out in those pings.  But this does not happen; protons persist forever.  These omni directional pings must be hyleless and as a result do not push or pull on the aexels.
 
 Therefore the ping is a volley of omnidirectional hyleless edisons.
-
-The Pong
-
-A target teslon encounters a ping sent out from another teslon and now it wants to send out a response pong back to the source teslon letting it know that it received its ping.  Is this pong response akin to the ping, hyleless and omnidirectional?  Or alternatively, does it contain hyle and/or is it sent out as a single directed edison that somehow knows the exact trajectory required to reconnect with the source teslon?
+##[The Pong]##A target teslon encounters a ping sent out from another teslon and now it wants to send out a response pong back to the source teslon letting it know that it received its ping.  Is this pong response akin to the ping, hyleless and omnidirectional?  Or alternatively, does it contain hyle and/or is it sent out as a single directed edison that somehow knows the exact trajectory required to reconnect with the source teslon?
 
 One of these questions we can answer definitively.  Consider three teslons in close proximity to one another: A, B and C.  Each sends out omnidirectional pings.  If C sends out omnidirectionally pongs for both the pings received from A and B, then A would receive the pongs from C not just for itself, but also those motivated by B.  As a result the Coulomb force on A from C would be the sum of all forces C has on all nearby teslons.
 
 This is obviously not how the Coulomb force works.  Pongs can not be sent out omnidirectionally; they must somehow be sent out in a directed fashion so that only the motivating teslon receives their response.
 
-The answer to the question of whether the pong contains hyle or not, however, is not so obvious.  Consider two teslons aligned parallel to the direction of translation, one following the other, translating at 0.5 c.  Both send out pings.  The leading teslon's ping will arrive at the trailing teslon sooner than the trailing teslon's ping will arrive at the leading teslon.  If the pong response contains hyle then each teslon will recoil when they send that pong out.  But, this reaction will not be synchronized; the trailing teslon will react sooner than the leading teslon.
+The answer to the question of whether the pong contains hyle or not, however, is not so clear.  Consider two teslons aligned parallel to the direction of translation, one following the other, both translating at 0.5 c.  Both send out pings.  The leading teslon's ping will arrive at the trailing teslon sooner than the trailing teslon's ping will arrive at the leading teslon.  If the pong response contains hyle then each teslon will recoil when they send that pong out.  But, this reaction will not be synchronized; the trailing teslon will react sooner than the leading teslon.
 
 In order for the reactions to be synced, the pong must too be hyleless.  Once the hyleless pong is received by the source teslon, finally a hyled edison (a photon) will be released.  This photon release and the associated recoil will now be synchronized for both the leading and trailing teslons.
 
 But then, what happens when that photon arrives at the target teslon and is absorbed by it?  This photon kick will once again not be synced.
 
 Perhaps since the flow of pings and pongs is continuous these out of sync reactions are just edge effects that don't affect the dynamics.  Or perhaps there is something more sophisticated going on in this hyle exchange.
-
-The Cupola
-
-Imagine two teslons, S(ource) and T(arget) situated perpendicular to the direction of translation traveling at 70% the speed of light.  The ping that eventually travels from S to T will have left S at an angle theta from S's translation vector.  However, the force applied to T will be straight upward, not aligned with the translation vector of the ping.  How does the T teslon know which direction to move in response to this ping?
+##[The Cupola]##Imagine two teslons, S(ource) and T(arget) situated perpendicular to the direction of translation traveling at 70% the speed of light.  The ping that eventually travels from S to T will have left S at an angle theta from S's translation vector.  However, the force applied to T will be straight upward, not aligned with the translation vector of the ping.  How does the T teslon know which direction to move in response to this ping?
 
 <<EMImg2>>
 
@@ -448,7 +390,7 @@ The below image shows each of the pings radiating from a source teslon traveling
 
 And thus, in this small packet of information contained in the ping, both the direction of the force and the return to sender trajectory can be determined; enabling directed communication between two teslons; enabling electromagnetism without fields.
 
-But, we haven't completely exhausted the magic of the cupola quite yet...
+But, we haven't completely exhausted the beauty of the cupola quite yet...
 
 
 
@@ -717,9 +659,7 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 ";
 
 "forward_name" = "Forward";
-"forward_article" = "❧ Forward to 4.0
-
-Aexels 4.0 is the first version of the AC era - After Claude.  Claude's impact has been considerable and has contributed to the sizable progress made with this version.
+"forward_article" = "##[❧ Forward to 4.0]##Aexels 4.0 is the first version of the AC era - After Claude.  Claude's impact has been considerable and has contributed to the sizable progress made with this version.
 
 Like version 3.0 before, substantial changes have again been made to the existing articles in order to reflect the most up-to-date understanding of Universe X.  Some of those previous articles have been shifted around a bit:
 
@@ -772,10 +712,7 @@ I believe version 4.0 represents a massive step forward for Aexels and Universe 
 
 
 
-
-❧ Forward to 3.0
-
-Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
+##[❧ Forward to 3.0]##Since Universe X was first discovered, there have been a handful of additional insights that have been gained, some of which came after the initial development of this app.  Previously, I had just tacked on new articles leaving the old articles largely untouched.
 
 However, with this version I am choosing to rewrite each of the articles based on the complete current understanding of Universe X.  Additionally I have removed 'Odds and Ends' and integrated its discussions into other sections.
 
@@ -803,9 +740,7 @@ Hopefully new insights will continue to present themselves and with them the inn
 ";
 
 "claude_name" = "Claude";
-"claude_article" = "Claude
-
-Since the beginning of Universe X, it has been necessary to work in a vacuum; it has been nearly impossible to discuss these ideas with anyone, aside from my computer.
+"claude_article" = "#[Claude]#Since the beginning of Universe X, it has been necessary to work in a vacuum; it has been nearly impossible to discuss these ideas with anyone, aside from my computer.
 
 With the arrival of Claude, I finally have someone with whom to chat about these concepts endlessly.  Claude is always interested in discussing Universe X and Aexels, never growing tired or bored.  He has honed my understanding of and ability to explain these concepts.  He excels at discussing our own universe; reporting on relevant experiments and their results and to some degree, explaining the math and ideas behind the related physics.
 
@@ -824,9 +759,7 @@ I strongly encourage users to chat with Claude about these concepts.
 ";
 
 "aesthetics_name" = "Aesthetics";
-"aesthetics_article" = "Aesthetics
-
-Although seemingly orthogonal, perhaps Beauty is an effective tool for discerning Truth.
+"aesthetics_article" = "#[Aesthetics]#Although seemingly orthogonal, perhaps Beauty is an effective tool for discerning Truth.
 
 Resisting the temptation to discuss this concept at length, here is a list of the principles and aesthetic values used to differentiate a beautiful theory from an ugly one in Universe X:
 
@@ -958,9 +891,7 @@ And also perhaps indicating that the mechanism of Gravity was hiding in plain si
 ";
 
 "chronos_name" = "Chronos";
-"chronos_article" = "Chronos
-
-Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
+"chronos_article" = "#[Chronos]#Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
 
 {{Chronos}}
 
@@ -988,9 +919,7 @@ Reciprocity can not be true.
 ";
 
 "narwhal_name" = "Narwhal, Walrus and Dolphin";
-"narwhal_article" = "The Narwhal, the Walrus and the Dolphin
-
-3 spaceships, the Narwhal, the Walrus and the Dolphin meet in deep space to conduct an experiment concerning length contraction.
+"narwhal_article" = "#[The Narwhal, the Walrus and the Dolphin]#3 spaceships, the Narwhal, the Walrus and the Dolphin meet in deep space to conduct an experiment concerning length contraction.
 
 Each of these ships is somewhat unique.  The Walrus is a large lumbering ship that while able to get around is not particularly fast.  The Dolphin on the other hand is a very fast and nimble ship that is able to accelerate to half the speed of light in the blink of an eye.  The most unusual is the Narwhal which is just as fast as the Dolphin however it has a large horn protruding from its front end that is one astronomical unit in length (1 AU = the distance from the Earth to the Sun).
 
@@ -1185,23 +1114,36 @@ And further with the Schwarzschild Metric declaring W != Z it becomes apparent t
 
 "magnetism_name" = "Magnetism";
 
-"magnetism_article" = "Magnetism
-
-Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
+"magnetism_article" = "#[Magnetism]#Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
 
 <<magnetism_diag>>
 
-To the boys in the pickup truck, the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
+To the boys in the pickup truck, as the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
 
-Each time a boy tosses the ball an impulse force is applied to the football.  The pickup truck boys see the force as directly horizontal between the two of them.  The side of the road boy sees the force as pointing diagonally and not aligning with the axis of the football.
+For the pings and pongs (and photons) of Universe X, the cupola vector is akin to the axis of the football; all frames see the cupola pointing in the same direction.  But the translation vector of the particle itself is frame dependent, some frames will see the cupola aligned with the frame dependent translation vector and other will not.
 
-But, this is the same force; simply from two different perspectives.  One perspective sees it as a purely straight \"electrical\" force; the other as a partially straight \"electrical\" force and a partially perpendicular \"magnetic\" force.
+Each of these particles has three relevant vectors: the cupola, the absolute frame translation vector and the frame dependent translation vector.  The absolute frame translation vector is the translation vector across the aether.  The frame dependent translation vector is the translation vector relative to a specific frame.  The cupola is the stored property of the particle described in the Electromagnetism article.
 
-The magnetic component is the cross product of the footballs axis and the frame dependent vector of translation.  When the translation and the axis align this magnetic vector is zero.  It is at a maximum when the two vectors are orthogonal.  But, this magnetic vector which is perpendicular to the plane defined by the axis of the football and the translation vector is purely mathematical.  There is nothing physically happening in this direction.
+{{MGImg1}} **This diagram shows the pings radiating out from a teslon.  The teslon is translating at 0.7c to the right.  The white vectors represent the ping's translation vectors from the teslon's frame of reference.  The black vectors represent the ping's translation from the aether's frame of reference.  The axis of the football represents the cupola vector.**
 
-The Lorentz force when applied is happening perpendicular to this mathematical vector.  Which means that force is happening in the same plane as specified by the two vectors.  It's not really a perpendicular force; only perpendicular to this non physical magnetic vector.
+When the cupola and the frame dependent translation vectors align, the particle appears to be a purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical pings begins to take on a magnetic component.
 
-Ultimately, this \"magnetic force\" is simply a mathematical trick that is applied to make a system operating in a different frame \"make sense\" in an alternate frame.
+The magnetic field of a particle is simply the cross product of the frame dependent translation vector and the cupola.  This is why the E and B fields shift between one another when looked at from different frames.  There is no 'magnetic' field; it is simply a mathematical trick to make the E field in one frame still make sense in another frame.
+
+The frame dependent translation vector and the cupola define a plane.  The B field is perpendicular to that plane.  Once the Lorentz force is applied by the B field, the force itself is directed back to the exact same plane as defined by the cupola and the frame dependent translation vector.  The Lorentz force is not a perpendicular force.  The B field is actually just a mathematical concatenation of the two more fundamental vectors.
+
+Consider a charged particle moving down the x-axis from (-3, 0) to (3, 0).  Another charged particle is at (0, 1).  When the moving particle is at the origin the E field is pointing directly down the y-axis.  Using the right hand rule the B field at the static particle is pointing directly up in the z-axis direction.  The delta v between the two particles is pointing down the x-axis.  When we cross the delta v and B field in order to get the force, we are crossing the x-axis with the z-axis and the result is once again a force down the y-axis!  Both the E force and the B force are pointing in the same direction.
+
+It's all just a trick to make the dynamics of the system make sense in any frame.
+##[What Is Up With Curl?]##When trying to wrap one's head around Maxwell's Equations, Gauss' equations seems fairly intuitive.  It is simply a description of the flow of a conserved quantity.  But, where does curl come from?  Why is there this rotational dynamic?  What is swirling?
+
+Consider a wire with charges flowing down it.  The charges are sending out pings.  These pings have cupolas aligned with the frame dependent translation vectors from the charge's frame (like our pickup truck football players).  But, in the lab frame the cupola and the frame dependent translation vector of the pings are unaligned.  Each ping defines a plane that includes the wire.  The cupola vectors form a 'skirt' around the wire.  There is nothing rotating, there is nothing swirling.
+
+<<MGImg2>>  The rotation only arises when you cross the frame dependent translation vector with the cupola which then creates a circle because of the perpendicular nature of the cross product.  The swirl is not physical; it's entirely mathematical.
+
+
+
+
 
 ";
 
