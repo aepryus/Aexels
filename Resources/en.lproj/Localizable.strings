@@ -995,15 +995,13 @@ So, this gives us 3 classes of 'Same Inertial Frame':
 ";
 
 "floatingLeaf_name" = "Floating Leaf";
-"floatingLeaf_article" = "Floating Leaf
+"floatingLeaf_article" = "#[Floating Leaf]#What is the dilation at the surface of a planet?
 
-What is the dilation at the surface of a planet?
+Dilation is entirely a function of the rate of translation of a system across the aexels.  Therefore, to find the dilation at the surface of a planet one simply needs to figure out the rate that the aexels flow into the planet.
 
-Dilation is entirely a function of the rate of translation of a system across the aexels.  In order to find the dilation at the surface of a planet one simply needs to figure out the rate that the aexels flow into the planet.
+In Universe X, gravity is not a force on matter, but rather a force on the aexels.  Newton's law of Gravitation is empirical, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from a planet.
 
-In Universe X, gravity is not a force, it is a result of the tugging on the aethereal fabric caused by, for instance, a planet's destruction of aexels.  Newton's law of Gravitation is empirical, but we can use it to calculate the motion of a tennis ball placed at rest infinitely far from a planet.
-
-Since gravity is not a force, since it can not directly cause the translation of teslons across the aexels, the motion of the tennis ball will show us the motion of the aexels.  Just as a leaf floating down a river shows us the velocity of the water that is carrying it, the tennis ball floating down to the planet will show us the velocity of the aexels upon which it sits.  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e., the escape velocity):
+Gravity is not a force on matter, it can not directly cause the translation of teslons across the aexels.  It can only pull on the aexels themselves and as such, the motion of the tennis ball will show us the motion of the aexels.  Just as a leaf floating down a river shows us the velocity of the water that is carrying it, the tennis ball floating down to the planet will show us the velocity of the aexels upon which it sits.  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e., the escape velocity):
 
 <<DiscrA>>
 
@@ -1020,9 +1018,7 @@ Perhaps somewhat surprisingly, the value we arrived at here using a little physi
 ";
 
 "fourClocks_name" = "Four Clocks";
-"fourClocks_article" = "Four Clocks
-
-Imagine a lone planet and 4 clocks.  The 4 clocks, W, X, Y and Z are situated as follows:  W sits at infinity, X is falling from infinity at escape velocity and is currently at a point r above the planet, Y is resting on a platform a distance r above the surface and Z is blasting off to infinity at escape velocity also currently at the point r above the planet.
+"fourClocks_article" = "#[Four Clocks]#Imagine a lone planet and 4 clocks.  The 4 clocks, W, X, Y and Z are situated as follows:  W sits at infinity, X is falling from infinity at escape velocity and is currently at a point r above the planet, Y is resting on a platform a distance r above the surface and Z is blasting off to infinity at escape velocity also currently at the point r above the planet.
 
 <<4Clocks>>
 
