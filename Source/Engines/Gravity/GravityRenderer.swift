@@ -6,6 +6,7 @@
 //  Copyright © 2025 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import MetalKit
 import OoviumEngine
 import OoviumKit
@@ -89,7 +90,7 @@ class GravityRenderer: Renderer {
 
         if let universe { CCUniverseRelease(universe) }
         
-        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height, 0.0005)
         CCUniverseDemarcate(universe)
         
         let ds: Double = universe.pointee.ds
@@ -127,7 +128,12 @@ class GravityRenderer: Renderer {
 
         if let universe { CCUniverseRelease(universe) }
         
-        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        let boost: Double
+        if Screen.iPhone { boost = 0.0015 }
+        else if Screen.mac { boost = 0.0005 }
+        else { boost = 0.0010 }
+        
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height, boost)
         CCUniverseDemarcate(universe)
         
         let dx: Double = 30 * 0.65
@@ -158,6 +164,11 @@ class GravityRenderer: Renderer {
             p = !p
         }
         
+        r -= dr
+        dQ = 2 * .pi / round(r * 2 * .pi / dx)
+
+        print("r:\(r), dQ:\(dQ), maxR: \(maxR), width: \(view!.width)")
+        
         CCUniverseBind(universe)
         
         self.universe = universe
@@ -168,7 +179,7 @@ class GravityRenderer: Renderer {
 
         if let universe { CCUniverseRelease(universe) }
         
-        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height)
+        let universe: UnsafeMutablePointer<CCUniverse> = CCUniverseCreate(size.width, size.height, 0.0005)
         CCUniverseDemarcate(universe)
         
         CCUniverseCreateAexelAt(universe, 0, -70, 0, 0);

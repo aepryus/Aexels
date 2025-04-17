@@ -114,10 +114,12 @@ typedef struct CCUniverse {
     int moonCount;
     int moonCapacity;
     CCMoon** moons;
+    
+    double darkEnergyBoost;
 
 } CCUniverse;
 
-CCUniverse* CCUniverseCreate(double width, double height);
+CCUniverse* CCUniverseCreate(double width, double height, double darkEnergyBoost);
 void CCUniverseRelease(CCUniverse* universe);
 void CCUniverseAddAexel(CCUniverse* universe, CCAexel* aexel);
 CCAexel* CCUniverseCreateAexelAt(CCUniverse* universe, double x, double y, double vx, double vy);

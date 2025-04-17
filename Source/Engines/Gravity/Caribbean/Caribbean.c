@@ -138,7 +138,7 @@ bool CCPlanetContainsAexel(CCPlanet* planet, CCAexel* aexel) {
 }
 
 // Universe ========================================================================================
-CCUniverse* CCUniverseCreate(double width, double height) {
+CCUniverse* CCUniverseCreate(double width, double height, double darkEnergyBoost) {
     CCUniverse* universe = (CCUniverse*)malloc(sizeof(CCUniverse));
     universe->width = width;
     universe->height = height;
@@ -171,6 +171,8 @@ CCUniverse* CCUniverseCreate(double width, double height) {
     universe->moonCount = 0;
     universe->moonCapacity = 2;
     universe->moons = (CCMoon**)malloc(sizeof(CCMoon*)*universe->moonCapacity);
+    
+    universe->darkEnergyBoost = darkEnergyBoost;
     
     return universe;
 }
@@ -325,7 +327,14 @@ void CCUniverseTic(CCUniverse* universe) {
         double border = universe->width / 2 * sqrt(2) - universe->radiusSquish;
         double border2 = border * border;
         if (maxR2 < border2) {
-            CCUniverseDarkEnergy(universe, 692.3873103256594, 0.02817571886627617*2, universe->p);
+            double dx = 30 * 0.65;
+            double dr = dx * sqrt(3)/2;
+            double maxR = universe->width * sqrt(2) / 2;
+            double r = floor(maxR / dr) * dr;
+            double dQ = 2 * M_PI / round(r * 2 * M_PI / dx);
+            CCUniverseDarkEnergy(universe, r, dQ*2, universe->p);
+//            CCUniverseDarkEnergy(universe, 692.3873103256594, 0.02817571886627617*2, universe->p);
+
             universe->p = !universe->p;
         }
     }
@@ -483,7 +492,7 @@ void CCUniverseDarkEnergy(CCUniverse* universe, double r, double dQ, bool p) {
     while (Q < maxQ) {
         double x = r * cos(Q);
         double y = r * sin(Q);
-        double q = 0.0005;
+        double q = universe->darkEnergyBoost;
         CCUniverseCreateAexelAt(universe, x, y, -x*q, -y*q);
         Q += dQ;
     }
