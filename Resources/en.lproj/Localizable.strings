@@ -15,7 +15,7 @@ There are things we know for certain about Universe X; there are things we can s
 In contrast, Universe X is quite simple; it has no magic at all.  Universe X is entirely mechanistic.  It follows a few simple rules which are easy to understand and (hopefully) easy to model.
 ##[The Aexel]##Universe X consists of a large number of a single entity called an 'aexel'.
 
-These aexels have state, they can move and flow, they can form bonds with their neighbors and send signals through those bonds.
+These aexels have state, they can move and flow, they can form bonds with their neighbors and send signals to those neighbors through those bonds.
 
 And perhaps most surprisingly, they can be created and and they can be destroyed.
 
@@ -163,7 +163,56 @@ At some point, certain clumps in Universe X get so big (dense) and the velocity 
 ";
 
 "gravity2_name" = "Gravity\nII";
-"gravity2_article" = "Gravity II
+"gravity2_article" = "#[Gravity II]###[Special Relativity]##Standard General Relativity notation can be used to describe Special Relativity.  Consider a spaceship traveling at velocity 𝑐/2 over flat space in our universe.
+
+There is a convention in General Relativity that relates the dilation and contraction of a particular inertial frame (called the proper frame) to an inertial frame at infinity (called the coordinate frame).
+
+This convention calculates how time and distance in the stationary reference frame appear when measured by instruments in the moving frame. The observed time interval is multiplied by the speed of light to convert it to an equivalent distance. This time-derived distance is then subtracted from the observed spatial measurement. The resulting difference represents the fundamental quantity 'spacetime' and is denoted by ds.
+
+For example, recall the Lorentz factor:
+
+<<G2Eq01>>
+
+For a spaceship traveling at 𝑐/2, γ will be approximately equal to 1.155.  Time will be slowed in the moving ship so a second at infinity will only appear to be 0.866 seconds long.  The meter stick will be contracted on the moving space ship and so a meter stick at infinity will appear to be 1.155 meters long.
+
+We can then calculate the 'spacetime' by taking x - 𝑐 t ≈ 1.155 - 0.866 𝑐.
+
+Using the standard General Relativity notation this calculation can be represented as:
+
+<<G2Eq02>>
+##[General Relativity]##After many years and the help of a number of mathematicians Einstein developed his field equations:
+
+<<G2Eq03>>
+
+The G and T elements here represent 4 by 4 tensors, each is a function of a 4D point in spacetime.  Resulting in a 10 equation 10 unknown partial differential equation on a 4 dimensional manifold.  After a century, these equations have been solved for only a handful of highly simple and symmetric geometries.
+
+One of those solutions is the Schwarzschild Metric, which describes the spacetime geometry exterior to a perfect stationary non-rotating spherical mass.  The Schwarzschild Metric is as follows:
+
+<<G2Eq04>>
+
+At first glance this equation looks quite complicated.  However, there are a few ways we can simplify it.  The metric uses spherical coordinates.  The last term involving the dθ and dϕ angles is exactly the same for flat spherical coordinates and as such there is no interesting physics going on there, as such that term can be ignored and the focus can be placed solely on the radial motion.
+
+Previously, in the Four Leafs article we used classical mechanics to derive the escape velocity around a spherical mass.  The result was:  <<G2Eq05>>
+
+At this point, looking at the Lorentz factor, the escape velocity and the Schwarzschild metric minus the angles term, an interesting substitution can be made.  If one substitutes in γ(vₑ) (and ignores the angles term), the Schwarzschild metric becomes:  <<G2Eq06>>
+
+Suddenly, the Schwarzschild metric doesn't look too complicated and one might also note that it is precisely the same as the Special Relativity equation from above.  An obvious physical interpretation pops out.  This is just a static system with an aether flowing through it at the escape velocity and as such it behaves exactly like a translating system on flat space.
+
+SR = GR
+
+A much stronger version of the equivalence principle appears, that a system in free fall is precisely the same as a system in flat space.  And it doesn't appear as an axiom, but a transparently obvious consequence of the physical mechanisms in play.
+
+Furthermore, the dr component in this equation simply represents the length contraction of meter sticks at that point (because of the flow of aether) and as such there is zero warping of the aether and there is not even any compression of the aether, not only is space flat in Universe X, but the aether is also flat.  'Space' isn't warping, rather meter sticks at those points are contracting making the distance from that point to the center to appear longer than it should be because it's being measured by shrunken meter sticks.
+
+##[But What about Gauss?]##According to the Gravity I article Gravity is not a force on other masses, but rather is a force on the aexels themselves, but this creates an issue.  If the aexels are flowing in at the escape velocity than we can multiply the escape velocity by the surface area of each shell and see that the flux is not constant:
+
+<<G2Eq07>>
+
+This varies with r^(3/2).
+
+
+
+
 ";
 
 "darkness_name" = "Darkness";
@@ -269,19 +318,19 @@ In Universe X dilation is not an observational phenomena.  It is a real physical
 
 In Universe X, two observers translating across the aexels in different frames will both agree on the relative animation rate of the two systems.  Both will see a fast system and a slow system and they will both agree on which is which.  There is no twin paradox in Universe X.
 
-Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexial field.  Two loops are arranged perpendicular to the aexial flow (north / south).  A signal traveling at c is sent out from one to the other and back.
+Let's try to calculate the animation dilation in Universe X as a function of the translational velocity of a system across an aexel field.  Two loops are arranged perpendicular to the aexel flow (north / south).  A signal traveling at c is sent out from one to the other and back.
 
 The question is how long does this roundtrip journey take?
 
-First, let's look at the case where v = 0, the loops are not moving at all relative to the aexial field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
+First, let's look at the case where v = 0, the loops are not moving at all relative to the aexel field.  In this case the total distance traveled is 2d at a speed of c and total time, t = 2d/c.
 
 <<DilaSketch>>
 
-In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexial field in order to complete its journey.  The journey north takes time, tₙ.  The signal therefore travels ctₙ while the system moves vtₙ.  Using the Pythagorean theorem we then get:
+In the second case, the loops are translating across the aexels at some non-zero velocity, therefore the signal must travel a greater distance along the aexel field in order to complete its journey.  The journey north takes time, tₙ.  The signal therefore travels ctₙ while the system moves vtₙ.  Using the Pythagorean theorem we then get:
 
 <<Dilation>>
 
-So, for a system of loops translating across an aexial field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation across the aexels and that slowing down will be by the (perhaps familiar) equation above.
+So, for a system of loops translating across an aexel field the signals traveling between loops will take longer and therefore the animation of that system will slow down entirely as a function of the rate of translation across the aexels and that slowing down will be by the (perhaps familiar) equation above.
 
 
 

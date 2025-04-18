@@ -164,11 +164,6 @@ class GravityRenderer: Renderer {
             p = !p
         }
         
-        r -= dr
-        dQ = 2 * .pi / round(r * 2 * .pi / dx)
-
-        print("r:\(r), dQ:\(dQ), maxR: \(maxR), width: \(view!.width)")
-        
         CCUniverseBind(universe)
         
         self.universe = universe
