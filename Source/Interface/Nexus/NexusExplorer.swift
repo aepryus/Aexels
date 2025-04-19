@@ -127,7 +127,7 @@ class NexusExplorer: AEViewController {
         glyphsView.alpha = 0
         if !Screen.iPhone {
             view.addSubview(pathButton)
-            view.addSubview(musicButton)
+//            view.addSubview(musicButton)
             view.addSubview(claudeButton)
             view.addSubview(glyphsScroll)
             glyphsScroll.alpha = 1
@@ -166,7 +166,7 @@ class NexusExplorer: AEViewController {
             articleCell.alpha = 0
         } else {
             view.addSubview(pathButton)
-            view.addSubview(musicButton)
+//            view.addSubview(musicButton)
             view.addSubview(claudeButton)
             view.addSubview(glyphsScroll)
         }
@@ -247,7 +247,7 @@ class NexusExplorer: AEViewController {
         if !Screen.iPhone {
             view.addSubview(pathButton)
 
-            view.addSubview(musicButton)
+//            view.addSubview(musicButton)
             musicButton.addAction {
                 Loom.transact { Aexels.settings.musicOn = !Aexels.settings.musicOn }
                 if Aexels.settings.musicOn { Aexels.explorerViewController.startMusic() }

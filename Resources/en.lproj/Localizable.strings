@@ -204,7 +204,7 @@ A much stronger version of the equivalence principle appears, that a system in f
 
 Furthermore, the dr component in this equation simply represents the length contraction of meter sticks at that point (because of the flow of aether) and as such there is zero warping of the aether and there is not even any compression of the aether, not only is space flat in Universe X, but the aether is also flat.  'Space' isn't warping, rather meter sticks at those points are contracting making the distance from that point to the center to appear longer than it should be because it's being measured by shrunken meter sticks.
 
-##[But What about Gauss?]##According to the Gravity I article Gravity is not a force on other masses, but rather is a force on the aexels themselves, but this creates an issue.  If the aexels are flowing in at the escape velocity than we can multiply the escape velocity by the surface area of each shell and see that the flux is not constant:
+##[Squish]##According to the Gravity I article Gravity is not a force on other masses, but rather is a force on the aexels themselves, but this creates an issue.  If the aexels are flowing in at the escape velocity than we can multiply the escape velocity by the surface area of each shell and see that the flux is not constant:
 
 <<G2Eq07>>
 
@@ -225,6 +225,7 @@ Imagine each aexel holds a fluid called 'accelerant'.  Hyle doesn't destroy aexe
 Now the gravity problem goes from being an absurd tracking of an absurd amount of g-pings traveling throughout the entire universe, to a simple local pressure equalization problem of the accelerant.
 
 Now, of course, this is a leap well beyond anything previous in Universe X.  And the reason for making this leap is novel, the concern for the computational strain of Universe X itself.  However, even if this is entirely false, this concept could greatly speed the modeling of Gravitational phenomena.  It takes a problem naively implemented as O(n^2); that is reduced to  O(n ln(n)) by using approximate methods and replaces it with a method that is O(n) and precise, not an approximation any longer.
+
 
 
 
@@ -1151,21 +1152,19 @@ This is a rather substantial deviation in the two universes.  How could such a d
 
 Recall in the Chronos article it was shown that Reciprocity could not possibly be true.
 
-One of the first steps in the derivation of Einstein's field equations is the definition of ds^2 = cdt^2 - dx^2 - dy^2 - dz^2 and to note that because of reciprocity this term is a constant for all frames.  From there the entirety of field equations are derived based on this; with the Schwarzschild Metric being the solution of these equations for a perfect sphere.
+One of the first steps in the derivation of Einstein's field equations is the definition of ds² = c²dt² - dx² - dy² - dz² and to note that because of reciprocity this term is a constant for all frames.  But, if reciprocity is false, ds² invariance is false.
 
-If however Reciprocity is false; then ds^2 is not invariant; consequently the field equations go tumbling down, bringing the Schwarzschild Metric with them.
+The metric did, however, get the dilation correct for clocks W and Y, even if it was wrong for clocks X and Z.  It worked for the static clocks, but not for the translating ones.  The Reciprocity assumption broke the calculation for moving systems.
 
-But, the metric did get the dilation correct for clocks W and Y, even if it was wrong for clocks X and Z.  It worked for the static clocks, but not for the translating ones.  The Reciprocity assumption broke the calculation for moving systems.
+The 'constant of motion' is what introduces ds² invariance and consequently throws things off the tracks.
 
 One might also note that Einstein's General Relativity has only ever been experimentally tested using static systems.
 
 Beyond all this there may be something else being illustrated here.  Consider the following again:
 
-    W = Z
+    W = X
 
-This looks suspiciously familiar; this looks suspiciously like the Equivalence Principle.  And in this context, not some guess about how the universe works, not some axiom to be adopted, but rather a brutally transparent explanation for why the Equivalence Principle.  Because sitting still on a static aether and sitting still on a moving aether are the exact same thing.
-
-And further with the Schwarzschild Metric declaring W != Z it becomes apparent that Reciprocity is not compatible with the Equivalence Principle.  General Relativity is not internally consistent.
+This hints at a potentially new, much stronger equivalence principle, that a system in free fall is precisely equivalent to a system in flat space.  This concept is further explored in the Gravity II article.
 
 
 
