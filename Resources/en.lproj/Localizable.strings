@@ -1766,9 +1766,7 @@ While editing an expression, anchor with one finger and tap the expression with 
 "cupola_name" = "Cupola";
 "squish_name" = "Squish";
 
-"discovery_article" = "Path of Discovery
-
-I have wanted to try to keep the articles in the Aexels app maximally concise and to adhere to the guideline of simply describing the mechanisms of Universe X.  At times this is difficult, especially when substantial new areas of understanding occur.
+"discovery_article" = "#[Path of Discovery]#I have wanted to try to keep the articles in the Aexels app maximally concise and to adhere to the guideline of simply describing the mechanisms of Universe X.  At times this is difficult, especially when substantial new areas of understanding occur.
 
 As such, I have decided to create this new alternative path which will detail the path of discovery.  This will catalog the order in which insights were gained and the motivating factors that brought each of those insights about.  Any new insights that occur can then be easily tacked onto the bottom.
 
@@ -1786,9 +1784,7 @@ As such, let's head down the path...
 
 ";
 
-"expansion_article" = "Expansion of the Universe
-
-I had left school with an erroneous understanding of what the phrase 'Expansion of the Universe' actually meant.  I held the grenade model of expansion; that at some point in time all matter was at a single point that exploded spewing mass into open space with the domain of that mass continually 'expanding'.
+"expansion_article" = "#[Expansion of the Universe]#I had left school with an erroneous understanding of what the phrase 'Expansion of the Universe' actually meant.  I held the grenade model of expansion; that at some point in time all matter was at a single point that exploded spewing mass into open space with the domain of that mass continually 'expanding'.
 
 Eventually I found the excellent 'Metric Expansion of Space' article on Wikipedia and came to understand what 'Expansion of the Universe' actually meant.  Namely, that the distance between galaxies was increasing faster than the sum of their velocities.
 
@@ -1800,7 +1796,7 @@ With that image I started to warm to the idea of expansion.  So much so, that I 
 
 If a checker could only move one space per turn then there was a maximum speed at which the checker could translate across the board.  Instantly, the speed of light limitation of the universe made sense; there was a precise and easily understood mechanism behind it.
 
-I then imagined these spaces as potentially being compressible and suddenly the 'warping of space' for the first time made sense, although it was more of a squishing of space, but an easily visualizable squishing that could entirely occur in three dimensions.
+I then imagined these spaces as potentially being compressible and suddenly the 'warping of space' for the first time made sense, although it was more of a smooshing of space, but an easily visualizable smooshing that could entirely occur in three dimensions.
 
 I imagined a spinning object translating across the board with some of its internal components translating faster than its net speed and others slower.  If none of the components can travel faster than the speed of light then the net translation can never be equal to the speed of light.  At once the reason why particles with mass can never travel at the speed of light made sense.
 
@@ -1814,13 +1810,11 @@ This sudden clarity on numerous previously mysterious concepts implanted the see
 
 ";
 
-"escaping_article" = "Preventing Light from Escaping from a Black Hole
+"escaping_article" = "#[Preventing Light from Escaping from a Black Hole]#A few weeks after my initial insight, I had my first additional breakthrough.  This new discovery followed a pattern that has repeated many times since and hopefully will continue to do so into the future.  Namely, I discovered a 'fatal' flaw which indicated that the concept couldn't possibly be true and then gained an entirely new understanding once I fixed it.
 
-A few weeks after my initial insight, I had my first additional breakthrough.  This new discovery followed a pattern that has repeated many times since and hopefully will continue to do so into the future.  Namely, I discovered a 'fatal' flaw which indicated that the concept couldn't possibly be true and then gained an entirely new understanding once I fixed it.
+The one fact I knew about black holes and really the thing that makes a black hole, a black hole, is that light can not escape from it.  I pondered this:
 
-The one fact I knew about black holes and really the thing that makes a black hole, a black hole, is that light can not escape from it.  I pondered that fact:
-
-\"If there is a quantized aether (let's call the quanta of aether an 'aexel') no matter how dense those aexels are, in and around a black hole, it would seem eventually light traveling one aexel per tic would eventually escape.  Perhaps this idea doesn't work at all.\"
+\"If there is a quantized aether (let's call that quanta an 'aexel') no matter how dense those aexels are, in and around a black hole, it would seem eventually light traveling one aexel per tic would escape.  Perhaps this idea doesn't work at all.\"
 
 And with that, for the first time, I felt that perhaps I had found a fatal flaw.  But, I hadn't totally given up:
 
@@ -1828,7 +1822,7 @@ And with that, for the first time, I felt that perhaps I had found a fatal flaw.
 
 Perhaps something inside the black hole is actually destroying the aexels.  In that case, the flow of aexels inward at c or greater would trap light while also keeping the density of aexels inside constant.
 
-But, is there something magical about a black hole that gives it the ability to destroy aexels?  It seems unlikely that one moment it's just a really big star and then after throwing in one last tennis ball to put it over the threshold where it becomes a black hole it suddenly starts destroying aexels.
+But, is there something magical about a black hole that gives it the ability to destroy aexels?  It seems unlikely that one moment it's just a really big star and then after throwing in one last tennis ball thereby converting it into a black hole, it suddenly starts destroying aexels.
 
 Perhaps there is nothing magical about a black hole.
 
@@ -1841,13 +1835,13 @@ At that point I wanted to try to understand this idea mathematically which led t
 Recall that the entire motivation of this concept was the desire to create a mechanism that allowed for the adding of space without impacting the velocity of matter that sits upon it; without adding energy to the system; without applying a force.
  Similarly, if gravity is simply the destruction of those aexels, that too should have no direct impact on an object's rate of translation over the aexels.
 
-When an object falls from infinity there is no force acting upon it; nothing is causing it to translate.  Its motion must be entirely because of the flow of the aexels themselves, like a leaf floating down a stream.  As such we can use classical mechanics to calculate the velocity of a tennis ball falling from infinity which will in turn tell us the velocity of the aexels it is sitting upon.  That velocity of course is just the escape velocity.
+When an object falls from infinity there is no force acting upon it; nothing is causing it to translate.  Its motion must be entirely because of the flow of the aexels themselves, like a leaf floating down a stream.  As such we can use classical mechanics to calculate the velocity of a tennis ball falling from infinity which will in turn tell us the velocity of the aexels it is sitting upon.  That velocity of course, is just the escape velocity.
 
-If mass destroys aexels (locally) then aexels must be conserved away from any mass.  The flux of aexels through any shell around a mass is the surface area of the shell times the escape velocity:
+If mass destroys aexels locally then the aexels must be conserved in areas outside of the mass.  The flux of aexels through any shell around a mass is the surface area of the shell times the escape velocity:
 
 <<EscEq1>>
 
-This equation, however, clearly indicates that the flux is dependent on r instead of being a constant as required by Gauss' law.  At first and for some time this seemed to be a definitive result that indicated that this idea could not work.  I decided to abandon the concept entirely.
+This equation, however, clearly indicates that the flux is dependent on r, as opposed to being a constant as required by Gauss' law.  At first and for some time this seemed to be a definitive result that indicated that this idea could not work.  I decided to abandon the concept entirely.
 
 A few days later after mostly putting the concept aside I had a small thought.  If the aexels are flowing at the escape velocity inwards I should be able to just plug the escape velocity into the Lorentz transform to get the dilation at the surface of a planet.  I performed the simple calculation:
 
@@ -1863,11 +1857,11 @@ After this I reconsidered my flux calculation and realized that I had neglected 
 
 The Gauss problem ended up persisting for a great length of time and with smaller additional issues compounding it.  The realization that density was not going to save me here and the ultimate resolution didn't occur until much later as detailed in the 'Squish' article.
 
-Of course all of these musings were happening in the context of the original motivating issue: trying to understand the 'Expansion of the Universe'.  We had some notion of some thing adding spaces in the middle of our checkerboard, but no idea what that thing might be.
+Of course all of these musings were happening in the context of the original motivating issue: trying to understand the 'Expansion of the Universe'.  I had some notion of some thing adding spaces in the middle of our checkerboard, but no idea what that thing might be.
 
-Once I came to understand the interplay between mass and the destruction of aexels, it was no great leap to consider that antimatter being equal and opposite in every way likely meant that it was creating them.  And while matter would tend to clump up into planets and stars and galaxies, antimatter would tend to spread out as a diffuse dust always pushing things away from it.  Populating the areas between galaxies continually adding new aexels to the universe and of course, red-shifting light that traversed the intergalactic space.
+Once I came to understand the interplay between mass and the destruction of aexels, it was no great leap to consider that since matter was destroying aexels, antimatter, being equal and opposite in every way, must be creating them.  And while matter would tend to clump up into planets and stars and galaxies, antimatter would tend to spread out as a diffuse dust always pushing things away from it, populating the areas between galaxies and continually adding new aexels to the universe and of course at the same time, red-shifting any light that passed through it.
 
-And with that, the solution to the baryogenesis problem became obvious.
+And with that, the baryogenesis problem was solved.  The reason why we see lots of matter and very little antimatter was simply because matter tends to clump up and form bright stars and galaxies while antimatter diffuses into an invisible dust.
 
 
 
@@ -1875,32 +1869,26 @@ And with that, the solution to the baryogenesis problem became obvious.
 
 ";
 
-"covariance_article" = "Lorentz Covariance
+"covariance_article" = "#[Lorentz Covariance]#The initial insights of Universe X had made numerous aspects of physics make sense for the first time, but of course much mystery remained, even within Relativity.  About a year went by before the next innovation.
 
-About a year went by without any substantial new insights after the initial burst.  And while many things in physics that had previously seemed mysterious now made sense, there were several aspects even within relativity that were still not understood in the context of Universe X.
+It was still an open question as to whether Universe X was really saying anything new or just saying the same thing a different way.  I began to look for ways to differentiate Universe X from 'our universe'.
 
-One open question was: \"Is Universe X saying anything new or is it just saying it a different way?\"  I really wasn't sure what the answer was, so I began to look for ways to differentiate Universe X from 'our universe'.
+One of my first thoughts was to look at the flow of aexels directly into the Earth.  Because the flow was directly vertical, it made sense that Michelson and Morley hadn't detected an aether running tangentially along the surface.  Perhaps, if they had compared the speed of light running vertically to the speed of light running horizontally they would have found their discrepancy.
 
-One potential differentiator was the flow of aexels directly into the Earth.  Because the flow was directly vertical into the Earth, It made sense that Michelson and Morley hadn't detected an aether running tangentially along the surface.  Perhaps, if they had compared the speed of light running vertically to the speed of light running horizontally they would have found their discrepancy.
+I spent a bunch of time trying to figure out how to run such an experiment, which for various reasons is actually quite technically challenging even with cutting edge modern equipment.  Ultimately, however, such an experiment was irrelevant.  The vertical MMX would return the same null result as the horizontal version did.
 
-I spent a bunch of time trying to figure out how to run such an experiment, which for various reasons is actually quite technically challenging even with cutting edge modern equipment.  Ultimately, however, such an experiment was irrelevant.  I realized that a vertical MMX would return the same null result as the horizontal version did.
-
-I had begun to pin down the Geometry and math of signals bouncing back and forth across the aexels.  At first I worked on the the case where two objects are situated orthogonal to the direction of translation:
+I had begun to pin down the geometry and math of signals bouncing back and forth across the aexels.  At first I worked on the case where two objects are situated orthogonal to the direction of translation:
 
 <<DilaSketch>>
 
-Which resulted in the familiar gamma transform.
+Which resulted in the familiar Lorentz factor.
 
-I then considered the case were objects were situated parallel to the direction of translation:  <<ContraSketch>> 
-I found that whether the target was leading or trailing the source the time delay was gamma^2, which of course didn't match the orthogonal case.  Only after contracting all lengths in the parallel case did the signal delay in both directions match.
+I then considered the case where objects were situated parallel to the direction of translation:  <<ContraSketch>> 
+I found that whether the target was leading or trailing the source, the time delay was γ², which of course didn't match the orthogonal case's delay of γ.  Only after contracting all lengths in the direction of translation did the signal delay match.
 
-This meant that the MMX doesn't return null results because the speed of light is always constant.  It returns null results for two reasons: it doesn't measure the one way speed of light only the roundtrip speed of light and length contraction precisely masks any difference that exists.
+This meant that it wasn't the constancy of the speed of light that caused the MMX to return a null result.  Rather, it was because of length contraction that precisely masked the flow of the aexels.  And with that realization, length contraction was incorporated into Universe X while a possible avenue of differentiation was closed.
 
-With this length contraction was finally understood in the context of Universe X and a possible avenue of differentiation was closed.
-
-But, also a mechanical mechanism underpinning dilation and contraction was beginning to emerge.  Where as previously it was a hand wavy 'something must be slowing things down', now we had the beginnings of an actual mechanism.
-
-This also showed why Lorentz covariance holds in Universe X even though for a translating system the speed of light is different in each direction.
+Additionally, with these calculations, the mechanism underpinning dilation and contraction became much better understood and much more rigorous.  And perhaps most importantly, it was shown that Lorentz covariance also held in Universe X and exactly why it did so.
 
 
 
@@ -1909,31 +1897,25 @@ This also showed why Lorentz covariance holds in Universe X even though for a tr
 ";
 
 
-"reciprocity_article" = "Reciprocity
+"reciprocity_article" = "#[Reciprocity]#After failing to find a discrepancy between our universe and Universe X in the vertical flow of aexels, I was still in search of areas of differentiation between the two.  Also, after the previous success of being able to predict the dilation at the surface of a planet, I was also looking for other calculations I could perform in Universe X that could then be compared to calculations in our universe.  I then realized there was a related and very easy calculation I could perform in Universe X.
 
-After the success of predicting the dilation at the surface of a planet I was looking for other calculations I could perform in Universe X that could then be compared to calculations in our universe.  I realized there was a very easy to perform calculation available in Universe X.
+In our universe, a clock free falling from infinity to a planet would experience all sorts of gravitational field strengths and all sorts of velocities along the way.  It's unclear what the dilation would be for such a scenario.
 
-A clock free falling from infinity to a planet would experience all sorts of gravitational field strengths and all sorts of velocities along the way.  In our universe the dilation a clock would feel during such a journey would perhaps be quite complicated.  But in Universe X, gravity not being a force, the clock would simply flow along with the aexels down to the planet never translating at all.  It was easy to see that it would experience no dilation what-so-ever at any point in the journey.
+But in Universe X, gravity not being a force, the clock would simply flow along with the aexels down to the planet never translating at all.  It was easy to see that it would experience no dilation what-so-ever at any point in the journey.
 
 For our universe, however, the calculation differed:
 
 <<RecEq1>>
 
-Furthermore, for the opposite case where the clock is blasting off to infinity, Universe X predicts dilation of γ(2vₑ) while our universe predicts the exact same dilation as the falling case listed above.
+At first I was unsure what to make of this result.  I considered 4 separate clocks (W, X, Y and Z) as detailed in the Four Clocks article.  While the static W and Y clocks matched in both universes, the moving X and Z clocks differed in both.  I set out to discover at what point the Einstein Field Equations and the Schwarzschild Metric went off the rails.
 
-At first I was unsure what to make of this result.  To some degree I'm not sure how well I actually understood that reciprocity (which seemed transparently wrong to me) reigned in our universe.
+To some degree I'm not even sure how well I actually understood that reciprocity (which seemed transparently wrong to me) reigned in our universe.  In Einstein's 1905 paper on Special Relativity he states: \"It is clear that the same results hold good of bodies at rest in the 'stationary' system, viewed from a system in uniform motion.\"
 
-In Einstein's 1905 paper on Special Relativity he states: \"It is clear that the same results hold good of bodies at rest in the 'stationary' system, viewed from a system in uniform motion.\"
+That \"It is clear...\" is carrying a lot of weight here.  With no further justification he is simply declaring that two observers in relative motion to one another will both perceive the same thing.  Namely, they will both see the other's clocks dilated and the other's lengths contracted.  My guess is that he was motivated by trying to maintain the Reciprocity of Galilean relativity.
 
-That \"It is clear...\" is carrying a lot of weight here.  With no further justification he states that two observers in relative motion to one another will both perceive the same thing.  Namely, they will both see the other's clocks dilated and the other's lengths contracted.  My guess is that he was motivated by trying to maintain the Reciprocity of Galilean relativity.
+But for Universe X (and any universe with an absolute reference frame) Reciprocity is simply not true.  At this point I realized that the Reciprocity assumption is used to argue that ds² is invariant over inertial frame transformation and that ds² invariance is used to calculate the constant of motion in the Schwarzschild Metric that results in the discrepancies in the X and Z clock readings between the two universes.
 
-But for Universe X (and any universe with an absolute reference frame) Reciprocity is simply not true.
-
-Universe X was not just describing the same thing using different words, but was fundamentally describing different physics.
-
-Furthermore, beyond just being an interesting thought experiment, this provides a clear mechanistic explanation for why the equivalence principle is true, as opposed to simply accepting it as an axiom.
-
-And at the same time seems to illustrate a substantial contradiction with the EFE themselves.  How can a clock falling from infinity feel any dilation if the equivalence principle says there is no difference between free falling and simply sitting still in free space (where certainly no dilation would be felt)
+And with that I realized that Universe X was not just describing the same thing using different words, but was fundamentally describing different physics.
 
 
 

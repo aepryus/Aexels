@@ -12,7 +12,7 @@ import OoviumKit
 import UIKit
 
 fileprivate class SwapView: UIView {
-	static let icon: UIImage = SwapView.renderIcon(color: UIColor.white)
+    static let icon: UIImage = SwapView.renderIcon(color: Screen.iPhone ? .white : .black.tint(0.4))
 	static let highlight: UIImage = SwapView.renderIcon(color: OOColor.lavender.uiColor)
 	
 	var isHighlighted: Bool = false {
@@ -37,7 +37,7 @@ fileprivate class SwapView: UIView {
 	
 // Static ==========================================================================================
 	private static func renderIcon(color: UIColor) -> UIImage {
-		let s: CGFloat = 26*Screen.s
+        let s: CGFloat = Screen.iPhone ? 26*Screen.s : 20*Screen.s
 		let w: CGFloat = 2*Screen.s
 		
 		UIGraphicsBeginImageContextWithOptions(CGSize(width: s, height: s), false, 0)

@@ -25,7 +25,7 @@ class NexusExplorer: AEViewController {
     let articleCell: MaskCell!
     let cyto: Cyto = Cyto(rows: 1, cols: 1)
 
-    let pathButton: ImageButton = ImageButton(named: "aepryus")
+    let swapButton: SwapButton = SwapButton()
     let pathCircle: CircleButton
     let musicButton: ImageButton = ImageButton(named: "music")
     let claudeButton: ClaudeButton = ClaudeButton()
@@ -39,7 +39,7 @@ class NexusExplorer: AEViewController {
     lazy var vision: Vision = ExplorerVision(explorer: Aexels.nexusExplorer)
     
     override init() {
-        pathCircle = CircleButton(view: pathButton)
+        pathCircle = CircleButton(view: swapButton)
         claudeCircle = CircleButton(view: claudeButton)
         
         let imageView: UIImageView = UIImageView(image: UIImage(named: "glyphs_icon")!)
@@ -72,7 +72,7 @@ class NexusExplorer: AEViewController {
             self.view.addSubview(self.contextGlyphsView)
             if currentCapsule.superview == nil { view.addSubview(currentCapsule) }
             UIView.animate(withDuration: 0.5) {
-                self.pathButton.alpha = 0
+                self.swapButton.alpha = 0
                 self.musicButton.alpha = 0
                 self.glyphsView.alpha = 0
                 self.currentCapsule.alpha = 0
@@ -83,7 +83,7 @@ class NexusExplorer: AEViewController {
                 self.articleView.key = article.key
                 self.claudeButton.article = article
                 self.currentCapsule.article = article
-                self.pathButton.removeFromSuperview()
+                self.swapButton.removeFromSuperview()
                 self.musicButton.removeFromSuperview()
                 self.glyphsView.removeFromSuperview()
                 self.glyphsScroll.removeFromSuperview()
@@ -121,12 +121,12 @@ class NexusExplorer: AEViewController {
     func showGlyphs() {
         claudeButton.article = nil
 
-        pathButton.alpha = 0
+        swapButton.alpha = 0
         musicButton.alpha = 0
         claudeButton.alpha = 0
         glyphsView.alpha = 0
         if !Screen.iPhone {
-            view.addSubview(pathButton)
+            view.addSubview(swapButton)
 //            view.addSubview(musicButton)
             view.addSubview(claudeButton)
             view.addSubview(glyphsScroll)
@@ -147,7 +147,7 @@ class NexusExplorer: AEViewController {
             self.articleView.addSubview(self.articleView)
             UIView.animate(withDuration: 0.5) {
                 self.pathCircle.alpha = 1
-                self.pathButton.alpha = 1
+                self.swapButton.alpha = 1
                 self.musicButton.alpha = 1
                 self.claudeButton.alpha = 1
                 self.glyphsView.alpha = 1
@@ -165,7 +165,7 @@ class NexusExplorer: AEViewController {
             glyphsCell.alpha = 1
             articleCell.alpha = 0
         } else {
-            view.addSubview(pathButton)
+            view.addSubview(swapButton)
 //            view.addSubview(musicButton)
             view.addSubview(claudeButton)
             view.addSubview(glyphsScroll)
@@ -176,7 +176,7 @@ class NexusExplorer: AEViewController {
         glyphsScroll.contentOffset = self.glyphsOffset
         articleScroll.addSubview(self.articleView)
         pathCircle.alpha = 1
-        pathButton.alpha = 1
+        swapButton.alpha = 1
         musicButton.alpha = 1
         claudeButton.alpha = 1
         glyphsView.alpha = 1
@@ -198,6 +198,7 @@ class NexusExplorer: AEViewController {
         layout()
     }
     func swapPaths() {
+        self.swapButton.rotateView()
         UIView.animate(withDuration: 0.4) {
             self.glyphsView.alpha = 0
         } completion: { (completed: Bool) in
@@ -243,9 +244,9 @@ class NexusExplorer: AEViewController {
         currentCapsule.transform = CGAffineTransform(rotationAngle: -.pi/2)
         view.addSubview(currentCapsule)
         
-        pathButton.addAction { self.swapPaths() }
+        swapButton.addAction { self.swapPaths() }
         if !Screen.iPhone {
-            view.addSubview(pathButton)
+            view.addSubview(swapButton)
 
 //            view.addSubview(musicButton)
             musicButton.addAction {
@@ -300,7 +301,7 @@ class NexusExplorer: AEViewController {
         pathCircle.topLeft(dx: -2*s, dy: Screen.safeTop-7.44274809*s, width: 54*s, height: 54*s)
         claudeCircle.bottomLeft(dx: -2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
         glyphsCircle.bottomRight(dx: 2*s, dy: -(Screen.safeBottom-7.44274809*s), width: 54*s, height: 54*s)
-        pathButton.center(width: 30*s, height: 30*s)
+        swapButton.center(width: 26*s, height: 26*s)
         claudeButton.center(width: 30*s, height: 30*s)
         claudeHover.center(width: 250*s, height: 75*s)
     }
@@ -313,7 +314,7 @@ class NexusExplorer: AEViewController {
         currentCapsule.render()
         currentCapsule.topLeft(dx: 15*s, dy: Screen.safeTop+19*s)
         
-        pathButton.topLeft(dx: 10*s, dy: Screen.safeTop + 10*s, width: 20*s, height: 20*s)
+        swapButton.topLeft(dx: 10*s, dy: Screen.safeTop + 10*s, width: 20*s, height: 20*s)
         musicButton.bottomRight(dx: -10*s, dy: -10*s, width: 20*s, height: 20*s)
         claudeButton.bottomLeft(dx: 10*s, dy: -10*s, width: 180*s, height: 24*s)
     }
