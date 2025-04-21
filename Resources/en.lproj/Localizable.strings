@@ -212,11 +212,11 @@ This varies with r^(3/2).  There is no way the aexels can be conserved.  There i
 
 ##[Accelerant]##Hyle pulls on the aexels themselves inducing an acceleration:
 
-A = GM/r^2.
+A = GM/r².
 
-Given our experience from Electromagnetism of how to construct a 1/r^2 force, it would be possible to conjecture that there is a similar mechanism at use here.  Theoretically, each bit of hyle could send out g-pings in all directions that apply some sort of acceleration to the aexels themselves.  These g-pings fall off at 4pi r^2, giving us our perfect 1/r^2 force on the aexels.
+Given our experience from Electromagnetism of how to construct a 1/r² force, it would be possible to conjecture that there is a similar mechanism at use here.  Theoretically, each bit of hyle could send out g-pings in all directions that apply some sort of acceleration to the aexels themselves.  These g-pings fall off at 4pi r², giving us our perfect 1/r² force on the aexels.
 
-However, while that works conceptually, logistically, it's intractable.  Unlike E&M which is generally quite short range, Gravity has to work across the entire Universe.  And as mentioned in the Kinematics article.  E&M phenomena is huge compared to Gravity.  The mechanisms in play there can be much more complex, gravity needs to be simple.  And since the aexels are so small and since each needs to get hit at any distance from any bit of hyle, the amount of 'particles' that need to be tracked is just ridiculous.  But, there is actually two ways to get a 1/r^2 effect.  Certainly, a volley of dust sent out everywhere can achieve the effect.  But, as the InsideOut lab pointed out.  For a fluid being destroyed and pulled in, the velocity of the fluid will also create a 1/r^2 effect.  Essentially, its the removal of fluid that is spreading out a 1/r^2.
+However, while that works conceptually, logistically, it's intractable.  Unlike E&M which is generally quite short range, Gravity has to work across the entire Universe.  And as mentioned in the Kinematics article.  E&M phenomena is huge compared to Gravity.  The mechanisms in play there can be much more complex, gravity needs to be simple.  And since the aexels are so small and since each needs to get hit at any distance from any bit of hyle, the amount of 'particles' that need to be tracked is just ridiculous.  But, there is actually two ways to get a 1/r² effect.  Certainly, a volley of dust sent out everywhere can achieve the effect.  But, as the InsideOut lab pointed out.  For a fluid being destroyed and pulled in, the velocity of the fluid will also create a 1/r² effect.  Essentially, its the removal of fluid that is spreading out a 1/r².
 
 Of course this removal creates a velocity and not an acceleration.  However, this leaves an entirely tractable way of calculating the gravity throughout the entire universe at O(n).
 
@@ -224,7 +224,7 @@ Imagine each aexel holds a fluid called 'accelerant'.  Hyle doesn't destroy aexe
 
 Now the gravity problem goes from being an absurd tracking of an absurd amount of g-pings traveling throughout the entire universe, to a simple local pressure equalization problem of the accelerant.
 
-Now, of course, this is a leap well beyond anything previous in Universe X.  And the reason for making this leap is novel, the concern for the computational strain of Universe X itself.  However, even if this is entirely false, this concept could greatly speed the modeling of Gravitational phenomena.  It takes a problem naively implemented as O(n^2); that is reduced to  O(n ln(n)) by using approximate methods and replaces it with a method that is O(n) and precise, not an approximation any longer.
+Now, of course, this is a leap well beyond anything previous in Universe X.  And the reason for making this leap is novel, the concern for the computational strain of Universe X itself.  However, even if this is entirely false, this concept could greatly speed the modeling of Gravitational phenomena.  It takes a problem naively implemented as O(n²); that is reduced to  O(n ln(n)) by using approximate methods and replaces it with a method that is O(n) and precise, not an approximation any longer.
 
 
 
@@ -563,7 +563,7 @@ Questions
 [7d] What is Dark Matter?
 [7e] Why does there appear to be more matter than antimatter in the Universe?
 
-[8a] What does E=mc^2 really mean?
+[8a] What does E=mc² really mean?
 [8b] What is its mechanism?
 [8c] Does a photon have mass?  Where does the mass a star radiates go?
 
@@ -1943,41 +1943,45 @@ It was this hyle that destroyed aexels, not mass.  This hyle always moved at the
 
 ";
 
-"cupola_article" = "Electricity, Magnetism and the Cupola
+"cupola_article" = "#[Electricity, Magnetism and the Cupola]###[Pings and Pongs]##Back in the day, while at university, long before Universe X, I was continually attempting to wrap my head around various phenomena in Physics.  I got a salt shaker and shook some salt out onto my desk, gathered it into a pile and then pushed my finger into the pile creating a ring.  I then continually increased the radius of the ring by swirling my finger around inside.
 
-When I released Aexel 3.0 in December of 2022 it included the new Dilation and Contraction simulations.  Implementing these simulations took my explanations for Dilation and Contraction from hand waving to a rigorous implementation; supporting my long held contention: the best way to make sure you understand something is to explain it to a computer.
+It occurred to me that as I increased the radius of the ring the amount of salt at any point would fall off at 1/r and would fall off at 1/r² if I could perform a similar exercise in three dimensions.  I thought that there must be some mechanism akin to this salt model underpinning the 1/r² forces in Physics, but I had no idea how that would work or how to explain the seemingly endless supply of 'salt' needed.
 
-But, for those two simulations I used a very specific configuration of the particles.  Those configurations made calculating the angle of the pong responses quite easy.  Trying to handle any two particles traveling at any two speeds in any two directions was daunting.  I figured there must be some way to encode enough information to allow the target teslon to find the source teslon again, but I had no idea what that would be at that point.
+When I released Aexel 3.0 in December of 2022 it included the new Dilation and Contraction simulations.  Implementing these simulations took my explanations for Dilation and Contraction from hand waving to a rigorous implementation; supporting my long held contention that the best way to make sure you understand something is to explain it to a computer.
 
-Even before the Aexels concept began I had some vague notion of parallel and perpendicular vectors some how being involved in Electricity and Magnetism, Linear and Angular Momentum, Div and Curl.
+But, for those two simulations I used a very simple and specific configuration of the particles.  Those configurations made calculating the trajectories of pings and pongs quite easy, but I had no idea how to do so in the general case, for particles moving in arbitrary directions and with various speeds.  I figured there must be a way to encode enough information in the ping in order to accomplish it, but I had no idea what that information was.
 
-Back in school when I first heard of magnetic and electric forces being frame dependent I experienced great consternation and received no satisfactory explanation of what was really going on.  But, combining all these bits of conceptual information, the cupola vector began to take form.
+For Aexels 4.0 I wanted to add a much more complete electromagnetism simulation.  In order to accomplish this, I needed to figure out how to tell the target teslon which direction it needed to move in response to the ping it had encountered.  After playing with some geometry and trigonometry I realized there was a remarkably simple way to determine the direction of the force: just take the vector of the absolute trajectory of the ping of length c and subtract the vector of the absolute trajectory of the source teslon of length v.  (The term 'absolute' here, means the translation across the aexels themselves, i.e., relative to the v = 0 frame.)
 
-I realized that the B field was just the cross product of the cupola vector and the frame dependent translation vector; and with that the frame dependence of the B and E fields finally made sense.
+This resultant vector would indicate the exact direction of the force.  Each ping could be embedded with this vector and any teslon encountering the particle would know which direction the force was to be applied.  I named this vector the 'cupola'.
 
-There is an equation of physics that just appears to come out of left field.
+But, this target teslon also needed to respond with a pong that was guaranteed to intersect with the source teslon.  I soon realized that if you reflected the absolute translation vector over the cupola vector and sent out a response edison also at the speed of light, the pong would precisely intersect that source teslon, assuming it had moved with constant velocity.
+
+With these results in hand, I proceeded to build a simulation in the Aexels app.  Seeing this perfect and elegant ping / pong dance was really quite magical.
+
+{{CupImg01}}
+
+##[Magnetism and the Lorentz Force]##Also from my university days, I had some highly vague sense that the E and B fields and the Linear and Angular momentum vectors had to be some sort of orthogonal pointers, but this was a very foggy / undeveloped notion.
+
+When I had first heard of magnetic and electric forces being frame dependent I reacted with great consternation and received no satisfactory explanation of what was really going on.  But, now armed with this new cupola vector the true nature of the E and B fields started to take form.
+
+I realized that the B field was just the cross product of the cupola vector and the frame dependent translation vector; and with that realization, the frame dependence of the E and B fields finally made sense.
+
+There is an equation in physics that really does not seem to fit in with all the other equations, the Lorentz force:
 
     F = qv × B
 
 Not only is this force applied *perpendicular* to the B field, but is a function of v!  And while in Universe X the v of the Lorentz transformations represents the rate of the translation across the aexels, what does this v represent?  Two substantial mysteries in one small equation.
 
-The first mystery is relatively easy to dismantle in Universe X.  The B field being just the cross of the cupola and frame dependent translation vector means its just a short hand way of representing two vectors.  The force is actually not perpendicular at all; it's in the exact same plane as the cupola and translation vectors.
+The first mystery is relatively easy to dismantle in Universe X.  The B field being just the cross of the cupola and frame dependent translation vector means it is simply an artificial amalgam of two more fundamental vectors.  The force is actually not perpendicular at all; it's in the exact same plane defined by the cupola and frame dependent translation vectors.
 
-As far as the velocity dependence of the force, if one plays with the numbers when dealing with the force one teslon exerts on another one can see that ultimately all E&M forces are essentially coulomb forces in the frame of the source teslon.
+As far as the velocity dependence of the force, if one plays with the numbers when dealing with the force one teslon exerts on another one can see that ultimately all E&M forces are simply coulomb forces in the frame of the source teslon.
 
-The B component of the force only comes into play when trying to make sense of that E force in another frame.  It's a mathematical trick to make the force make sense on other frames and that amount of correction that is needed here is a function of the velocity difference between the source teslon frame and the target teslon frame.
+The B component of the force only comes into play when trying to make sense of that E force in another frame.  It's a mathematical trick to make the force make sense in other frames and that amount of correction that is needed here is a function of the velocity difference between the source teslon frame and the target teslon frame.
 
-When I finally sat down to explain all this to my computer I eventually came to the problem of how to calculate the cupola and then how to determine the response angle.
+##[Hyle Exchange]##Unfortunately, modeling the hyle exchange was not nearly as straightforward.  The problem is that in natural units the momentum and energy carried by a photon is always equal.  But the momentum and energy lost by a teslon is never equal.  So how do you maintain local conservation through photon exchange?
 
-Using the Dilation simulation configuration and a little geometry one can see that the cupola is just the transmission vector from the source teslon minus the source teslons translation vector.  This simple math will ensure all teslons co-moving with the source teslon will see the pings pointed parallel to the frame translation vector, and thus appear as a pure E field.
-
-Once the cupola is correctly calculated and after a little pondering one can see that by reflecting the pongs incoming trajectory over the cupola vector will give the exact angle needed to intercept the source teslon.
-
-The implementation of that shockingly simple algorithm provided a visceral confirmation that E&M without field was possible and elegant.
-
-Unfortunately, modeling the hyle exchange was not nearly as straightforward.  The problem is that in natural units the momentum and energy carried by a photon is always equal.  But the momentum and energy lost by a teslon is never equal.  So how do you maintain local conservation through proton exchange?
-
-Here I think we have butted up against the mysteries of Quantum Mechanics and will be left to be tacked in some future version of Aexels.
+Here I think we have butted up against the mysteries of Quantum Mechanics and this mystery will be left to be tackled in some future version of Aexels.
 
 
 
@@ -2003,7 +2007,7 @@ The Inside Out mechanism started with an aexel sink at the location of the mass.
 
 The Outside In mechanism started with the aexel flow.  It posited that the dilation at any point is an indication of the velocity of the aexels flowing through that point.  From that velocity the acceleration at every point could be calculated.
 
-When you do those calculations the Inside Out mechanism gives a 1/r^2 relation for the velocity.  The Outside In mechanism gives a 1/r^2 relation for the acceleration.  How can these two be reconciled?
+When you do those calculations the Inside Out mechanism gives a 1/r² relation for the velocity.  The Outside In mechanism gives a 1/r² relation for the acceleration.  How can these two be reconciled?
 
 My thought since the very beginning of Universe X is that I would be able to resolve this through density variations, but when it came time to actually explain this to my computer I realized two things.  One, given the aexel model of distance, there actually is zero density wiggle room.  You can't increase density without increasing distance.  The Cartesian distance is irrelevant, the only thing that matters is the number of aexels you must jump to, to get from one point to the other.
 
@@ -2017,7 +2021,7 @@ I had made the assumption that the destruction of aexels by hyle was local, but 
 
 In electromagnetism teslons constantly send out pings in order to find other teslons.  In this case hyle continually sends out gravity pings (g-pings?) omnidirectionally in order to call aexels towards it.
 
-Since aexels aren't in fact conserved, we've solved the Gauss issue.  Because g-pings are traveling the same path as all the other signals, we understand why gravity moves at the speed of light.  Because the intensity of the g-pings falls off at 1/r^2 we understand the gravitational force.  Because gravity comes in orthogonal to the mass we know there is no concept of momentum in aexel dynamics.  And finally we know why density increases rather than decreases as you get closer to a clump of matter.
+Since aexels aren't in fact conserved, we've solved the Gauss issue.  Because g-pings are traveling the same path as all the other signals, we understand why gravity moves at the speed of light.  Because the intensity of the g-pings falls off at 1/r² we understand the gravitational force.  Because gravity comes in orthogonal to the mass we know there is no concept of momentum in aexel dynamics.  And finally we know why density increases rather than decreases as you get closer to a clump of matter.
 
 There has been a long standing question in Universe X.  Is density isotropic?  My intuition was that it was, but I had no strong reason why it needed to be.  But now this gives a hint as to the exact mechanism at player here.  As the aexels fall towards the accumulation of hyle their radial density will be unaffected but their angular density will become highly packed.  This imbalanced pressure causes the aexel to be destroyed like an egg.  The aexels are squished out of existence.
 
