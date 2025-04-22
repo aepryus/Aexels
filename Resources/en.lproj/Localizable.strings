@@ -440,7 +440,7 @@ In order for the reactions to be synced, the pong must too be hyleless.  Once th
 But then, what happens when that photon arrives at the target teslon and is absorbed by it?  This photon kick will once again not be synced.
 
 Perhaps since the flow of pings and pongs is continuous these out of sync reactions are just edge effects that don't affect the dynamics.  Or perhaps there is something more sophisticated going on in this hyle exchange.
-##[The Cupola]##Imagine two teslons, S(ource) and T(arget) situated perpendicular to the direction of translation traveling at 70% the speed of light.  The ping that eventually travels from S to T will have left S at an angle theta from S's translation vector.  However, the force applied to T will be straight upward, not aligned with the translation vector of the ping.  How does the T teslon know which direction to move in response to this ping?
+##[The Cupola]##Imagine two teslons, S(ource) and T(arget) situated perpendicular to the direction of translation traveling at 70% the speed of light.  The ping that eventually travels from S to T will have left S at an angle θ from S's translation vector.  However, the force applied to T will be straight upward, not aligned with the translation vector of the ping.  How does the T teslon know which direction to move in response to this ping?
 
 <<EMImg2>>
 
@@ -469,21 +469,21 @@ But, we haven't completely exhausted the beauty of the cupola quite yet...
 
 But as I have waded deeper into the mechanisms of Electricity and Magnetism, it is becoming clear that there is more going on here than just a quantized Aether.  The cupola mechanism has worked shockingly well in explaining much of the E&M phenomena, but the failure to fully model hyle transfer has exposed a shortcoming in understanding the region where E&M and Quantum meet.
 
-Certainly, the Copenhagen Interpretation of Quantum is an anathema to the aesthetics of Universe X, but perhaps more physical interpretations of what's going on are available.  Consider the standard electron in a infinite walled box problem.  The solution to the Schrödinger equation is:
+Certainly, the Copenhagen Interpretation of Quantum is anathema to the aesthetics of Universe X, but perhaps more physical interpretations are available.  Consider the standard electron in an infinite walled box problem.  The solution to the Schrödinger equation is:
 
-    ψₙ(x) = √(2/L) sin(nπx/L)
+<<QMEq01>>
 
 Now imagine a disk with a mirrored wall glued to its face across its diameter with surface area A.  We place this disk in a slot where it can roll back and forth, x = 0 when it is all the way to the left and x = L when it is all the way to the right.  When the disk is at one of the barriers its mirror must be vertical.  However, it can roll a half time, a full time or any number of rotations n/2 to get back and forth between the two walls.
 
 <<quantum_diag>>
 
-What is the surface area of the mirror when looked at from above?  For some angle theta from vertical it will be A sin(theta).  Theta is nπ times x/L.  This gives the final cross sectional area from above as:
+What is the surface area of the mirror when looked at from above?  For some angle θ from vertical it will be A sin(θ).  θ is nπ times x/L.  This gives the final cross sectional area from above as:
 
-    C(x) = A sin(nπx/L)
+<<QMEq02>>
 
-Which looks suspiciously familiar.
+This looks suspiciously familiar.
 
-Who knows what if anything this means, but hopefully substantial progress will continue and Quantum will come more into focus with Aexels 5.0.
+Who knows what, if anything, this means, but hopefully substantial progress will continue and, like E&M with version 4, Quantum will come more into focus with version 5.
 
 
 
@@ -840,9 +840,7 @@ Resisting the temptation to discuss this concept at length, here is a list of th
 
 
 "blackHole_name" = "Black Holes";
-"blackHole_article" = "What's Inside of a Black Hole?
-
-The Floating Leaf article argues that the since gravity is not a force a tennis ball falling from infinity is marking the flow of the aexels it is sitting upon themselves.  As such the velocity of the aexels are:
+"blackHole_article" = "#[What's Inside of a Black Hole?]#The Floating Leaf article argues that the since gravity is not a force a tennis ball falling from infinity is marking the flow of the aexels it is sitting upon themselves.  As such the velocity of the aexels are:
 
 <<BHEq1>>
 
@@ -858,9 +856,9 @@ This gives us an intuition that the speed of the aexels is equal to the escape v
 
 The Kinematics article detailed why teslons can not move at c, but similarly they also can't sit still on aexels traveling at c.  Analogously, edisons can't sit still on aexels traveling greater than c.  It would seem that either all the hyle inside is at the center or on its shell.
 
-However, this doesn't consider that once in the interior the aexels begin to be destroyed.  The escape velocity no longer tracks with the rate of aexel flow.  The external Schwarzschild metric no longer applies inside a sphere.
+However, the escape velocity no longer tracks with the rate of aexel flow.  The external Schwarzschild metric no longer applies inside a sphere.
 
-There is however an alternate Internal Schwarzschild Metric solved assuming a constant density sphere.  Using this alternate metric we can derive the dilation in the interior of a such sphere:
+There is however an alternate internal Schwarzschild Metric solved assuming a constant density sphere.  Using this alternate metric we can derive the dilation in the interior of a such sphere:
 
 <<BHEq4>>
 
@@ -1204,13 +1202,13 @@ Consider a wire with charges flowing down it.  The charges are sending out pings
 "bellTHooft_name" = "Bell and ’t Hooft";
 "bellTHooft_article" = "#[Bell and ’t Hooft]#This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the 'unknown hidden variables' that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabilistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
 
-But with a better understanding of Bell's argument, it became apparent there was perhaps a more fundamental discrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that
+However with a better understanding of Bell's argument, it became apparent there was a more fundamental discrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that
 
 **\"The machinery of quantum mechanics is fully capable of describing a single realistic world.\"**
 
 He continues...
 
-**Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.**
+**\"Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.\"**
 
 However, he doesn't have a specific Cellular Automaton in mind, but he does indicate what constraints it must be able to solve:
 
