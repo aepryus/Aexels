@@ -40,9 +40,9 @@ class Concepts {
     static let glossary : Article = Article(key: "glossary", parent: epilogue)
 
     static var articles: [Article] = [
-        intro, aether, cellular, kinematics, gravity1, darkness, hyle, dilation, contraction,
-        electromagnetism, gravity2, quantum, nuclear, epilogue, forward, claude, aesthetics,
-        blackHole, chronos, floatingLeaf, fourClocks, narwhal, magnetism, bellTHooft, glossary
+        intro, aether, cellular, kinematics, gravity1, hyle, dilation, contraction, electromagnetism,
+        gravity2, darkness, quantum, nuclear, epilogue, forward, claude, aesthetics,
+        chronos, floatingLeaf, fourClocks, narwhal, magnetism, blackHole, bellTHooft, glossary
     ]
     
     static func glyphs(s: CGFloat) -> [GlyphView] {
