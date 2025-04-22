@@ -233,37 +233,37 @@ Now, of course, this is a leap well beyond anything previous in Universe X.  And
 ";
 
 "darkness_name" = "Darkness";
-"darkness_article" = "Darkness
+"darkness_article" = "#[Darkness]#Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
 
-Astronomers observing our own universe have noticed some problems with our current understanding of Physics.  There are two major issues: One, is that for unknown reasons the universe itself appears to be expanding.  The other is that the galaxies of our universe appear to have greater gravitational pull than they should based on the amount of mass that they contain.
+From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.
 
-From these observations they realized that our universe contains dark energy which causes the universe to expand and dark matter which gives the galaxies more mass than they appear to have.  The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
+The mass of dark energy and dark matter account for about 96% of the mass of the universe.  Our observable universe only accounts for 4% of what exists.  96% percent of the mass of the our own universe has never been observed.
+
+(Technically, Dark Energy causes the *acceleration* of the expansion of the universe.  The actual current 'mainstream' view is that expansion is simply the magical natural state of the universe with no cause what-so-ever.)
 
 Luckily, once again, Universe X isn't nearly so magical.
 
-Previously, we have mentioned 3 types of stable state loops:
+##[Dark Energy]##In the Gravity I article it was mentioned that there are potentially three ways that loops could interact with the aexels: they could pull on the aexels (leading to their destruction), they could push on the aexels (leading to their creation) or they could do neither.
 
-- Loops that destroy aexels
-- Loops that create aexels
-- Loops that do neither
+This article concerns the loops that push on aexels or perhaps more precisely (based on the concepts of the Gravity II article) the loops that are the source of 'accelerant'.  Let's call those loops 'antimatter'.
 
-This article concerns the 'loops that create aexels'.  Let's call those loops 'antimatter'.
+In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If it is the case that a matter loop is an accelerant sink then perhaps it is also the case that an antimatter loop is an accelerant source.
 
-In our universe, there is a phenomenon known as pair creation.  Of the many known particles of our own universe each has an antiparticle that is equal and opposite in every way.  If a matter loop destroys aexels then perhaps it's the case that an antimatter loop creates them.
+And while the matter of Universe X clumps up into galaxies and stars and planets continually causing the flow of accelerant inward, thereby pulling in aexels themselves and consequently the matter sitting upon those aexels.
 
-And while the matter of Universe X clumps up into galaxies and stars and planets continually drawing in aexels as a drain in a tub continually draws in water.  The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new aether between the galaxies causing the space between them to continually increase.
+The antimatter of Universe X spreads out as a dust permeating the space between those galaxies continually creating new accelerant that causes the aexels to accelerate away from it.  And certainly there must also be an inverse of the squish mechanism that will cause an aexel to spawn once the aexel density gets too low, thereby maintaining the flat aether.
 
-It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.  And if a matter loop destroys aexels at the same rate that an antimatter loop creates them then perhaps the total number of aexels is always in balance.
+It has been observed that at times a particle and its antiparticle can be created.  Similarly, if a particle and its antiparticle meet they can each be destroyed.  As such perhaps it's the case that the total matter in Universe X is always equal to the total antimatter.
+
+And if a matter loop removes accelerant at the same rate that an antimatter loop adds accelerant then perhaps the total amount of accelerant is constant and likely the destruction of aexels through the squish mechanism is balanced by formation of aexels via the spawn mechanism.
 
 This net teleportation of aexels from inside of galaxies to outside of galaxies could then account for a red shift of photons traveling through the antimatter dust; making a steady state universe appear to be expanding.
 
-Alternatively, Universe X may have been initially seeded with more antimatter loops or perhaps the rate that antimatter loops create aexels is greater than the rate the matter loops destroy them and Universe X really is expanding.
+##[Dark Matter]##If this explains the expansion of Universe X, what about the 'Dark Matter'?
 
-If this explains the 'Dark Energy' of Universe X, what about the 'Dark Matter'?
+Any flow of accelerant could either be caused by a sink pulling the accelerant inward or a source pushing the accelerant outward.  It can be difficult to tell the difference between a pull and a push.
 
-The aexels of Universe X form a crystal like lattice.  They sit in a potential well not wanting to get too far away from one another, but also not wanting to get too close.  It can be difficult to tell the difference between a pull and a push.
-
-The destruction of aexels in Universe X looks like a pull.  The creation of aexels in Universe X will look like a push.  If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
+If the galaxies of Universe X are filled with matter loops pulling from the inside, perhaps they are also surrounded by antimatter loops pushing from the outside; the same antimatter loops that are causing the aether between galaxies to expand.
 
 As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
 
@@ -465,15 +465,11 @@ But, we haven't completely exhausted the beauty of the cupola quite yet...
 ";
 
 "quantum_name" = "Quantum Mechanics";
-"quantum_article" = "Quantum Mechanics
+"quantum_article" = "#[Quantum Mechanics]#Previously, there has not been much explicit discussion about Quantum Mechanics in the Aexels app.  I had felt that the quantized Aether and unknown hidden variables represented by the precise geometry of the aexels at any point in time was enough to explain much of the odd behavior underpinning Quantum.
 
-Previously, there has not been much explicit discussion about Quantum Mechanics in the Aexels app.  I had felt that the quantized Aether and unknown hidden variables represented by the precise geometry of the aexels at any point in time was enough to explain much of the odd behavior underpinning Quantum.
+But as I have waded deeper into the mechanisms of Electricity and Magnetism, it is becoming clear that there is more going on here than just a quantized Aether.  The cupola mechanism has worked shockingly well in explaining much of the E&M phenomena, but the failure to fully model hyle transfer has exposed a shortcoming in understanding the region where E&M and Quantum meet.
 
-But as I have waded deeper into the mechanism underpinning Electricity and Magnetism, it is becoming more and more clear that there is more going on here than just a quantized Aether.  The cupola mechanism has worked shockingly well in explaining much of the E&M phenomena, but the failure to fully model hyle transfer has exposed a shortcoming in understanding the region where E&M and Quantum meet.
-
-Certainly, the Copenhagen Interpretation of QM is an anathema to the aesthetics of Universe X.  But perhaps, there are hints of insights into physical mechanisms for Quantum too.
-
-For example, consider the standard electron in a infinite walled box problem.  The solution to the Schrodenger equation is:
+Certainly, the Copenhagen Interpretation of Quantum is an anathema to the aesthetics of Universe X, but perhaps more physical interpretations of what's going on are available.  Consider the standard electron in a infinite walled box problem.  The solution to the Schrödinger equation is:
 
     ψₙ(x) = √(2/L) sin(nπx/L)
 
@@ -487,7 +483,7 @@ What is the surface area of the mirror when looked at from above?  For some angl
 
 Which looks suspiciously familiar.
 
-Perhaps akin to the state of E&M when Aexels released v3.0, I don't know what this means or where this is going, but there are a handful of clues that have become available.  Perhaps over time additional physical insights will emerge here also.
+Who knows what if anything this means, but hopefully substantial progress will continue and Quantum will come more into focus with Aexels 5.0.
 
 
 
@@ -496,9 +492,7 @@ Perhaps akin to the state of E&M when Aexels released v3.0, I don't know what th
 ";
 
 "nuclear_name" = "Nuclear Forces";
-"nuclear_article" = "Nuclear Forces
-
-To date there has been zero discussion of the Weak and Strong interactions in Universe X.  However, with the progress made in E&M it is perhaps time to start thinking about them; both because things are getting closer to their realm and because the relative simplicity of the E&M mechanism may indicate that these mechanism might not be insanely complicated either.
+"nuclear_article" = "#[Nuclear Forces]#To date there has been zero discussion of the Weak and Strong interactions in Universe X.  However, with the progress made in E&M it is perhaps time to start thinking about them; both because things are getting closer to their realm and because the relative simplicity of the E&M mechanism may indicate that these mechanism might not be insanely complicated either.
 
 At this point both the Weak and Strong interaction are basically entirely not understood in Universe X.  But, here is some extremely early speculation.
 
@@ -506,7 +500,7 @@ One might note that while much progress has been made in E&M since version 3.0 o
 
 The Strong interaction with its unshearable quarks seems capable of containing hyle, of bouncing it back and forth in a confined space like a massless mirrored box.  Somehow the quarks are able to pass back and forth gluons which are themselves hyleless edisons in order to maintain this structure while also confining the hyle.
 
-All of this hints at another missing mechanism.  Any particle that has mass must have internal structure and motion in Universe X; hyle must be able to move back and forth in some way.  But, neither the Strong nor Weak interaction have anything to say about the structure of an electron or any lepton.  Some other interaction must be at play here.
+All of this hints at another missing mechanism.  Any particle that has mass must have internal structure and internal motion in Universe X; hyle must be able to move back and forth in some way.  But, neither the Strong nor Weak interaction have anything to say about the structure of an electron or any lepton.  Some other interaction must be at play here.
 
 The combination of all of this add considerably to Universe X's (already substantial) to do list.  However, given the early success of the work on the E&M mechanism perhaps these tasks are not quite as insurmountable as one might fear.
 
@@ -1208,21 +1202,21 @@ Consider a wire with charges flowing down it.  The charges are sending out pings
 ";
 
 "bellTHooft_name" = "Bell and ’t Hooft";
-"bellTHooft_article" = "Bell and ’t Hooft
+"bellTHooft_article" = "#[Bell and ’t Hooft]#This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the 'unknown hidden variables' that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabilistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
 
-This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the \"unknown hidden variables\" that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabalistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
+But with a better understanding of Bell's argument, it became apparent there was perhaps a more fundamental discrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that
 
-But after reading the above linked Mermin paper, it became apparent there was perhaps a more fundemental descrepancy between Universe X and Quantum Mechanics. This led me to a paper by Dutch Physicist Gerard 't Hooft titled \"Explicit construction of Local Hidden Variables for any quantum theory up to any desired accuracy\". In his paper Professor 't Hooft argues that contrary to Bell that \"The machinery of quantum mechanics is fully capable of describing a single realistic world.\"
+**\"The machinery of quantum mechanics is fully capable of describing a single realistic world.\"**
 
-He states:
+He continues...
 
-Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.
+**Every cellular automaton allows for a description in terms of a quantum Hamiltonian, which reproduces the evolution of all cells with infinite perfection. Conversely, every quantum system can be approximated by an Hamiltonian derived from a cellular automaton.**
 
 However, he doesn't have a specific Cellular Automaton in mind, but he does indicate what constraints it must be able to solve:
 
-...we need to restrict ourselves to finite models, forcing us to work with lattice theories. Making such theories relativistically invariant is notoriously difficult. It will presumably involve general relativity, and this is far beyond what we can handle presently.
+**\"...we need to restrict ourselves to finite models, forcing us to work with lattice theories. Making such theories relativistically invariant is notoriously difficult. It will presumably involve general relativity, and this is far beyond what we can handle presently.\"**
 
-I believe Universe X is just such a lattice theory. A theory that elegantly handles Special and General Relativity, Lorentz Covariance and Gravity.
+I believe Universe X is just such a lattice theory. A theory that elegantly handles Special and General Relativity, Lorentz Covariance and Gravity.  (Of course with the caveat that we jettison reciprocity.)
 
 
 
@@ -1231,25 +1225,41 @@ I believe Universe X is just such a lattice theory. A theory that elegantly hand
 ";
 
 "glossary_name" = "Glossary";
-"glossary_article" = "Glossary
+"glossary_article" = "#[Glossary]#Accelerant - a posited conserved substance.  Hyle acts as its sink, antihyle as its source, thereby resulting in flows.  The velocity of which is promoted to an acceleration of the aexels themselves.  
+
+Aether - a collection of aexels.  The fabric upon which all matter of Universe X exists, in the form of stable state loops.
 
 Aexel - a quanta of the aether.  The basic building block of all of Universe X.
 
-Copula - vector pointer attached to pings, pongs and photons
+Antihyle - the antimatter variant of hyle.
 
-Cord - the unit of measure of hyle.  equal to the hyle contained in a static proton.
+Cupola - vector pointer attached to pings, pongs and photons
+
+Cord - the unit of measure of hyle.  It is equal to the hyle contained in a static proton.
 
 Edison - any stable state loop without internal motion.  Always moves at c.
 
 Hyle - a conserved quantity of universe X that makes up all 'matter'.
 
+Loop - a short hand nickname for a translating stable state loop.
+
+Particle - a short hand nickname for a translating stable state loop.
+
 Ping - the hyleless edison that is continually ejected by teslons in order to find other teslons.
 
 Pong - the hyleless edison response of a teslon that has encountered a ping.
 
+Spawn - the creation of an aexel in response to exceeding a low pressure threshold.
+
+Squish - the destruction of an aexel in response to exceeding a high pressure threshold.
+
+Stable State Loop - a persistent set of looping states.
+
 Teslon - a stable state loop that has internal motion.  Since, like all things the internal components can't move faster than c, the teslon itself can't move at c.
 
 Tic - the amount of time it takes signal to move from one aexel to another.
+
+Translating Stable State Loop - a persistent set of looping states that is able to translate across the aexels.
 
 Universe X - the universe where all these objects interact with one another.
 
