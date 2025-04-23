@@ -511,10 +511,8 @@ The combination of all of this add considerably to Universe X's (already substan
 ";
 
 "epilogue_name" = "Epilogue";
-"epilogue_article" = "Epilogue
-
-Math is knowing...
-Knowing, is not, understanding.
+"epilogue_article" = "#[Epilogue]#Math is knowing...
+Knowing is not understanding.
 
 When learning about the physics of our Universe there are a number of questions that might occur to oneself.
 
@@ -530,8 +528,7 @@ Questions
 [2a] Does God play dice with the Universe?
 [2b] Is matter a particle?  Is matter a wave?
 
-[3a] Is space 4D? 11D?
-[3b] What does it mean for space to warp?
+[3a] Is space 4D? 11D? What does it mean for space to warp?
 
 [4a] What is gravity?  What is its mechanism?
 [4b] How can a star attract a photon?
@@ -553,19 +550,16 @@ Questions
 
 [7a] What is the expansion of the universe?
 [7b] What causes it?
-[7c] What is Dark Energy?
-[7d] What is Dark Matter?
-[7e] Why does there appear to be more matter than antimatter in the Universe?
+[7c] What is Dark Matter?
+[7d] Why does there appear to be more matter than antimatter in the Universe?
 
 [8a] What does E=mc² really mean?
 [8b] What is its mechanism?
 [8c] Does a photon have mass?  Where does the mass a star radiates go?
 
-Universe X Answers
+##[Universe X Answers]##[1a] What is the speed of light?
 
-[1a] What is the speed of light?
-
-Universe X is filled with a quantized crystalline fluid called 'aether'.  Each element of the aether is called an 'aexel'.  Each aexel can communicate with its neighbors.  It takes exactly one 'tic' of time for a signal to move from an aexel to its neighbor.  The 'speed of light' is the translation of a signal at one aexel per tic.
+Universe X is filled with a quantized fluid called 'aether'.  Each element of the aether is called an 'aexel'.  Each aexel can communicate with its neighbors.  It takes exactly one 'tic' of time for a signal to move from an aexel to its neighbor.  The 'speed of light' is the translation of a signal at one aexel per tic.
 
 [1b] Why is it not possible to go faster than the speed of light?
 
@@ -589,29 +583,23 @@ No.  The seemingly random behavior observed in certain experiments is caused by 
 
 Matter is neither a particle or a wave.  It is a stable state loop iterating across a field of aexels.
 
-[3a] Is space 4D? 11D?
+[3a] Is space 4D? 11D? What does it mean for space to warp?
 
-Space is 3D.  The aether is a crystalline compressible fluid.  The aexels can flow; they can bunch up; they can spread out.  Arguably, the density and/or the rate of flow of the aexels at any point could be considered a 4th dimension.  But, calling space or the aether itself 4 dimensional because it's dynamic and compressible really doesn't make any more sense than calling any compressible gas 4D or for that matter any gas that varies in temperature, humidity or any other imaginable property from point to point as 4D.
-
-[3b] What does it mean for space to warp?
-
-Space does not warp.  However, the aether squishes; the aether stretches.
+Space is 3D.  The aether is a (nearly) incompressible fluid.  The 'warping' of space, is simply the contraction of meter sticks at different points due to the flow of aexels at each point, but space and even the aether itself are both flat.
 
 [4a] What is gravity?  What is its mechanism?
 
-Universe X is made up of a quantized crystalline fabric called the aether which is made up of aexels.  Crystalline in that each of the aexels are bound to their neighbors and sit in a potential well away from those neighbors, never letting themselves get too close or too far.
+Universe X is made up of a quantized fabric called the aether which is made up of aexels.  Gravity, rather than being a force on matter, is a force on the aexels themselves.  The matter sitting upon those aexels simply comes along for the ride.
 
-Some state loops in Universe X cause the destruction of these aexels.  As the aexels get destroyed these aexel destroying loops tend to clump up.  As they clump up the rate of aexels being destroyed increases.
-
-The velocity of aexels flowing towards these clumps will increase the closer they get to the clumps.  The increasing velocity; the acceleration, is gravity.
+Perhaps, this force on the aexels is mediated by a incompressible fluid called accelerant that has hyle as its sink and antihyle as its source.  The velocity of the accelerant being promoted to an acceleration of the aexels.
 
 [4b] How can a star attract a photon?
 
 It has been stated that Gravity is a force that is proportional to the product of the masses of two objects.  If a photon has no mass doesn't it follow that it will be unaffected by Gravity?
 
-A Photon (and any loop in Universe X whether it destroys or creates aexels or not) will be affected by gravity because gravity is not a force.  It is an emergent phenomenon better described as an acceleration caused by the pulling in of the aether and everything sitting on top of that aether.
+A Photon (and any loop in Universe X whether it destroys or creates aexels or not) will be affected by gravity because gravity is not a force on matter.  Rather, it is a force on the aexels themselves.  Matter sitting atop this aether simply comes along for the ride.
 
-And as Galileo pointed out long ago that phenomena is in no way a function of the mass of objects being 'pulled' on.
+And as Galileo pointed out long ago that phenomena is in no way a function of the mass of matter being 'pulled' on.
 
 [4c] What is a black hole?
 
@@ -619,7 +607,7 @@ A black hole is any concentration of matter dense enough to have the aexels flow
 
 [4d] What happens inside of a black hole?
 
-Nothing particularly interesting.  A black hole must be filled with matter all the way to its event horizon, because the escape velocity will always be greatest at the surface.  Both above and below the surface the escape velocity will drop off.  That shell where the escape velocity is equal to c can not have any mass because intrinsic mass loops can't travel at c and can't 'sit' at c (see above).
+Nothing particularly interesting.  A black hole must be filled with matter all the way to its event horizon, because the escape velocity will always be greatest at the surface.  Both above and below the surface the escape velocity will drop off.  That shell where the escape velocity is equal to c can not have any mass because intrinsic mass loops can't travel at c and can't 'sit' at c.
 
 If a star existed with an escape velocity just below being a black a hole and a tennis ball got tossed into it causing it to cross the line of being a black hole, would anything particularly dramatic happen to the interior of that star?
 
@@ -629,7 +617,7 @@ Light can't escape a black hole because the aexels are flowing into it at the sp
 
 [4f] What is a gravity wave?  What is waving?
 
-A gravity wave is a compression wave of the density of aexels.  Just as a sound wave is a compression wave of the density of air.
+A gravity wave is a compression wave of the density of aexels.  Just as a sound wave is a compression wave of the density of air.  Since the aexels are (nearly) incompressible this is akin to a sound wave in water or perhaps a Newton's Cradle.
 
 [5a] What is time dilation?
 
@@ -665,7 +653,7 @@ It is always invariant because length contraction masks changes in the speed of 
 
 [6d] If length contracts along the direction of travel; when traveling fast will the universe flatten into a pancake?
 
-No.  Length contraction only affects systems that are actually translating.  The length between any other non translating systems in Universe X will be unaffected.
+No. Length contraction only affects systems that are actually translating and are physically connected. The length between any other systems in Universe X will be unaffected.
 
 [7a] What is the expansion of the universe?
 
@@ -673,42 +661,34 @@ The expansion of the universe is the creation of aexels.
 
 [7b] What causes it?
 
-Every loop has an anti loop that is equal and opposite in every way.  Matter loops destroy aexels and as such antimatter loops create them.
+Every loop has an anti loop that is equal and opposite in every way.  Matter loops are sinks to accelerant which results in the squishing of aexels; antimatter loops are sources of accelerant which results in the spawning of new aexels.
 
-[7c] What is Dark Energy?
+[7c] What is Dark Matter?
 
-Dark energy is the antimatter loops creating aexels there by causing the \"expansion of the universe\"
+Dark Matter does not exist.  The phenomena that hints at dark matter is caused by the same entity that causes the phenomena that causes expansion, namely the antimatter particles that are the source of accelerant thereby creating aexels.  That new accelerant pushing on galaxies from the outside, but being mistaken for a pulling on the galaxies from the inside.
 
-[7d] What is Dark Matter?
+[7d] Why does there appear to be more matter than antimatter in the Universe?
 
-Dark Matter does not exist.  The phenomena that hints at dark matter is caused by the same entity that causes the phenomena hinted at by dark energy, namely the antimatter particles that are creating aexels.  Those new aexels pushing on galaxies from the outside, but being mistaken for a pulling on the galaxies from the inside.
-
-[7e] Why does there appear to be more matter than antimatter in the Universe?
-
-Matter destroys aexels constantly bringing things towards itself.  Antimatter creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
+Matter ultimately destroys aexels constantly bringing things towards itself.  Antimatter ultimately creates aexels constantly pushing things away from itself.  While matter continually clumps up into increasing large structures.  Antimatter continually spreads out as a dust between the matter clumps.
 
 [8a] What does E=mc² really mean?
 
-E=mc² means that mass and energy are two effects of the exact same phenomenon.
+There is a single substance in Universe X, termed 'hyle'.  Mass and energy are two separate effects of this hyle.  Energy being the translation of hyle, mass being the hyle's tendency to pull on aexels.  Hyle is conserved and these two effects are always occurring at all times.
 
 [8b] What is its mechanism?
 
-The translation of certain loops (but not all) cause the destruction (or creation) of aexels.  Some of this translation occurs internal to a loop such as in a proton, neutron or electron.  The mass of those objects being a measure of the amount of translation occurring internally.  Other translation occurs in the movement of the loops as a whole.
-
-The internal translation being the original display of mass and the external translation being the original display of energy.  E=mc² points out that both are the exact same phenomenon.
+Some times hyle is confined in a particle and bounces back and forth; it's difficult to see the energy in this case.  Some times hyle travels in a straight line and the pulling of aexels is always happening in its wake not internal to itself, making it difficult to see the mass in this case.  But both effects are still happening and always in the same proportion to one another.
 
 [8c] Does a photon have mass?  Where does the mass a star radiates go?
 
-Unlike a proton, a photon does not have internal translation.  Its translation is in a straight-line.  The destruction or creation of aexels by a photon always occurs in its wake never internal to itself.
+Unlike a proton, a photon does not have internal translation.  Its translation is in a straight-line.  The tugging on the aexels by a photon always occurs in its wake never internal to itself.
 
-So, if mass is the destruction of aexels then yes it does have mass.  Alternatively if one were to define mass as only the destruction of aexels caused by internal motion then no it does not.
+So, if mass is the tugging on of aexels then yes it does have mass.  Alternatively if one were to define mass as only the internal tugging on of aexels then no it does not.
 
 The mass of a star radiated out leaves with the photons being spewed by that star.
 
 
-Our Universe Answers
-
-Answering the above questions in our Universe is actually quite a bit easier than answering them for Universe X.  Easier because each of the questions has the exact same answer:
+##[Our Universe Answers]##Answering the above questions in our Universe is actually quite a bit easier than answering them for Universe X.  Easier because each of the questions has the exact same answer:
 
     I have no idea.
 
@@ -721,53 +701,54 @@ Answering the above questions in our Universe is actually quite a bit easier tha
 "forward_name" = "Forward";
 "forward_article" = "##[❧ Forward to 4.0]##Aexels 4.0 is the first version of the AC era - After Claude.  Claude's impact has been considerable and has contributed to the sizable progress made with this version.
 
-Like version 3.0 before, substantial changes have again been made to the existing articles in order to reflect the most up-to-date understanding of Universe X.  Some of those previous articles have been shifted around a bit:
+Version 4 adds 4 new simulations.  3 of the new and 2 of the old sims make use of the GPU in their rendering, greatly improving their performance.  A new crop circle navigation paradigm has been implemented with two separate article paths: Concepts and the Path of Discovery.  Version 3 had 12 articles, version 4 has 33.  In addition to the new articles all of the existing articles received substantial modifications.
 
-- The 'Intro' article has been divided into two main articles, 'Universe X' and 'Aether'.
-- The 'Discrepancy' article has been divided into two subarticles, 'Floating Leaf' and 'Four Clocks'.
-- The 'Forward' article has been made a subarticle of 'Universe X'.
-- 'Equivalence' has been renamed 'E=mc²'.
+Concepts:
+ - Universe X : part of the old Intro article
+    - Forward : existed
+    - Claude : new
+    - Aesthetics : new
+ - Aether : part of the old Intro article
+ - Cellular Automata : existed
+ - Kinematics : existed
+ - Gravity I : the old Gravity article
+ - E=mc^2 : the old Equivalence article
+ - Dilation : existed
+    - Chronos : new
+    - Floating Leaf : part of the old Discrepancy article
+    - Four Clocks : part of the old Discrepancy article
+ - Contraction : existed
+    - Narwhal, Walrus and Dolphin : new
+ - Electromagnetism : existed
+    - Magnetism : new
+ - Gravity II : new
+ - Darkness : existed
+ - Quantum : new
+    - Bell and 't Hooft: new
+ - Nuclear : new
+ - Epilogue : existed
+    - Glossary : new
 
-Additionally, two new main articles have been added with early musing about those topics:
+Path of Discovery:
+ - Intro : new
+ - Expansion : new
+ - Escaping : new
+ - Covariance : new
+ - Reciprocity : new
+ - Energy-Mass : new
+ - Cupola : new
+ - Squish : new
 
-- Quantum
-- Nuclear
-
-A number of new subarticles have also been added:
-
-- Claude
-- Aesthetics
-- Chronos
-- Black Holes
-- Narwhal, Walrus and Dolphin
-- Magnetism
-- Bell and 't Hooft
-- Glossary
-
-I have also added an entirely new 'Path of Discovery' set of articles which detail the order, timing and motivating factors that led to the ideas detailed in this app.
-
-- Expansion
-- Escaping
-- Covariance
-- Reciprocity
-- Energy-Mass
-- Cupola
-- Squish
-
-Aside from these changes to the text, an entirely new 'crop circle' navigation paradigm has been developed where each of the main articles, their various subarticles and their simulations can be accessed directly.
-
-Most substantial are four new simulators:
+The four new simulators are:
 
 - Inside Out, which illustrates the aexel sink concept from the inside.
 - Outside In, which illustrates the aexel flow from the outside.
 - Gravity, which uses the squish mechanism in order to merge both concepts in modeling the aexel flow towards a mass.
 - Electromagnetism, which is able to effectively illustrate the cupola mechanism and model the ping / pong handshake while tentatively modeling hyle exchange via photons.
 
-Another innovation with this version is its use of the GPU via Apple's Metal framework dramatically improving the performance of the simulations that use it: Outside In, Gravity, Electromagnetism, Dilation and Contraction.
-
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- April 2nd, 2025
+- April 23rd, 2025
 
 
 
@@ -840,7 +821,7 @@ Resisting the temptation to discuss this concept at length, here is a list of th
 
 
 "blackHole_name" = "Black Holes";
-"blackHole_article" = "#[What's Inside of a Black Hole?]#The Floating Leaf article argues that the since gravity is not a force a tennis ball falling from infinity is marking the flow of the aexels it is sitting upon themselves.  As such the velocity of the aexels are:
+"blackHole_article" = "#[What's Inside of a Black Hole?]#The Floating Leaf article argues that since gravity is not a force a tennis ball falling from infinity is marking the flow of the aexels it is sitting upon themselves.  As such the velocity of the aexels are:
 
 <<BHEq1>>
 
@@ -854,7 +835,7 @@ to calculate the dilation of a system sitting still at a radius r outside of a n
 
 This gives us an intuition that the speed of the aexels is equal to the escape velocity.  For a planet, the escape velocity continues to increase as we drill into the interior.  For a black hole, if the velocity of the aexels at the event horizon is already c, then it would seem the escape velocity would rise above c in the interior (unless it was an entirely hollow shell).
 
-The Kinematics article detailed why teslons can not move at c, but similarly they also can't sit still on aexels traveling at c.  Analogously, edisons can't sit still on aexels traveling greater than c.  It would seem that either all the hyle inside is at the center or on its shell.
+The Kinematics article detailed why teslons can not move at c, but similarly they also can't sit still on aexels traveling at c.  Analogously, edisons can't sit still on aexels traveling greater than c.  It would seem that either all the hyle inside is at the center or it's on the shell.
 
 However, the escape velocity no longer tracks with the rate of aexel flow.  The external Schwarzschild metric no longer applies inside a sphere.
 
@@ -873,12 +854,11 @@ The dilation factor ranges from 2 at the center to infinity at the horizon there
 
 So, once in the interior the flow rate immediately drops below c again allowing for teslons (and of course edisons) to persist in the interior.
 
-Another thing to note, outside of a sphere the aexel flow velocity immediately starts to drop.  Hyle, whether edisons or teslons can not sit on aexels flowing faster than c.  Therefore there cannot be a region of space inside the black hole where the aexels are flowing faster than c.  The surface of the sphere must extend all the way to the horizon.
+Another thing to note, for any given sphere of mass, the surface of the sphere is the point where the rate of aexel flow is at a maximum.  As soon as one moves out from the surface of the sphere the aexel flow begins to slow.  This fact combined with the fact that no matter, teslon or edison, can sit on aexels flowing at greater than c means that there can be no area inside the event horizon with empty space, the matter must extend until the horizon.
 
+Basically, in a black hole there must be a shell with aexels flowing at c.  The surface of a sphere must be the maximum of aexel flow.  Matter can't sit on aexels flowing at greater than c.  As such there simply can not be any empty space inside the horizon.
 
-A Mildly Interesting Aside
-
-I had always assumed that the Earth was close enough to a uniform density sphere that its gravitational field was strongest at its surface.  But, in researching this question I found out that it isn't true.
+##[A Mildly Interesting Aside]##I had always assumed the Earth was close enough to a uniform density sphere that its gravitational field was strongest at its surface.  But, in researching this question I found out that it isn't true.
 
 Here is a plot of the gravitational field of the Earth at r using the PREM model.
 
@@ -1778,11 +1758,11 @@ While editing an expression, anchor with one finger and tap the expression with 
 
 As such, I have decided to create this new alternative path which will detail the path of discovery.  This will catalog the order in which insights were gained and the motivating factors that brought each of those insights about.  Any new insights that occur can then be easily tacked onto the bottom.
 
-It is not my intention for this path to contain simulations, but in the case of Squish, I think it makes sense.  To a large degree the discoveries discussed in Squish came about in trying to reconcile the InsideOut and OutsideIn simulations.
+It is not my intention for this path to contain simulations, but in the case of Squish, I think it makes sense to include the InsideOut and OutsideIn sims.  Both of these provisional simulations were developed in an attempt to reconcile the two apparently contradictory concepts of gravity.
 
-That difficulty made me realize that there is no easy solution and I needed to rethink the broad mechanism in play here.  The result is that both of those simulations are now obsolete.  Eventually, I will need to work on a new Gravity simulation for the Concepts path.  However, I will include those obsolete simulations here.
+They were instrumental in helping me arrive at the Squish concept, which I was able to implement within the Gravity simulation.  This new simulation overrides these two provisional simulations, as such, I think it appropriate to place those overridden simulations here.
 
-The articles on this path will tend to be less formal and more personal in order to give more context into my thinking.  My hope is that some users will find these articles to be a more compelling description of Universe X and that the articles will make my thought processes more transparent.
+The articles on this path will tend to be less formal and more personal in order to give more context into my thinking.  My hope is that some users will find these articles to be a more accessible description of Universe X and that the articles will make my thought processes more transparent.
 
 As such, let's head down the path...
 
