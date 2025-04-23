@@ -704,29 +704,29 @@ The mass of a star radiated out leaves with the photons being spewed by that sta
 Version 4 adds 4 new simulations.  3 of the new and 2 of the old sims make use of the GPU in their rendering, greatly improving their performance.  A new crop circle navigation paradigm has been implemented with two separate article paths: Concepts and the Path of Discovery.  Version 3 had 12 articles, version 4 has 33.  In addition to the new articles all of the existing articles received substantial modifications.
 
 Concepts:
- - Universe X : part of the old Intro article
-    - Forward : existed
+ - Universe X : split from Intro article; modified
+    - Forward : modified
     - Claude : new
     - Aesthetics : new
- - Aether : part of the old Intro article
- - Cellular Automata : existed
- - Kinematics : existed
- - Gravity I : the old Gravity article
- - E=mc^2 : the old Equivalence article
- - Dilation : existed
+ - Aether : split from Intro article; modified
+ - Cellular Automata : modified
+ - Kinematics : modified
+ - Gravity I : modified Gravity article
+ - E=mc^2 : modified Equivalence article
+ - Dilation : modified
     - Chronos : new
-    - Floating Leaf : part of the old Discrepancy article
-    - Four Clocks : part of the old Discrepancy article
- - Contraction : existed
+    - Floating Leaf : split from Discrepancy article; modified
+    - Four Clocks : split from Discrepancy article; modified
+ - Contraction : modified
     - Narwhal, Walrus and Dolphin : new
- - Electromagnetism : existed
+ - Electromagnetism : modified
     - Magnetism : new
  - Gravity II : new
- - Darkness : existed
+ - Darkness : modified
  - Quantum : new
     - Bell and 't Hooft: new
  - Nuclear : new
- - Epilogue : existed
+ - Epilogue : modified
     - Glossary : new
 
 Path of Discovery:
@@ -748,7 +748,7 @@ The four new simulators are:
 
 I believe version 4.0 represents a massive step forward for Aexels and Universe X.  Considering the magnitude of change from 3.0 to 4.0, I myself can't wait to see what new insights a version 5.0 might bring.
 
-- April 23rd, 2025
+- April 24th, 2025
 
 
 

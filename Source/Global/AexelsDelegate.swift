@@ -24,4 +24,24 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
         Aexels.explorerViewController.graphView.stop()
         if let aetherView = Aexels.aetherView { aetherView.saveAether() }
 	}
+    
+// MacOS ===========================================================================================
+    override func buildMenu(with builder: UIMenuBuilder) {
+        super.buildMenu(with: builder)
+
+        builder.remove(menu: .services)
+        builder.remove(menu: .hide)
+
+        let aboutAction: UIAction = UIAction(title: "About Aexels", handler: { (action: UIAction) in
+            Aexels.explorerViewController.flashAbout()
+        })
+        builder.replace(menu: .about, with: UIMenu(title: "", image: nil, identifier: .about, options: .displayInline, children: [aboutAction]))
+
+        builder.remove(menu: .file)
+        builder.remove(menu: .edit)
+        builder.remove(menu: .format)
+        builder.remove(menu: .view)
+        builder.remove(menu: .window)
+        builder.remove(menu: .help)
+    }
 }

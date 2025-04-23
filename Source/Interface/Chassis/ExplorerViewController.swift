@@ -178,6 +178,18 @@ class ExplorerViewController: AEViewController {
         rampVolume()
     }
     
+    func flashAbout() {
+        UIView.animate(withDuration: 0.2) {
+            self.aexelsLabel.alpha = 1
+            self.versionLabel.alpha = 1
+        } completion: { (complete: Bool) in
+            UIView.animate(withDuration: 3, delay: 5) {
+                self.aexelsLabel.alpha = 0
+                self.versionLabel.alpha = 0
+            }
+        }
+    }
+    
 // Events ==========================================================================================
     var graphOn: Bool = false
     @objc func onTap() {

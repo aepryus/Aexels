@@ -70,7 +70,7 @@ class LimboCell: Cyto.Cell {
         let y2 = (y1 + y3) / 2
         let r: CGFloat = 10*s
 
-        path.move(to: CGPoint(x: x1, y: y2))
+        path.move(to: CGPoint(x: x1, y: (y1+y2)/2))
         if !cutouts.contains(.upperLeft) {
             path.addArc(tangent1End: CGPoint(x: x1, y: y1), tangent2End: CGPoint(x: x2, y: y1), radius: r)
         } else {

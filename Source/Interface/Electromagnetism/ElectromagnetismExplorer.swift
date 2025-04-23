@@ -140,7 +140,7 @@ class ElectromagnetismExplorer: Explorer {
         systemCell.content = systemView
         aetherCell.content = aetherView
         
-        tabsCell.tabs = [controlsTab, zoomsTab, experimentsTab, notesTab]
+        tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
         
         if Screen.iPhone {
             cyto.cells = [
