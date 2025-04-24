@@ -23,13 +23,13 @@ class ControlsTab: TabsCellTab {
     let pingsPerVolleySlider: Slider = Slider()
     
     let autoVolleyBoolButton: BoolButton = BoolButton(name: "auto volley")
-    let hyleExchangeBoolButton: BoolButton = BoolButton(name: "hyle exchange")
+//    let hyleExchangeBoolButton: BoolButton = BoolButton(name: "hyle exchange")
     let aetherFrameBoolButton: BoolButton = BoolButton(name: "aether frame")
     let cameraWallsBoolButton: BoolButton = BoolButton(name: "camera walls")
 
     let pingsBoolButton: BoolButton = BoolButton(name: "pings")
     let pongsBoolButton: BoolButton = BoolButton(name: "pongs")
-    let photonsBoolButton: BoolButton = BoolButton(name: "photons")
+//    let photonsBoolButton: BoolButton = BoolButton(name: "photons")
     
 
     let pongButton: PulseButton = PulseButton(name: "pong")
@@ -42,12 +42,12 @@ class ControlsTab: TabsCellTab {
             timeStepsPerVolleySlider.setTo(electromagnetism.timeStepsPerVolley)
             pingsPerVolleySlider.setTo(electromagnetism.pingsPerVolley)
             autoVolleyBoolButton.on = electromagnetism.autoVolleyOn
-            hyleExchangeBoolButton.on = electromagnetism.hyleExchangeOn
+//            hyleExchangeBoolButton.on = electromagnetism.hyleExchangeOn
             aetherFrameBoolButton.on = electromagnetism.aetherFrameOn
             cameraWallsBoolButton.on = electromagnetism.cameraWallsOn
             pingsBoolButton.on = electromagnetism.pingRenderMode != .minimal
             pongsBoolButton.on = electromagnetism.pongRenderMode != .minimal
-            photonsBoolButton.on = electromagnetism.photonRenderMode != .minimal
+//            photonsBoolButton.on = electromagnetism.photonRenderMode != .minimal
         }
     }
 
@@ -102,10 +102,10 @@ class ControlsTab: TabsCellTab {
         addSubview(autoVolleyBoolButton)
         autoVolleyBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.autoOn = on }
         
-        hyleExchangeBoolButton.on = false
-        addSubview(hyleExchangeBoolButton)
-        hyleExchangeBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.hyleExchangeOn = on }
-
+//        hyleExchangeBoolButton.on = false
+//        addSubview(hyleExchangeBoolButton)
+//        hyleExchangeBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.hyleExchangeOn = on }
+//
         aetherFrameBoolButton.on = false
         addSubview(aetherFrameBoolButton)
         aetherFrameBoolButton.onChange =  { (on: Bool) in self.explorer.swapAetherFrame() }
@@ -122,10 +122,10 @@ class ControlsTab: TabsCellTab {
         addSubview(pongsBoolButton)
         pongsBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.pongVectorsOn = on }
 
-        photonsBoolButton.on = true
-        addSubview(photonsBoolButton)
-        photonsBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.photonVectorsOn = on }
-
+//        photonsBoolButton.on = true
+//        addSubview(photonsBoolButton)
+//        photonsBoolButton.onChange =  { (on: Bool) in self.explorer.renderer.photonVectorsOn = on }
+//
         pongButton.addAction {
             self.explorer.renderer.onPong()
         }
@@ -138,10 +138,10 @@ class ControlsTab: TabsCellTab {
         explorer.renderer.timeStepsPerVolley = timeStepsPerVolleySlider.option
         explorer.renderer.autoOn = autoVolleyBoolButton.on
         explorer.renderer.wallsOn = cameraWallsBoolButton.on
-        explorer.renderer.hyleExchangeOn = hyleExchangeBoolButton.on
+//        explorer.renderer.hyleExchangeOn = hyleExchangeBoolButton.on
         explorer.renderer.pingVectorsOn = pingsBoolButton.on
         explorer.renderer.pongVectorsOn = pongsBoolButton.on
-        explorer.renderer.photonVectorsOn = photonsBoolButton.on
+//        explorer.renderer.photonVectorsOn = photonsBoolButton.on
     }
     
 // UIView ==========================================================================================
@@ -174,8 +174,8 @@ class ControlsTab: TabsCellTab {
         y += 30*s
         cameraWallsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
-        hyleExchangeBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
-        y += 30*s
+//        hyleExchangeBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+//        y += 30*s
         aetherFrameBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s
         
@@ -183,7 +183,7 @@ class ControlsTab: TabsCellTab {
         y += 24*s
         pongsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 24*s
-        photonsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+//        photonsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
 
         pongButton.bottomRight(dx: -30*s, dy: -50*s, width: 60*s, height: 80*s)
     }

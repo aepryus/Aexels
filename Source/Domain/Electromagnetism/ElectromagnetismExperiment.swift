@@ -252,7 +252,7 @@ class ElectromagnetismExperiment: Experiment {
         teslonsInABox,
         exploringThePing,
         whatIsMagnetism,
-        whatIsPotentialEnergy,
+//        whatIsPotentialEnergy,
         dilationRedux,
         contractionRedux,
         understandingFrames,
