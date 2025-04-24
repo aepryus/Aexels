@@ -712,7 +712,7 @@ Concepts:
  - Cellular Automata : modified
  - Kinematics : modified
  - Gravity I : modified Gravity article
- - E=mc^2 : modified Equivalence article
+ - E=mc² : modified Equivalence article
  - Dilation : modified
     - Chronos : new
     - Floating Leaf : split from Discrepancy article; modified
@@ -1361,7 +1361,19 @@ Currently, this model does a respectable job of healing holes in the aether fabr
 
 ";
 
-"gravityLab_article" = "Gravity Lab
+"gravityLab_article" = "The Gravity simulation is similar to the OutsideIn simulation, but with free flowing aexels and the squish mechanism implemented.
+
+Once the pressure on an aexel crosses a specific threshold it squishes and disappears entirely.  This enables the OutsideIn concept without violating Gauss and does so by removing the assumption that the destruction of aexels occurs locally.
+
+At the moment the flow inward is simply applied as a 1/r² force applied directly to the aexels.  Early attempts at implementing the accelerant have been made, but the granularity of the aexels is currently too coarse effectively demonstrate the flow elegantly.
+
+There are three controls in this simulation:
+ - color bonds will color stressed bonds as orange
+ - squish can toggle the squish mechanism
+ - recycle will add 'dark energy' to the outside causing new aexels to form and allowing the simulation to run in steady state.
+
+In subsequent versions I will attempt to dramatically increase the aexel count in order to create a finer grained aether.  This will hopefully enable a more elegant implementation of accelerant and allow for a moon to orbit the planet.
+
 
 
 
@@ -1447,7 +1459,66 @@ Distance is a tricky concept to get a handle on in Universe X.  Time is a simila
 
 ";
 
-"electromagnetismLab_article" = "Electromagnetism Lab
+"electromagnetismLab_article" = "The Electromagnetism simulation models the pings and pongs and their cupola vector.
+
+When fully rendered each ping and pong is modeled as an ellipse (or football) pointing in the direction of the cupola.  It also has a white line representing the frame dependent translation vector and a black line representing the absolute frame translation vector.
+
+The aether frame toggle will turn on an aether frame view on the bottom of the screen with a camera that tracks with the aether frame instead of the translation frame.  In the aether frame since the frame is the aether the frame dependent and absolute translation vectors are the same, so only the white lines will appear (the black lines be hidden underneath).
+
+Auto volley will periodically send out a volley of pings based on the 'time steps per volley' setting.
+
+Camera walls will bounce the particles if they exit outside the camera frames view port.
+
+The pings and pongs settings will toggle between the full rendering of each and a mini rendering of just a tiny football without the translation vectors E and B shading.
+
+When fully rendered each pong will be shaded based on the proportion of electric and magnetic it represents in the viewed frame.  This is calculated by crossing the cupola with the frame dependent translation vector (the angle of ellipse with the white line).
+
+Pure E pongs will be represented as red, pure B pongs as blue and anything in between will be some gradient of the two colors.  This becomes particularly apparent if you slide the aether velocity back and forth violently.
+
+
+
+
+
+";
+
+"insideOutLab_article" = "The InsideOut simulation is based on the premise that the aether is a pool of fluid with a sink in the middle that causes fluid from the next ring over to flow inward.
+
+This simulation is very simple, perhaps more of an illustration than a simulation.
+
+Every unit of time the amount of fluid removed from each cylinder is equal to the amount fluid removed from the center cylinder and as such falls of at 1/r in the 2D case modeled here, which would be 1/r² in 3D.
+
+Unlike the E&M case with pings where the amount of existing pings falls off at 1/r², in this case the amount of *missing* fluid falls at 1/r².
+
+Because of this flow the current of fluid flow from each cylinder to the next inner cylinder is also 1/r in the 2D case (1/r² in the 3D case).
+
+It had long been the basic premise of Universe X that aexel flow was somehow operating akin to this model, but of course there were nagging issues that made direct correspondence challenging.
+
+And in particular it seemed to not meet up with the OutsideIn model which had a particularly strong empirical underpinning in being tied to the dilation at every point in space.  More detail is explored in that simulation.
+
+
+
+
+
+";
+
+"outsideInLab_article" = "The OutsideIn simulation starts from the premise that the dilation at any radius r, is an indication of the rate of translation of the aexels at that point.
+
+Consider 5 airport moving sidewalks situated directly one after another.  Each people mover is moving 5 mph faster than the previous one.  You get on the first and feel a force pulling you forward.  You transfer from the 5 mph to the 10mph one and feel the exact same force pulling you forward.  You feel this same acceleration each time you move between the moving sidewalks.
+
+Now add an additional 4 moving sidewalks each now slowing down by 5 mph.  Now the force you feel in transferring from one sidewalk to the next is reversed.
+
+This simulation is analogous.  Each ring is a fixed velocity radially moving sidewalk.  An acceleration (change of velocity) is applied when ever moving between two rings equal to the difference in their velocities.
+
+This simple mechanisms results in a fairly accurate qualitative gravitational force.
+
+One difference between these rings and a moving sidewalk however, is that moons move frictionlessly through space as opposed to the moving sidewalks that rely on friction in order to impart the acceleration.
+
+Double clicking / tapping on the simulation will add a new moon.  If you double tap repeatedly in the same spot, you can create a long line of moons and see the 'curvature' of its orbit.
+
+
+
+
+
 ";
 
 "2103.04335v3_pdf_name" = "'t Hooft Paper";

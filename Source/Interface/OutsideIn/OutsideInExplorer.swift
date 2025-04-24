@@ -53,7 +53,7 @@ class OutsideInExplorer: Explorer {
 
         renderer = OutsideInRenderer(view: gravityMetal)
 
-        tabsCell.tabs = [controlsTab, notesTab]
+        tabsCell.tabs = [notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
