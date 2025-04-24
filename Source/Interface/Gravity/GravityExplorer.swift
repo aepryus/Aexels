@@ -23,8 +23,8 @@ class GravityExplorer: Explorer {
     
 // Events ==========================================================================================
     @objc func onDoubleTap(_ gesture: UITapGestureRecognizer) {
-        let point: CGPoint = gesture.location(in: metalView) - CGPoint(x: metalView.width/2, y: metalView.height/2)
-        CCUniverseAddMoonAt(renderer.universe, point.x, point.y, 1, 1, 10)
+//        let point: CGPoint = gesture.location(in: metalView) - CGPoint(x: metalView.width/2, y: metalView.height/2)
+//        CCUniverseAddMoonAt(renderer.universe, point.x, point.y, 1, 1, 10)
     }
     
 // UIViewController ================================================================================

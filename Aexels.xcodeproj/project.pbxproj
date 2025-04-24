@@ -101,7 +101,7 @@
 		D8AE17DA2814F1EC00E74CB8 /* AXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D12814F1EC00E74CB8 /* AXButton.swift */; };
 		D8AE17DC2814F1EC00E74CB8 /* ContentLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */; };
 		D8AE17DD2814F1EC00E74CB8 /* Limbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D42814F1EC00E74CB8 /* Limbo.swift */; };
-		D8AE17DE2814F1EC00E74CB8 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D52814F1EC00E74CB8 /* SliderView.swift */; };
+		D8AE17DE2814F1EC00E74CB8 /* OldSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17D52814F1EC00E74CB8 /* OldSliderView.swift */; };
 		D8AE17E72814F20500E74CB8 /* CellularExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17E12814F20500E74CB8 /* CellularExplorer.swift */; };
 		D8AE17E82814F20500E74CB8 /* CellularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17E22814F20500E74CB8 /* CellularView.swift */; };
 		D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17E32814F20500E74CB8 /* DilatorView.swift */; };
@@ -122,6 +122,7 @@
 		D8CC48C82D7E6FD600593737 /* Escaping.latex in Resources */ = {isa = PBXBuildFile; fileRef = D8CC48C72D7E6FCE00593737 /* Escaping.latex */; };
 		D8D2E1262944592900EC1719 /* PulseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1252944592900EC1719 /* PulseButton.swift */; };
 		D8D2E1282944BC4E00EC1719 /* BoolButtonOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */; };
+		D8DA81272DB9939700BFD3E4 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA81262DB9939300BFD3E4 /* Switcher.swift */; };
 		D8DA98BB2B690DDF00A4AA8F /* Cyto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */; };
 		D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */; };
 		D8DA98C62B6F3C4E00A4AA8F /* LimboCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */; };
@@ -239,7 +240,7 @@
 		D8AE17D12814F1EC00E74CB8 /* AXButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AXButton.swift; sourceTree = "<group>"; };
 		D8AE17D32814F1EC00E74CB8 /* ContentLimbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentLimbo.swift; sourceTree = "<group>"; };
 		D8AE17D42814F1EC00E74CB8 /* Limbo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Limbo.swift; sourceTree = "<group>"; };
-		D8AE17D52814F1EC00E74CB8 /* SliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
+		D8AE17D52814F1EC00E74CB8 /* OldSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldSliderView.swift; sourceTree = "<group>"; };
 		D8AE17E12814F20500E74CB8 /* CellularExplorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularExplorer.swift; sourceTree = "<group>"; };
 		D8AE17E22814F20500E74CB8 /* CellularView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellularView.swift; sourceTree = "<group>"; };
 		D8AE17E32814F20500E74CB8 /* DilatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DilatorView.swift; sourceTree = "<group>"; };
@@ -261,6 +262,7 @@
 		D8CC48C72D7E6FCE00593737 /* Escaping.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Escaping.latex; sourceTree = "<group>"; };
 		D8D2E1252944592900EC1719 /* PulseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseButton.swift; sourceTree = "<group>"; };
 		D8D2E1272944BC4E00EC1719 /* BoolButtonOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolButtonOld.swift; sourceTree = "<group>"; };
+		D8DA81262DB9939300BFD3E4 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		D8DA98BA2B690DDF00A4AA8F /* Cyto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cyto.swift; sourceTree = "<group>"; };
 		D8DA98C12B69384300A4AA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8DA98C52B6F3C4E00A4AA8F /* LimboCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimboCell.swift; sourceTree = "<group>"; };
@@ -456,11 +458,12 @@
 				D802E4CA2D2DE8A600F259BB /* ImageButton.swift */,
 				D8AE17D42814F1EC00E74CB8 /* Limbo.swift */,
 				D8AE17D02814F1EC00E74CB8 /* LimboButton.swift */,
+				D8AE17D52814F1EC00E74CB8 /* OldSliderView.swift */,
 				D8D2E1252944592900EC1719 /* PulseButton.swift */,
 				D8AE17632814F08400E74CB8 /* Simulation.swift */,
 				D896C9AC2D426C720058585C /* Slider.swift */,
-				D8AE17D52814F1EC00E74CB8 /* SliderView.swift */,
 				D8AE17CE2814F1EC00E74CB8 /* SwapButton.swift */,
+				D8DA81262DB9939300BFD3E4 /* Switcher.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -903,7 +906,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = AX;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1630;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D8AE17362814E97200E74CB8 = {
@@ -1060,6 +1063,7 @@
 				D82245722D8409BF00A5176F /* Sea.c in Sources */,
 				D8AE17EB2814F20500E74CB8 /* ResetButton.swift in Sources */,
 				D8DEF8AF2D35189800298D26 /* Settings.swift in Sources */,
+				D8DA81272DB9939700BFD3E4 /* Switcher.swift in Sources */,
 				D80ED6AD2B679A1A00EF4F8D /* Ionian.c in Sources */,
 				D896C9AD2D426C740058585C /* Slider.swift in Sources */,
 				D8AE17E92814F20500E74CB8 /* DilatorView.swift in Sources */,
@@ -1072,7 +1076,7 @@
 				D896C9A52D420BC70058585C /* ControlsTab.swift in Sources */,
 				D8AE17F52814F20E00E74CB8 /* KinematicsView.swift in Sources */,
 				D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */,
-				D8AE17DE2814F1EC00E74CB8 /* SliderView.swift in Sources */,
+				D8AE17DE2814F1EC00E74CB8 /* OldSliderView.swift in Sources */,
 				D8AE17F72814F20E00E74CB8 /* NetButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1134,6 +1138,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1196,6 +1201,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1226,7 +1232,6 @@
 				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 34;
-				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
@@ -1262,7 +1267,6 @@
 				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 34;
-				DEVELOPMENT_TEAM = Z6PFG8RC6V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";

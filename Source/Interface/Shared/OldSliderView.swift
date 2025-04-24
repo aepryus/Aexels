@@ -11,7 +11,7 @@ import OoviumEngine
 import OoviumKit
 import UIKit
 
-class SliderView: UIView, UIScrollViewDelegate {
+class OldSliderView: UIView, UIScrollViewDelegate {
 	var _pageNo: Int = 0
 	var _pages: [String] = []
 	
@@ -90,9 +90,9 @@ class SliderView: UIView, UIScrollViewDelegate {
 	static var startY: CGFloat = 0
 	@objc func onPan(_ gesture: UIPanGestureRecognizer) {
 		if gesture.state == .began {
-			SliderView.startY = thumb.frame.origin.y
+			OldSliderView.startY = thumb.frame.origin.y
 		}
-		var y = SliderView.startY + gesture.translation(in: self).y
+		var y = OldSliderView.startY + gesture.translation(in: self).y
 		if gesture.state == .ended {
 			pageNo = min(max(Int((y+ph/2)/ph),0),pages.count-1)
 		} else {

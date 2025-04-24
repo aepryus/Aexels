@@ -71,7 +71,10 @@ class ExperimentView: AXButton {
 
 class ExperimentsCell: UITableViewCell {
     var experiment: Experiment! {
-        didSet { experimentView.experiment = experiment }
+        didSet {
+            experimentView.experiment = experiment
+            setNeedsLayout()
+        }
     }
     weak var tab: ExperimentsTab?
     
@@ -92,15 +95,22 @@ class ExperimentsCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError() }
     
 // UIView ==========================================================================================
+    override var frame: CGRect {
+        didSet {
+            layoutSubviews()
+        }
+    }
     override func layoutSubviews() {
-        experimentView.frame = bounds.insetBy(dx: 5*s, dy: 5*s)
+        super.layoutSubviews()
+        contentView.bounds = bounds
+        experimentView.frame = contentView.bounds.insetBy(dx: 5*s, dy: 5*s)
     }
 }
 
 class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
     unowned let explorer: Explorer!
     
-    let tableView: UITableView = AETableView()
+    private let tableView: UITableView = AETableView()
     
     init(explorer: Explorer) {
         self.explorer = explorer
@@ -123,7 +133,8 @@ class ExperimentsTab: TabsCellTab, UITableViewDataSource, UITableViewDelegate {
     
 // UIView ==========================================================================================
     override func layoutSubviews() {
-        tableView.frame = CGRect(x: 10*s, y: 10*s, width: bounds.size.width-20*s, height: bounds.size.height-44*s)
+        tableView.frame = bounds
+        tableView.reloadData()
     }
     
 // UITableViewDataSource ===========================================================================

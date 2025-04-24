@@ -17,7 +17,7 @@ class KinematicsTab: TabsCellTab {
     let zoneB: UIView = UIView()
     let zoneC: UIView = UIView()
     
-    var universePicker: SliderView!
+    var universePicker: OldSliderView!
     let aetherVector = VectorView()
     let loopVector = VectorView()
     let netButton = NetButton()
@@ -30,7 +30,7 @@ class KinematicsTab: TabsCellTab {
         super.init(name: "Controls".localized)
         
         // Universe
-        universePicker = SliderView { [unowned self] (page: String) in
+        universePicker = OldSliderView { [unowned self] (page: String) in
             let cs: Double = 30*cos(Double.pi/6)
             
             if page == "Universe" {

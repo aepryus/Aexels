@@ -105,7 +105,7 @@ class LimboCell: Cyto.Cell {
         
         return path
     }
-    private func renderPaths() {
+    func renderPaths() {
         let a: CGFloat = 6*Screen.s
         let b: CGFloat = 2*Screen.s
 
