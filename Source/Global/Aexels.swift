@@ -63,7 +63,6 @@ class Aexels {
 			Aexels.shippedAethers.forEach { Local.installAetherFromBundle(name: $0) }
 			Aexels.basket.set(key: "version", value: Aexels.version)
 		}
-        Aexels.shippedAethers.forEach { Local.installAetherFromBundle(name: $0) }
 
 		if Screen.mac, #available(iOS 13.0, *) {
 			UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { (windowScene: UIWindowScene) in

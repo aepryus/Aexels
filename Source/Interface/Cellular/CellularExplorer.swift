@@ -51,10 +51,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     var experimentsTab: ExperimentsTab!
     let notesTab: NotesTab = NotesTab(key: "cellular")
     
-    init() {
-        super.init(key: "cellular")
-        experiments = CellularExperiment.loadExperiments()
-    }
+    init() { super.init(key: "cellular") }
     
     func open(aether: Aether) {
         timeControl.playButton.stop()
@@ -92,6 +89,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 
 // UIViewController ================================================================================
     override func viewDidLoad() {
+        experiments = CellularExperiment.loadExperiments()
+
         cyto = Screen.iPhone ? Cyto(rows: 4, cols: 2) : Cyto(rows: 5, cols: 4)
         view.addSubview(cyto)
         
