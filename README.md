@@ -1,4 +1,7 @@
 # A universe is discovered...
+
+<img src="Graphics/Screenshots/macOSSS/SS01.png" width="160" />
+
 ## Universe X
 Come along as we explore this universe and discover the similarities and differences it has with our own.
 
