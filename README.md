@@ -31,4 +31,4 @@ Of course, these facts about the aexels of Universe X leave many questions unans
 
 As such, let our exploration begin...
 
-<img src="Graphics/Screenshots/macOS SS/SS11.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS12.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS05.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS02.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS03.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS10.png" width="240" />
+<img src="Graphics/Screenshots/macOS SS/SS11.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS12.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS05.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS04.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS03.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS10.png" width="240" />
