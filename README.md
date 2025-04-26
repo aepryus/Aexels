@@ -1,6 +1,6 @@
 # A universe is discovered...
 
-<img src="Graphics/Screenshots/macOS SS/SS01.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS02.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS03.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS04.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS05.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS06.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS07.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS08.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS09.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS10.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS11.png" width="300" /><img src="Graphics/Screenshots/macOS SS/SS12.png" width="300" />
+<img src="Graphics/Screenshots/macOS SS/SS09.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS01.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS06.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS02.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS08.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS07.png" width="240" />
 
 ## Universe X
 Come along as we explore this universe and discover the similarities and differences it has with our own.
@@ -30,3 +30,5 @@ Space in Universe X does not curve or expand; it is simply a three dimensional c
 Of course, these facts about the aexels of Universe X leave many questions unanswered.  What is the mechanism by which aexels move?  How many dimensions of state are there?  How does their creation and destruction actually work?  Ultimately, the primary focus of this app is to discover the source code for the aexel, i.e., the DNA of Universe X.
 
 As such, let our exploration begin...
+
+<img src="Graphics/Screenshots/macOS SS/SS11.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS12.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS05.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS02.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS03.png" width="240" /><img src="Graphics/Screenshots/macOS SS/SS10.png" width="240" />
