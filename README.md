@@ -1,6 +1,17 @@
 # A universe is discovered...
 
-<img src="Graphics/Screenshots/macOS SS/SS01.png" width="160" />
+<img src="Graphics/Screenshots/macOS SS/SS01.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS02.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS03.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS04.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS05.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS06.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS07.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS08.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS09.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS10.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS11.png" width="360" />
+<img src="Graphics/Screenshots/macOS SS/SS12.png" width="360" />
 
 ## Universe X
 Come along as we explore this universe and discover the similarities and differences it has with our own.
