@@ -195,6 +195,7 @@ class ExplorerViewController: AEViewController {
     @objc func onTap() {
         view.removeGestureRecognizer(iPhoneTabGesture)
         stopMusic()
+        graphView.stop()
         UIView.animate(withDuration: 1.0) {
             self.aexelsLabel.alpha = 0
             self.versionLabel.alpha = 0
@@ -257,6 +258,8 @@ class ExplorerViewController: AEViewController {
             UIView.animate(withDuration: 3, delay: 5) {
                 self.aexelsLabel.alpha = 0
                 self.versionLabel.alpha = 0
+            } completion: { (completed: Bool) in
+                if Screen.iPad { self.graphView.stop() }
             }
         }
     }

@@ -148,25 +148,26 @@ class ControlsTab: TabsCellTab {
     override func layoutSubviews() {
         
         var y: CGFloat = 20*s
+        let sliderWidth: CGFloat = width-60*s
         
         speedOfLightLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         y += 12*s
-        speedOfLightSlider.top(dy: y, width: 300*s, height: 40*s)
+        speedOfLightSlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 50*s
         
         speedOfAetherLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         y += 12*s
-        aetherVelocitySlider.top(dy: y, width: 300*s, height: 40*s)
+        aetherVelocitySlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 50*s
         
         pingsPerVolleyLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         y += 12*s
-        pingsPerVolleySlider.top(dy: y, width: 300*s, height: 40*s)
+        pingsPerVolleySlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 50*s
 
         volliesPerSecondLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         y += 12*s
-        timeStepsPerVolleySlider.top(dy: y, width: 300*s, height: 40*s)
+        timeStepsPerVolleySlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 50*s
 
         y += 10*s

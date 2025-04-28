@@ -221,6 +221,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         guide.left(dx: 160*s, size: CGSize(width: 50*(height / 748), height: 30*s))
         dilatorView.left(dx: 205*s, width: 105*s, height: 40*s)
     }
+    override func layoutRatio133() {
+        layoutRatio143()
+        dilatorView.left(dx: 170*s, width: 84*s, height: 40*s)
+    }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)

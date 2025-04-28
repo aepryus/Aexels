@@ -109,17 +109,19 @@ class DilationTab: TabsCellTab {
         let s = height / 748
 
         var y: CGFloat = 30*s
+        let sliderWidth: CGFloat = width-60*s
+
         
         lightSpeedLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         cLabel.topLeft(dx: 14*2, dy: lightSpeedLabel.bottom-3*s, width: cSlider.width, height: 20*s)
         y += 24*s
-        cSlider.top(dy: y, width: 300*s, height: 40*s)
+        cSlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 80*s
         
         velocityLabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         lambdaLabel.topLeft(dx: vSlider.left, dy: velocityLabel.bottom-3*s, width: vSlider.width, height: 20*s)
         y += 24*s
-        vSlider.top(dy: y, width: 300*s, height: 40*s)
+        vSlider.top(dy: y, width: sliderWidth, height: 40*s)
         y += 100*s
 
         autoSwap.topLeft(dx: 30*s, dy: y, width: 120*s, height: 24*s)
