@@ -9,6 +9,6 @@
 import OoviumEngine
 import UIKit
 
-extension OOColor {
+extension Text.Color {
     var simd4: SIMD4<Float> { uiColor.simd4 }
 }

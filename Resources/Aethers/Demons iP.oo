@@ -27,7 +27,7 @@
       "resultChain" : "va:Gt1",
       "y" : 329,
       "iden" : "1",
-      "type" : "auto",
+      "type" : "automata",
       "states" : [
         {
           "type" : "state",

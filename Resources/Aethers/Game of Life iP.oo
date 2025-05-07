@@ -5,7 +5,7 @@
       "statesChain" : "dg:2",
       "y" : 329,
       "no" : 1,
-      "type" : "auto",
+      "type" : "automata",
       "resultChain" : "va:Gt3",
       "iden" : "1",
       "x" : 265,

@@ -106,7 +106,7 @@ class CellularView: UIView {
     }
     
 	func clear() { image = nil }
-	func configure(auto: Auto) {
+	func configure(auto: Automata) {
 		states = auto.states.count
 		
         r.deallocate()
@@ -119,7 +119,7 @@ class CellularView: UIView {
         a = UnsafeMutablePointer<UInt8>.allocate(capacity: states+1)
 
 		for i in 0..<states {
-			let color = OOColor(rawValue: auto.states[i].color)!.uiColor
+            let color = Text.Color(rawValue: auto.states[i].color)!.uiColor
 			let comps: [CGFloat] = color.cgColor.components!
 			r[i] = UInt8(comps[0] * 255)
 			g[i] = UInt8(comps[1] * 255)

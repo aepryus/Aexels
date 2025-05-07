@@ -26,7 +26,7 @@ class BoolButtonOld: UIControl {
         
         addAction(for: .touchDown) {
             self.swapButton.isHighlighted = true
-            let pen: Pen = Pen(font: .verdana(size: 15*Screen.s), color: OOColor.lavender.uiColor)
+            let pen: Pen = Pen(font: .verdana(size: 15*Screen.s), color: Text.Color.lavender.uiColor)
             self.label.attributedText = pen.format(text)
         }
         addAction(for: [.touchUpInside, .touchCancel]) {

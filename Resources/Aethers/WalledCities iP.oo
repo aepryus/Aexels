@@ -16,7 +16,7 @@
       "no" : 1,
       "modified" : "2018-10-01T00:08:35+0900",
       "iden" : "",
-      "type" : "auto",
+      "type" : "automata",
       "resultChain" : "va:Gt1",
       "states" : [
         {

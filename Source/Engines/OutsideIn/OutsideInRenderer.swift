@@ -230,7 +230,7 @@ class OutsideInRenderer: NSObject, MTKViewDelegate {
             let planetCircle = MyrtoanCirclePacket(
                 center: normalizedCenter,
                 radius: Float(planet.pointee.radius) / Float(size.width) * 2,
-                color: OOColor.cobolt.simd4
+                color: Text.Color.cobolt.simd4
             )
             planets.append(planetCircle)
         }
@@ -390,7 +390,7 @@ class OutsideInRenderer: NSObject, MTKViewDelegate {
             let moonCircle: MyrtoanCirclePacket = MyrtoanCirclePacket(
                 center: normalizedCenter,
                 radius: Float(moon.pointee.radius) / Float(size.width) * 2,
-                color: OOColor.marine.simd4
+                color: Text.Color.marine.simd4
             )
             moonCircles.append(moonCircle)
         }

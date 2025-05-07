@@ -261,7 +261,7 @@ class GravityRenderer: Renderer {
             let planetCircle = MGCirclePacket(
                 center: normalizedCenter,
                 radius: Float(planet.pointee.radius) / Float(size.width) * 2,
-                color: OOColor.cobolt.uiColor.alpha(0.5).simd4
+                color: Text.Color.cobolt.uiColor.alpha(0.5).simd4
             )
             planets.append(planetCircle)
         }
@@ -292,7 +292,7 @@ class GravityRenderer: Renderer {
             let moonCircle = MGCirclePacket(
                 center: normalizedCenter,
                 radius: Float(moon.pointee.radius) / Float(size.width) * 2,
-                color: OOColor.marine.uiColor.alpha(0.5).simd4
+                color: Text.Color.marine.uiColor.alpha(0.5).simd4
             )
             moons.append(moonCircle)
         }

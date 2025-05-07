@@ -41,7 +41,7 @@ class ExperimentView: AXButton {
         let y4 = height - p
         let y3 = (y1+y4)/2
         
-        let color: CGColor = isHighlighted ? OOColor.lavender.uiColor.cgColor : UIColor.white.cgColor
+        let color: CGColor = isHighlighted ? Text.Color.lavender.uiColor.cgColor : UIColor.white.cgColor
         
         let c = UIGraphicsGetCurrentContext()!
         c.move(to: CGPoint(x: x1, y: y2))

@@ -124,7 +124,7 @@ class AexelsView: UIView {
 //			c.drawPath(using: .fillStroke)
 //		}
 		
-		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
+		c.setStrokeColor(Text.Color.lavender.uiColor.cgColor)
 
 		for i in 0..<Int(universe.pointee.bondCount) {
 			let bond = universe.pointee.bonds[i]

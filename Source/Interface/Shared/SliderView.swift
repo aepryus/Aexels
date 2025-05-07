@@ -30,7 +30,7 @@ class SliderView: UIView, UIScrollViewDelegate {
 		self.onPageChange = onPageChange
 		
 		self.thumb = UIView()
-		self.thumb.backgroundColor = OOColor.lavender.uiColor.alpha(0.5)
+		self.thumb.backgroundColor = Text.Color.lavender.uiColor.alpha(0.5)
 		self.thumb.layer.cornerRadius = 8*Screen.s
 		self.thumb.layer.borderWidth = 1*Screen.s
 		self.thumb.layer.borderColor = UIColor.white.cgColor

@@ -59,7 +59,7 @@ class ResetButton: AXButton {
         path.addArc(tangent1End: CGPoint(x: ix10, y: iy9), tangent2End: CGPoint(x: ix10, y: iy2), radius: r)
         path.closeSubpath()
         
-        let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+        let stroke = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
         let fill = stroke.shade(0.5)
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)

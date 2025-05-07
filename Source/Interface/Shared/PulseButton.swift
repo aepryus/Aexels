@@ -43,7 +43,7 @@ class PulseButton: AXButton {
         c.addPath(path)
 
 
-        let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+        let stroke = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
 
         c.setStrokeColor(stroke.cgColor)
         c.setLineWidth(3*ss)

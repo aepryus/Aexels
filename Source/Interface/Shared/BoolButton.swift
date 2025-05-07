@@ -38,7 +38,7 @@ class BoolView: AEView {
         let y4 = height - p
         let y3 = x4 - m
         
-        let color: UIColor = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+        let color: UIColor = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
 
         let c = UIGraphicsGetCurrentContext()!
         c.move(to: CGPoint(x: x1, y: (y1+y4)/2))
@@ -109,7 +109,7 @@ class BoolButton: AXButton {
         didSet {
             boolView.isHighlighted = isHighlighted
             boolView.setNeedsDisplay()
-            label.textColor = isHighlighted ? OOColor.lavender.uiColor : .white
+            label.textColor = isHighlighted ? Text.Color.lavender.uiColor : .white
         }
     }
 }

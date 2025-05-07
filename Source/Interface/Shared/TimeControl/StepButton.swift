@@ -45,7 +45,7 @@ class StepButton: AXButton {
         path.addLine(to: CGPoint(x: x4, y: y1))
         path.addArc(center: CGPoint(x: x4, y: y2), radius: h/2, startAngle: CGFloat.pi/2+q, endAngle: -CGFloat.pi/2+q, clockwise: true)
 
-        let stroke = isHighlighted ? OOColor.lavender.uiColor : UIColor.white
+        let stroke = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
         let fill = stroke.shade(0.5)
         let c = UIGraphicsGetCurrentContext()!
         c.addPath(path)

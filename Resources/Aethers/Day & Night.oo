@@ -28,7 +28,7 @@
       "modified" : "2019-05-18T15:17:29+0900",
       "statesChain" : "dg:2",
       "no" : 1,
-      "type" : "auto",
+      "type" : "automata",
       "name" : "",
       "x" : 595.49732620320856,
       "iden" : "",

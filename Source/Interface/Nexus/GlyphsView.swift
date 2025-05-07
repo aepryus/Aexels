@@ -248,7 +248,7 @@ class ArticleGlyph: GlyphView {
 
         let pen: Pen = Pen(font: Screen.iPhone ? .avenir(size: 18*s) : .ax(size: 14*s), color: color, alignment: .center)
         if isCurrentFocus || isCurrentFingerPrint {
-            halo.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
+            halo.layer.backgroundColor = Text.Color.lavender.uiColor.cgColor
             label.pen = pen.clone(color: .white)
             if contract { label.attributedText = label.text?.attributed(pen: pen.clone(color: .white, kern: Screen.iPhone ? -1 : -3)) }
         } else {
@@ -335,7 +335,7 @@ class AsideGlyph: GlyphView {
         layer.cornerRadius = width/2
         
         if isCurrentFocus || isCurrentFingerPrint {
-            label.layer.backgroundColor = OOColor.lavender.uiColor.cgColor
+            label.layer.backgroundColor = Text.Color.lavender.uiColor.cgColor
             label.pen = Pen(font: Screen.iPhone ? .avenir(size: 11*s) : .ax(size: 9*s), color: .white, alignment: .center)
         } else {
             label.layer.backgroundColor = UIColor.clear.cgColor

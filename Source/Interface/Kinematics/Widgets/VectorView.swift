@@ -82,7 +82,7 @@ class VectorView: UIView {
 		c.addPath(path)
 		c.setLineWidth(2*s)
 		c.setLineCap(.round)
-		c.setStrokeColor(OOColor.lavender.uiColor.cgColor)
+		c.setStrokeColor(Text.Color.lavender.uiColor.cgColor)
 		c.drawPath(using: .fillStroke)
 	}
 }

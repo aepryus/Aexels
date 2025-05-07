@@ -51,7 +51,7 @@ class ImageButton: AXButton {
 // UIView ==========================================================================================
     override var isHighlighted: Bool {
         didSet {
-            if isHighlighted { imageView.image = image.withTintColor(OOColor.lavender.uiColor) }
+            if isHighlighted { imageView.image = image.withTintColor(Text.Color.lavender.uiColor) }
             else { imageView.image = image.withTintColor(color) }
         }
     }

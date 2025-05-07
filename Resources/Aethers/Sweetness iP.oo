@@ -33,7 +33,7 @@
           "no" : 2
         }
       ],
-      "type" : "auto"
+      "type" : "automata"
     },
     {
       "iden" : "",

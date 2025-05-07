@@ -26,7 +26,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         tools[1][0] = AetherView.gateTool
         tools[0][1] = AetherView.mechTool
         
-        let aetherView: AetherView = AetherView(aether: engine.aether, toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
+        let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
+        aetherView.swapToAether(aether: engine.aether)
         aetherView.backgroundColor = .clear
         aetherView.aetherViewDelegate = self
         aetherView.orb = Orb(aetherView: aetherView, view: Aexels.explorerViewController.view, dx: 0, dy: 0)
@@ -77,13 +78,15 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     override var experiment: Experiment? {
         didSet {
             guard let experiment: CellularExperiment = experiment as? CellularExperiment else { return }
-            Space.local.loadAether(facade: experiment.facade) { (json: String?) in
-                guard let json else { return }
-                let aether: Aether = Aether(json: json)
-                self.aetherView.swapToAether(aether: aether)
-                self.engine.needsCompile = true
-                self.open(aether: aether)
-            }
+            do {
+                try Space.local.loadAether(facade: experiment.facade) { (json: String?) in
+                    guard let json else { return }
+                    let aether: Aether = Aether(json: json)
+                    self.aetherView.swapToAether(aether: aether)
+                    self.engine.needsCompile = true
+                    self.open(aether: aether)
+                }
+            } catch { print("\(error)") }
         }
     }
 
@@ -104,10 +107,12 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 
         _ = Facade.create(space: Space.local) as! SpaceFacade
         let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
-        facade.load { (json: String?) in
-            guard let json = json else { return }
-            self.open(aether: Aether(json: json))
-        }
+        do {
+            try facade.load { (json: String?) in
+                guard let json = json else { return }
+                self.open(aether: Aether(json: json))
+            }
+        } catch { print("\(error)") }
         
         ooviumTab.ooviumView = ooviumView
 
@@ -271,11 +276,10 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 // AetherViewDelegate ==============================================================================
     func onNew(aetherView: AetherView, aether: Aether) {
         self.engine.needsCompile = true
-        let auto: Auto = aether.create(at: .zero)
+        let auto: Automata = aether.create(at: .zero)
         aether.xOffset = Double(self.aetherView.width) - 130
         aether.yOffset = Double(self.aetherView.height) - 100
-        auto.statesChain.replaceWith(tokens: "dg:2")
-        aether.evaluate()
+        auto.statesChain.replaceWith(natural: "2")
     }
     func onClose(aetherView: AetherView, aether: Aether) {}
     func onOpen(aetherView: AetherView, aether: Aether) {

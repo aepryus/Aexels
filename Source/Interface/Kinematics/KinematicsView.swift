@@ -267,7 +267,7 @@ class KinematicsView: UIView, Simulation {
 		path.closeSubpath()
 		
 		c.addPath(path)
-		c.setFillColor(OOColor.lavender.uiColor.withAlphaComponent(0.5).cgColor)
+		c.setFillColor(Text.Color.lavender.uiColor.withAlphaComponent(0.5).cgColor)
 		if aetherVisible {
 			c.drawPath(using: .fill)
 		} else {
@@ -325,7 +325,7 @@ class KinematicsView: UIView, Simulation {
 		path.closeSubpath()
 		
 		c.addPath(path)
-		c.setFillColor(OOColor.lavender.uiColor.withAlphaComponent(0.5).cgColor)
+		c.setFillColor(Text.Color.lavender.uiColor.withAlphaComponent(0.5).cgColor)
 		if aetherVisible {
 			c.drawPath(using: .fill)
 		} else {

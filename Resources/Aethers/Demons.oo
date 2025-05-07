@@ -28,7 +28,7 @@
       "resultChain" : "va:Gt1",
       "y" : 386.45989304812832,
       "iden" : "1",
-      "type" : "auto",
+      "type" : "automata",
       "modified" : "2019-05-18T15:18:38+0900",
       "states" : [
         {

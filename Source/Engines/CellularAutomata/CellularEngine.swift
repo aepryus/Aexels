@@ -15,7 +15,7 @@ import QuartzCore
 
 class CellularEngine {
 	var aether: Aether!
-	private var auto: Auto!
+    private var auto: OoviumEngine.Automata!
 
 	var guideOn: Bool = false
 	var frameRate: Int = 60 {
@@ -36,7 +36,7 @@ class CellularEngine {
 
 	private let iterations: Int = ProcessInfo.processInfo.activeProcessorCount + 1
 	private let stride: Int
-	private var automatas: [UnsafeMutablePointer<Automata>] = []
+	private var automatas: [UnsafeMutablePointer<AXAutomata>] = []
 	
 	init(side: Int) {
 		self.side = side
@@ -58,36 +58,40 @@ class CellularEngine {
 	
 	func compile(aether: Aether) {
 		self.aether = aether
-        aether.evaluate()
+        let automata: Automata = self.aether.first()!
+        
+        let citadel: Citadel = self.aether.compile()
+        
+        let automataCore: AutomataCore = citadel.tower(key: automata.mechlikeTokenKey)!.core as! AutomataCore
 
-		let sI = AEMemoryIndexForName(aether.memory, "Au1.Self".toInt8())
-		let aI = AEMemoryIndexForName(aether.memory, "Au1.A".toInt8())
-		let bI = AEMemoryIndexForName(aether.memory, "Au1.B".toInt8())
-		let cI = AEMemoryIndexForName(aether.memory, "Au1.C".toInt8())
-		let dI = AEMemoryIndexForName(aether.memory, "Au1.D".toInt8())
-		let eI = AEMemoryIndexForName(aether.memory, "Au1.E".toInt8())
-		let fI = AEMemoryIndexForName(aether.memory, "Au1.F".toInt8())
-		let gI = AEMemoryIndexForName(aether.memory, "Au1.G".toInt8())
-		let hI = AEMemoryIndexForName(aether.memory, "Au1.H".toInt8())
-		let rI = AEMemoryIndexForName(aether.memory, "Au1.result".toInt8())
+		let sI = AEMemoryIndexForName(citadel.memory, "Au1.Self".toInt8())
+		let aI = AEMemoryIndexForName(citadel.memory, "Au1.A".toInt8())
+		let bI = AEMemoryIndexForName(citadel.memory, "Au1.B".toInt8())
+		let cI = AEMemoryIndexForName(citadel.memory, "Au1.C".toInt8())
+		let dI = AEMemoryIndexForName(citadel.memory, "Au1.D".toInt8())
+		let eI = AEMemoryIndexForName(citadel.memory, "Au1.E".toInt8())
+		let fI = AEMemoryIndexForName(citadel.memory, "Au1.F".toInt8())
+		let gI = AEMemoryIndexForName(citadel.memory, "Au1.G".toInt8())
+		let hI = AEMemoryIndexForName(citadel.memory, "Au1.H".toInt8())
+		let rI = AEMemoryIndexForName(citadel.memory, "Au1.result".toInt8())
 
-		let memory: UnsafeMutablePointer<Memory> = AEMemoryCreateClone(aether.memory)
+		let memory: UnsafeMutablePointer<Memory> = AEMemoryCreateClone(citadel.memory)
 		
 		AEMemoryClear(memory)
 		auto = aether.first()!
 		auto.foreshadow(memory)
 		
-		let recipe: UnsafeMutablePointer<Recipe> = Math.compile(result: auto.resultTower, memory: memory)
+        let recipe: UnsafeMutablePointer<Recipe> = automataCore.compile(memory: memory)
 
 		automatas.forEach { AXAutomataRelease($0) }
 		automatas.removeAll()
 
-		let automata = AXAutomataCreate(recipe, memory, Int32(side), sI, aI, bI, cI, dI, eI, fI, gI, hI, rI);
+        let axAutomata: UnsafeMutablePointer<AXAutomata> = AXAutomataCreate(recipe, memory, Int32(side), sI, aI, bI, cI, dI, eI, fI, gI, hI, rI);
 		for _ in 0..<iterations {
-			automatas.append(AXAutomataCreateClone(automata))
+			automatas.append(AXAutomataCreateClone(axAutomata))
 		}
 		
-		AXAutomataRelease(automata)
+		AXAutomataRelease(axAutomata)
 		AERecipeRelease(recipe)
 		AEMemoryRelease(memory)
 		

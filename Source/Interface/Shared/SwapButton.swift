@@ -13,7 +13,7 @@ import UIKit
 
 fileprivate class SwapView: UIView {
     static let icon: UIImage = SwapView.renderIcon(color: Screen.iPhone ? .white : .black.tint(0.4))
-	static let highlight: UIImage = SwapView.renderIcon(color: OOColor.lavender.uiColor)
+	static let highlight: UIImage = SwapView.renderIcon(color: Text.Color.lavender.uiColor)
 	
 	var isHighlighted: Bool = false {
 		didSet {setNeedsDisplay()}

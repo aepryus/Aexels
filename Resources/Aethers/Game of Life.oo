@@ -27,7 +27,7 @@
       ],
       "statesChain" : "dg:2",
       "modified" : "2019-05-18T15:21:41+0900",
-      "type" : "auto"
+      "type" : "automata"
     },
     {
       "name" : "Ob_1",

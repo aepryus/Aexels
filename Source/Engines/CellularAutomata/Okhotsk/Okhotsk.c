@@ -10,8 +10,8 @@
 #include "Okhotsk.h"
 
 // Cellular Automata ===============================================================================
-Automata* AXAutomataCreate(Recipe* recipe, Memory* memory, int w, mnimi sI, mnimi aI, mnimi bI, mnimi cI, mnimi dI, mnimi eI, mnimi fI, mnimi gI, mnimi hI, mnimi rI) {
-    Automata* automata = (Automata*)malloc(sizeof(Automata));
+AXAutomata* AXAutomataCreate(Recipe* recipe, Memory* memory, int w, mnimi sI, mnimi aI, mnimi bI, mnimi cI, mnimi dI, mnimi eI, mnimi fI, mnimi gI, mnimi hI, mnimi rI) {
+    AXAutomata* automata = (AXAutomata*)malloc(sizeof(AXAutomata));
     automata->recipe = AERecipeCreateClone(recipe);
     automata->memory = AEMemoryCreateClone(memory);
     automata->w = w;
@@ -27,8 +27,8 @@ Automata* AXAutomataCreate(Recipe* recipe, Memory* memory, int w, mnimi sI, mnim
     automata->rI = rI;
     return automata;
 }
-Automata* AXAutomataCreateClone(Automata* automata) {
-    Automata* clone = (Automata*)malloc(sizeof(Automata));
+AXAutomata* AXAutomataCreateClone(AXAutomata* automata) {
+    AXAutomata* clone = (AXAutomata*)malloc(sizeof(AXAutomata));
     clone->recipe = AERecipeCreateClone(automata->recipe);
     clone->memory = AEMemoryCreateClone(automata->memory);
     clone->w = automata->w;
@@ -44,27 +44,27 @@ Automata* AXAutomataCreateClone(Automata* automata) {
     clone->rI = automata->rI;
     return clone;
 }
-void AXAutomataRelease(Automata* automata) {
+void AXAutomataRelease(AXAutomata* automata) {
     if (automata == 0) return;
     AERecipeRelease(automata->recipe);
     AEMemoryRelease(automata->memory);
     free(automata);
 }
 
-void AXAutomataStep(Automata* a, double* cells, double* next, int from, int to) {
+void AXAutomataStep(AXAutomata* a, double* cells, double* next, int from, int to) {
     for (int j = from; j < to; j++) {
         for (int i = 0; i < a->w; i++) {
             
             AEMemoryClear(a->memory);
             
-            AEMemorySetValue(a->memory, a->sI,                                 cells[i   + (j  )*a->w]);
-            AEMemorySetValue(a->memory, a->aI, i != 0 && j != 0 ?             cells[i-1 + (j-1)*a->w] : 0);
+            AEMemorySetValue(a->memory, a->sI,                              cells[i   + (j  )*a->w]);
+            AEMemorySetValue(a->memory, a->aI, i != 0 && j != 0 ?           cells[i-1 + (j-1)*a->w] : 0);
             AEMemorySetValue(a->memory, a->bI, j != 0 ?                     cells[i   + (j-1)*a->w] : 0);
-            AEMemorySetValue(a->memory, a->cI, i != a->w-1 && j != 0 ?         cells[i+1 + (j-1)*a->w] : 0);
-            AEMemorySetValue(a->memory, a->dI, i != a->w-1 ?                 cells[i+1 + (j  )*a->w] : 0);
-            AEMemorySetValue(a->memory, a->eI, i != a->w-1 && j != a->w-1 ?    cells[i+1 + (j+1)*a->w] : 0);
+            AEMemorySetValue(a->memory, a->cI, i != a->w-1 && j != 0 ?      cells[i+1 + (j-1)*a->w] : 0);
+            AEMemorySetValue(a->memory, a->dI, i != a->w-1 ?                cells[i+1 + (j  )*a->w] : 0);
+            AEMemorySetValue(a->memory, a->eI, i != a->w-1 && j != a->w-1 ? cells[i+1 + (j+1)*a->w] : 0);
             AEMemorySetValue(a->memory, a->fI, j != a->w-1 ?                cells[i   + (j+1)*a->w] : 0);
-            AEMemorySetValue(a->memory, a->gI, i != 0 && j != a->w-1 ?         cells[i-1 + (j+1)*a->w] : 0);
+            AEMemorySetValue(a->memory, a->gI, i != 0 && j != a->w-1 ?      cells[i-1 + (j+1)*a->w] : 0);
             AEMemorySetValue(a->memory, a->hI, i != 0 ?                     cells[i-1 + (j  )*a->w] : 0);
             
             AERecipeExecute(a->recipe, a->memory);
@@ -93,4 +93,3 @@ void AXDataLoad(uint8_t* data, double* cells, long sX, long eX, long dnX, long s
         n += dnY;
     }
 }
-

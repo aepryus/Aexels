@@ -17,7 +17,7 @@ class NetButton: UIButton {
 		super.init(frame: CGRect.zero)
 		layer.cornerRadius = 8*s
 		clipsToBounds = true
-		backgroundColor = OOColor.lavender.uiColor.alpha(0.3)
+		backgroundColor = Text.Color.lavender.uiColor.alpha(0.3)
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	

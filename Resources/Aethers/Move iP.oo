@@ -4,7 +4,7 @@
       "no" : 1,
       "name" : "",
       "x" : 265,
-      "type" : "auto",
+      "type" : "automata",
       "statesChain" : "dg:2",
       "y" : 329,
       "states" : [

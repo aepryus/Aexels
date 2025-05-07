@@ -28,7 +28,7 @@
       ],
       "no" : 1,
       "y" : 329,
-      "type" : "auto",
+      "type" : "automata",
       "resultChain" : "va:Gt1",
       "modified" : "2018-10-01T00:56:35+0900",
       "x" : 265,
