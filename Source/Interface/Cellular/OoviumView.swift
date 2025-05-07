@@ -36,5 +36,7 @@ class OoviumView: AEView {
         aetherView.showToolBars()
         aetherView.invokeAetherPicker()
         aetherView.stretch()
+        
+        aetherView.swapToAether(aether: aetherView.aether)
     }
 }

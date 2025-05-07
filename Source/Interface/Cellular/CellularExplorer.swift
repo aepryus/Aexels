@@ -269,8 +269,6 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
         guide.left(dx: 120*s, size: CGSize(width: bw, height: 30*s))
         dilatorView.left(dx: 170*s, width: 150*s, height: 40*s)
-
-//        experiment = experiments[0]
     }
     
 // AetherViewDelegate ==============================================================================
