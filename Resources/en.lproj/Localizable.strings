@@ -1885,7 +1885,7 @@ But, is there something magical about a black hole that gives it the ability to 
 
 Perhaps there is nothing magical about a black hole.
 
-What if its not black holes that destroy aexels, but rather mass that destroys them.  If it's mass that destroys aexels perhaps this is the very mechanism underpinning gravity itself.\"
+What if it's not black holes that destroy aexels, but rather mass that destroys them?  If it's mass that destroys aexels perhaps this is the very mechanism underpinning gravity itself.\"
 
 And with that an important new insight was gleaned; a potential mechanism for gravity.
 
@@ -1908,7 +1908,7 @@ A few days later after mostly putting the concept aside I had a small thought.  
 
 <<EscEq3>>
 
-I then looked up what the actual answer was in Wikipedia.  It was quite shocking seeing the precise formula I had just derived myself without the use of any tensor calculus or the solving of any 10 function PDEs.
+I then looked up what the actual answer was in Wikipedia.  It was quite shocking seeing the precise formula I had just derived myself without the use of any tensor calculus or the solving of any 10-function PDEs.
 
 If this idea was wrong, how could I have just used it to arrive at this precise calculation?
 
@@ -2000,11 +2000,11 @@ At this point a serious problem occurred to me: \"If energy and mass are really 
 
 I realized that the answer was, in fact, yes.  I imagined two protons aimed directly at one another.  Each has its intrinsic hyle and its kinetic hyle that allows the protons to translate across the aether.  However, as they approach one another, they slow down and eventually stop.
 
-All of their intrinsic hyle remains, but they now have zero kinetic hyle.  In theory it is now potential energy, but then where is the hyle?  How is this potential energy still pulling on the aexels?
+All of their intrinsic hyle remains, but they now have zero kinetic hyle.  In theory it is now potential energy, but then where is the hyle?  How is this potential energy still destroying the aexels?
 
-I realized that as the protons near one another they begin to exchange photons.  Their kinetic hyle is drained into these photons being passed between the two protons.  Once the protons come to a complete stop, the entirety of their kinetic hyle is now contained in the photons in transit between the two protons.  And it's these photons in between the protons that continue to pull on the aexels.
+I realized that as the protons near one another they begin to exchange photons.  Their kinetic hyle is drained into these photons being passed between the two protons.  Once the protons come to a complete stop, the entirety of their kinetic hyle is now contained in the photons in transit between the two protons.
 
-And those photons in the space between the two protons are destroying aexels in that space.  Eventually these photons are reabsorbed by the protons as the protons reverse course and eventually head off to where they came from.
+And it's these photons in between the protons that continue to destroy the aexels.  Eventually these photons are reabsorbed by the protons as the they reverse course and head off back to where they came from.
 
 
 
@@ -2012,7 +2012,7 @@ And those photons in the space between the two protons are destroying aexels in 
 
 ";
 
-"cupola_article" = "#[Electricity, Magnetism and the Cupola]###[Pings and Pongs]##Back in the day, while at university, long before Universe X, I was continually attempting to wrap my head around various phenomena in Physics.  I got a salt shaker and shook some salt out onto my desk, gathered it into a pile and then pushed my finger into the pile creating a ring.  I then continually increased the radius of the ring by swirling my finger around inside.
+"cupola_article" = "#[Electricity, Magnetism and the Cupola]###[Pings and Pongs]##Back in the day, while at university, long before Universe X, I was continually attempting to wrap my head around various phenomena in physics.  I got a salt shaker and shook some salt out onto my desk, gathered it into a pile and then pushed my finger into the pile creating a ring.  I then continually increased the radius of the ring by swirling my finger around inside.
 
 It occurred to me that as I increased the radius of the ring the amount of salt at any point would fall off at 1/r and would fall off at 1/r² if I could perform a similar exercise in three dimensions.  I thought that there must be some mechanism akin to this salt model underpinning the 1/r² forces in Physics, but I had no idea how that would work or how to explain the seemingly endless supply of 'salt' needed.
 
@@ -2046,7 +2046,7 @@ The first mystery is relatively easy to dismantle.  The B field being just the c
 
 As far as the velocity dependence of the force, if one plays with the numbers when dealing with the force one teslon exerts on another one can see that ultimately all E&M forces are simply coulomb forces in the frame of the source teslon.
 
-The B component of the force only comes into play when trying to make sense of that E force in another frame.  It's a mathematical trick to make the force make sense in other frames and that amount of correction that is needed here is a function of the velocity difference between the source teslon frame and the target teslon frame.
+The B component of the force only comes into play when trying to make sense of that E force in another frame.  It's a mathematical trick to make the force make sense in other frames and that amount of correction that is needed here is a function of the velocity of charge relative to the reference frame.
 
 ##[Hyle Exchange]##Unfortunately, modeling the hyle exchange was not nearly as straightforward.  The problem is that in natural units the momentum and energy carried by a photon is always equal.  But the momentum and energy lost by a teslon is never equal.  So how do you maintain local conservation through photon exchange?
 
@@ -2064,49 +2064,49 @@ In addition to that, no progress had been made in understanding anything about a
 
 New experimental data became available that I wasn't expecting.  Increasing evidence seemed to indicate that the gravitational force traveled at the speed of light.  The observation of gravitational waves by the LIGO sensor in 2017 showed that they too traveled at about the speed of light.  Certainly, there was nothing in Universe X that said gravitational waves couldn't travel at the speed of light, but also there was nothing that said they had to.
 
-And one last thing I couldn't figure out: if aexels are being pulled towards concentrations of mass like a tablecloth, why aren't they less dense rather than more dense as you get closer to the mass?
+And one last thing I couldn't figure out: if aexels are being pulled towards concentrations of mass like a tablecloth through a hole, why aren't they less dense rather than more dense as you get closer to the mass?
 
-Into this mix, I had two new tools available to me, LLMs and the ability to develop simulations using the GPU which greatly increased the number of particles I could model.  It was time to explain this idea to my computer; it was time to figure out what was really going on here.
+Into this mix, I had two new tools available to me, LLMs and the ability to develop simulations using the GPU, which greatly increased the number of particles I could model.  It was time to explain this idea to my computer; it was time to figure out what was really going on here.
 
 At this point in Universe X, gravity was understood through two basic concepts:
 - that hyle destroyed the crystalline aexels and therefore pulled more aexels towards it like a tablecloth being pulled through a hole in a table,
 - that gravity was not a force, but rather was a result of the acceleration of the aexels themselves and that the dilation at any point due to gravity was simply a measure of the rate of aexel flow at that point.
 
-But, Gauss and the other issues I just mentioned made reconciling these two concepts very difficult.  I decided the best way to move forward was to just try to explain both of these concepts to my computer and hopefully a method reconciling the two would occur to me during the process.
+But Gauss and the other issues I just mentioned made reconciling these two concepts very difficult.  I decided the best way to move forward was to just try to explain both of these concepts to my computer and hopefully a method reconciling the two would occur to me during the process.
 
-The simulation that modeled the destruction of aexels was named InsideOut.  The simulation that modeled the velocity and acceleration of the aexels from the outside was called OutsideIn.  The ultimate solution here came in two steps, the first step had me realize that OutsideIn was correct (with modification), but the InsideOut was incorrect.  The second step had me realize that InsideOut was also correct, but that a looser join to OutsideIn was required.
+The simulation that modeled the destruction of aexels was named InsideOut.  The simulation that modeled the velocity and acceleration of the aexels from the outside was called OutsideIn.  The ultimate solution here came in two steps, the first step led me to realize that OutsideIn was correct (with modification), but the InsideOut was incorrect.  The second step led me to realize that InsideOut was also correct, but that a looser join to OutsideIn was required.
 
-##[The Squish]##The Inside Out mechanism started with an aexel sink at the location of the mass.  Each second that mass would destroy a fixed number of aexels.  Those missing aexels would need to be replaced, so each shell surrounding the mass would need to have those missing aexels flowing through it each second.  At every point a distance r from the center there would be a specific velocity and acceleration of those aexels.
+##[The Squish]##The InsideOut mechanism started with an aexel sink at the location of the mass.  Each second that mass would destroy a fixed number of aexels.  Those missing aexels would need to be replaced, so each shell surrounding the mass would need to have those missing aexels flowing through it each second.  At every point a distance r from the center there would be a specific velocity and acceleration of those aexels.
 
-The Outside In mechanism started with the aexel flow.  It posited that the dilation at any point is an indication of the velocity of the aexels flowing through that point.  From that velocity the acceleration at every point could be calculated.
+The OutsideIn mechanism started with the aexel flow.  It posited that the dilation at any point is an indication of the velocity of the aexels flowing through that point.  From that velocity the acceleration at every point could be calculated.
 
 When you do those calculations the InsideOut mechanism gives a 1/r² relation for the velocity.  The OutsideIn mechanism gives a 1/r² relation for the acceleration.  How can these two be reconciled?
 
 My thought since the very beginning of Universe X is that I would be able to resolve this through density variations, but when it came time to actually explain this to my computer I realized two things.  One, given the aexel model of distance, there actually is zero density wiggle room.  You can't increase density without increasing distance.  The Cartesian distance is irrelevant, the only thing that matters is the number of aexels you must jump to, to get from one point to the other.
 
-The other issue is that, for example, for the Earth the aexel compression is quite mild.  The gravitational radius of the Earth is only 4mm greater than the circumference radius.  Even if there was wiggle room in the density there is no way the severe correction that was required could be accommodated in this slight squeeze.
+The other issue is that, for example, for the Earth the aexel compression is quite mild.  The gravitational radius of the Earth is only 4 mm greater than the circumference radius.  Even if there was wiggle room in the density there is no way the severe correction that was required could be accommodated in this slight squeeze.
 
 My mind boggled; is space actually 4D?  Are we living on the 3D surface of some 4D pond?  The thought of abandoning the entirely 3D sand box of Universe X was horrifying.
 
-And then finally, the solution came to me.  I had long posited that Gravity was not a force, but rather was an emergent phenomena caused by the flow of aexels.  But, this was wrong and also sort of right.  Gravity *is* a force, but not a force on teslons and edisons, but instead a force on the aexels themselves with the teslons and edisons coming along for the ride.
+And then finally, the solution came to me.  I had long posited that gravity was not a force, but rather was an emergent phenomenon caused by the flow of aexels.  But, this was wrong and also sort of right.  Gravity *is* a force, but not a force on teslons and edisons; instead it is a force on the aexels themselves with the teslons and edisons coming along for the ride.
 
 I had made the assumption that the destruction of aexels by hyle was local, but that assumption was also wrong.  The destruction happens as the aexels flow into smaller and smaller shells and consequently get squeezed out of existence.  It doesn't need to obey Gauss' law because the aexels don't necessarily get squished local to hyle.
 
-We had seen how to solve the 1/r² force previously in E&M, so all we need to do is posit the existence of g-pings and voila we have our gravitational force, but applied to the aexels themselves not the matter sitting on those aexels.
+We had seen how to solve the 1/r² force previously in E&M, so all we need to do is posit the existence of g-pings and voila, we have our gravitational force, but applied to the aexels themselves not the matter sitting on those aexels.
 
 ##[The Accelerant]##Once I sat down to start thinking about implementing the g-ping solution, problems became apparent at once.
 
-As previously noted in the Kinematics article the electromagnetic phenomena is huge compared to the aexels.  The sophistication available to E&M compared to gravity might perhaps be akin to the sophistication available to an individual human compared to an individual bacteria.
+As previously noted in the Kinematics article, the electromagnetic phenomenon is huge compared to the aexels.  The sophistication available to E&M compared to gravity might perhaps be akin to the sophistication available to an individual human compared to an individual bacteria.
 
 It also operates on wildly smaller distances.  The idea that each bit of hyle was somehow sending out g-pings in all directions with such granularity that it would hit each and every aexel in each and every corner of the universe seemed ridiculously intractable.
 
-My expanding salt analogy was useful in understanding E&M, but perhaps it was leading me astray here.  And in fact through the InsideOut mechanism I realized that there *was* another way to achieve a 1/r² relationship.  Namely, instead of sending out a volley of particles one could create a drain of a substance, basically a subtraction of volley from sent out from source (sink) that would also fall off at 1/r².
+My expanding salt analogy was useful in understanding E&M, but perhaps it was leading me astray here.  And in fact through the InsideOut mechanism I realized that there *was* another way to achieve a 1/r² relationship.  Namely, instead of *adding* particles to a system to achieve the relation, one could *subtract* particles instead.  In the first case the 1/r² relationship is represented by the density of the particles at any point.  In the second case the 1/r² relationship is represented by the current of particles at any point.
 
-With this 1/r² not manifesting as the density at any point, but rather the velocity of the flow of the fluid at that point.  And with this thought the concept of the 'Accelerant' fluid was born.  Hyle destroys accelerant.  The velocity of the accelerant at any point is promoted to the acceleration of the aexels at that point.
+And with this thought the concept of the 'Accelerant' fluid was born.  Hyle destroys accelerant.  The velocity of the accelerant at any point is promoted to an acceleration of the aexels at that same point.
 
 And as such, an absurdly intractable O(n²) g-ping problem is converted into a much more manageable O(n) fluid dynamics problem of the accelerant.
 
-Now admittedly, this is a next level inference even in the world of Universe X.  Even if it's totally off base, if this concept actually works in speeding up gravitational simulations it can be a powerful tool.
+Now admittedly, this is a next level inference even in the world of Universe X.  However, even if it's totally off base, but succeeds in speeding up gravitational simulations, it can be a powerful tool.
 
 On the other hand, if it does speed up gravitational simulations, why wouldn't 'god' make use of the same optimization in designing our universe?
 
