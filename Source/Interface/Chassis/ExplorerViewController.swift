@@ -53,7 +53,7 @@ class ExplorerViewController: AEViewController {
                         nexusExplorer.articleView.alpha = 0
                         nexusExplorer.currentCapsule.alpha = 0
                         nexusExplorer.snapGlyphs()
-                        self.graphView.start()
+                        if Screen.mac { self.graphView.start() }
                         DispatchQueue.main.async { self.startMusic() }
                         UIView.animate(withDuration: 0.5) { nexusExplorer.view.alpha = 1 }
                     }
@@ -88,7 +88,7 @@ class ExplorerViewController: AEViewController {
                     nexusExplorer.currentCapsule.alpha = 0
                     nexusExplorer.contextGlyphsView.alpha = 0
                     nexusExplorer.snapGlyphs()
-                    if !Screen.iPhone { self.graphView.start() }
+                    if Screen.mac { self.graphView.start() }
                     if !Screen.iPhone { DispatchQueue.main.async { self.startMusic() } }
                 }
                 if let oldValue { oldValue.view.removeFromSuperview() }
