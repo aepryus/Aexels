@@ -152,27 +152,26 @@ class ExplorerViewController: AEViewController {
     var musicOn: Bool = false
     var timer: Timer? = nil
     private func rampVolume() {
-        guard let player else { return }
-        if timer == nil {
-            if !player.isPlaying { player.play() }
-            timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (timer: Timer) in
-                guard let player = self.player else { return }
-                if self.musicOn { player.volume += 0.02 }
-                else { player.volume -= 0.02 }
-                if (self.musicOn && player.volume >= 0.2) || (!self.musicOn && player.volume <= 0) {
-                    timer.invalidate()
-                    self.timer = nil
-                }
-                if player.volume <= 0 { player.stop() }
+        guard let player, timer == nil else { return }
+        if !player.isPlaying && musicOn { player.play() }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (timer: Timer) in
+            if self.musicOn { player.volume += 0.02 }
+            else { player.volume -= 0.02 }
+            if (self.musicOn && player.volume >= 0.2) || (!self.musicOn && player.volume <= 0) {
+                timer.invalidate()
+                self.timer = nil
             }
+            if player.volume <= 0 { player.stop() }
         }
     }
     func startMusic() {
+        guard Screen.iPhone else { return }
         guard Aexels.settings.musicOn else { return }
         musicOn = true
         rampVolume()
     }
     func stopMusic() {
+        guard Screen.iPhone else { return }
         guard Aexels.settings.musicOn else { return }
         musicOn = false
         rampVolume()
