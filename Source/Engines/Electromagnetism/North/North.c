@@ -340,6 +340,7 @@ void NCUniversePing(NCUniverse* universe, int n) {
         for (int j=0;j<n;j++) {
             NCPing* ping = NCPingCreate();
             ping->pos = teslon->pos;
+//            ping->origin = teslon->pos;
             
             double iQx = cos(iQ);
             double iQy = sin(iQ);

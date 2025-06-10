@@ -48,6 +48,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
     
     private var backgroundTexture: MTLTexture
     private let backgroundPipelineState: MTLRenderPipelineState
+//    private let linePipelineState: MTLRenderPipelineState
     
     weak var systemView: MTKView?
     weak var aetherView: MTKView?
@@ -135,6 +136,31 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         let textureLoader = MTKTextureLoader(device: device)
         guard let backgroundTexture = try? textureLoader.newTexture(cgImage: image.cgImage!, options: [.SRGB : false]) else { return nil }
         self.backgroundTexture = backgroundTexture
+        
+        // Ping Lines ==============================================================================
+
+//        let lineVertexFunction = library.makeFunction(name: "northVertexShader")
+//        let lineFragmentFunction = library.makeFunction(name: "northFragmentShader")
+//
+//        let linePipelineDescriptor = MTLRenderPipelineDescriptor()
+//        linePipelineDescriptor.vertexFunction = lineVertexFunction
+//        linePipelineDescriptor.fragmentFunction = lineFragmentFunction
+//        linePipelineDescriptor.colorAttachments[0].pixelFormat = systemView.colorPixelFormat
+//
+//        // Configure vertex descriptor
+//        let vertexDescriptor = MTLVertexDescriptor()
+//        vertexDescriptor.attributes[0].format = .float2
+//        vertexDescriptor.attributes[0].offset = 0
+//        vertexDescriptor.attributes[0].bufferIndex = 0
+//        vertexDescriptor.layouts[0].stride = MemoryLayout<SIMD2<Float>>.stride
+//        linePipelineDescriptor.vertexDescriptor = vertexDescriptor
+//
+//        guard let linePipelineState = try? device.makeRenderPipelineState(descriptor: linePipelineDescriptor) else {
+//            return nil
+//        }
+//        self.linePipelineState = linePipelineState
+        
+        // Ping Lines ==============================================================================
 
         super.init()
         
@@ -280,6 +306,44 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         renderEncoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
         renderEncoder.setFragmentTexture(backgroundTexture, index: 0)
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
+        
+        // =================================================================================================
+
+//                var lineVertices: [SIMD2<Float>] = []
+//
+//                for i in 0..<Int(universe.pointee.pingCount) {
+//                    let ping = universe.pointee.pings[i]!
+//                    
+//                    if let sourceTeslon = ping.pointee.source {
+//                        // Ping position (origin)
+//                        lineVertices.append(SIMD2<Float>(
+//                            Float(ping.pointee.pos.x),
+//                            Float(ping.pointee.pos.y)
+//                        ))
+//                        
+//                        // Current teslon position
+//                        lineVertices.append(SIMD2<Float>(
+//                            Float(sourceTeslon.pointee.pos.x),
+//                            Float(sourceTeslon.pointee.pos.y)
+//                        ))
+//                    }
+//                }
+//
+//                if !lineVertices.isEmpty {
+//                    let lineBuffer = device.makeBuffer(
+//                        bytes: lineVertices,
+//                        length: lineVertices.count * MemoryLayout<SIMD2<Float>>.stride,
+//                        options: .storageModeShared
+//                    )!
+//                    
+//                    renderEncoder.setRenderPipelineState(linePipelineState)
+//                    renderEncoder.setVertexBuffer(lineBuffer, offset: 0, index: 0)
+//                    renderEncoder.setVertexBuffer(cameraBuffer, offset: 0, index: 1)
+//                    renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: lineVertices.count)
+//                }
+                
+        // =================================================================================================
+
 
         renderEncoder.setRenderPipelineState(pipelineState)
         renderEncoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
@@ -289,6 +353,7 @@ class ElectromagnetismRenderer: NSObject, MTKViewDelegate {
         }
         renderEncoder.setVertexBuffer(objectsBuffer, offset: 0, index: 1)
         renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: objects.count)
+        
         renderEncoder.endEncoding()
         
         commandBuffer.present(drawable)

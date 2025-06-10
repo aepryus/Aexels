@@ -454,9 +454,9 @@ The below image shows each of the pings radiating from a source teslon traveling
 
 {{EMImg3}}
 
-And thus, in this small packet of information contained in the ping, both the direction of the force and the return to sender trajectory can be determined; enabling directed communication between two teslons; enabling electromagnetism without fields.
+And thus, in this small packet of information contained in the ping, both the direction of the force and the return to sender trajectory can be determined.
 
-But, we haven't completely exhausted the beauty of the cupola quite yet...
+But perhaps, we haven't completely exhausted the beauty of the cupola quite yet...
 
 
 
@@ -1158,20 +1158,26 @@ Each of these particles has three relevant vectors: the cupola, the absolute fra
 
 {{MGImg1}} **This diagram shows the pings radiating out from a teslon.  The teslon is translating at 0.7c to the right.  The white vectors represent the ping's translation vectors from the teslon's frame of reference.  The black vectors represent the ping's translation from the aether's frame of reference.  The axis of the football represents the cupola vector.**
 
-When the cupola and the frame dependent translation vectors align, the particle appears to be a purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical pings begins to take on a magnetic component.
-
-The magnetic field of a particle is simply the cross product of the frame dependent translation vector and the cupola.  This is why the E and B fields shift between one another when looked at from different frames.  There is no 'magnetic' field; it is simply a mathematical trick to make the E field in one frame still make sense in another frame.
+When the cupola and the frame dependent translation vectors align, the particle appears to be purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical ping begins to take on a magnetic component.
 
 The frame dependent translation vector and the cupola define a plane.  The B field is perpendicular to that plane.  Once the Lorentz force is applied by the B field, the force itself is directed back to the exact same plane as defined by the cupola and the frame dependent translation vector.  The Lorentz force is not a perpendicular force.  The B field is actually just a mathematical concatenation of the two more fundamental vectors.
-
-Consider a charged particle moving down the x-axis from (-3, 0) to (3, 0).  Another charged particle is at (0, 1).  When the moving particle is at the origin the E field is pointing directly down the y-axis.  Using the right hand rule the B field at the static particle is pointing directly up in the z-axis direction.  The delta v between the two particles is pointing down the x-axis.  When we cross the delta v and B field in order to get the force, we are crossing the x-axis with the z-axis and the result is once again a force down the y-axis!  Both the E force and the B force are pointing in the same direction.
-
-It's all just a trick to make the dynamics of the system make sense in any frame.
 ##[What Is Up With Curl?]##When trying to wrap one's head around Maxwell's Equations, Gauss' equations seems fairly intuitive.  It is simply a description of the flow of a conserved quantity.  But, where does curl come from?  Why is there this rotational dynamic?  What is swirling?
 
 Consider a wire with charges flowing down it.  The charges are sending out pings.  These pings have cupolas aligned with the frame dependent translation vectors from the charge's frame (like our pickup truck football players).  But, in the lab frame the cupola and the frame dependent translation vector of the pings are unaligned.  Each ping defines a plane that includes the wire.  The cupola vectors form a 'skirt' around the wire.  There is nothing rotating, there is nothing swirling.
 
 <<MGImg2>>  The rotation only arises when you cross the frame dependent translation vector with the cupola which then creates a circle because of the perpendicular nature of the cross product.  The swirl is not physical; it's entirely mathematical.
+##[Next Steps]##Relative to other topics in Physics, electricity and magnetism are rather quite accessible.  Experiments can be performed with modest equipment.  The amount of experimental data is massive.  The math is fairly straightforward.
+
+The Universe X mechanisms described here may be interesting and are fairly easy to model.  The question is, can they recreate the experimental data and math of electromagnetism.  Another question is at what point do the relatively straightforward mechanisms of E&M give way to the mechanisms of quantum mechanics.  For example:
+
+ - Can the same dynamics be calculated from multiple frames?
+ - Can the E and B field transforms be replicated using these mechanisms?
+ - Can Ampere's current force be replicated mathematically and / or via simulation?
+ - Can Faraday's law be replicated mathematically and / or via simulation?
+ - Can the electromagnetic wave be replicated?
+ - Can the transfer of energy and momentum be modeled?
+
+At best these mechanisms hint at being qualitatively compatible, but obviously that is entirely insufficient.  They must be shown to be quantitatively compatible also.
 
 
 

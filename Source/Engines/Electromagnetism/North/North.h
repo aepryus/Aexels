@@ -30,6 +30,7 @@ typedef struct NCPing {
     CV2 cupola;
     unsigned char recycle;
     NCTeslon* source;
+//    CV2 origin;
 } NCPing;
 
 NCPing* NCPingCreate(void);

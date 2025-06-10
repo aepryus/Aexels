@@ -235,3 +235,24 @@ fragment float4 northLoopFragmentShader(NorthLoopPacket in [[stage_in]]) {
     else if (in.type == 3) return renderPhoton(in);
     return float4(0.0, 0.0, 0.0, 0.0);
 }
+
+//// Line Shaders ====================================================================================
+//struct NorthVertexIn {
+//    float2 pos [[attribute(0)]];
+//};
+//struct NorthVertexOut {
+//    float4 pos [[position]];
+//};
+//
+//vertex NorthVertexOut northVertexShader(NorthVertexIn in [[stage_in]], constant NorthCamera &camera [[buffer(1)]]) {
+//    float2 normalizedPosition = (in.pos - camera.position) / (camera.bounds * 0.5);
+//    normalizedPosition.y *= -1.0;
+//    
+//    NorthVertexOut out;
+//    out.pos = float4(normalizedPosition, 0.0, 1.0);
+//    return out;
+//}
+//
+//fragment float4 northFragmentShader(NorthVertexOut in [[stage_in]]) {
+//    return float4(0.7, 0.7, 0.7, 0.8);  // Visible gray color
+//}

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Aepryus Software. All rights reserved.
 //
 
+import Acheron
 import OoviumKit
 import UIKit
 
@@ -18,7 +19,7 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
     func applicationDidBecomeActive(_ application: UIApplication) {
-        if Aexels.explorerViewController.explorer is NexusExplorer { Aexels.explorerViewController.graphView.start() }
+        if Aexels.explorerViewController.explorer is NexusExplorer, Screen.mac { Aexels.explorerViewController.graphView.start() }
     }
 	func applicationDidEnterBackground(_ application: UIApplication) {
         Aexels.explorerViewController.graphView.stop()
