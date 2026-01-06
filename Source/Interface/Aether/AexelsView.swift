@@ -266,7 +266,7 @@ class AexelsView: UIView {
 		let x = gesture.location(in: self)
         let v = Vector(x: x.x, y: x.y)
         let nearest: UnsafeMutablePointer<ICAexel>? = AXUniverseAexelNear(universe, v)
-        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*s {
+        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*Double(s) {
             nearest.pointee.stateC = (nearest.pointee.stateC + 1) % 2
         } else {
             AXUniverseAddAexel(universe, v.x, v.y)
@@ -277,7 +277,7 @@ class AexelsView: UIView {
         let x = gesture.location(in: self)
         let v = Vector(x: x.x, y: x.y)
         let nearest: UnsafeMutablePointer<ICAexel>? = AXUniverseAexelNear(universe, v)
-        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*s {
+        if let nearest, AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 10*Double(s) {
             AXUniverseRemoveAexel(universe, nearest)
         }
     }
@@ -289,7 +289,7 @@ class AexelsView: UIView {
         switch gesture.state {
             case .began:
                 guard let nearest: UnsafeMutablePointer<ICAexel> = AXUniverseAexelNear(universe, v) else { break }
-                guard AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 30*s else { break }
+                guard AXVectorLength(AXVectorSub(v, nearest.pointee.s)) < 30*Double(s) else { break }
                 holding = nearest
                 holding?.pointee.stateC = 1
             case .ended:

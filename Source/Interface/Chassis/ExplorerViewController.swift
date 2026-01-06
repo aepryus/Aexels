@@ -46,8 +46,8 @@ class ExplorerViewController: AEViewController {
                     UIView.animate(withDuration: 0.5) {
                         nexusExplorer.view.alpha = 0
                     } completion: { (complete: Bool) in
-                        self.visionBar.alwaysExpanded = true
-                        self.visionBar.expand()
+                        self.visionBar.alwaysExpanded = false
+//                        self.visionBar.expand()
                         nexusExplorer.articleView.removeFromSuperview()
                         nexusExplorer.currentCapsule.removeFromSuperview()
                         nexusExplorer.articleView.alpha = 0
@@ -72,8 +72,8 @@ class ExplorerViewController: AEViewController {
             } completion: { (complete: Bool) in
                 if let nexusExplorer: NexusExplorer = self.explorer as? NexusExplorer {
                     if !Screen.iPhone {
-                        self.visionBar.alwaysExpanded = true
-                        self.visionBar.expand()
+                        self.visionBar.alwaysExpanded = false
+//                        self.visionBar.expand()
                     } else {
                         if oldValue == nil {
                             self.visionBar.alpha = 0
