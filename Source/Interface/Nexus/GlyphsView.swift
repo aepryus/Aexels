@@ -110,7 +110,12 @@ class GlyphsView: AEView {
             })
             let p: CGFloat = 10*s
             glyphs.forEach({
-                $0.frame = CGRect(x: $0.x*scale - minX*scale + p, y: $0.y*scale - minY*scale + p, width: $0.radius*scale, height: $0.radius*scale)
+                let x: CGFloat = $0.x*scale - minX*scale + p
+                let y: CGFloat = $0.y*scale - minY*scale + p
+                let width: CGFloat = $0.radius*scale
+                let height: CGFloat = $0.radius*scale
+                $0.frame = CGRect(x: x, y: y, width: width, height: height)
+//                $0.frame = CGRect(x: $0.x*scale - minX*scale + p, y: $0.y*scale - minY*scale + p, width: $0.radius*scale, height: $0.radius*scale)
             })
             borderView.setNeedsDisplay()
         }

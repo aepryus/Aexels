@@ -29,20 +29,25 @@ class Concepts {
     static let forward: Article = Article(key: "forward", parent: intro)
     static let claude: Article = Article(key: "claude", parent: intro)
     static let aesthetics: Article = Article(key: "aesthetics", parent: intro)
-    static let chronos : Article = Article(key: "chronos", parent: dilation)
+    static let speedOfLight: Article = Article(key: "speedOfLight", parent: cellular)
+    static let zenosArrows: Article = Article(key: "zenosArrows", parent: hyle)
+    static let chronos: Article = Article(key: "chronos", parent: dilation)
     static let floatingLeaf: Article = Article(key: "floatingLeaf", parent: dilation)
-    static let fourClocks : Article = Article(key: "fourClocks", parent: dilation)
-    static let blackHole : Article = Article(key: "blackHole", parent: gravity2)
-    static let narwhal : Article = Article(key: "narwhal", parent: contraction)
+    static let fourClocks: Article = Article(key: "fourClocks", parent: dilation)
+    static let blackHole: Article = Article(key: "blackHole", parent: gravity2)
+    static let holograms: Article = Article(key: "holograms", parent: gravity2)
+    static let narwhal: Article = Article(key: "narwhal", parent: contraction)
     static let magnetism: Article = Article(key: "magnetism", parent: electromagnetism)
-    static let bellTHooft : Article = Article(key: "bellTHooft", parent: quantum)
+    static let shotInTheDark: Article = Article(key: "shotInTheDark", parent: electromagnetism)
+    static let bellTHooft: Article = Article(key: "bellTHooft", parent: quantum)
     static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: quantum)
-    static let glossary : Article = Article(key: "glossary", parent: epilogue)
+    static let glossary: Article = Article(key: "glossary", parent: epilogue)
 
     static var articles: [Article] = [
         intro, aether, cellular, kinematics, gravity1, hyle, dilation, contraction, electromagnetism,
-        gravity2, darkness, quantum, nuclear, epilogue, forward, claude, aesthetics,
-        chronos, floatingLeaf, fourClocks, narwhal, magnetism, blackHole, bellTHooft, glossary
+        gravity2, darkness, quantum, nuclear, epilogue, forward, claude, aesthetics, speedOfLight,
+        zenosArrows, chronos, floatingLeaf, fourClocks, narwhal, magnetism, shotInTheDark,
+        blackHole, holograms, bellTHooft, glossary
     ]
     
     static func glyphs(s: CGFloat) -> [GlyphView] {
@@ -64,7 +69,7 @@ class Concepts {
         let epilogueGlyph: ArticleGlyph = ArticleGlyph(article: epilogue, radius: 96*s+2*p, x: 330*s, y: 1987*s)
 
         let aetherExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.aetherExplorer, radius: 50*s+2*p, x: 75*s, y: 300*s)
-        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 400*s, y: 300*s)
+        let cellularExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.cellularExplorer, radius: 50*s+2*p, x: 390*s, y: 280*s)
         let kinematicsExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.kinematicsExplorer, radius: 50*s+2*p, x: 50*s, y: 400*s)
         let gravityExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.gravityExplorer, radius: 50*s+2*p, x: 280*s, y: 600*s)
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 220*s, y: 960*s)
@@ -74,12 +79,16 @@ class Concepts {
         let forwardGlyph: AsideGlyph = AsideGlyph(article: forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
         let claudeGlyph: AsideGlyph = AsideGlyph(article: claude, radius: 56*s+2*p, x: 250*s, y: 120*s)
         let aestheticsGlyph: AsideGlyph = AsideGlyph(article: aesthetics, radius: 64*s+2*p, x: 170*s, y: 170*s)
+        let speedOfLightGlyph: AsideGlyph = AsideGlyph(article: speedOfLight, radius: 56*s+2*p, x: 350*s, y: 400*s)
+        let zenosArrowsGlyph: AsideGlyph = AsideGlyph(article: zenosArrows, radius: 60*s+2*p, x: 380*s, y: 820*s)
         let chronosGlyph: AsideGlyph = AsideGlyph(article: chronos, radius: 60*s+2*p, x: 400*s, y: 940*s)
         let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: floatingLeaf, radius: 62*s, x: 410*s, y: 1040*s)
         let fourClocksGlyph: AsideGlyph = AsideGlyph(article: fourClocks, radius: 46*s+2*p, x: 386*s, y: 1130*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
-        let magnetismGlyph: AsideGlyph = AsideGlyph(article: magnetism, radius: 74*s, x: 200*s, y: 1230*s)
+        let magnetismGlyph: AsideGlyph = AsideGlyph(article: magnetism, radius: 74*s, x: 208*s, y: 1270*s)
+        let shotInTheDarkGlyph: AsideGlyph = AsideGlyph(article: shotInTheDark, radius: 60*s+2*p, x: 190*s, y: 1180*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: blackHole, radius: 40*s+2*p, x: 120*s, y: 1360*s)
+        let hologramsGlyph: AsideGlyph = AsideGlyph(article: holograms, radius: 72*s+2*p, x: 80*s, y: 1460*s)
         let bellTHooftGlyph: AsideGlyph = AsideGlyph(article: bellTHooft, radius: 60*s+2*p, x: 90*s, y: 1640*s)
         let thooftGlyph: AsideGlyph = AsideGlyph(article: thooft, radius: 60*s, x: 110*s, y: 1860*s)
         let glossaryGlyph: AsideGlyph = AsideGlyph(article: glossary, radius: 60*s+2*p, x: 250*s, y: 2130*s)
@@ -112,12 +121,16 @@ class Concepts {
         glyphs.append(forwardGlyph)
         glyphs.append(claudeGlyph)
         glyphs.append(aestheticsGlyph)
+        glyphs.append(speedOfLightGlyph)
+        glyphs.append(zenosArrowsGlyph)
         glyphs.append(chronosGlyph)
         glyphs.append(floatingLeafGlyph)
         glyphs.append(fourClocksGlyph)
         glyphs.append(narwhalGlyph)
         glyphs.append(magnetismGlyph)
+        glyphs.append(shotInTheDarkGlyph)
         glyphs.append(blackHoleGlyph)
+        glyphs.append(hologramsGlyph)
         glyphs.append(bellTHooftGlyph)
         glyphs.append(thooftGlyph)
         glyphs.append(glossaryGlyph)
@@ -132,6 +145,7 @@ class Concepts {
 
         cellularGlyph.link(to: kinematicsGlyph)
         cellularGlyph.link(to: cellularExpGlyph)
+        cellularGlyph.link(to: speedOfLightGlyph)
         
         kinematicsGlyph.link(to: gravity1Glyph)
         kinematicsGlyph.link(to: kinematicsExpGlyph)
@@ -140,6 +154,7 @@ class Concepts {
         gravity1Glyph.link(to: gravityExpGlyph)
         
         hyleGlyph.link(to: dilationGlyph)
+        hyleGlyph.link(to: zenosArrowsGlyph)
         
         dilationGlyph.link(to: contractionGlyph)
         dilationGlyph.link(to: dilationExpGlyph)
@@ -154,9 +169,11 @@ class Concepts {
         electromagnetismGlyph.link(to: gravity2Glyph)
         electromagnetismGlyph.link(to: electromagnetismExpGlyph)
         electromagnetismGlyph.link(to: magnetismGlyph)
+        electromagnetismGlyph.link(to: shotInTheDarkGlyph)
         
         gravity2Glyph.link(to: darknessGlyph)
         gravity2Glyph.link(to: blackHoleGlyph)
+        gravity2Glyph.link(to: hologramsGlyph)
         
         darknessGlyph.link(to: quantumGlyph)
 

@@ -26,7 +26,8 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         tools[1][0] = AetherView.gateTool
         tools[0][1] = AetherView.mechTool
         
-        let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
+        let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false)
+//        let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
         aetherView.swapToAether(aether: engine.aether)
         aetherView.backgroundColor = .clear
         aetherView.aetherViewDelegate = self
@@ -179,13 +180,13 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         super.viewWillAppear(animated)
         Aexels.sync.link.preferredFramesPerSecond = dilatorView.frameRate
         engine.defineOnFire()
-        aetherView.layoutAetherPicker()
-        aetherView.snapAetherPicker()
+//        aetherView.layoutAetherPicker()
+//        aetherView.snapAetherPicker()
         aetherView.showToolBars()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        aetherView.dismissAetherPicker()
+//        aetherView.dismissAetherPicker()
         aetherView.snuffToolBars()
         timeControl.playButton.stop()
     }
@@ -245,7 +246,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         aetherView.renderToolBars()
         aetherView.placeToolBars()
         aetherView.showToolBars()
-        aetherView.invokeAetherPicker()
+//        aetherView.invokeAetherPicker()
         aetherView.stretch()
         
         cyto.Xs = [universeWidth-286*oS-176*oS, 286*oS, 176*oS]

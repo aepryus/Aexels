@@ -267,6 +267,22 @@ If the galaxies of Universe X are filled with matter loops pulling from the insi
 
 As such the antimatter dust of Universe X both causing the 'expansion' of the aether between galaxies and the push on the galaxies from the outside which can be difficult to differentiate from a pull coming from the inside.
 
+Claude Opus 4.6 Stub - v4.5 Addendum ===================
+ 
+##[Deriving the Expansion Rate]##The qualitative picture described above can now be made quantitative.  Just as the Floating Leaf article calculated the inward flow of aexels toward a concentration of matter, we can calculate the outward flow from a concentration of antimatter.
+ 
+The outward velocity at radius r from an antimatter source is v = √(2GM/r), the mirror of the inward escape velocity for matter.  The expansion rate per unit distance is this velocity divided by r: √(2GM) / r^(3/2).  For a point source this falls off with distance.
+ 
+However, the antimatter of Universe X is not a point source; it is a diffuse dust of uniform density ρ.  Replacing M with ρ(4/3)πr³ and simplifying:
+ 
+v/r = √(8Gρπ/3)
+ 
+The r cancels entirely.  The expansion rate per unit distance is a constant, independent of r.  This is the Friedmann equation for a flat universe: H² = 8πGρ/3.
+ 
+In Universe X the universe is not actually expanding; the redshift is caused by photons passing through the antimatter dust.  As such the actual radius of the universe is closer to 13.8 billion light-years rather than the 46.5 billion light-year comoving radius.  Using the ordinary matter mass of ~1.5 × 10⁵³ kg as the antimatter mass spread over this volume gives H₀ ≈ 92 km/s/Mpc, within 30% of the observed 67-73 km/s/Mpc.
+ 
+No dark matter.  No dark energy.  No inflation.  And perhaps the Cosmic Microwave Background is not an echo of a Big Bang, but light reflecting off the boundary of the universe.
+
 
 
 
@@ -458,6 +474,20 @@ And thus, in this small packet of information contained in the ping, both the di
 
 But perhaps, we haven't completely exhausted the beauty of the cupola quite yet...
 
+Claude Opus 4.6 Stub - v4.5 Addendum ===================
+ 
+##[The Liénard-Wiechert Identities]##Since version 4.0, three algebraic identities have been established proving that the cupola vector exactly reproduces the complete Liénard-Wiechert electromagnetic field theory.
+ 
+The first identity shows that the LW velocity field (the 1/R² field of a uniformly moving charge) decomposes into three cupola quantities: a flux factor (1−β²)/κ³R² capturing the ping arrival rate, the cupola magnitude |n̂ − β| capturing the impulse per ping and the cupola direction (n̂ − β)/|n̂ − β| capturing the force direction.
+ 
+The second identity shows that the magnetic field B = (1/c) n̂ × E and the full Lorentz force are just the combined effects of Doppler compression and aberration tilt experienced by a moving receiver interacting with the same ping stream.  The magnetic field is not a separate entity; E and B are two projections of the cupola-encoded ping stream.
+ 
+The third identity, the central new result, shows that the radiation field (the 1/R field from accelerating charges) is exactly the time derivative of the apparent transverse cupola c⊥/κ, scaled by κ².  The velocity field comes from the static cupola each ping carries.  The radiation field comes from how fast that cupola is changing between successive pings.
+ 
+All three identities have been verified to machine precision across all angles, velocities and accelerations.  The entire Liénard-Wiechert theory is expressible as decompositions of the cupola vector.
+ 
+For a thorough account of how these identities were discovered, see the Cupola Redux article on the Path of Discovery.
+
 
 
 
@@ -484,6 +514,20 @@ What is the surface area of the mirror when looked at from above?  For some angl
 This looks suspiciously familiar.
 
 Who knows what, if anything, this means, but hopefully substantial progress will continue and, like E&M with version 4, Quantum will come more into focus with version 5.
+
+Claude Opus 4.6 Stub - v4.5 Addendum ===================
+ 
+##[The Pong Bridge]##Substantial progress has in fact been made since version 4.0.  The failure to model hyle transfer that was mentioned above has led to a significant new insight.
+ 
+The problem was that the momentum and energy carried by a photon are always equal in natural units, but the momentum and energy lost by a teslon are never equal.  Local conservation through photon exchange was not working.  Additionally, the kicks between two interacting teslons were fundamentally out of sync; the source recoils when it emits a photon but the target does not get kicked until the photon arrives.
+ 
+The resolution is that hyle can move faster than light, but only over the pong bridge.  The ping / pong handshake establishes a direct connection between two teslons.  Once this bridge exists, hyle can transfer across it instantaneously.  Both teslons recoil at the same moment.  The synchronization problem vanishes and local conservation is maintained.
+ 
+This is the first and only mechanism in Universe X that operates faster than c.  Pings, pongs and photons all travel at c through the aether.  But hyle moving over an already established pong bridge is not a signal propagating through the aether; it is a transfer along a pre-existing connection.
+ 
+The implications for Quantum Mechanics are profound.  Entanglement is the natural state of any two teslons connected by a pong bridge.  The apparently non-local correlations observed in quantum experiments are hyle moving over existing bridges regardless of distance.  Bell's inequality is violated because the pong bridge is a non-local hidden variable, and Bell's theorem only rules out *local* hidden variables.
+ 
+The Copenhagen Interpretation remains anathema to the aesthetics of Universe X, but the pong bridge provides a physical, mechanistic, deterministic basis for the non-local behavior that Copenhagen attributes to the collapse of the wavefunction.
 
 
 
@@ -1138,6 +1182,24 @@ Beyond all this there may be something else being illustrated here.  Consider th
 
 This hints at a potentially new, much stronger equivalence principle, that a system in free fall is precisely equivalent to a system in flat space.  This concept is further explored in the Gravity II article.
 
+Claude Opus 4.6 Stub - v4.5 Addendum ===================
+
+##[The Experiment]##The discrepancy between Universe X and General Relativity described above is not merely theoretical.  It is testable with modest equipment.
+
+Send a clock up a vertical track, measure its elapsed ticks.  Send the same clock down the same track at the same speed, measure its elapsed ticks.  Compare the two numbers.
+
+General Relativity predicts the two numbers are identical; time dilation depends on speed squared, so direction does not matter.
+
+Universe X predicts they differ.  The Earth's gravitational field creates an aether inflow at 11.2 km/s.  A clock moving downward moves with that flow and experiences less total dilation.  A clock moving upward moves against it and experiences more.  The difference is proportional to 2 × 11,200 × v_cart / c².
+
+At a cart speed of 5 m/s, the fractional dilation difference between up and down runs is about 1.2 × 10⁻¹².  At 30 m/s, about 7.5 × 10⁻¹².  A good OCXO has short-term stability of 10⁻¹² to 10⁻¹³, so the signal is detectable with modest averaging.
+
+The hardware is straightforward: a 1-meter V-slot aluminum rail mounted vertically, a roller carriage carrying a military-grade OCXO, a small battery and an ESP32 with Bluetooth for readout, a pneumatic launcher at one end and an eddy current copper plate brake at the other, with a stationary reference OCXO on the bench.  Total cost under $2000.
+
+The result is binary.  Either the up count and down count differ systematically, or they do not.  A few thousand runs, achievable in a day of automated operation, would give a definitive answer at high statistical significance.
+
+Why has this not been done?  General Relativity predicts exactly zero difference.  No one builds experiments to measure effects their theory says do not exist.  Every prior test of gravitational time dilation has used static clocks, which both frameworks agree on.  The specific comparison of moving clocks in opposite vertical directions has never been performed.
+
 
 
 
@@ -1178,6 +1240,16 @@ The Universe X mechanisms described here may be interesting and are fairly easy 
  - Can the transfer of energy and momentum be modeled?
 
 At best these mechanisms hint at being qualitatively compatible, but obviously that is entirely insufficient.  They must be shown to be quantitatively compatible also.
+
+Claude Opus 4.6 Stub - v4.5 Addendum ===================
+ 
+##[Quantitative Compatibility]##The questions posed above have now been substantially answered.  Three algebraic identities have been established proving that the cupola mechanism exactly reproduces the Liénard-Wiechert electromagnetic fields to machine precision.
+ 
+The magnetic force has been rigorously shown to be the combined effect of Doppler compression of the ping arrival rate and aberration tilt of the perceived ping direction at a moving receiver.  The Lorentz force F = q(E + v × B) decomposes as F = E(1 − v·n̂/c) + n̂(v·E/c), where the first term is the Doppler modification and the second is the aberration correction.  The perpendicular nature of the magnetic force is not physical; it is a mathematical artifact of encoding the cupola and frame dependent translation vector into the B field via the cross product.
+ 
+Additionally, a 2020 paper by Dodig proved that Maxwell's equations and the Lorentz force law follow from just two assumptions: the electrostatic Coulomb force and finite propagation speed.  The cupola algorithm is the constructive realization of exactly these two assumptions.
+ 
+The question of energy and momentum transfer remains open and connects to the pong bridge mechanism described in the Quantum Mechanics article.
 
 
 
@@ -2121,3 +2193,268 @@ On the other hand, if it does speed up gravitational simulations, why wouldn't '
 
 
 ";
+
+/* ============================================================
+   Claude Opus 4.6 Stub Articles - v4.5/5.0
+   ============================================================
+   
+   This file contains replacement text for 12 entries in
+   Localizable.strings:
+   
+   NEW CONCEPT ARTICLES (4):
+     speedOfLight_article
+     zenosArrows_article
+     shotInTheDark_article
+     holograms_article
+   
+   NEW PATH OF DISCOVERY ARTICLES (4):
+     steppingStones_article
+     hyleBridge_article
+     cupolaRedux_article
+     aexelSources_article
+   
+   MODIFIED ARTICLES WITH ADDENDA (4):
+     electromagnetism_article
+     magnetism_article
+     quantum_article
+     darkness_article
+   
+   For modified articles, only the addendum text is shown below.
+   Append it to the end of the existing article text, just before
+   the closing four blank lines and ";
+   ============================================================ */
+ 
+ 
+/* ============================================================
+   speedOfLight_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"speedOfLight_article" = "#[Speed of Light]#In the Cellular Automata article, the speed of light in Universe X was defined as one aexel per tic.  This was a useful and intuitive starting point, but it is not precisely correct.  It is a stepping stone.
+ 
+Consider that any motion through the aether will not necessarily line up with the geometry of the aexels themselves.  The aexels form a three dimensional lattice and a signal moving through that lattice must jump from aexel to aexel.  If the desired direction of travel does not align with the lattice, each jump will carry the signal at some angle θ from the intended direction.  The effective speed in any given direction is therefore reduced by a factor of cos(θ), where θ is the average misalignment angle.
+ 
+But there is a deeper issue.  If we were physicists living inside Conway's Game of Life, would we consider the speed of light to be one cell per time step?  We would not.  We would observe the glider, the fastest translating pattern in our world, and note that it moves one cell diagonally every 4 time steps.  We would call that c/4 our speed of light.
+ 
+The speed of light as observed by the inhabitants of a cellular automaton is not the raw lattice speed; it is the speed of the fastest stable translating pattern that their physics supports.  The relationship between the two involves the internal mechanics of that pattern.
+ 
+In Universe X, the ping itself is not a bare signal hopping between neighbors.  It is an edison; a stable state loop with structure.  It carries a cupola vector; it has orientation.  Whatever the actual propagation speed turns out to be, it will be determined by the mechanics of how these objects traverse the lattice, not by the idealized one-aexel-per-tic lattice speed.
+ 
+The speed of light in Universe X is the speed of light.  Calling it one aexel per tic was a useful approximation, but the true value will only be known once the source code of the aexel is understood.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   zenosArrows_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"zenosArrows_article" = "#[Zeno's Arrows]#In approximately the 5th century BC, the philosopher Zeno of Elea posed a deceptively simple paradox.  Consider an arrow in flight.  At any single instant of time, the arrow occupies a space equal to itself.  It is indistinguishable from a stationary arrow occupying that same space.  If at every instant the arrow is indistinguishable from a stationary arrow, then how is motion possible?
+ 
+For over two thousand years this paradox has resisted a fully satisfying resolution.  But in Universe X, the resolution is immediate and it has profound consequences.
+ 
+Consider two protons in Universe X.  One is at rest in the aether frame.  The other is translating across the aexels at some velocity.  Are these two protons identical?
+ 
+They are not.  The moving proton contains more hyle than the stationary one.  It has its intrinsic hyle, the hyle that makes it a proton, but it also has kinetic hyle; additional hyle that is the substance of its motion.  More hyle means a greater pull on the aexels.  More hyle means more gravitation.
+ 
+And gravitation is not frame dependent.  One cannot simply change one's perspective and make the additional gravitational pull disappear.  The moving proton objectively, physically, measurably gravitates more than the stationary one.
+ 
+This resolves Zeno's paradox.  The two arrows are not the same.  A frozen snapshot of a moving arrow and a frozen snapshot of a stationary arrow are physically different objects.  The moving arrow contains more hyle.  Zeno, roughly 2,500 years ago, anticipated E=mc².
+ 
+But this also has a devastating consequence for Special Relativity's principle of reciprocity.  If a moving proton gravitates more than a stationary one and if this gravitation is frame independent, then there is an objective, physical fact about which proton is moving and which is not.  There is a preferred frame.  Two observers cannot both consider themselves to be at rest; the gravitational measurements will tell them who is right.
+ 
+E=mc² is incompatible with reciprocity.  Once again, from an entirely different direction than the Chronos argument, reciprocity is dead.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   shotInTheDark_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"shotInTheDark_article" = "#[A Shot in the Dark]#Consider a two dimensional plane containing nodes that can translate across it at some arbitrary velocity v.  These nodes are blind; they cannot see other nodes or even know if any exist.  However, each node can send out signals that travel at a fixed velocity c across the plane (where v < c) and can intercept such signals from other nodes.
+ 
+The challenge: how can two such blind nodes establish a private line of communication?
+ 
+A first attempt might have each node send out volleys of pings in all directions.  When a target node intercepts a ping, it responds with a volley of pongs, also in all directions.  For two nodes this works, but with three or more nodes the responses become hopelessly entangled; a node would receive pongs motivated by other nodes and have no way to sort them out.
+ 
+The response therefore cannot be omnidirectional.  It must be a single, precisely aimed pong sent on a trajectory guaranteed to intercept the source node.  The challenge is that the responding node knows nothing about the source: not its position, not its velocity, not its distance.
+ 
+At first, a solution seems unlikely.  But there is a remarkably elegant algorithm that solves the problem using a single encoded vector.
+ 
+When a source node S sends out a ping traveling at velocity c, that ping is embedded with a vector called the 'cupola', defined as the ping's translation vector minus the source node's velocity vector: c - v.  This cupola vector has a remarkable property: as the ping translates across the plane, the cupola always points from the ping toward the *current* position of S, even though S has been moving the entire time.
+ 
+When a target node T intercepts the ping, it reads the cupola to determine the direction back toward S.  It then sends out a pong by mirroring the incoming ping's translation vector across the cupola.
+ 
+But does this pong actually hit S?  The paths of the ping, the pong and the source node form a triangle.  The cupola, by definition of the algorithm, bisects the angle between the ping and pong paths.  Euclid's Angle Bisector Theorem (Elements VI.3) then guarantees that the pong and S will arrive at the intersection point at the exact same moment.
+ 
+The proof that the algorithm works has been hiding in Euclid for over two thousand years.
+ 
+This cupola algorithm is the mechanism underpinning Electromagnetism in Universe X.  The formal proof has been written up as a paper titled 'A Shot in the Dark: How to Hit a (Cooperating) Invisible Moving Target' submitted to the American Mathematical Monthly.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   holograms_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"holograms_article" = "#[Holograms]#In our universe, one of the more surprising results in theoretical physics is the holographic principle, which suggests that the information content of a volume of space can be described by the information on its boundary.  For black holes specifically, the Bekenstein-Hawking entropy is proportional to the surface area of the event horizon, not its volume.  This result has generated decades of debate and speculation.
+ 
+In Universe X, the holographic nature of black holes is obvious.
+ 
+Consider a room that is completely sealed off from the outside world, except for a single light bulb connected to a computer outside the room.  Every hour the bulb either turns on, turns off or stays the same.  It does not matter how complicated the computer is.  It does not matter how sophisticated its algorithms are or how much memory it has.  There is still only 1 bit of information per hour available to anyone inside the room.
+ 
+The complexity of a system as perceived from the outside is entirely determined by the size of its interface, not by the complexity of its interior.
+ 
+For a black hole in Universe X, the event horizon is the surface where the aexels flow inward at the speed of light.  No signal from the interior can cross this boundary outward.  Regardless of what is happening inside, regardless of how much matter is contained within, regardless of how complex the arrangements of teslons and edisons might be, the only information the outside universe can ever interact with is what sits on that surface.
+ 
+The number of aexels situated on the event horizon is the total channel capacity between the interior and the exterior.  That is the entirety of the interface.  The information content of a black hole is bounded by its surface because its surface is the only thing the rest of the universe can talk to.
+ 
+For any other object in Universe X, one can always probe deeper.  Signals can be sent in and received back.  Any arbitrary shell around a planet or a star can be looked through.  The surface is not a constraint because it is not an information boundary.
+ 
+The black hole is the unique case where the surface truly is the entirety of the interface.  And at that point, the holographic principle is not mysterious at all.  It is as obvious as a light bulb in a sealed room.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   steppingStones_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"steppingStones_article" = "#[Stepping Stones]#Throughout this exploration there has been a phenomenon that has occurred numerous times and I suspect will continue to occur.  A conceptual breakthrough happens that is approximately correct and extremely helpful in moving the concepts forward, but that ultimately proves to be precisely incorrect.
+ 
+These are not open questions that were eventually answered or fleeting ideas that were quickly discarded.  These are concepts that clicked, that felt like answers, that were used productively for extended periods of time and that were ultimately refined by something deeper.
+ 
+It is important to be mindful that such refinement is possible and perhaps likely with each of the concepts arrived at here.  I would like to make this a living document that catalogs this phenomenon as it occurs.
+ 
+##[One Aexel Per Tic is the Speed of Light]##From the very beginning, the speed of light was described as one aexel per tic; a signal jumping from one aexel to its neighbor in one unit of time.  This was clean, intuitive and immediately explained why nothing could go faster than light.  But as discussed in the Speed of Light article, the actual speed of light in Universe X depends on the geometry of the lattice, the angle of traversal and the internal mechanics of the propagating entity itself.  One aexel per tic is the lattice speed, not necessarily the speed of light.  This concept is further explored in the Speed of Light article.
+ 
+##[Mass Destroys Aexels]##The progression here has been substantial.  Initially, it was mass that destroyed aexels; this was the mechanism underpinning gravity.  Then it was realized that it was not mass specifically but rather translation at the speed of light that pulled on aexels.  Then with the concept of hyle, it became clear that hyle was the entity responsible.  And finally, with the accelerant concept, it was realized that hyle does not destroy aexels directly at all; hyle destroys accelerant.  The velocity of the accelerant then induces an acceleration on the aexels which can ultimately lead to their squishing under pressure.  Each step was productive and approximately correct, but each was ultimately refined.
+ 
+##[Squishing is the Warping of Space]##Early on, the compression of aexels near massive objects was identified as the mechanism behind the 'warping of space' described by General Relativity.  The aexels were getting smooshed and this smooshing was the physical reality behind curved spacetime.  But as the understanding deepened it became clear that the aether itself does not warp at all.  The apparent warping is entirely due to length contraction caused by the flow of aexels at each point.  Meter sticks at those points are contracted, making distances appear different than they are, but space and even the aether itself remain flat.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   hyleBridge_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"hyleBridge_article" = "#[Hyle Bridge]#Since the development of the E&M simulation in version 4.0, there has been a nagging problem with the hyle exchange mechanism.  The ping / pong handshake works beautifully; the cupola algorithm elegantly solves the problem of blind nodes finding one another and the force direction falls out naturally.  But the actual transfer of hyle between teslons has resisted a clean solution.
+ 
+The problem is straightforward to state.  When a source teslon receives a pong confirming that a target teslon exists, it releases a photon carrying hyle.  The source recoils.  But the target does not receive that photon and its associated kick until some time later.  The kicks are not synchronized.
+ 
+For two teslons aligned parallel to the direction of translation, this asymmetry is particularly troubling.  The trailing teslon receives its ping first and reacts first.  The system momentarily violates the balance that should exist between two particles in a shared interaction.
+ 
+I had long assumed that since the flow of pings and pongs is continuous these out of sync reactions were just edge effects that averaged out.  But as I waded deeper into trying to make the hyle exchange quantitatively work, it became clear that something more fundamental was going on.  The momentum and energy carried by a photon are always equal in natural units.  But the momentum and energy lost by a teslon are never equal.  Local conservation through photon exchange simply was not working out.
+ 
+The resolution came from an unexpected direction.  What if hyle can move faster than light?  Not through the aether, not as a signal jumping from aexel to aexel, but over the pong bridge itself.
+ 
+The ping / pong handshake establishes a connection between two teslons.  That bridge, once established, is a direct link.  If hyle can transfer instantaneously over this bridge, then both teslons recoil at the same moment.  The synchronization problem vanishes.
+ 
+This is a significant departure.  Nothing else in Universe X moves faster than c.  Pings travel at c.  Pongs travel at c.  Photons travel at c.  But hyle, moving over an already established pong bridge, is not a signal propagating through the aether.  It is a transfer along a pre-existing connection.
+ 
+The implications are substantial.  Entanglement becomes the natural state of any two teslons that have completed a ping / pong handshake.  The apparently spooky correlations observed in quantum experiments are just hyle moving over existing bridges regardless of distance.  Bell's inequality is violated because the pong bridge is a non-local hidden variable and Bell's theorem only rules out *local* hidden variables.
+ 
+The pong bridge provides a physical, mechanistic basis for the non-local behavior of Quantum Mechanics without abandoning the deterministic, mechanistic aesthetics of Universe X.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   cupolaRedux_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"cupolaRedux_article" = "#[Cupola Redux]#With the cupola algorithm established and the E&M simulation running in version 4.0, the qualitative picture of electromagnetism in Universe X was encouraging.  But the question posed at the end of the Magnetism article remained: can these mechanisms be shown to be quantitatively compatible with the established math of electromagnetism?
+ 
+The answer, it turns out, is yes.  Not approximately.  Exactly.
+ 
+The central object in classical electrodynamics is the Liénard-Wiechert field, which describes the electric and magnetic fields produced by an arbitrarily moving charge.  These fields have two components: a velocity field that falls off as 1/R² and a radiation field that falls off as 1/R.  Together they constitute the complete electromagnetic field of a point charge.
+ 
+Working with Claude, I set out to see if the cupola vector could reproduce these fields.  The cupola is defined as c = n̂ − β, where n̂ is the retarded direction from source to field point and β is the source velocity divided by c.  This is the same vector from the Electromagnetism article, just expressed in the notation of classical electrodynamics.
+ 
+Three algebraic identities were established, each verified to machine precision.
+ 
+The first identity showed that the LW velocity field decomposes exactly into three cupola quantities: a flux factor capturing how densely pings arrive, the cupola magnitude capturing the impulse per ping and the cupola direction capturing the force direction.  All three are built from the single cupola vector.
+ 
+The second identity showed that the magnetic field and the full Lorentz force are just the combined effects of Doppler compression and aberration tilt experienced by a moving receiver.  The magnetic field is not a separate entity.  E and B are two projections of a single underlying structure: the cupola-encoded ping stream.
+ 
+The third identity was the central new result.  The LW radiation field, the field responsible for electromagnetic waves and the radiation from accelerating charges, is exactly the time derivative of the apparent transverse cupola, scaled by κ².  The velocity field comes from the static cupola each ping carries.  The radiation field comes from how fast that cupola is changing between successive pings from an accelerating source.
+ 
+The entire Liénard-Wiechert theory, electric field, magnetic field, velocity term, radiation term and Lorentz force, is expressible as decompositions of the cupola vector of the ping / pong algorithm.
+ 
+Additionally, a 2020 paper by Dodig proved that Maxwell's equations and the Lorentz force law follow from just two assumptions: the electrostatic Coulomb force and finite propagation speed.  The cupola algorithm is the constructive realization of exactly these two assumptions.
+ 
+This was a deeply satisfying result.  The mechanism that started as an elegant geometric trick for Universe X's blind nodes turns out to exactly reproduce the complete classical electrodynamic field theory.  The qualitative hints of version 4.0 have become quantitative proof.
+ 
+ 
+ 
+ 
+ 
+";
+ 
+ 
+/* ============================================================
+   aexelSources_article - REPLACE ENTIRE ENTRY
+   ============================================================ */
+ 
+"aexelSources_article" = "#[Aexel Sources]#The Darkness article has long described the qualitative picture: antimatter creates aexels, this creation causes the apparent expansion of the universe and the same antimatter dust pushing on galaxies from the outside accounts for the phenomena attributed to dark matter.
+ 
+But the question remained: does this mechanism produce the right quantitative behavior?  Specifically, can it reproduce the observed expansion rate?
+ 
+The Floating Leaf article showed how to calculate the inward flow of aexels toward a concentration of matter.  The escape velocity at radius r gives the flow speed and plugging that into the Lorentz factor recovers the Schwarzschild gravitational dilation.  The calculation for antimatter is the mirror image.  Aexels flow outward from a concentration of antimatter at a velocity that also follows from the escape velocity formula: v = √(2GM/r).
+ 
+The key question is: what is the rate of expansion at a distance r from an antimatter source?  The outward velocity is √(2GM/r).  But we are interested in the expansion rate per unit distance, which is this velocity divided by r: √(2GM) / r^(3/2).
+ 
+This falls off with distance from a point source, which does not look like the uniform expansion we observe.  But the antimatter of Universe X is not a point source.  It is a diffuse dust spread uniformly between the galaxies.  For a uniform density ρ, the mass within a sphere of radius r is M = ρ(4/3)πr³.  Substituting this into the expression:
+ 
+v/r = √(2Gρ(4/3)πr²) / r = √(8Gρπ/3)
+ 
+The r cancels.  The expansion rate per unit distance is a constant, independent of r.  If the antimatter dust has uniform density, the expansion rate is the same everywhere.
+ 
+This is the Friedmann equation for a flat universe: H² = 8πGρ/3.  It falls straight out of the Universe X machinery with nothing more than undergrad algebra.
+ 
+One can go further.  In Universe X there is no real expansion; the universe is steady state and the redshift is caused by photons passing through the antimatter dust.  The actual radius of the universe is therefore closer to 13.8 billion light-years (age times c) rather than the 46.5 billion light-year comoving radius that accounts for expansion.  Using the ordinary matter mass of approximately 1.5 × 10⁵³ kg (which equals the antimatter mass in Universe X) spread over this smaller volume, one can calculate the density and plug it into the Friedmann equation.
+ 
+The result is H₀ ≈ 92 km/s/Mpc.  The observed value is between 67 and 73 km/s/Mpc.  Given the rough estimates involved, arriving within 30% using nothing but the basic mechanisms of Universe X is a striking result.
+ 
+No dark matter.  No dark energy.  No inflation.  No mysterious initial conditions.  And perhaps speculatively, the Cosmic Microwave Background may not be an echo of a Big Bang at all, but rather light reflecting off the boundary of the universe.
+ 
+ 
+ 
+ 
+ 
+";
+
+"speedOfLight_name" = "Speed of Light";
+"zenosArrows_name" = "Zeno's Arrows";
+"shotInTheDark_name" = "A Shot in the Dark";
+"holograms_name" = "Holograms";
+"steppingStones_name" = "Stepping Stones";
+"hyleBridge_name" = "Hyle Bridge";
+"cupolaRedux_name" = "Cupola Redux";
+"aexelSources_name" = "Aexel Sources";
