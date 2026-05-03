@@ -56,6 +56,7 @@ private struct BHBackgroundParams {
 private struct BHParticle {
     var position: SIMD2<Float>
     var prevPosition: SIMD2<Float>
+    var velocity: SIMD2<Float>   // used by matter; ignored by flow particles
     var age: Float
     var life: Float
 }
@@ -63,9 +64,19 @@ private struct BHParticle {
 private struct BHParticleParams {
     var worldHalfWidth: Float
     var dt: Float
-    var cMax: Float          // speed-of-light cap on |u| sampled by particles
+    var cMax: Float
     var frameSeed: UInt32
     var count: UInt32
+}
+
+private struct BHMatterParams {
+    var worldHalfWidth: Float
+    var dt: Float
+    var cMax: Float
+    var frameSeed: UInt32
+    var count: UInt32
+    var G: Float
+    var totalMass: Float
 }
 
 private struct BHVAetherParams {
@@ -95,16 +106,21 @@ class BlackHolesRenderer: Renderer {
     private let dt: Float = 0.01
     private let fieldGridSize: Int = 256
     private let fieldScale: Float = 4.0
-    private let particleCount: Int = 1024
+    private let particleCountFlow: Int = 1024     // aether and accelerant each
+    private let particleCountMatter: Int = 512
     private let particleDt: Float = 0.0035
-    private let cMax: Float = 10.0   // speed-of-light cap (particle viz only)
+    private let matterDt: Float = 0.01            // matter integrates u over its trajectory
+    private let cMax: Float = 10.0                // speed-of-light cap
+
+    var aetherOn: Bool = true
+    var accelerantOn: Bool = false
+    var matterOn: Bool = false
 
     private var blackHoles: [BlackHole] = []
     private var frameCounter: Int = 0
 
     // Visualization toggles wired to the controls tab.
     var wellsOn: Bool = true
-    var flowOn: Bool = true
     // Phase 1.4: ad-hoc Stokes drag on each BH representing aether
     // dissipation at leading order. F_drag = -dragGamma * v_BH; the
     // orbital energy decays into the (implicit) v_a field. Zero
@@ -116,7 +132,8 @@ class BlackHolesRenderer: Renderer {
     private var samplePipeline: MTLComputePipelineState!
     private var computeUPipeline: MTLComputePipelineState!
     private var vAetherPipeline: MTLComputePipelineState!
-    private var particlePipeline: MTLComputePipelineState!
+    private var flowParticlePipeline: MTLComputePipelineState!
+    private var matterParticlePipeline: MTLComputePipelineState!
     private var backgroundPipeline: MTLRenderPipelineState!
     private var particleRenderPipeline: MTLRenderPipelineState!
     private var circlePipeline: MTLRenderPipelineState!
@@ -127,7 +144,9 @@ class BlackHolesRenderer: Renderer {
     private var vaTexture: MTLTexture!   // algebraic aether velocity field, recomputed each frame
     private var massesBuffer: MTLBuffer!
     private var accelerationsBuffer: MTLBuffer!
-    private var particlesBuffer: MTLBuffer!
+    private var aetherParticlesBuffer: MTLBuffer!
+    private var accelerantParticlesBuffer: MTLBuffer!
+    private var matterParticlesBuffer: MTLBuffer!
     private var commandQueueLocal: MTLCommandQueue!
 
     private var lastAccelerations: [SIMD2<Float>] = []
@@ -149,9 +168,13 @@ class BlackHolesRenderer: Renderer {
               let uState = try? device.makeComputePipelineState(function: uFn) else { return nil }
         computeUPipeline = uState
 
-        guard let particleFn = library.makeFunction(name: "bhUpdateParticles"),
-              let particleState = try? device.makeComputePipelineState(function: particleFn) else { return nil }
-        particlePipeline = particleState
+        guard let flowFn = library.makeFunction(name: "bhUpdateFlowParticles"),
+              let flowState = try? device.makeComputePipelineState(function: flowFn) else { return nil }
+        flowParticlePipeline = flowState
+
+        guard let matterFn = library.makeFunction(name: "bhUpdateMatterParticles"),
+              let matterState = try? device.makeComputePipelineState(function: matterFn) else { return nil }
+        matterParticlePipeline = matterState
 
         guard let vAetherFn = library.makeFunction(name: "bhComputeVAether"),
               let vAetherState = try? device.makeComputePipelineState(function: vAetherFn) else { return nil }
@@ -182,23 +205,52 @@ class BlackHolesRenderer: Renderer {
 
         massesBuffer = device.makeBuffer(length: MemoryLayout<BHMass>.stride * 16, options: .storageModeShared)
         accelerationsBuffer = device.makeBuffer(length: MemoryLayout<SIMD2<Float>>.stride * 16, options: .storageModeShared)
-        particlesBuffer = device.makeBuffer(length: MemoryLayout<BHParticle>.stride * particleCount, options: .storageModeShared)
+        aetherParticlesBuffer = device.makeBuffer(length: MemoryLayout<BHParticle>.stride * particleCountFlow, options: .storageModeShared)
+        accelerantParticlesBuffer = device.makeBuffer(length: MemoryLayout<BHParticle>.stride * particleCountFlow, options: .storageModeShared)
+        matterParticlesBuffer = device.makeBuffer(length: MemoryLayout<BHParticle>.stride * particleCountMatter, options: .storageModeShared)
 
-        seedParticles()
+        seedAllParticles()
         loadDefaultExperiment()
     }
 
-    private func seedParticles() {
-        let ptr = particlesBuffer.contents().assumingMemoryBound(to: BHParticle.self)
-        for i in 0..<particleCount {
-            let x = Float.random(in: -worldHalfWidth...worldHalfWidth)
-            let y = Float.random(in: -worldHalfWidth...worldHalfWidth)
-            let pos = SIMD2<Float>(x, y)
+    private func seedAllParticles() {
+        seedFlowParticles(buffer: aetherParticlesBuffer, count: particleCountFlow)
+        seedFlowParticles(buffer: accelerantParticlesBuffer, count: particleCountFlow)
+        seedMatterParticles(buffer: matterParticlesBuffer, count: particleCountMatter)
+    }
+
+    private func seedFlowParticles(buffer: MTLBuffer, count: Int) {
+        let ptr = buffer.contents().assumingMemoryBound(to: BHParticle.self)
+        for i in 0..<count {
+            let pos = SIMD2<Float>(.random(in: -worldHalfWidth...worldHalfWidth),
+                                   .random(in: -worldHalfWidth...worldHalfWidth))
             ptr[i] = BHParticle(
                 position: pos,
                 prevPosition: pos,
+                velocity: .zero,
                 age: Float.random(in: 0...50),
                 life: Float.random(in: 30...90)
+            )
+        }
+    }
+
+    private func seedMatterParticles(buffer: MTLBuffer, count: Int) {
+        let ptr = buffer.contents().assumingMemoryBound(to: BHParticle.self)
+        let totalMass = blackHoles.reduce(Float(0)) { $0 + $1.mass }
+        let M = totalMass > 0 ? totalMass : 2
+        for i in 0..<count {
+            let pos = SIMD2<Float>(.random(in: -worldHalfWidth...worldHalfWidth),
+                                   .random(in: -worldHalfWidth...worldHalfWidth))
+            let r = max(simd_length(pos), 0.15)
+            let posClamped = simd_length(pos) < 0.15 ? pos * (0.15 / simd_length(pos)) : pos
+            let tangent = SIMD2<Float>(-posClamped.y, posClamped.x) / r
+            let vCirc = sqrt(G * M / r) * Float.random(in: 0.3...0.95)
+            ptr[i] = BHParticle(
+                position: posClamped,
+                prevPosition: posClamped,
+                velocity: tangent * vCirc,
+                age: Float.random(in: 0...100),
+                life: Float.random(in: 60...300)
             )
         }
     }
@@ -218,8 +270,8 @@ class BlackHolesRenderer: Renderer {
     }
 
     func onReset() {
-        seedParticles()
         loadDefaultExperiment()
+        seedAllParticles()
     }
 
 // Simulation step =================================================================================
@@ -303,21 +355,57 @@ class BlackHolesRenderer: Renderer {
         let bhTGSize = MTLSize(width: max(blackHoles.count, 1), height: 1, depth: 1)
         enc.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1), threadsPerThreadgroup: bhTGSize)
 
-        // 5) Advect tracer particles through v_aether (the actual aether velocity)
-        enc.setComputePipelineState(particlePipeline)
-        enc.setBuffer(particlesBuffer, offset: 0, index: 0)
-        enc.setTexture(vaTexture, index: 0)
-        var particleParams = BHParticleParams(
-            worldHalfWidth: worldHalfWidth,
-            dt: particleDt,
-            cMax: cMax,
-            frameSeed: UInt32(truncatingIfNeeded: frameCounter &* 2654435761),
-            count: UInt32(particleCount)
-        )
-        enc.setBytes(&particleParams, length: MemoryLayout<BHParticleParams>.size, index: 1)
+        // 5) Advect tracer particles. Three independent particle systems:
+        //    aether (rides v_aether), accelerant (rides u), matter (Newton).
         let pTG = MTLSize(width: 64, height: 1, depth: 1)
-        let pGroups = MTLSize(width: (particleCount + 63) / 64, height: 1, depth: 1)
-        enc.dispatchThreadgroups(pGroups, threadsPerThreadgroup: pTG)
+
+        if aetherOn {
+            enc.setComputePipelineState(flowParticlePipeline)
+            enc.setBuffer(aetherParticlesBuffer, offset: 0, index: 0)
+            enc.setTexture(vaTexture, index: 0)
+            var pp = BHParticleParams(
+                worldHalfWidth: worldHalfWidth,
+                dt: particleDt,
+                cMax: cMax,
+                frameSeed: UInt32(truncatingIfNeeded: frameCounter &* 2654435761),
+                count: UInt32(particleCountFlow)
+            )
+            enc.setBytes(&pp, length: MemoryLayout<BHParticleParams>.size, index: 1)
+            enc.dispatchThreadgroups(MTLSize(width: (particleCountFlow + 63) / 64, height: 1, depth: 1), threadsPerThreadgroup: pTG)
+        }
+
+        if accelerantOn {
+            enc.setComputePipelineState(flowParticlePipeline)
+            enc.setBuffer(accelerantParticlesBuffer, offset: 0, index: 0)
+            enc.setTexture(uTexture, index: 0)
+            var pp = BHParticleParams(
+                worldHalfWidth: worldHalfWidth,
+                dt: particleDt,
+                cMax: cMax,
+                frameSeed: UInt32(truncatingIfNeeded: (frameCounter &+ 7) &* 2654435761),
+                count: UInt32(particleCountFlow)
+            )
+            enc.setBytes(&pp, length: MemoryLayout<BHParticleParams>.size, index: 1)
+            enc.dispatchThreadgroups(MTLSize(width: (particleCountFlow + 63) / 64, height: 1, depth: 1), threadsPerThreadgroup: pTG)
+        }
+
+        if matterOn {
+            let totalMass = blackHoles.reduce(Float(0)) { $0 + $1.mass }
+            enc.setComputePipelineState(matterParticlePipeline)
+            enc.setBuffer(matterParticlesBuffer, offset: 0, index: 0)
+            enc.setTexture(uTexture, index: 0)
+            var mp = BHMatterParams(
+                worldHalfWidth: worldHalfWidth,
+                dt: matterDt,
+                cMax: cMax,
+                frameSeed: UInt32(truncatingIfNeeded: (frameCounter &+ 13) &* 2654435761),
+                count: UInt32(particleCountMatter),
+                G: G,
+                totalMass: totalMass > 0 ? totalMass : 2
+            )
+            enc.setBytes(&mp, length: MemoryLayout<BHMatterParams>.size, index: 1)
+            enc.dispatchThreadgroups(MTLSize(width: (particleCountMatter + 63) / 64, height: 1, depth: 1), threadsPerThreadgroup: pTG)
+        }
 
         enc.endEncoding()
     }
@@ -347,13 +435,29 @@ class BlackHolesRenderer: Renderer {
             renderEncoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
         }
 
-        // 2. Particle streaks (one line per particle: prevPosition → position)
-        if flowOn {
-            var halfW: Float = worldHalfWidth
-            renderEncoder.setRenderPipelineState(particleRenderPipeline)
-            renderEncoder.setVertexBuffer(particlesBuffer, offset: 0, index: 0)
-            renderEncoder.setVertexBytes(&halfW, length: MemoryLayout<Float>.size, index: 1)
-            renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: 2, instanceCount: particleCount)
+        // 2. Particle streaks for the three flows. Each is a separate
+        //    instanced line draw with its own buffer and color.
+        var halfW: Float = worldHalfWidth
+        renderEncoder.setRenderPipelineState(particleRenderPipeline)
+        renderEncoder.setVertexBytes(&halfW, length: MemoryLayout<Float>.size, index: 1)
+
+        if aetherOn {
+            var color = SIMD4<Float>(0.95, 0.95, 1.00, 0.55)   // soft white — aether
+            renderEncoder.setVertexBuffer(aetherParticlesBuffer, offset: 0, index: 0)
+            renderEncoder.setFragmentBytes(&color, length: MemoryLayout<SIMD4<Float>>.size, index: 0)
+            renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: 2, instanceCount: particleCountFlow)
+        }
+        if accelerantOn {
+            var color = SIMD4<Float>(1.00, 0.65, 0.20, 0.65)   // amber — accelerant
+            renderEncoder.setVertexBuffer(accelerantParticlesBuffer, offset: 0, index: 0)
+            renderEncoder.setFragmentBytes(&color, length: MemoryLayout<SIMD4<Float>>.size, index: 0)
+            renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: 2, instanceCount: particleCountFlow)
+        }
+        if matterOn {
+            var color = SIMD4<Float>(0.50, 0.95, 0.55, 0.85)   // green — matter
+            renderEncoder.setVertexBuffer(matterParticlesBuffer, offset: 0, index: 0)
+            renderEncoder.setFragmentBytes(&color, length: MemoryLayout<SIMD4<Float>>.size, index: 0)
+            renderEncoder.drawPrimitives(type: .line, vertexStart: 0, vertexCount: 2, instanceCount: particleCountMatter)
         }
 
         // 3. Black holes

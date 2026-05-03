@@ -189,12 +189,14 @@ kernel void bhComputeVAether(texture2d<float, access::sample> phi    [[texture(0
 }
 
 // Tracer particles =============================================================================
-// Sampled at their current position from u (the accelerant velocity field),
-// advected each frame, rendered as short streaks from their previous to
-// current position. Visible flow lines into the wells.
+// Three particle types share the same struct. Flow particles (aether,
+// accelerant) ride a velocity field directly — `velocity` is unused for
+// them. Matter particles have their own velocity that integrates u over
+// their actual trajectory (Galilean inertia + Newton).
 struct BHParticle {
     float2 position;
     float2 prevPosition;
+    float2 velocity;     // own velocity (matter particles only)
     float age;
     float life;
 };
@@ -202,7 +204,7 @@ struct BHParticle {
 struct BHParticleParams {
     float worldHalfWidth;
     float dt;
-    float cMax;          // |u| cap — the speed of light in the model
+    float cMax;          // |v| cap — the speed of light in the model
     uint  frameSeed;
     uint  count;
 };
@@ -219,10 +221,12 @@ static uint bhHash(uint x) {
     return x;
 }
 
-kernel void bhUpdateParticles(device BHParticle *particles [[buffer(0)]],
-                                texture2d<float, access::sample> flow [[texture(0)]],
-                                constant BHParticleParams &p [[buffer(1)]],
-                                uint id [[thread_position_in_grid]]) {
+// Flow particles (aether, accelerant): ride the supplied flow texture
+// instantaneously. Their position is advanced at the local field velocity.
+kernel void bhUpdateFlowParticles(device BHParticle *particles [[buffer(0)]],
+                                    texture2d<float, access::sample> flow [[texture(0)]],
+                                    constant BHParticleParams &p [[buffer(1)]],
+                                    uint id [[thread_position_in_grid]]) {
     if (id >= p.count) return;
     constexpr sampler s(filter::linear, address::clamp_to_edge);
     BHParticle particle = particles[id];
@@ -253,6 +257,66 @@ kernel void bhUpdateParticles(device BHParticle *particles [[buffer(0)]],
     particles[id] = particle;
 }
 
+// Matter particles: have own velocity (Galilean inertia). Updated by
+// Newton's law, sampling u (the accelerant) at their position as
+// acceleration. Initial velocities give them angular momentum so they
+// orbit/fall/escape per Newton, distinct from the equilibrium aether flow.
+struct BHMatterParams {
+    float worldHalfWidth;
+    float dt;
+    float cMax;
+    uint  frameSeed;
+    uint  count;
+    float G;
+    float totalMass;     // for sizing initial circular velocities on respawn
+};
+
+kernel void bhUpdateMatterParticles(device BHParticle *particles [[buffer(0)]],
+                                      texture2d<float, access::sample> uField [[texture(0)]],
+                                      constant BHMatterParams &p [[buffer(1)]],
+                                      uint id [[thread_position_in_grid]]) {
+    if (id >= p.count) return;
+    constexpr sampler s(filter::linear, address::clamp_to_edge);
+    BHParticle particle = particles[id];
+
+    float2 uv = particle.position / (2.0 * p.worldHalfWidth) + 0.5;
+    float2 a = uField.sample(s, uv).xy;
+
+    particle.velocity += a * p.dt;
+    float speed = length(particle.velocity);
+    if (speed > p.cMax) particle.velocity *= p.cMax / speed;
+
+    particle.prevPosition = particle.position;
+    particle.position += particle.velocity * p.dt;
+    particle.age += 1.0;
+
+    bool out = abs(particle.position.x) > p.worldHalfWidth ||
+               abs(particle.position.y) > p.worldHalfWidth;
+    if (particle.age >= particle.life || out) {
+        uint h = bhHash(id ^ p.frameSeed);
+        float rx = float(h & 0xFFFFu) / 65535.0;
+        h = bhHash(h);
+        float ry = float(h & 0xFFFFu) / 65535.0;
+        h = bhHash(h);
+        float rl = float(h & 0xFFFFu) / 65535.0;
+        h = bhHash(h);
+        float rf = 0.3 + 0.7 * (float(h & 0xFFFFu) / 65535.0);
+        // Position uniformly in the world (avoid the immediate well core)
+        float2 pos = (float2(rx, ry) - 0.5) * 2.0 * p.worldHalfWidth;
+        float r = max(length(pos), 0.15);
+        if (length(pos) < 0.15) pos = pos * (0.15 / length(pos));
+        // Tangential velocity: perpendicular to position vector, CCW
+        float2 tangent = float2(-pos.y, pos.x) / r;
+        float vCirc = sqrt(p.G * p.totalMass / r) * rf;
+        particle.position = pos;
+        particle.prevPosition = pos;
+        particle.velocity = tangent * vCirc;
+        particle.age = 0.0;
+        particle.life = 60.0 + rl * 240.0;     // longer life — let them orbit
+    }
+    particles[id] = particle;
+}
+
 struct BHParticleVertexOut {
     float4 position [[position]];
     float  fade [[flat]];
@@ -273,8 +337,9 @@ vertex BHParticleVertexOut bhParticleVertexShader(uint vertexID [[vertex_id]],
     return o;
 }
 
-fragment float4 bhParticleFragmentShader(BHParticleVertexOut in [[stage_in]]) {
-    return float4(1.0, 1.0, 1.0, in.fade * 0.55);
+fragment float4 bhParticleFragmentShader(BHParticleVertexOut in [[stage_in]],
+                                           constant float4 &color [[buffer(0)]]) {
+    return float4(color.rgb, color.a * in.fade);
 }
 
 // Black hole circles ===========================================================================

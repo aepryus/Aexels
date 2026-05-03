@@ -2,8 +2,7 @@
 //  BlackHolesControlsTab.swift
 //  Aexels
 //
-//  Toggle the two visualization layers and tune the Phase 1.4
-//  viscosity drag.
+//  Toggle visualization layers + viscosity slider.
 //
 
 import Acheron
@@ -13,7 +12,9 @@ class BlackHolesControlsTab: TabsCellTab {
     unowned let explorer: BlackHolesExplorer!
 
     let wellsBoolButton: BoolButton = BoolButton(name: "wells")
-    let flowBoolButton: BoolButton = BoolButton(name: "flow")
+    let aetherBoolButton: BoolButton = BoolButton(name: "aether")
+    let accelerantBoolButton: BoolButton = BoolButton(name: "accelerant")
+    let matterBoolButton: BoolButton = BoolButton(name: "matter")
 
     let viscosityLabel: UILabel = UILabel()
     let viscositySlider: Slider = Slider()
@@ -26,13 +27,18 @@ class BlackHolesControlsTab: TabsCellTab {
         addSubview(wellsBoolButton)
         wellsBoolButton.onChange = { (on: Bool) in self.explorer.renderer.wellsOn = on }
 
-        flowBoolButton.on = true
-        addSubview(flowBoolButton)
-        flowBoolButton.onChange = { (on: Bool) in self.explorer.renderer.flowOn = on }
+        aetherBoolButton.on = true
+        addSubview(aetherBoolButton)
+        aetherBoolButton.onChange = { (on: Bool) in self.explorer.renderer.aetherOn = on }
 
-        // Slider values are γ × 1000 so the widget can show ints. The
-        // physical drag coefficient applied to each BH is dragGamma =
-        // option / 1000. 0 = off, 150 = aggressive merge in seconds.
+        accelerantBoolButton.on = false
+        addSubview(accelerantBoolButton)
+        accelerantBoolButton.onChange = { (on: Bool) in self.explorer.renderer.accelerantOn = on }
+
+        matterBoolButton.on = false
+        addSubview(matterBoolButton)
+        matterBoolButton.onChange = { (on: Bool) in self.explorer.renderer.matterOn = on }
+
         let pen: Pen = Pen(font: .avenir(size: 13*s), color: .white, alignment: .right)
         viscosityLabel.text = "viscosity ×1000"
         viscosityLabel.pen = pen
@@ -52,7 +58,11 @@ class BlackHolesControlsTab: TabsCellTab {
 
         wellsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
-        flowBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        aetherBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        accelerantBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        matterBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s
 
         let sliderWidth: CGFloat = width - 60*s
