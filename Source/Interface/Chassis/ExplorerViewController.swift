@@ -126,7 +126,8 @@ class ExplorerViewController: AEViewController {
                 Aexels.contractionExplorer.vision,
                 Aexels.electromagnetismExplorer.vision,
                 Aexels.insideOutExplorer.vision,
-                Aexels.outsideInExplorer.vision
+                Aexels.outsideInExplorer.vision,
+                Aexels.blackHolesExplorer.vision
             ]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)
