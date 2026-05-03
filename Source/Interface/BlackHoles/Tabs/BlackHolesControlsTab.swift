@@ -12,8 +12,8 @@ class BlackHolesControlsTab: TabsCellTab {
     unowned let explorer: BlackHolesExplorer!
 
     let wellsBoolButton: BoolButton = BoolButton(name: "wells")
-    let aetherBoolButton: BoolButton = BoolButton(name: "aether")
     let accelerantBoolButton: BoolButton = BoolButton(name: "accelerant")
+    let aetherBoolButton: BoolButton = BoolButton(name: "aether")
     let matterBoolButton: BoolButton = BoolButton(name: "matter")
 
     let viscosityLabel: UILabel = UILabel()
@@ -27,13 +27,13 @@ class BlackHolesControlsTab: TabsCellTab {
         addSubview(wellsBoolButton)
         wellsBoolButton.onChange = { (on: Bool) in self.explorer.renderer.wellsOn = on }
 
-        aetherBoolButton.on = true
-        addSubview(aetherBoolButton)
-        aetherBoolButton.onChange = { (on: Bool) in self.explorer.renderer.aetherOn = on }
-
         accelerantBoolButton.on = false
         addSubview(accelerantBoolButton)
         accelerantBoolButton.onChange = { (on: Bool) in self.explorer.renderer.accelerantOn = on }
+
+        aetherBoolButton.on = true
+        addSubview(aetherBoolButton)
+        aetherBoolButton.onChange = { (on: Bool) in self.explorer.renderer.aetherOn = on }
 
         matterBoolButton.on = false
         addSubview(matterBoolButton)
@@ -58,9 +58,9 @@ class BlackHolesControlsTab: TabsCellTab {
 
         wellsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
-        aetherBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
-        y += 30*s
         accelerantBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        aetherBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
         matterBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s

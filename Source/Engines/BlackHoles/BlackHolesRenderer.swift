@@ -243,7 +243,8 @@ class BlackHolesRenderer: Renderer {
                                    .random(in: -worldHalfWidth...worldHalfWidth))
             let r = max(simd_length(pos), 0.15)
             let posClamped = simd_length(pos) < 0.15 ? pos * (0.15 / simd_length(pos)) : pos
-            let tangent = SIMD2<Float>(-posClamped.y, posClamped.x) / r
+            let dirSign: Float = Bool.random() ? 1 : -1
+            let tangent = SIMD2<Float>(-posClamped.y, posClamped.x) / r * dirSign
             let vCirc = sqrt(G * M / r) * Float.random(in: 0.3...0.95)
             ptr[i] = BHParticle(
                 position: posClamped,
@@ -416,6 +417,7 @@ class BlackHolesRenderer: Renderer {
               let renderPassDescriptor = view.currentRenderPassDescriptor,
               let drawable = view.currentDrawable else { return }
 
+        let cpuStart = CACurrentMediaTime()
         stepPhysics()
         uploadMasses()
         computeFieldAndAdvect(in: commandBuffer)
@@ -478,6 +480,32 @@ class BlackHolesRenderer: Renderer {
         // Wait synchronously so lastAccelerations is fresh on the next frame.
         commandBuffer.waitUntilCompleted()
         readAccelerations()
+        let cpuEnd = CACurrentMediaTime()
+        logPerf(cpuStart: cpuStart, cpuEnd: cpuEnd, commandBuffer: commandBuffer)
+    }
+
+    private func logPerf(cpuStart: CFTimeInterval, cpuEnd: CFTimeInterval, commandBuffer: MTLCommandBuffer) {
+        guard frameCounter % 60 == 0 else { return }
+        let cpuMs = (cpuEnd - cpuStart) * 1000.0
+        let gpuMs = (commandBuffer.gpuEndTime - commandBuffer.gpuStartTime) * 1000.0
+        let aetherFlag  = aetherOn      ? "A" : "-"
+        let accelFlag   = accelerantOn  ? "C" : "-"
+        let matterFlag  = matterOn      ? "M" : "-"
+        let line = String(format: "[perf] f%-5d cpu=%.2fms gpu=%.2fms flows=%@%@%@\n",
+                          frameCounter, cpuMs, gpuMs, aetherFlag, accelFlag, matterFlag)
+        print(line, terminator: "")
+        if let data = line.data(using: .utf8) {
+            let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("aexels_perf.log")
+            if FileManager.default.fileExists(atPath: url.path) {
+                if let h = try? FileHandle(forWritingTo: url) {
+                    h.seekToEndOfFile()
+                    h.write(data)
+                    try? h.close()
+                }
+            } else {
+                try? data.write(to: url)
+            }
+        }
     }
 
     override func draw(renderEncoder: any MTLRenderCommandEncoder) {}

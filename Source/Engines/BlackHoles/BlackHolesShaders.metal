@@ -301,12 +301,16 @@ kernel void bhUpdateMatterParticles(device BHParticle *particles [[buffer(0)]],
         float rl = float(h & 0xFFFFu) / 65535.0;
         h = bhHash(h);
         float rf = 0.3 + 0.7 * (float(h & 0xFFFFu) / 65535.0);
+        h = bhHash(h);
+        float dirSign = (float(h & 0xFFFFu) / 65535.0) < 0.5 ? -1.0 : 1.0;
         // Position uniformly in the world (avoid the immediate well core)
         float2 pos = (float2(rx, ry) - 0.5) * 2.0 * p.worldHalfWidth;
         float r = max(length(pos), 0.15);
         if (length(pos) < 0.15) pos = pos * (0.15 / length(pos));
-        // Tangential velocity: perpendicular to position vector, CCW
-        float2 tangent = float2(-pos.y, pos.x) / r;
+        // Tangential velocity: perpendicular to position vector. Random
+        // sign means ~half are prograde (CCW with the BHs) and ~half
+        // retrograde — both are valid orbits in a Newtonian field.
+        float2 tangent = float2(-pos.y, pos.x) / r * dirSign;
         float vCirc = sqrt(p.G * p.totalMass / r) * rf;
         particle.position = pos;
         particle.prevPosition = pos;
