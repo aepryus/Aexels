@@ -2,10 +2,12 @@
 //  BlackHolesShaders.metal
 //  Aexels
 //
-//  Phase 1.1: analytic accelerant potential on a grid plus a background
-//  visualization. The BHs are still integrated on the CPU via direct
-//  N-body (Phase 0); the field here is for visualization only and a
-//  step toward Phase 1.2 where the BHs will actually ride the field.
+//  Phase 1.3: Φ heatmap background plus tracer particles drifting through
+//  u = -∇Φ (the accelerant velocity field). The BHs are integrated by
+//  sampling u at their position on the GPU (Phase 1.2). The dynamic v_a
+//  field with viscosity is deferred to Phase 1.4 where it'll drive
+//  inspiral; without viscosity it grows unboundedly so there's nothing
+//  meaningful to display.
 //
 
 #include <metal_stdlib>
@@ -49,6 +51,27 @@ kernel void bhComputePhi(texture2d<float, access::write> phi [[texture(0)]],
         potential += -params.G * masses[i].mass * rsqrt(r2);
     }
     phi.write(float4(potential, 0.0, 0.0, 0.0), gid);
+}
+
+// Compute u = -grad(Phi) on the grid, store as a vector field. This is the
+// accelerant velocity field per the Gravity II addendum.
+kernel void bhComputeU(texture2d<float, access::sample> phi [[texture(0)]],
+                        texture2d<float, access::write>  u   [[texture(1)]],
+                        constant BHFieldParams &params [[buffer(0)]],
+                        uint2 gid [[thread_position_in_grid]]) {
+    uint w = u.get_width();
+    uint h = u.get_height();
+    if (gid.x >= w || gid.y >= h) return;
+    constexpr sampler s(filter::linear, address::clamp_to_edge);
+
+    float2 size = float2(w, h);
+    float2 cell = float2(gid) + 0.5;
+    float2 uv = cell / size;
+    float2 stp = 1.0 / size;
+    float scale = size.x / (4.0 * params.worldHalfWidth);
+    float gx = (phi.sample(s, uv + float2(stp.x, 0)).x - phi.sample(s, uv - float2(stp.x, 0)).x) * scale;
+    float gy = (phi.sample(s, uv + float2(0, stp.y)).x - phi.sample(s, uv - float2(0, stp.y)).x) * scale;
+    u.write(float4(-gx, -gy, 0.0, 0.0), gid);
 }
 
 // Sample u = -grad(Phi) at each black hole's world position. The result is
@@ -124,6 +147,95 @@ fragment float4 bhBackgroundFragmentShader(BHBackgroundOut in [[stage_in]],
     // ease so the well looks more concentrated
     t = t * t * (3.0 - 2.0 * t);
     return mix(p.farColor, p.deepColor, t);
+}
+
+// Tracer particles =============================================================================
+// Sampled at their current position from u (the accelerant velocity field),
+// advected each frame, rendered as short streaks from their previous to
+// current position. Visible flow lines into the wells.
+struct BHParticle {
+    float2 position;
+    float2 prevPosition;
+    float age;
+    float life;
+};
+
+struct BHParticleParams {
+    float worldHalfWidth;
+    float dt;
+    float cMax;          // |u| cap — the speed of light in the model
+    uint  frameSeed;
+    uint  count;
+};
+
+// Simple LCG hash for randomness on respawn.
+static uint bhHash(uint x) {
+    x ^= x >> 17;
+    x *= 0xed5ad4bbu;
+    x ^= x >> 11;
+    x *= 0xac4c1b51u;
+    x ^= x >> 15;
+    x *= 0x31848babu;
+    x ^= x >> 14;
+    return x;
+}
+
+kernel void bhUpdateParticles(device BHParticle *particles [[buffer(0)]],
+                                texture2d<float, access::sample> flow [[texture(0)]],
+                                constant BHParticleParams &p [[buffer(1)]],
+                                uint id [[thread_position_in_grid]]) {
+    if (id >= p.count) return;
+    constexpr sampler s(filter::linear, address::clamp_to_edge);
+    BHParticle particle = particles[id];
+
+    float2 uv = particle.position / (2.0 * p.worldHalfWidth) + 0.5;
+    float2 v = flow.sample(s, uv).xy;
+    float speed = length(v);
+    if (speed > p.cMax) v *= p.cMax / speed;
+
+    particle.prevPosition = particle.position;
+    particle.position += v * p.dt;
+    particle.age += 1.0;
+
+    bool out = abs(particle.position.x) > p.worldHalfWidth ||
+               abs(particle.position.y) > p.worldHalfWidth;
+    if (particle.age >= particle.life || out) {
+        uint h = bhHash(id ^ p.frameSeed);
+        float rx = float(h & 0xFFFFu) / 65535.0;
+        h = bhHash(h);
+        float ry = float(h & 0xFFFFu) / 65535.0;
+        h = bhHash(h);
+        float rl = float(h & 0xFFFFu) / 65535.0;
+        particle.position = (float2(rx, ry) - 0.5) * 2.0 * p.worldHalfWidth;
+        particle.prevPosition = particle.position;
+        particle.age = 0.0;
+        particle.life = 24.0 + rl * 60.0;
+    }
+    particles[id] = particle;
+}
+
+struct BHParticleVertexOut {
+    float4 position [[position]];
+    float  fade [[flat]];
+};
+
+vertex BHParticleVertexOut bhParticleVertexShader(uint vertexID [[vertex_id]],
+                                                    uint instanceID [[instance_id]],
+                                                    constant BHParticle *particles [[buffer(0)]],
+                                                    constant float &worldHalfWidth [[buffer(1)]]) {
+    constant BHParticle &p = particles[instanceID];
+    float2 worldPos = (vertexID == 0) ? p.prevPosition : p.position;
+    float2 clipPos = worldPos / worldHalfWidth;
+    BHParticleVertexOut o;
+    o.position = float4(clipPos, 0.0, 1.0);
+    float ageFade  = saturate(p.age / 4.0);
+    float deathFade = saturate((p.life - p.age) / 6.0);
+    o.fade = ageFade * deathFade;
+    return o;
+}
+
+fragment float4 bhParticleFragmentShader(BHParticleVertexOut in [[stage_in]]) {
+    return float4(1.0, 1.0, 1.0, in.fade * 0.55);
 }
 
 // Black hole circles ===========================================================================

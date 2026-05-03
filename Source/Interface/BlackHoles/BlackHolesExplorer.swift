@@ -14,6 +14,7 @@ class BlackHolesExplorer: Explorer {
     private var metalView: MTKView!
 
     let notesTab: NotesTab = NotesTab(key: "blackHolesLab")
+    var controlsTab: BlackHolesControlsTab!
 
     var renderer: BlackHolesRenderer!
 
@@ -33,8 +34,9 @@ class BlackHolesExplorer: Explorer {
         metalView.isOpaque = false
 
         renderer = BlackHolesRenderer(view: metalView)
+        controlsTab = BlackHolesControlsTab(explorer: self)
 
-        tabsCell.tabs = [notesTab]
+        tabsCell.tabs = [controlsTab, notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
