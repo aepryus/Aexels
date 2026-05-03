@@ -68,6 +68,10 @@ private struct BHParticleParams {
     var count: UInt32
 }
 
+private struct BHVAetherParams {
+    var worldHalfWidth: Float
+}
+
 private struct BHCirclePacket {
     var center: SIMD2<Float>
     var radius: Float
@@ -93,7 +97,7 @@ class BlackHolesRenderer: Renderer {
     private let fieldScale: Float = 4.0
     private let particleCount: Int = 1024
     private let particleDt: Float = 0.0035
-    private let cMax: Float = 10.0   // speed-of-light cap for particle advection
+    private let cMax: Float = 10.0   // speed-of-light cap (particle viz only)
 
     private var blackHoles: [BlackHole] = []
     private var frameCounter: Int = 0
@@ -111,6 +115,7 @@ class BlackHolesRenderer: Renderer {
     private var phiPipeline: MTLComputePipelineState!
     private var samplePipeline: MTLComputePipelineState!
     private var computeUPipeline: MTLComputePipelineState!
+    private var vAetherPipeline: MTLComputePipelineState!
     private var particlePipeline: MTLComputePipelineState!
     private var backgroundPipeline: MTLRenderPipelineState!
     private var particleRenderPipeline: MTLRenderPipelineState!
@@ -119,6 +124,7 @@ class BlackHolesRenderer: Renderer {
     // GPU resources
     private var phiTexture: MTLTexture!
     private var uTexture: MTLTexture!
+    private var vaTexture: MTLTexture!   // algebraic aether velocity field, recomputed each frame
     private var massesBuffer: MTLBuffer!
     private var accelerationsBuffer: MTLBuffer!
     private var particlesBuffer: MTLBuffer!
@@ -147,6 +153,10 @@ class BlackHolesRenderer: Renderer {
               let particleState = try? device.makeComputePipelineState(function: particleFn) else { return nil }
         particlePipeline = particleState
 
+        guard let vAetherFn = library.makeFunction(name: "bhComputeVAether"),
+              let vAetherState = try? device.makeComputePipelineState(function: vAetherFn) else { return nil }
+        vAetherPipeline = vAetherState
+
         guard let bgDesc = createNormalRenderPipelineDescriptor(vertex: "bhBackgroundVertexShader", fragment: "bhBackgroundFragmentShader"),
               let bgState = try? device.makeRenderPipelineState(descriptor: bgDesc) else { return nil }
         backgroundPipeline = bgState
@@ -168,6 +178,7 @@ class BlackHolesRenderer: Renderer {
         vectorDesc.usage = [.shaderRead, .shaderWrite]
         vectorDesc.storageMode = .private
         uTexture = device.makeTexture(descriptor: vectorDesc)
+        vaTexture = device.makeTexture(descriptor: vectorDesc)
 
         massesBuffer = device.makeBuffer(length: MemoryLayout<BHMass>.stride * 16, options: .storageModeShared)
         accelerationsBuffer = device.makeBuffer(length: MemoryLayout<SIMD2<Float>>.stride * 16, options: .storageModeShared)
@@ -273,7 +284,16 @@ class BlackHolesRenderer: Renderer {
         enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
         enc.memoryBarrier(scope: .textures)
 
-        // 3) Sample u at each BH position into accelerations buffer
+        // 3) Aether velocity: algebraic equilibrium v = √(2|Φ|) · (-∇Φ/|∇Φ|)
+        enc.setComputePipelineState(vAetherPipeline)
+        enc.setTexture(phiTexture, index: 0)
+        enc.setTexture(vaTexture, index: 1)
+        var vAetherParams = BHVAetherParams(worldHalfWidth: worldHalfWidth)
+        enc.setBytes(&vAetherParams, length: MemoryLayout<BHVAetherParams>.size, index: 0)
+        enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
+        enc.memoryBarrier(scope: .textures)
+
+        // 4) Sample u at each BH position into accelerations buffer
         enc.setComputePipelineState(samplePipeline)
         enc.setTexture(phiTexture, index: 0)
         enc.setBuffer(massesBuffer, offset: 0, index: 0)
@@ -283,10 +303,10 @@ class BlackHolesRenderer: Renderer {
         let bhTGSize = MTLSize(width: max(blackHoles.count, 1), height: 1, depth: 1)
         enc.dispatchThreadgroups(MTLSize(width: 1, height: 1, depth: 1), threadsPerThreadgroup: bhTGSize)
 
-        // 4) Advect tracer particles through u
+        // 5) Advect tracer particles through v_aether (the actual aether velocity)
         enc.setComputePipelineState(particlePipeline)
         enc.setBuffer(particlesBuffer, offset: 0, index: 0)
-        enc.setTexture(uTexture, index: 0)
+        enc.setTexture(vaTexture, index: 0)
         var particleParams = BHParticleParams(
             worldHalfWidth: worldHalfWidth,
             dt: particleDt,

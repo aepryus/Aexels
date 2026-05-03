@@ -149,6 +149,45 @@ fragment float4 bhBackgroundFragmentShader(BHBackgroundOut in [[stage_in]],
     return mix(p.farColor, p.deepColor, t);
 }
 
+// Aether velocity field ========================================================================
+// Algebraic equilibrium per the Floating Leaf article:
+//     v_aether(x) = √(2|Φ|) · (-∇Φ / |∇Φ|)
+// No time integration, no memory. Each frame the aether is in equilibrium
+// with the current Φ field. Test particles ride this field; BHs move by
+// Newton's law independently.
+
+struct BHVAetherParams {
+    float worldHalfWidth;
+};
+
+kernel void bhComputeVAether(texture2d<float, access::sample> phi    [[texture(0)]],
+                              texture2d<float, access::write>  vOut   [[texture(1)]],
+                              constant BHVAetherParams &p [[buffer(0)]],
+                              uint2 gid [[thread_position_in_grid]]) {
+    uint w = vOut.get_width();
+    uint h = vOut.get_height();
+    if (gid.x >= w || gid.y >= h) return;
+    constexpr sampler s(filter::linear, address::clamp_to_edge);
+
+    float2 size = float2(w, h);
+    float2 cell = float2(gid) + 0.5;
+    float2 uv = cell / size;
+    float2 stp = 1.0 / size;
+    float scale = size.x / (4.0 * p.worldHalfWidth);
+
+    float phiC = phi.sample(s, uv).x;
+    float gx = (phi.sample(s, uv + float2(stp.x, 0)).x - phi.sample(s, uv - float2(stp.x, 0)).x) * scale;
+    float gy = (phi.sample(s, uv + float2(0, stp.y)).x - phi.sample(s, uv - float2(0, stp.y)).x) * scale;
+    float2 minusGrad = float2(-gx, -gy);
+
+    float absPhi = max(-phiC, 0.0);
+    float gradMag = length(minusGrad);
+    float vMag = sqrt(2.0 * absPhi);
+    float2 vDir = (gradMag > 1e-4) ? minusGrad / gradMag : float2(0.0);
+
+    vOut.write(float4(vDir * vMag, 0.0, 0.0), gid);
+}
+
 // Tracer particles =============================================================================
 // Sampled at their current position from u (the accelerant velocity field),
 // advected each frame, rendered as short streaks from their previous to
