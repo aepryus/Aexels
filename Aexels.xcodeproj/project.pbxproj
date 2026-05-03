@@ -71,6 +71,10 @@
 		D8A63A482B79D5B800C28F93 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A63A472B79D5B800C28F93 /* ArticleView.swift */; };
 		D8AA5A512B7AEFD700282522 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA5A502B7AEFD700282522 /* Article.swift */; };
 		D8AB74FF2D56CD6A00A7E234 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */; };
+		D8AB7C1C00A1D1E2C0B30002 /* Markup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30001 /* Markup.swift */; };
+		D8AB7C1C00A1D1E2C0B30004 /* MarkupRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30003 /* MarkupRenderer.swift */; };
+		D8AB7C1C00A1D1E2C0B30008 /* UniverseX.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */; };
+		D8AB7C1C00A1D1E2C0B3000A /* Dilation.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -116,6 +120,8 @@
 		D8AE17FE2814F21F00E74CB8 /* DilationExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FD2814F21F00E74CB8 /* DilationExplorer.swift */; };
 		D8AE18002814F22700E74CB8 /* ContractionExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17FF2814F22700E74CB8 /* ContractionExplorer.swift */; };
 		D8AFFA9F2B74B30C00588196 /* VisionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFFA9E2B74B30C00588196 /* VisionBar.swift */; };
+		D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */; };
+		D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = D8B8DAB72FA6C8E700E52CC5 /* Markdown */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
 		D8CC48C42D7D689000593737 /* Concepts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C32D7D688800593737 /* Concepts.swift */; };
 		D8CC48C62D7D68A500593737 /* PathOfDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C52D7D689E00593737 /* PathOfDiscovery.swift */; };
@@ -207,6 +213,10 @@
 		D8A63A472B79D5B800C28F93 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		D8AA5A502B7AEFD700282522 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		D8AB7C1C00A1D1E2C0B30001 /* Markup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markup.swift; sourceTree = "<group>"; };
+		D8AB7C1C00A1D1E2C0B30003 /* MarkupRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupRenderer.swift; sourceTree = "<group>"; };
+		D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = UniverseX.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Dilation.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -284,8 +294,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */,
 				D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */,
 				D804561C281534BF0018223B /* Acheron in Frameworks */,
+				D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */,
 				D804561E281534BF0018223B /* OoviumEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +457,7 @@
 				D8DA98CB2B71DE0700A4AA8F /* Cyto */,
 				D896C9922D4095030058585C /* TimeControl */,
 				D8A63A472B79D5B800C28F93 /* ArticleView.swift */,
+				D8AB7C1C00A1D1E2C0B30003 /* MarkupRenderer.swift */,
 				D8AE17D12814F1EC00E74CB8 /* AXButton.swift */,
 				D896C9AA2D42290E0058585C /* BoolButton.swift */,
 				D8AB74FE2D56CD6600A7E234 /* CircleButton.swift */,
@@ -624,10 +637,20 @@
 				D830B9312D5B6FF700E7B029 /* Electromagnetism */,
 				D8AA5A502B7AEFD700282522 /* Article.swift */,
 				D85762C82D46F3340025E070 /* Experiment.swift */,
+				D8AB7C1C00A1D1E2C0B30001 /* Markup.swift */,
 				D8DEF8AE2D35189500298D26 /* Settings.swift */,
 				D85762CC2D471B6E0025E070 /* Teslon.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		D8AB7C1C00A1D1E2C0B30005 /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */,
+				D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */,
+			);
+			path = Articles;
 			sourceTree = "<group>";
 		};
 		D8AE172E2814E97200E74CB8 = {
@@ -673,6 +696,7 @@
 				D87C0DCF2931A7720005B44D /* LaTeX */,
 				D8DEF8A72D346F0900298D26 /* PDFs */,
 				D818929D2C7195D90018E4B9 /* Claude */,
+				D8AB7C1C00A1D1E2C0B30005 /* Articles */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -889,6 +913,8 @@
 				D829BCEC28152FBA005B3461 /* OoviumKit */,
 				D804561B281534BF0018223B /* Acheron */,
 				D804561D281534BF0018223B /* OoviumEngine */,
+				D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */,
+				D8B8DAB72FA6C8E700E52CC5 /* Markdown */,
 			);
 			productName = Aexels;
 			productReference = D8AE17372814E97200E74CB8 /* Aexels.app */;
@@ -923,6 +949,8 @@
 			mainGroup = D8AE172E2814E97200E74CB8;
 			packageReferences = (
 				D829BCEB28152FBA005B3461 /* XCRemoteSwiftPackageReference "OoviumKit" */,
+				D8B8DAB32FA6C8D800E52CC5 /* XCRemoteSwiftPackageReference "SwiftMath" */,
+				D8B8DAB62FA6C8E700E52CC5 /* XCRemoteSwiftPackageReference "swift-markdown" */,
 			);
 			productRefGroup = D8AE17382814E97200E74CB8 /* Products */;
 			projectDirPath = "";
@@ -966,6 +994,8 @@
 				D8DA98C22B69384300A4AA8F /* LaunchScreen.storyboard in Resources */,
 				D8AE17B52814F0D300E74CB8 /* Move iP.oo in Resources */,
 				D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */,
+				D8AB7C1C00A1D1E2C0B30008 /* UniverseX.md in Resources */,
+				D8AB7C1C00A1D1E2C0B3000A /* Dilation.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1057,8 @@
 				D830B94A2D5FFA1000E7B029 /* CellularExperiment.swift in Sources */,
 				D896C9982D413EAF0058585C /* TabsCell.swift in Sources */,
 				D8FD4B8A2D87DE4E00A13B25 /* Renderer.swift in Sources */,
+				D8AB7C1C00A1D1E2C0B30002 /* Markup.swift in Sources */,
+				D8AB7C1C00A1D1E2C0B30004 /* MarkupRenderer.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
 				D86F72802D76FEDB00987057 /* Baltic.c in Sources */,
@@ -1320,6 +1352,22 @@
 				kind = branch;
 			};
 		};
+		D8B8DAB32FA6C8D800E52CC5 /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mgriebling/SwiftMath";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.3;
+			};
+		};
+		D8B8DAB62FA6C8E700E52CC5 /* XCRemoteSwiftPackageReference "swift-markdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftlang/swift-markdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1335,6 +1383,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D829BCEB28152FBA005B3461 /* XCRemoteSwiftPackageReference "OoviumKit" */;
 			productName = OoviumKit;
+		};
+		D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8B8DAB32FA6C8D800E52CC5 /* XCRemoteSwiftPackageReference "SwiftMath" */;
+			productName = SwiftMath;
+		};
+		D8B8DAB72FA6C8E700E52CC5 /* Markdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8B8DAB62FA6C8E700E52CC5 /* XCRemoteSwiftPackageReference "swift-markdown" */;
+			productName = Markdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

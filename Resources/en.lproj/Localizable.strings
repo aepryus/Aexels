@@ -6,8 +6,8 @@
   Copyright (c) 2014 Aepryus Software. All rights reserved.
 */
 
-"intro_name" = "Universe X";
-"intro_article" = "#[A universe is discovered...]###[Universe X]##Come along as we explore this universe and discover the similarities and differences it has with our own.
+"universeX_name" = "Universe X";
+"intro_article_DEPRECATED" = "#[A universe is discovered...]###[Universe X]##Come along as we explore this universe and discover the similarities and differences it has with our own.
 
 There are things we know for certain about Universe X; there are things we can speculate about and there are many things yet to be discovered.  Hopefully, over the lifetime of this app we will be able to continually increase our knowledge and understanding of this new world.
 ##[So what is Universe X?]##Universe X is quite different from our own.  Our universe can, at times, seem quite magical: space curves, time dilates and both are intertwined with one another; it contains dark matter and dark energy; it is expanding and expanding at an increasing rate; God plays dice with our universe.

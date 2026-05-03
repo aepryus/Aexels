@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "cmark-gfm",
+        "repositoryURL": "https://github.com/swiftlang/swift-cmark.git",
+        "state": {
+          "branch": null,
+          "revision": "5d9bdaa4228b381639fff09403e39a04926e2dbe",
+          "version": "0.7.1"
+        }
+      },
+      {
+        "package": "swift-markdown",
+        "repositoryURL": "https://github.com/swiftlang/swift-markdown",
+        "state": {
+          "branch": null,
+          "revision": "7d9a5ce307528578dfa777d505496bd5f544ad94",
+          "version": "0.7.3"
+        }
+      },
+      {
+        "package": "SwiftMath",
+        "repositoryURL": "https://github.com/mgriebling/SwiftMath",
+        "state": {
+          "branch": null,
+          "revision": "fa8244ed032f4a1ade4cb0571bf87d2f1a9fd2d7",
+          "version": "1.7.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

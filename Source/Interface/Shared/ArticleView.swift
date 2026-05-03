@@ -14,8 +14,15 @@ class ArticleView: AEView {
     var key: String? {
         didSet {
             if let key, key.hasSuffix("_pdf") { loadPDF() }
+            else if let key, ArticleView.markdownURL(for: key) != nil { loadMarkdown() }
             else { load() }
         }
+    }
+
+    static func markdownURL(for key: String) -> URL? {
+        let name = key.prefix(1).uppercased() + key.dropFirst()
+        if let url = Bundle.main.url(forResource: name, withExtension: "md", subdirectory: "Articles") { return url }
+        return Bundle.main.url(forResource: name, withExtension: "md")
     }
     weak var scrollView: UIScrollView? = nil
     var color: UIColor = .black.tint(0.4)
@@ -39,6 +46,38 @@ class ArticleView: AEView {
         pdfView.backgroundColor = .clear
     }
     
+    func loadMarkdown() {
+        guard let key, let url = ArticleView.markdownURL(for: key),
+              let source = try? String(contentsOf: url, encoding: .utf8) else { return }
+        imageView.isHidden = false
+        pdfView.isHidden = true
+
+        let p: CGFloat = 10*s
+        let width: CGFloat
+        if let scrollView {
+            if let maxWidth { width = min(scrollView.width - (Screen.iPhone ? 0 : 2*p), maxWidth) }
+            else { width = scrollView.width - 2*p }
+        } else {
+            width = 500*s
+        }
+        let w = width - p*2
+
+        let document = MarkupParser.parse(source)
+        let renderer = MarkupRenderer(color: color, font: font, italicFont: italicFont)
+        let (image, size) = renderer.render(document, contentWidth: w)
+
+        imageView.frame = CGRect(x: p, y: p, width: size.width, height: size.height)
+        imageView.image = image
+
+        if let scrollView {
+            let bottomInset: CGFloat = 120*s
+            scrollViewContentSize = CGSize(
+                width: size.width + 2*p,
+                height: max(size.height + 2*p + bottomInset, scrollView.bounds.size.height + 1)
+            )
+        }
+    }
+
     func loadPDF() {
         guard let key else { return }
         imageView.isHidden = true

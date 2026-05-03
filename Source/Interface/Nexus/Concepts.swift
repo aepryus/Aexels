@@ -11,7 +11,7 @@ import UIKit
 
 class Concepts {
     
-    static let intro: Article = Article(key: "intro")
+    static let universeX: Article = Article(key: "universeX")
     static let aether: Article = Article(key: "aether")
     static let cellular: Article = Article(key: "cellular")
     static let kinematics: Article = Article(key: "kinematics")
@@ -26,9 +26,9 @@ class Concepts {
     static let nuclear: Article = Article(key: "nuclear")
     static let epilogue: Article = Article(key: "epilogue")
     
-    static let forward: Article = Article(key: "forward", parent: intro)
-    static let claude: Article = Article(key: "claude", parent: intro)
-    static let aesthetics: Article = Article(key: "aesthetics", parent: intro)
+    static let forward: Article = Article(key: "forward", parent: universeX)
+    static let claude: Article = Article(key: "claude", parent: universeX)
+    static let aesthetics: Article = Article(key: "aesthetics", parent: universeX)
     static let speedOfLight: Article = Article(key: "speedOfLight", parent: cellular)
     static let zenosArrows: Article = Article(key: "zenosArrows", parent: hyle)
     static let chronos: Article = Article(key: "chronos", parent: dilation)
@@ -44,7 +44,7 @@ class Concepts {
     static let glossary: Article = Article(key: "glossary", parent: epilogue)
 
     static var articles: [Article] = [
-        intro, aether, cellular, kinematics, gravity1, hyle, dilation, contraction, electromagnetism,
+        universeX, aether, cellular, kinematics, gravity1, hyle, dilation, contraction, electromagnetism,
         gravity2, darkness, quantum, nuclear, epilogue, forward, claude, aesthetics, speedOfLight,
         zenosArrows, chronos, floatingLeaf, fourClocks, narwhal, magnetism, shotInTheDark,
         blackHole, holograms, bellTHooft, glossary
@@ -53,7 +53,7 @@ class Concepts {
     static func glyphs(s: CGFloat) -> [GlyphView] {
         let p: CGFloat = 3*s
         
-        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: intro, radius: 112*s+2*p, x: 70*s, y: 30*s)
+        let universeXGlyph: ArticleGlyph = ArticleGlyph(article: universeX, radius: 112*s+2*p, x: 70*s, y: 30*s)
         let aetherGlyph: ArticleGlyph = ArticleGlyph(article: aether, radius: 82*s+2*p, x: 50*s, y: 180*s)
         let cellularGlyph: ArticleGlyph = ArticleGlyph(article: cellular, radius: 102*s+2*p, x: 230*s, y: 280*s)
         let kinematicsGlyph: ArticleGlyph = ArticleGlyph(article: kinematics, radius: 112*s+2*p, x: 90*s, y: 490*s)
