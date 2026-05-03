@@ -75,6 +75,46 @@
 		D8AB7C1C00A1D1E2C0B30004 /* MarkupRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30003 /* MarkupRenderer.swift */; };
 		D8AB7C1C00A1D1E2C0B30008 /* UniverseX.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */; };
 		D8AB7C1C00A1D1E2C0B3000A /* Dilation.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */; };
+		D8AB7C1D000000000000B001 /* Aether.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A001 /* Aether.md */; };
+		D8AB7C1D000000000000B002 /* Cellular.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A002 /* Cellular.md */; };
+		D8AB7C1D000000000000B003 /* Kinematics.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A003 /* Kinematics.md */; };
+		D8AB7C1D000000000000B004 /* Gravity1.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A004 /* Gravity1.md */; };
+		D8AB7C1D000000000000B005 /* Chronos.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A005 /* Chronos.md */; };
+		D8AB7C1D000000000000B006 /* Aesthetics.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A006 /* Aesthetics.md */; };
+		D8AB7C1D000000000000B007 /* Claude.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A007 /* Claude.md */; };
+		D8AB7C1D000000000000B008 /* Nuclear.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A008 /* Nuclear.md */; };
+		D8AB7C1D000000000000B009 /* FloatingLeaf.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A009 /* FloatingLeaf.md */; };
+		D8AB7C1D000000000000B00A /* SpeedOfLight.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00A /* SpeedOfLight.md */; };
+		D8AB7C1D000000000000B00B /* ZenosArrows.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00B /* ZenosArrows.md */; };
+		D8AB7C1D000000000000B00C /* ShotInTheDark.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00C /* ShotInTheDark.md */; };
+		D8AB7C1D000000000000B00D /* Holograms.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00D /* Holograms.md */; };
+		D8AB7C1D000000000000B00E /* SteppingStones.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00E /* SteppingStones.md */; };
+		D8AB7C1D000000000000B00F /* HyleBridge.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00F /* HyleBridge.md */; };
+		D8AB7C1D000000000000B010 /* CupolaRedux.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A010 /* CupolaRedux.md */; };
+		D8AB7C1D000000000000B011 /* AexelSources.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A011 /* AexelSources.md */; };
+		D8AB7C1D000000000000B012 /* Hyle.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A012 /* Hyle.md */; };
+		D8AB7C1D000000000000B013 /* Darkness.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A013 /* Darkness.md */; };
+		D8AB7C1D000000000000B014 /* Contraction.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A014 /* Contraction.md */; };
+		D8AB7C1D000000000000B015 /* Electromagnetism.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A015 /* Electromagnetism.md */; };
+		D8AB7C1D000000000000B016 /* Quantum.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A016 /* Quantum.md */; };
+		D8AB7C1D000000000000B017 /* Gravity2.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A017 /* Gravity2.md */; };
+		D8AB7C1D000000000000B018 /* Magnetism.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A018 /* Magnetism.md */; };
+		D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A019 /* BellTHooft.md */; };
+		D8AB7C1D000000000000B01A /* Glossary.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01A /* Glossary.md */; };
+		D8AB7C1D000000000000B01B /* BlackHole.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01B /* BlackHole.md */; };
+		D8AB7C1D000000000000B01C /* G.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01C /* G.md */; };
+		D8AB7C1D000000000000B01D /* Narwhal.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01D /* Narwhal.md */; };
+		D8AB7C1D000000000000B01E /* FourClocks.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01E /* FourClocks.md */; };
+		D8AB7C1D000000000000B01F /* Forward.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01F /* Forward.md */; };
+		D8AB7C1D000000000000B020 /* Epilogue.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A020 /* Epilogue.md */; };
+		D8AB7C1D000000000000B021 /* Discovery.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A021 /* Discovery.md */; };
+		D8AB7C1D000000000000B022 /* Expansion.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A022 /* Expansion.md */; };
+		D8AB7C1D000000000000B023 /* Escaping.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A023 /* Escaping.md */; };
+		D8AB7C1D000000000000B024 /* Covariance.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A024 /* Covariance.md */; };
+		D8AB7C1D000000000000B025 /* Reciprocity.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A025 /* Reciprocity.md */; };
+		D8AB7C1D000000000000B026 /* Eeemcee.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A026 /* Eeemcee.md */; };
+		D8AB7C1D000000000000B027 /* Cupola.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A027 /* Cupola.md */; };
+		D8AB7C1D000000000000B028 /* Squish.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A028 /* Squish.md */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -217,6 +257,46 @@
 		D8AB7C1C00A1D1E2C0B30003 /* MarkupRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupRenderer.swift; sourceTree = "<group>"; };
 		D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = UniverseX.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Dilation.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A001 /* Aether.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Aether.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A002 /* Cellular.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Cellular.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A003 /* Kinematics.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Kinematics.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A004 /* Gravity1.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Gravity1.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A005 /* Chronos.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Chronos.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A006 /* Aesthetics.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Aesthetics.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A007 /* Claude.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Claude.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A008 /* Nuclear.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Nuclear.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A009 /* FloatingLeaf.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = FloatingLeaf.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00A /* SpeedOfLight.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = SpeedOfLight.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00B /* ZenosArrows.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = ZenosArrows.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00C /* ShotInTheDark.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = ShotInTheDark.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00D /* Holograms.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Holograms.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00E /* SteppingStones.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = SteppingStones.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A00F /* HyleBridge.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = HyleBridge.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A010 /* CupolaRedux.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = CupolaRedux.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A011 /* AexelSources.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = AexelSources.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A012 /* Hyle.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Hyle.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A013 /* Darkness.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Darkness.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A014 /* Contraction.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Contraction.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A015 /* Electromagnetism.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Electromagnetism.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A016 /* Quantum.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Quantum.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A017 /* Gravity2.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Gravity2.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A018 /* Magnetism.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Magnetism.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A019 /* BellTHooft.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BellTHooft.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01A /* Glossary.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Glossary.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01B /* BlackHole.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BlackHole.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01C /* G.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = G.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01D /* Narwhal.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Narwhal.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01E /* FourClocks.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = FourClocks.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A01F /* Forward.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Forward.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A020 /* Epilogue.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Epilogue.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A021 /* Discovery.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Discovery.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A022 /* Expansion.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Expansion.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A023 /* Escaping.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Escaping.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A024 /* Covariance.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Covariance.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A025 /* Reciprocity.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Reciprocity.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A026 /* Eeemcee.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Eeemcee.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A027 /* Cupola.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Cupola.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A028 /* Squish.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Squish.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -649,6 +729,46 @@
 			children = (
 				D8AB7C1C00A1D1E2C0B30007 /* UniverseX.md */,
 				D8AB7C1C00A1D1E2C0B30009 /* Dilation.md */,
+				D8AB7C1D000000000000A001 /* Aether.md */,
+				D8AB7C1D000000000000A002 /* Cellular.md */,
+				D8AB7C1D000000000000A003 /* Kinematics.md */,
+				D8AB7C1D000000000000A004 /* Gravity1.md */,
+				D8AB7C1D000000000000A005 /* Chronos.md */,
+				D8AB7C1D000000000000A006 /* Aesthetics.md */,
+				D8AB7C1D000000000000A007 /* Claude.md */,
+				D8AB7C1D000000000000A008 /* Nuclear.md */,
+				D8AB7C1D000000000000A009 /* FloatingLeaf.md */,
+				D8AB7C1D000000000000A00A /* SpeedOfLight.md */,
+				D8AB7C1D000000000000A00B /* ZenosArrows.md */,
+				D8AB7C1D000000000000A00C /* ShotInTheDark.md */,
+				D8AB7C1D000000000000A00D /* Holograms.md */,
+				D8AB7C1D000000000000A00E /* SteppingStones.md */,
+				D8AB7C1D000000000000A00F /* HyleBridge.md */,
+				D8AB7C1D000000000000A010 /* CupolaRedux.md */,
+				D8AB7C1D000000000000A011 /* AexelSources.md */,
+				D8AB7C1D000000000000A012 /* Hyle.md */,
+				D8AB7C1D000000000000A013 /* Darkness.md */,
+				D8AB7C1D000000000000A014 /* Contraction.md */,
+				D8AB7C1D000000000000A015 /* Electromagnetism.md */,
+				D8AB7C1D000000000000A016 /* Quantum.md */,
+				D8AB7C1D000000000000A017 /* Gravity2.md */,
+				D8AB7C1D000000000000A018 /* Magnetism.md */,
+				D8AB7C1D000000000000A019 /* BellTHooft.md */,
+				D8AB7C1D000000000000A01A /* Glossary.md */,
+				D8AB7C1D000000000000A01B /* BlackHole.md */,
+				D8AB7C1D000000000000A01C /* G.md */,
+				D8AB7C1D000000000000A01D /* Narwhal.md */,
+				D8AB7C1D000000000000A01E /* FourClocks.md */,
+				D8AB7C1D000000000000A01F /* Forward.md */,
+				D8AB7C1D000000000000A020 /* Epilogue.md */,
+				D8AB7C1D000000000000A021 /* Discovery.md */,
+				D8AB7C1D000000000000A022 /* Expansion.md */,
+				D8AB7C1D000000000000A023 /* Escaping.md */,
+				D8AB7C1D000000000000A024 /* Covariance.md */,
+				D8AB7C1D000000000000A025 /* Reciprocity.md */,
+				D8AB7C1D000000000000A026 /* Eeemcee.md */,
+				D8AB7C1D000000000000A027 /* Cupola.md */,
+				D8AB7C1D000000000000A028 /* Squish.md */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -996,6 +1116,46 @@
 				D8AE17B72814F0D300E74CB8 /* TrajanPro-Bold.ttf in Resources */,
 				D8AB7C1C00A1D1E2C0B30008 /* UniverseX.md in Resources */,
 				D8AB7C1C00A1D1E2C0B3000A /* Dilation.md in Resources */,
+				D8AB7C1D000000000000B001 /* Aether.md in Resources */,
+				D8AB7C1D000000000000B002 /* Cellular.md in Resources */,
+				D8AB7C1D000000000000B003 /* Kinematics.md in Resources */,
+				D8AB7C1D000000000000B004 /* Gravity1.md in Resources */,
+				D8AB7C1D000000000000B005 /* Chronos.md in Resources */,
+				D8AB7C1D000000000000B006 /* Aesthetics.md in Resources */,
+				D8AB7C1D000000000000B007 /* Claude.md in Resources */,
+				D8AB7C1D000000000000B008 /* Nuclear.md in Resources */,
+				D8AB7C1D000000000000B009 /* FloatingLeaf.md in Resources */,
+				D8AB7C1D000000000000B00A /* SpeedOfLight.md in Resources */,
+				D8AB7C1D000000000000B00B /* ZenosArrows.md in Resources */,
+				D8AB7C1D000000000000B00C /* ShotInTheDark.md in Resources */,
+				D8AB7C1D000000000000B00D /* Holograms.md in Resources */,
+				D8AB7C1D000000000000B00E /* SteppingStones.md in Resources */,
+				D8AB7C1D000000000000B00F /* HyleBridge.md in Resources */,
+				D8AB7C1D000000000000B010 /* CupolaRedux.md in Resources */,
+				D8AB7C1D000000000000B011 /* AexelSources.md in Resources */,
+				D8AB7C1D000000000000B012 /* Hyle.md in Resources */,
+				D8AB7C1D000000000000B013 /* Darkness.md in Resources */,
+				D8AB7C1D000000000000B014 /* Contraction.md in Resources */,
+				D8AB7C1D000000000000B015 /* Electromagnetism.md in Resources */,
+				D8AB7C1D000000000000B016 /* Quantum.md in Resources */,
+				D8AB7C1D000000000000B017 /* Gravity2.md in Resources */,
+				D8AB7C1D000000000000B018 /* Magnetism.md in Resources */,
+				D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */,
+				D8AB7C1D000000000000B01A /* Glossary.md in Resources */,
+				D8AB7C1D000000000000B01B /* BlackHole.md in Resources */,
+				D8AB7C1D000000000000B01C /* G.md in Resources */,
+				D8AB7C1D000000000000B01D /* Narwhal.md in Resources */,
+				D8AB7C1D000000000000B01E /* FourClocks.md in Resources */,
+				D8AB7C1D000000000000B01F /* Forward.md in Resources */,
+				D8AB7C1D000000000000B020 /* Epilogue.md in Resources */,
+				D8AB7C1D000000000000B021 /* Discovery.md in Resources */,
+				D8AB7C1D000000000000B022 /* Expansion.md in Resources */,
+				D8AB7C1D000000000000B023 /* Escaping.md in Resources */,
+				D8AB7C1D000000000000B024 /* Covariance.md in Resources */,
+				D8AB7C1D000000000000B025 /* Reciprocity.md in Resources */,
+				D8AB7C1D000000000000B026 /* Eeemcee.md in Resources */,
+				D8AB7C1D000000000000B027 /* Cupola.md in Resources */,
+				D8AB7C1D000000000000B028 /* Squish.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
