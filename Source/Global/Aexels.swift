@@ -29,6 +29,7 @@ class Aexels {
     static let electromagnetismExplorer: ElectromagnetismExplorer = ElectromagnetismExplorer()
     static let insideOutExplorer: InsideOutExplorer = InsideOutExplorer()
     static let outsideInExplorer: OutsideInExplorer = OutsideInExplorer()
+    static let blackHolesExplorer: BlackHolesExplorer = BlackHolesExplorer()
 
     static var aetherView: AetherView? = nil
 

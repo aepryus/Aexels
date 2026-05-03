@@ -2,9 +2,9 @@
 
 In the October 1970 issue of Scientific American a curious little solitaire simulation game developed by a Cambridge Math professor was presented.  The professor, John Conway explained how to 'play' it using a chess board and some counters:
 
-> "- Survivals. Every counter with two or three neighboring counters survives for the next generation.
+> - Survivals. Every counter with two or three neighboring counters survives for the next generation.
 > - Deaths. Each counter with four or more neighbors dies (is removed) from overpopulation. Every counter with one neighbor or none dies from isolation.
-> - Births. Each empty cell adjacent to exactly three neighbors--no more, no fewer--is a birth cell. A counter is placed on it at the next move."
+> - Births. Each empty cell adjacent to exactly three neighbors--no more, no fewer--is a birth cell. A counter is placed on it at the next move.
 
 At that time it was perhaps difficult to imagine such a 'recreational mathematics' hobby project would become so influential.
 

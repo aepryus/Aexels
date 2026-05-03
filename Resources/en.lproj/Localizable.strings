@@ -1891,6 +1891,8 @@ While editing an expression, anchor with one finger and tap the expression with 
 "dilation_lab_name" = "Dilation";
 "contraction_lab_name" = "Contraction";
 "electromagnetism_lab_name" = "Electricity and Magnetism";
+"blackHoles_lab_name" = "Black Holes";
+"blackHolesLab_name" = "Black Holes";
 "insideOut_lab_name" = "Inside Out";
 "outsideIn_lab_name" = "Outside In";
 

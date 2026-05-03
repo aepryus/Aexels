@@ -25,7 +25,13 @@ class Article {
     
     var name: String { nameToken.localized }
     var nameWithoutNL: String { name.filter { !"\n".contains($0) } }
-    var article: String { articleToken.localized }
+    var article: String {
+        let fileName = key.prefix(1).uppercased() + key.dropFirst()
+        let url = Bundle.main.url(forResource: fileName, withExtension: "md", subdirectory: "Articles")
+            ?? Bundle.main.url(forResource: fileName, withExtension: "md")
+        if let url, let source = try? String(contentsOf: url, encoding: .utf8) { return source }
+        return articleToken.localized
+    }
     
     var lineage: [Article] {
         var lineage: [Article] = []

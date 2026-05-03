@@ -115,6 +115,10 @@
 		D8AB7C1D000000000000B026 /* Eeemcee.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A026 /* Eeemcee.md */; };
 		D8AB7C1D000000000000B027 /* Cupola.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A027 /* Cupola.md */; };
 		D8AB7C1D000000000000B028 /* Squish.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A028 /* Squish.md */; };
+		D8AB7C1E000000000000C001 /* BlackHolesShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B001 /* BlackHolesShaders.metal */; };
+		D8AB7C1E000000000000C002 /* BlackHolesRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */; };
+		D8AB7C1E000000000000C003 /* BlackHolesExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B003 /* BlackHolesExplorer.swift */; };
+		D8AB7C1E000000000000C004 /* BlackHolesLab.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B004 /* BlackHolesLab.md */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -297,6 +301,10 @@
 		D8AB7C1D000000000000A026 /* Eeemcee.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Eeemcee.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A027 /* Cupola.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Cupola.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A028 /* Squish.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Squish.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1E000000000000B001 /* BlackHolesShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BlackHolesShaders.metal; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesRenderer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B003 /* BlackHolesExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesExplorer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B004 /* BlackHolesLab.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BlackHolesLab.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -415,6 +423,7 @@
 				D8C14CD82D3DE96600F83F28 /* Electromagnetism */,
 				D8FA8B052D3762E400211980 /* InsideOut */,
 				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
+				D8AB7C1E000000000000D001 /* BlackHoles */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -454,6 +463,23 @@
 				D822456D2D84007900A5176F /* Caribbean.c */,
 			);
 			path = Caribbean;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D001 /* BlackHoles */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B001 /* BlackHolesShaders.metal */,
+				D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */,
+			);
+			path = BlackHoles;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D002 /* BlackHoles */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B003 /* BlackHolesExplorer.swift */,
+			);
+			path = BlackHoles;
 			sourceTree = "<group>";
 		};
 		D822456F2D84097000A5176F /* Sea */ = {
@@ -769,6 +795,7 @@
 				D8AB7C1D000000000000A026 /* Eeemcee.md */,
 				D8AB7C1D000000000000A027 /* Cupola.md */,
 				D8AB7C1D000000000000A028 /* Squish.md */,
+				D8AB7C1E000000000000B004 /* BlackHolesLab.md */,
 			);
 			path = Articles;
 			sourceTree = "<group>";
@@ -856,6 +883,7 @@
 				D896C9992D41F7DA0058585C /* Electromagnetism */,
 				D896C99C2D41F7F60058585C /* InsideOut */,
 				D896C99B2D41F7ED0058585C /* OutsideIn */,
+				D8AB7C1E000000000000D002 /* BlackHoles */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1156,6 +1184,7 @@
 				D8AB7C1D000000000000B026 /* Eeemcee.md in Resources */,
 				D8AB7C1D000000000000B027 /* Cupola.md in Resources */,
 				D8AB7C1D000000000000B028 /* Squish.md in Resources */,
+				D8AB7C1E000000000000C004 /* BlackHolesLab.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,6 +1248,9 @@
 				D8FD4B8A2D87DE4E00A13B25 /* Renderer.swift in Sources */,
 				D8AB7C1C00A1D1E2C0B30002 /* Markup.swift in Sources */,
 				D8AB7C1C00A1D1E2C0B30004 /* MarkupRenderer.swift in Sources */,
+				D8AB7C1E000000000000C001 /* BlackHolesShaders.metal in Sources */,
+				D8AB7C1E000000000000C002 /* BlackHolesRenderer.swift in Sources */,
+				D8AB7C1E000000000000C003 /* BlackHolesExplorer.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
 				D86F72802D76FEDB00987057 /* Baltic.c in Sources */,

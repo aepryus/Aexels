@@ -75,3 +75,109 @@ Imagine each aexel holds a fluid called 'accelerant'.  Hyle doesn't destroy aexe
 Now the gravity problem goes from being an absurd tracking of an absurd amount of g-pings traveling throughout the entire universe, to a simple local pressure equalization problem of the accelerant.
 
 Now, of course, this is a leap well beyond anything previous in Universe X.  And the reason for making this leap is novel, the concern for the computational strain of Universe X itself.  However, even if this is entirely false, this concept could greatly speed the modeling of gravitational phenomena.  It takes a problem naively implemented as O(n²) that is reduced to  O(n ln(n)) by using approximate methods and replaces it with a method that is O(n) and precise, not an approximation any longer.
+
+Claude Opus 4.7 Stub - v4.5 Addendum ===================
+
+## The Field Equations
+
+The articles thus far have described the gravitational mechanism qualitatively: hyle destroys accelerant; the resulting flow of accelerant induces an acceleration in the aexels; matter sitting atop those aexels comes along for the ride.  We can now write this down as two partial differential equations, one for each fluid.
+
+## The Accelerant Equation
+
+Let $\mathbf{u}$ be the velocity field of the accelerant and $\rho$ the density of hyle.  The accelerant is approximately incompressible; antihyle creates accelerant at the rate hyle destroys it, and the spawn / squish mechanism keeps the underlying aexel density essentially fixed.
+
+For an incompressible fluid with sinks (hyle) and sources (antihyle), the divergence of the velocity field equals the net source density.  Choosing the proportionality constant so the eventual answers match the empirical strength of gravity:
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{u} &= -4\pi G \rho \\
+\\
+\nabla \times \mathbf{u} &= 0
+\end{aligned}
+$$
+
+The second equation closes the system: with no rotational sources, the accelerant flow is purely a gradient flow.  Equivalently, $\mathbf{u} = -\nabla \Phi$ where $\nabla^2 \Phi = 4\pi G \rho$.  This is Poisson's equation in fluid clothing.  For a spherical mass $M$, Gauss's law gives:
+
+$$
+\mathbf{u} = -\frac{GM}{r^2} \hat{\mathbf{r}}
+$$
+
+The accelerant velocity at any point is, numerically and dimensionally, the Newtonian gravitational acceleration at that point.  Newton's $1/r^2$ law is not an axiom here; it is the equilibrium configuration of an incompressible flow sinking into a localized hyle sink.  The accelerant's job is to be Newton.
+
+## The Aexel Equation
+
+The accelerant velocity at a point does not directly accelerate matter; it accelerates the aexels at that point.  The promotion is one to one: the velocity of the accelerant at $\mathbf{x}$ equals the acceleration imparted to whatever aexel happens to be sitting at $\mathbf{x}$.
+
+In Eulerian form, the velocity field $\mathbf{v}_a$ of the aexels obeys:
+
+$$
+\frac{\partial \mathbf{v}_a}{\partial t} + (\mathbf{v}_a \cdot \nabla) \mathbf{v}_a = \mathbf{u}
+$$
+
+The left side is the material derivative $D \mathbf{v}_a / D t$, the acceleration of an aexel as it moves through space.  The right side is the local accelerant velocity.  This is the Aexel Equation.
+
+## The Static Spherical Solution
+
+For a stationary point mass $M$, the aexel field is steady and purely radial: $\mathbf{v}_a = v(r) \hat{\mathbf{r}}$.  The partial time derivative vanishes and the convective term reduces to $v\, (dv/dr)\, \hat{\mathbf{r}}$.  Setting this equal to $u_r = -GM/r^2$:
+
+$$
+\begin{aligned}
+v \frac{dv}{dr} &= -\frac{GM}{r^2} \\
+\\
+\frac{1}{2} \frac{d(v^2)}{dr} &= -\frac{GM}{r^2} \\
+\\
+v^2 &= \frac{2GM}{r}
+\end{aligned}
+$$
+
+The aexel velocity at radius $r$ is the escape velocity.  This is exactly the result obtained in the Floating Leaf article from the entirely different argument that a tennis ball falling from infinity must be co-moving with the aexels, so its impact velocity (the escape velocity) is the aexel velocity at the surface.  Two arguments, the same answer.  Floating Leaf is the integrated form of the Aexel Equation in spherical symmetry.
+
+## Recovering Newton
+
+A test particle in free fall co-moves with the aexels: $\mathbf{v}_{\text{ball}} = \mathbf{v}_a$.  Its acceleration is the material derivative of its velocity:
+
+$$
+\frac{D \mathbf{v}_{\text{ball}}}{D t} = \frac{D \mathbf{v}_a}{D t} = \mathbf{u} = -\frac{GM}{r^2} \hat{\mathbf{r}}
+$$
+
+Newton's gravitational acceleration is exactly the accelerant velocity.  This is the entire content of Newton in Universe X: every freely falling object inherits the local $\mathbf{u}$ through the aexels carrying it.
+
+## Recovering General Relativity
+
+A test particle held stationary on a platform at radius $r$ is *not* co-moving with the aexels; the aexels flow past it at $\mathbf{v}_a$, so the platform observer is translating at speed $|\mathbf{v}_a|$ relative to the aether.  All the standard Universe X consequences of translation now apply: the observer's clock animates at rate $1/\gamma$ and the observer's radial meter sticks contract by $1/\gamma$, where:
+
+$$
+\gamma^2 = \frac{1}{1 - v_a^2/c^2} = \frac{1}{1 - \frac{2GM}{rc^2}}
+$$
+
+The proper time interval at radius $r$ is $d\tau = dt/\gamma = \sqrt{1 - 2GM/rc^2}\, dt$.  This is the Schwarzschild $g_{tt}$ term, exactly.
+
+For radial proper distance: each platform meter stick measures only $1/\gamma$ in the aether frame, so the proper distance spanning a coordinate $dr$ is $\gamma\, dr$.  This is the Schwarzschild $g_{rr}$ term, exactly.
+
+Assembling:
+
+$$
+ds^2 = -\left(1 - \frac{2GM}{rc^2}\right) c^2 dt^2 + \left(1 - \frac{2GM}{rc^2}\right)^{-1} dr^2 + r^2 d\Omega^2
+$$
+
+This is the Schwarzschild metric, recovered without any tensors, without any field equations of GR, without solving any four dimensional ten-equation ten-unknown PDE on a curved manifold.  The metric drops out as the kinematic shadow of two simple 3D fluid equations on flat space.
+
+## Why It Works
+
+The reason both Newton and GR fall out cleanly is that they describe the same underlying mechanism in different limits.
+
+Newton concerns the acceleration directly.  In Universe X the acceleration field is $\mathbf{u}$, and the Accelerant Equation gives $\mathbf{u} = -(GM/r^2) \hat{\mathbf{r}}$ for a point mass.  Newton is just the Accelerant Equation, untouched.
+
+GR concerns the kinematic consequences of matter sitting on aexels that have already acquired velocity $\mathbf{v}_a$.  Those consequences, dilation and contraction, depend only on $\mathbf{v}_a$, not on $\mathbf{u}$ directly.  The Aexel Equation provides the nonlinear $\mathbf{v}_a(\mathbf{u})$ relation; for the static spherical case, $v_a^2 = 2GM/r$.  Plugging that into the standard Universe X dilation formula reproduces the Schwarzschild metric.
+
+Newton is the Accelerant Equation.  GR is the Aexel Equation seen through the Lorentz factor.  Universe X has both because it has both fluids; that's why it can recover both theories without introducing either as a postulate.
+
+## An Aside on the Antimatter Case
+
+Sign-flipping the source term handles the antimatter case discussed in the Darkness article:
+
+$$
+\nabla \cdot \mathbf{u} = +4\pi G \rho
+$$
+
+For a uniform density of antihyle dust, by Gauss's law applied from any chosen origin, $\mathbf{u} = +(4\pi G\rho/3)\, r\, \hat{\mathbf{r}}$.  The Aexel Equation then gives a $v_a(r)$ growing linearly with $r$, reproducing the qualitative Hubble behavior of the Aexel Sources article on the Path of Discovery.  The same two PDEs handle both the local gravitational dynamics of stars and planets and the global behavior of antimatter dust between galaxies, with no additional machinery introduced.
