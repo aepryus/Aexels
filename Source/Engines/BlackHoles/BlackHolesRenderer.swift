@@ -83,17 +83,6 @@ private struct BHVAetherParams {
     var worldHalfWidth: Float
 }
 
-private struct BHWaveParams {
-    var worldHalfWidth: Float
-    var c: Float
-    var dt: Float
-    var gamma: Float
-}
-
-private struct BHSpongeParams {
-    var width: UInt32
-}
-
 private struct BHCirclePacket {
     var center: SIMD2<Float>
     var radius: Float
@@ -123,21 +112,12 @@ class BlackHolesRenderer: Renderer {
     private let matterDt: Float = 0.01            // matter integrates u over its trajectory
     private let cMax: Float = 10.0                // speed-of-light cap
 
-    // Wave-equation accelerant (Phase 1: dynamic Φ)
-    // CFL for 2D 5-point wave: c·dt_sub/dx ≤ 1/√2 ≈ 0.707. With c=10, dx=2/256:
-    // dt_sub_max ≈ 5.5e-4. So K ≥ ceil(0.01 / 5.5e-4) ≈ 18. Using 32 for margin
-    // (CFL = 0.4, well inside stability region).
-    private let waveSubsteps: Int = 32
-    private let spongeWidth: UInt32 = 16           // sponge layer thickness in cells
-
-    var dynamicAccelerantOn: Bool = true    // wave-equation Φ; toggle off in UI to fall back to analytical
     var aetherOn: Bool = true
     var accelerantOn: Bool = false
     var matterOn: Bool = false
 
     private var blackHoles: [BlackHole] = []
     private var frameCounter: Int = 0
-    private var phiInitialized: Bool = false   // dynamic Φ first-frame init flag
 
     // Visualization toggles wired to the controls tab.
     var wellsOn: Bool = true
@@ -148,11 +128,7 @@ class BlackHolesRenderer: Renderer {
     var dragGamma: Float = 0
 
     // Pipelines
-    private var phiPipeline: MTLComputePipelineState!         // analytical Φ_static
-    private var sourcePipeline: MTLComputePipelineState!      // S = ∇²Φ_static
-    private var evolvePhiPipeline: MTLComputePipelineState!   // wave-equation leapfrog
-    private var spongePipeline: MTLComputePipelineState!      // absorbing boundary
-    private var copyPhiPipeline: MTLComputePipelineState!     // initialize Φ_dyn ← Φ_static
+    private var phiPipeline: MTLComputePipelineState!
     private var samplePipeline: MTLComputePipelineState!
     private var computeUPipeline: MTLComputePipelineState!
     private var vAetherPipeline: MTLComputePipelineState!
@@ -163,16 +139,7 @@ class BlackHolesRenderer: Renderer {
     private var circlePipeline: MTLRenderPipelineState!
 
     // GPU resources
-    private var phiStaticTexture: MTLTexture!     // analytical Φ from current masses
-    private var phiTexture: MTLTexture!           // alias to whichever ping-pong holds latest dynamic Φ
-    private var phiA: MTLTexture!                 // ping-pong A
-    private var phiB: MTLTexture!                 // ping-pong B
-    private var phiC: MTLTexture!                 // ping-pong C (3rd needed for leapfrog: prev/curr/new)
-    private var sourceTexture: MTLTexture!        // S = ∇²Φ_static
-    // Live pointers cycled each substep
-    private var phiPrev: MTLTexture!
-    private var phiCurr: MTLTexture!
-    private var phiNew: MTLTexture!
+    private var phiTexture: MTLTexture!
     private var uTexture: MTLTexture!
     private var vaTexture: MTLTexture!   // algebraic aether velocity field, recomputed each frame
     private var massesBuffer: MTLBuffer!
@@ -180,8 +147,6 @@ class BlackHolesRenderer: Renderer {
     private var aetherParticlesBuffer: MTLBuffer!
     private var accelerantParticlesBuffer: MTLBuffer!
     private var matterParticlesBuffer: MTLBuffer!
-    private var phiStaticReadback: MTLBuffer!     // for diagnostics: Φ_static dump
-    private var phiDynReadback: MTLBuffer!         // for diagnostics: Φ_dyn dump
     private var commandQueueLocal: MTLCommandQueue!
 
     private var lastAccelerations: [SIMD2<Float>] = []
@@ -194,22 +159,6 @@ class BlackHolesRenderer: Renderer {
         guard let phiFn = library.makeFunction(name: "bhComputePhi"),
               let phiState = try? device.makeComputePipelineState(function: phiFn) else { return nil }
         phiPipeline = phiState
-
-        guard let sourceFn = library.makeFunction(name: "bhComputeSource"),
-              let sourceState = try? device.makeComputePipelineState(function: sourceFn) else { return nil }
-        sourcePipeline = sourceState
-
-        guard let evolveFn = library.makeFunction(name: "bhEvolvePhi"),
-              let evolveState = try? device.makeComputePipelineState(function: evolveFn) else { return nil }
-        evolvePhiPipeline = evolveState
-
-        guard let spongeFn = library.makeFunction(name: "bhSpongePhi"),
-              let spongeState = try? device.makeComputePipelineState(function: spongeFn) else { return nil }
-        spongePipeline = spongeState
-
-        guard let copyFn = library.makeFunction(name: "bhCopyPhi"),
-              let copyState = try? device.makeComputePipelineState(function: copyFn) else { return nil }
-        copyPhiPipeline = copyState
 
         guard let sampleFn = library.makeFunction(name: "bhSampleAcceleration"),
               let sampleState = try? device.makeComputePipelineState(function: sampleFn) else { return nil }
@@ -246,26 +195,13 @@ class BlackHolesRenderer: Renderer {
         let scalarDesc = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .r32Float, width: fieldGridSize, height: fieldGridSize, mipmapped: false)
         scalarDesc.usage = [.shaderRead, .shaderWrite]
         scalarDesc.storageMode = .private
-        phiStaticTexture = device.makeTexture(descriptor: scalarDesc)
-        sourceTexture    = device.makeTexture(descriptor: scalarDesc)
-        phiA = device.makeTexture(descriptor: scalarDesc)
-        phiB = device.makeTexture(descriptor: scalarDesc)
-        phiC = device.makeTexture(descriptor: scalarDesc)
-        phiPrev = phiA
-        phiCurr = phiB
-        phiNew  = phiC
-        phiTexture = phiCurr   // alias for consumers (sample, gradient, render)
+        phiTexture = device.makeTexture(descriptor: scalarDesc)
 
         let vectorDesc = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rg32Float, width: fieldGridSize, height: fieldGridSize, mipmapped: false)
         vectorDesc.usage = [.shaderRead, .shaderWrite]
         vectorDesc.storageMode = .private
         uTexture = device.makeTexture(descriptor: vectorDesc)
         vaTexture = device.makeTexture(descriptor: vectorDesc)
-
-        let phiBytesPerRow = fieldGridSize * MemoryLayout<Float>.stride
-        let phiTotalBytes = phiBytesPerRow * fieldGridSize
-        phiStaticReadback = device.makeBuffer(length: phiTotalBytes, options: .storageModeShared)
-        phiDynReadback    = device.makeBuffer(length: phiTotalBytes, options: .storageModeShared)
 
         massesBuffer = device.makeBuffer(length: MemoryLayout<BHMass>.stride * 16, options: .storageModeShared)
         accelerationsBuffer = device.makeBuffer(length: MemoryLayout<SIMD2<Float>>.stride * 16, options: .storageModeShared)
@@ -331,7 +267,6 @@ class BlackHolesRenderer: Renderer {
             BlackHole(position: SIMD2(-r, 0), velocity: SIMD2(0, -v), mass: M, radius: 0.045, color: SIMD4(0, 0, 0, 1.0))
         ]
         frameCounter = 0
-        phiInitialized = false
         lastAccelerations = Array(repeating: .zero, count: blackHoles.count)
     }
 
@@ -380,10 +315,9 @@ class BlackHolesRenderer: Renderer {
         let tg = MTLSize(width: 8, height: 8, depth: 1)
         let tgs = MTLSize(width: (fieldGridSize + 7) / 8, height: (fieldGridSize + 7) / 8, depth: 1)
 
-        // 1a) Φ_static — analytical potential from current mass positions.
-        //     Used to compute the wave-equation source S = ∇²Φ_static.
+        // 1) Phi field
         enc.setComputePipelineState(phiPipeline)
-        enc.setTexture(phiStaticTexture, index: 0)
+        enc.setTexture(phiTexture, index: 0)
         enc.setBuffer(massesBuffer, offset: 0, index: 0)
         var fieldParams = BHFieldParams(
             worldHalfWidth: worldHalfWidth,
@@ -394,80 +328,6 @@ class BlackHolesRenderer: Renderer {
         enc.setBytes(&fieldParams, length: MemoryLayout<BHFieldParams>.size, index: 1)
         enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
         enc.memoryBarrier(scope: .textures)
-
-        if dynamicAccelerantOn {
-            // 1b) First-frame init: Φ_dyn ← Φ_static for both phiCurr and phiPrev,
-            //     so the leapfrog starts at equilibrium with zero time derivative.
-            if !phiInitialized {
-                enc.setComputePipelineState(copyPhiPipeline)
-                enc.setTexture(phiStaticTexture, index: 0)
-                enc.setTexture(phiCurr, index: 1)
-                enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
-                enc.memoryBarrier(scope: .textures)
-                enc.setTexture(phiStaticTexture, index: 0)
-                enc.setTexture(phiPrev, index: 1)
-                enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
-                enc.memoryBarrier(scope: .textures)
-                phiInitialized = true
-            }
-
-            // 1c) Source S = ∇²Φ_static for the wave equation.
-            enc.setComputePipelineState(sourcePipeline)
-            enc.setTexture(phiStaticTexture, index: 0)
-            enc.setTexture(sourceTexture, index: 1)
-            enc.setBytes(&fieldParams, length: MemoryLayout<BHFieldParams>.size, index: 0)
-            enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
-            enc.memoryBarrier(scope: .textures)
-
-            // 1d) Wave equation: ∂²Φ/∂t² = c²(∇²Φ − S). Leapfrog with K substeps
-            //     to satisfy CFL dt_sub < dx/c. Three-buffer rotation for prev/curr/new.
-            let dtWave = dt / Float(waveSubsteps)
-            // γ damping: suppress checkerboard modes. Tune for stability vs. signal preservation.
-            // γ tuned by iteration: γ=500 unstable (f7 corner blowup), γ=1000 slow blowup
-            // (~9s to NaN), γ=2000 stable indefinitely with diff ~0.17 (2% rel err).
-            var waveParams = BHWaveParams(worldHalfWidth: worldHalfWidth, c: cMax, dt: dtWave, gamma: 2000.0)
-            for _ in 0..<waveSubsteps {
-                enc.setComputePipelineState(evolvePhiPipeline)
-                enc.setTexture(phiCurr, index: 0)
-                enc.setTexture(phiPrev, index: 1)
-                enc.setTexture(sourceTexture, index: 2)
-                enc.setTexture(phiNew, index: 3)
-                enc.setBytes(&waveParams, length: MemoryLayout<BHWaveParams>.size, index: 0)
-                enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
-                enc.memoryBarrier(scope: .textures)
-                // Rotate: phiPrev <- phiCurr, phiCurr <- phiNew, phiNew <- (old phiPrev)
-                let tempPrev = phiPrev
-                phiPrev = phiCurr
-                phiCurr = phiNew
-                phiNew  = tempPrev
-            }
-
-            // 1e) Sponge: blend phiCurr toward Φ_static near edges so outgoing
-            //     waves are absorbed instead of reflecting. Writes through phiNew,
-            //     then we cycle so phiCurr ends up holding the sponged Φ.
-            enc.setComputePipelineState(spongePipeline)
-            enc.setTexture(phiStaticTexture, index: 0)
-            enc.setTexture(phiCurr, index: 1)
-            enc.setTexture(phiNew, index: 2)
-            var spongeParams = BHSpongeParams(width: spongeWidth)
-            enc.setBytes(&spongeParams, length: MemoryLayout<BHSpongeParams>.size, index: 0)
-            enc.dispatchThreadgroups(tgs, threadsPerThreadgroup: tg)
-            enc.memoryBarrier(scope: .textures)
-            // After sponge, phiNew has the canonical "current" Φ. Cycle so phiCurr
-            // holds it for downstream consumers.
-            let tempPrev2 = phiPrev
-            phiPrev = phiCurr
-            phiCurr = phiNew
-            phiNew  = tempPrev2
-
-            phiTexture = phiCurr
-        } else {
-            // Analytical engine: bypass wave equation entirely. Consumers read
-            // from phiStaticTexture directly. Reset init flag so the wave engine
-            // re-initializes cleanly when re-enabled.
-            phiTexture = phiStaticTexture
-            phiInitialized = false
-        }
 
         // 2) u = -grad(Phi) on grid
         enc.setComputePipelineState(computeUPipeline)
@@ -614,72 +474,11 @@ class BlackHolesRenderer: Renderer {
         }
 
         renderEncoder.endEncoding()
-
-        // Diagnostic blit once per second.
-        if frameCounter % 60 == 0 {
-            if let blit = commandBuffer.makeBlitCommandEncoder() {
-                let bpr = fieldGridSize * MemoryLayout<Float>.stride
-                let size = MTLSize(width: fieldGridSize, height: fieldGridSize, depth: 1)
-                let origin = MTLOrigin(x: 0, y: 0, z: 0)
-                blit.copy(from: phiStaticTexture, sourceSlice: 0, sourceLevel: 0,
-                          sourceOrigin: origin, sourceSize: size,
-                          to: phiStaticReadback, destinationOffset: 0,
-                          destinationBytesPerRow: bpr,
-                          destinationBytesPerImage: bpr * fieldGridSize)
-                blit.copy(from: phiTexture, sourceSlice: 0, sourceLevel: 0,
-                          sourceOrigin: origin, sourceSize: size,
-                          to: phiDynReadback, destinationOffset: 0,
-                          destinationBytesPerRow: bpr,
-                          destinationBytesPerImage: bpr * fieldGridSize)
-                blit.endEncoding()
-            }
-        }
-
         commandBuffer.present(drawable)
         commandBuffer.commit()
         // Wait synchronously so lastAccelerations is fresh on the next frame.
         commandBuffer.waitUntilCompleted()
         readAccelerations()
-        logPhiStats()
-    }
-
-    private func logPhiStats() {
-        guard frameCounter % 60 == 0 else { return }
-        let n = fieldGridSize * fieldGridSize
-        let sPtr = phiStaticReadback.contents().assumingMemoryBound(to: Float.self)
-        let dPtr = phiDynReadback.contents().assumingMemoryBound(to: Float.self)
-        var sMin: Float = .infinity, sMax: Float = -.infinity, sSum: Double = 0
-        var dMin: Float = .infinity, dMax: Float = -.infinity, dSum: Double = 0
-        var sNaN = 0, dNaN = 0
-        var diffMax: Float = 0, diffSumSq: Double = 0
-        var diffMaxIdx = 0
-        for i in 0..<n {
-            let s = sPtr[i], d = dPtr[i]
-            if s.isFinite { if s < sMin { sMin = s }; if s > sMax { sMax = s }; sSum += Double(s) } else { sNaN += 1 }
-            if d.isFinite { if d < dMin { dMin = d }; if d > dMax { dMax = d }; dSum += Double(d) } else { dNaN += 1 }
-            if s.isFinite && d.isFinite {
-                let diff = abs(d - s)
-                if diff > diffMax { diffMax = diff; diffMaxIdx = i }
-                diffSumSq += Double(diff) * Double(diff)
-            }
-        }
-        let sMean = Float(sSum / Double(max(1, n - sNaN)))
-        let dMean = Float(dSum / Double(max(1, n - dNaN)))
-        let rms   = Float((diffSumSq / Double(n)).squareRoot())
-        let mx = diffMaxIdx % fieldGridSize, my = diffMaxIdx / fieldGridSize
-        let mode = dynamicAccelerantOn ? "dyn" : "ana"
-        let line = String(format: "[Φ %@] f%-5d static[%.2f..%.2f m=%.2f nan=%d] dyn[%.2f..%.2f m=%.2f nan=%d] diff[max=%.3e rms=%.3e at(%d,%d)]\n",
-                          mode, frameCounter, sMin, sMax, sMean, sNaN, dMin, dMax, dMean, dNaN, diffMax, rms, mx, my)
-        if let data = line.data(using: .utf8) {
-            let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("aexels_phi.log")
-            if FileManager.default.fileExists(atPath: url.path) {
-                if let h = try? FileHandle(forWritingTo: url) {
-                    h.seekToEndOfFile(); h.write(data); try? h.close()
-                }
-            } else {
-                try? data.write(to: url)
-            }
-        }
     }
 
     override func draw(renderEncoder: any MTLRenderCommandEncoder) {}
