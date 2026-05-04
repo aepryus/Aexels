@@ -75,7 +75,7 @@ class Concepts {
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 220*s, y: 960*s)
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 30*s, y: 920*s)
         let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 410*s, y: 1360*s)
-        let blackHolesExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.blackHolesExplorer, radius: 50*s+2*p, x: 320*s, y: 1410*s)
+        let blackHolesExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.blackHolesExplorer, radius: 50*s+2*p, x: 180*s, y: 1540*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
         let claudeGlyph: AsideGlyph = AsideGlyph(article: claude, radius: 56*s+2*p, x: 250*s, y: 120*s)
