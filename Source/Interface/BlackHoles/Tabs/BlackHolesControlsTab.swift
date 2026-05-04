@@ -15,6 +15,7 @@ class BlackHolesControlsTab: TabsCellTab {
     let accelerantBoolButton: BoolButton = BoolButton(name: "accelerant")
     let aetherBoolButton: BoolButton = BoolButton(name: "aether")
     let matterBoolButton: BoolButton = BoolButton(name: "matter")
+    let dynamicBoolButton: BoolButton = BoolButton(name: "dynamic Φ")
 
     let viscosityLabel: UILabel = UILabel()
     let viscositySlider: Slider = Slider()
@@ -38,6 +39,10 @@ class BlackHolesControlsTab: TabsCellTab {
         matterBoolButton.on = false
         addSubview(matterBoolButton)
         matterBoolButton.onChange = { (on: Bool) in self.explorer.renderer.matterOn = on }
+
+        dynamicBoolButton.on = true
+        addSubview(dynamicBoolButton)
+        dynamicBoolButton.onChange = { (on: Bool) in self.explorer.renderer.dynamicAccelerantOn = on }
 
         let pen: Pen = Pen(font: .avenir(size: 13*s), color: .white, alignment: .right)
         viscosityLabel.text = "viscosity ×1000"
@@ -63,6 +68,8 @@ class BlackHolesControlsTab: TabsCellTab {
         aetherBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
         matterBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        dynamicBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s
 
         let sliderWidth: CGFloat = width - 60*s
