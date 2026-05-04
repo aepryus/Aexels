@@ -473,20 +473,26 @@ The below image shows each of the pings radiating from a source teslon traveling
 And thus, in this small packet of information contained in the ping, both the direction of the force and the return to sender trajectory can be determined.
 
 But perhaps, we haven't completely exhausted the beauty of the cupola quite yet...
+##[Magnetism]##Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
 
-Claude Opus 4.6 Stub - v4.5 Addendum ===================
- 
-##[The Liénard-Wiechert Identities]##Since version 4.0, three algebraic identities have been established proving that the cupola vector exactly reproduces the complete Liénard-Wiechert electromagnetic field theory.
- 
-The first identity shows that the LW velocity field (the 1/R² field of a uniformly moving charge) decomposes into three cupola quantities: a flux factor (1−β²)/κ³R² capturing the ping arrival rate, the cupola magnitude |n̂ − β| capturing the impulse per ping and the cupola direction (n̂ − β)/|n̂ − β| capturing the force direction.
- 
-The second identity shows that the magnetic field B = (1/c) n̂ × E and the full Lorentz force are just the combined effects of Doppler compression and aberration tilt experienced by a moving receiver interacting with the same ping stream.  The magnetic field is not a separate entity; E and B are two projections of the cupola-encoded ping stream.
- 
-The third identity, the central new result, shows that the radiation field (the 1/R field from accelerating charges) is exactly the time derivative of the apparent transverse cupola c⊥/κ, scaled by κ².  The velocity field comes from the static cupola each ping carries.  The radiation field comes from how fast that cupola is changing between successive pings.
- 
-All three identities have been verified to machine precision across all angles, velocities and accelerations.  The entire Liénard-Wiechert theory is expressible as decompositions of the cupola vector.
- 
-For a thorough account of how these identities were discovered, see the Cupola Redux article on the Path of Discovery.
+<<magnetism_diag>>
+
+To the boys in the pickup truck, as the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
+
+For the pings and pongs (and photons) of Universe X, the cupola vector is akin to the axis of the football; all frames see the cupola pointing in the same direction.  But the translation vector of the particle itself is frame dependent, some frames will see the cupola aligned with the frame dependent translation vector and other will not.
+
+Each of these particles has three relevant vectors: the cupola, the absolute frame translation vector and the frame dependent translation vector.  The absolute frame translation vector is the translation vector across the aether.  The frame dependent translation vector is the translation vector relative to a specific frame.  The cupola is the stored property of the particle described above.
+
+{{MGImg1}} **This diagram shows the pings radiating out from a teslon.  The teslon is translating at 0.7c to the right.  The white vectors represent the ping's translation vectors from the teslon's frame of reference.  The black vectors represent the ping's translation from the aether's frame of reference.  The axis of the football represents the cupola vector.**
+
+When the cupola and the frame dependent translation vectors align, the particle appears to be purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical ping begins to take on a magnetic component.
+
+The frame dependent translation vector and the cupola define a plane.  The B field is perpendicular to that plane.  Once the Lorentz force is applied by the B field, the force itself is directed back to the exact same plane as defined by the cupola and the frame dependent translation vector.  The Lorentz force is not a perpendicular force.  The B field is actually just a mathematical concatenation of the two more fundamental vectors.
+##[What Is Up With Curl?]##When trying to wrap one's head around Maxwell's Equations, Gauss' equations seems fairly intuitive.  It is simply a description of the flow of a conserved quantity.  But, where does curl come from?  Why is there this rotational dynamic?  What is swirling?
+
+Consider a wire with charges flowing down it.  The charges are sending out pings.  These pings have cupolas aligned with the frame dependent translation vectors from the charge's frame (like our pickup truck football players).  But, in the lab frame the cupola and the frame dependent translation vector of the pings are unaligned.  Each ping defines a plane that includes the wire.  The cupola vectors form a 'skirt' around the wire.  There is nothing rotating, there is nothing swirling.
+
+<<MGImg2>>  The rotation only arises when you cross the frame dependent translation vector with the cupola which then creates a circle because of the perpendicular nature of the cross product.  The swirl is not physical; it's entirely mathematical.
 
 
 
@@ -1206,57 +1212,6 @@ Why has this not been done?  General Relativity predicts exactly zero difference
 
 ";
 
-"magnetism_name" = "Magnetism";
-
-"magnetism_article" = "#[Magnetism]#Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
-
-<<magnetism_diag>>
-
-To the boys in the pickup truck, as the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
-
-For the pings and pongs (and photons) of Universe X, the cupola vector is akin to the axis of the football; all frames see the cupola pointing in the same direction.  But the translation vector of the particle itself is frame dependent, some frames will see the cupola aligned with the frame dependent translation vector and other will not.
-
-Each of these particles has three relevant vectors: the cupola, the absolute frame translation vector and the frame dependent translation vector.  The absolute frame translation vector is the translation vector across the aether.  The frame dependent translation vector is the translation vector relative to a specific frame.  The cupola is the stored property of the particle described in the Electromagnetism article.
-
-{{MGImg1}} **This diagram shows the pings radiating out from a teslon.  The teslon is translating at 0.7c to the right.  The white vectors represent the ping's translation vectors from the teslon's frame of reference.  The black vectors represent the ping's translation from the aether's frame of reference.  The axis of the football represents the cupola vector.**
-
-When the cupola and the frame dependent translation vectors align, the particle appears to be purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical ping begins to take on a magnetic component.
-
-The frame dependent translation vector and the cupola define a plane.  The B field is perpendicular to that plane.  Once the Lorentz force is applied by the B field, the force itself is directed back to the exact same plane as defined by the cupola and the frame dependent translation vector.  The Lorentz force is not a perpendicular force.  The B field is actually just a mathematical concatenation of the two more fundamental vectors.
-##[What Is Up With Curl?]##When trying to wrap one's head around Maxwell's Equations, Gauss' equations seems fairly intuitive.  It is simply a description of the flow of a conserved quantity.  But, where does curl come from?  Why is there this rotational dynamic?  What is swirling?
-
-Consider a wire with charges flowing down it.  The charges are sending out pings.  These pings have cupolas aligned with the frame dependent translation vectors from the charge's frame (like our pickup truck football players).  But, in the lab frame the cupola and the frame dependent translation vector of the pings are unaligned.  Each ping defines a plane that includes the wire.  The cupola vectors form a 'skirt' around the wire.  There is nothing rotating, there is nothing swirling.
-
-<<MGImg2>>  The rotation only arises when you cross the frame dependent translation vector with the cupola which then creates a circle because of the perpendicular nature of the cross product.  The swirl is not physical; it's entirely mathematical.
-##[Next Steps]##Relative to other topics in Physics, electricity and magnetism are rather quite accessible.  Experiments can be performed with modest equipment.  The amount of experimental data is massive.  The math is fairly straightforward.
-
-The Universe X mechanisms described here may be interesting and are fairly easy to model.  The question is, can they recreate the experimental data and math of electromagnetism.  Another question is at what point do the relatively straightforward mechanisms of E&M give way to the mechanisms of quantum mechanics.  For example:
-
- - Can the same dynamics be calculated from multiple frames?
- - Can the E and B field transforms be replicated using these mechanisms?
- - Can Ampere's current force be replicated mathematically and / or via simulation?
- - Can Faraday's law be replicated mathematically and / or via simulation?
- - Can the electromagnetic wave be replicated?
- - Can the transfer of energy and momentum be modeled?
-
-At best these mechanisms hint at being qualitatively compatible, but obviously that is entirely insufficient.  They must be shown to be quantitatively compatible also.
-
-Claude Opus 4.6 Stub - v4.5 Addendum ===================
- 
-##[Quantitative Compatibility]##The questions posed above have now been substantially answered.  Three algebraic identities have been established proving that the cupola mechanism exactly reproduces the Liénard-Wiechert electromagnetic fields to machine precision.
- 
-The magnetic force has been rigorously shown to be the combined effect of Doppler compression of the ping arrival rate and aberration tilt of the perceived ping direction at a moving receiver.  The Lorentz force F = q(E + v × B) decomposes as F = E(1 − v·n̂/c) + n̂(v·E/c), where the first term is the Doppler modification and the second is the aberration correction.  The perpendicular nature of the magnetic force is not physical; it is a mathematical artifact of encoding the cupola and frame dependent translation vector into the B field via the cross product.
- 
-Additionally, a 2020 paper by Dodig proved that Maxwell's equations and the Lorentz force law follow from just two assumptions: the electrostatic Coulomb force and finite propagation speed.  The cupola algorithm is the constructive realization of exactly these two assumptions.
- 
-The question of energy and momentum transfer remains open and connects to the pong bridge mechanism described in the Quantum Mechanics article.
-
-
-
-
-
-";
-
 "bellTHooft_name" = "Bell and ’t Hooft";
 "bellTHooft_article" = "#[Bell and ’t Hooft]#This model appears to violate Bell's Inequality, which it certainly does. It has been my belief that the dynamic geometry of the aexels themselves were the 'unknown hidden variables' that were the source of apparent randomness in Universe X, but that that randomness was entirely statistical not probabilistic. And of course the quantized nature of the aexels themselves would explain many of the observed aspects of Quantum Mechanics.
 
@@ -1537,7 +1492,9 @@ Distance is a tricky concept to get a handle on in Universe X.  Time is a simila
 
 ";
 
-"electromagnetismLab_article" = "The Electromagnetism simulation models the pings and pongs and their cupola vector.
+"shotInTheDarkLab_article" = "#[Shot in the Dark Lab]#The Shot in the Dark Lab simulates the cupola algorithm: pings emitted by source teslons carry an encoded cupola vector, and target teslons respond with pongs aimed via that cupola back to the source.
+
+The simulation models the pings and pongs and their cupola vector.
 
 When fully rendered each ping and pong is modeled as an ellipse (or football) pointing in the direction of the cupola.  It also has a white line representing the frame dependent translation vector and a black line representing the absolute frame translation vector.
 
@@ -1879,9 +1836,9 @@ While editing an expression, anchor with one finger and tap the expression with 
 "lexAtanh" = "hyperbolic arctangent";
 
 "G_name" = "G";
-"magnetism_name" = "Magnetism";
 "quantum_name" = "Quantum";
 "nuclear_name" = "Nuclear";
+"intoTheLight_name" = "Into the Light";
 
 "aether_lab_name" = "Aether and Aexels";
 "cellular_lab_name" = "Cellular Automata";
@@ -1890,10 +1847,51 @@ While editing an expression, anchor with one finger and tap the expression with 
 "gravity_lab_name" = "Gravity";
 "dilation_lab_name" = "Dilation";
 "contraction_lab_name" = "Contraction";
-"electromagnetism_lab_name" = "Electricity and Magnetism";
 "blackHoles_lab_name" = "Black Holes";
 "blackHolesLab_name" = "Black Hole Lab";
 "blackHolesLab_lab_name" = "Black Hole Lab";
+"shotInTheDarkLab_name" = "Shot in\nthe Dark";
+"shotInTheDarkLab_lab_name" = "Shot in the Dark Lab";
+"intoTheLightLab_name" = "Into the\nLight";
+"intoTheLightLab_lab_name" = "Into the Light Lab";
+"blackHolesLab_article" = "#[Black Hole Lab]#Two black holes orbit each other under the gravitational mechanism described in the Gravity II article.  Each frame the simulation:
+
+1.  Computes the accelerant potential Φ analytically per cell on a 256×256 GPU texture from the current black hole positions.
+
+2.  Computes 𝐮 = -∇Φ on the grid.
+
+3.  Computes the algebraic aether velocity field 𝐯ₐ = √(2|Φ|) along -∇Φ — the Floating Leaf equilibrium.
+
+4.  Samples 𝐮 at each black hole's location and advances the black holes via leapfrog integration.
+
+5.  Advects three independent test-particle systems: aether parcels riding 𝐯ₐ, accelerant parcels riding 𝐮, and matter parcels with their own Galilean inertia integrating 𝐮.
+
+A viscosity slider applies an optional Stokes drag to demonstrate inspiral and merger as effective dissipation.
+
+##[What this lab is]##
+
+A real-time visualization of the **static-equilibrium predictions** of the accelerant model.  At every instant the aether is in algebraic equilibrium with the current mass distribution, recomputed each frame.  The three particle flows make the model's three distinct fields visible at once: the matter swarm has inertia and orbits, the aether parcels ride the equilibrium 𝐯ₐ (slower, smoother), the accelerant parcels ride 𝐮 (faster, 1/r² falloff so they're concentrated tightly near the wells).
+
+This is the regime where the model's predictions for static observers — the Floating Leaf escape-velocity argument, the Four Clocks W=X=1 / Y=γ / Z=γ_2v split, the surface dilation matching Schwarzschild — are exactly correct and visible.
+
+##[What this lab is not]##
+
+A full dynamic simulation of the wave equation governing Φ:
+
+  ∂²Φ/∂t² = c²(∇²Φ - S)
+
+That equation is what would propagate finite-c disturbances and produce real radiation-driven inspiral, comparable in scope to numerical relativity.  Implementing it stably with sharp point-mass sources is real CFD engineering — Hirai 2016 and Maeda 2024 have done it at galaxy scales, but bringing the same approach to LIGO-scale near-merger BBH precision is a substantial follow-on project.  This lab does not perform that simulation.
+
+The orbital decay shown via the viscosity slider is **effective dissipation**, not radiation reaction emergent from the model.  The slider tunes a Stokes-style drag coefficient applied directly to the black holes; the field is unaware of it.
+
+##[Why ship it this way]##
+
+The static-equilibrium picture is the part of the model that's already on solid ground — derivations match, predictions are visible, the lab runs in real time on consumer hardware.  Showing it cleanly, with the three flows distinctly visualized, is more useful than shipping a numerically fragile dynamic simulation that obscures rather than illustrates.  The dynamic version is a research project; the static visualization is a teaching tool, and that's the role this lab plays.
+
+
+
+
+";
 "insideOut_lab_name" = "Inside Out";
 "outsideIn_lab_name" = "Outside In";
 
@@ -2282,33 +2280,193 @@ E=mc² is incompatible with reciprocity.  Once again, from an entirely different
    shotInTheDark_article - REPLACE ENTIRE ENTRY
    ============================================================ */
  
-"shotInTheDark_article" = "#[A Shot in the Dark]#Consider a two dimensional plane containing nodes that can translate across it at some arbitrary velocity v.  These nodes are blind; they cannot see other nodes or even know if any exist.  However, each node can send out signals that travel at a fixed velocity c across the plane (where v < c) and can intercept such signals from other nodes.
- 
-The challenge: how can two such blind nodes establish a private line of communication?
- 
-A first attempt might have each node send out volleys of pings in all directions.  When a target node intercepts a ping, it responds with a volley of pongs, also in all directions.  For two nodes this works, but with three or more nodes the responses become hopelessly entangled; a node would receive pongs motivated by other nodes and have no way to sort them out.
- 
-The response therefore cannot be omnidirectional.  It must be a single, precisely aimed pong sent on a trajectory guaranteed to intercept the source node.  The challenge is that the responding node knows nothing about the source: not its position, not its velocity, not its distance.
- 
-At first, a solution seems unlikely.  But there is a remarkably elegant algorithm that solves the problem using a single encoded vector.
- 
-When a source node S sends out a ping traveling at velocity c, that ping is embedded with a vector called the 'cupola', defined as the ping's translation vector minus the source node's velocity vector: c - v.  This cupola vector has a remarkable property: as the ping translates across the plane, the cupola always points from the ping toward the *current* position of S, even though S has been moving the entire time.
- 
-When a target node T intercepts the ping, it reads the cupola to determine the direction back toward S.  It then sends out a pong by mirroring the incoming ping's translation vector across the cupola.
- 
-But does this pong actually hit S?  The paths of the ping, the pong and the source node form a triangle.  The cupola, by definition of the algorithm, bisects the angle between the ping and pong paths.  Euclid's Angle Bisector Theorem (Elements VI.3) then guarantees that the pong and S will arrive at the intersection point at the exact same moment.
- 
-The proof that the algorithm works has been hiding in Euclid for over two thousand years.
- 
-This cupola algorithm is the mechanism underpinning Electromagnetism in Universe X.  The formal proof has been written up as a paper titled 'A Shot in the Dark: How to Hit a (Cooperating) Invisible Moving Target' submitted to the American Mathematical Monthly.
- 
- 
- 
- 
- 
+"shotInTheDark_article" = "#[A Shot in the Dark]#How to Hit a (Cooperating) Invisible Moving Target
+
+##[Introduction]##Consider a two-dimensional plane that can contain nodes, each of which can sit still or translate across the plane at some arbitrary velocity v.  These nodes are blind and cannot see other nodes or even know if any exist at all.
+
+However, each node does have the ability to send out signals that travel quickly and at a fixed velocity c across the plane itself (v < c).  The nodes also have the ability to intercept such signals and respond with their own signals in order to complete the handshake.
+
+For a first pass we could imagine each node periodically sending out a volley of pings in all directions.  When another node intercepts one of these pings it could respond with a volley of pongs also sent out in all directions.  And if there were solely two nodes, this would work fine.  However, once a third node is added into the mix, things get complicated.
+
+Imagine nodes A, B and C existing on the plane.  Each sends out a volley of pings looking for other nodes.  C will receive pings from both A and B, and will then respond with a volley of pongs sent out in all directions for each.  Consequently, A will receive pongs from C motivated by itself, as well as those motivated by B.  As more and more nodes get added things will get increasingly convoluted.
+
+For this reason, the response cannot be a volley of pongs sent off in all directions.  It must somehow be a surgical shot, sent off in a single direction such that it is guaranteed to intercept the source node, the challenge of this being that the responding node does not know what the source node's current position or velocity is.  It doesn't know if it's close or far away, and it doesn't know if it's stationary, moving slowly, or moving fast, or in which direction.
+
+At first, a solution perhaps seems unlikely.  But as we'll see, there is a remarkably elegant algorithm that will enable a response pong to be sent such that it is guaranteed to impact the source (as long as the source node does not accelerate).
+##[The Cupola]##When a source node (S) sends out its pings, it wants to store enough information in each ping so that any target nodes (T) that intercept the ping will be able to send a return pong that will precisely find its way back to S, thereby completing the handshake.
+
+If we think of each node as having little computers and complete knowledge of their world, each could perhaps store a packet of information in their pings that contained their precise world position, velocity and world time at the moment that each ping was released.  With that information each intercepting T could then compare that data with their own current world position and world time and calculate the (one and only) intercept angle needed to launch their reply pong so that it is guaranteed to impact S (again assuming no acceleration).
+
+This would require that each node has precise knowledge of their world, sophisticated calculators and pings that can hold a fair amount of data.  What if instead these nodes have none of that information and both the nodes and the pings are significantly less sophisticated?
+
+{{SDImg1}} **The co-moving nodes S and T move to the right at v.  A ping moves from S(t₀) to T(t₁) at c.  A pong is then sent out mirrored across the vertical line connecting S(t₁) to T(t₁); moving from T(t₁) to S(t₂) also at c.**
+
+Let's first consider a simple case: two co-moving nodes, positioned perpendicular to the direction of translation.  The ping that will eventually hit the T node will have needed to lead the T a bit and have been sent out slightly angled towards the direction of translation.  In this case, when the ping connected with T, it would be very clear what direction the pong would need to be sent in order to reconnect with S: it would just be the mirror of the incoming translation vector over the line connecting the current positions of S and T, which is precisely vertical.
+
+At this point we could make a guess that this simple case hints at the answer to the general case.  If we could know the line between S and T, we could simply mirror the incoming ping translation vector over that connecting line in order to arrive at the outgoing pong vector.
+
+At any time t, S will be at S₀ + 𝐯ₛ t whereas the ping will be at S₀ + 𝐜 t.  The displacement from S to the ping is therefore 𝐜 t − 𝐯ₛ t = (𝐜 − 𝐯ₛ) t.  This indicates that the direction of the displacement is constant over time.  Let's name this displacement vector 𝐜 − 𝐯ₛ as the cupola.
+
+Instead of imagining our pings as spheres, let's imagine them as footballs (oblong spheres).  Let's orient each of these footballs along the direction of their cupola vector.  These footballs, as they move, will then store two vectors: the vector of its translation (its velocity) and the vector of its orientation (the cupola); and certainly these two vectors might not be aligned.
+
+{{SDImg2}} **The cupola is calculated by subtracting v from c.  As the ping translates, the cupola always points to the current position of S, while the translation vector always points back to where S was when the ping was released.**
+
+From the diagram we can see that as S and the ping move, the ping's cupola is always pointing back towards the current position of S, while the ping's translation vector always points back to the original position of S at the time that the ping was released.
+
+{{SDImg3}} **A full volley of football-shaped pings radiating outward in a circle centered at the origination point.  Each ping is oriented along its cupola vector, all pointing to the current position of S.**
+
+This becomes even more apparent if we look at a full volley of pings.  The circle of the pings radiating outwards is centered at the point that the pings were released from, but each of the little footballs is pointed directly at the current position of S.
+
+Now when the ping is intercepted by T, it can read the ping's cupola in order to determine the exact direction towards S.  It can then respond to the ping with a pong by mirroring the incoming ping's translation vector over that same ping's cupola vector.
+##[The Pong]##We now have a proposed solution to our puzzle.  By encoding a single vector into our pings we are able to calculate a precise return trajectory for our pong that we hope will intersect S, thereby completing the handshake.  But does it?
+
+{{SDImg4}} **The geometry of the ping–pong–cupola triangle.  The cupola bisects the angle between the ping path b₁ and the pong path b₂, while a₁ is the distance traveled by S during the ping and a₂ is the distance traveled by S during the pong.**
+
+This diagram shows the node S translating to the right across the plane starting from when the ping was released.  In the top right we see the location where the ping is intercepted by the T node.  The length a₁ represents the distance that S traveled from the moment of the ping's release until the moment of the ping's capture; b₁ shows the path of the ping itself during that same time frame.
+
+Once the ping is intercepted, T responds with a mirrored pong, where the angle between the ping and the cupola is equal to the angle between the pong and the cupola (but on the opposite side).  Here a₂ represents the distance traveled by S during the pong's transit and b₂ represents the pong's path during that same interval.
+
+But do S and the pong actually intersect at that exact same point at the exact same time?  In order for that to be the case the ratio a₁/b₁ would need to match a₂/b₂ precisely.  How do we prove that that is the case?
+
+In Euclid's Elements VI.3 he proves the following: if an angle of a triangle is bisected by a straight line cutting the base, then the segments of the base have the same ratio as the remaining sides of the triangle.
+
+In this case the paths of the ping, the pong and the source node S form a triangle.  The cupola, by definition of the algorithm itself, bisects the ping–pong angle.  As a result, based on Euclid's aforementioned Angle Bisector Theorem, we know that:  a₁ / b₁ = a₂ / b₂
+
+thereby proving that the pong and S will both arrive at the intersection point at the exact same moment and consequently proving that our cupola algorithm will allow for our blind nodes to communicate directly with one another by using an omnidirectional ping volley followed by a precisely directed pong response.
+##[Conclusion]##In this way we have created a perhaps surprisingly elegant mechanism that allows multiple blind nodes to form private communication channels between themselves.  It does this by sending out football-shaped pings oriented in a manner that enables any intercepting node to know exactly how to connect back to the originating node with a response pong.
+
+{{SDImg5}} **A simulation of the cupola algorithm.  The hexagon pattern represents the plane; the two large white circles the nodes; the expanding grey circles dense volleys of football-shaped pings expanding outwards; and the red footballs the response pongs, traveling directly back to the source, creating a pong 'bridge' between the two nodes.**
+
+
+
+
 ";
- 
- 
+"intoTheLight_article" = "#[Into the Light]#The Oddly Reminiscent Dynamics of a Blind Communication Protocol
+##[Introduction]##In the Shot in the Dark article we introduced a blind communication protocol for nodes moving at constant velocity in a medium that supports signal propagation at fixed speed c.  Each node periodically emits an omnidirectional volley of pings traveling at speed c.  Each ping carries a single encoded vector, the cupola, defined as 𝐂 = 𝐜 − 𝐯ₛ, where 𝐜 is the ping's translation vector (of magnitude c) and 𝐯ₛ is the velocity of the source.  When a target node intercepts a ping, it sends a return pong by reflecting the ping's translation vector across the cupola; Euclid's Angle Bisector Theorem guarantees that the resulting pong intercepts the source exactly.
+
+The companion article treated this as a self-contained geometric puzzle, with the proviso that the source was not accelerating.  Here we extend the protocol with a small set of rules that turn it into a dynamical system supporting bound composite objects that can translate across the medium without falling apart.  We then explore the dynamics that emerge.
+##[The Rules]##We extend the cupola algorithm with four rules.  The first two add dynamics.  The remaining two are required for translating composite objects to internally behave as they did at rest.
+
+**Rule 1: Impulse.**  When a ping reaches a target, an impulse of magnitude q|𝐂| is locked in along the cupola direction.  The impulse is applied to the target when the corresponding pong returns to the source.  The proportionality constant q is universal: it is the same for every node.
+
+Each node also carries a per-node scalar quantity, which we call the node's hyle η.  Hyle determines a node's inertia: an impulse of magnitude F delivered to a node with hyle η produces a velocity change of magnitude F/η.
+
+**Rule 2: Species.**  Each node is either an outie or an innie.  Outies emit pings with cupolas pointing outward; innies emit pings with cupolas pointing inward.  The impulse delivered by Rule 1 to a target is along +𝐂 if the target is an outie and along −𝐂 if the target is an innie.
+
+Two outies, or two innies, push apart.  An outie and an innie pull together.  Bound configurations are possible between mixed pairs.  Like-type pairs cannot bind.  The protocol therefore admits two-type composite systems — structures held together by the attraction between outies and innies — but does not admit single-type bound configurations.
+
+**Rule 3: Engineered Emission Density.**  Rules 1 and 2 give nodes the ability to interact and bind.  We would like the interactions to be rich enough that bound composite systems can also translate across the medium without falling apart.  The internal coherence of a composite system depends on the timing of its ping–pong exchanges; if that timing is consistent regardless of orientation the system can move, but if it varies with orientation the system cannot remain coherent under translation.
+
+For two co-moving nodes separated by a fixed distance L perpendicular to their direction of translation at speed v, the round-trip ping–pong time is T⊥ = 2Lγ/c, where β = v/c and γ = 1/√(1−β²).  For nodes separated by L parallel to translation, the round-trip is T∥ = 2Lγ²/c.  These differ by a factor of γ.  A composite system whose internal timing depends on orientation cannot maintain itself coherently while moving; a system formed at rest will fall apart as soon as it begins to translate.
+
+The only way to make a moving composite system coherent is to allow its physical separations to differ from those it had at rest.  Setting the parallel and perpendicular round-trips equal requires the parallel separation to contract from L to L/γ.  A composite system, when set in motion at speed v, must contract along its direction of motion by 1/γ for its internal ping–pong timing to remain consistent across orientations.
+
+A consequence worth noting: the matched round-trip time 2Lγ/c exceeds the rest round-trip 2L/c by a factor of γ.  A moving composite system updates its internal state more slowly than it did at rest.  From the system's own perspective this is invisible — all internal processes slow down by the same factor — but in the medium, the dynamic processes within a moving system run at a rate reduced by 1/γ.
+
+Without any angular structure imposed on emission, the cupola dynamics produces an asymmetric force field on a co-moving probe: compressed forward, stretched backward, with a comet tail that diverges as β → 1.  The natural equilibrium shape is not the contracted ellipse demanded by signaling coherence.
+
+{{ITLImg1}} **The natural shape (red) at three values of β, with the L/γ contracted ellipse (blue) and the rest sphere (gray dotted) shown for reference.  With isotropic emission, the moving system's equilibrium locus is asymmetric and offset backward from the source; the asymmetry diverges as β → 1.  A corrective angular density is needed to turn the comet tail into the symmetric ellipse.**
+
+A corrective angular density is therefore required.  Working through the impulse calculation at perpendicular and parallel configurations and requiring the contracted ellipsoid to be the equilibrium locus produces a unique angular density:  ρ(θ, β) = (1 − β²)ρ₀ / (1 − β cos θ)²
+
+where θ is the angle between the ping's direction and the source's velocity.  The (1 − β²) prefactor fixes the perpendicular magnitude at the required value; the 1/(1 − β cos θ)² in the denominator does the angular reshaping that turns the comet tail into the ellipse.
+
+**Rule 4: Kinetic Hyle.**  Rule 3 engineers the contraction.  It is not, by itself, sufficient.  The medium-frame impulse on a co-moving probe at perpendicular separation L is qρ₀/(γL²) — too weak by a factor of γ for the at-rest experience to be recovered through dilated clocks alone.
+
+The remedy is for the node's hyle itself to inflate with motion:  η = γη₀
+
+where η₀ is its rest hyle.  The additional (γ − 1)η₀ is the kinetic hyle.  With Rule 4, the medium-frame acceleration becomes a_med = F/(γη₀) = a_rest/γ², and the internal observer measures a_int = a_rest.  Internal dynamics are recovered.
+
+Rule 3 is forced by the signaling-coherence requirement, and Rule 4 is forced in turn by Rule 3's force law combined with internal-rest-equivalence.  Together they make moving composite systems internally indistinguishable from their rest configurations.
+##[The Work Theorem]##The work done in accelerating a node from rest to velocity v has a closed form.  With momentum 𝐩 = η𝐯 = γη₀𝐯, the work integral evaluates to W = η₀c²(γ − 1).
+
+The result has the form of a hyle quantity multiplied by c²: the work delivered to the node equals the kinetic hyle (γ − 1)η₀ scaled by c².  Inverting, hyle and the work integral are related by η = η₀ + W/c².  Equivalently, work and hyle are interconvertible at the conversion rate c²:  W = c²Δη
+
+Any change in a node's hyle equals 1/c² times the work delivered to (or extracted from) it.
+##[The Dynamics]##Throughout, S denotes a source node at position 𝐫ₛ with velocity 𝐯ₛ and acceleration 𝐚ₛ, and T denotes a target at position 𝐫ₜ with velocity 𝐯ₜ.  Let 𝐧̂ be the unit vector from S's retarded position toward T, and let R be the distance from that retarded position to T.  Define 𝛃 = 𝐯ₛ/c.  The projection factor κ = 1 − 𝐧̂ · 𝛃 is the same quantity that appeared in Rule 3.
+
+The static-target impulse rate is:  𝐅₀ = (1 − β²)(𝐧̂ − 𝛃) / (κ³R²)
+
+The factor 1/κ³ in the denominator decomposes cleanly: 1/κ² from Rule 3's emission density, and one further factor of 1/κ from the retarded-time-to-observer-time Jacobian.  The (1 − β²) in the numerator comes from Rule 3 directly.
+
+The impulse on a moving target is the impulse on a stationary target plus a velocity-dependent correction:  𝐅ₜ = 𝐅₀ + (1/c) 𝐯ₜ × (𝐧̂ × 𝐅₀)
+
+expressible as a vector cross product involving 𝐯ₜ and the derived quantity 𝐁 ≡ (1/c) 𝐧̂ × 𝐅₀.
+
+For an accelerating source, the cupola 𝐂 = 𝐧̂ − 𝛃 rotates during emission.  The ping does not emerge with a single static cupola; it emerges with a rotating cupola, the rotation rate set by the source's acceleration.  When this rotating-cupola contribution is folded into the impulse formula, it adds a term that falls off as 1/R rather than 1/R²:
+
+𝐅 = (1 − β²)(𝐧̂ − 𝛃) / (κ³R²) + 𝐧̂ × [(𝐧̂ − 𝛃) × 𝛃̇] / (κ³R)
+
+The first term is the static-cupola contribution.  The second is the rotating-cupola contribution.
+
+Integrating the rotating-cupola contribution over a sphere yields the total power radiated:  P = (2q²/3c) γ⁶ [𝛃̇ · 𝛃̇ − (𝛃 × 𝛃̇) · (𝛃 × 𝛃̇)]
+
+In the non-translating limit, this reduces to the familiar Larmor formula P = 2q²a²/(3c³).
+##[Hyle Loss in Acceleration]##A ping with a non-rotating cupola is a pure directional signal: it carries Rule 1's impulse-determining cupola but has no internal dynamic content of its own.  A ping with a rotating cupola is different.  The rotation has angular content that the ping carries with it through the medium, and producing this angular content draws hyle from the source at emission.  The hyle must come from somewhere, and the only available source is the source's own.
+
+Only an accelerating node emits rotating-cupola pings.  An accelerating node therefore loses hyle at the rate at which its pings carry rotational content away.  The source's rest hyle decreases at rate dη₀/dt = −P/c².
+
+Notice the structure.  The rate P at which the source loses hyle depends on q and on the source's kinematics.  It does not depend on the source's hyle.  Two nodes with very different hyle, undergoing the same acceleration, radiate at the same rate P.  The source's hyle controls how much external impulse is needed to produce a given acceleration, but once an acceleration is happening, the rate of hyle loss to rotating-cupola pings is set by 𝛃̇ alone.
+##[The Self-Force on an Accelerating Node]##A ping with a static cupola is a pure directional signal carrying no internal dynamic content.  We further stipulate that a ping with a static cupola carries no hyle.  A ping with a rotating cupola is different: the rotation is genuine angular content propagating with the ping at speed c through the medium.  Some quantity of hyle h_ping therefore travels with each rotating-cupola ping.  A signal of hyle h_ping propagating at c in direction 𝐧̂ carries momentum h_ping c along 𝐧̂.
+
+The no-self-force property of free uniform motion follows immediately.  When 𝛃̇ = 0, no ping carries a rotating cupola.  A free uniformly moving node sheds no momentum into the medium and experiences no self-force.  This is direct from the protocol's structure; no additional postulate is required.
+
+For an accelerating source, integrating the per-ping momentum over the sphere yields a recoil force on the source from emission of:  𝐅_back = −(P/c) 𝛃
+
+This recoil vanishes when the source is at rest in the medium.  At that moment the source loses hyle at rate P/c² but no momentum — consistent with the fore-aft symmetry of the angular pattern at β = 0.
+
+Combining the per-ping kinematics with the frame-invariance of the radiated power P and time dilation, the rest hyle of an accelerating source decreases in medium time at rate η̇₀ = −P/(γc²).  In the source's internal time, dη₀/dt̃ = −P/c² — an aesthetically clean statement given that η₀ is the source's own intrinsic scalar.
+
+Identifying a 'photon' with a ping carrying a rotating cupola, the cupola's temporal repetition frequency Ω is the same for every observer regardless of emission angle.  The angular dependence of hyle emission therefore falls on photon density, not on per-photon energy.  A photon is a coarse-graining concept, not identifiable with a single ping.  The cupola algorithm's pings are the protocol's primitive directional signals, emitted uniformly.  A photon, in the standard quantum sense, emerges as a feature of the cupola's collective motion at the observer: a packet of cupola oscillation at frequency Ω carrying energy ℏΩ.
+##[Walls and Geometry]##Until now we have considered nodes interacting in unconstrained space.  We now introduce walls: extended regions composed of densely packed nodes that can flow freely along the wall but not perpendicular to it.
+
+When a ping with translation vector 𝐜 and cupola 𝐂 encounters a wall with surface normal 𝐧̂ₛ:  the ping's translation vector reflects in the standard mirror-reflection sense; the cupola's tangential component flips while its normal component is preserved.  The cupola transformation is the negative of a mirror reflection.
+
+This rule has a geometric consequence worth noting.  At any point on the wall surface, the contributions from the incident and bounced pings have tangential components that are equal and opposite, while the normal components add.  The tangential impulse field vanishes on the wall surface; the normal impulse field doubles.  This is the boundary condition that the dense free-flowing nodes within the wall would impose if their motion were such that no net tangential impulse could persist on the wall surface.
+
+A useful identity makes implementation straightforward: after k wall encounters, the cumulative cupola transformation reduces to multiplication by (−1)ᵏ.  The complete simulator can therefore be implemented using straight-line ray tracing through the geometry, with the cupola at the target equal to (−1)ᵏ times the unit vector from the appropriate virtual source.
+##[The Pong Bridge: Open Questions]##When a pong returns to a source, an impulse is delivered to the target of the corresponding ping.  We have not specified the mechanism by which the hyle associated with this impulse is bookkept across the two interacting nodes.
+
+The impulse described by Rule 1 is locked in when the ping reaches the target but delivered when the pong returns to the source.  Why is the impulse not delivered immediately when the ping arrives at the target?  Consider two nodes A and B separated along the direction of translation.  The one-way ping times are unequal, and no orientation adjustment can equalize them.  If the impulse were delivered at ping arrival, bilateral exchanges would not balance.  The pong return, however, is symmetric: combined with the contraction provided by Rule 3, the round-trip times are equal.  Bilateral exchanges balance only when impulses are delivered upon pong return.
+
+A consequence worth stating: bilateral exchanges between any pair of nodes deliver equal-and-opposite impulses simultaneously.  The cupola protocol delivers action–reaction balance between any interacting pair, same-type or mixed.
+
+Two natural possibilities exist for the energetics.  In Possibility A, the impulse parameters are fixed at the moment of ping emission and the pong delivery is purely informational; the hyle books balance because the two local hyle changes are guaranteed to be equal and opposite by the geometry of the bridges.  In Possibility B, hyle physically transfers across the completed bridge at the moment of completion; this provides explicit local conservation but involves a non-local transfer at bridge completion, departing from strict locality.
+
+The two possibilities are dynamically equivalent for the cases analyzed here.  They differ in their account of the underlying energetics, and the difference may matter for cases involving multi-node interactions, partial bridges, or non-equilibrium configurations.  Resolving this question is the central open problem in the dynamics of the protocol.
+##[Conclusion]##Four rules added to the cupola protocol: an impulse of magnitude q|𝐂| along the cupola, locked in at ping arrival and delivered when the corresponding pong returns to the source (Rule 1); two node types (outies and innies) that set the sign of the impulse delivered to a target (Rule 2); an emission angular density (1 − β²)ρ₀/(1 − β cos θ)² in the medium (Rule 3); and a hyle scalar that inflates with motion as η = γη₀ (Rule 4).  From these:
+
+ - Composite systems can form (Rules 1, 2) and translate without falling apart (Rules 3, 4).
+ - Moving systems contract along the direction of motion by 1/γ (Rule 3).
+ - Moving systems carry kinetic hyle (γ − 1)η₀, with total hyle η = γη₀ (Rule 4).
+ - Internal updating of moving systems is reduced by 1/γ (round-trip timing).
+ - The impulse on a moving target is the impulse on a stationary target plus a velocity-dependent correction expressible as 𝐯ₜ × 𝐁/c for a derived quantity 𝐁.
+ - An accelerating node loses hyle at the rate given by the Liénard formula, reducing to 2q²a²/(3c³) in the non-translating limit.
+ - Conservation at emission gives a recoil force −P𝛃/c on a moving accelerating source (vanishing at 𝛃 = 0) and a rest-hyle loss rate η̇₀ = −P/(γc²).
+ - Walls obey a tangential-flips, normal-preserves bounce rule.
+
+The energetics of the pong bridge remain open.
+
+
+
+
+";
+
+"intoTheLightLab_article" = "#[Into the Light Lab]#The Into the Light Lab visualizes the dynamics that emerge once the cupola protocol is extended with the four rules: impulse, species, engineered emission density and kinetic hyle.
+
+This is a Phase 0 scaffold.  Future phases will add controls, experiments and renderings of:
+
+ - bound composite systems formed between outies and innies
+ - the contracted ellipsoid equilibrium of moving composites
+ - the rotating cupola of accelerating sources and the resulting 1/R radiation field
+ - the recoil and hyle-loss dynamics of an accelerating node
+ - wall reflections and ray-traced impulse fields
+
+
+
+
+";
+
 /* ============================================================
    holograms_article - REPLACE ENTIRE ENTRY
    ============================================================ */

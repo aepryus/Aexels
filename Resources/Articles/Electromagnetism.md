@@ -66,16 +66,30 @@ And thus, in this small packet of information contained in the ping, both the di
 
 But perhaps, we haven't completely exhausted the beauty of the cupola quite yet...
 
-## The Liénard-Wiechert Identities
+## Magnetism
 
-Since version 4.0, three algebraic identities have been established proving that the cupola vector exactly reproduces the complete Liénard-Wiechert electromagnetic field theory.
+Two pickup trucks ride down a road together side by side.  In the back of each pickup truck rides a boy.  The two boys are tossing a football back and forth.  A third boy stands on the side of road and watches as the pickup trucks pass by.
 
-The first identity shows that the LW velocity field (the 1/R² field of a uniformly moving charge) decomposes into three cupola quantities: a flux factor (1−β²)/κ³R² capturing the ping arrival rate, the cupola magnitude |n̂ − β| capturing the impulse per ping and the cupola direction (n̂ − β)/|n̂ − β| capturing the force direction.
+![](tint:magnetism_diag)
 
-The second identity shows that the magnetic field B = (1/c) n̂ × E and the full Lorentz force are just the combined effects of Doppler compression and aberration tilt experienced by a moving receiver interacting with the same ping stream.  The magnetic field is not a separate entity; E and B are two projections of the cupola-encoded ping stream.
+To the boys in the pickup truck, as the football moves back and forth between them; the axis of the football aligns with the direction of travel.  To the boy on the side of the road, the football zigzags diagonally down the road back and forth.  The axis of the football forms an angle with the direction of travel.
 
-The third identity, the central new result, shows that the radiation field (the 1/R field from accelerating charges) is exactly the time derivative of the apparent transverse cupola c⊥/κ, scaled by κ².  The velocity field comes from the static cupola each ping carries.  The radiation field comes from how fast that cupola is changing between successive pings.
+For the pings and pongs (and photons) of Universe X, the cupola vector is akin to the axis of the football; all frames see the cupola pointing in the same direction.  But the translation vector of the particle itself is frame dependent, some frames will see the cupola aligned with the frame dependent translation vector and other will not.
 
-All three identities have been verified to machine precision across all angles, velocities and accelerations.  The entire Liénard-Wiechert theory is expressible as decompositions of the cupola vector.
+Each of these particles has three relevant vectors: the cupola, the absolute frame translation vector and the frame dependent translation vector.  The absolute frame translation vector is the translation vector across the aether.  The frame dependent translation vector is the translation vector relative to a specific frame.  The cupola is the stored property of the particle described above.
 
-For a thorough account of how these identities were discovered, see the Cupola Redux article on the Path of Discovery.
+![](MGImg1 "This diagram shows the pings radiating out from a teslon.  The teslon is translating at 0.7c to the right.  The white vectors represent the ping's translation vectors from the teslon's frame of reference.  The black vectors represent the ping's translation from the aether's frame of reference.  The axis of the football represents the cupola vector.")
+
+When the cupola and the frame dependent translation vectors align, the particle appears to be purely electrical.  As we shift frames and an angle between the frame dependent translation vector and the cupola develops that previously purely electrical ping begins to take on a magnetic component.
+
+The frame dependent translation vector and the cupola define a plane.  The B field is perpendicular to that plane.  Once the Lorentz force is applied by the B field, the force itself is directed back to the exact same plane as defined by the cupola and the frame dependent translation vector.  The Lorentz force is not a perpendicular force.  The B field is actually just a mathematical concatenation of the two more fundamental vectors.
+
+## What Is Up With Curl?
+
+When trying to wrap one's head around Maxwell's Equations, Gauss' equations seems fairly intuitive.  It is simply a description of the flow of a conserved quantity.  But, where does curl come from?  Why is there this rotational dynamic?  What is swirling?
+
+Consider a wire with charges flowing down it.  The charges are sending out pings.  These pings have cupolas aligned with the frame dependent translation vectors from the charge's frame (like our pickup truck football players).  But, in the lab frame the cupola and the frame dependent translation vector of the pings are unaligned.  Each ping defines a plane that includes the wire.  The cupola vectors form a 'skirt' around the wire.  There is nothing rotating, there is nothing swirling.
+
+![](tint:MGImg2)
+
+The rotation only arises when you cross the frame dependent translation vector with the cupola which then creates a circle because of the perpendicular nature of the cross product.  The swirl is not physical; it's entirely mathematical.

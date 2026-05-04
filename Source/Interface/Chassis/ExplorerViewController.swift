@@ -125,6 +125,7 @@ class ExplorerViewController: AEViewController {
                 Aexels.dilationExplorer.vision,
                 Aexels.contractionExplorer.vision,
                 Aexels.electromagnetismExplorer.vision,
+                Aexels.intoTheLightExplorer.vision,
                 Aexels.insideOutExplorer.vision,
                 Aexels.outsideInExplorer.vision,
                 Aexels.blackHolesExplorer.vision

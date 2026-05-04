@@ -87,6 +87,7 @@
 		D8AB7C1D000000000000B00A /* SpeedOfLight.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00A /* SpeedOfLight.md */; };
 		D8AB7C1D000000000000B00B /* ZenosArrows.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00B /* ZenosArrows.md */; };
 		D8AB7C1D000000000000B00C /* ShotInTheDark.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00C /* ShotInTheDark.md */; };
+		D8AB7C1D000000000000B100 /* IntoTheLight.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A100 /* IntoTheLight.md */; };
 		D8AB7C1D000000000000B00D /* Holograms.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00D /* Holograms.md */; };
 		D8AB7C1D000000000000B00E /* SteppingStones.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00E /* SteppingStones.md */; };
 		D8AB7C1D000000000000B00F /* HyleBridge.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A00F /* HyleBridge.md */; };
@@ -98,7 +99,6 @@
 		D8AB7C1D000000000000B015 /* Electromagnetism.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A015 /* Electromagnetism.md */; };
 		D8AB7C1D000000000000B016 /* Quantum.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A016 /* Quantum.md */; };
 		D8AB7C1D000000000000B017 /* Gravity2.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A017 /* Gravity2.md */; };
-		D8AB7C1D000000000000B018 /* Magnetism.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A018 /* Magnetism.md */; };
 		D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A019 /* BellTHooft.md */; };
 		D8AB7C1D000000000000B01A /* Glossary.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01A /* Glossary.md */; };
 		D8AB7C1D000000000000B01B /* BlackHole.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A01B /* BlackHole.md */; };
@@ -119,6 +119,10 @@
 		D8AB7C1E000000000000C002 /* BlackHolesRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */; };
 		D8AB7C1E000000000000C003 /* BlackHolesExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B003 /* BlackHolesExplorer.swift */; };
 		D8AB7C1E000000000000C005 /* BlackHolesControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B005 /* BlackHolesControlsTab.swift */; };
+		D8AB7C1E000000000000C100 /* IntoTheLightExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B100 /* IntoTheLightExplorer.swift */; };
+		D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B101 /* IntoTheLightRenderer.swift */; };
+		D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */; };
+		D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */; };
 		D8AB7C1E000000000000C004 /* BlackHolesLab.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B004 /* BlackHolesLab.md */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
@@ -274,6 +278,7 @@
 		D8AB7C1D000000000000A00A /* SpeedOfLight.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = SpeedOfLight.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A00B /* ZenosArrows.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = ZenosArrows.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A00C /* ShotInTheDark.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = ShotInTheDark.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A100 /* IntoTheLight.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = IntoTheLight.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A00D /* Holograms.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Holograms.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A00E /* SteppingStones.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = SteppingStones.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A00F /* HyleBridge.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = HyleBridge.md; sourceTree = "<group>"; wrapsLines = 1; };
@@ -285,7 +290,6 @@
 		D8AB7C1D000000000000A015 /* Electromagnetism.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Electromagnetism.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A016 /* Quantum.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Quantum.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A017 /* Gravity2.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Gravity2.md; sourceTree = "<group>"; wrapsLines = 1; };
-		D8AB7C1D000000000000A018 /* Magnetism.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Magnetism.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A019 /* BellTHooft.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BellTHooft.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A01A /* Glossary.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Glossary.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A01B /* BlackHole.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BlackHole.md; sourceTree = "<group>"; wrapsLines = 1; };
@@ -306,6 +310,10 @@
 		D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesRenderer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B003 /* BlackHolesExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesExplorer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B005 /* BlackHolesControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesControlsTab.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B100 /* IntoTheLightExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightExplorer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B101 /* IntoTheLightRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightRenderer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = IntoTheLightShaders.metal; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightControlsTab.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B004 /* BlackHolesLab.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = BlackHolesLab.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -426,6 +434,7 @@
 				D8FA8B052D3762E400211980 /* InsideOut */,
 				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
 				D8AB7C1E000000000000D001 /* BlackHoles */,
+				D8AB7C1E000000000000D101 /* IntoTheLight */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -752,6 +761,7 @@
 				D8AB7C1D000000000000A00A /* SpeedOfLight.md */,
 				D8AB7C1D000000000000A00B /* ZenosArrows.md */,
 				D8AB7C1D000000000000A00C /* ShotInTheDark.md */,
+				D8AB7C1D000000000000A100 /* IntoTheLight.md */,
 				D8AB7C1D000000000000A00D /* Holograms.md */,
 				D8AB7C1D000000000000A00E /* SteppingStones.md */,
 				D8AB7C1D000000000000A00F /* HyleBridge.md */,
@@ -763,7 +773,6 @@
 				D8AB7C1D000000000000A015 /* Electromagnetism.md */,
 				D8AB7C1D000000000000A016 /* Quantum.md */,
 				D8AB7C1D000000000000A017 /* Gravity2.md */,
-				D8AB7C1D000000000000A018 /* Magnetism.md */,
 				D8AB7C1D000000000000A019 /* BellTHooft.md */,
 				D8AB7C1D000000000000A01A /* Glossary.md */,
 				D8AB7C1D000000000000A01B /* BlackHole.md */,
@@ -807,6 +816,32 @@
 			isa = PBXGroup;
 			children = (
 				D8AB7C1E000000000000B005 /* BlackHolesControlsTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D100 /* IntoTheLight */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B100 /* IntoTheLightExplorer.swift */,
+				D8AB7C1E000000000000D102 /* Tabs */,
+			);
+			path = IntoTheLight;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D101 /* IntoTheLight */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B101 /* IntoTheLightRenderer.swift */,
+				D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */,
+			);
+			path = IntoTheLight;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D102 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -892,6 +927,7 @@
 				D896C99F2D41F80F0058585C /* Dilation */,
 				D896C9A02D41F8150058585C /* Contraction */,
 				D896C9992D41F7DA0058585C /* Electromagnetism */,
+				D8AB7C1E000000000000D100 /* IntoTheLight */,
 				D896C99C2D41F7F60058585C /* InsideOut */,
 				D896C99B2D41F7ED0058585C /* OutsideIn */,
 				D8AB7C1E000000000000D002 /* BlackHoles */,
@@ -1167,6 +1203,7 @@
 				D8AB7C1D000000000000B00A /* SpeedOfLight.md in Resources */,
 				D8AB7C1D000000000000B00B /* ZenosArrows.md in Resources */,
 				D8AB7C1D000000000000B00C /* ShotInTheDark.md in Resources */,
+				D8AB7C1D000000000000B100 /* IntoTheLight.md in Resources */,
 				D8AB7C1D000000000000B00D /* Holograms.md in Resources */,
 				D8AB7C1D000000000000B00E /* SteppingStones.md in Resources */,
 				D8AB7C1D000000000000B00F /* HyleBridge.md in Resources */,
@@ -1178,7 +1215,6 @@
 				D8AB7C1D000000000000B015 /* Electromagnetism.md in Resources */,
 				D8AB7C1D000000000000B016 /* Quantum.md in Resources */,
 				D8AB7C1D000000000000B017 /* Gravity2.md in Resources */,
-				D8AB7C1D000000000000B018 /* Magnetism.md in Resources */,
 				D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */,
 				D8AB7C1D000000000000B01A /* Glossary.md in Resources */,
 				D8AB7C1D000000000000B01B /* BlackHole.md in Resources */,
@@ -1263,6 +1299,10 @@
 				D8AB7C1E000000000000C002 /* BlackHolesRenderer.swift in Sources */,
 				D8AB7C1E000000000000C003 /* BlackHolesExplorer.swift in Sources */,
 				D8AB7C1E000000000000C005 /* BlackHolesControlsTab.swift in Sources */,
+				D8AB7C1E000000000000C100 /* IntoTheLightExplorer.swift in Sources */,
+				D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */,
+				D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */,
+				D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
 				D86F72802D76FEDB00987057 /* Baltic.c in Sources */,

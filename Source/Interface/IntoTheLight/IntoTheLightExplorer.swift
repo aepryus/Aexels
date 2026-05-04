@@ -1,24 +1,23 @@
 //
-//  BlackHolesExplorer.swift
+//  IntoTheLightExplorer.swift
 //  Aexels
 //
-//  Explorer for the Black Holes lab. Phase 0 just hosts the metal
-//  view and the notes tab; controls (mass slider, separation, later
-//  viscosity for the Phase 1 inspiral) are added in subsequent phases.
+//  Phase 1: hex aether sliding to the left under a single centered
+//  teslon, driven by a CSlider for c.
 //
 
 import Acheron
 import MetalKit
 
-class BlackHolesExplorer: Explorer {
+class IntoTheLightExplorer: Explorer {
     private var metalView: MTKView!
 
-    let notesTab: NotesTab = NotesTab(key: "blackHoles")
-    var controlsTab: BlackHolesControlsTab!
+    let notesTab: NotesTab = NotesTab(key: "intoTheLight")
+    var controlsTab: IntoTheLightControlsTab!
 
-    var renderer: BlackHolesRenderer!
+    var renderer: IntoTheLightRenderer!
 
-    init() { super.init(key: "blackHolesLab") }
+    init() { super.init(key: "intoTheLightLab") }
 
 // UIViewController ================================================================================
     override func viewDidLoad() {
@@ -33,8 +32,8 @@ class BlackHolesExplorer: Explorer {
         metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
         metalView.isOpaque = false
 
-        renderer = BlackHolesRenderer(view: metalView)
-        controlsTab = BlackHolesControlsTab(explorer: self)
+        renderer = IntoTheLightRenderer(view: metalView)
+        controlsTab = IntoTheLightControlsTab(explorer: self)
 
         tabsCell.tabs = [controlsTab, notesTab]
 
@@ -82,7 +81,7 @@ class BlackHolesExplorer: Explorer {
     }
 
 // TimeControlDelegate =============================================================================
-    override func onPlay()  { metalView.isPaused = false }
+    override func onPlay()  { renderer.resyncClock(); metalView.isPaused = false }
     override func onStep()  { metalView.draw() }
     override func onReset() { renderer.onReset(); metalView.draw(); timeControl.playButton.stop() }
     override func onStop()  { metalView.isPaused = true }

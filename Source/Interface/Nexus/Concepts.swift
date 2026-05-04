@@ -37,8 +37,8 @@ class Concepts {
     static let blackHole: Article = Article(key: "blackHole", parent: gravity2)
     static let holograms: Article = Article(key: "holograms", parent: gravity2)
     static let narwhal: Article = Article(key: "narwhal", parent: contraction)
-    static let magnetism: Article = Article(key: "magnetism", parent: electromagnetism)
     static let shotInTheDark: Article = Article(key: "shotInTheDark", parent: electromagnetism)
+    static let intoTheLight: Article = Article(key: "intoTheLight", parent: electromagnetism)
     static let bellTHooft: Article = Article(key: "bellTHooft", parent: quantum)
     static let thooft: Article = Article(key: "2103.04335v3_pdf", parent: quantum)
     static let glossary: Article = Article(key: "glossary", parent: epilogue)
@@ -46,7 +46,7 @@ class Concepts {
     static var articles: [Article] = [
         universeX, aether, cellular, kinematics, gravity1, hyle, dilation, contraction, electromagnetism,
         gravity2, darkness, quantum, nuclear, epilogue, forward, claude, aesthetics, speedOfLight,
-        zenosArrows, chronos, floatingLeaf, fourClocks, narwhal, magnetism, shotInTheDark,
+        zenosArrows, chronos, floatingLeaf, fourClocks, narwhal, shotInTheDark, intoTheLight,
         blackHole, holograms, bellTHooft, glossary
     ]
     
@@ -74,7 +74,8 @@ class Concepts {
         let gravityExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.gravityExplorer, radius: 50*s+2*p, x: 280*s, y: 600*s)
         let dilationExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.dilationExplorer, radius: 50*s+2*p, x: 220*s, y: 960*s)
         let contractionExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.contractionExplorer, radius: 50*s+2*p, x: 30*s, y: 920*s)
-        let electromagnetismExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 410*s, y: 1360*s)
+        let shotInTheDarkExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 210*s, y: 1270*s)
+        let intoTheLightExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.intoTheLightExplorer, radius: 50*s+2*p, x: 440*s, y: 1440*s)
         let blackHolesExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.blackHolesExplorer, radius: 50*s+2*p, x: 180*s, y: 1540*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
@@ -86,8 +87,8 @@ class Concepts {
         let floatingLeafGlyph: AsideGlyph = AsideGlyph(article: floatingLeaf, radius: 62*s, x: 410*s, y: 1040*s)
         let fourClocksGlyph: AsideGlyph = AsideGlyph(article: fourClocks, radius: 46*s+2*p, x: 386*s, y: 1130*s)
         let narwhalGlyph: AsideGlyph = AsideGlyph(article: narwhal, radius: 70*s+2*p, x: 30*s, y: 1140*s)
-        let magnetismGlyph: AsideGlyph = AsideGlyph(article: magnetism, radius: 74*s, x: 208*s, y: 1270*s)
-        let shotInTheDarkGlyph: AsideGlyph = AsideGlyph(article: shotInTheDark, radius: 60*s+2*p, x: 190*s, y: 1180*s)
+        let shotInTheDarkGlyph: AsideGlyph = AsideGlyph(article: shotInTheDark, radius: 60*s+2*p, x: 160*s, y: 1190*s)
+        let intoTheLightGlyph: AsideGlyph = AsideGlyph(article: intoTheLight, radius: 60*s+2*p, x: 350*s, y: 1390*s)
         let blackHoleGlyph: AsideGlyph = AsideGlyph(article: blackHole, radius: 40*s+2*p, x: 120*s, y: 1360*s)
         let hologramsGlyph: AsideGlyph = AsideGlyph(article: holograms, radius: 72*s+2*p, x: 80*s, y: 1460*s)
         let bellTHooftGlyph: AsideGlyph = AsideGlyph(article: bellTHooft, radius: 60*s+2*p, x: 90*s, y: 1640*s)
@@ -117,7 +118,8 @@ class Concepts {
         glyphs.append(gravityExpGlyph)
         glyphs.append(dilationExpGlyph)
         glyphs.append(contractionExpGlyph)
-        glyphs.append(electromagnetismExpGlyph)
+        glyphs.append(shotInTheDarkExpGlyph)
+        glyphs.append(intoTheLightExpGlyph)
         glyphs.append(blackHolesExpGlyph)
 
         glyphs.append(forwardGlyph)
@@ -129,8 +131,8 @@ class Concepts {
         glyphs.append(floatingLeafGlyph)
         glyphs.append(fourClocksGlyph)
         glyphs.append(narwhalGlyph)
-        glyphs.append(magnetismGlyph)
         glyphs.append(shotInTheDarkGlyph)
+        glyphs.append(intoTheLightGlyph)
         glyphs.append(blackHoleGlyph)
         glyphs.append(hologramsGlyph)
         glyphs.append(bellTHooftGlyph)
@@ -169,9 +171,10 @@ class Concepts {
         contractionGlyph.link(to: narwhalGlyph)
         
         electromagnetismGlyph.link(to: gravity2Glyph)
-        electromagnetismGlyph.link(to: electromagnetismExpGlyph)
-        electromagnetismGlyph.link(to: magnetismGlyph)
+        electromagnetismGlyph.link(to: shotInTheDarkExpGlyph)
+        electromagnetismGlyph.link(to: intoTheLightExpGlyph)
         electromagnetismGlyph.link(to: shotInTheDarkGlyph)
+        electromagnetismGlyph.link(to: intoTheLightGlyph)
         
         gravity2Glyph.link(to: darknessGlyph)
         gravity2Glyph.link(to: blackHoleGlyph)

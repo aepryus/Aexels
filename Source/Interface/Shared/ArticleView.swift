@@ -12,11 +12,13 @@ import UIKit
 
 class ArticleView: AEView {
     var key: String? {
-        didSet {
-            if let key, key.hasSuffix("_pdf") { loadPDF() }
-            else if let key, ArticleView.markdownURL(for: key) != nil { loadMarkdown() }
-            else { load() }
-        }
+        didSet { render() }
+    }
+
+    func render() {
+        if let key, key.hasSuffix("_pdf") { loadPDF() }
+        else if let key, ArticleView.markdownURL(for: key) != nil { loadMarkdown() }
+        else { load() }
     }
 
     static func markdownURL(for key: String) -> URL? {

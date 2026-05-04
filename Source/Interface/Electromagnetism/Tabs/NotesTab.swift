@@ -33,7 +33,7 @@ class NotesTab: TabsCellTab {
     override func layoutSubviews() {
         articleScroll.frame = CGRect(x: 5*s, y: 10*s, width: bounds.size.width-10*s, height: bounds.size.height-44*s)
         
-        articleView.load()
+        articleView.render()
         articleScroll.contentSize = articleView.scrollViewContentSize
         articleView.frame = CGRect(x: 10*s, y: 0, width: articleScroll.width-20*s, height: articleScroll.height)
     }

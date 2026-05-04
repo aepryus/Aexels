@@ -27,7 +27,7 @@ class ElectromagnetismExplorer: Explorer {
     private var controlsTab: ControlsTab!
     let zoomsTab: TabsCellTab = TabsCellTab(name: "Zooms".localized)
     private var experimentsTab: ExperimentsTab!
-    let notesTab: NotesTab = NotesTab(key: "electromagnetism")
+    let notesTab: NotesTab = NotesTab(key: "shotInTheDark")
     
     private var aetherFrameOn: Bool = false
     
@@ -41,7 +41,7 @@ class ElectromagnetismExplorer: Explorer {
     }
     
     init() {
-        super.init(key: "electromagnetism")
+        super.init(key: "shotInTheDarkLab")
         
         aetherCell.alpha = 0
         experiments = ElectromagnetismExperiment.experiments

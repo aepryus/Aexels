@@ -27,6 +27,7 @@ class Aexels {
     static let dilationExplorer: DilationExplorer = DilationExplorer()
     static let contractionExplorer: ContractionExplorer = ContractionExplorer()
     static let electromagnetismExplorer: ElectromagnetismExplorer = ElectromagnetismExplorer()
+    static let intoTheLightExplorer: IntoTheLightExplorer = IntoTheLightExplorer()
     static let insideOutExplorer: InsideOutExplorer = InsideOutExplorer()
     static let outsideInExplorer: OutsideInExplorer = OutsideInExplorer()
     static let blackHolesExplorer: BlackHolesExplorer = BlackHolesExplorer()
