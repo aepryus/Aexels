@@ -115,20 +115,36 @@ class ExplorerViewController: AEViewController {
     }
     
     lazy var visionBar: VisionBar = {
+        // Outer array = columns (leftmost to rightmost on screen).
+        // Inner array = rows (top to bottom).  The rightmost column is
+        // closest to the screen edge and is also where the collapsed
+        // "selected" icon lands by default.
+        //
+        //   Col 0 (leftmost):  Dilation     Contraction   ShotInTheDark  IntoTheLight
+        //   Col 1 (middle):    InsideOut    OutsideIn     Gravity        BlackHoles
+        //   Col 2 (rightmost): Nexus        Aether        Cellular       Kinematics
+        //
+        // Nexus sits at the top-right — that's the slot the collapsed
+        // selected icon defaults to, so the home/glyphs view is the
+        // natural "summary" anchor.
         let visions: [[Vision?]] = [
+            [
+                Aexels.dilationExplorer.vision,
+                Aexels.contractionExplorer.vision,
+                Aexels.electromagnetismExplorer.vision,
+                Aexels.intoTheLightExplorer.vision
+            ],
+            [
+                Aexels.insideOutExplorer.vision,
+                Aexels.outsideInExplorer.vision,
+                Aexels.gravityExplorer.vision,
+                Aexels.blackHolesExplorer.vision
+            ],
             [
                 Aexels.nexusExplorer.vision,
                 Aexels.aetherExplorer.vision,
                 Aexels.cellularExplorer.vision,
-                Aexels.kinematicsExplorer.vision,
-                Aexels.gravityExplorer.vision,
-                Aexels.dilationExplorer.vision,
-                Aexels.contractionExplorer.vision,
-                Aexels.electromagnetismExplorer.vision,
-                Aexels.intoTheLightExplorer.vision,
-                Aexels.insideOutExplorer.vision,
-                Aexels.outsideInExplorer.vision,
-                Aexels.blackHolesExplorer.vision
+                Aexels.kinematicsExplorer.vision
             ]
         ]
         let visionBox: VisionBox = VisionBox(visions: visions)

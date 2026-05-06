@@ -13,10 +13,17 @@ import UIKit
 
 class CellularExplorer: Explorer, AetherViewDelegate {
     lazy var engine: CellularEngine = {
+        // Must match largeView.points (computed in viewDidLoad) — they
+        // share the same buffer through CellularView's cw, and any
+        // mismatch either smears rows (cw≠side) or reads past the end
+        // (points>side).  Single proportional formula for both, except
+        // iPhone which uses Screen.s.
         let cellsPerSide: Int
         if Screen.iPhone { cellsPerSide = Int(335*Screen.s) }
-        else if Screen.iPad { cellsPerSide = Int(432*(Screen.height - Screen.safeTop - Screen.safeBottom)/748) }
-        else { cellsPerSide = Int(Screen.scaler == 1 ? 465 : 609) }
+        else {
+            let safeH = Screen.height - Screen.safeTop - Screen.safeBottom
+            cellsPerSide = Int(432 * safeH / 748)
+        }
         return CellularEngine(side: cellsPerSide)
     }()
     

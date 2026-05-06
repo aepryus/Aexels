@@ -23,6 +23,7 @@ class Slider: UIView, UIGestureRecognizerDelegate {
     private var oldPos: CGFloat = 0
 
     var onChange: ((Int)->())?
+    var onRelease: ((Int)->())?
     
     init(options: [Int] = []) {
         self.options = options
@@ -84,6 +85,8 @@ class Slider: UIView, UIGestureRecognizerDelegate {
             option = options[index]
             onChange?(option)
             setNeedsDisplay()
+        } else if gesture.state == .ended || gesture.state == .cancelled {
+            onRelease?(option)
         }
     }
     

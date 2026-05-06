@@ -1,5 +1,3 @@
-# Black Hole Lab
-
 Two black holes orbit each other under the gravitational mechanism described in the Gravity II article.  Each frame the simulation:
 
 1. Computes the accelerant potential $\Phi$ analytically per cell on a 256×256 GPU texture from the current black hole positions.

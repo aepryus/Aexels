@@ -58,7 +58,10 @@ class VisionBar: AEView {
     
     init(visionBox: VisionBox) {
         self.visionBox = visionBox
-        selected = self.visionBox.visions[0][0]!
+        // Default selected = top-right of the grid (rightmost column,
+        // first row).  That's the slot the collapsed icon collapses
+        // into, so the default initial vision matches its parking spot.
+        selected = self.visionBox.visions[self.visionBox.noOfColumns-1][0]!
         expanded = false
         
         super.init()

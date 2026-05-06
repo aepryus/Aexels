@@ -60,21 +60,20 @@ class CellularView: UIView {
 	}
 	
 	private var vw: Int = 0					// view width
-	private var cw: Int = 0					// cell width
+	// cell width = the engine grid's stride.  Must equal engine.side
+	// (AXDataLoad indexes cells[i+j*cw]); deriving from engine here
+	// keeps view and engine in lockstep regardless of platform / window
+	// sizing, instead of recomputing it from a parallel formula.
+	private var cw: Int { engine?.side ?? 0 }
 	private var dw: Int = 0					// data width
 	private var size: Int = 0				// total bytes = vw^2*4
     private var data: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
-	
+
 	private var queue: DispatchQueue = DispatchQueue(label: "cellularView")
 
 	var points: Int = 0 {
 		didSet {
 			vw = points
-			let height = Screen.height - Screen.safeTop - Screen.safeBottom
-			let s = height / 748
-			if Screen.iPad { cw = Int(432*s) }
-			else if Screen.iPhone { cw = Int(335*Screen.s) }
-			else if Screen.mac { cw = Int(432*s) }
 			dw = vw*4
 			size = vw*vw*4
             data.deallocate()

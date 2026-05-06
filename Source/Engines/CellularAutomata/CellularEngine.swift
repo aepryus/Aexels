@@ -30,7 +30,7 @@ class CellularEngine {
 	var cells: UnsafeMutablePointer<Double>
 	private var next: UnsafeMutablePointer<Double>
 
-	private let side: Int
+	let side: Int
 
 	private var views = [CellularView]()
 
