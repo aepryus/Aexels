@@ -2,7 +2,7 @@ The cupola algorithm fires test pings outward from a point source at rest in the
 
 The lab answers it visually.
 
-  - **Analytic disc** (rainbow background): the closed-form Liénard–Wiechert intensity $$|E|(R,\theta) \propto \frac{1-\beta^2}{\kappa^3 R^2}\,|\hat{n}-\boldsymbol{\beta}|,\qquad \kappa = 1-\hat{n}\cdot\boldsymbol{\beta}$$ rendered straight from the formula.  This is the target.
+  - **Analytic disc** (rainbow background): the closed-form Liénard–Wiechert intensity $|E|(R,\theta) \propto (1-\beta^2)\,|\hat{n}-\beta|/(\kappa^3 R^2)$ with $\kappa = 1-\hat{n}\cdot\beta$, rendered straight from the formula.  This is the target.
 
   - **Cupola sensor field**: a 128×240 polar $(R,\theta)$ colormap rebuilt off-thread on every commit.  A phantom calc fires 8500 pings on an isolated universe and atomically deposits $|\mathbf{C}|/R$ into the cell each ping passes through; the result *is* the cupola algorithm's output, no kernels or curvature corrections.
 

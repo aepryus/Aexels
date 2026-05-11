@@ -27,6 +27,7 @@ import simd
 enum ItLFieldMode: UInt32 {
     case electric = 0
     case magnetic = 1
+    case radiation = 2
 }
 
 private struct ItLLWEContext {
@@ -121,6 +122,17 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // cupola algorithm's output.
     var analyticDiscOn: Bool = true
 
+    // Radiation-mode only: when on, the camera follows the oscillating
+    // teslon so the source stays centred and the aether grid streams
+    // past.  When off, the camera holds its position in the aether
+    // frame and you see the source actually swing across the view.
+    var radiationTracksSource: Bool = true
+
+    // Radiation-mode source motion parameters.  Live values — read by
+    // draw each frame so slider drags are visible immediately.
+    var radiationOmega: Double = 0.04        // rad/tic
+    var radiationAmplitude: Double = 15.0    // world units of swing
+
     // Tap-to-toggle settings commit on every change.
     var magnitudeOn: Bool = true {
         didSet { commit() }
@@ -172,6 +184,16 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     private var universeHeight: Double = 0
     private var tickCount: Int = 0
     private var lastTickTime: CFTimeInterval = CACurrentMediaTime()
+    // Phase of the radiation-mode oscillation.  Reset to 0 on entry to
+    // radiation so the source always starts at the midpoint instead of
+    // snapping to some arbitrary position based on accumulated tickCount.
+    private var radiationPhase: Double = 0
+    // Midpoint of the radiation oscillation, captured from the teslon's
+    // position at the moment of entry.  Using the teslon's current spot
+    // avoids snapping it (and the in-flight ping cloud) back to universe
+    // centre — pings carry over visually intact.
+    private var radiationCenterX: Double = 0
+    private var radiationCenterY: Double = 0
 
     init?(view: MTKView) {
         self.view = view
@@ -361,6 +383,39 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         // and flip the sensor buffer so the next frame samples the new
         // field.  Lock contention with main is microseconds.
         universeLock.lock()
+        // Re-centre teslon and camera when leaving radiation mode —
+        // they've been oscillating and end up at arbitrary offsets,
+        // which would skew the E/B disc which assumes a centred source.
+        // Use intentVelocity for v.x so SCUniverseSetSpeed below sees
+        // the post-frame value as input (and treats the transformation
+        // as identity when the slider hasn't moved); zeroing v.x would
+        // strand the teslon at rest while the camera drifts at β.
+        if engineFieldMode == .radiation && intentFieldMode != .radiation {
+            if let teslon = self.teslon, let camera = self.camera {
+                teslon.pointee.pos.x = universeWidth / 2
+                teslon.pointee.pos.y = universeHeight / 2
+                teslon.pointee.v.x = intentVelocity
+                teslon.pointee.v.y = 0
+                teslon.pointee.a.x = 0
+                teslon.pointee.a.y = 0
+                camera.pointee.pos.x = universeWidth / 2
+                camera.pointee.pos.y = universeHeight / 2
+                camera.pointee.v.x = intentVelocity
+                camera.pointee.v.y = 0
+            }
+        }
+        // On entry to radiation, capture the teslon's current position
+        // as the oscillation midpoint so the source doesn't snap (and
+        // strand its in-flight pings).  Phase resets to 0 so sin(0)=0
+        // puts the source exactly at the captured centre on the first
+        // radiation frame.
+        if engineFieldMode != .radiation && intentFieldMode == .radiation {
+            radiationPhase = 0
+            if let teslon = self.teslon {
+                radiationCenterX = teslon.pointee.pos.x
+                radiationCenterY = teslon.pointee.pos.y
+            }
+        }
         if let live = self.universe {
             SCUniverseSetSpeed(live, intentVelocity)
             SCUniverseSetAberration(live, intentAberrationOn ? 1 : 0)
@@ -490,6 +545,58 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         guard let universe, let camera else { return }
 
         tickCount += 1
+
+        // Radiation lab: prescribe the source teslon's velocity and
+        // acceleration so emitted pings carry rotation + spring rates,
+        // and consecutive pings (emitted as the source's β cycles)
+        // also have a varying base cupola direction.  Position
+        // integrates from v via the engine's pos += v*c each tic.
+        // Hardcoded linear oscillation along x for now (controls later).
+        // E and B modes leave a = 0, preserving the existing behavior.
+        if let teslon, engineFieldMode == .radiation {
+            let c: Double = 3.0
+            let omega: Double = radiationOmega
+            // Cap peak velocity (A·ω) so the source's β never exceeds
+            // a safe sub-c value.  Whichever slider is being pushed,
+            // amplitude gets pulled in if the product would otherwise
+            // outrun light.
+            let maxBeta: Double = 0.9
+            let amplitude: Double = min(radiationAmplitude, maxBeta * c / omega)
+            let phase = radiationPhase
+            radiationPhase += omega
+            // Prescribe position directly so the midpoint of oscillation
+            // stays anchored to the entry-point centre — without this,
+            // Euler integration of v(t) over many cycles drifts.  The
+            // centre was captured on transition-into-radiation, which is
+            // wherever the teslon was at that moment (NOT universe
+            // centre), so the in-flight ping cloud doesn't visually
+            // jump.
+            teslon.pointee.pos.x = radiationCenterX + amplitude * sin(phase)
+            teslon.pointee.pos.y = radiationCenterY
+            teslon.pointee.v.x = amplitude * omega * cos(phase) / c
+            teslon.pointee.v.y = 0
+            teslon.pointee.a.x = -amplitude * omega * omega * sin(phase) / c
+            teslon.pointee.a.y = 0
+            // Source-tracking camera (default): camera follows teslon
+            // so the oscillating source stays visually centred and the
+            // aether grid streams past.  Aether-frame camera: pinned to
+            // the oscillation midpoint (where the teslon was on entry
+            // to radiation) so the source swings symmetrically around
+            // screen centre and the existing pings stay where they were.
+            if radiationTracksSource {
+                camera.pointee.pos = teslon.pointee.pos
+                camera.pointee.v = teslon.pointee.v
+            } else {
+                camera.pointee.pos.x = radiationCenterX
+                camera.pointee.pos.y = radiationCenterY
+                camera.pointee.v.x = 0
+                camera.pointee.v.y = 0
+            }
+        } else if let teslon {
+            teslon.pointee.a.x = 0
+            teslon.pointee.a.y = 0
+        }
+
         if autoOn && tickCount % timeStepsPerVolley == 0 {
             // SCUniversePing emits per the universe's aberration flag —
             // Rule-3 when on, uniform when off — so the visible cloud
@@ -579,7 +686,11 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         encoder.setFragmentTexture(backgroundTexture, index: 0)
         encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
 
-        if analyticDiscOn {
+        // No analytic disc in radiation mode yet — the E/B closed forms
+        // assume constant β, which doesn't apply to an accelerating
+        // source.  Disc gets reintroduced once we have an LW-R formula
+        // worth painting.
+        if analyticDiscOn && fieldMode != .radiation {
             encoder.setRenderPipelineState(lwePipelineState)
             encoder.setVertexBuffer(lweBuffer, offset: 0, index: 0)
             encoder.setFragmentBuffer(lweBuffer, offset: 0, index: 0)

@@ -13,6 +13,7 @@
 typedef struct SCTeslon {
     CV2 pos;
     CV2 v;
+    CV2 a;                        // acceleration per tic (radiation lab; 0 elsewhere)
     double hyle;                  // innate hyle
     unsigned char pings;
     unsigned char contracts;
@@ -28,6 +29,8 @@ typedef struct SCPing {
     CV2 pos;
     CV2 v;
     CV2 cupola;
+    double rotRate;              // dθ/dt of cupola direction (rad/tic), baked in at emission
+    double spgRate;              // d|C|/dt of cupola magnitude (per tic), baked in at emission
     unsigned char recycle;
     SCTeslon* source;
 //    CV2 origin;

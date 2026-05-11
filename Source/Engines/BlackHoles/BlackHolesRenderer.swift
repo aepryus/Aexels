@@ -25,7 +25,7 @@ import simd
 private struct BHMass {
     var position: SIMD2<Float>
     var mass: Float
-    var _pad: Float = 0
+    var radius: Float
 }
 
 private struct BHFieldParams {
@@ -77,6 +77,8 @@ private struct BHMatterParams {
     var count: UInt32
     var G: Float
     var totalMass: Float
+    var massCount: UInt32
+    var _pad: UInt32 = 0
 }
 
 private struct BHVAetherParams {
@@ -250,8 +252,8 @@ class BlackHolesRenderer: Renderer {
                 position: posClamped,
                 prevPosition: posClamped,
                 velocity: tangent * vCirc,
-                age: Float.random(in: 0...100),
-                life: Float.random(in: 60...300)
+                age: Float.random(in: 0...4),       // small so deathFade isn't triggered
+                life: 1.0e9                          // never die by age — only respawn on out-of-world or BH swallow
             )
         }
     }
@@ -305,7 +307,7 @@ class BlackHolesRenderer: Renderer {
 
     private func uploadMasses() {
         var massStructs: [BHMass] = blackHoles.map {
-            BHMass(position: $0.position, mass: $0.mass)
+            BHMass(position: $0.position, mass: $0.mass, radius: $0.radius)
         }
         memcpy(massesBuffer.contents(), &massStructs, MemoryLayout<BHMass>.stride * massStructs.count)
     }
@@ -402,9 +404,11 @@ class BlackHolesRenderer: Renderer {
                 frameSeed: UInt32(truncatingIfNeeded: (frameCounter &+ 13) &* 2654435761),
                 count: UInt32(particleCountMatter),
                 G: G,
-                totalMass: totalMass > 0 ? totalMass : 2
+                totalMass: totalMass > 0 ? totalMass : 2,
+                massCount: UInt32(blackHoles.count)
             )
             enc.setBytes(&mp, length: MemoryLayout<BHMatterParams>.size, index: 1)
+            enc.setBuffer(massesBuffer, offset: 0, index: 2)
             enc.dispatchThreadgroups(MTLSize(width: (particleCountMatter + 63) / 64, height: 1, depth: 1), threadsPerThreadgroup: pTG)
         }
 

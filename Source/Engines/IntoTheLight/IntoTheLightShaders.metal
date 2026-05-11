@@ -322,7 +322,12 @@ fragment float4 itlPingFragmentShader(ItLPingPacket in [[stage_in]],
     float R = length(r);
 
     float3 bodyCol;
-    if (R < 1.0) {
+    // Radiation mode: no analytic field disc yet, and sampling the
+    // E-mode sensor would mis-colour the pings.  Use a neutral body
+    // colour so the cupola arm + head read clean against the aether.
+    if (ctx.fieldMode == 2u) {
+        bodyCol = float3(0.85, 0.85, 0.85);
+    } else if (R < 1.0) {
         bodyCol = ctx.fieldMode == 1u ? float3(0.30, 0.30, 0.30) : ITL_PALETTE[6];
     } else {
         float theta = atan2(r.y, r.x);
@@ -437,14 +442,63 @@ fragment float4 itlLWEFragmentShader(ItLLWEPacket in [[stage_in]],
     // Magnetic mode: signed B_z, diverging palette.  calRef is the
     // perpendicular-axis B_z magnitude (peaks here, vanishes along the
     // motion axis), so the band scheme stays β-invariant the same way
-    // calFlux is for E.  Inside the motion-axis null we fade to black.
+    // calFlux is for E.
     if (ctx.fieldMode == 1u) {
         float calRef = abs(itlBz(float2(0.0, -yCal), ctx.beta, oneMinusBeta2));
+        if (calRef <= 1e-30) return float4(0.0);
         float bz = itlBz(r, ctx.beta, oneMinusBeta2);
         float absBz = abs(bz);
-        if (calRef <= 1e-30 || absBz <= 1e-30) return float4(0.0);
-        float bandCoord = 7.0 - sqrt(calRef / absBz);
-        if (bandCoord < 0.0) return float4(0.0);
+        float bandCoord = absBz <= 1e-30 ? -1e30 : 7.0 - sqrt(calRef / absBz);
+
+        if (bandCoord < 0.0) {
+            // Drop shadow — sample at offset and project the dipole's
+            // silhouette behind the lobes.  Sign at the offset point
+            // selects warm/cool palette so the shadow keeps the
+            // dipole's polarity.
+            const float2 shadowOffset = float2(-50.0, 30.0);
+            float bz_s = itlBz(r - shadowOffset, ctx.beta, oneMinusBeta2);
+            float absBz_s = abs(bz_s);
+            if (absBz_s <= 1e-30) return float4(0.0);
+            float bandCoord_s = 7.0 - sqrt(calRef / absBz_s);
+
+            const float blurPixels = 28.0;
+            float gradBC = max(fwidth(bandCoord_s), 1e-4);
+            float blurWidth = blurPixels * gradBC;
+            float shadowFade = smoothstep(-blurWidth, 0.5 * blurWidth, bandCoord_s);
+            if (shadowFade <= 0.001) return float4(0.0);
+
+            // Suppress the spurious shadow line along the motion axis
+            // — B_z passes through zero there, so the dipole has no
+            // silhouette at θ = 0/π.  The shadow at this pixel is the
+            // silhouette of the OFFSET point, so fade based on that
+            // point's perpendicular component relative to β, not the
+            // current pixel's.  The smoothstep thresholds set how
+            // wide the dead-zone wedge along the axis is.
+            float bMag = max(sqrt(beta2), 1e-6);
+            float2 betaHat = beta2 > 1e-12 ? ctx.beta / bMag : float2(1.0, 0.0);
+            float2 rOff = r - shadowOffset;
+            float perpOff = abs(rOff.x * (-betaHat.y) + rOff.y * betaHat.x);
+            float perpRatioOff = perpOff / max(length(rOff), 1.0);
+            float axisFade = smoothstep(0.03, 0.09, perpRatioOff);
+            if (axisFade <= 0.001) return float4(0.0);
+            shadowFade *= axisFade;
+
+            float bcClamped_s = clamp(bandCoord_s, 0.0, 6.999);
+            float bandIdx_s = floor(bcClamped_s);
+            float bandFrac_s = bcClamped_s - bandIdx_s;
+            float screenStep_s = fwidth(bcClamped_s);
+            float lineMix_s = smoothstep(0.0, 1.5 * screenStep_s, bandFrac_s);
+
+            int idx_s = clamp(int(bandIdx_s), 0, 6);
+            float3 bandCol_s = bz_s > 0.0 ? ITL_B_POS_PALETTE[idx_s] : ITL_B_NEG_PALETTE[idx_s];
+            bandCol_s *= 0.85 + 0.15 * bandFrac_s;
+            float3 lineCol_s = bandCol_s * 0.15;
+
+            const float shadowMultiplier = 0.45;
+            float3 shadowCol = mix(lineCol_s, bandCol_s, lineMix_s) * shadowMultiplier;
+            return float4(shadowCol, 0.35 * shadowFade);
+        }
+
         float bcClamped = clamp(bandCoord, 0.0, 6.999);
         float bandIdx = floor(bcClamped);
         float bandFrac = bcClamped - bandIdx;

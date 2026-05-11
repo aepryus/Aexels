@@ -18,7 +18,7 @@ using namespace metal;
 struct BHMass {
     float2 position;
     float mass;
-    float _pad;
+    float radius;        // visual / swallow radius (matter respawns when inside)
 };
 
 // Uniforms shared across the field computation
@@ -269,11 +269,14 @@ struct BHMatterParams {
     uint  count;
     float G;
     float totalMass;     // for sizing initial circular velocities on respawn
+    uint  massCount;
+    uint  _pad;
 };
 
 kernel void bhUpdateMatterParticles(device BHParticle *particles [[buffer(0)]],
                                       texture2d<float, access::sample> uField [[texture(0)]],
                                       constant BHMatterParams &p [[buffer(1)]],
+                                      constant BHMass *masses [[buffer(2)]],
                                       uint id [[thread_position_in_grid]]) {
     if (id >= p.count) return;
     constexpr sampler s(filter::linear, address::clamp_to_edge);
@@ -290,15 +293,22 @@ kernel void bhUpdateMatterParticles(device BHParticle *particles [[buffer(0)]],
     particle.position += particle.velocity * p.dt;
     particle.age += 1.0;
 
+    // Matter respawns only on physical events: it left the world, or it
+    // got swallowed by one of the BHs.  No age-based death — particles
+    // can orbit indefinitely.
     bool out = abs(particle.position.x) > p.worldHalfWidth ||
                abs(particle.position.y) > p.worldHalfWidth;
-    if (particle.age >= particle.life || out) {
+    bool sucked = false;
+    for (uint mi = 0; mi < p.massCount; mi++) {
+        float2 d = particle.position - masses[mi].position;
+        float rr = masses[mi].radius;
+        if (dot(d, d) < rr * rr) { sucked = true; break; }
+    }
+    if (out || sucked) {
         uint h = bhHash(id ^ p.frameSeed);
         float rx = float(h & 0xFFFFu) / 65535.0;
         h = bhHash(h);
         float ry = float(h & 0xFFFFu) / 65535.0;
-        h = bhHash(h);
-        float rl = float(h & 0xFFFFu) / 65535.0;
         h = bhHash(h);
         float rf = 0.3 + 0.7 * (float(h & 0xFFFFu) / 65535.0);
         h = bhHash(h);
@@ -316,7 +326,7 @@ kernel void bhUpdateMatterParticles(device BHParticle *particles [[buffer(0)]],
         particle.prevPosition = pos;
         particle.velocity = tangent * vCirc;
         particle.age = 0.0;
-        particle.life = 60.0 + rl * 240.0;     // longer life — let them orbit
+        particle.life = 1.0e9;                  // never die by age
     }
     particles[id] = particle;
 }

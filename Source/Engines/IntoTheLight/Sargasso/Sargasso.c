@@ -213,6 +213,8 @@ SCTeslon* SCUniverseCreateTeslon(SCUniverse* universe, double x, double y, doubl
     teslon->pos.y = y;
     teslon->v.x = speed * cos(orient);
     teslon->v.y = speed * sin(orient);
+    teslon->a.x = 0;
+    teslon->a.y = 0;
     teslon->hyle = hyle;
     teslon->pings = pings;
     teslon->contracts = contracts;
@@ -225,6 +227,8 @@ SCPing* SCUniverseCreatePing(SCUniverse* universe, SCTeslon* teslon) {
     ping->pos = teslon->pos;
     ping->v.x = 0;
     ping->v.y = 0;
+    ping->rotRate = 0;
+    ping->spgRate = 0;
     ping->recycle = 0;
     SCUniverseAddPing(universe, ping);
     return ping;
@@ -417,6 +421,23 @@ void SCUniversePing(SCUniverse* universe, int n) {
             ping->cupola.y = iQy - tVy;
             ping->source = teslon;
 
+            // Rotation + spring rates baked in at emission.  The cupola
+            // tip's velocity in (n̂_em, β) space is dC/dt = -dβ/dt = -a.
+            // Decompose -a relative to the cupola direction:
+            //   parallel (along ĉ) → dr/dt → spgRate
+            //   perpendicular     → dθ/dt → rotRate (per unit |C|)
+            double _cmag = sqrt(ping->cupola.x*ping->cupola.x + ping->cupola.y*ping->cupola.y);
+            if (_cmag > 1e-8) {
+                double _cdx = ping->cupola.x / _cmag;
+                double _cdy = ping->cupola.y / _cmag;
+                ping->spgRate = -(teslon->a.x * _cdx + teslon->a.y * _cdy);
+                ping->rotRate = (teslon->a.x * _cdy - teslon->a.y * _cdx) / _cmag;
+            } else {
+                ping->spgRate = 0;
+                ping->rotRate = 0;
+            }
+            ping->recycle = 0;
+
             universe->pings[pingI] = ping;
             pingI++;
         }
@@ -475,6 +496,23 @@ void SCUniversePingUniform(SCUniverse* universe, int n) {
             ping->cupola.y = iQy - tVy;
             ping->source = teslon;
 
+            // Rotation + spring rates baked in at emission.  The cupola
+            // tip's velocity in (n̂_em, β) space is dC/dt = -dβ/dt = -a.
+            // Decompose -a relative to the cupola direction:
+            //   parallel (along ĉ) → dr/dt → spgRate
+            //   perpendicular     → dθ/dt → rotRate (per unit |C|)
+            double _cmag = sqrt(ping->cupola.x*ping->cupola.x + ping->cupola.y*ping->cupola.y);
+            if (_cmag > 1e-8) {
+                double _cdx = ping->cupola.x / _cmag;
+                double _cdy = ping->cupola.y / _cmag;
+                ping->spgRate = -(teslon->a.x * _cdx + teslon->a.y * _cdy);
+                ping->rotRate = (teslon->a.x * _cdy - teslon->a.y * _cdx) / _cmag;
+            } else {
+                ping->spgRate = 0;
+                ping->rotRate = 0;
+            }
+            ping->recycle = 0;
+
             universe->pings[pingI] = ping;
             pingI++;
         }
@@ -511,6 +549,25 @@ void SCUniverseTic(SCUniverse* universe) {
     for (int i=0;i<universe->pingCount;i++) {
         universe->pings[i]->pos.x += universe->pings[i]->v.x * universe->c;
         universe->pings[i]->pos.y += universe->pings[i]->v.y * universe->c;
+    }
+
+    // Cupola rotation + spring (radiation lab).  Each ping carries a
+    // baked-in angular and radial rate of change for its cupola,
+    // computed at emission from the source's acceleration.  Evolve in
+    // polar coords each tic.  Pings emitted by an unaccelerated source
+    // have rotRate = spgRate = 0, so this is a no-op for E/B modes.
+    for (int i=0;i<universe->pingCount;i++) {
+        SCPing* ping = universe->pings[i];
+        if (ping->rotRate == 0 && ping->spgRate == 0) continue;
+        double cx = ping->cupola.x;
+        double cy = ping->cupola.y;
+        double mag = sqrt(cx*cx + cy*cy);
+        double ang = atan2(cy, cx);
+        mag += ping->spgRate;
+        if (mag < 0) mag = 0;
+        ang += ping->rotRate;
+        ping->cupola.x = mag * cos(ang);
+        ping->cupola.y = mag * sin(ang);
     }
     for (int i=0;i<universe->pongCount;i++) {
         universe->pongs[i]->pos.x += universe->pongs[i]->v.x * universe->c;
