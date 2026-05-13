@@ -34,6 +34,7 @@ class CellularExplorer: Explorer, AetherViewDelegate {
         tools[0][1] = AetherView.mechTool
         
         let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false)
+        aetherView.pickerEnabled = false
 //        let aetherView: AetherView = AetherView(toolBox: ToolBox(tools), toolsOn: false, oldPicker: true)
         aetherView.swapToAether(aether: engine.aether)
         aetherView.backgroundColor = .clear

@@ -49,13 +49,19 @@ class IntoTheLightControlsTab: TabsCellTab {
             case "Magnetic":
                 self.explorer.renderer.fieldMode = .magnetic
                 self.applyControlsAvailability(forRadiation: false)
+                self.applyModePresets(forRadiation: false)
             case "Radiation":
                 self.explorer.renderer.fieldMode = .radiation
                 self.applyControlsAvailability(forRadiation: true)
+                self.applyModePresets(forRadiation: true)
             default:
                 self.explorer.renderer.fieldMode = .electric
                 self.applyControlsAvailability(forRadiation: false)
+                self.applyModePresets(forRadiation: false)
             }
+            // Force one frame so the analytic disc re-renders against
+            // the new mode immediately, even if playback is paused.
+            self.explorer.stepOnce()
         }
         fieldSlider.pages = ["Electric", "Magnetic", "Radiation"]
         addSubview(fieldSlider)
@@ -145,12 +151,23 @@ class IntoTheLightControlsTab: TabsCellTab {
         addSubview(magnitudeBoolButton)
         magnitudeBoolButton.onChange = { [unowned self] (on: Bool) in
             self.explorer.renderer.magnitudeOn = on
+            // In R mode the setter invalidated the atlas; pump frames
+            // synchronously so the new field renders immediately even
+            // while paused.
+            if self.explorer.renderer.fieldMode == .radiation {
+                self.explorer.pumpRadiationAtlas()
+            }
+            self.explorer.stepOnce()
         }
 
         aberrationBoolButton.on = explorer.renderer.aberrationOn
         addSubview(aberrationBoolButton)
         aberrationBoolButton.onChange = { [unowned self] (on: Bool) in
             self.explorer.renderer.aberrationOn = on
+            if self.explorer.renderer.fieldMode == .radiation {
+                self.explorer.pumpRadiationAtlas()
+            }
+            self.explorer.stepOnce()
         }
 
         fullPingsBoolButton.on = explorer.renderer.fullPingsOn
@@ -168,6 +185,7 @@ class IntoTheLightControlsTab: TabsCellTab {
         deltaCupolaBoolButton.onChange = { [unowned self] (on: Bool) in
             self.explorer.renderer.deltaCupolaOn = on
         }
+        deltaCupolaBoolButton.alpha = 0  // hidden in E/B; revealed in R
 
         analyticDiscBoolButton.on = explorer.renderer.analyticDiscOn
         addSubview(analyticDiscBoolButton)
@@ -239,33 +257,69 @@ class IntoTheLightControlsTab: TabsCellTab {
         }
     }
 
-    // Fade controls that don't apply in radiation mode (everything
-    // except pings-per-volley, time-steps-per-volley, full pings,
-    // delta cupola, and analytic disc) all the way out — invisible,
-    // no taps.  trackSourceBoolButton is the inverse: only visible/
-    // interactive in radiation mode.  The analytic disc, full pings,
-    // and delta cupola toggles stay interactive in all modes — they
-    // control how the cupola/field is *visualised*, which matters
-    // independently of E/B/R.
+    // Per-mode visibility:
+    //   • Faded in R only: velocity slider + γ readout (aether velocity
+    //     is the E/B story, not the R story).
+    //   • Visible only in R: track source, frequency, amplitude,
+    //     delta cupola.
+    //   • Visible in all modes: magnitude, aberration, full pings,
+    //     analytic disc, pings-per-volley, time-steps-per-volley.
     private func applyControlsAvailability(forRadiation: Bool) {
-        let alpha: CGFloat = forRadiation ? 0.0 : 1.0
-        let interactive = !forRadiation
         let faded: [UIView] = [
-            velocityLabel, lambdaLabel, velocitySlider,
-            magnitudeBoolButton, aberrationBoolButton
+            velocityLabel, lambdaLabel, velocitySlider
         ]
         for v in faded {
-            v.alpha = alpha
-            v.isUserInteractionEnabled = interactive
+            v.alpha = forRadiation ? 0.0 : 1.0
+            v.isUserInteractionEnabled = !forRadiation
         }
         let radiationOnly: [UIView] = [
             trackSourceBoolButton,
             frequencyLabel, frequencySlider,
-            amplitudeLabel, amplitudeSlider
+            amplitudeLabel, amplitudeSlider,
+            deltaCupolaBoolButton
         ]
         for v in radiationOnly {
             v.alpha = forRadiation ? 1.0 : 0.0
             v.isUserInteractionEnabled = forRadiation
+        }
+    }
+
+    // Mode-specific presets.  Applied on every mode switch (so
+    // toggling/sliding within a mode is preserved while you stay
+    // there, and switching tabs restores the mode's preferred
+    // opening view):
+    //   E/B: pings 120, timeSteps 12, full pings ON, delta cupola ON
+    //        (the latter doesn't matter — control hidden in E/B —
+    //        but kept truthful so toggling back to R doesn't carry
+    //        a stale value).
+    //   R:   pings 36, timeSteps 5, freq 6 (ω=0.06), amplitude 5,
+    //        full pings OFF, delta cupola OFF — the radiation icon
+    //        view.
+    private func applyModePresets(forRadiation: Bool) {
+        // Full pings: on for E/B (arrows fan out radially showing the
+        // cupola structure); off for R (body-only icon view).
+        let fullPings = !forRadiation
+        explorer.renderer.fullPingsOn = fullPings
+        fullPingsBoolButton.on = fullPings
+
+        // Delta cupola: ALWAYS off on mode switch.  In E/B it's not
+        // meaningful (the control is hidden); in R the icon view wants
+        // it off too.  User can opt in within R.
+        explorer.renderer.deltaCupolaOn = false
+        deltaCupolaBoolButton.on = false
+
+        let pings: Int32 = forRadiation ? 36 : 120
+        let steps: Int = forRadiation ? 5 : 12
+        explorer.renderer.pingsPerVolley = pings
+        explorer.renderer.timeStepsPerVolley = steps
+        pingsPerVolleySlider.setTo(Int(pings))
+        timeStepsPerVolleySlider.setTo(steps)
+
+        if forRadiation {
+            explorer.renderer.radiationOmega = 0.06
+            explorer.renderer.radiationAmplitude = 5.0
+            frequencySlider.setTo(6)
+            amplitudeSlider.setTo(5)
         }
     }
 
@@ -314,10 +368,12 @@ class IntoTheLightControlsTab: TabsCellTab {
         y += 50*s
 
         // Bool buttons -----------------------------------------------
+        // Each toggle gets its own slot.  Track-source slot is empty in
+        // E/B; delta-cupola slot is empty in E/B; both fill in R mode.
         y += 10*s
-        // magnitude (E/M) and track source (R) share the same slot.
-        magnitudeBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         trackSourceBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        magnitudeBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s
         aberrationBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 30*s

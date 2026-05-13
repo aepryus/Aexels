@@ -85,4 +85,23 @@ class IntoTheLightExplorer: Explorer {
     override func onStep()  { metalView.draw() }
     override func onReset() { renderer.onReset(); metalView.draw(); timeControl.playButton.stop() }
     override func onStop()  { metalView.isPaused = true }
+
+    // Force one immediate frame regardless of pause state.  Used by
+    // ControlsTab when the field mode changes (E/B/R) so the analytic
+    // disc reads against the new mode immediately even when the sim
+    // is paused.
+    func stepOnce() { metalView.draw() }
+
+    // Drive frames synchronously until the radiation atlas finishes
+    // rebuilding (or a safety cap is hit).  Used by ControlsTab when
+    // a toggle (magnitude / aberration) invalidates the atlas while
+    // the sim is paused — otherwise the atlas would sit incomplete
+    // until the user pressed Play.  Bounded to avoid hangs if the
+    // atlas can't complete for some reason.
+    func pumpRadiationAtlas(maxFrames: Int = 600) {
+        for _ in 0..<maxFrames {
+            if renderer.isRadiationAtlasReady { break }
+            metalView.draw()
+        }
+    }
 }
