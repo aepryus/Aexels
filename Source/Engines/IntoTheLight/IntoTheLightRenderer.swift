@@ -36,12 +36,25 @@ private struct ItLLWEContext {
     var beta: SIMD2<Float>
     var fieldMode: UInt32
     var _pad: UInt32 = 0
+    // Radiation-mode parameters.  sourceCenter = oscillation midpoint
+    // in world coords.  radiationPhase = ω·t accumulated; radiationOmega
+    // and radiationAmplitude as named.  c = ping speed (3 here).  The
+    // low-β dipole closed form uses all of these:
+    //   F_rad ∝ -A ω² sin(θ) cos(phase - ω R/c) / (c² R)
+    var sourceCenter: SIMD2<Float> = .zero
+    var radiationPhase: Float = 0
+    var radiationOmega: Float = 0
+    var radiationAmplitude: Float = 0
+    var c: Float = 3.0
 }
 
 private struct ItLPingDraw {
     var position: SIMD2<Float>
-    var cupola: SIMD2<Float>
-    var velocity: SIMD2<Float>
+    var cupola: SIMD2<Float>   // C = n̂_em − β_em
+    var Cdot: SIMD2<Float>     // Ċ = dC/dt at emission (= −β̇)
+    var velocity: SIMD2<Float> // unit n̂_em (engine scales by c at tic-time)
+    var isPhantom: UInt32      // 1 = phantom wave ping (forces body-only render)
+    var _pad: UInt32 = 0
 }
 
 private struct ItLPingFragCtx {
@@ -51,6 +64,8 @@ private struct ItLPingFragCtx {
     var fullPingsOn: UInt32
     var magnitudeOn: UInt32
     var fieldMode: UInt32
+    var oldFieldMode: UInt32
+    var radiationCalRef: Float
     var _pad: UInt32 = 0
 }
 
@@ -65,14 +80,15 @@ private struct ItLAccumCtx {
     var _pad: UInt32 = 0
 }
 
-// Toggle adjustments are decoupled from the animation: the slider's
-// onChange only updates the analytic disc (renderer.velocity), and the
-// model rebuild is deferred to slider release / toggle tap.  Each commit
-// enqueues a single .rebuild — coalescing collapses any duplicates so
-// the worker runs at most one phantom calc per intent change.
-private enum ItLCommand: Equatable {
-    case rebuild
-}
+// Phantom calc visualization: each commit kicks off a phantom wave that
+// runs interleaved with rendering, advancing enough ticks per frame to
+// finish in roughly this many frames regardless of velocity.  The
+// phantom pings render as an expanding wavefront, and behind them the
+// new field fills into pulseSensorBuffer.  Per-pixel, the ping fragment
+// shader picks pulseSensorBuffer (new) where the wave has deposited
+// data and sensorBuffer (old) where it hasn't yet — so the transition
+// from old to new colours is visibly anchored to the wavefront.
+private let kPhantomTargetFrames: Int = 30
 
 
 private let kColormapMR = 128
@@ -95,12 +111,15 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     private let lweBuffer: MTLBuffer
     private let pingFragBuffer: MTLBuffer
     private let backgroundTexture: MTLTexture
-    // sensorBuffer / pulseSensorBuffer are swapped on commit — the worker
-    // builds the new field in pulseSensorBuffer (no contention with the
-    // live universe), then under universeLock atomically swaps the two
-    // pointers so the next encoded draw frame samples the new field.
-    private var sensorBuffer: MTLBuffer
-    private var pulseSensorBuffer: MTLBuffer
+    // sensorBuffer holds the last completed field (sampled as the
+    // fallback "old colours").  pulseSensorBuffer is the in-progress
+    // target the active phantom deposits into; when the phantom
+    // finishes, its contents are blit-copied into sensorBuffer.  The
+    // ping fragment shader reads both: it picks pulseSensorBuffer
+    // where the wave has deposited data and sensorBuffer where it
+    // hasn't — so the colour transition rides the wavefront.
+    private let sensorBuffer: MTLBuffer
+    private let pulseSensorBuffer: MTLBuffer
     private let pulsePingsBuffer: MTLBuffer
 
     weak var view: MTKView?
@@ -122,16 +141,46 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // cupola algorithm's output.
     var analyticDiscOn: Bool = true
 
+    // When on, ping arms render as the *delta* cupola: in the engine's
+    // dimensionless convention C = n̂_em − β_src, so the delta is
+    // C − n̂_em = −β_src(t_em) — the source's β at emission, with the
+    // dominant outward thrust subtracted off.  In E mode at β=0 the
+    // delta is zero (no arms).  In E mode with drift it's a constant
+    // arrow showing the aether-drift offset, same on every ping.  In
+    // R mode it oscillates: consecutive radial shells were emitted at
+    // consecutive source-oscillation phases, so delta arms alternate
+    // direction across the red/blue boundaries on the analytic disc.
+    // Default on — for the radiation lab this is the more revealing
+    // view; the rotating-cupola structure is what carries radiation.
+    var deltaCupolaOn: Bool = true
+
     // Radiation-mode only: when on, the camera follows the oscillating
     // teslon so the source stays centred and the aether grid streams
-    // past.  When off, the camera holds its position in the aether
-    // frame and you see the source actually swing across the view.
-    var radiationTracksSource: Bool = true
+    // past.  When off (default), the camera holds its position in the
+    // aether frame and you see the source actually swing across the
+    // view — that's the more revealing demo, so we default off.
+    var radiationTracksSource: Bool = false
 
     // Radiation-mode source motion parameters.  Live values — read by
-    // draw each frame so slider drags are visible immediately.
-    var radiationOmega: Double = 0.04        // rad/tic
-    var radiationAmplitude: Double = 15.0    // world units of swing
+    // draw each frame so slider drags are visible immediately.  When
+    // either changes in radiation mode, the atlas is invalidated and
+    // rebuilt against the new parameters.
+    var radiationOmega: Double = 0.04 {        // rad/tic
+        didSet {
+            if fieldMode == .radiation && oldValue != radiationOmega {
+                radiationAtlasReady = false
+                commit()
+            }
+        }
+    }
+    var radiationAmplitude: Double = 15.0 {    // world units of swing
+        didSet {
+            if fieldMode == .radiation && oldValue != radiationAmplitude {
+                radiationAtlasReady = false
+                commit()
+            }
+        }
+    }
 
     // Tap-to-toggle settings commit on every change.
     var magnitudeOn: Bool = true {
@@ -150,32 +199,67 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         didSet { commit() }
     }
 
-    // Called by the velocity slider's onRelease (and on init) to submit
-    // the current intent state to the worker for a phantom calc.
+    // Called by the velocity slider's onRelease (and on init) to commit
+    // the current intent state.  Starts (or restarts) a visible phantom
+    // wave that rebuilds the sensor field over the next ~30 frames.
     func commit() {
-        enqueue(.rebuild)
+        startPhantom()
     }
 
-    // Engine-applied state.  Worker writes; main draw + pulse read.
+    // Engine-applied state.  Updated synchronously inside startPhantom.
     // Initialised to match the user-intent defaults so the first
-    // loadUniverse can configure the C engine without an enqueue.
+    // loadUniverse can configure the C engine without a commit.
     private var engineVelocity: Double = 0.70
     private var engineMagnitudeOn: Bool = true
     private var engineAberrationOn: Bool = true
     private var engineFieldMode: ItLFieldMode = .electric
+    // Mode of the LAST COMPLETED phantom — i.e., the mode whose
+    // deposition rules produced the data currently in sensorBuffer.
+    // The ping shader uses this when sampling the old buffer so the
+    // colours ahead of the wave match what the user saw before commit.
+    private var engineOldFieldMode: ItLFieldMode = .electric
 
-    // Command queue + worker.
-    private let workerQueue = DispatchQueue(label: "itl.worker", qos: .userInitiated)
-    private let queueLock = NSLock()
-    private var pending: [ItLCommand] = []
-    private var workerActive: Bool = false
+    // Phantom wave state — populated by startPhantom, advanced in draw.
+    // Public read so the controls tab can drive a "wave still running"
+    // indicator (the slow direction can run well after the visible
+    // wavefront has exited the disc).
+    private(set) var phantomActive: Bool = false
+    private var phantomUniverse: UnsafeMutablePointer<SCUniverse>?
+    private var phantomCamera: UnsafeMutablePointer<SCCamera>?
+    private var phantomTicksTotal: Int = 0
+    private var phantomTicksCompleted: Int = 0
+    private var phantomTicksPerFrame: Int = 1
+    // Captured intent state for the kernel context — read live during
+    // each per-frame deposit so the phantom uses consistent parameters.
+    private var phantomVelocity: Double = 0
+    private var phantomMagnitudeOn: Bool = true
+    private var phantomFieldMode: ItLFieldMode = .electric
 
-    // Universe access lock.  Held by main for each draw frame's universe
-    // reads/tic, and by the worker only briefly at the end of a phantom
-    // calc to swap settings + sensor buffer in.  The phantom calc itself
-    // runs on a separate temporary universe and never touches the live
-    // one, so the live model keeps animating without contention.
-    private let universeLock = NSLock()
+    // Radiation atlas: a ring of N sensor-sized snapshot buffers,
+    // pre-computed once per (ω, A) combo by a dense phantom that
+    // mirrors the live source's oscillation.  Live pings sample
+    // snapshots[k] for their body colour, where k indexes the current
+    // source phase.  Decouples per-frame compute from sim quality —
+    // the phantom can run with many more pings than the live cloud,
+    // killing Poisson noise without affecting render speed or the
+    // live-cloud density slider.
+    private var radiationAtlasSnapshots: [MTLBuffer] = []
+    private var radiationAtlasN: Int = 0
+    private var radiationAtlasReady: Bool = false
+    private var radiationAtlasPhantomUniverse: UnsafeMutablePointer<SCUniverse>?
+    private var radiationAtlasPhantomCamera: UnsafeMutablePointer<SCCamera>?
+    private var radiationAtlasPhantomPhase: Double = 0
+    private var radiationAtlasTicksTotal: Int = 0
+    private var radiationAtlasTicksCompleted: Int = 0
+    private var radiationAtlasCaptureStart: Int = 0
+    private var radiationAtlasOmega: Double = 0
+    private var radiationAtlasAmplitude: Double = 0
+    // Per-frame phantom-tick budget while atlas is building.  1 = the
+    // E/B phantom's pace, so the radiation phantom wave is a visible
+    // expanding cloud at the same speed (= c).  Build takes a few
+    // seconds, but the phantom is the central visible mechanism — it
+    // SHOULD be visible while it works, exactly like E/B.
+    private var radiationAtlasTicksPerFrame: Int = 1
 
     private var universe: UnsafeMutablePointer<SCUniverse>?
     private var teslon: UnsafeMutablePointer<SCTeslon>?
@@ -294,19 +378,29 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     }
 
     deinit {
-        // Drain any in-flight pulse so the worker can't outlive the universe.
-        workerQueue.sync {}
+        // Release any in-flight phantom universe; only its container is
+        // owned here, the sensor buffers are MTLBuffer-managed.
+        if let phantomUniverse { SCUniverseRelease(phantomUniverse) }
+        if let radiationAtlasPhantomUniverse { SCUniverseRelease(radiationAtlasPhantomUniverse) }
         if let universe { SCUniverseRelease(universe) }
     }
 
 // Universe =======================================================================================
     private func loadUniverse(width: Double, height: Double) {
-        // Wait for any in-flight phantom calc to finish before tearing
-        // down the live universe — the worker may be about to acquire
-        // universeLock to swap in.
-        workerQueue.sync {}
-        universeLock.lock()
-        defer { universeLock.unlock() }
+        // Cancel any in-flight phantom and tear down its universe so we
+        // don't end up pointing into freed memory.
+        if let phantomUniverse {
+            SCUniverseRelease(phantomUniverse)
+            self.phantomUniverse = nil
+            self.phantomCamera = nil
+            self.phantomActive = false
+        }
+        if let radiationAtlasPhantomUniverse {
+            SCUniverseRelease(radiationAtlasPhantomUniverse)
+            self.radiationAtlasPhantomUniverse = nil
+            self.radiationAtlasPhantomCamera = nil
+            self.radiationAtlasReady = false
+        }
 
         if let universe { SCUniverseRelease(universe) }
         let u = SCUniverseCreate(width, height)
@@ -322,93 +416,50 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         tickCount = 0
         let byteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
         memset(sensorBuffer.contents(), 0, byteCount)
-        // Kick the initial phantom calc so the field is populated.
-        DispatchQueue.main.async { [weak self] in self?.enqueue(.rebuild) }
+        memset(pulseSensorBuffer.contents(), 0, byteCount)
+        // Kick the initial phantom so the field gets populated.  The
+        // controls panel's indicator now shows when it's running, so
+        // the user can see (and wait for) it instead of accidentally
+        // cancelling it with an early commit.
+        DispatchQueue.main.async { [weak self] in self?.startPhantom() }
     }
 
-// Command queue ==================================================================================
-    private func enqueue(_ cmd: ItLCommand) {
-        queueLock.lock()
-        coalesce(cmd)
-        let kick = !workerActive && !pending.isEmpty
-        if kick { workerActive = true }
-        queueLock.unlock()
-        if kick {
-            workerQueue.async { [weak self] in self?.drain() }
-        }
-    }
-
-    // Called with queueLock held.  Only one .rebuild is ever queued at
-    // a time — the worker reads current intent state when it dequeues.
-    private func coalesce(_ cmd: ItLCommand) {
-        if !pending.contains(cmd) { pending.append(cmd) }
-    }
-
-    // Worker entry point.  Drains commands serially.
-    private func drain() {
-        while true {
-            queueLock.lock()
-            guard !pending.isEmpty else {
-                workerActive = false
-                queueLock.unlock()
-                return
-            }
-            let cmd = pending.removeFirst()
-            queueLock.unlock()
-            apply(cmd)
-        }
-    }
-
-    private func apply(_ cmd: ItLCommand) {
-        // Capture intent state at the moment the worker dequeues.  Any
-        // further user changes will arrive as their own .rebuild.
-        let intentVelocity = self.velocity
-        let intentMagnitudeOn = self.magnitudeOn
-        let intentAberrationOn = self.aberrationOn
-        let intentFieldMode = self.fieldMode
+// Phantom wave =================================================================================
+    // Called synchronously on the main thread.  Cancels any in-flight
+    // phantom, applies the new intent state to the live universe
+    // immediately (so auto-fire emission matches the new mode), and
+    // starts a fresh phantom calc whose pings will visibly expand from
+    // the source over the next ~30 frames.
+    private func startPhantom() {
         let w = universeWidth
         let h = universeHeight
         guard w > 0, h > 0 else { return }
 
-        // Phantom calc on a fresh, isolated universe — the live universe
-        // is untouched, so main keeps animating at full frame rate.
-        runPhantomCalc(width: w, height: h,
-                       velocity: intentVelocity,
-                       aberrationOn: intentAberrationOn,
-                       magnitudeOn: intentMagnitudeOn,
-                       fieldMode: intentFieldMode)
+        // Capture intent state.
+        let intentVelocity = self.velocity
+        let intentMagnitudeOn = self.magnitudeOn
+        let intentAberrationOn = self.aberrationOn
+        let intentFieldMode = self.fieldMode
 
-        // Brief swap-in.  Apply the new settings to the live universe
-        // (auto-fire continues with the new emission/aether velocity)
-        // and flip the sensor buffer so the next frame samples the new
-        // field.  Lock contention with main is microseconds.
-        universeLock.lock()
-        // Re-centre teslon and camera when leaving radiation mode —
-        // they've been oscillating and end up at arbitrary offsets,
-        // which would skew the E/B disc which assumes a centred source.
-        // Use intentVelocity for v.x so SCUniverseSetSpeed below sees
-        // the post-frame value as input (and treats the transformation
-        // as identity when the slider hasn't moved); zeroing v.x would
-        // strand the teslon at rest while the camera drifts at β.
+        // Mode-transition resets for radiation entry/exit — same logic
+        // as the previous apply.  Run BEFORE SCUniverseSetSpeed so the
+        // teslon's v is whatever post-frame value we want (zero would
+        // strand it; intentVelocity makes SetSpeed's transform an
+        // identity when the slider hasn't moved).
         if engineFieldMode == .radiation && intentFieldMode != .radiation {
             if let teslon = self.teslon, let camera = self.camera {
-                teslon.pointee.pos.x = universeWidth / 2
-                teslon.pointee.pos.y = universeHeight / 2
+                teslon.pointee.pos.x = w / 2
+                teslon.pointee.pos.y = h / 2
                 teslon.pointee.v.x = intentVelocity
                 teslon.pointee.v.y = 0
                 teslon.pointee.a.x = 0
                 teslon.pointee.a.y = 0
-                camera.pointee.pos.x = universeWidth / 2
-                camera.pointee.pos.y = universeHeight / 2
+                camera.pointee.pos.x = w / 2
+                camera.pointee.pos.y = h / 2
                 camera.pointee.v.x = intentVelocity
                 camera.pointee.v.y = 0
             }
         }
-        // On entry to radiation, capture the teslon's current position
-        // as the oscillation midpoint so the source doesn't snap (and
-        // strand its in-flight pings).  Phase resets to 0 so sin(0)=0
-        // puts the source exactly at the captured centre on the first
-        // radiation frame.
         if engineFieldMode != .radiation && intentFieldMode == .radiation {
             radiationPhase = 0
             if let teslon = self.teslon {
@@ -416,6 +467,9 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
                 radiationCenterY = teslon.pointee.pos.y
             }
         }
+
+        // Apply settings to live universe immediately so auto-fire
+        // pings from this frame forward emit with the new mode/velocity.
         if let live = self.universe {
             SCUniverseSetSpeed(live, intentVelocity)
             SCUniverseSetAberration(live, intentAberrationOn ? 1 : 0)
@@ -424,71 +478,123 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         engineMagnitudeOn = intentMagnitudeOn
         engineAberrationOn = intentAberrationOn
         engineFieldMode = intentFieldMode
-        swap(&sensorBuffer, &pulseSensorBuffer)
-        universeLock.unlock()
-    }
 
-    // Run the phantom calc on a fresh temporary SCUniverse and
-    // accumulate the new field into pulseSensorBuffer.  The live
-    // universe is untouched throughout.
-    private func runPhantomCalc(width w: Double, height h: Double,
-                                velocity: Double,
-                                aberrationOn: Bool,
-                                magnitudeOn: Bool,
-                                fieldMode: ItLFieldMode) {
-        let pulseUniverse = SCUniverseCreate(w, h)!
-        defer { SCUniverseRelease(pulseUniverse) }
-        SCUniverseSetC(pulseUniverse, 3.0)
-        // Teslon is retained by the universe; we don't need the pointer.
-        _ = SCUniverseCreateTeslon(pulseUniverse, w/2, h/2, 0, 0, 1.0, 1, 0)
-        let pulseCamera = SCUniverseCreateCamera(pulseUniverse, w/2, h/2, 0, 0)!
-        SCCameraSetWalls(pulseCamera, 0)
-        SCUniverseSetAberration(pulseUniverse, aberrationOn ? 1 : 0)
-        SCUniverseSetSpeed(pulseUniverse, velocity)
+        // Cancel any in-flight phantom — its partial pulseSensorBuffer
+        // data is discarded.  sensorBuffer still holds the last
+        // completed field, so pings keep their old colours until the
+        // new phantom wave sweeps through.
+        if let prev = phantomUniverse {
+            SCUniverseRelease(prev)
+            phantomUniverse = nil
+            phantomCamera = nil
+        }
+        // Also cancel any in-flight radiation atlas build.  Snapshot
+        // buffers are kept (so a re-entry into radiation with matching
+        // params can re-use them) but the in-flight phantom dies.
+        if let prev = radiationAtlasPhantomUniverse {
+            SCUniverseRelease(prev)
+            radiationAtlasPhantomUniverse = nil
+            radiationAtlasPhantomCamera = nil
+            // Leaving the build incomplete: mark not-ready so the next
+            // re-entry rebuilds rather than reads partial data.
+            if intentFieldMode != .radiation {
+                radiationAtlasReady = false
+            }
+        }
 
-        SCUniversePing(pulseUniverse, kPulsePings)
-
+        // Reset pulseSensorBuffer to zero — empty cells will fall back
+        // to sensorBuffer in the shader, so the world stays coloured
+        // by the old field ahead of the wave.
         let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
         memset(pulseSensorBuffer.contents(), 0, sensorByteCount)
 
-        guard let cmdBuf = commandQueue.makeCommandBuffer() else { return }
+        // Radiation mode: kick off the atlas build (a dense phantom that
+        // captures one period of the field as N snapshots indexed by
+        // source phase).  Live pings render normally; their body colours
+        // sample snapshots[currentPhaseIndex] every frame.  See
+        // startRadiationAtlas / advanceRadiationAtlas.
+        if intentFieldMode == .radiation {
+            startRadiationAtlas()
+            return
+        }
+
+        // Build the phantom universe.  Place the teslon at the live
+        // teslon's current position so the wave emanates from where
+        // the source actually is (matters in radiation mode where the
+        // source oscillates away from world centre).
+        let pu = SCUniverseCreate(w, h)!
+        SCUniverseSetC(pu, 3.0)
+        let centreX = teslon?.pointee.pos.x ?? (w / 2)
+        let centreY = teslon?.pointee.pos.y ?? (h / 2)
+        _ = SCUniverseCreateTeslon(pu, centreX, centreY, 0, 0, 1.0, 1, 0)
+        let pc = SCUniverseCreateCamera(pu, centreX, centreY, 0, 0)!
+        SCCameraSetWalls(pc, 0)
+        SCUniverseSetAberration(pu, intentAberrationOn ? 1 : 0)
+        SCUniverseSetSpeed(pu, intentVelocity)
+        SCUniversePing(pu, kPulsePings)
+
+        let slowSpeed = max(0.05, (1.0 - intentVelocity) * 3.0)
+        phantomTicksTotal = min(kMaxPulseTicks,
+                                Int(ceil(Double(kColormapExtent) / slowSpeed)) + 4)
+        phantomTicksCompleted = 0
+        // One tick per draw frame.  The phantom wave moves at c (same
+        // rate as live auto-fire pings) so its expansion looks physical.
+        // Animation duration varies with β: low β finishes in ~4 sec,
+        // high β can take 10+ sec along the slow direction — that's
+        // the actual speed of light in this medium, and watching it
+        // play out is the point.
+        phantomTicksPerFrame = 1
+        phantomVelocity = intentVelocity
+        phantomMagnitudeOn = intentMagnitudeOn
+        phantomFieldMode = intentFieldMode
+        phantomUniverse = pu
+        phantomCamera = pc
+        phantomActive = true
+    }
+
+    // Advance the in-flight phantom by up to N ticks, encoding the
+    // deposits into the supplied command buffer.  Called from draw()
+    // once per frame.  Returns when the phantom finishes or N ticks
+    // have been consumed.
+    private func advancePhantom(into cmdBuf: MTLCommandBuffer, ticks: Int) {
+        guard phantomActive, let pu = phantomUniverse, let pc = phantomCamera else { return }
         let strideSize = MemoryLayout<ItLPingDraw>.stride
         let tgWidth = min(accumPipelineState.maxTotalThreadsPerThreadgroup, 64)
 
-        // Slowest lab-frame ping (forward emission against aether) moves
-        // at (1−β)c per tick; need that wavefront to reach extent.
-        let slowSpeed = max(0.05, (1.0 - velocity) * 3.0)
-        let pulseTicks = min(kMaxPulseTicks,
-                             Int(ceil(Double(kColormapExtent) / slowSpeed)) + 4)
-
-        for tick in 0..<pulseTicks {
-            SCUniverseTic(pulseUniverse)
-            let pingCount = Int(pulseUniverse.pointee.pingCount)
+        let toDo = min(ticks, phantomTicksTotal - phantomTicksCompleted)
+        for _ in 0..<toDo {
+            SCUniverseTic(pu)
+            let pingCount = Int(pu.pointee.pingCount)
+            phantomTicksCompleted += 1
             if pingCount <= 0 { continue }
 
-            let offset = tick * Int(kPulsePings) * strideSize
+            // The pulse-pings slab has kMaxPulseTicks slots; recycle
+            // by tick index modulo that.
+            let slotIndex = phantomTicksCompleted % kMaxPulseTicks
+            let offset = slotIndex * Int(kPulsePings) * strideSize
             let slot = pulsePingsBuffer.contents()
                 .advanced(by: offset)
                 .bindMemory(to: ItLPingDraw.self, capacity: pingCount)
             for i in 0..<pingCount {
-                let p = pulseUniverse.pointee.pings[i]!
+                let p = pu.pointee.pings[i]!
                 slot[i] = ItLPingDraw(
                     position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
                     cupola: SIMD2<Float>(Float(p.pointee.cupola.x), Float(p.pointee.cupola.y)),
-                    velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y))
+                    Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                    velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                    isPhantom: 0   // deposit-kernel input; flag not consulted there
                 )
             }
 
             var ctx = ItLAccumCtx(
-                sourcePos: SIMD2<Float>(Float(pulseCamera.pointee.pos.x), Float(pulseCamera.pointee.pos.y)),
-                aetherTranslation: SIMD2<Float>(-Float(velocity) * 3.0, 0),
+                sourcePos: SIMD2<Float>(Float(pc.pointee.pos.x), Float(pc.pointee.pos.y)),
+                aetherTranslation: SIMD2<Float>(-Float(phantomVelocity) * 3.0, 0),
                 colormapExtent: kColormapExtent,
                 c: 3.0,
                 pingCount: UInt32(pingCount),
-                magnitudeOn: magnitudeOn ? 1 : 0,
-                fieldMode: fieldMode.rawValue
+                magnitudeOn: phantomMagnitudeOn ? 1 : 0,
+                fieldMode: phantomFieldMode.rawValue
             )
-
             let enc = cmdBuf.makeComputeCommandEncoder()!
             enc.setComputePipelineState(accumPipelineState)
             enc.setBytes(&ctx, length: MemoryLayout<ItLAccumCtx>.size, index: 0)
@@ -500,14 +606,405 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
             enc.endEncoding()
         }
 
-        cmdBuf.commit()
-        cmdBuf.waitUntilCompleted()
+        if phantomTicksCompleted >= phantomTicksTotal {
+            // Phantom finished.  Blit the freshly-built pulse field
+            // into sensorBuffer (so subsequent frames sample the new
+            // field directly) and release the phantom universe.  Stamp
+            // engineOldFieldMode to the mode that produced this data —
+            // future commits will use it to render the fallback colours
+            // ahead of their new wave correctly.
+            let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
+            if let blit = cmdBuf.makeBlitCommandEncoder() {
+                blit.copy(from: pulseSensorBuffer, sourceOffset: 0,
+                          to: sensorBuffer, destinationOffset: 0,
+                          size: sensorByteCount)
+                blit.endEncoding()
+            }
+            engineOldFieldMode = phantomFieldMode
+            SCUniverseRelease(pu)
+            phantomUniverse = nil
+            phantomCamera = nil
+            phantomActive = false
+        }
+    }
+
+    // Radiation deposit: zero sensorBuffer, run the accumulator once on
+    // the LIVE ping cloud with fieldMode=2, targeting sensorBuffer
+    // directly.  Each frame produces a fresh snapshot — no phantom, no
+    // dual buffer.  Constructively-summed deposits at each cell give
+    // the instantaneous radiation field at that point (see comment at
+    // call site in draw()).
+    private func depositLiveCloudForRadiation(into cmdBuf: MTLCommandBuffer) {
+        guard let universe else { return }
+        let pingCount = Int(universe.pointee.pingCount)
+        let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
+
+        // CPU zeroing — sensorBuffer is .storageModeShared, and Metal
+        // serialises CPU writes before subsequent GPU commands as long
+        // as the writes happen before the encoder runs.
+        memset(sensorBuffer.contents(), 0, sensorByteCount)
+        // Also reset pulseSensorBuffer so the dual-buffer logic in the
+        // ping fragment shader (used by E/B) reads clean zeros if the
+        // user flips back to E/B from R — avoids stale R deposits
+        // bleeding into the next mode's render.
+        memset(pulseSensorBuffer.contents(), 0, sensorByteCount)
+
+        if pingCount <= 0 { return }
+
+        // Build a temporary ping buffer for the deposit.  Live universe's
+        // pings are read every frame; this buffer is throwaway.
+        var pings: [ItLPingDraw] = []
+        pings.reserveCapacity(pingCount)
+        for i in 0..<pingCount {
+            let p = universe.pointee.pings[i]!
+            pings.append(ItLPingDraw(
+                position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
+                cupola: SIMD2<Float>(Float(p.pointee.cupola.x), Float(p.pointee.cupola.y)),
+                Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                isPhantom: 0
+            ))
+        }
+        guard let pingsBuf = device.makeBuffer(bytes: pings,
+                                               length: pings.count * MemoryLayout<ItLPingDraw>.stride,
+                                               options: .storageModeShared) else { return }
+
+        // Source-position reference for the polar grid.
+        //
+        // The analytic disc anchors to `radiationCenter` — the fixed
+        // oscillation midpoint — so its (R, θ) grid is steady regardless
+        // of where the teslon is right now.  The cupola accumulator must
+        // use the SAME reference, otherwise the cupola's polar grid
+        // swings with the source and the simulation's lobes appear
+        // shifted relative to the analytic (we hit this bug: source at
+        // its left extreme → cupola lobes apparently favouring the left).
+        //
+        // For low-β radiation the midpoint is the correct reference: the
+        // far-field formula uses the source's "central" position and
+        // treats the oscillation as a small perturbation.  Using current
+        // teslon.pos would amount to a different (less accurate) frame
+        // choice that breaks comparison with the closed form.
+        let sourcePos = SIMD2<Float>(Float(radiationCenterX), Float(radiationCenterY))
+        var ctx = ItLAccumCtx(
+            sourcePos: sourcePos,
+            aetherTranslation: SIMD2<Float>(-Float(engineVelocity) * 3.0, 0),
+            colormapExtent: kColormapExtent,
+            c: 3.0,
+            pingCount: UInt32(pingCount),
+            magnitudeOn: engineMagnitudeOn ? 1 : 0,
+            fieldMode: ItLFieldMode.radiation.rawValue
+        )
+        let tgWidth = min(accumPipelineState.maxTotalThreadsPerThreadgroup, 64)
+        let enc = cmdBuf.makeComputeCommandEncoder()!
+        enc.setComputePipelineState(accumPipelineState)
+        enc.setBytes(&ctx, length: MemoryLayout<ItLAccumCtx>.size, index: 0)
+        enc.setBuffer(pingsBuf, offset: 0, index: 1)
+        enc.setBuffer(sensorBuffer, offset: 0, index: 2)
+        let tgs = MTLSize(width: (pingCount + tgWidth - 1) / tgWidth, height: 1, depth: 1)
+        enc.dispatchThreadgroups(tgs,
+                                 threadsPerThreadgroup: MTLSize(width: tgWidth, height: 1, depth: 1))
+        enc.endEncoding()
+    }
+
+// Radiation atlas ===============================================================================
+    // The radiation field at any cell (R, θ) at any moment depends on
+    // the source's state at the retarded emission time.  Since the
+    // source motion is strictly periodic, the field at (R, θ, t) is
+    // identical to the field at (R, θ, t + T) where T = 2π/ω.  We
+    // exploit this by pre-computing a ring of N = round(T) snapshot
+    // sensors covering one full source period at high ping density.
+    // Live pings then sample snapshots[currentPhaseIndex] for their
+    // body colour — runtime cost is just an index calc per frame and
+    // a buffer rebinding.
+
+    // Allocate (or reallocate) snapshot buffers for current N.
+    private func ensureRadiationAtlasCapacity(_ N: Int) {
+        if radiationAtlasN == N && !radiationAtlasSnapshots.isEmpty { return }
+        radiationAtlasSnapshots.removeAll(keepingCapacity: true)
+        let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
+        for _ in 0..<N {
+            if let buf = device.makeBuffer(length: sensorByteCount, options: .storageModeShared) {
+                radiationAtlasSnapshots.append(buf)
+            }
+        }
+        radiationAtlasN = N
+    }
+
+    // Kick off a fresh atlas build: clear old data, allocate snapshots
+    // sized to current ω, create the phantom universe.  Heavy work
+    // happens incrementally in advanceRadiationAtlas().
+    private func startRadiationAtlas() {
+        let omega = max(self.radiationOmega, 1e-6)
+        let cSpeed: Double = 3.0
+        let maxBeta: Double = 0.9
+        let amplitude = min(self.radiationAmplitude, maxBeta * cSpeed / omega)
+
+        // Skip rebuild if the existing atlas already matches the current
+        // params — re-entry into radiation mode is then instant.
+        if radiationAtlasReady
+            && radiationAtlasOmega == omega
+            && radiationAtlasAmplitude == amplitude
+            && !radiationAtlasSnapshots.isEmpty {
+            return
+        }
+
+        // N snapshots covering one period.  Clamp to a sane range so we
+        // don't blow up memory for very low ω.
+        let N = max(16, min(512, Int(round(2.0 * .pi / omega))))
+        ensureRadiationAtlasCapacity(N)
+
+        // Zero all snapshot buffers so any reads during the build show
+        // the empty-cell colour, not stale data from a previous atlas.
+        let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
+        for buf in radiationAtlasSnapshots {
+            memset(buf.contents(), 0, sensorByteCount)
+        }
+
+        // Release any in-flight phantom from a prior aborted build.
+        if let prev = radiationAtlasPhantomUniverse {
+            SCUniverseRelease(prev)
+            radiationAtlasPhantomUniverse = nil
+            radiationAtlasPhantomCamera = nil
+        }
+
+        // Phantom universe with a teslon at radiationCenter.  We'll
+        // override its pos/v/a each tick to drive the oscillation.
+        let w = universeWidth
+        let h = universeHeight
+        guard w > 0, h > 0 else { return }
+        let pu = SCUniverseCreate(w, h)!
+        SCUniverseSetC(pu, 3.0)
+        _ = SCUniverseCreateTeslon(pu, radiationCenterX, radiationCenterY, 0, 0, 1.0, 1, 0)
+        let pc = SCUniverseCreateCamera(pu, radiationCenterX, radiationCenterY, 0, 0)!
+        SCCameraSetWalls(pc, 0)
+        // Rule 3 emission anisotropy ON — match the live universe, so
+        // the atlas measures the actual cupola algorithm with all its
+        // pieces, not a stripped-down approximation.  Any mismatch
+        // between this and the analytic disc is a bug to find, not a
+        // knob to turn off.
+        SCUniverseSetAberration(pu, self.aberrationOn ? 1 : 0)
+        SCUniverseSetSpeed(pu, 0)
+
+        radiationAtlasPhantomUniverse = pu
+        radiationAtlasPhantomCamera = pc
+        radiationAtlasPhantomPhase = 0
+        radiationAtlasOmega = omega
+        radiationAtlasAmplitude = amplitude
+        // One-period-wide pulse build (E/B-style sweep):
+        //   • First N ticks: source oscillates through ONE full period
+        //     and emits.  This creates a wave packet exactly one
+        //     wavelength (= c·T) wide.
+        //   • After that, no more emission — just tic the universe so
+        //     the packet propagates outward without grow-from-source
+        //     baggage.  Visually identical to the E/B labs' expanding
+        //     wavefront, only this one carries a full cycle of source
+        //     state instead of a single impulse.
+        //   • Total ticks = N + timeToEdge: long enough for the
+        //     trailing edge to leave R = colormapExtent.
+        //   • Capture happens EVERY tick into snapshot[phase mod N]
+        //     using atomic-add into the snapshot buffer directly.
+        //     Cell (R, θ) at radius R is touched only when the pulse
+        //     is at radius R (a one-tick-wide window per cycle of the
+        //     atlas index).  Over the build, each snapshot ends up
+        //     with a deposit at every R the pulse passed through,
+        //     each at the correct retarded phase = (live phase − ωR/c).
+        //     No scratch buffer, no blit — the snapshot IS the
+        //     accumulator.
+        let timeToEdge = Int(ceil(Double(kColormapExtent) / cSpeed)) + 4
+        radiationAtlasCaptureStart = N    // re-purpose: emission ends at this tick
+        radiationAtlasTicksTotal = N + timeToEdge
+        radiationAtlasTicksCompleted = 0
+        radiationAtlasReady = false
+        phantomActive = true
+    }
+
+    // Advance the atlas phantom by radiationAtlasTicksPerFrame ticks.
+    // Each tick: drive teslon's oscillation, emit a dense volley, run
+    // the radiation deposit kernel against the cloud (writing into
+    // pulseSensorBuffer as a scratch buffer), and during the capture
+    // window blit the result into snapshots[(tick − captureStart) % N].
+    private func advanceRadiationAtlas(into cmdBuf: MTLCommandBuffer) {
+        guard let pu = radiationAtlasPhantomUniverse else { return }
+        let cSpeed: Double = 3.0
+        let omega = radiationAtlasOmega
+        let amplitude = radiationAtlasAmplitude
+        // Pings per atlas tick.  Higher = denser field but heavier
+        // compute and bigger memory footprint over the build's
+        // ~radiationAtlasTicksTotal lifetime.
+        let pingsPerAtlasTick: Int32 = 480
+        let sensorByteCount = kColormapMR * kColormapMTheta * MemoryLayout<UInt32>.size
+        let tgWidth = min(accumPipelineState.maxTotalThreadsPerThreadgroup, 64)
+
+        let remaining = radiationAtlasTicksTotal - radiationAtlasTicksCompleted
+        let toDo = min(radiationAtlasTicksPerFrame, remaining)
+        guard toDo > 0 else { return }
+
+        for _ in 0..<toDo {
+            let tick = radiationAtlasTicksCompleted
+            let emissionTicks = radiationAtlasCaptureStart   // re-purposed: N
+
+            // Drive the source's oscillation only during emission phase.
+            // After that the teslon's state doesn't matter — no more
+            // pings will be emitted — but we still advance the phase
+            // counter so the snapshot index keeps cycling.
+            if tick < emissionTicks, pu.pointee.teslonCount > 0,
+               let teslon = pu.pointee.teslons[0] {
+                let phase = radiationAtlasPhantomPhase
+                teslon.pointee.pos.x = radiationCenterX + amplitude * sin(phase)
+                teslon.pointee.pos.y = radiationCenterY
+                teslon.pointee.v.x = amplitude * omega * cos(phase) / cSpeed
+                teslon.pointee.v.y = 0
+                teslon.pointee.a.x = -amplitude * omega * omega * sin(phase) / cSpeed
+                teslon.pointee.a.y = 0
+                SCUniversePing(pu, pingsPerAtlasTick)
+            }
+            SCUniverseTic(pu)
+            radiationAtlasPhantomPhase += omega
+
+            let pingCount = Int(pu.pointee.pingCount)
+
+            if pingCount > 0 {
+                // Deposit kernel writes DIRECTLY into the snapshot
+                // buffer at the current phase index.  Atomic adds in
+                // the kernel mean this accumulates across multiple
+                // visits to the same snapshot — each visit deposits
+                // at a different annulus (the pulse's current
+                // location), so by end-of-build the snapshot is
+                // populated at every radius the pulse passed through.
+                let twoPi = 2.0 * Double.pi
+                var phaseMod = radiationAtlasPhantomPhase.truncatingRemainder(dividingBy: twoPi)
+                if phaseMod < 0 { phaseMod += twoPi }
+                let step = twoPi / Double(max(radiationAtlasN, 1))
+                let snapIdx = Int(round(phaseMod / step)) % max(radiationAtlasN, 1)
+
+                if snapIdx >= 0 && snapIdx < radiationAtlasSnapshots.count {
+                    var pings: [ItLPingDraw] = []
+                    pings.reserveCapacity(pingCount)
+                    for i in 0..<pingCount {
+                        let p = pu.pointee.pings[i]!
+                        pings.append(ItLPingDraw(
+                            position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
+                            cupola: SIMD2<Float>(Float(p.pointee.cupola.x), Float(p.pointee.cupola.y)),
+                            Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                            velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                            isPhantom: 0
+                        ))
+                    }
+                    if let pingsBuf = device.makeBuffer(bytes: pings,
+                                                        length: pings.count * MemoryLayout<ItLPingDraw>.stride,
+                                                        options: .storageModeShared) {
+                        var ctx = ItLAccumCtx(
+                            sourcePos: SIMD2<Float>(Float(radiationCenterX), Float(radiationCenterY)),
+                            aetherTranslation: SIMD2<Float>(0, 0),
+                            colormapExtent: kColormapExtent,
+                            c: 3.0,
+                            pingCount: UInt32(pingCount),
+                            magnitudeOn: 1,
+                            fieldMode: ItLFieldMode.radiation.rawValue
+                        )
+                        let enc = cmdBuf.makeComputeCommandEncoder()!
+                        enc.setComputePipelineState(accumPipelineState)
+                        enc.setBytes(&ctx, length: MemoryLayout<ItLAccumCtx>.size, index: 0)
+                        enc.setBuffer(pingsBuf, offset: 0, index: 1)
+                        enc.setBuffer(radiationAtlasSnapshots[snapIdx], offset: 0, index: 2)
+                        let tgs = MTLSize(width: (pingCount + tgWidth - 1) / tgWidth, height: 1, depth: 1)
+                        enc.dispatchThreadgroups(tgs,
+                                                 threadsPerThreadgroup: MTLSize(width: tgWidth, height: 1, depth: 1))
+                        enc.endEncoding()
+                    }
+                }
+            }
+
+            radiationAtlasTicksCompleted += 1
+            _ = sensorByteCount  // keep symbol live for any future blit use
+        }
+
+        // Build finished?  Release phantom, drop indicator, flip the
+        // atlas-ready flag so the ping render path starts using it.
+        if radiationAtlasTicksCompleted >= radiationAtlasTicksTotal {
+            if let pu = radiationAtlasPhantomUniverse {
+                SCUniverseRelease(pu)
+                radiationAtlasPhantomUniverse = nil
+                radiationAtlasPhantomCamera = nil
+            }
+            radiationAtlasReady = true
+            phantomActive = false
+        }
+    }
+
+    // Pick the snapshot index whose source phase is closest to the
+    // live source's current phase.  Phase = radiationPhase mod 2π,
+    // mapped into [0, N).
+    private func currentRadiationSnapshotIndex() -> Int {
+        guard radiationAtlasN > 0 else { return 0 }
+        let twoPi = 2.0 * Double.pi
+        var phaseMod = radiationPhase.truncatingRemainder(dividingBy: twoPi)
+        if phaseMod < 0 { phaseMod += twoPi }
+        let step = twoPi / Double(radiationAtlasN)
+        var idx = Int(round(phaseMod / step)) % radiationAtlasN
+        if idx < 0 { idx += radiationAtlasN }
+        return idx
+    }
+
+    // Visible atlas phantom — feeds phantom pings into the render as
+    // white bodies.  Source emits only during the first N ticks (one
+    // full period), so the live ping cloud naturally IS a one-
+    // wavelength-wide pulse expanding outward.  No filter needed —
+    // every ping in the phantom universe is part of the visible
+    // expanding wavefront, exactly as in the E/B labs.
+    private func currentRadiationAtlasPingDraws() -> [ItLPingDraw] {
+        guard let pu = radiationAtlasPhantomUniverse else { return [] }
+        let count = Int(pu.pointee.pingCount)
+        if count == 0 { return [] }
+        var out: [ItLPingDraw] = []
+        out.reserveCapacity(count)
+        for i in 0..<count {
+            let p = pu.pointee.pings[i]!
+            out.append(ItLPingDraw(
+                position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
+                cupola: SIMD2<Float>(Float(p.pointee.cupola.x), Float(p.pointee.cupola.y)),
+                Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                isPhantom: 1   // forces body-only white render
+            ))
+        }
+        return out
+    }
+
+// Phantom pings =================================================================================
+    // Read the live phantom pings into ItLPingDraw structs for rendering.
+    // Empty when no phantom is active.
+    private func currentPhantomPingDraws() -> [ItLPingDraw] {
+        guard phantomActive, let pu = phantomUniverse else { return [] }
+        let count = Int(pu.pointee.pingCount)
+        var out: [ItLPingDraw] = []
+        out.reserveCapacity(count)
+        for i in 0..<count {
+            let p = pu.pointee.pings[i]!
+            // Delta cupola: engine stores cupola in dimensionless form
+            // C/c = n̂_em − β_src (see Sargasso.c: ping->cupola = iQ − tV
+            // where tV is the teslon's β).  Subtracting ping.v (= n̂_em)
+            // leaves −β_src(t_em) — the source's velocity at emission,
+            // dimensionless, with the radial-propagation term stripped.
+            let cx: Double = deltaCupolaOn
+                ? (p.pointee.cupola.x - p.pointee.v.x)
+                : p.pointee.cupola.x
+            let cy: Double = deltaCupolaOn
+                ? (p.pointee.cupola.y - p.pointee.v.y)
+                : p.pointee.cupola.y
+            out.append(ItLPingDraw(
+                position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
+                cupola: SIMD2<Float>(Float(cx), Float(cy)),
+                Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                isPhantom: 1   // forces body-only render regardless of fullPingsOn
+            ))
+        }
+        return out
     }
 
 // Events =========================================================================================
     func onPing() {
-        universeLock.lock()
-        defer { universeLock.unlock() }
         guard let universe else { return }
         SCUniversePing(universe, pingsPerVolley)
     }
@@ -535,12 +1032,6 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
 
         let now = CACurrentMediaTime()
         lastTickTime = now
-
-        // Lock contention with the worker is microseconds (only the
-        // brief swap-in at the end of a phantom calc), so a plain lock
-        // doesn't cause a noticeable hitch.
-        universeLock.lock()
-        defer { universeLock.unlock() }
 
         guard let universe, let camera else { return }
 
@@ -627,12 +1118,29 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         pingDraws.reserveCapacity(pingCount)
         for i in 0..<pingCount {
             let p = universe.pointee.pings[i]!
+            // See deltaCupolaOn comment on the property.  Engine cupola
+            // is dimensionless (n̂_em − β); delta = cupola − n̂_em = −β.
+            let cx: Double = deltaCupolaOn
+                ? (p.pointee.cupola.x - p.pointee.v.x)
+                : p.pointee.cupola.x
+            let cy: Double = deltaCupolaOn
+                ? (p.pointee.cupola.y - p.pointee.v.y)
+                : p.pointee.cupola.y
             pingDraws.append(ItLPingDraw(
                 position: SIMD2<Float>(Float(p.pointee.pos.x), Float(p.pointee.pos.y)),
-                cupola: SIMD2<Float>(Float(p.pointee.cupola.x), Float(p.pointee.cupola.y)),
-                velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y))
+                cupola: SIMD2<Float>(Float(cx), Float(cy)),
+                Cdot: SIMD2<Float>(Float(p.pointee.Cdot.x), Float(p.pointee.Cdot.y)),
+                velocity: SIMD2<Float>(Float(p.pointee.v.x), Float(p.pointee.v.y)),
+                isPhantom: 0
             ))
         }
+        // Append phantom pings as a visible expanding layer.  They use
+        // the same shader as live pings so the wavefront looks like a
+        // dense cloud of the same dots, riding outward from the source.
+        // For radiation, the atlas phantom is what's expanding — emits
+        // continuously as the source oscillates, building up the field.
+        pingDraws.append(contentsOf: currentPhantomPingDraws())
+        pingDraws.append(contentsOf: currentRadiationAtlasPingDraws())
 
         var teslons: [NorthLoop] = []
         for i in 0..<Int(universe.pointee.teslonCount) {
@@ -648,32 +1156,74 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
 
         // Analytic disc reads user-intent `velocity` and `fieldMode` so
         // it tracks both the slider and the E/B switch live, even when
-        // the worker hasn't yet rebuilt the cupola field.
+        // the worker hasn't yet rebuilt the cupola field.  Radiation
+        // mode also passes the source-oscillation parameters so the
+        // shader can paint the low-β dipole closed form.
         var lweCtx = ItLLWEContext(
             cameraPos: cameraPos,
             cameraBounds: SIMD2<Float>(width, height),
             beta: SIMD2<Float>(Float(velocity), 0),
-            fieldMode: fieldMode.rawValue
+            fieldMode: fieldMode.rawValue,
+            sourceCenter: SIMD2<Float>(Float(radiationCenterX), Float(radiationCenterY)),
+            radiationPhase: Float(radiationPhase),
+            radiationOmega: Float(radiationOmega),
+            radiationAmplitude: Float(radiationAmplitude),
+            c: 3.0
         )
         memcpy(lweBuffer.contents(), &lweCtx, MemoryLayout<ItLLWEContext>.size)
 
         // Cupola pings shade against the engine-applied state so what's
-        // drawn matches the sensor field they sample from.
+        // drawn matches the sensor field they sample from.  For
+        // radiation, calRef = the analytic LW peak amplitude at the
+        // perpendicular reference point (0, y_cal):
+        //   |F_rad|_peak  =  A·ω² / (c²·y_cal)
+        // This is the SAME calRef the analytic disc uses, mirroring
+        // how E and B labs calibrate.  No fudge constant — the
+        // cupola's bandCoord = 6 at y_cal IF AND ONLY IF the algorithm
+        // is producing the correct LW magnitude there.  Any visible
+        // band mismatch between the cupola sensor field and the
+        // analytic disc is then a real algorithm/implementation bug,
+        // not a calibration knob.
+        let cSpeed: Double = 3.0
+        let yCal: Double = Double(kColormapExtent / 7.0)
+            / pow(max(1.0 - engineVelocity * engineVelocity, 1e-4), 0.25)
+        let radCalRef: Double = (engineFieldMode == .radiation)
+            ? radiationAmplitude * radiationOmega * radiationOmega
+                / (cSpeed * cSpeed * yCal)
+            : 0
         var pingFragCtx = ItLPingFragCtx(
             cameraPos: cameraPos,
             colormapExtent: kColormapExtent,
             beta: Float(engineVelocity),
             fullPingsOn: fullPingsOn ? 1 : 0,
             magnitudeOn: engineMagnitudeOn ? 1 : 0,
-            fieldMode: engineFieldMode.rawValue
+            fieldMode: engineFieldMode.rawValue,
+            oldFieldMode: engineOldFieldMode.rawValue,
+            radiationCalRef: Float(radCalRef)
         )
         memcpy(pingFragBuffer.contents(), &pingFragCtx, MemoryLayout<ItLPingFragCtx>.size)
 
         guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
 
-        // The sensor field is rebuilt off-thread by runPhantomCalc on
-        // commit; nothing to deposit per frame.  This pings buffer is
-        // purely for the visual flow.
+        // Sensor deposit pass.
+        //
+        // E/B modes: phantom-based.  A phantom universe runs its course
+        // depositing into pulseSensorBuffer; when it finishes its results
+        // get blit-copied into sensorBuffer.
+        //
+        // R mode: atlas-based.  A dense, one-time phantom build computes
+        // a ring of N field snapshots, one per source phase.  Live pings
+        // sample snapshots[currentPhase] for their body colour — no
+        // per-frame deposit needed.  See startRadiationAtlas /
+        // advanceRadiationAtlas / currentRadiationSnapshotIndex.
+        if engineFieldMode == .radiation {
+            if !radiationAtlasReady {
+                advanceRadiationAtlas(into: commandBuffer)
+            }
+        } else {
+            advancePhantom(into: commandBuffer, ticks: phantomTicksPerFrame)
+        }
+
         let pingsBuffer: MTLBuffer? = pingDraws.isEmpty ? nil :
             device.makeBuffer(bytes: pingDraws,
                               length: pingDraws.count * MemoryLayout<ItLPingDraw>.stride,
@@ -686,11 +1236,10 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         encoder.setFragmentTexture(backgroundTexture, index: 0)
         encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
 
-        // No analytic disc in radiation mode yet — the E/B closed forms
-        // assume constant β, which doesn't apply to an accelerating
-        // source.  Disc gets reintroduced once we have an LW-R formula
-        // worth painting.
-        if analyticDiscOn && fieldMode != .radiation {
+        // Analytic disc in all three modes: E/B use closed-form LW
+        // velocity field; R uses the low-β dipole radiation closed form
+        // (see ItLLWEContext + the fieldMode==2 branch in the shader).
+        if analyticDiscOn {
             encoder.setRenderPipelineState(lwePipelineState)
             encoder.setVertexBuffer(lweBuffer, offset: 0, index: 0)
             encoder.setFragmentBuffer(lweBuffer, offset: 0, index: 0)
@@ -710,7 +1259,28 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
             encoder.setVertexBuffer(cameraBuffer, offset: 0, index: 0)
             encoder.setVertexBuffer(pingsBuffer, offset: 0, index: 1)
             encoder.setFragmentBuffer(pingFragBuffer, offset: 0, index: 0)
-            encoder.setFragmentBuffer(sensorBuffer, offset: 0, index: 1)
+            // Sensor binding depends on mode.
+            //
+            // E/B: bind sensorBuffer (last completed phantom) and
+            // pulseSensorBuffer (current in-flight phantom).  The shader
+            // picks pulseSensorBuffer where data exists, sensorBuffer
+            // elsewhere, so wave transitions ride the wavefront.
+            //
+            // R: bind the snapshot for the current source phase to
+            // buffer 1.  The MC per-ping rotational-impulse deposit
+            // already encodes the radiation amplitude per cell, so a
+            // single snapshot read suffices — no finite difference.
+            //
+            // E/B and pre-atlas R: bind sensorBuffer + pulseSensorBuffer.
+            let primarySensor: MTLBuffer
+            if engineFieldMode == .radiation && !radiationAtlasSnapshots.isEmpty {
+                let idx = currentRadiationSnapshotIndex()
+                primarySensor = radiationAtlasSnapshots[idx]
+            } else {
+                primarySensor = sensorBuffer
+            }
+            encoder.setFragmentBuffer(primarySensor, offset: 0, index: 1)
+            encoder.setFragmentBuffer(pulseSensorBuffer, offset: 0, index: 2)
             encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4, instanceCount: pingDraws.count)
         }
 

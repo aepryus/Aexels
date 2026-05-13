@@ -19,8 +19,14 @@ struct ItLLWEContext {
     float2 cameraPos;
     float2 cameraBounds;
     float2 beta;
-    uint fieldMode;             // 0 = electric (rainbow), 1 = magnetic (red/blue diverging)
+    uint fieldMode;             // 0 = electric (rainbow), 1 = magnetic (red/blue diverging), 2 = radiation
     uint _pad;
+    // Radiation-mode parameters — see itlLWEFragmentShader.
+    float2 sourceCenter;
+    float radiationPhase;       // ω·t (current source phase, radians)
+    float radiationOmega;       // rad per tick
+    float radiationAmplitude;   // world units
+    float c;                    // ping speed
 };
 
 struct ItLLWEPacket {
@@ -133,8 +139,11 @@ struct ItLPingCamera {
 
 struct ItLPingDraw {
     float2 position;
-    float2 cupola;
-    float2 velocity;
+    float2 cupola;    // C = n̂_em − β_em
+    float2 Cdot;      // Ċ = dC/dt at emission
+    float2 velocity;  // unit n̂_em
+    uint isPhantom;   // 1 = phantom wave ping; forces body-only render
+    uint _pad;
 };
 
 struct ItLPingFragCtx {
@@ -143,8 +152,10 @@ struct ItLPingFragCtx {
     float beta;
     uint fullPingsOn;          // 1 = render body + cupola vector + head
     uint magnitudeOn;          // 1 = arm length scales with |cupola|; 0 = unit
-    uint fieldMode;            // 0 = electric (rainbow), 1 = magnetic (signed diverging)
-    uint _pad;
+    uint fieldMode;            // 0 = electric (rainbow), 1 = magnetic (signed diverging), 2 = radiation
+    uint oldFieldMode;         // mode the OLD sensor data was deposited under
+    float radiationCalRef;     // calibration reference for radiation bands (A·ω²/y_cal · k)
+    float _pad;
 };
 
 struct ItLAccumCtx {
@@ -190,8 +201,15 @@ kernel void itlAccumulateKernel(constant ItLAccumCtx &ctx [[buffer(0)]],
     float dR = ctx.colormapExtent / float(ITL_CM_M_R);
     int iR1 = int(R1 / dR);
     int iR0 = R0 < 0.0 ? -1 : int(R0 / dR);
-    if (iR1 <= iR0) return;                 // not a new outward crossing
     if (iR1 >= ITL_CM_M_R) return;
+    // E/B: deposit only on outward cell crossings.  Over many ticks the
+    // accumulator integrates each ping's contribution exactly once per
+    // radial cell along its trajectory → stable, no double-counting.
+    // R: deposit on cell OCCUPANCY (every active ping every frame).
+    // With per-frame sensor reset, the cell value = sum of weights for
+    // pings currently in this cell, which constructively reads the
+    // instantaneous radiation field there.
+    if (ctx.fieldMode != 2u && iR1 <= iR0) return;
 
     float theta = atan2(r1.y, r1.x);
     if (theta < 0) theta += 2.0 * 3.14159265358979;
@@ -221,7 +239,70 @@ kernel void itlAccumulateKernel(constant ItLAccumCtx &ctx [[buffer(0)]],
     // engine's emission, so the kernel does NOT re-weight by ρ here.
     float2 nFace = r1 / R1;
     float w;
-    if (ctx.fieldMode == 1u) {
+    if (ctx.fieldMode == 2u) {
+        // Radiation mode — MC's per-ping rotational impulse rule
+        // (numerically verified to 99.87% against LW on a δ-sphere
+        // observer ball):
+        //
+        //   I_rot  =  -τ · n̂_em × [C × Ċ] / (1 − β²)
+        //
+        // Expanded by BAC-CAB (using κ = n̂_em·C):
+        //   n̂_em × [C × Ċ]  =  C·(n̂_em·Ċ) − Ċ·κ
+        //
+        // Projected onto ê_perp ⊥ n̂_em (perpendicular to the ping's
+        // own flight direction — which IS the retarded-source-to-cell
+        // direction, since the ping has traveled in a straight line
+        // at c from its emission point):
+        //   I_rot,⊥  =  τ · ( (Ċ·ê_perp)·κ − (C·ê_perp)·(n̂_em·Ċ) )
+        //                 / (1 − β²)
+        //
+        // ----- Trajectory-as-source-worldline geometry -----
+        // The ping carries (n̂_em, C, Ċ); R is NOT stored on the
+        // ping — it's the geometric distance between two points the
+        // simulation already knows about: the ping's current position
+        // and the source's *retarded* position.  Same logic E/B use:
+        // intersect the ping's backward null-ray with the source's
+        // worldline.
+        //
+        // For E/B the source worldline is a single point, so the
+        // intersection trivially gives R = |ping.pos − source.pos|.
+        // For radiation the source moves along the line y = sourcePos.y
+        // (oscillating in x), so the intersection of the ping's ray
+        // p_ret = ping.pos − R·n̂_em with that line solves to:
+        //   ping.pos.y − R · n̂_em.y  =  sourcePos.y
+        //   ⇒  R = (ping.pos.y − sourcePos.y) / n̂_em.y
+        //         = r1.y / n̂_em.y
+        // Closed form, no bisection, no per-ping storage — the ping's
+        // *trajectory* (position + direction) already encodes its
+        // emission point given the constraint that the source lives
+        // on y = sourcePos.y.  Degenerates to the E/B case for a
+        // stationary source on that line.
+        //
+        // Pings whose n̂_em is nearly parallel to the motion axis
+        // (|n̂_em.y| → 0) sit at the radiation null (sin θ = 0) and
+        // contribute ~zero anyway; we skip those to avoid 1/0.
+        float2 cup   = pings[pid].cupola;
+        float2 Cdot  = pings[pid].Cdot;
+        float2 nEm   = pings[pid].velocity;
+
+        if (abs(nEm.y) < 1e-3) return;
+        float R_traj = r1.y / nEm.y;
+        if (R_traj < 1.0) return;
+
+        float2 ePerp = float2(-nEm.y, nEm.x);
+
+        float  kappa     = dot(nEm, cup);     // n̂_em · C
+        float  n_dot_Cd  = dot(nEm, Cdot);    // n̂_em · Ċ
+        float  C_eperp   = dot(cup,  ePerp);  // C  · ê_perp(n̂_em)
+        float  Cd_eperp  = dot(Cdot, ePerp);  // Ċ  · ê_perp(n̂_em)
+
+        // β² = |n̂_em − C|², no separate β stored.
+        float2 beta = nEm - cup;
+        float  bsq  = dot(beta, beta);
+
+        float tau = R_traj / ctx.c;
+        w = tau * (Cd_eperp * kappa - C_eperp * n_dot_Cd) / max(1.0 - bsq, 1e-4);
+    } else if (ctx.fieldMode == 1u) {
         // β = -aetherTranslation/c (aether drifts opposite to source motion).
         float2 betaV = -ctx.aetherTranslation / ctx.c;
         float crossZ = betaV.y * pings[pid].cupola.x - betaV.x * pings[pid].cupola.y;
@@ -239,6 +320,52 @@ kernel void itlAccumulateKernel(constant ItLAccumCtx &ctx [[buffer(0)]],
     } else {
         w = 1.0;
     }
+
+    // Radiation mode: splat the per-ping weight over a 3 R × 5 θ
+    // neighbourhood with Gaussian falloff.  Point-particle deposit at
+    // one (R, θ) cell would leave ~92% of cells empty per frame (sparse
+    // pings vs 30k cells) — the splat gives continuous coverage so the
+    // per-frame snapshot sensor reads as a smooth field.  Adjacent
+    // pings (similar retarded emission times → similar aEm) overlap and
+    // their splats sum constructively at peak lobe positions.
+    if (ctx.fieldMode == 2u) {
+        float kf = R1 / dR - 0.5;
+        int k0 = int(floor(kf));
+        float kt = kf - float(k0);
+
+        // σ_R = 1.0, σ_θ = 1.5 cells.  Kernel volume integrated at the
+        // cell-centre offset (kt=jt=0.5) ≈ 5.24; we normalise per-ping
+        // so totalDeposit = w regardless of kt/jt, which keeps the
+        // calibration stable as the source oscillates.
+        float w_sum = 0.0;
+        float wts[3][5];
+        for (int ki = 0; ki < 3; ki++) {
+            for (int ji = 0; ji < 5; ji++) {
+                float dR_off = float(ki - 1) - kt + 0.5;
+                float dT_off = float(ji - 2) - jt + 0.5;
+                float g = exp(-(dR_off*dR_off * 0.5
+                             + dT_off*dT_off / 4.5));
+                wts[ki][ji] = g;
+                w_sum += g;
+            }
+        }
+        float invSum = 1.0 / max(w_sum, 1e-12);
+
+        for (int ki = 0; ki < 3; ki++) {
+            int k = k0 + ki - 1;
+            if (k < 0 || k >= ITL_CM_M_R) continue;
+            int row_k = k * ITL_CM_M_THETA;
+            for (int ji = 0; ji < 5; ji++) {
+                int j_raw = j0 + ji - 2;
+                int jw = ((j_raw % ITL_CM_M_THETA) + ITL_CM_M_THETA) % ITL_CM_M_THETA;
+                int wi = int(w * wts[ki][ji] * invSum * ITL_SENSOR_SCALE);
+                atomic_fetch_add_explicit(&sensor[row_k + jw], wi, memory_order_relaxed);
+            }
+        }
+        return;
+    }
+
+    // E/B modes: tight bilinear-θ deposit at the crossing cell.
     int w0 = int(w * (1.0 - jt) * ITL_SENSOR_SCALE);
     int w1 = int(w * jt * ITL_SENSOR_SCALE);
 
@@ -277,6 +404,7 @@ struct ItLPingPacket {
     float2 local;
     float2 cupola [[flat]];
     float2 centreLocal [[flat]];   // ping centre in teslon-local coords
+    uint isPhantom [[flat]];       // 1 = phantom wave ping; render body-only
 };
 
 vertex ItLPingPacket itlPingVertexShader(uint vertexID [[vertex_id]],
@@ -302,6 +430,7 @@ vertex ItLPingPacket itlPingVertexShader(uint vertexID [[vertex_id]],
     out.local = localOffsets[vertexID];
     out.cupola = ping.cupola;
     out.centreLocal = ping.position - camera.position;
+    out.isPhantom = ping.isPhantom;
     return out;
 }
 
@@ -317,41 +446,109 @@ vertex ItLPingPacket itlPingVertexShader(uint vertexID [[vertex_id]],
 // when they don't.
 fragment float4 itlPingFragmentShader(ItLPingPacket in [[stage_in]],
                                       constant ItLPingFragCtx &ctx [[buffer(0)]],
-                                      device const int *sensor [[buffer(1)]]) {
+                                      device const int *sensor [[buffer(1)]],
+                                      device const int *pulseSensor [[buffer(2)]]) {
     float2 r = in.centreLocal;
     float R = length(r);
 
     float3 bodyCol;
-    // Radiation mode: no analytic field disc yet, and sampling the
-    // E-mode sensor would mis-colour the pings.  Use a neutral body
-    // colour so the cupola arm + head read clean against the aether.
-    if (ctx.fieldMode == 2u) {
-        bodyCol = float3(0.85, 0.85, 0.85);
+    // Phantom wave pings are the test case computing the answer; they
+    // don't know it yet.  Cells at the leading edge have only one
+    // ping's worth of deposit while the cal cell has hundreds, so
+    // bandCoord goes off-scale and reads grey/wrong.  Render phantoms
+    // as a clean neutral white so the wavefront reads as "running the
+    // calc" rather than "showing a wrong colour."
+    if (in.isPhantom != 0u) {
+        bodyCol = float3(1.0, 1.0, 1.0);
+    } else if (ctx.fieldMode == 2u) {
+        // Radiation mode — single-snapshot read with R² divisor.
+        //
+        // Atlas snapshot at the current source phase contains the per-
+        // cell sum of MC's rotational-impulse deposits.  Each ping's
+        // deposit carries a τ = R/c factor, so cell_value scales as R;
+        // dividing by R² gives the 1/R radiation falloff at the right
+        // amplitude.  No finite difference, no two-buffer read — the
+        // MC per-ping rule does the work that Identity 4's time
+        // derivative would otherwise extract.
+        if (R < 1.0) {
+            bodyCol = float3(0.30, 0.30, 0.30);
+        } else {
+            float theta = atan2(r.y, r.x);
+            if (theta < 0) theta += 2.0 * 3.14159265358979;
+            float cellValue = itlSensorSample(sensor, R, theta, ctx.colormapExtent);
+            float flux = cellValue / (R * R);
+            float absFlux = abs(flux);
+            if (absFlux <= 1e-12 || ctx.radiationCalRef <= 1e-30) {
+                bodyCol = float3(0.30, 0.30, 0.30);
+            } else {
+                float bandCoord = 7.0 - sqrt(ctx.radiationCalRef / absFlux);
+                // Two anti-aliasing tricks combined:
+                //
+                // (1) Smooth fade between mid-grey (off-scale-low,
+                //     bandcoord < 0) and band-0 colour, so pings near
+                //     the lobe boundary don't snap discontinuously
+                //     between "very dark band 0" and mid-grey.
+                //
+                // (2) Interpolate between consecutive palette bands by
+                //     bandFrac.  Radiation field oscillates in time, so
+                //     a ping's cell flux drifts continuously across band
+                //     boundaries every few frames.  Without this lerp,
+                //     pings snap discrete-band colours per frame and
+                //     look jittery.  With it, the colour drifts smoothly
+                //     across the full bandcoord range as the wave
+                //     breathes through each cell.
+                float bcClamped = clamp(bandCoord, 0.0, 6.999);
+                float bandIdx = floor(bcClamped);
+                float bandFrac = bcClamped - bandIdx;
+                int b0 = clamp(int(bandIdx), 0, 6);
+                int b1 = clamp(b0 + 1, 0, 6);
+                float3 col0 = flux > 0.0 ? ITL_B_POS_PALETTE[b0] : ITL_B_NEG_PALETTE[b0];
+                float3 col1 = flux > 0.0 ? ITL_B_POS_PALETTE[b1] : ITL_B_NEG_PALETTE[b1];
+                float3 bandCol = mix(col0, col1, bandFrac);
+                float fadeMix = smoothstep(0.0, 1.0, bandCoord);
+                bodyCol = mix(float3(0.55, 0.55, 0.55), bandCol, fadeMix);
+            }
+        }
     } else if (R < 1.0) {
         bodyCol = ctx.fieldMode == 1u ? float3(0.30, 0.30, 0.30) : ITL_PALETTE[6];
     } else {
         float theta = atan2(r.y, r.x);
         if (theta < 0) theta += 2.0 * 3.14159265358979;
 
-        // Sensor stores ping crossings × cupola-projection.  In E mode
-        // the projection is cupola·n̂ (always positive once collected
-        // statistically); in B mode it's (n̂×cupola)_z (signed, dipole).
-        // Either way, dividing by R² yields the corresponding 2D flux.
-        float cellValue = itlSensorSample(sensor, R, theta, ctx.colormapExtent);
-        float flux = cellValue / (R * R);
-
-        // Calibration at the perp cal point Y_cal(β), 3π/2 — anchors disc
-        // and pings to the same R.  In B mode B_z peaks at this angle,
-        // so |calFlux| stays well-conditioned the same way it does for E.
+        // Dual-buffer sampling.  Try the phantom's in-progress field
+        // first; if the cell or the calibration point hasn't been
+        // populated yet, fall back to the last completed field.  When
+        // we fall back, we also use the OLD field mode's rendering
+        // rules — otherwise an E↔B commit would render old E data
+        // through B's signed-palette logic (wrong colours ahead of
+        // the wave).
         float beta = ctx.beta;
         float oneMinusBeta2 = max(1.0 - beta * beta, 1e-4);
         float yCal = ITL_R_CAL / pow(oneMinusBeta2, 0.25);
-        float calCellValue = itlSensorSample(sensor, yCal,
-                                             1.5 * 3.14159265358979,
-                                             ctx.colormapExtent);
+
+        float newCell = itlSensorSample(pulseSensor, R, theta, ctx.colormapExtent);
+        float newCal  = itlSensorSample(pulseSensor, yCal,
+                                         1.5 * 3.14159265358979,
+                                         ctx.colormapExtent);
+        bool useNew = (ctx.fieldMode == 1u)
+            ? (abs(newCell) > 1e-12 && abs(newCal) > 1e-12)
+            : (newCell > 1e-12 && newCal > 1e-12);
+
+        float cellValue, calCellValue;
+        uint mode;
+        if (useNew) {
+            cellValue = newCell;
+            calCellValue = newCal;
+            mode = ctx.fieldMode;
+        } else {
+            cellValue = itlSensorSample(sensor, R, theta, ctx.colormapExtent);
+            calCellValue = itlSensorSample(sensor, yCal, 1.5 * 3.14159265358979, ctx.colormapExtent);
+            mode = ctx.oldFieldMode;
+        }
+        float flux = cellValue / (R * R);
         float calFlux = calCellValue / (yCal * yCal);
 
-        if (ctx.fieldMode == 1u) {
+        if (mode == 1u) {
             float absFlux = abs(flux);
             float absCal = abs(calFlux);
             if (absFlux <= 1e-12 || absCal <= 1e-12) {
@@ -388,7 +585,10 @@ fragment float4 itlPingFragmentShader(ItLPingPacket in [[stage_in]],
     }
 
     float2 local = in.local;
-    if (ctx.fullPingsOn != 0u) {
+    // Phantom pings always render as body-only — the wavefront should
+    // read as a dense expanding cloud of dots, not a swarm of full
+    // ping markers that would compete visually with the live pings.
+    if (ctx.fullPingsOn != 0u && in.isPhantom == 0u) {
         // Full ping: body dot + white cupola arm + small body-coloured head.
         float2 cupola = in.cupola;
         float cmag = length(cupola);
@@ -438,6 +638,107 @@ fragment float4 itlLWEFragmentShader(ItLLWEPacket in [[stage_in]],
     // colormap uses, so disc and colormap anchor to the same R.  LW gives
     // 1/R_cal² at this point regardless of β, so calFlux is β-invariant.
     float yCal = ITL_R_CAL / pow(oneMinusBeta2, 0.25);
+
+    // Radiation mode — FULL Liénard–Wiechert radiation field.  This is a
+    // direct port of MC's verification (see lw_oscillating.py): bisect
+    // the retarded-time equation per pixel, evaluate the full LW
+    // expression at t_ret, project to a 2D signed scalar for the band
+    // scheme.  No low-β approximation, no missing κ³, no missing
+    // harmonics.  This is the ground truth the cupola simulation has to
+    // reproduce.
+    if (ctx.fieldMode == 2u) {
+        float2 rs_center = ctx.sourceCenter;
+        float2 r_T = in.worldPos;
+        float A = ctx.radiationAmplitude;
+        float omega = ctx.radiationOmega;
+        float cSpeed = ctx.c;
+        // Observation time = current source phase / ω.  radiationPhase
+        // is ω·t_obs accumulated by the renderer each frame.
+        float t_obs = ctx.radiationPhase / omega;
+
+        // Retarded-time bisection.  Find t_ret such that
+        //   |r_T − r_s(t_ret)|  =  c · (t_obs − t_ret).
+        // Source: r_s(t) = (center.x + A sin(ω t), center.y).
+        float r_T_mag = length(r_T - rs_center);
+        float t_lo = t_obs - r_T_mag / cSpeed - 10.0 * abs(A) / cSpeed - 5.0;
+        float t_hi = t_obs - 1e-7;
+        for (int i = 0; i < 80; i++) {
+            float t_mid = 0.5 * (t_lo + t_hi);
+            float2 r_s_mid = float2(rs_center.x + A * sin(omega * t_mid),
+                                    rs_center.y);
+            float dist = length(r_T - r_s_mid);
+            float f = dist - cSpeed * (t_obs - t_mid);
+            if (f < 0.0) t_lo = t_mid;
+            else         t_hi = t_mid;
+        }
+        float t_ret = 0.5 * (t_lo + t_hi);
+
+        // Source state at retarded time.
+        float omegaT = omega * t_ret;
+        float2 r_s = float2(rs_center.x + A * sin(omegaT), rs_center.y);
+        float2 v_s = float2(A * omega * cos(omegaT), 0.0);
+        float2 a_s = float2(-A * omega * omega * sin(omegaT), 0.0);
+        float2 beta = v_s / cSpeed;
+        float2 betaDot = a_s / cSpeed;
+
+        // Geometry from retarded source position.
+        float2 R_vec = r_T - r_s;
+        float R = length(R_vec);
+        if (R < 1.0) return float4(0.0);
+        float2 n_hat = R_vec / R;
+        float kappa = 1.0 - dot(n_hat, beta);
+
+        // Radiation numerator: n̂ × [(n̂ − β) × β̇].  All vectors are in
+        // the z=0 plane, so (n̂ − β) × β̇ has only a z-component, and
+        // n̂ × (that z-vector) lands back in the plane.
+        // Cross-product convention: (n.x, n.y, 0) × (0, 0, z) =
+        //   (n.y·z, −n.x·z, 0).  The original (−n.y·z, n.x·z) version
+        //   was the negative of this — same magnitude, flipped sign,
+        //   which is exactly what produced colour-inverted output
+        //   against the cupola accumulator (which gets the sign from
+        //   I_rot = −τ · n̂×[C×Ċ]/(1−β²) and matches Larmor:
+        //   E_rad points opposite to β̇ at θ=π/2).
+        float2 n_minus_beta = n_hat - beta;
+        float inner_z = n_minus_beta.x * betaDot.y - n_minus_beta.y * betaDot.x;
+        float2 outer = float2(n_hat.y * inner_z, -n_hat.x * inner_z);
+
+        // E_rad vector (full LW), divided by κ³ R.
+        float kappa3 = kappa * kappa * kappa;
+        float2 E_rad = outer / (kappa3 * R);
+
+        // Project to signed 2D scalar along ê_perp (perpendicular to n̂,
+        // rotated −90° from n̂).  Sign matches the cupola accumulator's
+        // I_rot deposit projection — both render warm/cool with the
+        // same convention now.
+        float Frad = E_rad.x * (-n_hat.y) + E_rad.y * n_hat.x;
+
+        // Envelope calibration.  Peak |F_rad| at θ=π/2 over one cycle
+        // is bounded by A·ω²/(c²·yCal) up to (1+β)/(1−β)³ Doppler
+        // beaming.  Using just the low-β envelope here as the reference
+        // — peak bandcoord may saturate at high β, which is the right
+        // behaviour: those are the relativistic harmonics the full
+        // formula sees but a low-β cal envelope can't bound.
+        float calRef = A * omega * omega / (cSpeed * cSpeed * yCal);
+        if (calRef <= 1e-30) return float4(0.0);
+        float absF = abs(Frad);
+        if (absF <= 1e-30) return float4(0.0);
+
+        float bandCoord = 7.0 - sqrt(calRef / absF);
+        if (bandCoord < 0.0) return float4(0.0);
+
+        float bcClamped = clamp(bandCoord, 0.0, 6.999);
+        float bandIdx = floor(bcClamped);
+        float bandFrac = bcClamped - bandIdx;
+        int idx = clamp(int(bandIdx), 0, 6);
+        float3 col = Frad > 0.0 ? ITL_B_POS_PALETTE[idx] : ITL_B_NEG_PALETTE[idx];
+        col *= 0.85 + 0.15 * bandFrac;
+        float screenStep = fwidth(bcClamped);
+        float lineMix = smoothstep(0.0, 1.5 * screenStep, bandFrac);
+        float3 lineColor = col * 0.15;
+        float3 finalCol = mix(lineColor, col, lineMix);
+        float finalAlpha = mix(0.95, 0.55, lineMix);
+        return float4(finalCol, finalAlpha);
+    }
 
     // Magnetic mode: signed B_z, diverging palette.  calRef is the
     // perpendicular-axis B_z magnitude (peaks here, vanishes along the

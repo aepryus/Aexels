@@ -28,9 +28,17 @@ void SCTeslonAddMomentum(SCTeslon* teslon, CV2 momentum, unsigned char bounded);
 typedef struct SCPing {
     CV2 pos;
     CV2 v;
-    CV2 cupola;
-    double rotRate;              // dθ/dt of cupola direction (rad/tic), baked in at emission
-    double spgRate;              // d|C|/dt of cupola magnitude (per tic), baked in at emission
+    CV2 cupola;                  // C = n̂_em − β_em (dimensionless).  Packages
+                                 // source velocity at emission AS a cupola
+                                 // vector — the ping doesn't know β, it knows C.
+    CV2 Cdot;                    // Ċ = dC/dt at emission (dimensionless rate).
+                                 // Packages source acceleration AS the cupola's
+                                 // own rotation rate — the ping doesn't know β̇,
+                                 // it knows how its cupola is changing.  Per
+                                 // MC's numerically-verified rule, the
+                                 // rotational impulse delivered at a target is
+                                 //   I_rot = -τ · n̂×[C × Ċ] / (1 − β²)
+                                 // which is what makes radiation work.
     unsigned char recycle;
     SCTeslon* source;
 //    CV2 origin;

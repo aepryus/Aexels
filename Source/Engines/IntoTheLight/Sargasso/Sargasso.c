@@ -227,8 +227,8 @@ SCPing* SCUniverseCreatePing(SCUniverse* universe, SCTeslon* teslon) {
     ping->pos = teslon->pos;
     ping->v.x = 0;
     ping->v.y = 0;
-    ping->rotRate = 0;
-    ping->spgRate = 0;
+    ping->Cdot.x = 0;
+    ping->Cdot.y = 0;
     ping->recycle = 0;
     SCUniverseAddPing(universe, ping);
     return ping;
@@ -419,23 +419,13 @@ void SCUniversePing(SCUniverse* universe, int n) {
             ping->v.y = iQy;
             ping->cupola.x = iQx - tVx;
             ping->cupola.y = iQy - tVy;
+            // Ċ = dC/dt at emission = -β̇ = -teslon.a (engine stores β̇ in
+            // teslon.a, in dimensionless units of a/c).  Packaged AS the
+            // cupola's rotation rate, not as source acceleration — same
+            // way C is packaged AS the cupola, not as source velocity.
+            ping->Cdot.x = -teslon->a.x;
+            ping->Cdot.y = -teslon->a.y;
             ping->source = teslon;
-
-            // Rotation + spring rates baked in at emission.  The cupola
-            // tip's velocity in (n̂_em, β) space is dC/dt = -dβ/dt = -a.
-            // Decompose -a relative to the cupola direction:
-            //   parallel (along ĉ) → dr/dt → spgRate
-            //   perpendicular     → dθ/dt → rotRate (per unit |C|)
-            double _cmag = sqrt(ping->cupola.x*ping->cupola.x + ping->cupola.y*ping->cupola.y);
-            if (_cmag > 1e-8) {
-                double _cdx = ping->cupola.x / _cmag;
-                double _cdy = ping->cupola.y / _cmag;
-                ping->spgRate = -(teslon->a.x * _cdx + teslon->a.y * _cdy);
-                ping->rotRate = (teslon->a.x * _cdy - teslon->a.y * _cdx) / _cmag;
-            } else {
-                ping->spgRate = 0;
-                ping->rotRate = 0;
-            }
             ping->recycle = 0;
 
             universe->pings[pingI] = ping;
@@ -494,23 +484,9 @@ void SCUniversePingUniform(SCUniverse* universe, int n) {
             ping->v.y = iQy;
             ping->cupola.x = iQx - tVx;
             ping->cupola.y = iQy - tVy;
+            ping->Cdot.x = -teslon->a.x;
+            ping->Cdot.y = -teslon->a.y;
             ping->source = teslon;
-
-            // Rotation + spring rates baked in at emission.  The cupola
-            // tip's velocity in (n̂_em, β) space is dC/dt = -dβ/dt = -a.
-            // Decompose -a relative to the cupola direction:
-            //   parallel (along ĉ) → dr/dt → spgRate
-            //   perpendicular     → dθ/dt → rotRate (per unit |C|)
-            double _cmag = sqrt(ping->cupola.x*ping->cupola.x + ping->cupola.y*ping->cupola.y);
-            if (_cmag > 1e-8) {
-                double _cdx = ping->cupola.x / _cmag;
-                double _cdy = ping->cupola.y / _cmag;
-                ping->spgRate = -(teslon->a.x * _cdx + teslon->a.y * _cdy);
-                ping->rotRate = (teslon->a.x * _cdy - teslon->a.y * _cdx) / _cmag;
-            } else {
-                ping->spgRate = 0;
-                ping->rotRate = 0;
-            }
             ping->recycle = 0;
 
             universe->pings[pingI] = ping;
@@ -551,24 +527,15 @@ void SCUniverseTic(SCUniverse* universe) {
         universe->pings[i]->pos.y += universe->pings[i]->v.y * universe->c;
     }
 
-    // Cupola rotation + spring (radiation lab).  Each ping carries a
-    // baked-in angular and radial rate of change for its cupola,
-    // computed at emission from the source's acceleration.  Evolve in
-    // polar coords each tic.  Pings emitted by an unaccelerated source
-    // have rotRate = spgRate = 0, so this is a no-op for E/B modes.
-    for (int i=0;i<universe->pingCount;i++) {
-        SCPing* ping = universe->pings[i];
-        if (ping->rotRate == 0 && ping->spgRate == 0) continue;
-        double cx = ping->cupola.x;
-        double cy = ping->cupola.y;
-        double mag = sqrt(cx*cx + cy*cy);
-        double ang = atan2(cy, cx);
-        mag += ping->spgRate;
-        if (mag < 0) mag = 0;
-        ang += ping->rotRate;
-        ping->cupola.x = mag * cos(ang);
-        ping->cupola.y = mag * sin(ang);
-    }
+    // NOTE (Into the Light §3.3): the cupola is set at emission and is
+    // constant along the ping's worldline.  Propagation-time evolution
+    // of the cupola (the old mag += spgRate, ang += rotRate loop) is
+    // NOT physical — the radiation field is the rate-of-change of the
+    // *apparent transverse cupola at the observer*, which is a property
+    // carried with the ping (the emission-event derivatives baked into
+    // rotRate / spgRate), not something that deforms the ping during
+    // flight.  Read rotRate / spgRate at deposit time for the radiation
+    // weight; do not morph the cupola here.
     for (int i=0;i<universe->pongCount;i++) {
         universe->pongs[i]->pos.x += universe->pongs[i]->v.x * universe->c;
         universe->pongs[i]->pos.y += universe->pongs[i]->v.y * universe->c;
