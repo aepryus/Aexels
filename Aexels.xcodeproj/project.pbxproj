@@ -123,6 +123,7 @@
 		D8AB7C1E000000000000C106 /* IntoTheLightLab.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B106 /* IntoTheLightLab.md */; };
 		D8AB7C1E000000000000C005 /* BlackHolesControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B005 /* BlackHolesControlsTab.swift */; };
 		D8AB7C1E000000000000C100 /* IntoTheLightExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B100 /* IntoTheLightExplorer.swift */; };
+		D8AB7C1E000000000000C200 /* HyleLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */; };
 		D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B101 /* IntoTheLightRenderer.swift */; };
 		D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */; };
 		D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */; };
@@ -317,6 +318,7 @@
 		D8AB7C1E000000000000B106 /* IntoTheLightLab.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = IntoTheLightLab.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1E000000000000B005 /* BlackHolesControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesControlsTab.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B100 /* IntoTheLightExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightExplorer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleLabExplorer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B101 /* IntoTheLightRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightRenderer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoTheLightControlsTab.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = IntoTheLightShaders.metal; sourceTree = "<group>"; };
@@ -838,6 +840,14 @@
 			path = IntoTheLight;
 			sourceTree = "<group>";
 		};
+		D8AB7C1E000000000000D200 /* HyleLab */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */,
+			);
+			path = HyleLab;
+			sourceTree = "<group>";
+		};
 		D8AB7C1E000000000000D101 /* IntoTheLight */ = {
 			isa = PBXGroup;
 			children = (
@@ -950,6 +960,7 @@
 				D896C99C2D41F7F60058585C /* InsideOut */,
 				D896C99B2D41F7ED0058585C /* OutsideIn */,
 				D8AB7C1E000000000000D002 /* BlackHoles */,
+				D8AB7C1E000000000000D200 /* HyleLab */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1320,6 +1331,7 @@
 				D8AB7C1E000000000000C003 /* BlackHolesExplorer.swift in Sources */,
 				D8AB7C1E000000000000C005 /* BlackHolesControlsTab.swift in Sources */,
 				D8AB7C1E000000000000C100 /* IntoTheLightExplorer.swift in Sources */,
+				D8AB7C1E000000000000C200 /* HyleLabExplorer.swift in Sources */,
 				D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */,
 				D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */,
 				D8AB7C1E000000000000C105 /* Sargasso.c in Sources */,

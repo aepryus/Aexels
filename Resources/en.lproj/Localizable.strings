@@ -1854,6 +1854,8 @@ While editing an expression, anchor with one finger and tap the expression with 
 "shotInTheDarkLab_lab_name" = "Shot in the Dark Lab";
 "intoTheLightLab_name" = "Into the\nLight";
 "intoTheLightLab_lab_name" = "Into the Light Lab";
+"hyleLab_name" = "Hyle";
+"hyleLab_lab_name" = "Hyle Lab";
 "blackHolesLab_article" = "#[Black Hole Lab]#Two black holes orbit each other under the gravitational mechanism described in the Gravity II article.  Each frame the simulation:
 
 1.  Computes the accelerant potential Φ analytically per cell on a 256×256 GPU texture from the current black hole positions.

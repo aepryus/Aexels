@@ -31,6 +31,7 @@ class Aexels {
     static let insideOutExplorer: InsideOutExplorer = InsideOutExplorer()
     static let outsideInExplorer: OutsideInExplorer = OutsideInExplorer()
     static let blackHolesExplorer: BlackHolesExplorer = BlackHolesExplorer()
+    static let hyleLabExplorer: HyleLabExplorer = HyleLabExplorer()
 
     static var aetherView: AetherView? = nil
 

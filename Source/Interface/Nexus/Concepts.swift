@@ -77,6 +77,7 @@ class Concepts {
         let shotInTheDarkExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.electromagnetismExplorer, radius: 50*s+2*p, x: 210*s, y: 1270*s)
         let intoTheLightExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.intoTheLightExplorer, radius: 50*s+2*p, x: 440*s, y: 1440*s)
         let blackHolesExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.blackHolesExplorer, radius: 50*s+2*p, x: 180*s, y: 1540*s)
+        let hyleLabExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.hyleLabExplorer, radius: 50*s+2*p, x: 260*s, y: 1760*s)
 
         let forwardGlyph: AsideGlyph = AsideGlyph(article: forward, radius: 56*s+2*p, x: 250*s, y: 36*s)
         let claudeGlyph: AsideGlyph = AsideGlyph(article: claude, radius: 56*s+2*p, x: 250*s, y: 120*s)
@@ -121,6 +122,7 @@ class Concepts {
         glyphs.append(shotInTheDarkExpGlyph)
         glyphs.append(intoTheLightExpGlyph)
         glyphs.append(blackHolesExpGlyph)
+        glyphs.append(hyleLabExpGlyph)
 
         glyphs.append(forwardGlyph)
         glyphs.append(claudeGlyph)
@@ -186,6 +188,7 @@ class Concepts {
         quantumGlyph.link(to: nuclearGlyph)
         quantumGlyph.link(to: bellTHooftGlyph)
         quantumGlyph.link(to: thooftGlyph)
+        quantumGlyph.link(to: hyleLabExpGlyph)
         
         nuclearGlyph.link(to: epilogueGlyph)
         

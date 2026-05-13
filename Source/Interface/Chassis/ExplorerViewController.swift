@@ -120,14 +120,21 @@ class ExplorerViewController: AEViewController {
         // closest to the screen edge and is also where the collapsed
         // "selected" icon lands by default.
         //
-        //   Col 0 (leftmost):  Dilation     Contraction   ShotInTheDark  IntoTheLight
-        //   Col 1 (middle):    InsideOut    OutsideIn     Gravity        BlackHoles
-        //   Col 2 (rightmost): Nexus        Aether        Cellular       Kinematics
+        //   Col 0 (leftmost):  HyleLab      —             —              —
+        //   Col 1:             Dilation     Contraction   ShotInTheDark  IntoTheLight
+        //   Col 2:             InsideOut    OutsideIn     Gravity        BlackHoles
+        //   Col 3 (rightmost): Nexus        Aether        Cellular       Kinematics
         //
         // Nexus sits at the top-right — that's the slot the collapsed
         // selected icon defaults to, so the home/glyphs view is the
         // natural "summary" anchor.
         let visions: [[Vision?]] = [
+            [
+                Aexels.hyleLabExplorer.vision,
+                nil,
+                nil,
+                nil
+            ],
             [
                 Aexels.dilationExplorer.vision,
                 Aexels.contractionExplorer.vision,
