@@ -99,6 +99,13 @@ private let kPulsePings: Int32 = 8500
 // pulse buffer doesn't blow out at extreme β.
 private let kMaxPulseTicks: Int = 1000
 
+// Radiation mode runs c at 1/3 the standard 3.0 so the dipole
+// wavefront propagates more slowly and the lobe structure is easier
+// to read.  Applied consistently across the live universe, the
+// atlas phantom, source kinematics, calibration, and the shader's
+// analytic disc when fieldMode == .radiation.
+private let kRadiationC: Double = 1.0
+
 class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
@@ -130,11 +137,17 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // happens on commit() (slider release, or magnitude/aberration tap).
     var velocity: Double = 0.70
 
+    // E/B defaults; ControlsTab.applyModePresets re-sets these to 36/5
+    // (the radiation icon-view values) when entering R, and restores
+    // 120/12 when entering E or B.
     var pingsPerVolley: Int32 = 120
     var timeStepsPerVolley: Int = 12
     var autoOn: Bool = true
-    // When on (default), each ping renders as body + cupola vector arrow
-    // + head.  Off renders just the body dot.
+    // When on (default for E/B), each ping renders as body + cupola
+    // vector arrow + head.  Off renders just the body dot — which is
+    // the radiation-lab icon view.  ControlsTab flips this to false
+    // when entering R mode and back to true when entering E/B, so
+    // each lab opens with its preferred view by default.
     var fullPingsOn: Bool = true
     // When on (default), the analytic Liénard–Wiechert disc is drawn
     // beneath the pings as the reference target.  Off shows just the
@@ -150,9 +163,14 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // R mode it oscillates: consecutive radial shells were emitted at
     // consecutive source-oscillation phases, so delta arms alternate
     // direction across the red/blue boundaries on the analytic disc.
-    // Default on — for the radiation lab this is the more revealing
-    // view; the rotating-cupola structure is what carries radiation.
-    var deltaCupolaOn: Bool = true
+    // Default off.  When on, the rendered arrow = cupola − n̂_em =
+    // −β_src.  In E/B with aether drift β is constant, so every arrow
+    // points the same direction (the historical "all pings point left"
+    // artifact when this defaulted on).  The control is exposed only
+    // in the radiation tab; ControlsTab forces this false on every
+    // mode switch (including into R), so the user can opt in within
+    // R but can never carry it into E/B where it's not meaningful.
+    var deltaCupolaOn: Bool = false
 
     // Radiation-mode only: when on, the camera follows the oscillating
     // teslon so the source stays centred and the aether grid streams
@@ -165,7 +183,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // draw each frame so slider drags are visible immediately.  When
     // either changes in radiation mode, the atlas is invalidated and
     // rebuilt against the new parameters.
-    var radiationOmega: Double = 0.04 {        // rad/tic
+    var radiationOmega: Double = 0.06 {        // rad/tic
         didSet {
             if fieldMode == .radiation && oldValue != radiationOmega {
                 radiationAtlasReady = false
@@ -173,7 +191,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
             }
         }
     }
-    var radiationAmplitude: Double = 15.0 {    // world units of swing
+    var radiationAmplitude: Double = 5.0 {     // world units of swing
         didSet {
             if fieldMode == .radiation && oldValue != radiationAmplitude {
                 radiationAtlasReady = false
@@ -182,13 +200,26 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         }
     }
 
-    // Tap-to-toggle settings commit on every change.
+    // Tap-to-toggle settings commit on every change.  In radiation
+    // mode both toggles affect the atlas's deposition rules, so the
+    // current atlas must be discarded — commit() then triggers a
+    // rebuild via startRadiationAtlas.
     var magnitudeOn: Bool = true {
-        didSet { commit() }
+        didSet {
+            if fieldMode == .radiation && oldValue != magnitudeOn {
+                radiationAtlasReady = false
+            }
+            commit()
+        }
     }
 
     var aberrationOn: Bool = true {
-        didSet { commit() }
+        didSet {
+            if fieldMode == .radiation && oldValue != aberrationOn {
+                radiationAtlasReady = false
+            }
+            commit()
+        }
     }
 
     // Field being verified: electric (rainbow LW-E) or magnetic (signed
@@ -246,6 +277,11 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     private var radiationAtlasSnapshots: [MTLBuffer] = []
     private var radiationAtlasN: Int = 0
     private var radiationAtlasReady: Bool = false
+    // Public read-only signal for UI code that needs to know whether
+    // the radiation atlas is still building (used by ControlsTab to
+    // pump frames synchronously after toggles like magnitude/aberration
+    // when the sim is paused).
+    var isRadiationAtlasReady: Bool { radiationAtlasReady }
     private var radiationAtlasPhantomUniverse: UnsafeMutablePointer<SCUniverse>?
     private var radiationAtlasPhantomCamera: UnsafeMutablePointer<SCCamera>?
     private var radiationAtlasPhantomPhase: Double = 0
@@ -254,6 +290,17 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     private var radiationAtlasCaptureStart: Int = 0
     private var radiationAtlasOmega: Double = 0
     private var radiationAtlasAmplitude: Double = 0
+    // Snapped omega = 2π / N.  The user's radiationOmega rarely divides
+    // 2π evenly, so round(2π/ω) gives an N where ω·N ≠ 2π exactly.
+    // That tiny drift accumulates across atlas-build cycles and causes
+    // one snapshot index near the phase-wrap point to be consistently
+    // under-deposited — visible as a single grey-heavy frame once per
+    // period in the live render.  Snapping ω to 2π/N (a ~0.3% nudge)
+    // makes the phase wrap exactly each N ticks, so every snapshot
+    // gets uniform coverage.  Used by both the atlas build AND the live
+    // source kinematics so atlas writes and live reads index the same
+    // way.
+    private var radiationEffectiveOmega: Double = 0
     // Per-frame phantom-tick budget while atlas is building.  1 = the
     // E/B phantom's pace, so the radiation phantom wave is a visible
     // expanding cloud at the same speed (= c).  Build takes a few
@@ -471,6 +518,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         // Apply settings to live universe immediately so auto-fire
         // pings from this frame forward emit with the new mode/velocity.
         if let live = self.universe {
+            SCUniverseSetC(live, intentFieldMode == .radiation ? kRadiationC : 3.0)
             SCUniverseSetSpeed(live, intentVelocity)
             SCUniverseSetAberration(live, intentAberrationOn ? 1 : 0)
         }
@@ -687,9 +735,9 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         let sourcePos = SIMD2<Float>(Float(radiationCenterX), Float(radiationCenterY))
         var ctx = ItLAccumCtx(
             sourcePos: sourcePos,
-            aetherTranslation: SIMD2<Float>(-Float(engineVelocity) * 3.0, 0),
+            aetherTranslation: SIMD2<Float>(-Float(engineVelocity * kRadiationC), 0),
             colormapExtent: kColormapExtent,
-            c: 3.0,
+            c: Float(kRadiationC),
             pingCount: UInt32(pingCount),
             magnitudeOn: engineMagnitudeOn ? 1 : 0,
             fieldMode: ItLFieldMode.radiation.rawValue
@@ -734,9 +782,15 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // sized to current ω, create the phantom universe.  Heavy work
     // happens incrementally in advanceRadiationAtlas().
     private func startRadiationAtlas() {
-        let omega = max(self.radiationOmega, 1e-6)
-        let cSpeed: Double = 3.0
+        let rawOmega = max(self.radiationOmega, 1e-6)
+        let cSpeed: Double = kRadiationC
         let maxBeta: Double = 0.9
+
+        // N snapshots covering one period.  Clamp to a sane range so we
+        // don't blow up memory for very low ω.  Snap omega to 2π/N so
+        // the phase wraps exactly each N ticks (see radiationEffectiveOmega).
+        let N = max(16, min(512, Int(round(2.0 * .pi / rawOmega))))
+        let omega = 2.0 * .pi / Double(N)
         let amplitude = min(self.radiationAmplitude, maxBeta * cSpeed / omega)
 
         // Skip rebuild if the existing atlas already matches the current
@@ -745,12 +799,10 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
             && radiationAtlasOmega == omega
             && radiationAtlasAmplitude == amplitude
             && !radiationAtlasSnapshots.isEmpty {
+            radiationEffectiveOmega = omega
             return
         }
 
-        // N snapshots covering one period.  Clamp to a sane range so we
-        // don't blow up memory for very low ω.
-        let N = max(16, min(512, Int(round(2.0 * .pi / omega))))
         ensureRadiationAtlasCapacity(N)
 
         // Zero all snapshot buffers so any reads during the build show
@@ -773,7 +825,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         let h = universeHeight
         guard w > 0, h > 0 else { return }
         let pu = SCUniverseCreate(w, h)!
-        SCUniverseSetC(pu, 3.0)
+        SCUniverseSetC(pu, kRadiationC)
         _ = SCUniverseCreateTeslon(pu, radiationCenterX, radiationCenterY, 0, 0, 1.0, 1, 0)
         let pc = SCUniverseCreateCamera(pu, radiationCenterX, radiationCenterY, 0, 0)!
         SCCameraSetWalls(pc, 0)
@@ -790,6 +842,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         radiationAtlasPhantomPhase = 0
         radiationAtlasOmega = omega
         radiationAtlasAmplitude = amplitude
+        radiationEffectiveOmega = omega
         // One-period-wide pulse build (E/B-style sweep):
         //   • First N ticks: source oscillates through ONE full period
         //     and emits.  This creates a wave packet exactly one
@@ -825,7 +878,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
     // window blit the result into snapshots[(tick − captureStart) % N].
     private func advanceRadiationAtlas(into cmdBuf: MTLCommandBuffer) {
         guard let pu = radiationAtlasPhantomUniverse else { return }
-        let cSpeed: Double = 3.0
+        let cSpeed: Double = kRadiationC
         let omega = radiationAtlasOmega
         let amplitude = radiationAtlasAmplitude
         // Pings per atlas tick.  Higher = denser field but heavier
@@ -897,7 +950,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
                             sourcePos: SIMD2<Float>(Float(radiationCenterX), Float(radiationCenterY)),
                             aetherTranslation: SIMD2<Float>(0, 0),
                             colormapExtent: kColormapExtent,
-                            c: 3.0,
+                            c: Float(kRadiationC),
                             pingCount: UInt32(pingCount),
                             magnitudeOn: 1,
                             fieldMode: ItLFieldMode.radiation.rawValue
@@ -1045,8 +1098,13 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         // Hardcoded linear oscillation along x for now (controls later).
         // E and B modes leave a = 0, preserving the existing behavior.
         if let teslon, engineFieldMode == .radiation {
-            let c: Double = 3.0
-            let omega: Double = radiationOmega
+            let c: Double = kRadiationC
+            // Use the snapped omega (2π/N) so the live source's phase
+            // advances at exactly the rate the atlas was built for.
+            // Falls back to raw radiationOmega if the atlas hasn't built
+            // yet (shouldn't happen — transition into radiation calls
+            // startRadiationAtlas before the next draw()).
+            let omega: Double = radiationEffectiveOmega > 0 ? radiationEffectiveOmega : radiationOmega
             // Cap peak velocity (A·ω) so the source's β never exceeds
             // a safe sub-c value.  Whichever slider is being pushed,
             // amplitude gets pulled in if the product would otherwise
@@ -1168,7 +1226,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
             radiationPhase: Float(radiationPhase),
             radiationOmega: Float(radiationOmega),
             radiationAmplitude: Float(radiationAmplitude),
-            c: 3.0
+            c: fieldMode == .radiation ? Float(kRadiationC) : 3.0
         )
         memcpy(lweBuffer.contents(), &lweCtx, MemoryLayout<ItLLWEContext>.size)
 
@@ -1184,7 +1242,7 @@ class IntoTheLightRenderer: NSObject, MTKViewDelegate {
         // band mismatch between the cupola sensor field and the
         // analytic disc is then a real algorithm/implementation bug,
         // not a calibration knob.
-        let cSpeed: Double = 3.0
+        let cSpeed: Double = kRadiationC
         let yCal: Double = Double(kColormapExtent / 7.0)
             / pow(max(1.0 - engineVelocity * engineVelocity, 1e-4), 0.25)
         let radCalRef: Double = (engineFieldMode == .radiation)
