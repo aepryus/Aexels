@@ -6,15 +6,19 @@ But as I have waded deeper into the mechanisms of Electricity and Magnetism, it 
 
 Certainly, the Copenhagen Interpretation of Quantum is anathema to the aesthetics of Universe X, but perhaps more physical interpretations are available.  Consider the standard electron in an infinite walled box problem.  The solution to the Schrödinger equation is:
 
-![](tint:QMEq01)
+$$
+|\psi_n(x)|^2 = \frac{2}{L} \sin^2\left(\frac{n\pi x}{L}\right)
+$$
 
 Now imagine a disk with a mirrored wall glued to its face across its diameter with surface area A.  We place this disk in a slot where it can roll back and forth, x = 0 when it is all the way to the left and x = L when it is all the way to the right.  When the disk is at one of the barriers its mirror must be vertical.  However, it can roll a half time, a full time or any number of rotations n/2 to get back and forth between the two walls.
 
-![](quantum_diag)
+![](tint:quantum_diag)
 
 What is the surface area of the mirror when looked at from above?  For some angle θ from vertical it will be A sin(θ).  θ is nπ times x/L.  This gives the final cross sectional area from above as:
 
-![](tint:QMEq02)
+$$
+C(x) = A \sin\left(\frac{n\pi x}{L}\right)
+$$
 
 This looks suspiciously familiar.
 

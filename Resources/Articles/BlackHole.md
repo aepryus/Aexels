@@ -2,15 +2,21 @@
 
 The Floating Leaf article argues that since gravity is not a force a tennis ball falling from infinity is marking the flow of the aexels it is sitting upon themselves.  As such the velocity of the aexels are:
 
-![](tint:BHEq1)
+$$
+v(r)=\sqrt{\frac{2GM}{r}}
+$$
 
 Which we can plug into the Lorentz factor:
 
-![](tint:BHEq2)
+$$
+\gamma(v)=\frac{1}{\sqrt{1-\frac{v^2}{c^2}}}
+$$
 
 to calculate the dilation of a system sitting still at a radius r outside of a non-rotating sphere:
 
-![](tint:BHEq3)
+$$
+\gamma(r)=\frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}
+$$
 
 This gives us an intuition that the speed of the aexels is equal to the escape velocity.  For a planet, the escape velocity continues to increase as we drill into the interior.  For a black hole, if the velocity of the aexels at the event horizon is already c, then it would seem the escape velocity would rise above c in the interior (unless it was an entirely hollow shell).
 
@@ -20,23 +26,35 @@ However, the escape velocity no longer tracks with the rate of aexel flow.  The 
 
 There is however an alternate internal Schwarzschild Metric solved assuming a constant density sphere.  Using this alternate metric we can derive the dilation in the interior of a such sphere:
 
-![](tint:BHEq4)
+$$
+\gamma(r)=\frac{-2}{3\sqrt{1-\frac{2GM}{Rc^2}}-\sqrt{1-\frac{2GMr^2}{R^3c^2}}}
+$$
 
 We can also calculate the radius of a black hole by setting the escape velocity to c.
 
-![](tint:BHEq5)
+$$
+c=\sqrt{\frac{2GM}{r}}
+$$
 
-![](tint:BHEq6)
+$$
+r_s=\frac{2GM}{c^2}
+$$
 
 Let's now calculate dilation for the interior of a black hole by setting R = r_s.
 
-![](tint:BHEq7)
+$$
+\gamma(r)=\frac{2}{\sqrt{1-\frac{r^2}{r_s^2}}}
+$$
 
 The dilation factor ranges from 2 at the center to infinity at the horizon thereby meeting up with the external Schwarzschild metric.  We can rearrange the Lorentz factor to get the aexel velocity as a function of gamma and calculate the flow rate at the center.
 
-![](tint:BHEq8)
+$$
+v(\gamma)=c\sqrt{1-\frac{1}{\gamma^2}}
+$$
 
-![](tint:BHEq9)
+$$
+v(\gamma(0))=v(2)=c\frac{\sqrt{3}}{2}\approx87\%c
+$$
 
 So, once in the interior the flow rate immediately drops below c again allowing for teslons (and of course edisons) to persist in the interior.
 

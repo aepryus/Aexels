@@ -10,7 +10,9 @@ This convention calculates how time and distance in the stationary reference fra
 
 For example, recall the Lorentz factor:
 
-![](tint:G2Eq01)
+$$
+\gamma(v) = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}
+$$
 
 For a spaceship traveling at 𝑐/2, γ will be approximately equal to 1.155.  Time will be slowed in the moving ship, so a second at infinity will only appear to be 0.866 seconds long.  The meter stick will be contracted on the moving space ship and so a meter stick at infinity will appear to be 1.155 meters long.
 
@@ -18,29 +20,39 @@ We can then calculate the 'spacetime' by taking x - 𝑐 t ≈ 1.155 - 0.866 �
 
 Using the standard General Relativity notation this calculation can be represented as:
 
-![](tint:G2Eq02)
+$$
+ds^2 = -\frac{1}{\gamma(v)^2} c^2 dt^2 + \gamma(v)^2 dr^2
+$$
 
 ## General Relativity
 
 After many years and the help of a number of mathematicians Einstein developed his field equations:
 
-![](tint:G2Eq03)
+$$
+G_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
+$$
 
 The G and T elements here represent 4 by 4 tensors, each is a function of a 4D point in spacetime, resulting in a 10 equation 10 unknown partial differential equation on a 4 dimensional manifold.  After a century, these equations have been solved for only a handful of highly simple and symmetric geometries.
 
 One of those solutions is the Schwarzschild Metric, which describes the spacetime geometry exterior to a perfect stationary non-rotating spherical mass.  The Schwarzschild Metric is as follows:
 
-![](tint:G2Eq04)
+$$
+ds^2 = -\left(1 - \frac{2GM}{rc^2}\right) c^2 dt^2 + \left(1 - \frac{2GM}{rc^2}\right)^{-1} dr^2 + r^2(d\theta^2 + \sin^2\theta\, d\phi^2)
+$$
 
 At first glance this equation looks quite complicated.  However, there are a few ways we can simplify it.  The metric uses spherical coordinates.  The last term involving the dθ and dϕ angles is exactly the same for flat spherical coordinates and as such there is no interesting physics going on there, as such that term can be ignored and the focus can be placed solely on the radial motion.
 
 Previously, in the Four Leafs article we used classical mechanics to derive the escape velocity around a spherical mass.  The result was:
 
-![](tint:G2Eq05)
+$$
+v_e = \sqrt{\frac{2GM}{r}}
+$$
 
 At this point, looking at the Lorentz factor, the escape velocity and the Schwarzschild metric minus the angles term, an interesting substitution can be made.  If one substitutes in γ(vₑ) (and ignores the angles term), the Schwarzschild metric becomes:
 
-![](tint:G2Eq06)
+$$
+ds^2 = -\frac{1}{\gamma(v_e)^2} c^2 dt^2 + \gamma(v_e)^2 dr^2
+$$
 
 Suddenly, the Schwarzschild metric doesn't look too complicated and one might also note that it is precisely the same as the Special Relativity equation from above.  An obvious physical interpretation pops out.  This is just a static system with an aether flowing through it at the escape velocity and as such it behaves exactly like a translating system on flat space.
 
@@ -54,7 +66,9 @@ Furthermore, the dr component in this equation simply represents the length cont
 
 According to the Gravity I article, gravity is not a force on other masses, but rather is a force on the aexels themselves; this creates an issue.  If the aexels are flowing in at the escape velocity then we can multiply the escape velocity by the surface area of each shell and see that the flux is not constant:
 
-![](tint:G2Eq07)
+$$
+\phi(r) = 4\pi r^2 \cdot \sqrt{\frac{2GM}{r}} = 4\pi \cdot \sqrt{2GM} \cdot r^{3/2}
+$$
 
 This varies with r^(3/2).  There is no way the aexels can be conserved.  There is no way Gauss' law can apply.  In Universe X, aexels do not satisfy Gauss' law.  They are very fragile and when a pressure is applied to them beyond a certain threshold they get squished and disappear entirely.  This allows for the aexel density to stay largely fixed.  (For a much more thorough discussion of how this mechanism was discovered, refer to the 'Squish' article on the 'Path of Discovery'.)
 

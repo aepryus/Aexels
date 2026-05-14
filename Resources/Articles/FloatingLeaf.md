@@ -8,10 +8,28 @@ In Universe X, gravity is not a force on matter, but rather a force on the aexel
 
 Gravity is not a force on matter, it can not directly cause the translation of teslons across the aexels.  It can only pull on the aexels themselves and as such, the motion of the tennis ball will show us the motion of the aexels.  Just as a leaf floating down a river shows us the velocity of the water that is carrying it, the tennis ball floating down to the planet will show us the velocity of the aexels upon which it sits.  Using a little Physics 101 math we can calculate the velocity of the tennis ball when it hits the surface (i.e., the escape velocity):
 
-![](tint:DiscrA)
+$$
+\begin{aligned}
+PE &= Fs \\
+\\
+F &= G\frac{Mm}{r^2} \\
+\\
+PE &= \int_{r}^{\infty} G\frac{Mm}{r^2}\,ds \\
+\\
+PE &= \left. -HMm\frac{1}{r} \right|_{r}^{\infty} = G\frac{Mm}{r} \\
+\\
+KE &= \frac{1}{2}mv^2 \\
+\\
+KE = PE &\Longrightarrow \frac{1}{2}mv^2 = G\frac{Mm}{r} \\
+\\
+v &= \sqrt{\frac{2GM}{r}}
+\end{aligned}
+$$
 
 This gives us the velocity of the tennis ball at the surface and therefore the velocity of the aexels at the surface.  Any system at rest on the planet will have the aexels flowing through it at that velocity, therefore we can plug it into the dilation equation in order to get the dilation at the surface.
 
-![](tint:DiscrB)
+$$
+\gamma = \gamma(v_e) = \frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}
+$$
 
 Perhaps somewhat surprisingly, the value we arrived at here using a little physical intuition and undergrad math is precisely equal to the dilation at the surface of a planet in our universe that is calculated by solving Einstein's 4x4 tensor with 10 equations and 10 unknowns for a perfect sphere.

@@ -8,7 +8,9 @@ But in Universe X, gravity not being a force, the clock would simply flow along 
 
 For our universe, however, the calculation differed:
 
-![](tint:RecEq1)
+$$
+\gamma = \frac{1}{1 - \frac{2GM}{rc^2}} = \gamma(v_e)^2
+$$
 
 At first I was unsure what to make of this result.  I considered 4 separate clocks (W, X, Y and Z) as detailed in the Four Clocks article.  While the static W and Y clocks matched in both universes, the moving X and Z clocks differed in both.  I set out to discover at what point the Einstein Field Equations and the Schwarzschild Metric went off the rails.
 

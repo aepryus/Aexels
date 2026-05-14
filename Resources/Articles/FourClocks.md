@@ -8,33 +8,55 @@ What is the time dilation experienced by each of the 4 clocks.
 
 Clock W at infinity is not translating at all, so it has no translational velocity and therefore its dilation is 1.
 
-![](tint:DiscrC)
+$$
+\gamma = \gamma(0) = 1
+$$
 
 Clock X is simply floating down with the aexels and similarly not translating at all; its dilation is also equal to 1.
 
-![](tint:DiscrC)
+$$
+\gamma = \gamma(0) = 1
+$$
 
 Clock Y is sitting on the platform above the surface of the planet with the aexels flowing through it towards the planet as described in the Floating Leaf article.  Its dilation can be calculated by plugging the escape velocity at the platform into the dilation equation:
 
-![](tint:DiscrB)
+$$
+\gamma = \gamma(v_e) = \frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}
+$$
 
 Clock Z is blasting up from the surface.  The aexels will be moving towards the planet at the escape velocity for r.  The clock itself will be moving away from the planet at that exact same escape velocity in the opposite direction.  Therefore the translational velocity of clock Z will be 2 times that escape velocity.  Plugging that into the dilation equation gives:
 
-![](tint:DiscrE)
+$$
+\gamma = \gamma(2v_e) = \frac{1}{\sqrt{1-\frac{8GM}{rc^2}}}
+$$
 
 A generalized equation for the dilation of a system moving in such a scenario can be described.  One simply needs to calculate the net translational velocity of the system and plug that into the dilation equation.  The net translational velocity will simply be the length of the escape velocity vector minus the system's velocity vector; giving:
 
-![](tint:DiscrF)
+$$
+\gamma(\vec{v}, \vec{v_e}) = \gamma(|\vec{v} - \vec{v_e}|)
+$$
 
 Let's now consider the exact same thought experiment in our Universe.  In our universe the behavior of just such a system is described by the Schwarzschild metric which is a solution to Einstein's equations for a non-rotating sphere.
 
 There is a constant of motion for an inertial observer in the Schwarzschild metric:
 
-![](tint:DiscrG)
+$$
+\left(1 - \frac{r_s}{r}\right)\frac{dt}{d\tau} = \frac{E}{mc^2}
+$$
 
 For a clock starting from rest at infinity, energy will entirely be due to its intrinsic mass and therefore will be equal to mc².  Using this we can calculate gamma:
 
-![](tint:DiscrH)
+$$
+\begin{aligned}
+E &= mc^2 \\
+\\
+\frac{dt}{d\tau} &= \frac{1}{\left(1 - \frac{r_s}{r}\right)} \\
+\\
+r_s &= \frac{2GM}{c^2} \\
+\\
+\gamma = \frac{dt}{d\tau} &= \frac{1}{1-\frac{2GM}{rc^2}}
+\end{aligned}
+$$
 
 In our universe the dilation of such a system is never a function of the direction of the velocity vector.  The dilation of the falling clock and the blasting off clock is exactly the same.
 
@@ -42,19 +64,27 @@ For our universe the time dilation of the 4 clocks is as follows:
 
 Clock W, r goes to infinity, 1/r goes to 0 and gamma goes to 1.
 
-![](tint:DiscrD)
+$$
+\gamma = 1
+$$
 
 Clock X
 
-![](tint:DiscrI)
+$$
+\gamma = \frac{1}{1 - \frac{2GM}{rc^2}} = \gamma(v_e)^2
+$$
 
 Clock Y, as mentioned previously matches the dilation of Clock Y in Universe X.
 
-![](tint:DiscrB)
+$$
+\gamma = \gamma(v_e) = \frac{1}{\sqrt{1-\frac{2GM}{rc^2}}}
+$$
 
 Clock Z
 
-![](tint:DiscrI)
+$$
+\gamma = \frac{1}{1 - \frac{2GM}{rc^2}} = \gamma(v_e)^2
+$$
 
 The dilation of clocks W and Y match in the two universes; the dilation of clock X and Z do not.  And more so, for any given r,
 
