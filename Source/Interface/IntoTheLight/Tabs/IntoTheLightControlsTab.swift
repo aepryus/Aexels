@@ -309,16 +309,19 @@ class IntoTheLightControlsTab: TabsCellTab {
         deltaCupolaBoolButton.on = false
 
         let pings: Int32 = forRadiation ? 36 : 120
-        let steps: Int = forRadiation ? 5 : 12
+        // timeSteps × 3 and freq / 3 vs the pre-c=1.0 defaults — keeps
+        // wavelength-per-volley roughly constant now that the radiation
+        // wavefront propagates at 1.0 instead of 3.0.
+        let steps: Int = forRadiation ? 15 : 12
         explorer.renderer.pingsPerVolley = pings
         explorer.renderer.timeStepsPerVolley = steps
         pingsPerVolleySlider.setTo(Int(pings))
         timeStepsPerVolleySlider.setTo(steps)
 
         if forRadiation {
-            explorer.renderer.radiationOmega = 0.06
+            explorer.renderer.radiationOmega = 0.02
             explorer.renderer.radiationAmplitude = 5.0
-            frequencySlider.setTo(6)
+            frequencySlider.setTo(2)
             amplitudeSlider.setTo(5)
         }
     }
