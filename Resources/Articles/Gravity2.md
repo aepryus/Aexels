@@ -103,20 +103,28 @@ Let $\mathbf{u}$ be the velocity field of the accelerant and $\rho$ the density 
 For an incompressible fluid with sinks (hyle) and sources (antihyle), the divergence of the velocity field equals the net source density.  Choosing the proportionality constant so the eventual answers match the empirical strength of gravity:
 
 $$
-\begin{aligned}
-\nabla \cdot \mathbf{u} &= -4\pi G \rho \\
-\\
-\nabla \times \mathbf{u} &= 0
-\end{aligned}
+\nabla \cdot \mathbf{u} = -4\pi G \rho
 $$
 
-The second equation closes the system: with no rotational sources, the accelerant flow is purely a gradient flow.  Equivalently, $\mathbf{u} = -\nabla \Phi$ where $\nabla^2 \Phi = 4\pi G \rho$.  This is Poisson's equation in fluid clothing.  For a spherical mass $M$, Gauss's law gives:
+This fixes the *divergence* of the accelerant — how much flows in — but a vector field is not determined by its divergence alone; its *curl* must also be specified.  For a single stationary mass there is no rotational source, so we take the flow to be irrotational:
+
+$$
+\nabla \times \mathbf{u} = 0 \qquad \text{(static, non-rotating closure)}
+$$
+
+With this closure the accelerant flow is purely a gradient flow.  Equivalently, $\mathbf{u} = -\nabla \Phi$ where $\nabla^2 \Phi = 4\pi G \rho$.  This is Poisson's equation in fluid clothing.  For a spherical mass $M$, Gauss's law gives:
 
 $$
 \mathbf{u} = -\frac{GM}{r^2} \hat{\mathbf{r}}
 $$
 
 The accelerant velocity at any point is, numerically and dimensionally, the Newtonian gravitational acceleration at that point.  Newton's $1/r^2$ law is not an axiom here; it is the equilibrium configuration of an incompressible flow sinking into a localized hyle sink.  The accelerant's job is to be Newton.
+
+**Scope of this closure.**  Two properties of the equation above must be named honestly, because each marks an edge of validity rather than a finished result:
+
+- *It is instantaneous.*  Poisson's equation is elliptic; a change in $\rho$ here re-solves the field everywhere at once.  That is Newton's own action-at-a-distance — the very absurdity quoted in Gravity I — re-entering through the accelerant.  The empirical fact that gravity propagates at $c$ (LIGO, 2017) is therefore *not yet honored* by this equation.  Honoring it requires the accelerant to be slightly *compressible*, so that disturbances travel as a wave at a finite speed (the accelerant's sound speed, which must come out to $c$).  See *Beyond the Static Sphere* below.
+
+- *It forbids rotation.*  The closure $\nabla\times\mathbf{u}=0$ is a *choice*, valid only when nothing rotational sources the flow.  A spinning or moving mass does source a rotational component, and a strictly curl-free field cannot represent it.  This is why the static system below recovers Schwarzschild exactly and **cannot reach Kerr at all** — not approximately, but structurally.  The missing piece is a vorticity (gravitomagnetic) sector, also deferred to *Beyond the Static Sphere*.
 
 ## The Aexel Equation
 
@@ -129,6 +137,8 @@ $$
 $$
 
 The left side is the material derivative $D \mathbf{v}_a / D t$, the acceleration of an aexel as it moves through space.  The right side is the local accelerant velocity.  This is the Aexel Equation.
+
+Note that the convective term $(\mathbf{v}_a\cdot\nabla)\mathbf{v}_a$ is **quadratic** in $\mathbf{v}_a$.  Two consequences follow that will matter later: aexel velocities do **not** superpose (only the linear accelerant field $\mathbf{u}$ does), and reversing a flow ($\mathbf{v}_a \to -\mathbf{v}_a$) does **not** produce another valid solution — a sink's inflow and a source's outflow are not mirror images.
 
 ## The Static Spherical Solution
 
@@ -146,17 +156,9 @@ $$
 
 The aexel velocity at radius $r$ is the escape velocity.  This is exactly the result obtained in the Floating Leaf article from the entirely different argument that a tennis ball falling from infinity must be co-moving with the aexels, so its impact velocity (the escape velocity) is the aexel velocity at the surface.  Two arguments, the same answer.  Floating Leaf is the integrated form of the Aexel Equation in spherical symmetry.
 
-## Recovering Newton
+(One caution that the quadratic convective term forces: $v^2 = 2GM/r$ is the *integral* of the field along the path for a **point** mass.  It is **not** a pointwise rule that may be re-used by substituting a growing enclosed mass $M_\text{enc}(r)$ — doing so double-counts the work.  For any distributed source the Aexel Equation must be integrated directly.  This is the correction behind the cosmological coefficient in the Antimatter aside below.)
 
-A test particle in free fall co-moves with the aexels: $\mathbf{v}_{\text{ball}} = \mathbf{v}_a$.  Its acceleration is the material derivative of its velocity:
-
-$$
-\frac{D \mathbf{v}_{\text{ball}}}{D t} = \frac{D \mathbf{v}_a}{D t} = \mathbf{u} = -\frac{GM}{r^2} \hat{\mathbf{r}}
-$$
-
-Newton's gravitational acceleration is exactly the accelerant velocity.  This is the entire content of Newton in Universe X: every freely falling object inherits the local $\mathbf{u}$ through the aexels carrying it.
-
-## Recovering General Relativity
+## Recovering Schwarzschild
 
 A test particle held stationary on a platform at radius $r$ is *not* co-moving with the aexels; the aexels flow past it at $\mathbf{v}_a$, so the platform observer is translating at speed $|\mathbf{v}_a|$ relative to the aether.  All the standard Universe X consequences of translation now apply: the observer's clock animates at rate $1/\gamma$ and the observer's radial meter sticks contract by $1/\gamma$, where:
 
@@ -174,17 +176,54 @@ $$
 ds^2 = -\left(1 - \frac{2GM}{rc^2}\right) c^2 dt^2 + \left(1 - \frac{2GM}{rc^2}\right)^{-1} dr^2 + r^2 d\Omega^2
 $$
 
-This is the Schwarzschild metric, recovered without any tensors, without any field equations of GR, without solving any four dimensional ten-equation ten-unknown PDE on a curved manifold.  The metric drops out as the kinematic shadow of two simple 3D fluid equations on flat space.
+This is the **Schwarzschild** metric — the exterior geometry of a stationary, non-rotating, spherical mass — recovered without any tensors, without the field equations of GR, without solving any four-dimensional ten-equation ten-unknown PDE on a curved manifold.  The metric drops out as the kinematic shadow of two simple 3D fluid equations on flat space.
+
+It is worth being precise about what has and has not been shown.  What the two equations reproduce exactly is the **static, spherically symmetric** sector of General Relativity: Schwarzschild, and with it Newtonian gravity, gravitational time dilation, light bending and perihelion precession (these follow from the exact Schwarzschild form).  What they do **not** yet reach is the rest of GR — rotating sources (Kerr, frame-dragging), finite-speed propagation, and gravitational radiation — all of which live in the curl and the time-derivative that the static closure set to zero.  "SR = GR" is the right slogan for the static sphere; the general claim is an aspiration the next section scopes.
 
 ## Why It Works
 
-The reason both Newton and GR fall out cleanly is that they describe the same underlying mechanism in different limits.
+The reason both Newton and Schwarzschild fall out cleanly is that they describe the same underlying mechanism in different limits.
 
 Newton concerns the acceleration directly.  In Universe X the acceleration field is $\mathbf{u}$, and the Accelerant Equation gives $\mathbf{u} = -(GM/r^2) \hat{\mathbf{r}}$ for a point mass.  Newton is just the Accelerant Equation, untouched.
 
-GR concerns the kinematic consequences of matter sitting on aexels that have already acquired velocity $\mathbf{v}_a$.  Those consequences, dilation and contraction, depend only on $\mathbf{v}_a$, not on $\mathbf{u}$ directly.  The Aexel Equation provides the nonlinear $\mathbf{v}_a(\mathbf{u})$ relation; for the static spherical case, $v_a^2 = 2GM/r$.  Plugging that into the standard Universe X dilation formula reproduces the Schwarzschild metric.
+Schwarzschild concerns the kinematic consequences of matter sitting on aexels that have already acquired velocity $\mathbf{v}_a$.  Those consequences, dilation and contraction, depend only on $\mathbf{v}_a$, not on $\mathbf{u}$ directly.  The Aexel Equation provides the nonlinear $\mathbf{v}_a(\mathbf{u})$ relation; for the static spherical case, $v_a^2 = 2GM/r$.  Plugging that into the standard Universe X dilation formula reproduces the Schwarzschild metric.
 
-Newton is the Accelerant Equation.  GR is the Aexel Equation seen through the Lorentz factor.  Universe X has both because it has both fluids; that's why it can recover both theories without introducing either as a postulate.
+Newton is the Accelerant Equation.  Schwarzschild is the Aexel Equation seen through the Lorentz factor.  Universe X has both because it has both fluids; that's why it can recover both without introducing either as a postulate.
+
+## Beyond the Static Sphere
+
+*(Provisional. The two equations above are established and self-consistent for the static, non-rotating sphere. This section sketches the two generalizations the static closure leaves out. Their structure is fixed by analogy with the accelerant's E&M cousin; the coupling coefficients marked below are not yet derived from the Universe X mechanism — that derivation, the "gravitational Rule 3," is the open calculation that this section depends on.)*
+
+The static closure threw away two things: the curl of the accelerant, and its time derivative.  Restoring them is what would carry the framework from "Schwarzschild" to "General Relativity."
+
+**Finite propagation.**  An incompressible accelerant gives the instantaneous elliptic equation.  Allowing slight compressibility turns the elliptic Poisson operator into a hyperbolic wave operator, so disturbances in the field propagate at a finite speed $c_g$:
+
+$$
+\frac{1}{c_g^2}\frac{\partial^2 \Phi}{\partial t^2} - \nabla^2 \Phi = -4\pi G\rho
+$$
+
+The empirical constraint is $c_g = c$ (LIGO/Virgo, GW170817).  In Universe X this should be a *consequence* — the accelerant's signal speed inherited from the same lattice that fixes the speed of light — rather than a number inserted by hand.  Establishing $c_g = c$ from the mechanism, not assuming it, is part of the open work.
+
+**Rotation (the gravitomagnetic sector).**  A moving or spinning mass carries a mass current $\mathbf{j} = \rho\,\mathbf{v}$, and that current must source a *circulating* component of the accelerant that the curl-free closure forbids.  By direct analogy with the way a moving charge sources a magnetic field in the Electromagnetism article, introduce a gravitomagnetic field $\boldsymbol{\xi}$ alongside the (gravitoelectric) accelerant $\mathbf{u}$:
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{u} &= -4\pi G \rho \\
+\nabla \times \mathbf{u} &= -\frac{\partial \boldsymbol{\xi}}{\partial t} \\
+\nabla \cdot \boldsymbol{\xi} &= 0 \\
+\nabla \times \boldsymbol{\xi} &= \kappa\,\frac{G}{c^2}\,\mathbf{j} + \frac{1}{c_g^2}\frac{\partial \mathbf{u}}{\partial t}
+\end{aligned}
+$$
+
+with a force law on the aexels that now includes a velocity-dependent term,
+
+$$
+\mathbf{a} = \mathbf{u} + \mathbf{v}\times\boldsymbol{\xi},
+$$
+
+the $\mathbf{v}\times\boldsymbol{\xi}$ term being frame-dragging.  This is the standard gravitoelectromagnetic structure; with it, a spinning mass produces Lense–Thirring precession (the Gravity Probe B result) and the system can begin to approach the off-diagonal $g_{t\phi}$ terms of Kerr.
+
+The constant $\kappa$ (the analogue of the factors $4$ and $2$ that appear in the standard linearized-GR version of these equations) is **inserted here, not derived**.  In E&M the corresponding factor was fixed by the cupola mechanism; the gravitational counterpart — deriving $\kappa$, and equivalently the deflection enhancement $\gamma(1+\beta^2)$ for a *moving* sink — is the single most leveraged open calculation in the gravity sector, because the same derivation also fixes the moving-source field, settles whether kinetic hyle gravitates as $\rho(1+\langle\beta^2\rangle)=\rho+3p/c^2$ (Tolman's active density, which would carry the interior toward the TOV equation), and underwrites the radiation sector.  Until it is done, the equations of this section are the *right shape* with an *unearned coupling*, and should be read as a program, not a result.
 
 ## An Aside on the Antimatter Case
 
@@ -194,4 +233,14 @@ $$
 \nabla \cdot \mathbf{u} = +4\pi G \rho
 $$
 
-For a uniform density of antihyle dust, by Gauss's law applied from any chosen origin, $\mathbf{u} = +(4\pi G\rho/3)\, r\, \hat{\mathbf{r}}$.  The Aexel Equation then gives a $v_a(r)$ growing linearly with $r$, reproducing the qualitative Hubble behavior of the Aexel Sources article on the Path of Discovery.  The same two PDEs handle both the local gravitational dynamics of stars and planets and the global behavior of antimatter dust between galaxies, with no additional machinery introduced.
+For a uniform density of antihyle dust, Gauss's law applied from any chosen origin gives $\mathbf{u} = +(4\pi G\rho/3)\, r\, \hat{\mathbf{r}}$.
+
+The expansion rate must then be read off the **Aexel Equation**, not by mirroring the point-mass escape-velocity formula (which, as noted above, is not a pointwise law and double-counts when fed a growing enclosed mass).  The clean route uses homogeneity directly: the only steady velocity field consistent with a uniform medium is $\mathbf{v}_a = H\mathbf{x}$ about any origin, so $(\mathbf{v}_a\cdot\nabla)\mathbf{v}_a = H^2\mathbf{x}$, and the Aexel Equation $D\mathbf{v}_a/Dt = \mathbf{u}$ gives, in one line,
+
+$$
+H^2 \mathbf{x} = \frac{4\pi G\rho}{3}\,\mathbf{x}
+\qquad\Longrightarrow\qquad
+\boxed{\,H^2 = \frac{4\pi G\rho}{3}\,}
+$$
+
+Hubble's linear law $\mathbf{v}_a = H\mathbf{x}$ is thus not assumed but *derived* as the unique homogeneous steady solution, with the coefficient attached.  Note this is **half** the naive Friedmann coefficient $8\pi G\rho/3$: the factor of two is exactly the double-counting incurred by the mirrored escape-velocity shortcut, and the honest value is fixed — the normalization of $\nabla\cdot\mathbf{u}$ and the one-to-one $v\!\Rightarrow\!a$ promotion are both pinned by the static Schwarzschild sector, leaving no slack to restore it.  The same two PDEs handle both the local gravitational dynamics of stars and planets and the global behavior of antimatter dust between galaxies, with no additional machinery introduced.

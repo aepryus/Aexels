@@ -14,4 +14,4 @@ This resolves Zeno's paradox.  The two arrows are not the same.  A frozen snapsh
 
 But this also has a devastating consequence for Special Relativity's principle of reciprocity.  If a moving proton gravitates more than a stationary one and if this gravitation is frame independent, then there is an objective, physical fact about which proton is moving and which is not.  There is a preferred frame.  Two observers cannot both consider themselves to be at rest; the gravitational measurements will tell them who is right.
 
-E=mc² is incompatible with reciprocity.  Once again, from an entirely different direction than the Chronos argument, reciprocity is dead.
+E=mc² is incompatible with reciprocity.  Once again, from an entirely different direction than the Conspiracy argument, reciprocity is dead.

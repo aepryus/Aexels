@@ -293,7 +293,7 @@ class NexusExplorer: AEViewController {
         cyto.layout()
         articleCell.frame = glyphsCell.frame
 
-        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: Screen.iPhone ? glyphsCell.width-10*s : 510*s, height: Screen.iPhone ? 1940*s : 2487*s)
+        glyphsView.frame = CGRect(x: 0*s, y: 20*s, width: Screen.iPhone ? glyphsCell.width-10*s : 510*s, height: Screen.iPhone ? 2220*s : 2850*s)
         articleView.frame = CGRect(x: 10*s, y: 5*s, width: articleScroll.width-20*s, height: articleScroll.height-10*s)
         if glyphsView.superview != nil { glyphsScroll.contentSize = glyphsView.frame.size }
         currentCapsule.render()
@@ -306,7 +306,7 @@ class NexusExplorer: AEViewController {
         claudeHover.center(width: 250*s, height: 75*s)
     }
     override func layoutRatio143() {
-        glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2487*s)
+        glyphsView.frame = CGRect(x: 50*s, y: 20*s, width: 990*s, height: 2850*s)
         articleScroll.frame = CGRect(x: 44*s, y: Screen.mac ? Screen.safeTop: 0, width: 1050*s, height: view.height-(Screen.mac ? Screen.safeTop+Screen.safeBottom : 0))
         glyphsScroll.frame = articleScroll.frame
         if glyphsView.superview != nil { glyphsScroll.contentSize = glyphsView.frame.size }

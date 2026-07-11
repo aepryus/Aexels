@@ -31,35 +31,43 @@ class GlyphsBorderView: AEView {
         
         let moat: CGFloat = 8*s
         let a: CGFloat = 5*s
-        var point: GlyphView = first
-        var angle: CGFloat = -0.2
-        var comingFrom: GlyphView? = nil
-        var movingTo: GlyphView! = nil
-        
-        let path: CGMutablePath = CGMutablePath()
-        path.move(to: point.center + (point.radius*ss/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
 
-        while true {
-            if point === first && comingFrom == nil {
-                movingTo = point.sortedLinkedTo[0]
-            } else if point === first && comingFrom == point.sortedLinkedTo.last! {
-                let angleTo: CGFloat = 2 * .pi
+        let path: CGMutablePath = CGMutablePath()
+
+        if first.sortedLinkedTo.isEmpty {
+            // A glyph with no links — e.g. The Architect, floated alone on the
+            // Path of Concepts — has no chain to trace; ring it on its own.
+            path.addArc(center: first.center, radius: first.radius*ss/2+moat, startAngle: 0, endAngle: 2 * .pi, clockwise: false)
+        } else {
+            var point: GlyphView = first
+            var angle: CGFloat = -0.2
+            var comingFrom: GlyphView? = nil
+            var movingTo: GlyphView! = nil
+
+            path.move(to: point.center + (point.radius*ss/2+moat)*CGPoint(x: sin(angle), y: -cos(angle)))
+
+            while true {
+                if point === first && comingFrom == nil {
+                    movingTo = point.sortedLinkedTo[0]
+                } else if point === first && comingFrom == point.sortedLinkedTo.last! {
+                    let angleTo: CGFloat = 2 * .pi
+                    let radius: CGFloat = point.radius*ss/2+moat
+                    let dq: CGFloat = asin(a/radius)
+                    path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
+                    path.closeSubpath()
+                    break
+                } else {
+                    movingTo = point.linkAfter(comingFrom!)
+                }
+                let angleTo: CGFloat = point.spoke(to: movingTo)
                 let radius: CGFloat = point.radius*ss/2+moat
                 let dq: CGFloat = asin(a/radius)
                 path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
-                path.closeSubpath()
-                break
-            } else {
-                movingTo = point.linkAfter(comingFrom!)
+                let angleBack: CGFloat = movingTo.spoke(to: point)
+                comingFrom = point
+                angle = angleBack
+                point = movingTo
             }
-            let angleTo: CGFloat = point.spoke(to: movingTo)
-            let radius: CGFloat = point.radius*ss/2+moat
-            let dq: CGFloat = asin(a/radius)
-            path.addArc(center: point.center, radius: radius, startAngle: angle + 3 * .pi/2 + dq, endAngle: angleTo + 3 * .pi/2 - dq, clockwise: false)
-            let angleBack: CGFloat = movingTo.spoke(to: point)
-            comingFrom = point
-            angle = angleBack
-            point = movingTo
         }
 
         let c = UIGraphicsGetCurrentContext()!

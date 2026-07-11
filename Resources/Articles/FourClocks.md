@@ -96,7 +96,7 @@ Our Universe
 
 This is a rather substantial deviation in the two universes.  How could such a discrepancy arise?
 
-Recall in the Chronos article it was shown that Reciprocity could not possibly be true.
+Recall in the Conspiracy article it was shown that Reciprocity could not possibly be true.
 
 One of the first steps in the derivation of Einstein's field equations is the definition of ds² = c²dt² - dx² - dy² - dz² and to note that because of reciprocity this term is a constant for all frames.  But, if reciprocity is false, ds² invariance is false.
 
@@ -111,21 +111,3 @@ Beyond all this there may be something else being illustrated here.  Consider th
     W = X
 
 This hints at a potentially new, much stronger equivalence principle, that a system in free fall is precisely equivalent to a system in flat space.  This concept is further explored in the Gravity II article.
-
-## The Experiment
-
-The discrepancy between Universe X and General Relativity described above is not merely theoretical.  It is testable with modest equipment.
-
-Send a clock up a vertical track, measure its elapsed ticks.  Send the same clock down the same track at the same speed, measure its elapsed ticks.  Compare the two numbers.
-
-General Relativity predicts the two numbers are identical; time dilation depends on speed squared, so direction does not matter.
-
-Universe X predicts they differ.  The Earth's gravitational field creates an aether inflow at 11.2 km/s.  A clock moving downward moves with that flow and experiences less total dilation.  A clock moving upward moves against it and experiences more.  The difference is proportional to 2 × 11,200 × v_cart / c².
-
-At a cart speed of 5 m/s, the fractional dilation difference between up and down runs is about 1.2 × 10⁻¹².  At 30 m/s, about 7.5 × 10⁻¹².  A good OCXO has short-term stability of 10⁻¹² to 10⁻¹³, so the signal is detectable with modest averaging.
-
-The hardware is straightforward: a 1-meter V-slot aluminum rail mounted vertically, a roller carriage carrying a military-grade OCXO, a small battery and an ESP32 with Bluetooth for readout, a pneumatic launcher at one end and an eddy current copper plate brake at the other, with a stationary reference OCXO on the bench.  Total cost under $2000.
-
-The result is binary.  Either the up count and down count differ systematically, or they do not.  A few thousand runs, achievable in a day of automated operation, would give a definitive answer at high statistical significance.
-
-Why has this not been done?  General Relativity predicts exactly zero difference.  No one builds experiments to measure effects their theory says do not exist.  Every prior test of gravitational time dilation has used static clocks, which both frameworks agree on.  The specific comparison of moving clocks in opposite vertical directions has never been performed.

@@ -24,10 +24,11 @@ class PathOfDiscovery {
     static let aexelSources: Article = Article(key: "aexelSources")
     
     static let steppingStones: Article = Article(key: "steppingStones", parent: discovery)
-    
+    static let strats: Article = Article(key: "strats", parent: discovery)
+
     static var articles: [Article] = [
         discovery, expansion, escaping, covariance, reciprocity, eeemcee,
-        cupola, squish, hyleBridge, cupolaRedux, aexelSources, steppingStones
+        cupola, squish, hyleBridge, cupolaRedux, aexelSources, steppingStones, strats
     ]
     
     static func glyphs(s: CGFloat) -> [GlyphView] {
@@ -49,6 +50,7 @@ class PathOfDiscovery {
         let outsideInExpGlyph: ExplorerGlyph = ExplorerGlyph(explorer: Aexels.outsideInExplorer, radius: 50*s+2*p, x: 430*s, y: 1020*s)
         
         let steppingStonesGlyph: AsideGlyph = AsideGlyph(article: steppingStones, radius: 64*s+2*p, x: 400*s, y: 100*s)
+        let stratsGlyph: AsideGlyph = AsideGlyph(article: strats, radius: 56*s+2*p, x: 420*s, y: 200*s)
 
         var glyphs: [GlyphView] = []
         
@@ -68,9 +70,11 @@ class PathOfDiscovery {
         glyphs.append(outsideInExpGlyph)
         
         glyphs.append(steppingStonesGlyph)
-        
+        glyphs.append(stratsGlyph)
+
         discoveryGlyph.link(to: expansionGlyph)
         discoveryGlyph.link(to: steppingStonesGlyph)
+        discoveryGlyph.link(to: stratsGlyph)
         expansionGlyph.link(to: escapingGlyph)
         escapingGlyph.link(to: covarianceGlyph)
         covarianceGlyph.link(to: reciprocityGlyph)

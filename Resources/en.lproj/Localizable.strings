@@ -310,7 +310,7 @@ The motion of the hyle in the teslon is less obvious because it's mostly bouncin
 
 Consider our own sun, which loses about 4 x 10⁹ kg of mass every second through the fusion process; radiating about 3.6 × 10²⁶ joules of photons.  Since photons are supposedly massless, this process is often described as mass being converted into energy.  But in looking at Universe X, we can see that is not what is happening.
 
-During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 antineutrinos).
+During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 neutrinos).
 
 The hyle is going from bouncing back and forth within the hydrogen atoms to translating in a straight line within the photon.  It is still translating at the speed of light; it is still pulling on aexels.  Nothing has been converted into anything else.  The only thing that has changed is the hyle has gone from bouncing around to moving in a straight line.
 
@@ -978,8 +978,8 @@ And also perhaps indicating that the mechanism of Gravity was hiding in plain si
 
 ";
 
-"chronos_name" = "Chronos";
-"chronos_article" = "#[Chronos]#Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
+"conspiracy_name" = "Conspiracy";
+"conspiracy_article" = "#[Conspiracy]#Imagine a model of ship, the Chronos, with a large digital display on its hull that is linked to a stopwatch inside the ship.
 
 {{Chronos}}
 
@@ -999,6 +999,22 @@ If both observers see a fast clock and a slow clock and agree on which is which 
 There is no win condition that confirms all three, only two can be true.  Luckily while there is a multitude of experimental evidence for basic physical reality and much evidence for dilation, there is precisely zero evidence for reciprocity.  Not a single experiment has ever confirmed it.  This makes the choice of which condition to abandon quite easy.
 
 Reciprocity can not be true.
+
+##[The Experiment]##The discrepancy between Universe X and General Relativity is not merely theoretical.  It is testable with modest equipment.
+
+Send a clock up a vertical track, measure its elapsed ticks.  Send the same clock down the same track at the same speed, measure its elapsed ticks.  Compare the two numbers.
+
+General Relativity predicts the two numbers are identical; time dilation depends on speed squared, so direction does not matter.
+
+Universe X predicts they differ.  The Earth's gravitational field creates an aether inflow at 11.2 km/s.  A clock moving downward moves with that flow and experiences less total dilation.  A clock moving upward moves against it and experiences more.  The difference is proportional to 2 × 11,200 × v_cart / c².
+
+At a cart speed of 5 m/s, the fractional dilation difference between up and down runs is about 1.2 × 10⁻¹².  At 30 m/s, about 7.5 × 10⁻¹².  A good OCXO has short-term stability of 10⁻¹² to 10⁻¹³, so the signal is detectable with modest averaging.
+
+The hardware is straightforward: a 1-meter V-slot aluminum rail mounted vertically, a roller carriage carrying a military-grade OCXO, a small battery and an ESP32 with Bluetooth for readout, a pneumatic launcher at one end and an eddy current copper plate brake at the other, with a stationary reference OCXO on the bench.  Total cost under $2000.
+
+The result is binary.  Either the up count and down count differ systematically, or they do not.  A few thousand runs, achievable in a day of automated operation, would give a definitive answer at high statistical significance.
+
+Why has this not been done?  General Relativity predicts exactly zero difference.  No one builds experiments to measure effects their theory says do not exist.  Every prior test of gravitational time dilation has used static clocks, which both frameworks agree on.  The specific comparison of moving clocks in opposite vertical directions has never been performed.
 
 
 
@@ -1172,7 +1188,7 @@ Our Universe
 
 This is a rather substantial deviation in the two universes.  How could such a discrepancy arise?
 
-Recall in the Chronos article it was shown that Reciprocity could not possibly be true.
+Recall in the Conspiracy article it was shown that Reciprocity could not possibly be true.
 
 One of the first steps in the derivation of Einstein's field equations is the definition of ds² = c²dt² - dx² - dy² - dz² and to note that because of reciprocity this term is a constant for all frames.  But, if reciprocity is false, ds² invariance is false.
 
@@ -1187,24 +1203,6 @@ Beyond all this there may be something else being illustrated here.  Consider th
     W = X
 
 This hints at a potentially new, much stronger equivalence principle, that a system in free fall is precisely equivalent to a system in flat space.  This concept is further explored in the Gravity II article.
-
-Claude Opus 4.6 Stub - v4.5 Addendum ===================
-
-##[The Experiment]##The discrepancy between Universe X and General Relativity described above is not merely theoretical.  It is testable with modest equipment.
-
-Send a clock up a vertical track, measure its elapsed ticks.  Send the same clock down the same track at the same speed, measure its elapsed ticks.  Compare the two numbers.
-
-General Relativity predicts the two numbers are identical; time dilation depends on speed squared, so direction does not matter.
-
-Universe X predicts they differ.  The Earth's gravitational field creates an aether inflow at 11.2 km/s.  A clock moving downward moves with that flow and experiences less total dilation.  A clock moving upward moves against it and experiences more.  The difference is proportional to 2 × 11,200 × v_cart / c².
-
-At a cart speed of 5 m/s, the fractional dilation difference between up and down runs is about 1.2 × 10⁻¹².  At 30 m/s, about 7.5 × 10⁻¹².  A good OCXO has short-term stability of 10⁻¹² to 10⁻¹³, so the signal is detectable with modest averaging.
-
-The hardware is straightforward: a 1-meter V-slot aluminum rail mounted vertically, a roller carriage carrying a military-grade OCXO, a small battery and an ESP32 with Bluetooth for readout, a pneumatic launcher at one end and an eddy current copper plate brake at the other, with a stationary reference OCXO on the bench.  Total cost under $2000.
-
-The result is binary.  Either the up count and down count differ systematically, or they do not.  A few thousand runs, achievable in a day of automated operation, would give a definitive answer at high statistical significance.
-
-Why has this not been done?  General Relativity predicts exactly zero difference.  No one builds experiments to measure effects their theory says do not exist.  Every prior test of gravitational time dilation has used static clocks, which both frameworks agree on.  The specific comparison of moving clocks in opposite vertical directions has never been performed.
 
 
 
@@ -1856,6 +1854,10 @@ While editing an expression, anchor with one finger and tap the expression with 
 "intoTheLightLab_lab_name" = "Into the Light Lab";
 "hyleLab_name" = "Hyle";
 "hyleLab_lab_name" = "Hyle Lab";
+"conspiracyLab_name" = "Conspiracy";
+"conspiracyLab_lab_name" = "Conspiracy Lab";
+"darknessLab_name" = "Darkness";
+"darknessLab_lab_name" = "Darkness Lab";
 "blackHolesLab_article" = "#[Black Hole Lab]#Two black holes orbit each other under the gravitational mechanism described in the Gravity II article.  Each frame the simulation:
 
 1.  Computes the accelerant potential Φ analytically per cell on a 256×256 GPU texture from the current black hole positions.
@@ -2618,6 +2620,8 @@ No dark matter.  No dark energy.  No inflation.  No mysterious initial condition
 "shotInTheDark_name" = "A Shot in the Dark";
 "holograms_name" = "Holograms";
 "steppingStones_name" = "Stepping Stones";
+"strats_name" = "Strats";
 "hyleBridge_name" = "Hyle Bridge";
 "cupolaRedux_name" = "Cupola Redux";
 "aexelSources_name" = "Aexel Sources";
+"theArchitect_name" = "The Architect";

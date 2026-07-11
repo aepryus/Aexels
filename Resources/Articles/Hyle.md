@@ -21,7 +21,7 @@ The motion of the hyle in the teslon is less obvious because it's mostly bouncin
 
 Consider our own sun, which loses about 4 x 10⁹ kg of mass every second through the fusion process; radiating about 3.6 × 10²⁶ joules of photons.  Since photons are supposedly massless, this process is often described as mass being converted into energy.  But in looking at Universe X, we can see that is not what is happening.
 
-During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 antineutrinos).
+During the process 4 hydrogen atoms are fused into a single Helium atom, but the hyle in 4 hydrogen atoms is greater than the hyle in a single helium atom, so the excess gets expelled as photons (and 2 neutrinos).
 
 The hyle is going from bouncing back and forth within the hydrogen atoms to translating in a straight line within the photon.  It is still translating at the speed of light; it is still pulling on aexels.  Nothing has been converted into anything else.  The only thing that has changed is the hyle has gone from bouncing around to moving in a straight line.
 

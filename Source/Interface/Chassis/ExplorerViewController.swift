@@ -120,7 +120,7 @@ class ExplorerViewController: AEViewController {
         // closest to the screen edge and is also where the collapsed
         // "selected" icon lands by default.
         //
-        //   Col 0 (leftmost):  HyleLab      —             —              —
+        //   Col 0 (leftmost):  ConspiracyLab DarknessLab  HyleLab        —
         //   Col 1:             Dilation     Contraction   ShotInTheDark  IntoTheLight
         //   Col 2:             InsideOut    OutsideIn     Gravity        BlackHoles
         //   Col 3 (rightmost): Nexus        Aether        Cellular       Kinematics
@@ -130,9 +130,9 @@ class ExplorerViewController: AEViewController {
         // natural "summary" anchor.
         let visions: [[Vision?]] = [
             [
+                Aexels.conspiracyLabExplorer.vision,
+                Aexels.darknessLabExplorer.vision,
                 Aexels.hyleLabExplorer.vision,
-                nil,
-                nil,
                 nil
             ],
             [

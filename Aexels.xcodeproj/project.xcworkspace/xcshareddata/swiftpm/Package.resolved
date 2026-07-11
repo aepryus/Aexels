@@ -1,5 +1,5 @@
 {
-  "originHash" : "58d2b312c9294364b4c1156d800175257563604c3c04bef0bdc0085ecaf35915",
+  "originHash" : "e50abf3a9df50adb5b9e84773f355c0c0cdb9b1e20bcb20c3092d5ba8c60a45e",
   "pins" : [
     {
       "identity" : "acheron",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/aepryus/Acheron.git",
       "state" : {
         "branch" : "master",
-        "revision" : "ca1df0e199ecdc3fc3c4f71d0ba18a383d7d6d5a"
+        "revision" : "02b29e7b94e6c88fcff47d9308452867b2063dd7"
       }
     },
     {
@@ -16,16 +16,16 @@
       "location" : "https://github.com/aepryus/OoviumEngine.git",
       "state" : {
         "branch" : "master",
-        "revision" : "a0e3369b3ea298737829f3968b2def584ada5462"
+        "revision" : "19de7cba7fa5a3f79d955361797bc106fcd0ae99"
       }
     },
     {
       "identity" : "ooviumkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aepryus/OoviumKit",
+      "location" : "git@github.com:aepryus/OoviumKit.git",
       "state" : {
         "branch" : "master",
-        "revision" : "297c7923c763db0f04b96234c0c83ed410a47743"
+        "revision" : "98195f10b66f7fa3f282823ed9bfa3ad9e260ee8"
       }
     },
     {

@@ -194,34 +194,39 @@ class CellularEngine {
 		}
 	}
 	func defineOnFire() {
-//		var last: DispatchTime = DispatchTime.now()
-		
 		Aexels.sync.onFire = { (link: CADisplayLink, complete: @escaping ()->()) in
-//			let current = DispatchTime.now()
-//			let delta = Double(current.uptimeNanoseconds - last.uptimeNanoseconds)/1000000000
-//			print("=====================================================")
-//			print("    total:\t\t\(delta) or \(round(1/delta)) SPS")
-//			last = current
-			self.step {
-				DispatchQueue.global(qos: .userInitiated).async {
-//					let start = DispatchTime.now()
-					DispatchQueue.concurrentPerform(iterations: self.views.count, execute: { (i: Int) in
-						self.views[i].start()
-						self.views[i].renderImage()
-					})
-//					let current = DispatchTime.now()
-//					let delta = Double(current.uptimeNanoseconds - start.uptimeNanoseconds)/1000000000
-//					print("    render:\t\t\(delta) or \(round(1/delta)) SPS")
-					complete()
-					DispatchQueue.main.async {
-						self.views.forEach {
-//							guard $0.renderMode == .rendered else {print("draw skipped");return}
-							guard $0.renderMode == .rendered else { return }
-							$0.setNeedsDisplay()
-						}
-//						guard self.views[0].renderMode == .rendered else {return}
-//						self.sampleFrameRate()
+			// AESync.fire() runs on the main thread and holds a semaphore until
+			// `complete()` is called.  Release it immediately so a generation
+			// that overruns the frame budget can never stall the main thread —
+			// that main-thread block was the source of the playback stutter.
+			//
+			// Back-pressure comes from `working` instead: while the previous
+			// generation is still computing or rendering, we simply skip this
+			// vsync and let the main thread keep drawing and handling touches.
+			// `working` is read and cleared only on the main thread, and it is
+			// cleared after rendering finishes — so the next generation can't
+			// swap the `cells` buffer out from under an in-flight render.
+			complete()
+			guard !self.working else { return }
+			self.working = true
+
+			DispatchQueue.global(qos: .userInitiated).async {
+				DispatchQueue.concurrentPerform(iterations: self.iterations, execute: { (i: Int) in
+					AXAutomataStep(self.automatas[i], self.cells, self.next, Int32(i*self.stride), Int32(i == self.iterations-1 ? self.side : (i+1)*self.stride))
+				})
+				(self.cells, self.next) = (self.next, self.cells)
+
+				DispatchQueue.concurrentPerform(iterations: self.views.count, execute: { (i: Int) in
+					self.views[i].start()
+					self.views[i].renderImage()
+				})
+
+				DispatchQueue.main.async {
+					self.views.forEach {
+						guard $0.renderMode == .rendered else { return }
+						$0.setNeedsDisplay()
 					}
+					self.working = false
 				}
 			}
 		}
