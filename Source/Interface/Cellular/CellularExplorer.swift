@@ -87,15 +87,16 @@ class CellularExplorer: Explorer, AetherViewDelegate {
     override var experiment: Experiment? {
         didSet {
             guard let experiment: CellularExperiment = experiment as? CellularExperiment else { return }
-            do {
-                try Space.local.loadAether(facade: experiment.facade) { (json: String?) in
-                    guard let json else { return }
-                    let aether: Aether = Aether(json: json)
-                    self.aetherView.swapToAether(aether: aether)
-                    self.engine.needsCompile = true
-                    self.open(aether: aether)
+            experiment.facade.load { (result: Result<String, Error>) in
+                switch result {
+                    case .success(let json):
+                        let aether: Aether = Aether(json: json)
+                        self.aetherView.swapToAether(aether: aether)
+                        self.engine.needsCompile = true
+                        self.open(aether: aether)
+                    case .failure(let error): print("\(error)")
                 }
-            } catch { print("\(error)") }
+            }
         }
     }
 
@@ -116,12 +117,12 @@ class CellularExplorer: Explorer, AetherViewDelegate {
 
         _ = Facade.create(space: Space.local) as! SpaceFacade
         let facade: AetherFacade = Facade.create(ooviumKey: "Local::Game of Life") as! AetherFacade
-        do {
-            try facade.load { (json: String?) in
-                guard let json = json else { return }
-                self.open(aether: Aether(json: json))
+        facade.load { (result: Result<String, Error>) in
+            switch result {
+                case .success(let json): self.open(aether: Aether(json: json))
+                case .failure(let error): print("\(error)")
             }
-        } catch { print("\(error)") }
+        }
         
         ooviumTab.ooviumView = ooviumView
 
