@@ -1,60 +1,60 @@
 {
-  "originHash" : "e50abf3a9df50adb5b9e84773f355c0c0cdb9b1e20bcb20c3092d5ba8c60a45e",
-  "pins" : [
+  "originHash": "e50abf3a9df50adb5b9e84773f355c0c0cdb9b1e20bcb20c3092d5ba8c60a45e",
+  "pins": [
     {
-      "identity" : "acheron",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aepryus/Acheron.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "02b29e7b94e6c88fcff47d9308452867b2063dd7"
+      "identity": "acheron",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/aepryus/Acheron.git",
+      "state": {
+        "branch": "master",
+        "revision": "0f99db40d44966d9e146d51ebdee898c29e04388"
       }
     },
     {
-      "identity" : "ooviumengine",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/aepryus/OoviumEngine.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "19de7cba7fa5a3f79d955361797bc106fcd0ae99"
+      "identity": "ooviumengine",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/aepryus/OoviumEngine.git",
+      "state": {
+        "branch": "master",
+        "revision": "e1cba56e2af31f5a05343ea8afe3f0dd4814bcc0"
       }
     },
     {
-      "identity" : "ooviumkit",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:aepryus/OoviumKit.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "98195f10b66f7fa3f282823ed9bfa3ad9e260ee8"
+      "identity": "ooviumkit",
+      "kind": "remoteSourceControl",
+      "location": "git@github.com:aepryus/OoviumKit.git",
+      "state": {
+        "branch": "master",
+        "revision": "9f3b60aa848d199caf92dfc366a09b32baeeb881"
       }
     },
     {
-      "identity" : "swift-cmark",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-cmark.git",
-      "state" : {
-        "revision" : "5d9bdaa4228b381639fff09403e39a04926e2dbe",
-        "version" : "0.7.1"
+      "identity": "swift-cmark",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/swiftlang/swift-cmark.git",
+      "state": {
+        "revision": "924936d0427cb25a61169739a7660230bffa6ea6",
+        "version": "0.8.0"
       }
     },
     {
-      "identity" : "swift-markdown",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swiftlang/swift-markdown",
-      "state" : {
-        "revision" : "7d9a5ce307528578dfa777d505496bd5f544ad94",
-        "version" : "0.7.3"
+      "identity": "swift-markdown",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/swiftlang/swift-markdown",
+      "state": {
+        "revision": "3c6f9523da3a1ec2fd829673e472d95b8097a3b8",
+        "version": "0.8.0"
       }
     },
     {
-      "identity" : "swiftmath",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mgriebling/SwiftMath",
-      "state" : {
-        "revision" : "fa8244ed032f4a1ade4cb0571bf87d2f1a9fd2d7",
-        "version" : "1.7.3"
+      "identity": "swiftmath",
+      "kind": "remoteSourceControl",
+      "location": "https://github.com/mgriebling/SwiftMath",
+      "state": {
+        "revision": "fa8244ed032f4a1ade4cb0571bf87d2f1a9fd2d7",
+        "version": "1.7.3"
       }
     }
   ],
-  "version" : 3
+  "version": 3
 }
