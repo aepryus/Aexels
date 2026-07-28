@@ -29,7 +29,7 @@
 		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
-		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829C66C3018B0CF00990107 /* OoviumKit */; };
 		D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */; };
 		D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9332D5B706600E7B029 /* AetherExperiment.swift */; };
 		D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9352D5B790800E7B029 /* DistanceExperiment.swift */; };
@@ -80,9 +80,6 @@
 		D8AB7C1D000000000000B002 /* Cellular.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A002 /* Cellular.md */; };
 		D8AB7C1D000000000000B003 /* Kinematics.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A003 /* Kinematics.md */; };
 		D8AB7C1D000000000000B004 /* Gravity1.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A004 /* Gravity1.md */; };
-		D8AB7C1D000000000000B029 /* Conspiracy.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A029 /* Conspiracy.md */; };
-		D8AB7C1D000000000000B02A /* Strats.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A02A /* Strats.md */; };
-		D8AB7C1D000000000000B02B /* TheArchitect.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A02B /* TheArchitect.md */; };
 		D8AB7C1D000000000000B006 /* Aesthetics.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A006 /* Aesthetics.md */; };
 		D8AB7C1D000000000000B007 /* Claude.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A007 /* Claude.md */; };
 		D8AB7C1D000000000000B008 /* Nuclear.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A008 /* Nuclear.md */; };
@@ -117,6 +114,9 @@
 		D8AB7C1D000000000000B026 /* Eeemcee.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A026 /* Eeemcee.md */; };
 		D8AB7C1D000000000000B027 /* Cupola.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A027 /* Cupola.md */; };
 		D8AB7C1D000000000000B028 /* Squish.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A028 /* Squish.md */; };
+		D8AB7C1D000000000000B029 /* Conspiracy.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A029 /* Conspiracy.md */; };
+		D8AB7C1D000000000000B02A /* Strats.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A02A /* Strats.md */; };
+		D8AB7C1D000000000000B02B /* TheArchitect.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A02B /* TheArchitect.md */; };
 		D8AB7C1D000000000000B100 /* IntoTheLight.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1D000000000000A100 /* IntoTheLight.md */; };
 		D8AB7C1E000000000000C001 /* BlackHolesShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B001 /* BlackHolesShaders.metal */; };
 		D8AB7C1E000000000000C002 /* BlackHolesRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */; };
@@ -279,9 +279,6 @@
 		D8AB7C1D000000000000A002 /* Cellular.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Cellular.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A003 /* Kinematics.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Kinematics.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A004 /* Gravity1.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Gravity1.md; sourceTree = "<group>"; wrapsLines = 1; };
-		D8AB7C1D000000000000A029 /* Conspiracy.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Conspiracy.md; sourceTree = "<group>"; wrapsLines = 1; };
-		D8AB7C1D000000000000A02A /* Strats.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Strats.md; sourceTree = "<group>"; wrapsLines = 1; };
-		D8AB7C1D000000000000A02B /* TheArchitect.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = TheArchitect.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A006 /* Aesthetics.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Aesthetics.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A007 /* Claude.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Claude.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A008 /* Nuclear.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Nuclear.md; sourceTree = "<group>"; wrapsLines = 1; };
@@ -316,6 +313,9 @@
 		D8AB7C1D000000000000A026 /* Eeemcee.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Eeemcee.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A027 /* Cupola.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Cupola.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A028 /* Squish.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Squish.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A029 /* Conspiracy.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Conspiracy.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A02A /* Strats.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = Strats.md; sourceTree = "<group>"; wrapsLines = 1; };
+		D8AB7C1D000000000000A02B /* TheArchitect.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = TheArchitect.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1D000000000000A100 /* IntoTheLight.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = IntoTheLight.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1E000000000000B001 /* BlackHolesShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BlackHolesShaders.metal; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B002 /* BlackHolesRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHolesRenderer.swift; sourceTree = "<group>"; };
@@ -410,8 +410,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */,
-				D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */,
 				D804561C281534BF0018223B /* Acheron in Frameworks */,
+				D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */,
 				D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */,
 				D804561E281534BF0018223B /* OoviumEngine in Frameworks */,
 			);
@@ -1163,11 +1163,11 @@
 			);
 			name = Aexels;
 			packageProductDependencies = (
-				D829BCEC28152FBA005B3461 /* OoviumKit */,
 				D804561B281534BF0018223B /* Acheron */,
 				D804561D281534BF0018223B /* OoviumEngine */,
 				D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */,
 				D8B8DAB72FA6C8E700E52CC5 /* Markdown */,
+				D829C66C3018B0CF00990107 /* OoviumKit */,
 			);
 			productName = Aexels;
 			productReference = D8AE17372814E97200E74CB8 /* Aexels.app */;
@@ -1182,7 +1182,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = AX;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2660;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D8AE17362814E97200E74CB8 = {
@@ -1203,7 +1203,7 @@
 			packageReferences = (
 				D8B8DAB32FA6C8D800E52CC5 /* XCRemoteSwiftPackageReference "SwiftMath" */,
 				D8B8DAB62FA6C8E700E52CC5 /* XCRemoteSwiftPackageReference "swift-markdown" */,
-				D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */,
+				D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */,
 			);
 			productRefGroup = D8AE17382814E97200E74CB8 /* Products */;
 			projectDirPath = "";
@@ -1499,6 +1499,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1555,6 +1556,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1654,9 +1656,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */ = {
+		D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:aepryus/OoviumKit.git";
+			repositoryURL = "https://github.com/aepryus/OoviumKit";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1689,9 +1691,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = OoviumEngine;
 		};
-		D829BCEC28152FBA005B3461 /* OoviumKit */ = {
+		D829C66C3018B0CF00990107 /* OoviumKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */;
+			package = D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */;
 			productName = OoviumKit;
 		};
 		D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */ = {
