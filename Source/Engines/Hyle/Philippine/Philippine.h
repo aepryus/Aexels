@@ -25,12 +25,26 @@
 typedef struct PCNode {
     CV2 pos;
     double a;                    // radius
-    CV2 mode;                    // m-hat: the mode axis (unit).  Every capture
-                                 // classifies by sign(n-hat . m-hat), n-hat the
-                                 // outward normal at the capture point — the
-                                 // stake-setter: the split converges to
-                                 // (1 +/- cos chi)/2, chi the angle between
-                                 // m-hat and the incoming beam.
+    CV2 mode;                    // m-hat: the axis of the node's internal 2-D
+                                 // oscillation mode — the ONE object of the
+                                 // papers (BJFE abstract/S7): the per-ping
+                                 // cupola is this mode's emission-by-emission
+                                 // sampling (ItL S5.4: an oscillating source's
+                                 // cupolas trace its axis at the observer),
+                                 // and the SU(2) frame is its double cover.
+                                 // Every capture classifies by
+                                 // sign(n-hat . m-hat), n-hat the outward
+                                 // normal at the capture point — BJFE's
+                                 // bisector/Archimedes mechanism candidate for
+                                 // the cross-section coupling: the split is
+                                 // (1 + cos chi)/2 = cos^2(chi/2), the
+                                 // electron-branch Born weight, chi the angle
+                                 // between m-hat and the incoming beam.
+                                 // Missing here, per the papers: the mode's
+                                 // PHASE (BJFE S5's de Broglie clock,
+                                 // omega0 = eta0 c^2 / hbar) — the stirrer of
+                                 // the H-theorem and the beat behind the
+                                 // parcel; Demo 2 runs on it.
     unsigned char emitting;      // streams pings when set
     unsigned char answering;     // answers captures with pongs when set
     long emitted;
