@@ -2,15 +2,22 @@
 //  HyleLabExplorer.swift
 //  Aexels
 //
-//  Stub Lab hanging off Quantum.  Placeholder UI — to be fleshed out.
+//  Demo 0: the static pong bridge.  Two nodes; emit, fly, capture,
+//  respond — nothing else.  The standing pong population between them
+//  is the bridge: two directed cones, emerging rather than drawn.
+//  Engine: Philippine sea; physics verified headless in Sims/PongBridge.
 //
 
 import Acheron
+import MetalKit
 import UIKit
 
 class HyleLabExplorer: Explorer {
+    private var metalView: MTKView!
 
     let notesTab: NotesTab = NotesTab(key: "hyleLab")
+
+    var renderer: HyleRenderer!
 
     init() { super.init(key: "hyleLab") }
 
@@ -23,11 +30,17 @@ class HyleLabExplorer: Explorer {
 
         super.viewDidLoad()
 
+        metalView = MTKView(frame: view.bounds)
+        metalView.clearColor = MTLClearColorMake(0.0, 0.0, 0.0, 0.0)
+        metalView.isOpaque = false
+
+        renderer = HyleRenderer(view: metalView)
+
         tabsCell.tabs = [notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
-                LimboCell(c: 0, r: 0),
+                LimboCell(content: metalView, c: 0, r: 0),
                 MaskCell(content: quickView, c: 0, r: 1, cutouts: [.lowerLeft, .lowerRight])
             ]
             configCyto.cells = [
@@ -36,17 +49,25 @@ class HyleLabExplorer: Explorer {
             ]
         } else {
             cyto.cells = [
-                LimboCell(c: 0, r: 0, h: 3),
+                LimboCell(content: metalView, c: 0, r: 0, h: 3),
                 titleCell,
                 tabsCell,
                 LimboCell(content: quickView, c: 1, r: 2)
             ]
         }
 
-        timeControl.playButton.playing = false
+        timeControl.playButton.playing = true
     }
 
 // AEViewController ================================================================================
+    override func layoutRatio046() {
+        super.layoutRatio046()
+        let height: CGFloat = Screen.height - Screen.safeTop - Screen.safeBottom
+        let uh: CGFloat = height - 80*s
+        cyto.Ys = [uh]
+        cyto.layout()
+        timeControl.center(width: 114*s, height: 54*s)
+    }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
         let safeBottom: CGFloat = Screen.safeBottom + (Screen.mac ? 5*s : 0)
@@ -61,4 +82,10 @@ class HyleLabExplorer: Explorer {
         titleLabel.center(width: 300*s, height: 24*s)
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
     }
+
+// TimeControlDelegate =============================================================================
+    override func onPlay()  { metalView.isPaused = false }
+    override func onStep()  { metalView.draw() }
+    override func onReset() { renderer.onReset(); metalView.draw(); timeControl.playButton.stop() }
+    override func onStop()  { metalView.isPaused = true }
 }

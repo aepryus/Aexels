@@ -128,6 +128,9 @@
 		D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B102 /* IntoTheLightControlsTab.swift */; };
 		D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B103 /* IntoTheLightShaders.metal */; };
 		D8AB7C1E000000000000C105 /* Sargasso.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B105 /* Sargasso.c */; };
+		D8AB7C1E000000000000C301 /* Philippine.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B301 /* Philippine.c */; };
+		D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B302 /* HyleRenderer.swift */; };
+		D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B303 /* HyleShaders.metal */; };
 		D8AB7C1E000000000000C106 /* IntoTheLightLab.md in Resources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B106 /* IntoTheLightLab.md */; };
 		D8AB7C1E000000000000C200 /* HyleLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */; };
 		D8AB7C1E000000000000C201 /* ConspiracyLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B201 /* ConspiracyLabExplorer.swift */; };
@@ -330,6 +333,10 @@
 		D8AB7C1E000000000000B105 /* Sargasso.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Sargasso.c; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B106 /* IntoTheLightLab.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; path = IntoTheLightLab.md; sourceTree = "<group>"; wrapsLines = 1; };
 		D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleLabExplorer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B300 /* Philippine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Philippine.h; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B301 /* Philippine.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Philippine.c; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B302 /* HyleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleRenderer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B303 /* HyleShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = HyleShaders.metal; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B201 /* ConspiracyLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConspiracyLabExplorer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarknessLabExplorer.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +459,7 @@
 				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
 				D8AB7C1E000000000000D001 /* BlackHoles */,
 				D8AB7C1E000000000000D101 /* IntoTheLight */,
+				D8AB7C1E000000000000D300 /* Hyle */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -875,6 +883,25 @@
 				D8AB7C1E000000000000B105 /* Sargasso.c */,
 			);
 			path = Sargasso;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D300 /* Hyle */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000D301 /* Philippine */,
+				D8AB7C1E000000000000B302 /* HyleRenderer.swift */,
+				D8AB7C1E000000000000B303 /* HyleShaders.metal */,
+			);
+			path = Hyle;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D301 /* Philippine */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B300 /* Philippine.h */,
+				D8AB7C1E000000000000B301 /* Philippine.c */,
+			);
+			path = Philippine;
 			sourceTree = "<group>";
 		};
 		D8AB7C1E000000000000D200 /* HyleLab */ = {
@@ -1367,6 +1394,9 @@
 				D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */,
 				D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */,
 				D8AB7C1E000000000000C105 /* Sargasso.c in Sources */,
+				D8AB7C1E000000000000C301 /* Philippine.c in Sources */,
+				D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */,
+				D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */,
 				D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
