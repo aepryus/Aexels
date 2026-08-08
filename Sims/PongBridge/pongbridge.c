@@ -63,8 +63,11 @@ typedef struct {
     double a;            // radius
     int emitting;        // streams pings when set
     int answering;       // answers captures with pongs when set
+    V2 mode;             // m-hat (unit) — Demo 1's stake-setter axis
+    int classifies;      // classify captures by sign(n-hat . m-hat) when set
     long emitted;        // lifetime ping count
     long captures;       // pings absorbed here
+    long plus, minus;    // classification counts
     long pongArrivals;   // pongs that died here (this node was the target)
 } Node;
 
@@ -167,6 +170,16 @@ static void simCapture(Sim* s, int nodeIndex, Ping* ping, V2 point, double tCapt
     s->wCaptures[nodeIndex]++;
     s->lastCapture[nodeIndex] = tCapture;
     ping->alive = 0;
+
+    // Demo 1, the stake-setter: classify the capture by which mode
+    // hemisphere it lands on — sign(n-hat . m-hat), n-hat the outward
+    // normal at the capture point.
+    if (node->classifies) {
+        double nx = (point.x - node->pos.x) / node->a;
+        double ny = (point.y - node->pos.y) / node->a;
+        if (nx*node->mode.x + ny*node->mode.y > 0) node->plus++;
+        else node->minus++;
+    }
 
     if (!node->answering) return;
 
@@ -540,6 +553,75 @@ static void stage3(void) {
     printf("   transits, never more.)\n");
 }
 
+// Exact finite-L reference for the stake-setter: quadrature over the
+// capture arc (emission angle phi uniform — the isotropic point source),
+// entry point computed exactly, classified by sign(n-hat . m-hat) with
+// m-hat at angle chi from the direction toward the source.
+static double stakeRef(double L, double a, double chiDeg) {
+    double chi = chiDeg * M_PI/180;
+    double mx = cos(chi), my = sin(chi);      // frame: source direction = +x from the target's view
+    double phiMax = asin(a/L);
+    const int N = 2000000;
+    long plus = 0;
+    for (int i=0;i<N;i++) {
+        double phi = phiMax * (2.0*((double)i + 0.5)/(double)N - 1.0);
+        // ray from source (at distance L along +x from target center),
+        // direction toward target; entry point on the target circle.
+        // In the target's frame: source at S=(L,0); ray direction d from
+        // S at angle (pi - phi)... equivalently use the emitter frame:
+        double st = L*sin(phi);
+        double entryX = L*cos(phi) - sqrt(a*a - st*st);   // distance from source to entry, along the ray
+        // entry point in source frame: E = entryX*(cos phi, sin phi);
+        // target center at T=(L,0) (placing source at origin, target on +x).
+        double ex = entryX*cos(phi), ey = entryX*sin(phi);
+        // outward normal at entry, from target center:
+        double nx = (ex - L)/a, ny = ey/a;
+        // n-hat points back toward the source (-x-ish in this frame);
+        // the app measures m-hat from the direction TOWARD the source,
+        // which is -x here: flip the frame for the dot product.
+        double dot = (-nx)*mx + (-ny)*my;
+        if (dot > 0) plus++;
+    }
+    return (double)plus/(double)N;
+}
+
+// Stage 4 — the stake-setter (Demo 1 in 2D): capture classification.
+static void stage4(void) {
+    banner("STAGE 4 — the stake-setter (Demo 1 in 2D)");
+    printf("m-hat at angle chi from the direction toward the source; split of\n");
+    printf("captures by sign(n-hat . m-hat) vs far-field Born (1+cos chi)/2 and\n");
+    printf("vs exact finite-L quadrature.  App geometry: L=235, a=18 (a/L=0.077).\n\n");
+    gRho0 = 720;
+    struct { double L, a; } geos[] = { {2000, 10}, {400, 10}, {235, 18} };
+    double chis[] = { 30, 60, 90, 120 };
+    for (int g=0;g<3;g++) {
+        double L = geos[g].L, a = geos[g].a;
+        printf("L=%.0f a=%.0f (a/L=%.4f):\n", L, a, a/L);
+        printf("  %5s  %10s  %10s  %10s  %12s  %12s\n", "chi", "measured", "exact-L", "far-field", "vs-exact", "vs-far");
+        for (int c=0;c<4;c++) {
+            double chi = chis[c];
+            Sim* s = bridgeSim(L, a, 1, 0, 0, 0);   // A emits; B silent, classifies
+            double rad = chi * M_PI/180;
+            // direction toward the source (A) from B is -x; rotate by chi.
+            s->nodes[1].mode.x = -cos(rad);
+            s->nodes[1].mode.y = -sin(rad);
+            s->nodes[1].classifies = 1;
+            long warm = (long)L + 100;
+            for (long t=0;t<warm;t++) simTic(s);
+            s->nodes[1].plus = 0; s->nodes[1].minus = 0;
+            long W = 6000;
+            for (long t=0;t<W;t++) simTic(s);
+            double measured = (double)s->nodes[1].plus / (double)(s->nodes[1].plus + s->nodes[1].minus);
+            double exactL = stakeRef(L, a, chi);
+            double far = 0.5*(1 + cos(rad));
+            printf("  %5.0f  %10.5f  %10.5f  %10.5f  %+12.5f  %+12.5f\n",
+                chi, measured, exactL, far, measured - exactL, measured - far);
+            simRelease(s);
+        }
+    }
+    gRho0 = 360;
+}
+
 // The cones — a steady-state snapshot rendered to SVG.  Full cloud so
 // the ping traffic shows too.
 static void snapshot(void) {
@@ -599,6 +681,7 @@ int main(int argc, char** argv) {
     stage1();
     stage2();
     stage3();
+    stage4();
     if (argc > 1 && strcmp(argv[1], "snapshot") == 0) snapshot();
     printf("\ndone.\n");
     return 0;

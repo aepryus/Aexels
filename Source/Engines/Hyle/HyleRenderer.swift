@@ -23,9 +23,9 @@ struct HyleContext {
 
 struct HyleLoop {
     var type: UInt32           // 0 node, 1 ping, 2 pong
-    var extra: Float           // node: radius; pong: 0 => toward A (warm), 1 => toward B (cool)
+    var extra: Float           // node: radius; pong: 1 => plus channel (warm), 0 => minus (cool)
     var position: SIMD2<Float>
-    var dir: SIMD2<Float>
+    var dir: SIMD2<Float>      // node: m-hat; pong: flight direction
 }
 
 class HyleRenderer: NSObject, MTKViewDelegate {
@@ -43,6 +43,46 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var census: (toA: Int, toB: Int) {
         guard let universe, let nodeA, let nodeB else { return (0, 0) }
         return (Int(PCUniverseCensus(universe, nodeA)), Int(PCUniverseCensus(universe, nodeB)))
+    }
+
+    // The stake-setter's angle chi between each node's mode axis and its
+    // incoming beam (the direction toward the other node).  The split of
+    // captures converges to the Born weights (1 +/- cos chi)/2 in the
+    // point-node limit; at finite a/L the exact target comes from
+    // quadrature over the capture arc (verified against the headless
+    // build in Sims/PongBridge, stage 4 — agreement ~1e-5).
+    var chiA: Double = 60 * .pi/180
+    var chiB: Double = 120 * .pi/180
+    private var predictedA: Double = 0.75
+    private var predictedB: Double = 0.25
+
+    struct Stake { var chi: Double; var plus: Int; var minus: Int; var predicted: Double
+        var measured: Double { plus + minus == 0 ? 0 : Double(plus)/Double(plus + minus) }
+        var born: Double { (1 + cos(chi))/2 }
+    }
+    var stakes: (a: Stake, b: Stake) {
+        guard let nodeA, let nodeB else { return (Stake(chi: chiA, plus: 0, minus: 0, predicted: predictedA), Stake(chi: chiB, plus: 0, minus: 0, predicted: predictedB)) }
+        return (Stake(chi: chiA, plus: Int(nodeA.pointee.plusCaptures), minus: Int(nodeA.pointee.minusCaptures), predicted: predictedA),
+                Stake(chi: chiB, plus: Int(nodeB.pointee.plusCaptures), minus: Int(nodeB.pointee.minusCaptures), predicted: predictedB))
+    }
+
+    // Exact finite-L stake: quadrature over the capture arc — emission
+    // angle uniform (isotropic point source), entry point exact,
+    // classified by sign(n-hat . m-hat).
+    private func stakeTarget(L: Double, a: Double, chi: Double) -> Double {
+        let mx: Double = cos(chi), my: Double = sin(chi)
+        let phiMax: Double = asin(a/L)
+        let N: Int = 200000
+        var plus: Int = 0
+        for i in 0..<N {
+            let phi: Double = phiMax * (2.0*(Double(i) + 0.5)/Double(N) - 1.0)
+            let st: Double = L*sin(phi)
+            let entry: Double = L*cos(phi) - sqrt(a*a - st*st)
+            let ex: Double = entry*cos(phi), ey: Double = entry*sin(phi)
+            let nx: Double = (ex - L)/a, ny: Double = ey/a
+            if (-nx)*mx + (-ny)*my > 0 { plus += 1 }
+        }
+        return Double(plus)/Double(N)
     }
 
     init?(view: MTKView) {
@@ -97,6 +137,14 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         nodeA = PCUniverseCreateNode(universe, width/2 - L/2, height/2, a, 1, 1)
         nodeB = PCUniverseCreateNode(universe, width/2 + L/2, height/2, a, 1, 1)
 
+        // m-hat = the incoming beam direction (toward the other node)
+        // rotated by chi.  A's beam arrives along +x, B's along -x.
+        PCNodeSetMode(nodeA, cos(chiA), sin(chiA))
+        PCNodeSetMode(nodeB, -cos(chiB), -sin(chiB))
+
+        predictedA = stakeTarget(L: L, a: a, chi: chiA)
+        predictedB = stakeTarget(L: L, a: a, chi: chiB)
+
         self.universe = universe
     }
 
@@ -117,7 +165,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         let width: Double = view.drawableSize.width / view.contentScaleFactor
         let height: Double = view.drawableSize.height / view.contentScaleFactor
         if universe == nil || abs((universe?.pointee.width ?? 0) - width) > 1 || abs((universe?.pointee.height ?? 0) - height) > 1 { loadUniverse() }
-        guard let universe, let nodeA else { return }
+        guard let universe else { return }
 
         PCUniverseTic(universe)
 
@@ -142,7 +190,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             let pong: UnsafeMutablePointer<PCPong> = universe.pointee.pongs[i]!
             loops.append(HyleLoop(
                 type: 2,
-                extra: pong.pointee.target == nodeA ? 0 : 1,
+                extra: Float(pong.pointee.channel),
                 position: SIMD2<Float>(Float(pong.pointee.pos.x), Float(pong.pointee.pos.y)),
                 dir: SIMD2<Float>(Float(pong.pointee.dir.x), Float(pong.pointee.dir.y))
             ))
@@ -153,7 +201,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 type: 0,
                 extra: Float(node.pointee.a),
                 position: SIMD2<Float>(Float(node.pointee.pos.x), Float(node.pointee.pos.y)),
-                dir: SIMD2<Float>(0, 0)
+                dir: SIMD2<Float>(Float(node.pointee.mode.x), Float(node.pointee.mode.y))
             ))
         }
 

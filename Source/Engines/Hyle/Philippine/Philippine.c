@@ -51,10 +51,14 @@ PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a,
     node->pos.x = x;
     node->pos.y = y;
     node->a = a;
+    node->mode.x = 1;
+    node->mode.y = 0;
     node->emitting = emitting;
     node->answering = answering;
     node->emitted = 0;
     node->captures = 0;
+    node->plusCaptures = 0;
+    node->minusCaptures = 0;
     node->pongArrivals = 0;
 
     universe->nodeCount++;
@@ -64,6 +68,13 @@ PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a,
     }
     universe->nodes[universe->nodeCount-1] = node;
     return node;
+}
+
+void PCNodeSetMode(PCNode* node, double mx, double my) {
+    double len = sqrt(mx*mx + my*my);
+    if (len < 1e-12) return;
+    node->mode.x = mx/len;
+    node->mode.y = my/len;
 }
 
 void PCUniverseSetC(PCUniverse* universe, double c) {
@@ -84,6 +95,8 @@ void PCUniverseReset(PCUniverse* universe) {
     for (int i=0;i<universe->nodeCount;i++) {
         universe->nodes[i]->emitted = 0;
         universe->nodes[i]->captures = 0;
+        universe->nodes[i]->plusCaptures = 0;
+        universe->nodes[i]->minusCaptures = 0;
         universe->nodes[i]->pongArrivals = 0;
     }
     universe->tic = 0;
@@ -131,14 +144,24 @@ static int PCUniverseOutside(PCUniverse* universe, CV2 pos) {
         || pos.y < -PC_CULL_MARGIN || pos.y > universe->height + PC_CULL_MARGIN;
 }
 
-// A capture: absorb the ping and, if the capturing node answers, launch
-// one pong from the capture point toward the ping's source.  The pong
-// finishes the tic itself (`remaining`) so event times stay continuous.
-// This function is the extension point: Demo 1's mode axis and
-// hemisphere classification hang off this event with nothing rebuilt.
+// A capture: absorb the ping, classify it against the node's mode axis
+// (the stake-setter — Demo 1), and, if the capturing node answers,
+// launch one pong from the capture point toward the ping's source.  The
+// pong finishes the tic itself (`remaining`) so event times stay
+// continuous, and carries its capture's classification as its channel.
 static void PCUniverseCapture(PCUniverse* universe, PCNode* node, PCPing* ping, CV2 point, double remaining) {
     node->captures++;
     ping->recycle = 1;
+
+    // n-hat . m-hat: outward normal at the capture point against the
+    // mode axis.  A distant isotropic emitter is a uniform-impact-
+    // parameter beam, so the split converges to (1 +/- cos chi)/2 with
+    // chi the angle between m-hat and the incoming beam direction.
+    double nx = (point.x - node->pos.x) / node->a;
+    double ny = (point.y - node->pos.y) / node->a;
+    unsigned char channel = (nx*node->mode.x + ny*node->mode.y) > 0;
+    if (channel) node->plusCaptures++;
+    else         node->minusCaptures++;
 
     if (!node->answering) return;
 
@@ -152,6 +175,7 @@ static void PCUniverseCapture(PCUniverse* universe, PCNode* node, PCPing* ping, 
     pong->dir.x = dx/len;
     pong->dir.y = dy/len;
     pong->target = source;
+    pong->channel = channel;
     pong->recycle = 0;
 
     if (remaining > 0) {

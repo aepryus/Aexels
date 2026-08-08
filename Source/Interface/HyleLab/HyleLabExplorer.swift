@@ -19,7 +19,24 @@ class HyleLabExplorer: Explorer {
 
     var renderer: HyleRenderer!
 
+    // The stake-setter's scoreboard: measured split vs (1 + cos chi)/2.
+    private let stakeALabel: UILabel = UILabel()
+    private let stakeBLabel: UILabel = UILabel()
+    private var stakeTimer: Timer?
+
     init() { super.init(key: "hyleLab") }
+
+    private func updateStakes() {
+        guard let renderer else { return }
+        let stakes = renderer.stakes
+        stakeALabel.text = stakeText(name: "A", stake: stakes.a)
+        stakeBLabel.text = stakeText(name: "B", stake: stakes.b)
+    }
+    private func stakeText(name: String, stake: HyleRenderer.Stake) -> String {
+        let chi: Int = Int((stake.chi * 180 / .pi).rounded())
+        guard stake.plus + stake.minus > 0 else { return "\(name)  χ \(chi)°" }
+        return String(format: "%@  χ %d°   P₊ %.4f → %.4f   Born %.4f   n %d", name, chi, stake.measured, stake.predicted, stake.born, stake.plus + stake.minus)
+    }
 
 // UIViewController ================================================================================
     override func viewDidLoad() {
@@ -35,6 +52,14 @@ class HyleLabExplorer: Explorer {
         metalView.isOpaque = false
 
         renderer = HyleRenderer(view: metalView)
+
+        [stakeALabel, stakeBLabel].forEach {
+            $0.pen = Pen(font: UIFont.monospacedSystemFont(ofSize: 10*s, weight: .medium), color: UIColor(white: 1, alpha: 0.8))
+            metalView.addSubview($0)
+        }
+        stakeALabel.frame = CGRect(x: 10*s, y: 8*s, width: 380*s, height: 15*s)
+        stakeBLabel.frame = CGRect(x: 10*s, y: 25*s, width: 380*s, height: 15*s)
+        stakeTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in self?.updateStakes() }
 
         tabsCell.tabs = [notesTab]
 

@@ -25,10 +25,18 @@
 typedef struct PCNode {
     CV2 pos;
     double a;                    // radius
+    CV2 mode;                    // m-hat: the mode axis (unit).  Every capture
+                                 // classifies by sign(n-hat . m-hat), n-hat the
+                                 // outward normal at the capture point — the
+                                 // stake-setter: the split converges to
+                                 // (1 +/- cos chi)/2, chi the angle between
+                                 // m-hat and the incoming beam.
     unsigned char emitting;      // streams pings when set
     unsigned char answering;     // answers captures with pongs when set
     long emitted;
     long captures;
+    long plusCaptures;           // sign(n-hat . m-hat) > 0
+    long minusCaptures;
     long pongArrivals;
 } PCNode;
 
@@ -43,6 +51,7 @@ typedef struct PCPong {
     CV2 pos;
     CV2 dir;                     // unit; aimed at target's center at birth
     PCNode* target;              // the node whose ping was captured
+    unsigned char channel;       // its capture's classification: 1 = plus
     unsigned char recycle;
 } PCPong;
 
@@ -66,6 +75,7 @@ typedef struct PCUniverse {
 PCUniverse* PCUniverseCreate(double width, double height);
 void PCUniverseRelease(PCUniverse* universe);
 PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a, unsigned char emitting, unsigned char answering);
+void PCNodeSetMode(PCNode* node, double mx, double my);
 void PCUniverseSetC(PCUniverse* universe, double c);
 void PCUniverseSetRho0(PCUniverse* universe, int rho0);
 void PCUniverseSetSize(PCUniverse* universe, double width, double height);
