@@ -26,12 +26,18 @@ typedef struct PCNode {
     CV2 pos;
     double a;                    // radius
     CV2 mode;                    // m-hat: the axis of the node's internal 2-D
-                                 // oscillation mode — the ONE object of the
-                                 // papers (BJFE abstract/S7): the per-ping
-                                 // cupola is this mode's emission-by-emission
-                                 // sampling (ItL S5.4: an oscillating source's
-                                 // cupolas trace its axis at the observer),
-                                 // and the SU(2) frame is its double cover.
+                                 // oscillation mode — a POSITED organ, new in
+                                 // BJFE (the de Broglie clock is "a genuine
+                                 // postulate of this paper"); nodes do NOT
+                                 // have cupolas — cupolas belong to pings
+                                 // (C = c-vec minus v_source).  The mode's
+                                 // FOOTPRINT is what the earlier papers carry:
+                                 // an oscillating source's velocity prints
+                                 // onto its emitted cupolas (ItL S5.4), so
+                                 // the per-ping cupola SAMPLES the mode.  How
+                                 // the phase rides the ping is BJFE's open
+                                 // fork (S8 item c): phase stamp vs
+                                 // reconstruction from the cupola.
                                  // Every capture classifies by
                                  // sign(n-hat . m-hat), n-hat the outward
                                  // normal at the capture point — BJFE's
