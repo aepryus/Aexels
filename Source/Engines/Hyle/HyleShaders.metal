@@ -2,8 +2,9 @@
 //  HyleShaders.metal
 //  Aexels
 //
-//  Created by Joe Charlier on 8/8/26.
-//  Copyright © 2026 Aepryus Software. All rights reserved.
+//  The frozen bridge: every connecting signal drawn with its carried
+//  vectors — translation (gray arm) and cupola (bright arm).  The
+//  corridor of frozen footballs between two fixed discs.
 //
 
 #include <metal_math>
@@ -17,9 +18,10 @@ struct HyleContext {
 
 struct HyleLoop {
     uint type;          // 0 node, 1 ping, 2 pong
-    float extra;        // node: radius; pong: 1 => plus channel (warm), 0 => minus (cool)
+    float extra;        // circuit 0/1 for carriers; radius for nodes
     float2 position;
-    float2 dir;         // node: m-hat; pong: flight direction
+    float2 dir;         // translation (unit); node: beta vector
+    float2 cupola;      // carried cupola C = n-hat − beta
 };
 
 struct HyleLoopPacket {
@@ -28,12 +30,13 @@ struct HyleLoopPacket {
     uint type [[flat]];
     float extra [[flat]];
     float2 dir [[flat]];
+    float2 cupola [[flat]];
 };
 
 vertex HyleLoopPacket hyleLoopVertexShader(uint vertexID [[vertex_id]], uint instanceID [[instance_id]], constant HyleContext &context [[buffer(0)]], constant HyleLoop *loops [[buffer(1)]]) {
     HyleLoop loop = loops[instanceID];
 
-    float size = loop.type == 0 ? loop.extra * 1.25 : 7.0;
+    float size = loop.type == 0 ? loop.extra * 1.3 : 16.0;
 
     const float2 localOffsets[4] = {
         float2(-1.0, -1.0),
@@ -52,48 +55,54 @@ vertex HyleLoopPacket hyleLoopVertexShader(uint vertexID [[vertex_id]], uint ins
     out.type = loop.type;
     out.extra = loop.extra;
     out.dir = loop.dir;
+    out.cupola = loop.cupola;
     return out;
 }
 
-constant float4 hylePlusColor = float4(1.0, 0.70, 0.28, 1.0);    // plus channel: warm
-constant float4 hyleMinusColor = float4(0.37, 0.83, 0.95, 1.0);  // minus channel: cool
+constant float4 hyleWarm = float4(1.00, 0.72, 0.35, 1.0);   // A-sourced circuit
+constant float4 hyleCool = float4(0.42, 0.78, 0.95, 1.0);   // B-sourced circuit
+
+// Is `local` on an arm along `axis` (unit), reaching maxLen from the body?
+static bool onArm(float2 local, float2 axis, float maxLen, float halfWidth) {
+    float along = dot(local, axis);
+    if (along < 0.02 || along > maxLen) { return false; }
+    float2 perp = local - along * axis;
+    return dot(perp, perp) < halfWidth * halfWidth;
+}
 
 fragment float4 hyleLoopFragmentShader(HyleLoopPacket in [[stage_in]]) {
     float r = length(in.local);
 
-    if (in.type == 0) {                                     // node: ring + m-hat needle + hemisphere tint
-        float ring = 1.0 / 1.25;                            // world radius a inside the padded quad
-        if (r > ring * 0.90 && r < ring * 1.06) { return float4(1.0, 1.0, 1.0, 1.0); }
-        if (r < ring * 0.90) {
-            float along = dot(in.local, in.dir);
-            float across = in.local.x * in.dir.y - in.local.y * in.dir.x;
-            // the needle: a bright spine along +m-hat
-            if (along > 0.0 && fabs(across) < 0.07) { return float4(1.0, 1.0, 1.0, 0.95); }
-            // hemisphere tint: the classification made visible
-            float4 tint = along > 0.0 ? hylePlusColor : hyleMinusColor;
-            tint.a = 0.16;
-            return tint;
+    if (in.type == 0) {                                     // node: fixed disc + beta arm
+        float ring = 1.0 / 1.3;
+        if (r > ring * 0.94 && r < ring * 1.05) { return float4(1.0, 1.0, 1.0, 1.0); }
+        float beta = length(in.dir);
+        if (beta > 0.01) {
+            float2 axis = in.dir / beta;
+            if (onArm(in.local, axis, ring * 0.88 * beta / 0.9, 0.035)) { return float4(1.0, 1.0, 1.0, 0.9); }
         }
+        if (r < ring * 0.94) { return float4(1.0, 1.0, 1.0, 0.07); }
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
-    if (in.type == 1) {                                     // ping: connecting = bridge, else haze
-        // extra: 0/1 = A/B haze; 2/3 = A/B connecting (part of the bridge)
-        bool connecting = in.extra > 1.5;
-        bool circuitB = (in.extra > 0.5 && in.extra < 1.5) || in.extra > 2.5;
-        if (r < (connecting ? 0.30 : 0.20)) {
-            float4 color = circuitB
-                ? float4(0.42, 0.55, 0.66, 1.0)             // B's pings: cool
-                : float4(0.62, 0.54, 0.42, 1.0);            // A's pings: warm
-            color.a = connecting ? 0.85 : 0.16;
-            return color;
-        }
-        return float4(0.0, 0.0, 0.0, 0.0);
-    }
+    float4 hue = in.extra < 0.5 ? hyleWarm : hyleCool;
 
-    // pong: bright body, colored by its capture's channel
-    float4 color = in.extra > 0.5 ? hylePlusColor : hyleMinusColor;
-    if (r < 0.34) { return color; }
-    if (r < 0.5) { color.a = (0.5 - r) / 0.16; return color; }
+    // the cupola arm: bright, in the circuit's hue
+    float c2 = dot(in.cupola, in.cupola);
+    if (c2 > 1e-12) {
+        float2 axis = in.cupola / sqrt(c2);
+        if (onArm(in.local, axis, 0.85, 0.045)) { hue.a = 0.95; return hue; }
+    }
+    // the translation arm: gray
+    if (onArm(in.local, in.dir, 0.55, 0.04)) { return float4(0.65, 0.65, 0.65, 0.75); }
+
+    // the body
+    float bodyR = in.type == 2 ? 0.14 : 0.10;
+    if (r < bodyR) {
+        if (in.type == 2) { return hue; }
+        float4 body = hue;
+        body.a = 0.75;
+        return body;
+    }
     return float4(0.0, 0.0, 0.0, 0.0);
 }

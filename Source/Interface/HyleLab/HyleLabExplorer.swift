@@ -35,7 +35,7 @@ class HyleLabExplorer: Explorer {
         guard let renderer else { return }
         stakeALabel.text = String(format: "A-circuit   pings → B  %d   pongs → A  %d", renderer.connectingPingsA, renderer.pongsToA)
         stakeBLabel.text = String(format: "B-circuit   pings → A  %d   pongs → B  %d", renderer.connectingPingsB, renderer.pongsToB)
-        caseLabel.text = renderer.caseName + (renderer.frozen ? "   —   frozen at t=0 (transport clock)" : "   —   c-clock running")
+        caseLabel.text = renderer.caseName + "   —   the frozen bridge (transport clock)"
     }
 
 // UIViewController ================================================================================
@@ -123,8 +123,12 @@ class HyleLabExplorer: Explorer {
     }
 
 // TimeControlDelegate =============================================================================
-    override func onPlay()  { renderer.frozen = false; updateStakes() }
-    override func onStep()  { renderer.stepTic(); metalView.draw() }
+    // The bridge is a static entity: there is nothing for the c-clock
+    // to do on stage.  Play bounces back to stopped; Step is reserved
+    // for the coming transport phase — a step will be one transport
+    // event across the bridge, once that rule exists.
+    override func onPlay()  { timeControl.playButton.stop() }
+    override func onStep()  { }
     override func onReset() { renderer.loadUniverse(); metalView.draw(); timeControl.playButton.stop(); updateStakes() }
-    override func onStop()  { renderer.frozen = true; updateStakes() }
+    override func onStop()  { }
 }
