@@ -11,6 +11,34 @@ import Acheron
 import OoviumEngine
 import UIKit
 
+// A small chrome button with a centered label — used for "v = 0".
+class HyleTextButton: AXButton {
+    let text: String
+
+    init(text: String) {
+        self.text = text
+        super.init()
+    }
+
+// UIView ==========================================================================================
+    override func draw(_ rect: CGRect) {
+        let ss: CGFloat = rect.width/60/Screen.s
+
+        let c = UIGraphicsGetCurrentContext()!
+
+        let border = CGMutablePath(roundedRect: rect.inset(by: UIEdgeInsets(top: 3*s, left: 3*s*ss, bottom: 3*s*ss, right: 3*s*ss)), cornerWidth: 7*s*ss, cornerHeight: 7*s*ss, transform: nil)
+        c.addPath(border)
+
+        let stroke = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
+        c.setStrokeColor(stroke.cgColor)
+        c.setLineWidth(3*ss)
+        c.strokePath()
+
+        let pen = Pen(font: UIFont(name: "Avenir-Heavy", size: 15*s*ss)!, color: stroke, alignment: .center)
+        text.draw(in: CGRect(x: (width-60*s*ss)/2, y: (height-20*s*ss)/2, width: 60*s*ss, height: 20*s*ss), pen: pen)
+    }
+}
+
 // The render button: same chrome as PulseButton, but the glyph is what
 // render produces — two node rings with the foam dotted between them.
 class HyleRenderButton: AXButton {
@@ -63,6 +91,10 @@ class HyleControlsTab: TabsCellTab {
     let bridgeABoolButton: BoolButton = BoolButton(name: "bridge → A")
     let bridgeBBoolButton: BoolButton = BoolButton(name: "bridge → B")
     let renderButton: HyleRenderButton = HyleRenderButton()
+    let zeroVButton: HyleTextButton = HyleTextButton(text: "v = 0")
+
+    static let warmColor: UIColor = UIColor(red: 1.00, green: 0.72, blue: 0.35, alpha: 1)
+    static let coolColor: UIColor = UIColor(red: 0.42, green: 0.78, blue: 0.95, alpha: 1)
 
     init(explorer: HyleLabExplorer) {
         self.explorer = explorer
@@ -112,23 +144,43 @@ class HyleControlsTab: TabsCellTab {
             self.explorer.redraw()
         }
 
+        // The bridge toggles wear their bridges' colors, and at least
+        // one bridge is always on: turning off the last one turns the
+        // other on.
+        bridgeABoolButton.color = HyleControlsTab.warmColor
         bridgeABoolButton.on = explorer.renderer.showBridgeToA
         addSubview(bridgeABoolButton)
         bridgeABoolButton.onChange = { [unowned self] (on: Bool) in
             self.explorer.renderer.showBridgeToA = on
+            if !on && !self.explorer.renderer.showBridgeToB {
+                self.explorer.renderer.showBridgeToB = true
+                self.bridgeBBoolButton.on = true
+            }
             self.explorer.redraw()
         }
 
+        bridgeBBoolButton.color = HyleControlsTab.coolColor
         bridgeBBoolButton.on = explorer.renderer.showBridgeToB
         addSubview(bridgeBBoolButton)
         bridgeBBoolButton.onChange = { [unowned self] (on: Bool) in
             self.explorer.renderer.showBridgeToB = on
+            if !on && !self.explorer.renderer.showBridgeToA {
+                self.explorer.renderer.showBridgeToA = true
+                self.bridgeABoolButton.on = true
+            }
             self.explorer.redraw()
         }
 
         addSubview(renderButton)
         renderButton.addAction { [unowned self] in
             self.explorer.render()
+        }
+
+        addSubview(zeroVButton)
+        zeroVButton.addAction { [unowned self] in
+            self.explorer.renderer.vA = .zero
+            self.explorer.renderer.vB = .zero
+            self.explorer.redraw()
         }
     }
 
@@ -172,7 +224,8 @@ class HyleControlsTab: TabsCellTab {
         bridgeBBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s
 
-        renderButton.top(dy: y, width: 70*s, height: 70*s)
+        renderButton.frame = CGRect(x: width/2 - 78*s, y: y, width: 70*s, height: 70*s)
+        zeroVButton.frame = CGRect(x: width/2 + 8*s, y: y, width: 70*s, height: 70*s)
 
         sync()
     }

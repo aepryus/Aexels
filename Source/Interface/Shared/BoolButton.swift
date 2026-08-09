@@ -15,6 +15,9 @@ class BoolView: AEView {
         didSet { setNeedsDisplay() }
     }
     var isHighlighted: Bool = false
+    var color: UIColor? = nil {
+        didSet { setNeedsDisplay() }
+    }
     
     override init() {
         super.init()
@@ -38,7 +41,7 @@ class BoolView: AEView {
         let y4 = height - p
         let y3 = x4 - m
         
-        let color: UIColor = isHighlighted ? Text.Color.lavender.uiColor : UIColor.white
+        let color: UIColor = isHighlighted ? Text.Color.lavender.uiColor : (self.color ?? UIColor.white)
 
         let c = UIGraphicsGetCurrentContext()!
         c.move(to: CGPoint(x: x1, y: (y1+y4)/2))
@@ -80,6 +83,12 @@ class BoolButton: AXButton {
     var on: Bool = false {
         didSet { self.boolView.on = self.on }
     }
+    var color: UIColor? = nil {
+        didSet {
+            boolView.color = color
+            label.textColor = color ?? .white
+        }
+    }
 
     var onChange: ((Bool)->())?
     
@@ -109,7 +118,7 @@ class BoolButton: AXButton {
         didSet {
             boolView.isHighlighted = isHighlighted
             boolView.setNeedsDisplay()
-            label.textColor = isHighlighted ? Text.Color.lavender.uiColor : .white
+            label.textColor = isHighlighted ? Text.Color.lavender.uiColor : (color ?? .white)
         }
     }
 }

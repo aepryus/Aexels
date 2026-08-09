@@ -207,10 +207,13 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
                 nPing += 1
                 guard showPings else { continue }
-                let boundForB: Bool = ping.pointee.source == nodeA
+                // A hidden bridge hides its feeding pings too: pongs → A
+                // are the answers to A's own pings.
+                let sourceIsA: Bool = ping.pointee.source == nodeA
+                guard sourceIsA ? showBridgeToA : showBridgeToB else { continue }
                 loops.append(HyleLoop(
                     type: 1,
-                    extra: boundForB ? 1 : 0,
+                    extra: sourceIsA ? 1 : 0,
                     position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
                     dir: SIMD2<Float>(Float(ping.pointee.dir.x), Float(ping.pointee.dir.y)),
                     cupola: .zero
