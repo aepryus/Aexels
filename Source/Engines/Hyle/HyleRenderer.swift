@@ -141,6 +141,20 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         return v - (2 * simd_dot(v, C) / c2) * C
     }
 
+    // First ENTRY of a point moving at relV (from relative offset relP
+    // to a circle center) into radius r: the capture event is disc
+    // entry, not center-plane arrival.  Returns the entry time or -1.
+    private func entryTau(relP: SIMD2<Double>, relV: SIMD2<Double>, r: Double) -> Double {
+        let c0: Double = simd_dot(relP, relP) - r*r
+        guard c0 > 0 else { return -1 }
+        let b: Double = simd_dot(relP, relV)
+        guard b < 0 else { return -1 }
+        let A: Double = simd_dot(relV, relV)
+        let disc: Double = b*b - A*c0
+        guard disc >= 0 else { return -1 }
+        return (-b - disc.squareRoot()) / A
+    }
+
     // Build one circuit: source S emitting, target T answering.  The
     // corridor populates by uniform sampling in emission time — the
     // model's equal per-circuit capture rate (Rule 3's fore/aft
@@ -178,8 +192,11 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             let P: SIMD2<Double> = S0 + vS * tE
             let aim: SIMD2<Double> = T0 + b * perp0
             let tau: Double = interceptTau(R0: aim + vT * tE - P, vT: vT, c: c)
-            guard tau > 0, tE + tau >= 0 else { continue }
+            guard tau > 0 else { continue }
             let nHat: SIMD2<Double> = simd_normalize((aim + vT * (tE + tau)) - P)
+            // The capture event is disc ENTRY on the ping's worldline.
+            let tauEnt: Double = entryTau(relP: P - (T0 + vT * tE), relV: nHat * c - vT, r: r)
+            guard tauEnt > 0, tE + tauEnt >= 0 else { continue }   // in flight iff not yet entered
             let pos: SIMD2<Double> = P + nHat * c * (-tE)
             let cupola: SIMD2<Double> = nHat - beta
             loops.append(HyleLoop(
@@ -193,39 +210,41 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             _ = stridePing
         }
 
-        // Pongs in flight: emissions before tE0 whose ping already
-        // landed (t_a <= 0) and whose answer is still flying.  March
-        // backward from tE0 until answers have already returned.
+        // Pongs in flight: emissions whose ping has already been
+        // captured (disc entry at tCap <= 0) and whose answer is still
+        // flying.  Scan from t_e = 0 backward — captures happen up to
+        // r/closing-speed EARLIER than center-plane arrival, so the
+        // youngest pongs come from emissions after tE0; the guards
+        // below do the filtering.
         let maxBack: Double = 6 * (-tE0) + 4 * simd_length(T0 - S0) / c
         var kPong: Int = Int(maxBack * ratePerTic)
         var stridePong: Double = 1
         if kPong > 4 * maxPerLane { stridePong = Double(kPong) / Double(4 * maxPerLane); kPong = 4 * maxPerLane }
         var pongLoops: [HyleLoop] = []
         for k in 0..<kPong {
-            let tE: Double = tE0 - (Double(k) + 0.5) * stridePong / ratePerTic
+            let tE: Double = -(Double(k) + 0.5) * stridePong / ratePerTic
             let b: Double = (fmod(Double(k) * 0.6180339887498949 + 0.37, 1.0) * 2 - 1) * 0.9 * r
             let P: SIMD2<Double> = S0 + vS * tE
             let aim: SIMD2<Double> = T0 + b * perp0
             let tau: Double = interceptTau(R0: aim + vT * tE - P, vT: vT, c: c)
             guard tau > 0 else { continue }
-            let tArr: Double = tE + tau
-            guard tArr <= 0 else { continue }
-            let nHat: SIMD2<Double> = simd_normalize((aim + vT * tArr) - P)
+            let nHat: SIMD2<Double> = simd_normalize((aim + vT * (tE + tau)) - P)
             let cupola: SIMD2<Double> = nHat - beta
 
-            // Entry point on the target disc: impact parameter b gives
-            // the entry normal at angle asin(b/r) off the facing
-            // direction — the impact-parameter measure.
-            let psi: Double = asin(max(-1, min(1, b / r)))
-            let facing: SIMD2<Double> = -nHat
-            let perpN: SIMD2<Double> = SIMD2<Double>(-facing.y, facing.x)
-            let entryN: SIMD2<Double> = facing * cos(psi) + perpN * sin(psi)
-            let H: SIMD2<Double> = (T0 + vT * tArr) + entryN * r
+            // The capture event: disc ENTRY on the ping's worldline —
+            // the pong must launch from the ping's own position at the
+            // capture instant, or Euclid's return guarantee breaks.
+            let tauEnt: Double = entryTau(relP: P - (T0 + vT * tE), relV: nHat * c - vT, r: r)
+            guard tauEnt > 0 else { continue }
+            let tCap: Double = tE + tauEnt
+            guard tCap <= 0 else { continue }                 // already captured
+            let H: SIMD2<Double> = P + nHat * c * tauEnt      // ON the ping's worldline
 
             let vPong: SIMD2<Double> = mirrored(nHat * c, over: cupola)
-            let tauR: Double = interceptTau(R0: (S0 + vS * tArr) - H, vT: vS, c: c)
-            guard tauR > 0, tArr + tauR >= 0 else { continue }
-            let pos: SIMD2<Double> = H + vPong * (-tArr)
+            // The pong dies entering the source's disc.
+            let tauR: Double = entryTau(relP: H - (S0 + vS * tCap), relV: vPong - vS, r: r)
+            guard tauR > 0, tCap + tauR >= 0 else { continue } // in flight iff not yet returned
+            let pos: SIMD2<Double> = H + vPong * (-tCap)
             let pongDir: SIMD2<Double> = simd_normalize(vPong)
             pongLoops.append(HyleLoop(
                 type: 2,
