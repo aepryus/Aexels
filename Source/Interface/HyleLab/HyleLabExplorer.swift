@@ -16,6 +16,7 @@ class HyleLabExplorer: Explorer {
     private var metalView: MTKView!
 
     let notesTab: NotesTab = NotesTab(key: "hyleLab")
+    var controlsTab: HyleControlsTab!
 
     var renderer: HyleRenderer!
 
@@ -35,7 +36,7 @@ class HyleLabExplorer: Explorer {
         let stakes = renderer.stakes
         stakeALabel.text = stakeText(name: "A", stake: stakes.a)
         stakeBLabel.text = stakeText(name: "B", stake: stakes.b)
-        caseLabel.text = renderer.preset.name
+        caseLabel.text = renderer.caseName
     }
     private func stakeText(name: String, stake: HyleRenderer.Stake) -> String {
         let chi: Int = Int((stake.chi * 180 / .pi).rounded())
@@ -60,6 +61,7 @@ class HyleLabExplorer: Explorer {
         metalView.isOpaque = false
 
         renderer = HyleRenderer(view: metalView)
+        controlsTab = HyleControlsTab(explorer: self)
 
         [stakeALabel, stakeBLabel, caseLabel].forEach {
             $0.pen = Pen(font: UIFont.monospacedSystemFont(ofSize: 10*s, weight: .medium), color: UIColor(white: 1, alpha: 0.8))
@@ -73,11 +75,12 @@ class HyleLabExplorer: Explorer {
         quickView.addSubview(caseButton)
         caseButton.addAction { [unowned self] in
             self.renderer.nextPreset()
+            self.controlsTab.sync()
             self.updateStakes()
             if self.metalView.isPaused { self.metalView.draw() }
         }
 
-        tabsCell.tabs = [notesTab]
+        tabsCell.tabs = [controlsTab, notesTab]
 
         if Screen.iPhone {
             cyto.cells = [

@@ -28,11 +28,14 @@ struct HyleLoop {
     var dir: SIMD2<Float>      // node: m-hat; pong: flight direction
 }
 
-// The bridge cases of Sims/Bridge, live: velocities in units of c.
+// The bridge cases of Sims/Bridge, live.  State is the bridge model's
+// own: (v_A, v_B, r/L) — speeds in units of c, directions in degrees.
 struct HylePreset {
     let name: String
-    let vA: (Double, Double)
-    let vB: (Double, Double)
+    let betaA: Double
+    let thetaA: Double
+    let betaB: Double
+    let thetaB: Double
 }
 
 class HyleRenderer: NSObject, MTKViewDelegate {
@@ -48,17 +51,36 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var nodeB: UnsafeMutablePointer<PCNode>?
 
     static let presets: [HylePreset] = [
-        HylePreset(name: "static pair",            vA: (0, 0),      vB: (0, 0)),
-        HylePreset(name: "co-moving ∥  β 0.6",     vA: (0.6, 0),    vB: (0.6, 0)),
-        HylePreset(name: "co-moving ⊥  β 0.6",     vA: (0, 0.6),    vB: (0, 0.6)),
-        HylePreset(name: "head-on  β 0.3 each",    vA: (0.3, 0),    vB: (-0.3, 0)),
+        HylePreset(name: "static pair",         betaA: 0,   thetaA: 0,  betaB: 0,   thetaB: 0),
+        HylePreset(name: "co-moving ∥  β 0.6",  betaA: 0.6, thetaA: 0,  betaB: 0.6, thetaB: 0),
+        HylePreset(name: "co-moving ⊥  β 0.6",  betaA: 0.6, thetaA: 90, betaB: 0.6, thetaB: 90),
+        HylePreset(name: "head-on  β 0.3 each", betaA: 0.3, thetaA: 0,  betaB: 0.3, thetaB: 180),
     ]
     private(set) var presetIndex: Int = 0
-    var preset: HylePreset { HyleRenderer.presets[presetIndex] }
 
-    func nextPreset() {
-        presetIndex = (presetIndex + 1) % HyleRenderer.presets.count
+    // The bridge state, directly settable (the controls tab writes
+    // these); presets are shorthands that write the same variables.
+    var betaA: Double = 0 { didSet { presetIndex = -1 } }
+    var thetaA: Double = 0 { didSet { presetIndex = -1 } }
+    var betaB: Double = 0 { didSet { presetIndex = -1 } }
+    var thetaB: Double = 0 { didSet { presetIndex = -1 } }
+    var ratio: Double = 0.08 { didSet { presetIndex = -1 } }
+
+    var caseName: String {
+        presetIndex >= 0 ? HyleRenderer.presets[presetIndex].name : "custom"
+    }
+
+    func applyPreset(_ index: Int) {
+        let preset: HylePreset = HyleRenderer.presets[index]
+        betaA = preset.betaA
+        thetaA = preset.thetaA
+        betaB = preset.betaB
+        thetaB = preset.thetaB
+        presetIndex = index
         loadUniverse()
+    }
+    func nextPreset() {
+        applyPreset(presetIndex >= 0 ? (presetIndex + 1) % HyleRenderer.presets.count : 0)
     }
 
     var census: (toA: Int, toB: Int) {
@@ -153,14 +175,16 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         PCUniverseSetC(universe, 2)
         PCUniverseSetRho0(universe, 36)
 
-        let a: Double = 18
         let L: Double = min(width * 0.6, height * 0.8)
+        let a: Double = max(ratio * L, 4)
         let c: Double = 2
         nodeA = PCUniverseCreateNode(universe, width/2 - L/2, height/2, a, 1, 1)
         nodeB = PCUniverseCreateNode(universe, width/2 + L/2, height/2, a, 1, 1)
 
-        PCUniverseSetNodeVelocity(universe, nodeA, preset.vA.0 * c, preset.vA.1 * c)
-        PCUniverseSetNodeVelocity(universe, nodeB, preset.vB.0 * c, preset.vB.1 * c)
+        let radA: Double = thetaA * .pi/180
+        let radB: Double = thetaB * .pi/180
+        PCUniverseSetNodeVelocity(universe, nodeA, betaA * c * cos(radA), betaA * c * sin(radA))
+        PCUniverseSetNodeVelocity(universe, nodeB, betaB * c * cos(radB), betaB * c * sin(radB))
 
         // m-hat = the incoming beam direction (toward the other node)
         // rotated by chi.  A's beam arrives along +x, B's along -x.
@@ -172,7 +196,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         // scoreboard shows the measured split alone — what the moving
         // interrogation does to the stake is a measurement, not yet a
         // prediction, at this seat.
-        let isStatic: Bool = preset.vA == (0, 0) && preset.vB == (0, 0)
+        let isStatic: Bool = betaA == 0 && betaB == 0
         predictedA = isStatic ? stakeTarget(L: L, a: a, chi: chiA) : .nan
         predictedB = isStatic ? stakeTarget(L: L, a: a, chi: chiB) : .nan
 
