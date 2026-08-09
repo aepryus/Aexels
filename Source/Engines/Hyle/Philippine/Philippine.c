@@ -20,7 +20,8 @@ PCUniverse* PCUniverseCreate(double width, double height) {
     universe->width = width;
     universe->height = height;
     universe->c = 2;
-    universe->rho0 = 36;
+    universe->pingsPerVolley = 120;
+    universe->ticsPerVolley = 12;
     universe->tic = 0;
 
     universe->nodeCount = 0;
@@ -119,8 +120,9 @@ void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, do
 void PCUniverseSetC(PCUniverse* universe, double c) {
     universe->c = c;
 }
-void PCUniverseSetRho0(PCUniverse* universe, int rho0) {
-    universe->rho0 = rho0;
+void PCUniverseSetVolley(PCUniverse* universe, int pingsPerVolley, int ticsPerVolley) {
+    universe->pingsPerVolley = pingsPerVolley;
+    universe->ticsPerVolley = ticsPerVolley < 1 ? 1 : ticsPerVolley;
 }
 void PCUniverseSetSize(PCUniverse* universe, double width, double height) {
     universe->width = width;
@@ -262,19 +264,22 @@ void PCUniverseTic(PCUniverse* universe) {
     }
     if (universe->nodeCount) { mid.x /= universe->nodeCount; mid.y /= universe->nodeCount; }
 
-    // 1. Emission at the tic boundary: Rule-3 angular density about the
-    //    velocity direction, stratified with golden-ratio offset per
-    //    tic per node — deterministic, no RNG.  Each ping carries its
-    //    cupola C = n-hat − beta at emission.
+    // 1. Emission in VOLLEYS — as in SitD: every ticsPerVolley tics,
+    //    each emitting node fires pingsPerVolley pings, engineered
+    //    angular density about the velocity direction, stratified with
+    //    golden-ratio offset per volley per node — deterministic, no
+    //    RNG.  Each ping carries its cupola C = n-hat − beta.
+    if (universe->tic % universe->ticsPerVolley == 0)
     for (int n=0;n<universe->nodeCount;n++) {
         PCNode* node = universe->nodes[n];
         if (!node->emitting) continue;
-        double u = fmod(PC_PHI * (double)universe->tic + 0.37 * n, 1.0);
+        long volley = universe->tic / universe->ticsPerVolley;
+        double u = fmod(PC_PHI * (double)volley + 0.37 * n, 1.0);
         double speed = sqrt(node->v.x*node->v.x + node->v.y*node->v.y);
         double vDirX = 1.0, vDirY = 0.0;
         if (speed > 1e-12) { vDirX = node->v.x/speed; vDirY = node->v.y/speed; }
-        for (int j=0;j<universe->rho0;j++) {
-            double frac = ((double)j + u)/(double)universe->rho0;
+        for (int j=0;j<universe->pingsPerVolley;j++) {
+            double frac = ((double)j + u)/(double)universe->pingsPerVolley;
             double theta;
             if (node->cdf) {
                 int lo = 0, hi = PC_NGRID;

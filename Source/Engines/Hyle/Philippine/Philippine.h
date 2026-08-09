@@ -89,7 +89,8 @@ typedef struct PCUniverse {
     double width;
     double height;
     double c;                    // lengths per tic
-    int rho0;                    // pings per tic per emitting node
+    int pingsPerVolley;          // spatial density — as in SitD
+    int ticsPerVolley;           // temporal density — as in SitD
     long tic;
     int nodeCount;
     int nodeCapacity;
@@ -108,7 +109,7 @@ PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a,
 void PCNodeSetMode(PCNode* node, double mx, double my);
 void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, double vy);
 void PCUniverseSetC(PCUniverse* universe, double c);
-void PCUniverseSetRho0(PCUniverse* universe, int rho0);
+void PCUniverseSetVolley(PCUniverse* universe, int pingsPerVolley, int ticsPerVolley);
 void PCUniverseSetSize(PCUniverse* universe, double width, double height);
 void PCUniverseReset(PCUniverse* universe);
 void PCUniverseTic(PCUniverse* universe);

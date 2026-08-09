@@ -86,14 +86,13 @@ fragment float4 hyleLoopFragmentShader(HyleLoopPacket in [[stage_in]]) {
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
-    float4 hue = in.extra < 0.5 ? hyleWarm : hyleCool;
-
-    if (in.type == 1) {                                     // ping: faint cloud
-        if (r < 0.35) { hue.a = 0.30; return hue; }
+    if (in.type == 1) {                                     // ping: exactly as in SitD — grey
+        if (r < 0.35) { return float4(0.4, 0.4, 0.4, 1.0); }
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
     // pong: the foam
+    float4 hue = in.extra < 0.5 ? hyleWarm : hyleCool;
     if (r < 0.55) { hue.a = 0.95; return hue; }
     return float4(0.0, 0.0, 0.0, 0.0);
 }

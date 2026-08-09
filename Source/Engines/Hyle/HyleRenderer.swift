@@ -48,6 +48,12 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var lOverR: Double = 16 { didSet { stateName = "custom" } }
     var stateName: String = "Static Pair"
 
+    // Densities — as in SitD — and the pre-render display toggle (the
+    // ping field the playback generated, shown behind the foam).
+    var pingsPerVolley: Int = 120
+    var ticsPerVolley: Int = 12
+    var showPreRender: Bool = true { didSet { buildLoops() } }
+
     // The frozen configuration and its census.
     private(set) var pongsToA: Int = 0
     private(set) var pongsToB: Int = 0
@@ -158,7 +164,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         let maxSepY: Double = abs(bStart.y - aStart.y)
         let universe: UnsafeMutablePointer<PCUniverse> = PCUniverseCreate(maxSepX + builtWidth, maxSepY + builtHeight)
         PCUniverseSetC(universe, c)
-        PCUniverseSetRho0(universe, 36)
+        PCUniverseSetVolley(universe, Int32(pingsPerVolley), Int32(ticsPerVolley))
 
         nodeA = PCUniverseCreateNode(universe, aStart.x, aStart.y, r, 1, 1)
         nodeB = PCUniverseCreateNode(universe, bStart.x, bStart.y, r, 1, 1)
@@ -182,6 +188,8 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         if let universe, let nodeA {
             for i: Int in 0..<Int(universe.pointee.pingCount) {
                 let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
+                nPing += 1
+                guard showPreRender else { continue }
                 let boundForB: Bool = ping.pointee.source == nodeA
                 loops.append(HyleLoop(
                     type: 1,
@@ -190,7 +198,6 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                     dir: SIMD2<Float>(Float(ping.pointee.dir.x), Float(ping.pointee.dir.y)),
                     cupola: .zero
                 ))
-                nPing += 1
             }
             for i: Int in 0..<Int(universe.pointee.pongCount) {
                 let pong: UnsafeMutablePointer<PCPong> = universe.pointee.pongs[i]!

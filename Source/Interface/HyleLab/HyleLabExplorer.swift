@@ -51,6 +51,10 @@ class HyleLabExplorer: Explorer {
         updateReadout()
         metalView.draw()
     }
+    func redraw() {
+        updateReadout()
+        metalView.draw()
+    }
 
     private func updateReadout() {
         guard let renderer else { return }
