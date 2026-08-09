@@ -88,6 +88,27 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         return (Int(PCUniverseCensus(universe, nodeA)), Int(PCUniverseCensus(universe, nodeB)))
     }
 
+    // The sim runs on the TRANSPORT clock: from the transfer's
+    // perspective c ~ 0, so the bridge is a frozen snapshot at t = 0.
+    // On a state change the c-clock runs privately to steady state
+    // (the snapshot generator), then freezes.  Play opts into watching
+    // the c-clock; Step advances it one tic — microscope views, not
+    // the object itself.
+    var frozen: Bool = true
+
+    func stepTic() {
+        guard let universe else { return }
+        PCUniverseTic(universe)
+    }
+
+    // The frozen configuration's census, per circuit: the A-circuit is
+    // A's connecting pings in flight plus the pongs answering earlier
+    // A-pings (target A); mirror for B.  Updated every draw.
+    private(set) var connectingPingsA: Int = 0
+    private(set) var connectingPingsB: Int = 0
+    private(set) var pongsToA: Int = 0
+    private(set) var pongsToB: Int = 0
+
     // The stake-setter's angle chi between each node's mode axis and its
     // incoming beam (the direction toward the other node).  The split of
     // captures converges to the Born weights (1 +/- cos chi)/2 in the
@@ -201,6 +222,18 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         predictedB = isStatic ? stakeTarget(L: L, a: a, chi: chiB) : .nan
 
         self.universe = universe
+
+        // Populate the snapshot: run the c-clock to steady state —
+        // both circuits full, transients gone — and freeze there.  An
+        // approaching pair has no steady state (bridge.py's head-on is
+        // non-steady by measurement): freeze mid-approach, at half the
+        // initial separation, however far the circuits have filled.
+        let betaMax: Double = min(max(betaA, betaB), 0.9)
+        var warm: Int = min(6000, Int(3.0 * L / (c * (1.0 - betaMax)) + 2.0 * L / c))
+        let sepRate: Double = betaB * c * cos(radB) - betaA * c * cos(radA)
+        if sepRate < -1e-9 { warm = min(warm, Int((L/2) / (-sepRate))) }
+        for _ in 0..<warm { PCUniverseTic(universe) }
+        frozen = true
     }
 
 // Events ==========================================================================================
@@ -222,7 +255,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         if universe == nil || abs((universe?.pointee.width ?? 0) - width) > 1 || abs((universe?.pointee.height ?? 0) - height) > 1 { loadUniverse() }
         guard let universe else { return }
 
-        PCUniverseTic(universe)
+        if !frozen { PCUniverseTic(universe) }
 
         // The camera rides the pair: their midpoint stays centered and
         // the medium (the ping traffic) streams past — aberration and
@@ -241,17 +274,40 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
         var loops: [HyleLoop] = []
 
+        // A ping is CONNECTING when its relative-velocity ray enters
+        // the other node's disc — it is part of the bridge; the rest
+        // of the cloud renders as haze.  extra encodes circuit +
+        // connection: 0/1 = A/B haze, 2/3 = A/B connecting.
+        let cLight: Double = universe.pointee.c
+        var nPingA: Int = 0, nPingB: Int = 0
         for i: Int in 0..<Int(universe.pointee.pingCount) {
             let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
+            let circuit: Int = ping.pointee.source == nodeA ? 0 : 1
+            var connecting: Bool = false
+            if let other = circuit == 0 ? nodeB : nodeA {
+                let rx: Double = ping.pointee.pos.x - other.pointee.pos.x
+                let ry: Double = ping.pointee.pos.y - other.pointee.pos.y
+                let vx: Double = ping.pointee.dir.x * cLight - other.pointee.v.x
+                let vy: Double = ping.pointee.dir.y * cLight - other.pointee.v.y
+                let c0: Double = rx*rx + ry*ry - other.pointee.a * other.pointee.a
+                let b: Double = rx*vx + ry*vy
+                if c0 > 0 && b < 0 && b*b - (vx*vx + vy*vy)*c0 >= 0 { connecting = true }
+            }
+            if connecting { if circuit == 0 { nPingA += 1 } else { nPingB += 1 } }
             loops.append(HyleLoop(
                 type: 1,
-                extra: ping.pointee.source == nodeA ? 0 : 1,
+                extra: Float(circuit + (connecting ? 2 : 0)),
                 position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
                 dir: SIMD2<Float>(Float(ping.pointee.dir.x), Float(ping.pointee.dir.y))
             ))
         }
+        connectingPingsA = nPingA
+        connectingPingsB = nPingB
+
+        var nPongA: Int = 0, nPongB: Int = 0
         for i: Int in 0..<Int(universe.pointee.pongCount) {
             let pong: UnsafeMutablePointer<PCPong> = universe.pointee.pongs[i]!
+            if pong.pointee.target == nodeA { nPongA += 1 } else { nPongB += 1 }
             loops.append(HyleLoop(
                 type: 2,
                 extra: Float(pong.pointee.channel),
@@ -259,6 +315,8 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 dir: SIMD2<Float>(Float(pong.pointee.dir.x), Float(pong.pointee.dir.y))
             ))
         }
+        pongsToA = nPongA
+        pongsToB = nPongB
         for i: Int in 0..<Int(universe.pointee.nodeCount) {
             let node: UnsafeMutablePointer<PCNode> = universe.pointee.nodes[i]!
             loops.append(HyleLoop(

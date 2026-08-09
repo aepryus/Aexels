@@ -77,11 +77,16 @@ fragment float4 hyleLoopFragmentShader(HyleLoopPacket in [[stage_in]]) {
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
-    if (in.type == 1) {                                     // ping: dim mote, tinted by circuit
-        if (r < 0.22) {
-            return in.extra < 0.5
-                ? float4(0.58, 0.52, 0.44, 0.55)            // A's pings: warm grey
-                : float4(0.42, 0.52, 0.62, 0.55);           // B's pings: cool grey
+    if (in.type == 1) {                                     // ping: connecting = bridge, else haze
+        // extra: 0/1 = A/B haze; 2/3 = A/B connecting (part of the bridge)
+        bool connecting = in.extra > 1.5;
+        bool circuitB = (in.extra > 0.5 && in.extra < 1.5) || in.extra > 2.5;
+        if (r < (connecting ? 0.30 : 0.20)) {
+            float4 color = circuitB
+                ? float4(0.42, 0.55, 0.66, 1.0)             // B's pings: cool
+                : float4(0.62, 0.54, 0.42, 1.0);            // A's pings: warm
+            color.a = connecting ? 0.85 : 0.16;
+            return color;
         }
         return float4(0.0, 0.0, 0.0, 0.0);
     }

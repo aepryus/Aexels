@@ -33,18 +33,9 @@ class HyleLabExplorer: Explorer {
 
     private func updateStakes() {
         guard let renderer else { return }
-        let stakes = renderer.stakes
-        stakeALabel.text = stakeText(name: "A", stake: stakes.a)
-        stakeBLabel.text = stakeText(name: "B", stake: stakes.b)
-        caseLabel.text = renderer.caseName
-    }
-    private func stakeText(name: String, stake: HyleRenderer.Stake) -> String {
-        let chi: Int = Int((stake.chi * 180 / .pi).rounded())
-        guard stake.plus + stake.minus > 0 else { return "\(name)  χ \(chi)°" }
-        guard !stake.predicted.isNaN else {
-            return String(format: "%@  χ %d°   P₊ %.4f   n %d", name, chi, stake.measured, stake.plus + stake.minus)
-        }
-        return String(format: "%@  χ %d°   P₊ %.4f → %.4f   Born %.4f   n %d", name, chi, stake.measured, stake.predicted, stake.born, stake.plus + stake.minus)
+        stakeALabel.text = String(format: "A-circuit   pings → B  %d   pongs → A  %d", renderer.connectingPingsA, renderer.pongsToA)
+        stakeBLabel.text = String(format: "B-circuit   pings → A  %d   pongs → B  %d", renderer.connectingPingsB, renderer.pongsToB)
+        caseLabel.text = renderer.caseName + (renderer.frozen ? "   —   frozen at t=0 (transport clock)" : "   —   c-clock running")
     }
 
 // UIViewController ================================================================================
@@ -100,7 +91,9 @@ class HyleLabExplorer: Explorer {
             ]
         }
 
-        timeControl.playButton.playing = true
+        // The lab opens frozen: the bridge is a snapshot on the
+        // transport clock.  Play opts into watching the c-clock.
+        timeControl.playButton.playing = false
     }
 
 // AEViewController ================================================================================
@@ -130,8 +123,8 @@ class HyleLabExplorer: Explorer {
     }
 
 // TimeControlDelegate =============================================================================
-    override func onPlay()  { metalView.isPaused = false }
-    override func onStep()  { metalView.draw() }
-    override func onReset() { renderer.onReset(); metalView.draw(); timeControl.playButton.stop() }
-    override func onStop()  { metalView.isPaused = true }
+    override func onPlay()  { renderer.frozen = false; updateStakes() }
+    override func onStep()  { renderer.stepTic(); metalView.draw() }
+    override func onReset() { renderer.loadUniverse(); metalView.draw(); timeControl.playButton.stop(); updateStakes() }
+    override func onStop()  { renderer.frozen = true; updateStakes() }
 }
