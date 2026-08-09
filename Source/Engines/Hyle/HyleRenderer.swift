@@ -202,6 +202,23 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         var nPongA: Int = 0
         var nPongB: Int = 0
 
+        // The nodes own their discs: carriers sitting under either
+        // disc are culled from the display so nothing renders on top
+        // of a node.  (Display only — the census counts everything.)
+        var maskA: SIMD2<Double> = A0
+        var maskB: SIMD2<Double> = B0
+        if let nodeA, let nodeB {
+            maskA = SIMD2<Double>(nodeA.pointee.pos.x, nodeA.pointee.pos.y)
+            maskB = SIMD2<Double>(nodeB.pointee.pos.x, nodeB.pointee.pos.y)
+        }
+        let mask2: Double = (r * 1.15) * (r * 1.15)
+        func underDisc(_ x: Double, _ y: Double) -> Bool {
+            let dax: Double = x - maskA.x, day: Double = y - maskA.y
+            if dax*dax + day*day < mask2 { return true }
+            let dbx: Double = x - maskB.x, dby: Double = y - maskB.y
+            return dbx*dbx + dby*dby < mask2
+        }
+
         if let universe, let nodeA {
             for i: Int in 0..<Int(universe.pointee.pingCount) {
                 let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
@@ -211,6 +228,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 // are the answers to A's own pings.
                 let sourceIsA: Bool = ping.pointee.source == nodeA
                 guard sourceIsA ? showBridgeToA : showBridgeToB else { continue }
+                guard !underDisc(ping.pointee.pos.x, ping.pointee.pos.y) else { continue }
                 loops.append(HyleLoop(
                     type: 1,
                     extra: sourceIsA ? 1 : 0,
@@ -224,6 +242,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 let boundForA: Bool = pong.pointee.target == nodeA
                 if boundForA { nPongA += 1 } else { nPongB += 1 }
                 guard boundForA ? showBridgeToA : showBridgeToB else { continue }
+                guard !underDisc(pong.pointee.pos.x, pong.pointee.pos.y) else { continue }
                 loops.append(HyleLoop(
                     type: 2,
                     extra: boundForA ? 0 : 1,
