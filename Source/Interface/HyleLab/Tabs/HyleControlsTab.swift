@@ -20,6 +20,7 @@ class HyleControlsTab: TabsCellTab {
     let pingsPerVolleyLabel: UILabel = UILabel()
     let timeStepsPerVolleyLabel: UILabel = UILabel()
     let preRenderBoolButton: BoolButton = BoolButton(name: "pre-render")
+    let showPingsBoolButton: BoolButton = BoolButton(name: "show pings")
     let renderButton: PulseButton = PulseButton(name: "render")
 
     init(explorer: HyleLabExplorer) {
@@ -56,10 +57,17 @@ class HyleControlsTab: TabsCellTab {
             self.explorer.renderer.ticsPerVolley = steps
         }
 
-        preRenderBoolButton.on = explorer.renderer.showPreRender
+        // pre-render: watch the generation playback when rendering.
+        preRenderBoolButton.on = explorer.renderer.showProcess
         addSubview(preRenderBoolButton)
         preRenderBoolButton.onChange = { [unowned self] (on: Bool) in
-            self.explorer.renderer.showPreRender = on
+            self.explorer.renderer.showProcess = on
+        }
+
+        showPingsBoolButton.on = explorer.renderer.showPings
+        addSubview(showPingsBoolButton)
+        showPingsBoolButton.onChange = { [unowned self] (on: Bool) in
+            self.explorer.renderer.showPings = on
             self.explorer.redraw()
         }
 
@@ -73,7 +81,8 @@ class HyleControlsTab: TabsCellTab {
         ratioSlider.setTo(Int(round(explorer.renderer.lOverR)))
         pingsPerVolleySlider.setTo(explorer.renderer.pingsPerVolley)
         timeStepsPerVolleySlider.setTo(explorer.renderer.ticsPerVolley)
-        preRenderBoolButton.on = explorer.renderer.showPreRender
+        preRenderBoolButton.on = explorer.renderer.showProcess
+        showPingsBoolButton.on = explorer.renderer.showPings
     }
 
 // AEView ==========================================================================================
@@ -98,6 +107,8 @@ class HyleControlsTab: TabsCellTab {
         y += 60*s
 
         preRenderBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
+        y += 30*s
+        showPingsBoolButton.topLeft(dx: 30*s, dy: y, width: 240*s, height: 24*s)
         y += 40*s
 
         renderButton.top(dy: y, width: 70*s, height: 70*s)

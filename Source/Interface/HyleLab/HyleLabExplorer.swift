@@ -47,7 +47,7 @@ class HyleLabExplorer: Explorer {
     }
 
     func render() {
-        renderer.generate()
+        renderer.generate(process: renderer.showProcess)
         updateReadout()
         metalView.draw()
     }
@@ -60,7 +60,7 @@ class HyleLabExplorer: Explorer {
         guard let renderer else { return }
         foamLabel.text = String(format: "foam → A  %d      foam → B  %d", renderer.pongsToA, renderer.pongsToB)
         pingLabel.text = String(format: "pings in flight  %d", renderer.pingsInFlight)
-        caseLabel.text = renderer.stateName + "   —   frozen at t=0"
+        caseLabel.text = renderer.stateName + (renderer.playbackRemaining > 0 ? "   —   rendering…" : "   —   frozen at t=0")
     }
 
 // Dragging the velocity vectors ===================================================================

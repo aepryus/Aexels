@@ -48,11 +48,18 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var lOverR: Double = 16 { didSet { stateName = "custom" } }
     var stateName: String = "Static Pair"
 
-    // Densities — as in SitD — and the pre-render display toggle (the
-    // ping field the playback generated, shown behind the foam).
+    // Densities — as in SitD.
     var pingsPerVolley: Int = 120
     var ticsPerVolley: Int = 12
-    var showPreRender: Bool = true { didSet { buildLoops() } }
+    // pre-render: show the render PROCESS — the playback runs on
+    // screen, the nodes walking onto their stage marks as the corridor
+    // fills, freezing at t = 0.
+    var showProcess: Bool = true
+    // show pings: the generated ping field displayed behind the foam.
+    var showPings: Bool = true { didSet { buildLoops() } }
+
+    private(set) var playbackRemaining: Int = 0
+    private var ticsPerFrame: Int = 1
 
     // The frozen configuration and its census.
     private(set) var pongsToA: Int = 0
@@ -135,13 +142,14 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         vB = SIMD2<Double>(experiment.betaB * cos(radB), experiment.betaB * sin(radB))
         lOverR = experiment.lOverR
         stateName = experiment.name
-        generate()
+        generate(process: showProcess)
     }
 
     // Go back far enough to fill both circuits, run the actual
     // simulator forward, and land the nodes on their stage positions
-    // at t = 0.  The result is the frozen bridge.
-    func generate() {
+    // at t = 0.  The result is the frozen bridge.  With process on,
+    // the playback runs on screen instead of silently.
+    func generate(process: Bool = false) {
         measureStage()
         guard builtWidth > 1 else { return }
 
@@ -171,9 +179,15 @@ class HyleRenderer: NSObject, MTKViewDelegate {
         PCUniverseSetNodeVelocity(universe, nodeA, vAp.x, vAp.y)
         PCUniverseSetNodeVelocity(universe, nodeB, vBp.x, vBp.y)
 
-        for _ in 0..<lookback { PCUniverseTic(universe) }
-
         self.universe = universe
+
+        if process {
+            playbackRemaining = lookback
+            ticsPerFrame = max(1, lookback / 300)   // ~five seconds of watching
+        } else {
+            for _ in 0..<lookback { PCUniverseTic(universe) }
+            playbackRemaining = 0
+        }
         buildLoops()
     }
 
@@ -189,7 +203,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             for i: Int in 0..<Int(universe.pointee.pingCount) {
                 let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
                 nPing += 1
-                guard showPreRender else { continue }
+                guard showPings else { continue }
                 let boundForB: Bool = ping.pointee.source == nodeA
                 loops.append(HyleLoop(
                     type: 1,
@@ -220,10 +234,19 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     }
 
     // The stage dressing rebuilt without touching the frozen carriers —
-    // used live while a velocity vector is being dragged.
+    // used live while a velocity vector is being dragged.  During the
+    // render process, the nodes draw where they ARE, walking onto
+    // their stage marks.
     private func stageLoops() -> [HyleLoop] {
+        var pairs: [(SIMD2<Double>, SIMD2<Double>)] = [(A0, vA), (B0, vB)]
+        if playbackRemaining > 0, let nodeA, let nodeB {
+            pairs = [
+                (SIMD2<Double>(nodeA.pointee.pos.x, nodeA.pointee.pos.y), vA),
+                (SIMD2<Double>(nodeB.pointee.pos.x, nodeB.pointee.pos.y), vB)
+            ]
+        }
         var loops: [HyleLoop] = []
-        for (P, v) in [(A0, vA), (B0, vB)] {
+        for (P, v) in pairs {
             loops.append(HyleLoop(
                 type: 0,
                 extra: Float(r),
@@ -247,14 +270,23 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        generate()
+        generate(process: false)
     }
     func draw(in view: MTKView) {
         guard let drawable: CAMetalDrawable = view.currentDrawable,
               let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor
         else { return }
         let width: Double = view.drawableSize.width / view.contentScaleFactor
-        if builtWidth < 1 || abs(builtWidth - width) > 1 { generate() }
+        if builtWidth < 1 || abs(builtWidth - width) > 1 { generate(process: false) }
+
+        // The render process, on screen: advance the playback and show
+        // it, freezing when the nodes land on their marks at t = 0.
+        if playbackRemaining > 0, let universe {
+            let k: Int = min(ticsPerFrame, playbackRemaining)
+            for _ in 0..<k { PCUniverseTic(universe) }
+            playbackRemaining -= k
+            buildLoops()
+        }
 
         var context: HyleContext = HyleContext(center: stageCenter, bounds: stageBounds)
         memcpy(contextBuffer.contents(), &context, MemoryLayout<HyleContext>.size)
