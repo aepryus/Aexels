@@ -17,15 +17,15 @@ class HyleExperiment: Experiment {
     var thetaA: Double = 0
     var betaB: Double = 0
     var thetaB: Double = 0
-    var ratio: Double = 0.08
+    var lOverR: Double = 16
 
-    init(name: String, betaA: Double, thetaA: Double, betaB: Double, thetaB: Double, ratio: Double = 0.08) {
+    init(name: String, betaA: Double, thetaA: Double, betaB: Double, thetaB: Double, lOverR: Double = 16) {
         self.name = name
         self.betaA = betaA
         self.thetaA = thetaA
         self.betaB = betaB
         self.thetaB = thetaB
-        self.ratio = ratio
+        self.lOverR = lOverR
     }
 
 // Experiments =====================================================================================

@@ -2,29 +2,19 @@
 //  HyleRenderer.swift
 //  Aexels
 //
-//  The bridge, rendered as the static entity it is (Joe's spec):
+//  The bridge sim, per Joe's spec:
 //
-//  * FIXED STAGE — the two nodes never move on screen; r/L shows only
-//    as disc size.  Inputs: v_A (direction + magnitude), v_B, r/L.
-//  * OUTPUT — the frozen population of connecting signals between the
-//    nodes at t = 0: each carrier's position plus its carried vectors
-//    (translation, and cupola C = n-hat − beta).  From the transport's
-//    perspective c ~ 0: the bridge is a standing structure.
-//  * GENERATION — the closed-form retarded construction (validated in
-//    the withdrawn scaffold, Physics 4befa69, re-verified at this seat
-//    in Sims/Bridge): for constant velocities every connecting
-//    signal's emission solves a quadratic intercept, so the corridor
-//    populates directly — no warm-up integration.
-//  * ABERRATION IS IN — the lead angle (emissions aim at the target's
-//    future position), the cupola/translation split (each frozen
-//    cupola axis passes through the other node's current position
-//    while its translation points elsewhere), and Rule 3's
-//    direction-dependent density (its fore/aft cancellation sets the
-//    equal per-circuit rates; the two-lane counts come from the
-//    transit times).
-//  * The rendered bridge is the STARTING POINT: transport across it is
-//    the next phase and is deliberately unspecified.  Mode/spin (BJFE)
-//    enter conditionally later — they are not drawn here.
+//  * FIXED STAGE — the nodes never move on screen; L/r shows as disc
+//    size (L is pinned to the view).
+//  * INPUTS — each node's velocity is a VECTOR ON THE NODE, picked up
+//    and dragged; L/r is graduated 2^2 … 2^11 in the controls.
+//  * RENDER — on generate, figure out how far to go back, place the
+//    nodes there, and run the ACTUAL SIMULATOR (the Philippine sea —
+//    rules as stated, aberration included) forward until the nodes
+//    land on their stage positions at t = 0.  Plot the pings and the
+//    pongs.  The plot is then FIXED: the frozen bridge.
+//  * THE PONGS ARE FOAM — no cupolas rendered or needed; they are the
+//    medium the coming transport phase will pass hyle through.
 //
 
 import Acheron
@@ -37,13 +27,11 @@ struct HyleContext {
 }
 
 struct HyleLoop {
-    var type: UInt32           // 0 node, 1 ping, 2 pong
-    var extra: Float           // carriers: DESTINATION — 0 = bound for A (warm), 1 = bound for B (cool);
-                               // node: radius.  The papers' own split: two bridges per pair, one per
-                               // direction (BJFE S1), so each visible band is one solid hue.
+    var type: UInt32           // 0 node, 1 ping, 2 pong (foam), 3 velocity vector
+    var extra: Float           // carriers: destination (0 = A warm, 1 = B cool); node: radius; vector: beta
     var position: SIMD2<Float>
-    var dir: SIMD2<Float>      // translation (unit flight direction); node: unused
-    var cupola: SIMD2<Float>   // carried cupola C = n-hat − beta; node: unused
+    var dir: SIMD2<Float>      // vector/carrier direction (unit)
+    var cupola: SIMD2<Float>   // unused (pongs are foam); kept for layout stability
 }
 
 class HyleRenderer: NSObject, MTKViewDelegate {
@@ -54,38 +42,28 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
     weak var view: MTKView?
 
-    // The bridge model's state: (v_A, v_B, r/L) — speeds in units of
-    // c, directions in degrees.  Stored initial conditions live in
-    // HyleExperiment; touching any state variable directly makes the
-    // configuration "custom".
-    var betaA: Double = 0 { didSet { stateName = "custom" } }
-    var thetaA: Double = 0 { didSet { stateName = "custom" } }
-    var betaB: Double = 0 { didSet { stateName = "custom" } }
-    var thetaB: Double = 0 { didSet { stateName = "custom" } }
-    var ratio: Double = 0.08 { didSet { stateName = "custom" } }
+    // The state: velocity vectors in units of c, and L/r.
+    var vA: SIMD2<Double> = .zero { didSet { stateName = "custom" } }
+    var vB: SIMD2<Double> = .zero { didSet { stateName = "custom" } }
+    var lOverR: Double = 16 { didSet { stateName = "custom" } }
     var stateName: String = "Static Pair"
 
-    func apply(experiment: HyleExperiment) {
-        betaA = experiment.betaA
-        thetaA = experiment.thetaA
-        betaB = experiment.betaB
-        thetaB = experiment.thetaB
-        ratio = experiment.ratio
-        stateName = experiment.name
-        loadUniverse()
-    }
-
-    // The frozen configuration's census, per circuit.
-    private(set) var connectingPingsA: Int = 0
-    private(set) var connectingPingsB: Int = 0
+    // The frozen configuration and its census.
     private(set) var pongsToA: Int = 0
     private(set) var pongsToB: Int = 0
+    private(set) var pingsInFlight: Int = 0
 
-    private var loops: [HyleLoop] = []
+    private var universe: UnsafeMutablePointer<PCUniverse>?
+    private var nodeA: UnsafeMutablePointer<PCNode>?
+    private var nodeB: UnsafeMutablePointer<PCNode>?
+
+    private var carrierLoops: [HyleLoop] = []
     private var stageCenter: SIMD2<Float> = .zero
     private var stageBounds: SIMD2<Float> = .zero
     private var builtWidth: Double = 0
     private var builtHeight: Double = 0
+
+    private let c: Double = 2
 
     init?(view: MTKView) {
         self.view = view
@@ -118,210 +96,163 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
         view.delegate = self
     }
-
-// The closed-form construction ====================================================================
-
-    // Flight time tau >= 0 for a signal at speed c leaving a point
-    // whose offset from the target is R0, the target moving at vT:
-    // |R0 + vT tau| = c tau.  Exact (quadratic); c > |vT| guarantees
-    // one non-negative root.
-    private func interceptTau(R0: SIMD2<Double>, vT: SIMD2<Double>, c: Double) -> Double {
-        let a: Double = simd_dot(vT, vT) - c*c
-        let b: Double = simd_dot(R0, vT)
-        let disc: Double = b*b - a*simd_dot(R0, R0)
-        guard disc >= 0 else { return -1 }
-        return (-b - disc.squareRoot()) / a
+    deinit {
+        if let universe { PCUniverseRelease(universe) }
     }
 
-    // SitD's pong rule: the ping's translation mirrored over its cupola
-    // axis: v − 2 (v·C / C·C) C.  Speed is preserved.
-    private func mirrored(_ v: SIMD2<Double>, over C: SIMD2<Double>) -> SIMD2<Double> {
-        let c2: Double = simd_dot(C, C)
-        guard c2 > 1e-18 else { return -v }
-        return v - (2 * simd_dot(v, C) / c2) * C
-    }
+// Stage geometry ==================================================================================
 
-    // First ENTRY of a point moving at relV (from relative offset relP
-    // to a circle center) into radius r: the capture event is disc
-    // entry, not center-plane arrival.  Returns the entry time or -1.
-    private func entryTau(relP: SIMD2<Double>, relV: SIMD2<Double>, r: Double) -> Double {
-        let c0: Double = simd_dot(relP, relP) - r*r
-        guard c0 > 0 else { return -1 }
-        let b: Double = simd_dot(relP, relV)
-        guard b < 0 else { return -1 }
-        let A: Double = simd_dot(relV, relV)
-        let disc: Double = b*b - A*c0
-        guard disc >= 0 else { return -1 }
-        return (-b - disc.squareRoot()) / A
-    }
+    var stageWidth: Double { builtWidth }
+    var stageHeight: Double { builtHeight }
+    var L: Double { min(builtWidth * 0.6, builtHeight * 0.8) }
+    var r: Double { max(L / lOverR, 0.5) }
+    var A0: SIMD2<Double> { SIMD2<Double>(builtWidth/2 - L/2, builtHeight/2) }
+    var B0: SIMD2<Double> { SIMD2<Double>(builtWidth/2 + L/2, builtHeight/2) }
 
-    // Build one circuit: source S emitting, target T answering.  The
-    // corridor populates by uniform sampling in emission time — the
-    // model's equal per-circuit capture rate (Rule 3's fore/aft
-    // cancellation) makes uniform-in-t_e the steady-state measure, and
-    // the two-lane counts then emerge from the windows' lengths.
-    private func buildCircuit(S0: SIMD2<Double>, vS: SIMD2<Double>,
-                              T0: SIMD2<Double>, vT: SIMD2<Double>,
-                              r: Double, c: Double, circuit: Int,
-                              into loops: inout [HyleLoop]) -> (pings: Int, pongs: Int) {
-        let ratePerTic: Double = 0.55        // carriers per emission tic (visual scale)
-        let maxPerLane: Int = 700
-
-        // Ping window: emissions t_e in [tE0, 0] are in flight now —
-        // tE0 is the emission arriving exactly now (tau = -tE0).
-        let tau0: Double = interceptTau(R0: T0 - S0, vT: vT, c: c)
-        guard tau0 > 0 else { return (0, 0) }
-        let tE0: Double = -tau0
-
-        var nPing: Int = 0
-        var nPong: Int = 0
-
-        let beta: SIMD2<Double> = vS / c
-        let sight0: SIMD2<Double> = simd_normalize(T0 - S0)
-        let perp0: SIMD2<Double> = SIMD2<Double>(-sight0.y, sight0.x)
-
-        // Pings in flight.
-        let pingWindow: Double = -tE0
-        var kPing: Int = Int(pingWindow * ratePerTic)
-        var stridePing: Double = 1
-        if kPing > maxPerLane { stridePing = Double(kPing) / Double(maxPerLane); kPing = maxPerLane }
-        for k in 0..<kPing {
-            let u: Double = (Double(k) + 0.5) / Double(kPing)
-            let tE: Double = tE0 * (1 - u)
-            let b: Double = (fmod(Double(k) * 0.6180339887498949, 1.0) * 2 - 1) * 0.9 * r
-            let P: SIMD2<Double> = S0 + vS * tE
-            let aim: SIMD2<Double> = T0 + b * perp0
-            let tau: Double = interceptTau(R0: aim + vT * tE - P, vT: vT, c: c)
-            guard tau > 0 else { continue }
-            let nHat: SIMD2<Double> = simd_normalize((aim + vT * (tE + tau)) - P)
-            // The capture event is disc ENTRY on the ping's worldline.
-            let tauEnt: Double = entryTau(relP: P - (T0 + vT * tE), relV: nHat * c - vT, r: r)
-            guard tauEnt > 0, tE + tauEnt >= 0 else { continue }   // in flight iff not yet entered
-            let pos: SIMD2<Double> = P + nHat * c * (-tE)
-            let cupola: SIMD2<Double> = nHat - beta
-            loops.append(HyleLoop(
-                type: 1,
-                extra: Float(1 - circuit),      // a ping is bound for the OTHER node
-                position: SIMD2<Float>(Float(pos.x), Float(pos.y)),
-                dir: SIMD2<Float>(Float(nHat.x), Float(nHat.y)),
-                cupola: SIMD2<Float>(Float(cupola.x), Float(cupola.y))
-            ))
-            nPing += 1
-            _ = stridePing
-        }
-
-        // Pongs in flight: emissions whose ping has already been
-        // captured (disc entry at tCap <= 0) and whose answer is still
-        // flying.  Scan from t_e = 0 backward — captures happen up to
-        // r/closing-speed EARLIER than center-plane arrival, so the
-        // youngest pongs come from emissions after tE0; the guards
-        // below do the filtering.
-        let maxBack: Double = 6 * (-tE0) + 4 * simd_length(T0 - S0) / c
-        var kPong: Int = Int(maxBack * ratePerTic)
-        var stridePong: Double = 1
-        if kPong > 4 * maxPerLane { stridePong = Double(kPong) / Double(4 * maxPerLane); kPong = 4 * maxPerLane }
-        var pongLoops: [HyleLoop] = []
-        for k in 0..<kPong {
-            let tE: Double = -(Double(k) + 0.5) * stridePong / ratePerTic
-            let b: Double = (fmod(Double(k) * 0.6180339887498949 + 0.37, 1.0) * 2 - 1) * 0.9 * r
-            let P: SIMD2<Double> = S0 + vS * tE
-            let aim: SIMD2<Double> = T0 + b * perp0
-            let tau: Double = interceptTau(R0: aim + vT * tE - P, vT: vT, c: c)
-            guard tau > 0 else { continue }
-            let nHat: SIMD2<Double> = simd_normalize((aim + vT * (tE + tau)) - P)
-            let cupola: SIMD2<Double> = nHat - beta
-
-            // The capture event: disc ENTRY on the ping's worldline —
-            // the pong must launch from the ping's own position at the
-            // capture instant, or Euclid's return guarantee breaks.
-            let tauEnt: Double = entryTau(relP: P - (T0 + vT * tE), relV: nHat * c - vT, r: r)
-            guard tauEnt > 0 else { continue }
-            let tCap: Double = tE + tauEnt
-            guard tCap <= 0 else { continue }                 // already captured
-            let H: SIMD2<Double> = P + nHat * c * tauEnt      // ON the ping's worldline
-
-            let vPong: SIMD2<Double> = mirrored(nHat * c, over: cupola)
-            // The pong dies entering the source's disc.
-            let tauR: Double = entryTau(relP: H - (S0 + vS * tCap), relV: vPong - vS, r: r)
-            guard tauR > 0, tCap + tauR >= 0 else { continue } // in flight iff not yet returned
-            let pos: SIMD2<Double> = H + vPong * (-tCap)
-            let pongDir: SIMD2<Double> = simd_normalize(vPong)
-            pongLoops.append(HyleLoop(
-                type: 2,
-                extra: Float(circuit),          // a pong returns to its circuit's source
-                position: SIMD2<Float>(Float(pos.x), Float(pos.y)),
-                dir: SIMD2<Float>(Float(pongDir.x), Float(pongDir.y)),
-                cupola: SIMD2<Float>(Float(cupola.x), Float(cupola.y))
-            ))
-            nPong += 1
-        }
-        loops.append(contentsOf: pongLoops)
-        return (nPing, nPong)
-    }
-
-    // Rebuild the frozen bridge from the current state.  (Named for
-    // the controls tab's sake; there is no evolving universe here —
-    // the construction is closed-form.)
-    func loadUniverse() {
+    private func measureStage() {
         guard let view else { return }
         let width: Double = view.drawableSize.width / view.contentScaleFactor
         let height: Double = view.drawableSize.height / view.contentScaleFactor
         guard width > 1, height > 1 else { return }
         builtWidth = width
         builtHeight = height
-
-        let L: Double = min(width * 0.6, height * 0.8)
-        let r: Double = max(ratio * L, 3)
-        let c: Double = 2
-
-        let A0: SIMD2<Double> = SIMD2<Double>(width/2 - L/2, height/2)
-        let B0: SIMD2<Double> = SIMD2<Double>(width/2 + L/2, height/2)
-        let radA: Double = thetaA * .pi/180
-        let radB: Double = thetaB * .pi/180
-        let vA: SIMD2<Double> = SIMD2<Double>(betaA * c * cos(radA), betaA * c * sin(radA))
-        let vB: SIMD2<Double> = SIMD2<Double>(betaB * c * cos(radB), betaB * c * sin(radB))
-
-        var built: [HyleLoop] = []
-        let a: (pings: Int, pongs: Int) = buildCircuit(S0: A0, vS: vA, T0: B0, vT: vB, r: r, c: c, circuit: 0, into: &built)
-        let b: (pings: Int, pongs: Int) = buildCircuit(S0: B0, vS: vB, T0: A0, vT: vA, r: r, c: c, circuit: 1, into: &built)
-        connectingPingsA = a.pings
-        pongsToA = a.pongs
-        connectingPingsB = b.pings
-        pongsToB = b.pongs
-
-        // The nodes, last so they draw on top: fixed stage.
-        for (P, v) in [(A0, vA), (B0, vB)] {
-            let speed: Double = simd_length(v)
-            let dir: SIMD2<Double> = speed > 1e-12 ? v / speed : SIMD2<Double>(0, 0)
-            built.append(HyleLoop(
-                type: 0,
-                extra: Float(r),
-                position: SIMD2<Float>(Float(P.x), Float(P.y)),
-                dir: SIMD2<Float>(Float(dir.x * speed / c), Float(dir.y * speed / c)),
-                cupola: .zero
-            ))
-        }
-
-        loops = built
         stageCenter = SIMD2<Float>(Float(width/2), Float(height/2))
         stageBounds = SIMD2<Float>(Float(width), Float(height))
     }
 
+// Generate ========================================================================================
+
+    func apply(experiment: HyleExperiment) {
+        let radA: Double = experiment.thetaA * .pi/180
+        let radB: Double = experiment.thetaB * .pi/180
+        vA = SIMD2<Double>(experiment.betaA * cos(radA), experiment.betaA * sin(radA))
+        vB = SIMD2<Double>(experiment.betaB * cos(radB), experiment.betaB * sin(radB))
+        lOverR = experiment.lOverR
+        stateName = experiment.name
+        generate()
+    }
+
+    // Go back far enough to fill both circuits, run the actual
+    // simulator forward, and land the nodes on their stage positions
+    // at t = 0.  The result is the frozen bridge.
+    func generate() {
+        measureStage()
+        guard builtWidth > 1 else { return }
+
+        if let universe { PCUniverseRelease(universe) }
+
+        let betaMax: Double = min(max(simd_length(vA), simd_length(vB)), 0.9)
+        let lookback: Int = min(8000, Int(2.5 * L / (c * (1 - betaMax)) + 2 * L / c) + 60)
+        let T: Double = Double(lookback)
+
+        // Start positions: displaced back along each track so the run
+        // lands the nodes exactly on A0/B0 at t = 0.
+        let vAp: SIMD2<Double> = vA * c        // lengths per tic
+        let vBp: SIMD2<Double> = vB * c
+        let aStart: SIMD2<Double> = A0 - vAp * T
+        let bStart: SIMD2<Double> = B0 - vBp * T
+
+        // The cull box follows the pair midpoint; size it to cover the
+        // widest separation the run will see.
+        let maxSepX: Double = max(abs(bStart.x - aStart.x), L)
+        let maxSepY: Double = abs(bStart.y - aStart.y)
+        let universe: UnsafeMutablePointer<PCUniverse> = PCUniverseCreate(maxSepX + builtWidth, maxSepY + builtHeight)
+        PCUniverseSetC(universe, c)
+        PCUniverseSetRho0(universe, 36)
+
+        nodeA = PCUniverseCreateNode(universe, aStart.x, aStart.y, r, 1, 1)
+        nodeB = PCUniverseCreateNode(universe, bStart.x, bStart.y, r, 1, 1)
+        PCUniverseSetNodeVelocity(universe, nodeA, vAp.x, vAp.y)
+        PCUniverseSetNodeVelocity(universe, nodeB, vBp.x, vBp.y)
+
+        for _ in 0..<lookback { PCUniverseTic(universe) }
+
+        self.universe = universe
+        buildLoops()
+    }
+
+    // The frozen plot: pings faint, pongs as foam, nodes and their
+    // velocity vectors on top.
+    private func buildLoops() {
+        var loops: [HyleLoop] = []
+        var nPing: Int = 0
+        var nPongA: Int = 0
+        var nPongB: Int = 0
+
+        if let universe, let nodeA {
+            for i: Int in 0..<Int(universe.pointee.pingCount) {
+                let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
+                let boundForB: Bool = ping.pointee.source == nodeA
+                loops.append(HyleLoop(
+                    type: 1,
+                    extra: boundForB ? 1 : 0,
+                    position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
+                    dir: SIMD2<Float>(Float(ping.pointee.dir.x), Float(ping.pointee.dir.y)),
+                    cupola: .zero
+                ))
+                nPing += 1
+            }
+            for i: Int in 0..<Int(universe.pointee.pongCount) {
+                let pong: UnsafeMutablePointer<PCPong> = universe.pointee.pongs[i]!
+                let boundForA: Bool = pong.pointee.target == nodeA
+                if boundForA { nPongA += 1 } else { nPongB += 1 }
+                loops.append(HyleLoop(
+                    type: 2,
+                    extra: boundForA ? 0 : 1,
+                    position: SIMD2<Float>(Float(pong.pointee.pos.x), Float(pong.pointee.pos.y)),
+                    dir: SIMD2<Float>(Float(pong.pointee.dir.x), Float(pong.pointee.dir.y)),
+                    cupola: .zero
+                ))
+            }
+        }
+
+        pingsInFlight = nPing
+        pongsToA = nPongA
+        pongsToB = nPongB
+        carrierLoops = loops
+    }
+
+    // The stage dressing rebuilt without touching the frozen carriers —
+    // used live while a velocity vector is being dragged.
+    private func stageLoops() -> [HyleLoop] {
+        var loops: [HyleLoop] = []
+        for (P, v) in [(A0, vA), (B0, vB)] {
+            loops.append(HyleLoop(
+                type: 0,
+                extra: Float(r),
+                position: SIMD2<Float>(Float(P.x), Float(P.y)),
+                dir: .zero,
+                cupola: .zero
+            ))
+            let beta: Double = simd_length(v)
+            if beta > 0.01 {
+                loops.append(HyleLoop(
+                    type: 3,
+                    extra: Float(beta),
+                    position: SIMD2<Float>(Float(P.x), Float(P.y)),
+                    dir: SIMD2<Float>(Float(v.x/beta), Float(v.y/beta)),
+                    cupola: .zero
+                ))
+            }
+        }
+        return loops
+    }
+
 // MTKViewDelegate =================================================================================
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        loadUniverse()
+        generate()
     }
     func draw(in view: MTKView) {
         guard let drawable: CAMetalDrawable = view.currentDrawable,
               let renderPassDescriptor: MTLRenderPassDescriptor = view.currentRenderPassDescriptor
         else { return }
         let width: Double = view.drawableSize.width / view.contentScaleFactor
-        let height: Double = view.drawableSize.height / view.contentScaleFactor
-        if loops.isEmpty || abs(builtWidth - width) > 1 || abs(builtHeight - height) > 1 { loadUniverse() }
+        if builtWidth < 1 || abs(builtWidth - width) > 1 { generate() }
 
         var context: HyleContext = HyleContext(center: stageCenter, bounds: stageBounds)
         memcpy(contextBuffer.contents(), &context, MemoryLayout<HyleContext>.size)
 
+        let loops: [HyleLoop] = carrierLoops + stageLoops()
         guard !loops.isEmpty,
               let loopsBuffer = device.makeBuffer(bytes: loops, length: loops.count * MemoryLayout<HyleLoop>.stride, options: .storageModeShared),
               let commandBuffer = commandQueue.makeCommandBuffer(),
