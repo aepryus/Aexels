@@ -28,6 +28,13 @@ struct HyleLoop {
     var dir: SIMD2<Float>      // node: m-hat; pong: flight direction
 }
 
+// The bridge cases of Sims/Bridge, live: velocities in units of c.
+struct HylePreset {
+    let name: String
+    let vA: (Double, Double)
+    let vB: (Double, Double)
+}
+
 class HyleRenderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
@@ -39,6 +46,20 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var universe: UnsafeMutablePointer<PCUniverse>?
     var nodeA: UnsafeMutablePointer<PCNode>?
     var nodeB: UnsafeMutablePointer<PCNode>?
+
+    static let presets: [HylePreset] = [
+        HylePreset(name: "static pair",            vA: (0, 0),      vB: (0, 0)),
+        HylePreset(name: "co-moving ∥  β 0.6",     vA: (0.6, 0),    vB: (0.6, 0)),
+        HylePreset(name: "co-moving ⊥  β 0.6",     vA: (0, 0.6),    vB: (0, 0.6)),
+        HylePreset(name: "head-on  β 0.3 each",    vA: (0.3, 0),    vB: (-0.3, 0)),
+    ]
+    private(set) var presetIndex: Int = 0
+    var preset: HylePreset { HyleRenderer.presets[presetIndex] }
+
+    func nextPreset() {
+        presetIndex = (presetIndex + 1) % HyleRenderer.presets.count
+        loadUniverse()
+    }
 
     var census: (toA: Int, toB: Int) {
         guard let universe, let nodeA, let nodeB else { return (0, 0) }
@@ -53,8 +74,8 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     // build in Sims/PongBridge, stage 4 — agreement ~1e-5).
     var chiA: Double = 60 * .pi/180
     var chiB: Double = 120 * .pi/180
-    private var predictedA: Double = 0.75
-    private var predictedB: Double = 0.25
+    private var predictedA: Double = .nan   // exact target; NaN when the pair moves
+    private var predictedB: Double = .nan   // (the static quadrature does not apply)
 
     struct Stake { var chi: Double; var plus: Int; var minus: Int; var predicted: Double
         var measured: Double { plus + minus == 0 ? 0 : Double(plus)/Double(plus + minus) }
@@ -134,16 +155,26 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
         let a: Double = 18
         let L: Double = min(width * 0.6, height * 0.8)
+        let c: Double = 2
         nodeA = PCUniverseCreateNode(universe, width/2 - L/2, height/2, a, 1, 1)
         nodeB = PCUniverseCreateNode(universe, width/2 + L/2, height/2, a, 1, 1)
+
+        PCUniverseSetNodeVelocity(universe, nodeA, preset.vA.0 * c, preset.vA.1 * c)
+        PCUniverseSetNodeVelocity(universe, nodeB, preset.vB.0 * c, preset.vB.1 * c)
 
         // m-hat = the incoming beam direction (toward the other node)
         // rotated by chi.  A's beam arrives along +x, B's along -x.
         PCNodeSetMode(nodeA, cos(chiA), sin(chiA))
         PCNodeSetMode(nodeB, -cos(chiB), -sin(chiB))
 
-        predictedA = stakeTarget(L: L, a: a, chi: chiA)
-        predictedB = stakeTarget(L: L, a: a, chi: chiB)
+        // The exact stake target is the static-geometry quadrature; it
+        // applies only when the pair is at rest.  For moving cases the
+        // scoreboard shows the measured split alone — what the moving
+        // interrogation does to the stake is a measurement, not yet a
+        // prediction, at this seat.
+        let isStatic: Bool = preset.vA == (0, 0) && preset.vB == (0, 0)
+        predictedA = isStatic ? stakeTarget(L: L, a: a, chi: chiA) : .nan
+        predictedB = isStatic ? stakeTarget(L: L, a: a, chi: chiB) : .nan
 
         self.universe = universe
     }
@@ -169,8 +200,17 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
         PCUniverseTic(universe)
 
+        // The camera rides the pair: their midpoint stays centered and
+        // the medium (the ping traffic) streams past — aberration and
+        // the two-lane corridor become visible.
+        var cx: Double = universe.pointee.width/2
+        var cy: Double = universe.pointee.height/2
+        if let nodeA, let nodeB {
+            cx = (nodeA.pointee.pos.x + nodeB.pointee.pos.x)/2
+            cy = (nodeA.pointee.pos.y + nodeB.pointee.pos.y)/2
+        }
         var context: HyleContext = HyleContext(
-            center: SIMD2<Float>(Float(universe.pointee.width/2), Float(universe.pointee.height/2)),
+            center: SIMD2<Float>(Float(cx), Float(cy)),
             bounds: SIMD2<Float>(Float(universe.pointee.width), Float(universe.pointee.height))
         )
         memcpy(contextBuffer.contents(), &context, MemoryLayout<HyleContext>.size)
@@ -181,7 +221,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             let ping: UnsafeMutablePointer<PCPing> = universe.pointee.pings[i]!
             loops.append(HyleLoop(
                 type: 1,
-                extra: 0,
+                extra: ping.pointee.source == nodeA ? 0 : 1,
                 position: SIMD2<Float>(Float(ping.pointee.pos.x), Float(ping.pointee.pos.y)),
                 dir: SIMD2<Float>(Float(ping.pointee.dir.x), Float(ping.pointee.dir.y))
             ))

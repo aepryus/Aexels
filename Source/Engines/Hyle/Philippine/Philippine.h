@@ -8,22 +8,31 @@
 
 // PC = Philippine Sea : Hyle / Quantum — the deepest sea for the deepest layer.
 //
-// Demo 0: the static pong bridge, from nothing.  The only physics is
-// emit, fly, capture, respond.  Nodes emit pings isotropically; a ping
-// entering another node's radius is captured and answered with exactly
-// one pong, launched from the capture point toward the emitting node's
-// center, where it dies on arrival.  Pongs are never answered.  The
-// standing in-flight pong population between two nodes IS the static
-// pong bridge — two directed cones, emerging rather than drawn.
+// The bridge, with the rules as stated.  Nodes translate at constant
+// velocity.  Emission follows ItL Rule 3 ((1-b^2)rho0/(1-b cos theta)^2
+// around the velocity direction); every ping carries its cupola
+// C = n-hat − beta (SitD, dimensionless convention); a ping entering
+// the other node's (moving) radius is captured and answered with one
+// pong = the ping's reversed translation mirrored over the cupola axis
+// — Euclid's bisector theorem guarantees it intercepts the moving
+// source (verified at ~1e-16 in the headless twin, Sims/Bridge).  The
+// standing carrier population between the pair IS the bridge — two
+// circuits, one per source, the frozen-snapshot object of the bridge
+// model.  Static nodes recover Demo 0 exactly (C = n-hat; the mirror
+// rule degenerates to fly-straight-back).
 //
-// Verified against exact geometry in the headless build
-// (Sims/PongBridge): capture rate rho0*asin(a/L)/pi, census
-// rho0*a/(pi*c) in the point-node limit, drain (2*sqrt(L^2-a^2)-a)/c.
+// Verified headless: Sims/PongBridge (static geometry: capture rate,
+// census, drain, stake-setter splits) and Sims/Bridge (moving pairs:
+// equal bidirectional capture, 2*gamma^2*L / 2*gamma*L round trips,
+// (1+b)/(1-b) two-lane corridor).
 
 #import "Sea.h"
 
 typedef struct PCNode {
     CV2 pos;
+    CV2 pos0;                    // placement at reset
+    CV2 v;                       // velocity, lengths per tic (constant)
+    double* cdf;                 // Rule-3 inverse-CDF table (NULL when static)
     double a;                    // radius
     CV2 mode;                    // m-hat: the axis of the node's internal 2-D
                                  // oscillation mode — a POSITED organ, new in
@@ -62,7 +71,8 @@ typedef struct PCNode {
 
 typedef struct PCPing {
     CV2 pos;
-    CV2 dir;                     // unit; speed is universe->c
+    CV2 dir;                     // unit flight direction n-hat; speed is universe->c
+    CV2 cupola;                  // C = n-hat − beta at emission (dimensionless)
     PCNode* source;
     unsigned char recycle;
 } PCPing;
@@ -96,6 +106,7 @@ PCUniverse* PCUniverseCreate(double width, double height);
 void PCUniverseRelease(PCUniverse* universe);
 PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a, unsigned char emitting, unsigned char answering);
 void PCNodeSetMode(PCNode* node, double mx, double my);
+void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, double vy);
 void PCUniverseSetC(PCUniverse* universe, double c);
 void PCUniverseSetRho0(PCUniverse* universe, int rho0);
 void PCUniverseSetSize(PCUniverse* universe, double width, double height);

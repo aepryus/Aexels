@@ -77,8 +77,12 @@ fragment float4 hyleLoopFragmentShader(HyleLoopPacket in [[stage_in]]) {
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
-    if (in.type == 1) {                                     // ping: dim grey mote
-        if (r < 0.22) { return float4(0.45, 0.52, 0.60, 0.55); }
+    if (in.type == 1) {                                     // ping: dim mote, tinted by circuit
+        if (r < 0.22) {
+            return in.extra < 0.5
+                ? float4(0.58, 0.52, 0.44, 0.55)            // A's pings: warm grey
+                : float4(0.42, 0.52, 0.62, 0.55);           // B's pings: cool grey
+        }
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
