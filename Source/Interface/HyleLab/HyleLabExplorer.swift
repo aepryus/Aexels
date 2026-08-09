@@ -44,9 +44,9 @@ class HyleLabExplorer: Explorer {
 
     private func updateStakes() {
         guard let renderer else { return }
-        stakeALabel.text = String(format: "A-circuit   pings → B  %d   pongs → A  %d", renderer.connectingPingsA, renderer.pongsToA)
-        stakeBLabel.text = String(format: "B-circuit   pings → A  %d   pongs → B  %d", renderer.connectingPingsB, renderer.pongsToB)
-        caseLabel.text = renderer.stateName + "   —   the frozen bridge (transport clock)"
+        stakeALabel.text = String(format: "bridge → A   pings %d   pongs %d", renderer.connectingPingsB, renderer.pongsToA)
+        stakeBLabel.text = String(format: "bridge → B   pings %d   pongs %d", renderer.connectingPingsA, renderer.pongsToB)
+        caseLabel.text = renderer.stateName + "   —   frozen at t=0 (transport clock)"
     }
 
 // UIViewController ================================================================================

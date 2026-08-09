@@ -38,7 +38,9 @@ struct HyleContext {
 
 struct HyleLoop {
     var type: UInt32           // 0 node, 1 ping, 2 pong
-    var extra: Float           // circuit: 0 = A-sourced (warm), 1 = B-sourced (cool); node: radius
+    var extra: Float           // carriers: DESTINATION — 0 = bound for A (warm), 1 = bound for B (cool);
+                               // node: radius.  The papers' own split: two bridges per pair, one per
+                               // direction (BJFE S1), so each visible band is one solid hue.
     var position: SIMD2<Float>
     var dir: SIMD2<Float>      // translation (unit flight direction); node: unused
     var cupola: SIMD2<Float>   // carried cupola C = n-hat − beta; node: unused
@@ -182,7 +184,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             let cupola: SIMD2<Double> = nHat - beta
             loops.append(HyleLoop(
                 type: 1,
-                extra: Float(circuit),
+                extra: Float(1 - circuit),      // a ping is bound for the OTHER node
                 position: SIMD2<Float>(Float(pos.x), Float(pos.y)),
                 dir: SIMD2<Float>(Float(nHat.x), Float(nHat.y)),
                 cupola: SIMD2<Float>(Float(cupola.x), Float(cupola.y))
@@ -227,7 +229,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
             let pongDir: SIMD2<Double> = simd_normalize(vPong)
             pongLoops.append(HyleLoop(
                 type: 2,
-                extra: Float(circuit),
+                extra: Float(circuit),          // a pong returns to its circuit's source
                 position: SIMD2<Float>(Float(pos.x), Float(pos.y)),
                 dir: SIMD2<Float>(Float(pongDir.x), Float(pongDir.y)),
                 cupola: SIMD2<Float>(Float(cupola.x), Float(cupola.y))

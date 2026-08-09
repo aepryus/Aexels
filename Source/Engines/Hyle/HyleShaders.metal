@@ -59,8 +59,8 @@ vertex HyleLoopPacket hyleLoopVertexShader(uint vertexID [[vertex_id]], uint ins
     return out;
 }
 
-constant float4 hyleWarm = float4(1.00, 0.72, 0.35, 1.0);   // A-sourced circuit
-constant float4 hyleCool = float4(0.42, 0.78, 0.95, 1.0);   // B-sourced circuit
+constant float4 hyleWarm = float4(1.00, 0.72, 0.35, 1.0);   // bound for A — the A-serving bridge
+constant float4 hyleCool = float4(0.42, 0.78, 0.95, 1.0);   // bound for B — the B-serving bridge
 
 // Is `local` on an arm along `axis` (unit), reaching maxLen from the body?
 static bool onArm(float2 local, float2 axis, float maxLen, float halfWidth) {
