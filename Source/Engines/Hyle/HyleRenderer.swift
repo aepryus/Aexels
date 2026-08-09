@@ -57,6 +57,9 @@ class HyleRenderer: NSObject, MTKViewDelegate {
     var showProcess: Bool = true
     // show pings: the generated ping field displayed behind the foam.
     var showPings: Bool = true { didSet { buildLoops() } }
+    // The two bridges (one per direction), individually displayable.
+    var showBridgeToA: Bool = true { didSet { buildLoops() } }
+    var showBridgeToB: Bool = true { didSet { buildLoops() } }
 
     private(set) var playbackRemaining: Int = 0
     private var ticsPerFrame: Int = 1
@@ -217,6 +220,7 @@ class HyleRenderer: NSObject, MTKViewDelegate {
                 let pong: UnsafeMutablePointer<PCPong> = universe.pointee.pongs[i]!
                 let boundForA: Bool = pong.pointee.target == nodeA
                 if boundForA { nPongA += 1 } else { nPongB += 1 }
+                guard boundForA ? showBridgeToA : showBridgeToB else { continue }
                 loops.append(HyleLoop(
                     type: 2,
                     extra: boundForA ? 0 : 1,
