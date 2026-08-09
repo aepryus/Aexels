@@ -134,6 +134,7 @@
 		D8AB7C1E000000000000C202 /* DarknessLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */; };
 		D8AB7C1E000000000000C301 /* Philippine.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B301 /* Philippine.c */; };
 		D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B304 /* HyleControlsTab.swift */; };
+		D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B305 /* HyleExperiment.swift */; };
 		D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B302 /* HyleRenderer.swift */; };
 		D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B303 /* HyleShaders.metal */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
@@ -342,6 +343,7 @@
 		D8AB7C1E000000000000B302 /* HyleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleRenderer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B303 /* HyleShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = HyleShaders.metal; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B304 /* HyleControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleControlsTab.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B305 /* HyleExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleExperiment.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 			children = (
 				D830B9322D5B704A00E7B029 /* Aether */,
 				D830B9482D5FF9EE00E7B029 /* Cellular */,
+				D8AB7C1E000000000000D303 /* Hyle */,
 				D830B9432D5EDAF900E7B029 /* Kinematics */,
 				D830B9372D5B791400E7B029 /* Distance */,
 				D830B9382D5B791900E7B029 /* Gravity */,
@@ -904,6 +907,14 @@
 				D8AB7C1E000000000000B304 /* HyleControlsTab.swift */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D303 /* Hyle */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B305 /* HyleExperiment.swift */,
+			);
+			path = Hyle;
 			sourceTree = "<group>";
 		};
 		D8AB7C1E000000000000D201 /* ConspiracyLab */ = {
@@ -1413,6 +1424,7 @@
 				D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */,
 				D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */,
 				D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */,
+				D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */,
 				D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,

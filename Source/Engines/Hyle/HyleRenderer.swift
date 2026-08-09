@@ -44,16 +44,6 @@ struct HyleLoop {
     var cupola: SIMD2<Float>   // carried cupola C = n-hat − beta; node: unused
 }
 
-// The bridge cases of Sims/Bridge.  State is the model's own:
-// (v_A, v_B, r/L) — speeds in units of c, directions in degrees.
-struct HylePreset {
-    let name: String
-    let betaA: Double
-    let thetaA: Double
-    let betaB: Double
-    let thetaB: Double
-}
-
 class HyleRenderer: NSObject, MTKViewDelegate {
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
@@ -62,35 +52,25 @@ class HyleRenderer: NSObject, MTKViewDelegate {
 
     weak var view: MTKView?
 
-    static let presets: [HylePreset] = [
-        HylePreset(name: "static pair",         betaA: 0,   thetaA: 0,  betaB: 0,   thetaB: 0),
-        HylePreset(name: "co-moving ∥  β 0.6",  betaA: 0.6, thetaA: 0,  betaB: 0.6, thetaB: 0),
-        HylePreset(name: "co-moving ⊥  β 0.6",  betaA: 0.6, thetaA: 90, betaB: 0.6, thetaB: 90),
-        HylePreset(name: "head-on  β 0.3 each", betaA: 0.3, thetaA: 0,  betaB: 0.3, thetaB: 180),
-    ]
-    private(set) var presetIndex: Int = 0
+    // The bridge model's state: (v_A, v_B, r/L) — speeds in units of
+    // c, directions in degrees.  Stored initial conditions live in
+    // HyleExperiment; touching any state variable directly makes the
+    // configuration "custom".
+    var betaA: Double = 0 { didSet { stateName = "custom" } }
+    var thetaA: Double = 0 { didSet { stateName = "custom" } }
+    var betaB: Double = 0 { didSet { stateName = "custom" } }
+    var thetaB: Double = 0 { didSet { stateName = "custom" } }
+    var ratio: Double = 0.08 { didSet { stateName = "custom" } }
+    var stateName: String = "Static Pair"
 
-    var betaA: Double = 0 { didSet { presetIndex = -1 } }
-    var thetaA: Double = 0 { didSet { presetIndex = -1 } }
-    var betaB: Double = 0 { didSet { presetIndex = -1 } }
-    var thetaB: Double = 0 { didSet { presetIndex = -1 } }
-    var ratio: Double = 0.08 { didSet { presetIndex = -1 } }
-
-    var caseName: String {
-        presetIndex >= 0 ? HyleRenderer.presets[presetIndex].name : "custom"
-    }
-
-    func applyPreset(_ index: Int) {
-        let preset: HylePreset = HyleRenderer.presets[index]
-        betaA = preset.betaA
-        thetaA = preset.thetaA
-        betaB = preset.betaB
-        thetaB = preset.thetaB
-        presetIndex = index
+    func apply(experiment: HyleExperiment) {
+        betaA = experiment.betaA
+        thetaA = experiment.thetaA
+        betaB = experiment.betaB
+        thetaB = experiment.thetaB
+        ratio = experiment.ratio
+        stateName = experiment.name
         loadUniverse()
-    }
-    func nextPreset() {
-        applyPreset(presetIndex >= 0 ? (presetIndex + 1) % HyleRenderer.presets.count : 0)
     }
 
     // The frozen configuration's census, per circuit.

@@ -14,8 +14,6 @@ import UIKit
 class HyleControlsTab: TabsCellTab {
     unowned let explorer: HyleLabExplorer!
 
-    var caseSlider: RegionSlider!
-
     let betaASlider: Slider = Slider()
     let thetaASlider: Slider = Slider()
     let betaBSlider: Slider = Slider()
@@ -33,20 +31,6 @@ class HyleControlsTab: TabsCellTab {
     init(explorer: HyleLabExplorer) {
         self.explorer = explorer
         super.init(name: "Controls".localized)
-
-        caseSlider = RegionSlider { [unowned self] (page: String) in
-            let index: Int
-            switch page {
-                case "∥ 0.6":    index = 1
-                case "⊥ 0.6":    index = 2
-                case "head-on":  index = 3
-                default:         index = 0
-            }
-            self.explorer.renderer.applyPreset(index)
-            self.sync()
-        }
-        caseSlider.pages = ["static", "∥ 0.6", "⊥ 0.6", "head-on"]
-        addSubview(caseSlider)
 
         let pen: Pen = Pen(font: .avenir(size: 13*s), color: .white, alignment: .right)
         let italicPen: Pen = Pen(font: UIFont(name: "Avenir-HeavyOblique", size: 10*s)!, color: .white, alignment: .right)
@@ -126,9 +110,7 @@ class HyleControlsTab: TabsCellTab {
     override func layoutSubviews() {
         let sliderWidth: CGFloat = width-60*s
 
-        caseSlider.frame = CGRect(x: 30*s, y: 12*s, width: sliderWidth, height: 28*s)
-
-        var y: CGFloat = 52*s
+        var y: CGFloat = 24*s
 
         betaALabel.topRight(dx: -14*s, dy: y, width: 240*s, height: 18*s)
         y += 10*s

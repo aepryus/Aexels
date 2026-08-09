@@ -17,8 +17,19 @@ class HyleLabExplorer: Explorer {
 
     let notesTab: NotesTab = NotesTab(key: "hyleLab")
     var controlsTab: HyleControlsTab!
+    private var experimentsTab: ExperimentsTab!
 
     var renderer: HyleRenderer!
+
+    override var experiment: Experiment? {
+        didSet {
+            guard experiment !== oldValue, let experiment: HyleExperiment = experiment as? HyleExperiment else { return }
+            renderer.apply(experiment: experiment)
+            controlsTab.sync()
+            updateStakes()
+            metalView.draw()
+        }
+    }
 
     // The stake-setter's scoreboard: measured split vs (1 + cos chi)/2.
     private let stakeALabel: UILabel = UILabel()
@@ -26,16 +37,16 @@ class HyleLabExplorer: Explorer {
     private let caseLabel: UILabel = UILabel()
     private var stakeTimer: Timer?
 
-    // Cycles the bridge cases of Sims/Bridge, live.
-    let caseButton: PulseButton = PulseButton(name: Screen.iPhone ? nil : "case")
-
-    init() { super.init(key: "hyleLab") }
+    init() {
+        super.init(key: "hyleLab")
+        experiments = HyleExperiment.experiments
+    }
 
     private func updateStakes() {
         guard let renderer else { return }
         stakeALabel.text = String(format: "A-circuit   pings → B  %d   pongs → A  %d", renderer.connectingPingsA, renderer.pongsToA)
         stakeBLabel.text = String(format: "B-circuit   pings → A  %d   pongs → B  %d", renderer.connectingPingsB, renderer.pongsToB)
-        caseLabel.text = renderer.caseName + "   —   the frozen bridge (transport clock)"
+        caseLabel.text = renderer.stateName + "   —   the frozen bridge (transport clock)"
     }
 
 // UIViewController ================================================================================
@@ -53,6 +64,7 @@ class HyleLabExplorer: Explorer {
 
         renderer = HyleRenderer(view: metalView)
         controlsTab = HyleControlsTab(explorer: self)
+        experimentsTab = ExperimentsTab(explorer: self)
 
         [stakeALabel, stakeBLabel, caseLabel].forEach {
             $0.pen = Pen(font: UIFont.monospacedSystemFont(ofSize: 10*s, weight: .medium), color: UIColor(white: 1, alpha: 0.8))
@@ -63,15 +75,7 @@ class HyleLabExplorer: Explorer {
         caseLabel.frame = CGRect(x: 10*s, y: 42*s, width: 380*s, height: 15*s)
         stakeTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in self?.updateStakes() }
 
-        quickView.addSubview(caseButton)
-        caseButton.addAction { [unowned self] in
-            self.renderer.nextPreset()
-            self.controlsTab.sync()
-            self.updateStakes()
-            if self.metalView.isPaused { self.metalView.draw() }
-        }
-
-        tabsCell.tabs = [controlsTab, notesTab]
+        tabsCell.tabs = [controlsTab, experimentsTab, notesTab]
 
         if Screen.iPhone {
             cyto.cells = [
@@ -103,8 +107,9 @@ class HyleLabExplorer: Explorer {
         let uh: CGFloat = height - 80*s
         cyto.Ys = [uh]
         cyto.layout()
-        timeControl.left(dx: 72*s, width: 114*s, height: 54*s)
-        caseButton.right(dx: -84*s, width: 60*s, height: 60*s)
+        timeControl.center(width: 114*s, height: 54*s)
+
+        if experiment == nil { experiment = experiments[0] }
     }
     override func layoutRatio143() {
         let safeTop: CGFloat = Screen.safeTop + (Screen.mac ? 5*s : 0)
@@ -119,7 +124,8 @@ class HyleLabExplorer: Explorer {
 
         titleLabel.center(width: 300*s, height: 24*s)
         timeControl.left(dx: 10*s, width: 114*s, height: 54*s)
-        caseButton.right(dx: -15*s, width: 60*s, height: 80*s)
+
+        if experiment == nil { experiment = experiments[0] }
     }
 
 // TimeControlDelegate =============================================================================
