@@ -68,10 +68,10 @@ constant float4 hyleCool = float4(0.42, 0.78, 0.95, 1.0);   // bound for B
 fragment float4 hyleLoopFragmentShader(HyleLoopPacket in [[stage_in]]) {
     float r = length(in.local);
 
-    if (in.type == 0) {                                     // node: fixed disc
-        float ring = 1.0 / 1.3;
+    if (in.type == 0) {                                     // node: fixed disc — drawn last, and
+        float ring = 1.0 / 1.3;                             // its body OCCLUDES what passes under
         if (r > ring * 0.94 && r < ring * 1.05) { return float4(1.0, 1.0, 1.0, 1.0); }
-        if (r < ring * 0.94) { return float4(1.0, 1.0, 1.0, 0.07); }
+        if (r < ring * 0.94) { return float4(0.376, 0.376, 0.376, 1.0); }
         return float4(0.0, 0.0, 0.0, 0.0);
     }
 
