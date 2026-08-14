@@ -29,7 +29,7 @@
 		D823A2662D0A91D400A72DDF /* ElectromagnetismExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A2652D0A91C800A72DDF /* ElectromagnetismExplorer.swift */; };
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
-		D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829BCEC28152FBA005B3461 /* OoviumKit */; };
+		D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829C66C3018B0CF00990107 /* OoviumKit */; };
 		D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */; };
 		D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9332D5B706600E7B029 /* AetherExperiment.swift */; };
 		D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9352D5B790800E7B029 /* DistanceExperiment.swift */; };
@@ -132,6 +132,11 @@
 		D8AB7C1E000000000000C200 /* HyleLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */; };
 		D8AB7C1E000000000000C201 /* ConspiracyLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B201 /* ConspiracyLabExplorer.swift */; };
 		D8AB7C1E000000000000C202 /* DarknessLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */; };
+		D8AB7C1E000000000000C301 /* Philippine.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B301 /* Philippine.c */; };
+		D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B304 /* HyleControlsTab.swift */; };
+		D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B305 /* HyleExperiment.swift */; };
+		D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B302 /* HyleRenderer.swift */; };
+		D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B303 /* HyleShaders.metal */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -180,6 +185,7 @@
 		D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */; };
 		D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = D8B8DAB72FA6C8E700E52CC5 /* Markdown */; };
 		D8C1CC0B293D76D9001881F5 /* CSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C1CC0A293D76D9001881F5 /* CSlider.swift */; };
+		D8C4FA153027D9200003CEB2 /* Aexels.icon in Resources */ = {isa = PBXBuildFile; fileRef = D8C4FA143027D9200003CEB2 /* Aexels.icon */; };
 		D8CC48C42D7D689000593737 /* Concepts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C32D7D688800593737 /* Concepts.swift */; };
 		D8CC48C62D7D68A500593737 /* PathOfDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC48C52D7D689E00593737 /* PathOfDiscovery.swift */; };
 		D8CC48C82D7E6FD600593737 /* Escaping.latex in Resources */ = {isa = PBXBuildFile; fileRef = D8CC48C72D7E6FCE00593737 /* Escaping.latex */; };
@@ -332,6 +338,12 @@
 		D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleLabExplorer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B201 /* ConspiracyLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConspiracyLabExplorer.swift; sourceTree = "<group>"; };
 		D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarknessLabExplorer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B300 /* Philippine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Philippine.h; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B301 /* Philippine.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Philippine.c; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B302 /* HyleRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleRenderer.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B303 /* HyleShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = HyleShaders.metal; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B304 /* HyleControlsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleControlsTab.swift; sourceTree = "<group>"; };
+		D8AB7C1E000000000000B305 /* HyleExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyleExperiment.swift; sourceTree = "<group>"; };
 		D8AE17372814E97200E74CB8 /* Aexels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aexels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8AE17432814E97300E74CB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Aexels.swift"; sourceTree = "<group>"; };
@@ -381,6 +393,7 @@
 		D8AE18122814F59D00E74CB8 /* Aexels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aexels-Bridging-Header.h"; sourceTree = "<group>"; };
 		D8AFFA9E2B74B30C00588196 /* VisionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionBar.swift; sourceTree = "<group>"; };
 		D8C1CC0A293D76D9001881F5 /* CSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSlider.swift; sourceTree = "<group>"; };
+		D8C4FA143027D9200003CEB2 /* Aexels.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Aexels.icon; sourceTree = "<group>"; };
 		D8CC48C32D7D688800593737 /* Concepts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concepts.swift; sourceTree = "<group>"; };
 		D8CC48C52D7D689E00593737 /* PathOfDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathOfDiscovery.swift; sourceTree = "<group>"; };
 		D8CC48C72D7E6FCE00593737 /* Escaping.latex */ = {isa = PBXFileReference; lastKnownFileType = text; path = Escaping.latex; sourceTree = "<group>"; };
@@ -410,8 +423,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */,
-				D829BCED28152FBA005B3461 /* OoviumKit in Frameworks */,
 				D804561C281534BF0018223B /* Acheron in Frameworks */,
+				D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */,
 				D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */,
 				D804561E281534BF0018223B /* OoviumEngine in Frameworks */,
 			);
@@ -452,6 +465,7 @@
 				D8C14CD62D3DE93D00F83F28 /* OutsideIn */,
 				D8AB7C1E000000000000D001 /* BlackHoles */,
 				D8AB7C1E000000000000D101 /* IntoTheLight */,
+				D8AB7C1E000000000000D300 /* Hyle */,
 			);
 			path = Engines;
 			sourceTree = "<group>";
@@ -749,6 +763,7 @@
 			children = (
 				D830B9322D5B704A00E7B029 /* Aether */,
 				D830B9482D5FF9EE00E7B029 /* Cellular */,
+				D8AB7C1E000000000000D303 /* Hyle */,
 				D830B9432D5EDAF900E7B029 /* Kinematics */,
 				D830B9372D5B791400E7B029 /* Distance */,
 				D830B9382D5B791900E7B029 /* Gravity */,
@@ -880,9 +895,26 @@
 		D8AB7C1E000000000000D200 /* HyleLab */ = {
 			isa = PBXGroup;
 			children = (
+				D8AB7C1E000000000000D302 /* Tabs */,
 				D8AB7C1E000000000000B200 /* HyleLabExplorer.swift */,
 			);
 			path = HyleLab;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D302 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B304 /* HyleControlsTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D303 /* Hyle */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B305 /* HyleExperiment.swift */,
+			);
+			path = Hyle;
 			sourceTree = "<group>";
 		};
 		D8AB7C1E000000000000D201 /* ConspiracyLab */ = {
@@ -899,6 +931,25 @@
 				D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */,
 			);
 			path = DarknessLab;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D300 /* Hyle */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000D301 /* Philippine */,
+				D8AB7C1E000000000000B302 /* HyleRenderer.swift */,
+				D8AB7C1E000000000000B303 /* HyleShaders.metal */,
+			);
+			path = Hyle;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D301 /* Philippine */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B300 /* Philippine.h */,
+				D8AB7C1E000000000000B301 /* Philippine.c */,
+			);
+			path = Philippine;
 			sourceTree = "<group>";
 		};
 		D8AE172E2814E97200E74CB8 = {
@@ -934,6 +985,7 @@
 			isa = PBXGroup;
 			children = (
 				D8E154D028162E650074A59B /* Aexels.entitlements */,
+				D8C4FA143027D9200003CEB2 /* Aexels.icon */,
 				D8AE17432814E97300E74CB8 /* Assets.xcassets */,
 				D8DA98C02B69384300A4AA8F /* LaunchScreen.storyboard */,
 				D8AE17BD2814F1A600E74CB8 /* Info.plist */,
@@ -1163,11 +1215,11 @@
 			);
 			name = Aexels;
 			packageProductDependencies = (
-				D829BCEC28152FBA005B3461 /* OoviumKit */,
 				D804561B281534BF0018223B /* Acheron */,
 				D804561D281534BF0018223B /* OoviumEngine */,
 				D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */,
 				D8B8DAB72FA6C8E700E52CC5 /* Markdown */,
+				D829C66C3018B0CF00990107 /* OoviumKit */,
 			);
 			productName = Aexels;
 			productReference = D8AE17372814E97200E74CB8 /* Aexels.app */;
@@ -1182,7 +1234,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = AX;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2660;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D8AE17362814E97200E74CB8 = {
@@ -1203,7 +1255,7 @@
 			packageReferences = (
 				D8B8DAB32FA6C8D800E52CC5 /* XCRemoteSwiftPackageReference "SwiftMath" */,
 				D8B8DAB62FA6C8E700E52CC5 /* XCRemoteSwiftPackageReference "swift-markdown" */,
-				D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */,
+				D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */,
 			);
 			productRefGroup = D8AE17382814E97200E74CB8 /* Products */;
 			projectDirPath = "";
@@ -1275,6 +1327,7 @@
 				D8AB7C1D000000000000B015 /* Electromagnetism.md in Resources */,
 				D8AB7C1D000000000000B016 /* Quantum.md in Resources */,
 				D8AB7C1D000000000000B017 /* Gravity2.md in Resources */,
+				D8C4FA153027D9200003CEB2 /* Aexels.icon in Resources */,
 				D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */,
 				D8AB7C1D000000000000B01A /* Glossary.md in Resources */,
 				D8AB7C1D000000000000B01B /* BlackHole.md in Resources */,
@@ -1367,6 +1420,11 @@
 				D8AB7C1E000000000000C101 /* IntoTheLightRenderer.swift in Sources */,
 				D8AB7C1E000000000000C103 /* IntoTheLightShaders.metal in Sources */,
 				D8AB7C1E000000000000C105 /* Sargasso.c in Sources */,
+				D8AB7C1E000000000000C301 /* Philippine.c in Sources */,
+				D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */,
+				D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */,
+				D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */,
+				D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */,
 				D8AB7C1E000000000000C102 /* IntoTheLightControlsTab.swift in Sources */,
 				D8534B102A8CDA0200342F61 /* OutsideInExplorer.swift in Sources */,
 				D830B93A2D5B792A00E7B029 /* GravityExperiment.swift in Sources */,
@@ -1499,6 +1557,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1555,6 +1614,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1564,7 +1624,7 @@
 		D8AE174C2814E97300E74CB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Aexels;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
@@ -1599,7 +1659,7 @@
 		D8AE174D2814E97300E74CB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Aexels;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Resources/Aexels.entitlements;
@@ -1654,9 +1714,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */ = {
+		D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:aepryus/OoviumKit.git";
+			repositoryURL = "https://github.com/aepryus/OoviumKit";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1689,9 +1749,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = OoviumEngine;
 		};
-		D829BCEC28152FBA005B3461 /* OoviumKit */ = {
+		D829C66C3018B0CF00990107 /* OoviumKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D82CE30E2FD5ED51009887DB /* XCRemoteSwiftPackageReference "OoviumKit" */;
+			package = D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */;
 			productName = OoviumKit;
 		};
 		D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */ = {

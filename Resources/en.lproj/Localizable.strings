@@ -1556,20 +1556,6 @@ Double clicking / tapping on the simulation will add a new moon.  If you double 
 
 "2103.04335v3_pdf_name" = "'t Hooft Paper";
 
-/*
- Localizable.strings
- Oovium
- 
- Created by Joe Charlier on 1/21/12.
- Copyright (c) 2012 Aepryus Software. All rights reserved.
- */
-
-/* name of the Oovium workspace */
-"aether" = "aether";
-
-/* remove all bubbles from the current aether */
-"clear" = "clear";
-
 "buy" = "buy";
 
 /* internet URLs */
@@ -1614,59 +1600,10 @@ Double clicking / tapping on the simulation will add a new moon.  If you double 
 
 /* tutorial explaining how to make Mind Maps */
 "mapper" = "mapper";
-"cancel" = "cancel";
 
 "new" = "new";
-"add" = "add";
-"remove" = "remove";
-
-/* include other aethers in the current aether, similar to import */
-"includes" = "includes";
-"replace" = "replace";
-
-/* A sticker or tag affixed to an item to provide identifying or descriptive information. */
-"label" = "label";
-"copy" = "copy";
-
-/* menu option that allows the user to change the color of a bubble */
-"color" = "color";
-
-/* menu option that allows the user to change the shape of a bubble */
-"shape" = "shape";
-"delete" = "delete";
-
-"addParam" = "add param";
-"removeParam" = "remove param";
-
-/* set of functions that work on aggregate data (sum,count,average) */
-"aggregate" = "footer";
-
-/* text justification (center, right, left) */
-"justify" = "justify";
-"sum" = "sum";
-"average" = "average";
-
-/* a type of aggregate function which tallies a running total of a given column */
-"running" = "running";
-"none" = "none";
-"left" = "left";
-"center" = "center";
-"right" = "right";
-
-/* a list of nodes that flow into the current node */
-"inputs" = "inputs";
-
-/* a list of nodes that flow out of the current node */
-"outputs" = "outputs";
-"OK" = "OK";
-"Yes" = "Yes";
-"No" = "No";
 
 "clearConfirm" = "Clear this aether completely?";
-"deleteOneConfirm" = "Delete selected bubble?";
-"deleteManyConfirm" = "Delete selected bubbles?";
-"deleteColumn" = "Delete selected column?";
-"deleteRow" = "Delete selected row?";
 
 "bootupText" = "ANNOUNCING
 
@@ -1778,60 +1715,7 @@ While editing an expression, anchor with one finger and tap the expression with 
 "mapper18" = "Hit the aether key";
 "mapper19" = "Hit the clear key";
 "mapper20" = "Hit yes to clear your aether";
-
-"lexiconMain" = "Single tap a token to see its description.\n\nDouble tap a token to insert it into your current expression.";
-"lexiconFilter" = "(filter)";
-"lexOperator" = "operator";
-"lexMisc" = "miscellaneous";
-"lexPower" = "exponentiation";
-"lexTrig" = "trigonometric";
-"lexAdd" = "addition operator";
-"lexSub" = "subtraction operator";
-"lexMul" = "multiplication operator";
-"lexDiv" = "division operator";
 "lexMod" = "modulus operator";
-"lexPow" = "power operator\n\nNegative Real inputs taken to non-integer powers will result in Nan.";
-"lexDot" = "dot product operator";
-"lexEqual" = "equal to\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexNotEqual" = "not equal\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexLess" = "less than\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexLessEqual" = "less than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexGreat" = "greater than\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexGreatEqual" = "greater than or equal\n\nComparison operators will return a 1 if true, a 0 if false.";
-"lexNot" = "unary not operator\n\nThis operator will return true (1) if the operand is false (0) and false (0) if the operand is true (not equal to 0).";
-"lexAnd" = "and operator\n\nThis operator will return true (1) if both operands are also true (not equal to 0).";
-"lexOr" = "or operator\n\nThis operator will return true (1) if either of the operands are true (not equal to 0).";
-"lexFac" = "factorial";
-"lexRound" = "round to nearest integer";
-"lexFloor" = "The floor function shifts a value to the lessor of the two integers that it falls between (or the value itself if it is already an integer).";
-"lexAbs" = "absolute value";
-"lexMin" = "returns the lesser of two values";
-"lexMax" = "returns the greater of two values";
-"lexIf" = "if then else\n\nIf the 'if' parameter (1st) is true (evaluates to a non-zero value) then the 'then' parameter (2nd) will be returned; otherwise if it is false (evaluates to zero) then the 'else' parameter (3rd) will be returned.\n\nWithin Oovium, all parameters are evaluated first before being sent to their function.  However, this will cause recursive functions to always result in a stack overflow.  For recursive functions, it is necessary to use the 2nd form with Function type 'then' and 'else' parameters.  In the 2nd form, the function itself is the result and therefore only the appropriate version will be evaluated preventing the stack overflow.";
-"lexSum" = "summation\n\nThis function will sum the results of the function parameter (3rd), by iterating that function using incrementing values of k.\n\nIn the first form k will iterate from the start parameter (1st) through the stop parameter (2nd).  In the 2nd form k will start with the start parameter (1st), but will continue to execute while the condition parameter (2nd) remains true.";
-"lexRandom" = "returns a random integer from 0 to n-1";
-"lexSqrt" = "square root (i.e., x^0.5)\n\nNegative Real inputs will result in NaN.";
-"lexLn" = "natural logarithm (i.e., logarithm base e)\n\nInverse of the exp function.";
-"lexLog" = "logarithm base 10\n\nInverse of the ten function.";
-"lexLog2" = "logarithm base 2\n\nInverse of the two function.";
-"lexExp" = "exponential, power of e (~2.71...) (e^x)";
-"lexTen" = "power of 10 (10^x)";
-"lexTwo" = "power of 2 (2^x)";
-"lexSin" = "sine\n\nThe input angle should be in radians.";
-"lexCos" = "cosine\n\nThe input angle should be in radians.";
-"lexTan" = "tangent\n\nThe input angle should be in radians.";
-"lexSec" = "secant\n\nThe input angle should be in radians.";
-"lexCsc" = "cosecant\n\nThe input angle should be in radians.";
-"lexCot" = "cotangent\n\nThe input angle should be in radians.";
-"lexAsin" = "arcsine";
-"lexAcos" = "arccosine";
-"lexAtan" = "arctangent";
-"lexSinh" = "hyperbolic sine";
-"lexCosh" = "hyperbolic cosine";
-"lexTanh" = "hyperbolic tangent";
-"lexAsinh" = "hyperbolic arcsine";
-"lexAcosh" = "hyperbolic arccosine";
-"lexAtanh" = "hyperbolic arctangent";
 
 "G_name" = "G";
 "quantum_name" = "Quantum";
