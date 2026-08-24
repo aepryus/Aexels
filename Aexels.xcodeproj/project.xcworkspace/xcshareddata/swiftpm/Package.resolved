@@ -1,5 +1,5 @@
 {
-  "originHash" : "b95b4b5b5f8e29b87336652d963287ede6f752e4239c83f25894d9c15dd600f1",
+  "originHash" : "58d2b312c9294364b4c1156d800175257563604c3c04bef0bdc0085ecaf35915",
   "pins" : [
     {
       "identity" : "acheron",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/aepryus/Acheron.git",
       "state" : {
         "branch" : "master",
-        "revision" : "0f99db40d44966d9e146d51ebdee898c29e04388"
+        "revision" : "98ba784e8b564845246212f3d56cdc46cf1d6f8e"
       }
     },
     {
