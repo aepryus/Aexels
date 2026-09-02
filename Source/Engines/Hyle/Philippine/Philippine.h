@@ -9,7 +9,11 @@
 // PC = Philippine Sea : Hyle / Quantum — the deepest sea for the deepest layer.
 //
 // The bridge, with the rules as stated.  Nodes translate at constant
-// velocity.  Emission follows ItL Rule 3 ((1-b^2)rho0/(1-b cos theta)^2
+// velocity unless the rules' own dynamics are switched on (Rule 1
+// impulses q|C| locked at capture, delivered to the captor when the
+// pong returns; Rule 2 species sign; Rule 5's direction clause; Rule 4
+// momentum or the Newtonian variant — Sims/Encounter is the harness).
+// Emission follows ItL Rule 3 ((1-b^2)rho0/(1-b cos theta)^2
 // around the velocity direction); every ping carries its cupola
 // C = n-hat − beta (SitD, dimensionless convention); a ping entering
 // the other node's (moving) radius is captured and answered with one
@@ -31,8 +35,13 @@
 typedef struct PCNode {
     CV2 pos;
     CV2 pos0;                    // placement at reset
-    CV2 v;                       // velocity, lengths per tic (constant)
-    double* cdf;                 // Rule-3 inverse-CDF table (NULL when static)
+    CV2 v;                       // velocity, lengths per tic
+    CV2 v0;                      // velocity at reset
+    double* cdf;                 // engineered-emission inverse-CDF table (NULL when static)
+    double betaBuilt;            // |v|/c the table was built at (rebuilt when it drifts)
+    double emitCarry;            // fractional-count carry for cone emission
+    double hyle;                 // rest hyle eta_0 (dynamics)
+    unsigned char outie;         // Rule 2 species: 1 outie, 0 innie
     double a;                    // radius
     CV2 mode;                    // m-hat: the axis of the node's internal 2-D
                                  // oscillation mode — a POSITED organ, new in
@@ -67,6 +76,8 @@ typedef struct PCNode {
     long plusCaptures;           // sign(n-hat . m-hat) > 0
     long minusCaptures;
     long pongArrivals;
+    long impulses;               // Rule-1 impulses received (dynamics)
+    CV2 impulseSum;              // their vector sum since reset
 } PCNode;
 
 typedef struct PCPing {
@@ -81,6 +92,8 @@ typedef struct PCPong {
     CV2 pos;
     CV2 dir;                     // unit; aimed at target's center at birth
     PCNode* target;              // the node whose ping was captured
+    PCNode* captor;              // the node that captured it and launched this pong
+    CV2 impulse;                 // Rule 1: locked at capture, delivered to the captor on return
     unsigned char channel;       // its capture's classification: 1 = plus
     unsigned char recycle;
 } PCPong;
@@ -92,6 +105,14 @@ typedef struct PCUniverse {
     int pingsPerVolley;          // spatial density — as in SitD
     int ticsPerVolley;           // temporal density — as in SitD
     long tic;
+    // Dynamics (the rules' own): off by default — the bridge lab is static.
+    unsigned char dynamics;      // apply Rule-1 impulses (locked at capture, delivered at pong return)
+    unsigned char newtonian;     // 1: v += I/eta0 (the rung-0 oracle's convention); 0: Rule 4, p = gamma eta0 v
+    unsigned char held;          // impulses lock and ride the pongs but are not applied — the nodes
+                                 //   keep uniform motion (populating the field before release)
+    double q;                    // Rule-1 coupling: impulse magnitude q|C| per ping
+    double coneHalf;             // >0: emit only within +/- coneHalf of the partner's direction,
+                                 //     rate scaled by the window's density mass (2-node harnesses)
     int nodeCount;
     int nodeCapacity;
     PCNode** nodes;
@@ -108,6 +129,10 @@ void PCUniverseRelease(PCUniverse* universe);
 PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a, unsigned char emitting, unsigned char answering);
 void PCNodeSetMode(PCNode* node, double mx, double my);
 void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, double vy);
+void PCNodeSetHyle(PCNode* node, double hyle, unsigned char outie);
+void PCUniverseSetDynamics(PCUniverse* universe, unsigned char on, double q, unsigned char newtonian);
+void PCUniverseSetHeld(PCUniverse* universe, unsigned char held);
+void PCUniverseSetCone(PCUniverse* universe, double halfAngle);
 void PCUniverseSetC(PCUniverse* universe, double c);
 void PCUniverseSetVolley(PCUniverse* universe, int pingsPerVolley, int ticsPerVolley);
 void PCUniverseSetSize(PCUniverse* universe, double width, double height);

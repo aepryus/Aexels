@@ -23,6 +23,11 @@ PCUniverse* PCUniverseCreate(double width, double height) {
     universe->pingsPerVolley = 120;
     universe->ticsPerVolley = 12;
     universe->tic = 0;
+    universe->dynamics = 0;
+    universe->newtonian = 0;
+    universe->held = 0;
+    universe->q = 0;
+    universe->coneHalf = 0;
 
     universe->nodeCount = 0;
     universe->nodeCapacity = 2;
@@ -58,7 +63,12 @@ PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a,
     node->pos0 = node->pos;
     node->v.x = 0;
     node->v.y = 0;
+    node->v0 = node->v;
     node->cdf = 0;
+    node->betaBuilt = 0;
+    node->emitCarry = 0;
+    node->hyle = 1;
+    node->outie = 1;
     node->a = a;
     node->mode.x = 1;
     node->mode.y = 0;
@@ -69,6 +79,9 @@ PCNode* PCUniverseCreateNode(PCUniverse* universe, double x, double y, double a,
     node->plusCaptures = 0;
     node->minusCaptures = 0;
     node->pongArrivals = 0;
+    node->impulses = 0;
+    node->impulseSum.x = 0;
+    node->impulseSum.y = 0;
 
     universe->nodeCount++;
     if (universe->nodeCount > universe->nodeCapacity) {
@@ -86,23 +99,22 @@ void PCNodeSetMode(PCNode* node, double mx, double my) {
     node->mode.y = my/len;
 }
 
-// Set a node's velocity (lengths per tic) and build its engineered-
-// emission inverse-CDF table.  This 2D lab uses the 2D-CORRECT form of
-// Rule 3: rho(theta) = sqrt(1-b^2) rho0 / (1 - b cos theta), theta from
-// the velocity direction, b = |v|/c.  Rule 3's job is two theorems —
-// total emission beta-independent, and the fore/aft capture geometry
-// exactly cancelled — and the power of kappa that does it is D-1: two
-// in the papers' 3D, ONE here.  Verified in Sims/Bridge/
-// bridge2d_check.py: the 3D form in 2D leaves capture asymmetric by
-// (1+b)/(1-b) (3.992 measured at b=0.6); the 2D form restores equal
-// bidirectional capture (1.007) with a beta-independent total (the
-// integral is exactly 2*pi*rho0).  Constant velocities mean the table
-// is built once, here.
-void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, double vy) {
-    node->v.x = vx;
-    node->v.y = vy;
-    double beta = sqrt(vx*vx + vy*vy) / universe->c;
+// Build a node's engineered-emission inverse-CDF table.  This 2D lab
+// uses the 2D-CORRECT form of Rule 3: rho(theta) = sqrt(1-b^2) rho0 /
+// (1 - b cos theta), theta from the velocity direction, b = |v|/c.
+// Rule 3's job is two theorems — total emission beta-independent, and
+// the fore/aft capture geometry exactly cancelled — and the power of
+// kappa that does it is D-1: two in the papers' 3D, ONE here.
+// Verified in Sims/Bridge/bridge2d_check.py: the 3D form in 2D leaves
+// capture asymmetric by (1+b)/(1-b) (3.992 measured at b=0.6); the 2D
+// form restores equal bidirectional capture (1.007) with a beta-
+// independent total (the integral is exactly 2*pi*rho0).  The table is
+// rebuilt only when |v| drifts (dynamics); constant velocities build
+// it once.
+static void PCNodeBuildCDF(PCUniverse* universe, PCNode* node) {
+    double beta = sqrt(node->v.x*node->v.x + node->v.y*node->v.y) / universe->c;
     if (node->cdf) { free(node->cdf); node->cdf = 0; }
+    node->betaBuilt = beta;
     if (beta < 1e-9) return;
     node->cdf = (double*)malloc(sizeof(double)*(PC_NGRID+1));
     double dq = 2.0*M_PI/PC_NGRID;
@@ -115,6 +127,79 @@ void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, do
     }
     double total = node->cdf[PC_NGRID];
     for (int g=0;g<=PC_NGRID;g++) node->cdf[g] /= total;
+}
+static void PCNodeEnsureCDF(PCUniverse* universe, PCNode* node) {
+    double beta = sqrt(node->v.x*node->v.x + node->v.y*node->v.y) / universe->c;
+    if (fabs(beta - node->betaBuilt) > 1e-4 || (beta >= 1e-9 && !node->cdf)) PCNodeBuildCDF(universe, node);
+}
+void PCUniverseSetNodeVelocity(PCUniverse* universe, PCNode* node, double vx, double vy) {
+    node->v.x = vx;
+    node->v.y = vy;
+    node->v0 = node->v;
+    PCNodeBuildCDF(universe, node);
+}
+void PCNodeSetHyle(PCNode* node, double hyle, unsigned char outie) {
+    node->hyle = hyle > 1e-12 ? hyle : 1e-12;
+    node->outie = outie;
+}
+void PCUniverseSetDynamics(PCUniverse* universe, unsigned char on, double q, unsigned char newtonian) {
+    universe->dynamics = on;
+    universe->q = q;
+    universe->newtonian = newtonian;
+}
+void PCUniverseSetHeld(PCUniverse* universe, unsigned char held) {
+    universe->held = held;
+}
+void PCUniverseSetCone(PCUniverse* universe, double halfAngle) {
+    universe->coneHalf = halfAngle > 0 ? halfAngle : 0;
+}
+
+// CDF value at theta in [0, 2pi) (uniform when static) and its inverse.
+static double PCNodeCDFAt(PCNode* node, double theta) {
+    if (!node->cdf) return theta / (2.0*M_PI);
+    double g = theta / (2.0*M_PI/PC_NGRID);
+    int lo = (int)floor(g);
+    if (lo < 0) lo = 0;
+    if (lo >= PC_NGRID) return 1.0;
+    return node->cdf[lo] + (g - lo) * (node->cdf[lo+1] - node->cdf[lo]);
+}
+static double PCNodeThetaAt(PCNode* node, double frac) {
+    if (!node->cdf) return 2.0*M_PI*frac;
+    int lo = 0, hi = PC_NGRID;
+    while (hi - lo > 1) {
+        int m = (lo + hi)/2;
+        if (node->cdf[m] < frac) lo = m; else hi = m;
+    }
+    double den = node->cdf[hi] - node->cdf[lo];
+    if (den < 1e-15) den = 1e-15;
+    return ((double)lo + (frac - node->cdf[lo])/den) * (2.0*M_PI/PC_NGRID);
+}
+
+// Rule 1 delivery: the impulse a pong carries lands on the node that
+// captured its ping, the moment the pong returns to the source.
+// Newtonian (the rung-0 oracle's convention, eta = 1): v += I/eta0.
+// Rule 4: p = gamma eta0 v — in units of eta0 c, p~ = gamma beta,
+// beta = p~ / sqrt(1 + p~^2).
+static void PCNodeReceive(PCUniverse* universe, PCNode* node, CV2 impulse) {
+    node->impulses++;
+    node->impulseSum.x += impulse.x;
+    node->impulseSum.y += impulse.y;
+    if (universe->held) return;
+    if (universe->newtonian) {
+        node->v.x += impulse.x / node->hyle;
+        node->v.y += impulse.y / node->hyle;
+        return;
+    }
+    double c = universe->c;
+    double bx = node->v.x/c, by = node->v.y/c;
+    double b2 = bx*bx + by*by;
+    if (b2 > 1.0 - 1e-12) b2 = 1.0 - 1e-12;
+    double gamma = 1.0/sqrt(1.0 - b2);
+    double px = gamma*bx + impulse.x/(node->hyle*c);
+    double py = gamma*by + impulse.y/(node->hyle*c);
+    double den = sqrt(1.0 + px*px + py*py);
+    node->v.x = px/den*c;
+    node->v.y = py/den*c;
 }
 
 void PCUniverseSetC(PCUniverse* universe, double c) {
@@ -134,12 +219,19 @@ void PCUniverseReset(PCUniverse* universe) {
     for (int i=0;i<universe->pongCount;i++) free(universe->pongs[i]);
     universe->pongCount = 0;
     for (int i=0;i<universe->nodeCount;i++) {
-        universe->nodes[i]->pos = universe->nodes[i]->pos0;
-        universe->nodes[i]->emitted = 0;
-        universe->nodes[i]->captures = 0;
-        universe->nodes[i]->plusCaptures = 0;
-        universe->nodes[i]->minusCaptures = 0;
-        universe->nodes[i]->pongArrivals = 0;
+        PCNode* node = universe->nodes[i];
+        node->pos = node->pos0;
+        node->v = node->v0;
+        node->emitCarry = 0;
+        node->emitted = 0;
+        node->captures = 0;
+        node->plusCaptures = 0;
+        node->minusCaptures = 0;
+        node->pongArrivals = 0;
+        node->impulses = 0;
+        node->impulseSum.x = 0;
+        node->impulseSum.y = 0;
+        PCNodeEnsureCDF(universe, node);
     }
     universe->tic = 0;
 }
@@ -232,8 +324,26 @@ static void PCUniverseCapture(PCUniverse* universe, PCNode* node, PCPing* ping, 
     pong->dir.x = px/plen;
     pong->dir.y = py/plen;
     pong->target = source;
+    pong->captor = node;
     pong->channel = channel;
     pong->recycle = 0;
+    pong->impulse.x = 0;
+    pong->impulse.y = 0;
+
+    // Rule 1: an impulse of magnitude q|C| along the cupola is locked in
+    // now and rides the pong; it lands on this node when the pong
+    // returns to the source.  Species sign per Rule 2 (outies pushed).
+    // Rule 5's direction clause for a moving receiver: the impulse it
+    // reads acquires the component n-hat (v_t . I0)/c along the line of
+    // arrival.  (Rule 5's arrival-rate factor is not applied here — the
+    // moving disc genuinely meets pings at that rate.)
+    if (universe->dynamics) {
+        double sign = node->outie ? 1.0 : -1.0;
+        CV2 i0 = { sign*universe->q*ping->cupola.x, sign*universe->q*ping->cupola.y };
+        double vt = (node->v.x*i0.x + node->v.y*i0.y) / universe->c;
+        pong->impulse.x = i0.x + ping->dir.x*vt;
+        pong->impulse.y = i0.y + ping->dir.y*vt;
+    }
 
     if (remaining > 0) {
         // Source's position at the capture instant: it has advanced
@@ -246,6 +356,7 @@ static void PCUniverseCapture(PCUniverse* universe, PCNode* node, PCPing* ping, 
         if (tau >= 0) {
             source->pongArrivals++;
             pong->recycle = 1;
+            if (universe->dynamics) PCNodeReceive(universe, pong->captor, pong->impulse);
         } else {
             pong->pos.x += pong->dir.x * universe->c * remaining;
             pong->pos.y += pong->dir.y * universe->c * remaining;
@@ -269,30 +380,67 @@ void PCUniverseTic(PCUniverse* universe) {
     //    angular density about the velocity direction, stratified with
     //    golden-ratio offset per volley per node — deterministic, no
     //    RNG.  Each ping carries its cupola C = n-hat − beta.
+    //
+    //    Cone option (2-node harnesses): emit only the part of the
+    //    volley aimed within +/- coneHalf of the partner — the same
+    //    stratified draw restricted to that window of the CDF, with the
+    //    count scaled by the window's density mass, so captures are
+    //    exactly those the full volley would have produced (fractional
+    //    counts carried across volleys).  Assumes the partner's line of
+    //    sight is stable over a flight (collinear encounters); widen
+    //    the window otherwise.
     if (universe->tic % universe->ticsPerVolley == 0)
     for (int n=0;n<universe->nodeCount;n++) {
         PCNode* node = universe->nodes[n];
         if (!node->emitting) continue;
+        PCNodeEnsureCDF(universe, node);
         long volley = universe->tic / universe->ticsPerVolley;
         double u = fmod(PC_PHI * (double)volley + 0.37 * n, 1.0);
         double speed = sqrt(node->v.x*node->v.x + node->v.y*node->v.y);
         double vDirX = 1.0, vDirY = 0.0;
         if (speed > 1e-12) { vDirX = node->v.x/speed; vDirY = node->v.y/speed; }
-        for (int j=0;j<universe->pingsPerVolley;j++) {
-            double frac = ((double)j + u)/(double)universe->pingsPerVolley;
-            double theta;
-            if (node->cdf) {
-                int lo = 0, hi = PC_NGRID;
-                while (hi - lo > 1) {
-                    int m = (lo + hi)/2;
-                    if (node->cdf[m] < frac) lo = m; else hi = m;
-                }
-                double den = node->cdf[hi] - node->cdf[lo];
-                if (den < 1e-15) den = 1e-15;
-                theta = ((double)lo + (frac - node->cdf[lo])/den) * (2.0*M_PI/PC_NGRID);
+
+        int count = universe->pingsPerVolley;
+        int windows = 0;
+        double wlo[2], whi[2], wcdf[2], wmass[2], mass = 1.0;
+        if (universe->coneHalf > 0 && universe->nodeCount == 2) {
+            PCNode* partner = universe->nodes[1-n];
+            double px = partner->pos.x - node->pos.x, py = partner->pos.y - node->pos.y;
+            if (px*px + py*py < 1e-18) continue;
+            double thetaC = atan2(py, px) - atan2(vDirY, vDirX);
+            thetaC = fmod(thetaC + 4.0*M_PI, 2.0*M_PI);
+            double lo = thetaC - universe->coneHalf, hi = thetaC + universe->coneHalf;
+            if (lo < 0) {
+                wlo[0] = lo + 2.0*M_PI; whi[0] = 2.0*M_PI;
+                wlo[1] = 0;             whi[1] = hi;
+                windows = 2;
+            } else if (hi > 2.0*M_PI) {
+                wlo[0] = lo; whi[0] = 2.0*M_PI;
+                wlo[1] = 0;  whi[1] = hi - 2.0*M_PI;
+                windows = 2;
             } else {
-                theta = 2.0*M_PI*frac;
+                wlo[0] = lo; whi[0] = hi;
+                windows = 1;
             }
+            mass = 0;
+            for (int w=0;w<windows;w++) {
+                wcdf[w] = PCNodeCDFAt(node, wlo[w]);
+                wmass[w] = PCNodeCDFAt(node, whi[w]) - wcdf[w];
+                mass += wmass[w];
+            }
+            double x = (double)universe->pingsPerVolley * mass + node->emitCarry;
+            count = (int)floor(x);
+            node->emitCarry = x - count;
+        }
+        for (int j=0;j<count;j++) {
+            double frac = ((double)j + u)/(double)count;
+            if (windows) {
+                double m = frac * mass;
+                int w = 0;
+                while (w < windows-1 && m >= wmass[w]) { m -= wmass[w]; w++; }
+                frac = wcdf[w] + m;
+            }
+            double theta = PCNodeThetaAt(node, frac);
             double ct = cos(theta), st = sin(theta);
             PCPing* ping = PCUniverseAddPing(universe);
             ping->pos = node->pos;
@@ -346,6 +494,7 @@ void PCUniverseTic(PCUniverse* universe) {
         if (tau >= 0) {
             target->pongArrivals++;
             pong->recycle = 1;
+            if (universe->dynamics) PCNodeReceive(universe, pong->captor, pong->impulse);
         } else {
             pong->pos.x += pong->dir.x * c;
             pong->pos.y += pong->dir.y * c;
