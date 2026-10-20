@@ -13,7 +13,7 @@ class ElectromagnetismExperiment: Experiment {
     var name: String = ""
     var notes: String = ""
     
-    @objc dynamic var electromagnetism: Electromagnetism? = nil
+    var electromagnetism: Electromagnetism? = nil
     
 // Experiments =====================================================================================
     static var teslonsInABox: ElectromagnetismExperiment {

@@ -50,7 +50,7 @@ class Aexels {
         _ = ChainResponder.hasExternalKeyboard
 
         Math.start()
-		Loom.start(basket: Aexels.basket, namespaces: ["Aexels", "OoviumEngine"])
+		Loom.start(basket: Aexels.basket, types: [Settings.self, Teslon.self, Electromagnetism.self] + Aether.types)
 		Skin.skin = IvorySkin()
         
         if let iden: String = Loom.get(key: "settingsIden"), let settings: Settings = Loom.selectBy(iden: iden) {

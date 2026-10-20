@@ -9,14 +9,14 @@
 import Acheron
 import Foundation
 
-class Teslon: Domain {
-    @objc dynamic var pX: Double = 0
-    @objc dynamic var pY: Double = 0
-    @objc dynamic var speed: Double = 0
-    @objc dynamic var orient: Double = 0
-    @objc dynamic var hyle: Double = 0
-    @objc dynamic var pings: Bool = true
-    @objc dynamic var contracts: Bool = true
+@Domain class Teslon: Domain {
+    @Field var pX: Double = 0
+    @Field var pY: Double = 0
+    @Field var speed: Double = 0
+    @Field var orient: Double = 0
+    @Field var hyle: Double = 0
+    @Field var pings: Bool = true
+    @Field var contracts: Bool = true
     
     init(pX: Double, pY: Double, speed: Double, orient: Double, hyle: Double = 1, pings: Bool = true, contracts: Bool = false) {
         self.pX = pX
@@ -32,7 +32,4 @@ class Teslon: Domain {
     required init(attributes: [String : Any], parent: Domain? = nil) {
         super.init(attributes: attributes, parent: parent)
     }
-
-// Domain ==========================================================================================
-    override var properties: [String] { super.properties + ["pX", "pY", "speed", "orient", "hyle", "pings", "contracts"] }
 }

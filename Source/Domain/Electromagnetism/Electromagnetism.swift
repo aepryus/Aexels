@@ -9,21 +9,21 @@
 import Acheron
 import Foundation
 
-class Electromagnetism: Domain {
+@Domain class Electromagnetism: Domain {
     enum RenderMode: CaseIterable { case hidden, minimal, full }
     
-    @objc dynamic var speedOfLight: Int = 1
-    @objc dynamic var aetherVelocity: Int = 0
-    @objc dynamic var pingsPerVolley: Int = 480
-    @objc dynamic var timeStepsPerVolley: Int = 60
-    @objc dynamic var autoVolleyOn: Bool = true
-    @objc dynamic var cameraWallsOn: Bool = true
-    @objc dynamic var hyleExchangeOn: Bool = true
-    @objc dynamic var aetherFrameOn: Bool = true
-    @objc dynamic var pingRenderModeToken: String = ""
-    @objc dynamic var pongRenderModeToken: String = ""
-    @objc dynamic var photonRenderModeToken: String = ""
-    @objc dynamic var teslons: [Teslon] = []
+    @Field var speedOfLight: Int = 1
+    @Field var aetherVelocity: Int = 0
+    @Field var pingsPerVolley: Int = 480
+    @Field var timeStepsPerVolley: Int = 60
+    @Field var autoVolleyOn: Bool = true
+    @Field var cameraWallsOn: Bool = true
+    @Field var hyleExchangeOn: Bool = true
+    @Field var aetherFrameOn: Bool = true
+    @Field var pingRenderModeToken: String = ""
+    @Field var pongRenderModeToken: String = ""
+    @Field var photonRenderModeToken: String = ""
+    @Child var teslons: [Teslon] = []
     
     var generateTeslons: (CGSize)->([Teslon]) = { (size: CGSize) in [] }
 
@@ -43,11 +43,4 @@ class Electromagnetism: Domain {
     func regenerateTeslons(size: CGSize) {
         teslons = generateTeslons(size)
     }
-
-// Domain ==========================================================================================
-    override var properties: [String] { super.properties + [
-        "speedOfLight", "aetherVelocity", "pingsPerVolley", "timeStepsPerVolley", "autoVolleyOn",
-        "cameraWallsOn", "hyleExchangeOn", "aetherFrameOn", "pingRenderModeToken",
-        "pongRenderModeToken", "photonRenderModeToken", "teslons"
-    ] }
 }

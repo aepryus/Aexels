@@ -9,9 +9,6 @@
 import Acheron
 import Foundation
 
-class Settings: Anchor {
-    @objc dynamic var musicOn: Bool = true
-    
-// Domain ==========================================================================================
-    override var properties: [String] { super.properties + ["musicOn"] }
+@Domain class Settings: Anchor {
+    @Field var musicOn: Bool = true
 }
