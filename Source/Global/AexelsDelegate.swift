@@ -15,15 +15,7 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
 	
 // UIApplicationDelegate ===========================================================================
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		Aexels.start()
 		return true
-	}
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        if Aexels.explorerViewController.explorer is NexusExplorer, Screen.mac { Aexels.explorerViewController.graphView.start() }
-    }
-	func applicationDidEnterBackground(_ application: UIApplication) {
-        Aexels.explorerViewController.graphView.stop()
-        if let aetherView = Aexels.aetherView { aetherView.saveAether() }
 	}
     
 // MacOS ===========================================================================================
@@ -45,4 +37,21 @@ class AexelsDelegate: UIResponder, UIApplicationDelegate {
         builder.remove(menu: .window)
         builder.remove(menu: .help)
     }
+}
+
+/* The window belongs to a scene, not to the application. iOS 27 and macOS 27 stopped merely warning
+   about apps that skip this and now trap during scene creation, so the app launched straight into a
+   SIGTRAP. Becoming active and entering the background are the scene's now too. */
+class AexelsSceneDelegate: UIResponder, UIWindowSceneDelegate {
+	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options: UIScene.ConnectionOptions) {
+		guard let windowScene = scene as? UIWindowScene else { return }
+		Aexels.start(windowScene: windowScene)
+	}
+	func sceneDidBecomeActive(_ scene: UIScene) {
+		if Aexels.explorerViewController.explorer is NexusExplorer, Screen.mac { Aexels.explorerViewController.graphView.start() }
+	}
+	func sceneDidEnterBackground(_ scene: UIScene) {
+		Aexels.explorerViewController.graphView.stop()
+		if let aetherView = Aexels.aetherView { aetherView.saveAether() }
+	}
 }
