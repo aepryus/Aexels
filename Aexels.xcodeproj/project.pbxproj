@@ -133,10 +133,10 @@
 		D8AB7C1E000000000000C201 /* ConspiracyLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B201 /* ConspiracyLabExplorer.swift */; };
 		D8AB7C1E000000000000C202 /* DarknessLabExplorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B202 /* DarknessLabExplorer.swift */; };
 		D8AB7C1E000000000000C301 /* Philippine.c in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B301 /* Philippine.c */; };
-		D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B304 /* HyleControlsTab.swift */; };
-		D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B305 /* HyleExperiment.swift */; };
 		D8AB7C1E000000000000C302 /* HyleRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B302 /* HyleRenderer.swift */; };
 		D8AB7C1E000000000000C303 /* HyleShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B303 /* HyleShaders.metal */; };
+		D8AB7C1E000000000000C304 /* HyleControlsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B304 /* HyleControlsTab.swift */; };
+		D8AB7C1E000000000000C305 /* HyleExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AB7C1E000000000000B305 /* HyleExperiment.swift */; };
 		D8AE17442814E97300E74CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8AE17432814E97300E74CB8 /* Assets.xcassets */; };
 		D8AE17612814F06E00E74CB8 /* UIFont+Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17602814F06E00E74CB8 /* UIFont+Aexels.swift */; };
 		D8AE17652814F08400E74CB8 /* Simulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17632814F08400E74CB8 /* Simulation.swift */; };
@@ -901,22 +901,6 @@
 			path = HyleLab;
 			sourceTree = "<group>";
 		};
-		D8AB7C1E000000000000D302 /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				D8AB7C1E000000000000B304 /* HyleControlsTab.swift */,
-			);
-			path = Tabs;
-			sourceTree = "<group>";
-		};
-		D8AB7C1E000000000000D303 /* Hyle */ = {
-			isa = PBXGroup;
-			children = (
-				D8AB7C1E000000000000B305 /* HyleExperiment.swift */,
-			);
-			path = Hyle;
-			sourceTree = "<group>";
-		};
 		D8AB7C1E000000000000D201 /* ConspiracyLab */ = {
 			isa = PBXGroup;
 			children = (
@@ -950,6 +934,22 @@
 				D8AB7C1E000000000000B301 /* Philippine.c */,
 			);
 			path = Philippine;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D302 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B304 /* HyleControlsTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D8AB7C1E000000000000D303 /* Hyle */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB7C1E000000000000B305 /* HyleExperiment.swift */,
+			);
+			path = Hyle;
 			sourceTree = "<group>";
 		};
 		D8AE172E2814E97200E74CB8 = {
@@ -1234,7 +1234,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				CLASSPREFIX = AX;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 2660;
+				LastUpgradeCheck = 2700;
 				ORGANIZATIONNAME = "Aepryus Software";
 				TargetAttributes = {
 					D8AE17362814E97200E74CB8 = {
@@ -1632,13 +1632,14 @@
 				CURRENT_PROJECT_VERSION = 39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1667,13 +1668,14 @@
 				CURRENT_PROJECT_VERSION = 39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

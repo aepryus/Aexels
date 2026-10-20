@@ -29,13 +29,16 @@ class LimboButton: UIButton {
 		
 		setTitleColor(UIColor.black, for: .highlighted)
 		titleLabel!.font = UIFont.ax(size: 24*s)
-		titleEdgeInsets = UIEdgeInsets(top: 4*s, left: 0, bottom: 0, right: 0)
 		
 		self.setTitle(title, for: .normal)
 	}
 	required init?(coder aDecoder: NSCoder) {fatalError()}
 	
 // UIView ==========================================================================================
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		titleLabel?.frame.origin.y += 2*s
+	}
 	override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
 		let inside = super.point(inside: point, with: event)
 		if inside && !isHighlighted && event?.type == .touches {
