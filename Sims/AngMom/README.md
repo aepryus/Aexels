@@ -10,6 +10,7 @@ python3 -m venv .venv && .venv/bin/pip install numpy
 .venv/bin/python check_spin.py    # spin share by an independent route
 .venv/bin/python node_side.py     # node-side books, circle and ellipse
 .venv/bin/python ald_check.py     # radiated J vs relativistic ALD torque
+.venv/bin/python reservoir_dyn.py  # F-Ph's bridge reservoir in the equation of motion (~30 s)
 ```
 
 ## Method (angmom.py)
@@ -88,3 +89,50 @@ distribution: on the harmonic ellipse the slow ALD drag is (2/3)q²W²v,
 a Schott-type register — energy the bridge stores and returns within
 the period — so the impulse it delivers need not match P instant by
 instant.  The ellipse is the discriminating test for any such rule.
+
+## The bridge reservoir in a node's equation of motion (reservoir_dyn.py)
+
+F-Ph's candidate S5.3 repair (Physics c3ac206, request ba81fa0): recoil
+−P v plus a bridge reservoir holding momentum −p_S, hyle −E_S, handing the
+node their rates of change.  c = m = K = 1, push F = −K r from a fixed
+centre, τ = (2/3)q²/m, pure-Python RK4 (~30 s; 'quick' = τ 0.01 only).
+
+- **(a) reservoir from the node's acceleration** (p_S = τγA): this IS ALD —
+  the reservoir is ALD's Schott part.  Third order.  Run forward it runs
+  away within 31–44 τ even from the exact runaway-free state (roundoff
+  seeds it), 9–19 τ from A = F — under 1/15 of a period at τW = 0.01.  Its
+  runaway-free solution (integrated backward from (b)'s end state, where
+  the runaway mode decays) closes all three books with the reservoir to
+  1e-12 — and pre-accelerates: released from rest, the node moves before
+  the push acts, |A(−kτ)|/|A(0)| = e^−k to 4 digits, gathering τF₀ of
+  momentum by t = 0.  A bridge running forward in time cannot do this.
+- **(b) reservoir from the push the bridge carries** (p_S = τγF,
+  E_S = τγ v·F; Landau–Lifshitz class).  Second order, runs forward, no
+  runaway, no pre-acceleration; at release an instant kick of exactly
+  τF₀ — the momentum ALD gathers by pre-accelerating.  Momentum and
+  angular books close by construction (1e-13); energy closes to a
+  bounded O(τ²) remainder (E_S's hyle partner is exact only on the
+  zeroth-order motion).
+
+Book residuals over 20 periods, relative to the radiated amount,
+τ = 0.01 / 0.001.  "Honest" = node + (b)'s reservoir against the radiation
+the actual motion emits (P = τγ²(A² − (v·A)²), A = dp/dt), the kick's own
+radiation excluded:
+
+| case | (b) energy, own | (b) energy, honest | (b) angular, honest | max \|E_S\| / a period's radiation |
+|---|---|---|---|---|
+| circular β 0.01 | +5.0e-5 / +5.0e-7 | +5.0e-5 / +5.0e-7 | −3.2e-9 / −4.7e-11 | 0.002 / 0.000 |
+| circular β 0.3 | +5.4e-5 / +5.5e-7 | +4.9e-5 / +4.8e-7 | −3.4e-6 / −5.1e-8 | 0.002 / 0.000 |
+| ellipse 2:1, a 0.01 | +8.0e-5 / +8.0e-7 | +2.0e-5 / +2.0e-7 | −4.4e-9 / −6.5e-11 | 0.099 / 0.096 |
+| ellipse 2:1, a 0.3 | +1.0e-4 / +2.7e-6 | −8.6e-6 / −1.9e-6 | −4.4e-6 / −1.5e-7 | 0.099 / 0.096 |
+| release from rest, a 0.01 | +1.0e-4 / +1.0e-6 | +5.6e-9 / −9.7e-11 | — | 0.164 / 0.160 |
+| release from rest, a 0.3 | +1.3e-4 / +7.4e-6 | −4.1e-5 / −6.9e-6 | — | 0.169 / 0.165 |
+
+Not secular: the ellipse a 0.3, τ 0.001 relative energy residual is
+7.4e-6 / 8.9e-6 / 2.7e-6 / 2.8e-6 at 5 / 10 / 20 / 40 periods while the
+radiated energy grows 7×.  Compare S5.3 as written: 1.2 against 0.8 on the
+ellipse, every period.  (a) and (b) trajectories agree to |Δr|/r₀ ≤ 7.5e-3
+(τ 0.01), ≤ 7e-5 (τ 0.001).  The reservoir stays bounded: zero on the
+circle, ~0.1 of a period's radiation on the ellipse, ~0.17 at release.
+The kick at a sudden release is a velocity step (its Larmor radiation is
+not finite); any physical push switches on over a transit time.
