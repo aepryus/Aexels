@@ -66,6 +66,12 @@ On any other orbit the torque is ⟨P (r×v)_z / v²⟩:
 | ellipse 2:1, β 0.3 | 1.1747116535 | 0.8072118088 |
 | ellipse 2:1, β 0.6 | 1.0763876796 | 0.8143362832 |
 
+Per period, under S5.3 as written, energy and momentum BOTH close (energy
+1 to 1e-10, momentum 0 to 1e-14) — only angular momentum catches the
+error, which is why energy/momentum checks never saw it.  node_side.py
+scores any candidate force law on all three books (add a function to
+CANDIDATES).
+
 Slow-limit closed forms (a:b ellipse): node 2 − 2ab/(a²+b²) = 1.2,
 radiation 2ab/(a²+b²) = 0.8.  The node loses 50 % more angular momentum
 than its radiation carries, every period — a secular imbalance, so no
