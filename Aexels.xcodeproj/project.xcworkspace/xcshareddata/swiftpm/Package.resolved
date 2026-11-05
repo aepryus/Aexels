@@ -7,7 +7,7 @@
       "location" : "https://github.com/aepryus/Acheron.git",
       "state" : {
         "branch" : "master",
-        "revision" : "98ba784e8b564845246212f3d56cdc46cf1d6f8e"
+        "revision" : "995ead3293084f626e95a4f2dd46f0df97582981"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aepryus/OoviumEngine.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "e1cba56e2af31f5a05343ea8afe3f0dd4814bcc0"
+        "branch" : "dev4.3",
+        "revision" : "39d0c73bb8915fbba4991a966b9fb4ceb46a43b8"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aepryus/OoviumKit",
       "state" : {
-        "branch" : "master",
-        "revision" : "f625bc9d2e772bf72c75c87d7a2878df0acf2a3b"
+        "branch" : "dev4.3",
+        "revision" : "f008f40d12b8a6bc7dbd401168c570db57c6e7fb"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-cmark.git",
       "state" : {
-        "revision" : "924936d0427cb25a61169739a7660230bffa6ea6",
-        "version" : "0.8.0"
+        "revision" : "08ddb528923cc1a6527e02b7a1aee9e516ca749a",
+        "version" : "0.9.0"
       }
     },
     {
@@ -42,8 +42,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swiftlang/swift-markdown",
       "state" : {
-        "revision" : "3c6f9523da3a1ec2fd829673e472d95b8097a3b8",
-        "version" : "0.8.0"
+        "revision" : "25cb61d3482054b09ae76ca4f281b1bfe7fe5a43",
+        "version" : "0.9.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
       }
     },
     {
