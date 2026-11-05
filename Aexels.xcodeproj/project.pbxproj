@@ -1720,7 +1720,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/aepryus/OoviumKit";
 			requirement = {
-				branch = dev4.3;
+				branch = master;
 				kind = branch;
 			};
 		};

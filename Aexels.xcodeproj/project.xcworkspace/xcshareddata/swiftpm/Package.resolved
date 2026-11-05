@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aepryus/OoviumEngine.git",
       "state" : {
-        "branch" : "dev4.3",
-        "revision" : "39d0c73bb8915fbba4991a966b9fb4ceb46a43b8"
+        "branch" : "master",
+        "revision" : "197468225438333b1da33dd5157a832ecccf94bf"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aepryus/OoviumKit",
       "state" : {
-        "branch" : "dev4.3",
-        "revision" : "f008f40d12b8a6bc7dbd401168c570db57c6e7fb"
+        "branch" : "master",
+        "revision" : "42ccf8aa43dd0ed752577d493e9f28f7de9bbdc5"
       }
     },
     {
