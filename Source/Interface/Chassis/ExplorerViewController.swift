@@ -245,7 +245,7 @@ class ExplorerViewController: AEViewController {
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 10*s : 0))
         layoutAI()
     }
     override func layoutRatio143() {
@@ -255,7 +255,7 @@ class ExplorerViewController: AEViewController {
         graphView.bottomRight(dx: -30*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 10*s : 0))
         layoutAI()
     }
     /// The AI's way in: on the Mac the wing's toggle, in the title bar's corner; on the iPad a circle beside the vision
@@ -263,7 +263,7 @@ class ExplorerViewController: AEViewController {
     private func layoutAI() {
         if Screen.mac {
             let w: CGFloat = 20*s
-            let d: CGFloat = max(0, (Screen.safeTop - w)/2)      // as far from the right as from the top
+            let d: CGFloat = 6*s                                 // as far from the right as from the top
             wingToggle.frame = CGRect(x: view.width - d - w, y: d, width: w, height: w)
         }
         else { AexelsAI.button.frame = CGRect(x: view.width - 95*s, y: Screen.safeTop - 5*s, width: 50*s, height: 50*s) }
@@ -288,7 +288,7 @@ class ExplorerViewController: AEViewController {
         if Screen.iPad { view.addSubview(AexelsAI.button) }
         if !Screen.iPhone {
             view.addSubview(visionBar)
-            visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
+            visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 10*s : 5*s))
             explorer = Aexels.nexusExplorer
         }
 

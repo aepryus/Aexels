@@ -174,8 +174,9 @@ final class WingViewController: UIViewController {
         app.view.layer.masksToBounds = out
         let tray: AITray = AexelsAI.tray
         guard tray.superview === view else { return }
-        // pinned to the window's right edge, so it comes out from behind the app as the window grows
-        tray.frame = CGRect(x: view.bounds.width - WingViewController.width + 6*s, y: Screen.safeTop + 6*s, width: WingViewController.width - 12*s, height: view.bounds.height - Screen.safeTop - 12*s)
+        // pinned to the window's right edge, so it comes out from behind the app as the window grows; up to the
+        // window's top, as Oovium's is (the traffic lights are on the other side)
+        tray.frame = CGRect(x: view.bounds.width - WingViewController.width + 6*s, y: 6*s, width: WingViewController.width - 12*s, height: view.bounds.height - 12*s)
         tray.layer.shadowPath = CGPath(roundedRect: tray.bounds, cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
     }
 }
