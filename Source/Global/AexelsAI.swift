@@ -93,6 +93,8 @@ final class WingViewController: UIViewController {
     static var appSize: CGSize { CGSize(width: 1194/Screen.scaler, height: 834/Screen.scaler) }
     static var width: CGFloat { 392*Screen.s }
     private static let duration: CFTimeInterval = 0.3
+    /// The window's corner radius, which the app's right corners keep while the drawer is out.
+    private static let corner: CGFloat = 12
 
     init(app: UIViewController) {
         self.app = app
@@ -165,6 +167,11 @@ final class WingViewController: UIViewController {
         let s: CGFloat = Screen.s
         let size: CGSize = WingViewController.appSize
         app.view.frame = CGRect(origin: .zero, size: size)
+        // with the drawer out, the app's right corners are no longer the window's: round them as the window does
+        let out: Bool = view.bounds.width > size.width + 0.5
+        app.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        app.view.layer.cornerRadius = out ? WingViewController.corner : 0
+        app.view.layer.masksToBounds = out
         let tray: AITray = AexelsAI.tray
         guard tray.superview === view else { return }
         // pinned to the window's right edge, so it comes out from behind the app as the window grows

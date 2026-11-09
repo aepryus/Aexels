@@ -261,7 +261,11 @@ class ExplorerViewController: AEViewController {
     /// The AI's way in: on the Mac the wing's toggle, in the title bar's corner; on the iPad a circle beside the vision
     /// bar's, and its tray down the right.
     private func layoutAI() {
-        if Screen.mac { wingToggle.frame = CGRect(x: view.width - 8*s - 20*s, y: (Screen.safeTop - 20*s)/2, width: 20*s, height: 20*s) }
+        if Screen.mac {
+            let w: CGFloat = 20*s
+            let d: CGFloat = max(0, (Screen.safeTop - w)/2)      // as far from the right as from the top
+            wingToggle.frame = CGRect(x: view.width - d - w, y: d, width: w, height: w)
+        }
         else { AexelsAI.button.frame = CGRect(x: view.width - 95*s, y: Screen.safeTop - 5*s, width: 50*s, height: 50*s) }
         if AexelsAI.tray.superview === view { AexelsAI.place(in: view, open: AexelsAI.open) }
     }
