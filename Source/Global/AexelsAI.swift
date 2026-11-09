@@ -20,7 +20,7 @@ import OoviumKit
 import UIKit
 
 enum AexelsAI {
-    static let tray: AITray = AITray(feature: "aexels.tray", instructions: instructions, tools: [], chat: chat, style: LimboStyle(), model: .opus, cache: .hour, effort: "xhigh")
+    static let tray: AITray = AITray(feature: "aexels.tray", instructions: instructions, tools: [], chat: chat, style: LimboStyle(), model: .opus, effort: .xhigh)
     /// The circle that opens and closes it: Claude's starburst, as the Nexus's copy button has it.
     static let button: CircleButton = {
         let image: UIImageView = UIImageView(image: UIImage(named: "claude")!.withTintColor(.white.shade(0.15)))
