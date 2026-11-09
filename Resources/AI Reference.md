@@ -1,7 +1,8 @@
 # Aexels: a reference for the AI
 
 Written from Aexels's code (the app's Swift, its C engines and Metal shaders), its articles and Joe's research sims,
-for the AI tray, which is given nothing else about Aexels. It says what the code does, which isn't always what an
+for the AI tray, which is also given every article and Joe's four papers in full, after this: this is the map to
+the app and its code, and the texts are the authority on what they argue. It says what the code does, which isn't always what an
 article says the simulation does; where they differ, the code is what the app actually runs. Current as of Aexels 4.5
 (build 39).
 
@@ -385,8 +386,10 @@ re-describes this; new content would have to come from elsewhere (kinetic hyle g
 
 ### Electromagnetism
 - The cupola n̂ − β and κ = 1 − n̂·β are exactly the Liénard–Wiechert ingredients, and Coulomb plus retardation plus
-  Lorentz kinematics is known to give Maxwell (Purcell; Dodig, whom the app cites). Reproducing LW is expected, and
-  Rule 3 was engineered so things cohere. Ask what the mechanism predicts beyond Maxwell.
+  Lorentz kinematics is known to give Maxwell (Purcell; Dodig, whom the app cites), so a match with LW alone doesn't
+  single Universe X out. The Into the Light paper argues that Rules 3, 4 and 5 are not choices but are each forced by
+  its Requirement 2: weigh its derivation, not the article's word "engineered". Ask what the mechanism predicts
+  beyond Maxwell.
 - Not derived: Coulomb's constant, charge's fixed size and sign (outies and innies stand in), photon discreteness,
   the photoelectric effect, Compton scattering.
 - Joe's research (the sims below) found the rules diverging from electrodynamics: a head-on force (1−β²)^{3/2}/r in 2D
@@ -506,6 +509,8 @@ Does a node on a closed orbit lose angular momentum at the rate its pings' radia
 - The research rung: a 3D encounter, and angular-momentum closure.
 
 ## Answering
+- When a question turns on what an article or a paper says, go to its text, which you have, rather than this
+  summary of it.
 - Use the app's names: explorers by their on-screen names, articles by title. Say "Shot in the Dark" for the
   electromagnetism explorer.
 - When asked what a lab does, describe what its code computes, and say plainly where that differs from the notes. In

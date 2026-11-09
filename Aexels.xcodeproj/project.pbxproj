@@ -1214,6 +1214,7 @@
 				D8AE17332814E97200E74CB8 /* Sources */,
 				D8AE17342814E97200E74CB8 /* Frameworks */,
 				D8AE17352814E97200E74CB8 /* Resources */,
+				D8A1A1A1000000000000C001 /* Papers */,
 			);
 			buildRules = (
 			);
@@ -1357,6 +1358,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D8A1A1A1000000000000C001 /* Papers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Vesper/Shot in the Dark/A Shot in the Dark.tex",
+				"$(SRCROOT)/../Vesper/Into the Light/Into the Light - Claude.tex",
+				"$(SRCROOT)/../Vesper/Bridge Just Far Enough/A Bridge Just Far Enough.tex",
+				"$(SRCROOT)/../Vesper/Little Give and Take/A Little Give and Take.tex",
+			);
+			name = Papers;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Shot in the Dark.tex",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/Into the Light.tex",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Bridge Just Far Enough.tex",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Little Give and Take.tex",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# The four papers, for the AI (AexelsAI): their latest versions, in Vesper, copied in at each build.\n# Kept out of this repo, which is public. A missing paper fails the build.\nset -e\nfrom=\"$SRCROOT/../Vesper\"\nto=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Papers\"\nmkdir -p \"$to\"\ncp \"$from/Shot in the Dark/A Shot in the Dark.tex\" \"$to/A Shot in the Dark.tex\"\ncp \"$from/Into the Light/Into the Light - Claude.tex\" \"$to/Into the Light.tex\"\ncp \"$from/Bridge Just Far Enough/A Bridge Just Far Enough.tex\" \"$to/A Bridge Just Far Enough.tex\"\ncp \"$from/Little Give and Take/A Little Give and Take.tex\" \"$to/A Little Give and Take.tex\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D8AE17332814E97200E74CB8 /* Sources */ = {
