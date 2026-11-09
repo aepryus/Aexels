@@ -21,7 +21,8 @@ import UIKit
 
 enum AexelsAI {
     static let tray: AITray = AITray(feature: "aexels.tray", tools: [], chat: chat, style: LimboStyle(), model: .opus, effort: .xhigh)
-    /// The circle that opens and closes it: Claude's starburst, as the Nexus's copy button has it.
+    /// On the iPad, the circle that opens and closes it: Claude's starburst, as the Nexus's copy button has it. The
+    /// Mac uses the wing's toggle instead.
     static let button: CircleButton = {
         let image: UIImageView = UIImageView(image: UIImage(named: "claude")!.withTintColor(.white.shade(0.15)))
         image.contentMode = .scaleAspectFit
@@ -76,17 +77,22 @@ enum AexelsAI {
     }
 }
 
-/// The Mac's window: the app at its fixed size on the left and, opened, a wing to its right that the window grows
-/// into, holding the AI's tray, so the tray covers nothing. The toggle in the app's top right corner opens and closes
-/// it, as the Claude circle does; the window's left edge stays where it is.
+/// The Mac's window: the app at its fixed size on the left and, opened, a drawer to its right holding the AI's tray.
+/// The toggle in the title bar's top right corner opens and closes it: the window grows to the right over a moment
+/// and the drawer slides out from behind the app, its own dark element, while the app and its fog stay put; closing
+/// runs it back in. The window's left edge stays where it is.
 final class WingViewController: UIViewController {
     private let app: UIViewController
-    private let ground: UIImageView = UIImageView(image: UIImage(named: "OldBack"))
     private(set) var open: Bool = false
+    private var link: CADisplayLink? = nil
+    private var from: CGFloat = 0
+    private var to: CGFloat = 0
+    private var start: CFTimeInterval = 0
 
-    /// The app's fixed size, and the wing's width.
+    /// The app's fixed size, and the drawer's width.
     static var appSize: CGSize { CGSize(width: 1194/Screen.scaler, height: 834/Screen.scaler) }
     static var width: CGFloat { 392*Screen.s }
+    private static let duration: CFTimeInterval = 0.3
 
     init(app: UIViewController) {
         self.app = app
@@ -101,28 +107,44 @@ final class WingViewController: UIViewController {
         if open {
             if tray.superview == nil {
                 AexelsAI.shade()
-                view.addSubview(tray)
+                view.insertSubview(tray, belowSubview: app.view)    // it slides out from behind the app
             }
             tray.isHidden = false
-            resize(width: WingViewController.appSize.width + WingViewController.width)
-            tray.onOpen()
         } else {
             tray.onClose()
-            resize(width: WingViewController.appSize.width)
         }
+        slide(to: WingViewController.appSize.width + (open ? WingViewController.width : 0))
     }
-    /// The window grown to take the wing, or back to the app alone, its left edge where it was. Its size is pinned
-    /// (min = max), so the pin is moved first on the side that lets it change.
+
+    /// The window run to `width` over a moment. While it moves, its size may range from the app alone to the app
+    /// with the drawer; when it arrives it is pinned there again (min = max).
+    private func slide(to width: CGFloat) {
+        guard let scene: UIWindowScene = view.window?.windowScene else { return }
+        let size: CGSize = WingViewController.appSize
+        scene.sizeRestrictions?.minimumSize = size
+        scene.sizeRestrictions?.maximumSize = CGSize(width: size.width + WingViewController.width, height: size.height)
+        from = view.bounds.width
+        to = width
+        start = CACurrentMediaTime()
+        link?.invalidate()
+        let link: CADisplayLink = CADisplayLink(target: self, selector: #selector(step))
+        link.add(to: .main, forMode: .common)
+        self.link = link
+    }
+    @objc private func step() {
+        let t: CGFloat = min(1, CGFloat((CACurrentMediaTime() - start)/WingViewController.duration))
+        resize(width: from + (to - from)*t*t*(3 - 2*t))
+        guard t >= 1 else { return }
+        link?.invalidate()
+        link = nil
+        let size: CGSize = CGSize(width: to, height: WingViewController.appSize.height)
+        view.window?.windowScene?.sizeRestrictions?.minimumSize = size
+        view.window?.windowScene?.sizeRestrictions?.maximumSize = size
+        if open { AexelsAI.tray.onOpen() }
+        else { AexelsAI.tray.isHidden = true }
+    }
     private func resize(width: CGFloat) {
         guard let scene: UIWindowScene = view.window?.windowScene else { return }
-        let size: CGSize = CGSize(width: width, height: WingViewController.appSize.height)
-        if open {
-            scene.sizeRestrictions?.maximumSize = size
-            scene.sizeRestrictions?.minimumSize = size
-        } else {
-            scene.sizeRestrictions?.minimumSize = size
-            scene.sizeRestrictions?.maximumSize = size
-        }
         if #available(iOS 16.0, *) {
             let frame: CGRect = scene.effectiveGeometry.systemFrame
             let k: CGFloat = frame.width/max(1, view.bounds.width)      // the system's points per the scene's
@@ -133,9 +155,7 @@ final class WingViewController: UIViewController {
 // UIViewController ================================================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        ground.contentMode = .scaleAspectFill
-        ground.clipsToBounds = true
-        view.addSubview(ground)
+        view.backgroundColor = UIColor(white: 0.12, alpha: 1)
         addChild(app)
         view.addSubview(app.view)
         app.didMove(toParent: self)
@@ -145,12 +165,11 @@ final class WingViewController: UIViewController {
         let s: CGFloat = Screen.s
         let size: CGSize = WingViewController.appSize
         app.view.frame = CGRect(origin: .zero, size: size)
-        ground.frame = CGRect(x: size.width, y: 0, width: max(0, view.bounds.width - size.width), height: view.bounds.height)
         let tray: AITray = AexelsAI.tray
         guard tray.superview === view else { return }
-        tray.frame = CGRect(x: size.width + 6*s, y: Screen.safeTop + 6*s, width: WingViewController.width - 12*s, height: view.bounds.height - Screen.safeTop - 12*s)
+        // pinned to the window's right edge, so it comes out from behind the app as the window grows
+        tray.frame = CGRect(x: view.bounds.width - WingViewController.width + 6*s, y: Screen.safeTop + 6*s, width: WingViewController.width - 12*s, height: view.bounds.height - Screen.safeTop - 12*s)
         tray.layer.shadowPath = CGPath(roundedRect: tray.bounds, cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
-        tray.isHidden = !open && view.bounds.width <= size.width + 1
     }
 }
 

@@ -69,6 +69,12 @@ class Aexels {
 		if Screen.mac {
 			wing = WingViewController(app: explorerViewController)
 			window.rootViewController = wing
+			// a visible title makes the title bar a drag strip that eats every click under it (the wing's toggle
+			// sits there); hiding it leaves the traffic lights and hands the band's clicks back, as Oovium does
+			if let titlebar = windowScene.titlebar {
+				titlebar.titleVisibility = .hidden
+				titlebar.toolbar = nil
+			}
 		} else {
 			window.rootViewController = explorerViewController
 		}
