@@ -81,6 +81,7 @@ final class LimboStyle: AIStyle {
     override func faint(_ ink: UIColor) -> UIColor { ink.shade(0.7) }
     override func font(_ size: CGFloat) -> UIFont { .optima(size: size*Screen.s) }
     override var cursor: String { "|" }
+    override func wall(_ label: String, fit: (String, String) -> Int) -> String { AIStyle.ruled(label, fit: fit) }
     override func ground(_ rect: CGRect) {
         let s: CGFloat = Screen.s
         let path: CGPath = CGPath(roundedRect: rect.insetBy(dx: 0.75*s, dy: 0.75*s), cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
