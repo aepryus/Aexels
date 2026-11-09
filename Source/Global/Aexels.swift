@@ -50,8 +50,9 @@ class Aexels {
         _ = ChainResponder.hasExternalKeyboard
 
         Math.start()
-		Loom.start(basket: Aexels.basket, types: [Settings.self, Teslon.self, Electromagnetism.self] + Aether.types)
+		Loom.start(basket: Aexels.basket, types: [Settings.self, Teslon.self, Electromagnetism.self, AIChat.self, AIChatPiece.self] + Aether.types)
 		Skin.skin = IvorySkin()
+		AepryusSpace.start(app: "aexels")   // the account the AI tray is paid from (AexelsAI)
         
         if let iden: String = Loom.get(key: "settingsIden"), let settings: Settings = Loom.selectBy(iden: iden) {
             Aexels.settings = settings

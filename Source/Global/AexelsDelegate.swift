@@ -46,6 +46,12 @@ class AexelsSceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options: UIScene.ConnectionOptions) {
 		guard let windowScene = scene as? UIWindowScene else { return }
 		Aexels.start(windowScene: windowScene)
+		options.urlContexts.forEach { open($0.url) }
+	}
+	func scene(_ scene: UIScene, openURLContexts contexts: Set<UIOpenURLContext>) { contexts.forEach { open($0.url) } }
+	/// The app's own scheme: an Aepryus sign-in in the browser coming back.
+	private func open(_ url: URL) {
+		if url.scheme == Bundle.main.bundleIdentifier { (Space.aepryus as? AepryusSpace)?.answer(url) }
 	}
 	func sceneDidBecomeActive(_ scene: UIScene) {
 		if Aexels.explorerViewController.explorer is NexusExplorer, Screen.mac { Aexels.explorerViewController.graphView.start() }

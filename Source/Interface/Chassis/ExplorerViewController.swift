@@ -104,6 +104,8 @@ class ExplorerViewController: AEViewController {
                     self.view.addSubview(explorer.view)
                 }
                 self.view.bringSubviewToFront(self.tripWire)
+                if AexelsAI.tray.superview != nil { self.view.bringSubviewToFront(AexelsAI.tray) }
+                if AexelsAI.button.superview != nil { self.view.bringSubviewToFront(AexelsAI.button) }
                 self.view.bringSubviewToFront(self.visionBar)
 
                 UIView.animate(withDuration: 0.5) {
@@ -240,6 +242,7 @@ class ExplorerViewController: AEViewController {
         aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        layoutAI()
     }
     override func layoutRatio143() {
         imageView.frame = view.bounds
@@ -249,6 +252,12 @@ class ExplorerViewController: AEViewController {
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
         visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        layoutAI()
+    }
+    /// The AI's circle beside the vision bar's, and its tray down the right.
+    private func layoutAI() {
+        AexelsAI.button.frame = CGRect(x: view.width - 95*s, y: Screen.safeTop+(Screen.mac ? 0 : -5*s), width: 50*s, height: 50*s)
+        if AexelsAI.tray.superview != nil { AexelsAI.place(in: view, open: AexelsAI.open) }
     }
     
 // UIViewController ================================================================================
@@ -263,6 +272,7 @@ class ExplorerViewController: AEViewController {
         
 
         if !Screen.iPhone {
+            view.addSubview(AexelsAI.button)
             view.addSubview(visionBar)
             visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
             explorer = Aexels.nexusExplorer
