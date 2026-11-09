@@ -7,12 +7,12 @@
 //
 //  Aexels's AI: OoviumKit's tray, a limbo panel that slides in down the right over whatever is on show, opened
 //  by the Claude circle beside the vision bar. It always answers on Opus, thinking at xhigh effort. What it knows
-//  of Aexels: its AI Reference, written from Aexels's code, its sims and its articles (Resources/AI Reference.md;
-//  update it before a release); every article in full; and Joe's four papers in full, as their latest LaTeX,
-//  which the Papers build phase copies in from Vesper. That prompt is long (about 255k tokens), so it's kept in
-//  Anthropic's cache for an hour: a pause to read doesn't write it again. It's there to explain and explore
-//  Universe X with the person, and to push back. It's paid in the Aepryus account's credits; its conversation is
-//  kept in the basket under "chatIden".
+//  of Aexels is its prompt, which Pequod adds and keeps warm in Anthropic's cache: its AI Reference, written from
+//  Aexels's code, its sims and its articles (AI/Reference.md); every article in full; and Joe's four papers in
+//  full, as their latest LaTeX in Vesper; about 255k tokens in all, built by AI/prompt.py and published by
+//  AI/publish.sh whenever any of it changes. It's there to explain and explore Universe X with the person, and
+//  to push back. It's paid in the Aepryus account's credits; its conversation is kept in the basket under
+//  "chatIden".
 //
 
 import Acheron
@@ -20,7 +20,7 @@ import OoviumKit
 import UIKit
 
 enum AexelsAI {
-    static let tray: AITray = AITray(feature: "aexels.tray", instructions: instructions, tools: [], chat: chat, style: LimboStyle(), model: .opus, effort: .xhigh)
+    static let tray: AITray = AITray(feature: "aexels.tray", tools: [], chat: chat, style: LimboStyle(), model: .opus, effort: .xhigh)
     /// The circle that opens and closes it: Claude's starburst, as the Nexus's copy button has it.
     static let button: CircleButton = {
         let image: UIImageView = UIImageView(image: UIImage(named: "claude")!.withTintColor(.white.shade(0.15)))
@@ -69,46 +69,6 @@ enum AexelsAI {
         let top: CGFloat = Screen.safeTop + 52*s
         tray.frame = CGRect(x: open ? view.bounds.width - w - 6*s : view.bounds.width + 6*s, y: top, width: w, height: view.bounds.height - top - Screen.safeBottom - 6*s)
         tray.layer.shadowPath = CGPath(roundedRect: tray.bounds, cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
-    }
-
-    /// Joe's papers, in the series' order, as the Papers build phase names them.
-    private static let titles: [String] = ["A Shot in the Dark", "Into the Light", "A Bridge Just Far Enough", "A Little Give and Take"]
-
-    private static func text(_ url: URL?) -> String { url.flatMap { try? String(contentsOf: $0, encoding: .utf8) } ?? "" }
-    private static var instructions: String {
-        let reference: String = text(Bundle.main.url(forResource: "AI Reference", withExtension: "md"))
-        let articles: String = (Bundle.main.urls(forResourcesWithExtension: "md", subdirectory: nil) ?? [])
-            .filter { $0.deletingPathExtension().lastPathComponent != "AI Reference" }
-            .sorted { $0.lastPathComponent < $1.lastPathComponent }
-            .map { (url: URL) in
-                let file: String = url.deletingPathExtension().lastPathComponent
-                let title: String = Article(key: file.prefix(1).lowercased() + file.dropFirst()).nameWithoutNL
-                return "<article title=\"\(title)\" file=\"\(file).md\">\n\(text(url))\n</article>"
-            }.joined(separator: "\n\n")
-        let papers: String = titles.enumerated().map { (i: Int, title: String) in
-            "<paper number=\"\(i + 1)\" title=\"\(title)\">\n\(text(Bundle.main.url(forResource: title, withExtension: "tex", subdirectory: "Papers")))\n</paper>"
-        }.joined(separator: "\n\n")
-        return """
-        You are the AI inside Aexels, Aepryus Software's app about Universe X: a universe made only of a quantized aether, whose quanta are aexels, built to be entirely mechanistic, with no magic, and still match every experiment of our own. The app explores it through its simulations (the explorers) and its articles. You explain and explore its concepts with the person: what Universe X proposes, why, what each simulation shows and how it works, and how it compares with our physics.
-
-        Be a good partner in thinking, not a cheerleader. Take its hypotheticals seriously and reason inside them; and push back where an argument is weak, where a claim goes further than a simulation shows, or where Universe X would have to answer an experiment of our own, saying plainly what mainstream physics holds and why. Keep apart what the app's code does, what its articles argue, and what is established physics.
-
-        Below are three sources. The reference, written from Aexels's code, its research sims and its articles, is your map of the app: its screens, what each simulation's code actually computes, and where things stand. Then every article in the app, in full. Then Joe's four papers in full, as LaTeX: A Shot in the Dark (the cupola algorithm), Into the Light (electromagnetism, the complete verified draft), A Bridge Just Far Enough (the quantum side) and A Little Give and Take (gravity, and the balance that keeps matter from clumping without end). The papers are the most careful and the most current statement of the theory: where an article or the reference disagrees with a paper, the paper stands. All of it is in front of you. Before you judge a claim, find what the text actually says and reason from that, and quote it when it matters. When none of it covers something, say so rather than guess.
-
-        Write plain text, never Markdown: short paragraphs, no headings, no bold, a numbered list only for steps. Be brief unless asked to go deeper.
-
-        <reference>
-        \(reference)
-        </reference>
-
-        <articles>
-        \(articles)
-        </articles>
-
-        <papers>
-        \(papers)
-        </papers>
-        """
     }
 }
 

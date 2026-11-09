@@ -159,7 +159,6 @@
 		D8AE17C12814F1AF00E74CB8 /* Aexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17BF2814F1AF00E74CB8 /* Aexels.swift */; };
 		D8AE17C22814F1AF00E74CB8 /* AexelsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17C02814F1AF00E74CB8 /* AexelsDelegate.swift */; };
 		D8A1A1A1000000000000B001 /* AexelsAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A1A1A1000000000000A001 /* AexelsAI.swift */; };
-		D8A1A1A1000000000000B002 /* AI Reference.md in Resources */ = {isa = PBXBuildFile; fileRef = D8A1A1A1000000000000A002 /* AI Reference.md */; };
 		D8AE17C92814F1C700E74CB8 /* NexusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17C42814F1C700E74CB8 /* NexusLabel.swift */; };
 		D8AE17CA2814F1C700E74CB8 /* TouchingGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */; };
 		D8AE17CB2814F1C700E74CB8 /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AE17C62814F1C700E74CB8 /* Explorer.swift */; };
@@ -370,7 +369,6 @@
 		D8AE17BF2814F1AF00E74CB8 /* Aexels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aexels.swift; sourceTree = "<group>"; };
 		D8AE17C02814F1AF00E74CB8 /* AexelsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AexelsDelegate.swift; sourceTree = "<group>"; };
 		D8A1A1A1000000000000A001 /* AexelsAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AexelsAI.swift; sourceTree = "<group>"; };
-		D8A1A1A1000000000000A002 /* AI Reference.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "AI Reference.md"; sourceTree = "<group>"; };
 		D8AE17C42814F1C700E74CB8 /* NexusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusLabel.swift; sourceTree = "<group>"; };
 		D8AE17C52814F1C700E74CB8 /* TouchingGesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchingGesture.swift; sourceTree = "<group>"; };
 		D8AE17C62814F1C700E74CB8 /* Explorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
@@ -1001,7 +999,6 @@
 				D8DEF8A72D346F0900298D26 /* PDFs */,
 				D818929D2C7195D90018E4B9 /* Claude */,
 				D8AB7C1C00A1D1E2C0B30005 /* Articles */,
-				D8A1A1A1000000000000A002 /* AI Reference.md */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1214,7 +1211,6 @@
 				D8AE17332814E97200E74CB8 /* Sources */,
 				D8AE17342814E97200E74CB8 /* Frameworks */,
 				D8AE17352814E97200E74CB8 /* Resources */,
-				D8A1A1A1000000000000C001 /* Papers */,
 			);
 			buildRules = (
 			);
@@ -1337,7 +1333,6 @@
 				D8C4FA153027D9200003CEB2 /* Aexels.icon in Resources */,
 				D8AB7C1D000000000000B019 /* BellTHooft.md in Resources */,
 				D8AB7C1D000000000000B01A /* Glossary.md in Resources */,
-				D8A1A1A1000000000000B002 /* AI Reference.md in Resources */,
 				D8AB7C1D000000000000B01B /* BlackHole.md in Resources */,
 				D8AB7C1D000000000000B01C /* G.md in Resources */,
 				D8AB7C1D000000000000B01D /* Narwhal.md in Resources */,
@@ -1360,32 +1355,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D8A1A1A1000000000000C001 /* Papers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Vesper/Shot in the Dark/A Shot in the Dark.tex",
-				"$(SRCROOT)/../Vesper/Into the Light/Into the Light - Claude.tex",
-				"$(SRCROOT)/../Vesper/Bridge Just Far Enough/A Bridge Just Far Enough.tex",
-				"$(SRCROOT)/../Vesper/Little Give and Take/A Little Give and Take.tex",
-			);
-			name = Papers;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Shot in the Dark.tex",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/Into the Light.tex",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Bridge Just Far Enough.tex",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Papers/A Little Give and Take.tex",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# The four papers, for the AI (AexelsAI): their latest versions, in Vesper, copied in at each build.\n# Kept out of this repo, which is public. A missing paper fails the build.\nset -e\nfrom=\"$SRCROOT/../Vesper\"\nto=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Papers\"\nmkdir -p \"$to\"\ncp \"$from/Shot in the Dark/A Shot in the Dark.tex\" \"$to/A Shot in the Dark.tex\"\ncp \"$from/Into the Light/Into the Light - Claude.tex\" \"$to/Into the Light.tex\"\ncp \"$from/Bridge Just Far Enough/A Bridge Just Far Enough.tex\" \"$to/A Bridge Just Far Enough.tex\"\ncp \"$from/Little Give and Take/A Little Give and Take.tex\" \"$to/A Little Give and Take.tex\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
