@@ -105,26 +105,45 @@ final class LimboStyle: AIStyle {
         c.setLineWidth(1.5*s)
         c.drawPath(using: .fillStroke)
     }
-    override func button(_ title: String) -> UIControl { Key(title) }
+    override func button(_ title: String) -> UIControl { LimboKey(title) }
     override func buttonFrame(width: CGFloat, above keys: CGFloat) -> CGRect { CGRect(x: (width - 140*Screen.s)/2, y: keys - 40*Screen.s, width: 140*Screen.s, height: 30*Screen.s) }
+}
 
-    /// A rounded key, edged as the panels are.
-    private final class Key: AXButton {
-        let title: String
-        init(_ title: String) {
-            self.title = title
-            super.init()
+/// The Aepryus account's modal as a limbo panel too: dark glass edged in grey, Optima, the same keys.
+final class LimboAccountStyle: AepryusStyle {
+    override func font(_ size: CGFloat) -> UIFont { .optima(size: (size - 2)*Screen.s) }
+    override var title: UIColor { UIColor(white: 0.92, alpha: 1) }
+    override var text: UIColor { UIColor(white: 0.78, alpha: 1) }
+    override var fieldBack: UIColor { UIColor(white: 0.24, alpha: 1) }
+    override var fieldEdge: UIColor { UIColor(white: 0.6, alpha: 1) }
+    override func panel(_ modal: Modal, cancel: Bool) { LimboStyle().ground(modal.bounds) }
+    override func button(_ title: String, _ kind: Button) -> UIControl { LimboKey(title) }
+    override func frame(_ kind: Button, slot: CGRect) -> CGRect {
+        let s: CGFloat = Screen.s
+        switch kind {
+            case .ok: return CGRect(x: slot.maxX - 12*s - 120*s, y: slot.maxY - 10*s - 30*s, width: 120*s, height: 30*s)
+            case .cancel: return CGRect(x: slot.minX + 12*s, y: slot.maxY - 10*s - 30*s, width: 120*s, height: 30*s)
+            case .choice: return CGRect(x: slot.midX - 130*s, y: slot.midY - 15*s, width: 260*s, height: 30*s)
         }
-        override func draw(_ rect: CGRect) {
-            let s: CGFloat = Screen.s
-            let c: CGContext = UIGraphicsGetCurrentContext()!
-            c.addPath(CGPath(roundedRect: bounds.insetBy(dx: 1*s, dy: 1*s), cornerWidth: 7*s, cornerHeight: 7*s, transform: nil))
-            c.setFillColor(UIColor(white: isHighlighted ? 0.35 : 0.24, alpha: 1).cgColor)
-            c.setStrokeColor(UIColor(white: 0.6, alpha: 1).cgColor)
-            c.setLineWidth(1.5*s)
-            c.drawPath(using: .fillStroke)
-            let pen: Pen = Pen(font: .optima(size: 15*s), color: UIColor(white: 0.92, alpha: 1), alignment: .center)
-            (title as NSString).draw(in: CGRect(x: 0, y: (height - pen.font.lineHeight)/2, width: width, height: pen.font.lineHeight), withAttributes: pen.attributes)
-        }
+    }
+}
+
+/// A rounded key, edged as the panels are.
+private final class LimboKey: AXButton {
+    let title: String
+    init(_ title: String) {
+        self.title = title
+        super.init()
+    }
+    override func draw(_ rect: CGRect) {
+        let s: CGFloat = Screen.s
+        let c: CGContext = UIGraphicsGetCurrentContext()!
+        c.addPath(CGPath(roundedRect: bounds.insetBy(dx: 1*s, dy: 1*s), cornerWidth: 7*s, cornerHeight: 7*s, transform: nil))
+        c.setFillColor(UIColor(white: isHighlighted ? 0.35 : 0.24, alpha: 1).cgColor)
+        c.setStrokeColor(UIColor(white: 0.6, alpha: 1).cgColor)
+        c.setLineWidth(1.5*s)
+        c.drawPath(using: .fillStroke)
+        let pen: Pen = Pen(font: .optima(size: 15*s), color: UIColor(white: 0.92, alpha: 1), alignment: .center)
+        (title as NSString).draw(in: CGRect(x: 0, y: (height - pen.font.lineHeight)/2, width: width, height: pen.font.lineHeight), withAttributes: pen.attributes)
     }
 }

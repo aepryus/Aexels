@@ -52,7 +52,8 @@ class Aexels {
         Math.start()
 		Loom.start(basket: Aexels.basket, types: [Settings.self, Teslon.self, Electromagnetism.self, AIChat.self, AIChatPiece.self] + Aether.types)
 		Skin.skin = IvorySkin()
-		AepryusSpace.start(app: "aexels")   // the account the AI tray is paid from (AexelsAI)
+		AepryusModal.style = LimboAccountStyle()
+		AepryusSpace.start(app: "aexels")   // the account the AI tray is paid from (AexelsAI), its modal a limbo panel
         
         if let iden: String = Loom.get(key: "settingsIden"), let settings: Settings = Loom.selectBy(iden: iden) {
             Aexels.settings = settings
