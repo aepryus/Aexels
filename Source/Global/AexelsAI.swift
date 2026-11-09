@@ -6,11 +6,13 @@
 //  Copyright © 2026 Aepryus Software. All rights reserved.
 //
 //  Aexels's AI: OoviumKit's tray, a limbo panel that slides in down the right over whatever is on show, opened
-//  by the Claude circle beside the vision bar. It always answers on Opus. What it knows of Aexels: its AI Reference,
-//  written from Aexels's code, its sims and its articles (Resources/AI Reference.md; update it before a release);
-//  every article in full; and Joe's four papers in full, as their latest LaTeX, which the Papers build phase copies
-//  in from Vesper. It's there to explain and explore Universe X with the person, and to push back. It's paid in the
-//  Aepryus account's credits; its conversation is kept in the basket under "chatIden".
+//  by the Claude circle beside the vision bar. It always answers on Opus, thinking at xhigh effort. What it knows
+//  of Aexels: its AI Reference, written from Aexels's code, its sims and its articles (Resources/AI Reference.md;
+//  update it before a release); every article in full; and Joe's four papers in full, as their latest LaTeX,
+//  which the Papers build phase copies in from Vesper. That prompt is long (about 255k tokens), so it's kept in
+//  Anthropic's cache for an hour: a pause to read doesn't write it again. It's there to explain and explore
+//  Universe X with the person, and to push back. It's paid in the Aepryus account's credits; its conversation is
+//  kept in the basket under "chatIden".
 //
 
 import Acheron
@@ -18,7 +20,7 @@ import OoviumKit
 import UIKit
 
 enum AexelsAI {
-    static let tray: AITray = AITray(feature: "aexels.tray", instructions: instructions, tools: [], chat: chat, style: LimboStyle(), model: .opus)
+    static let tray: AITray = AITray(feature: "aexels.tray", instructions: instructions, tools: [], chat: chat, style: LimboStyle(), model: .opus, cache: .hour, effort: "xhigh")
     /// The circle that opens and closes it: Claude's starburst, as the Nexus's copy button has it.
     static let button: CircleButton = {
         let image: UIImageView = UIImageView(image: UIImage(named: "claude")!.withTintColor(.white.shade(0.15)))
