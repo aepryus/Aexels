@@ -14,6 +14,10 @@ import UIKit
 
 class ExplorerViewController: AEViewController {
     let imageView: UIImageView = UIImageView(image: UIImage(named: "OldBack"))
+    /// On the Mac, the rotate toggle in the top right corner that opens and closes the AI's wing.
+    let wingToggle: SwapButton = SwapButton()
+    /// The room the toggle takes in that corner, which the vision bar and the AI's circle move over for.
+    private var corner: CGFloat { Screen.mac ? 35*s : 0 }
     
     lazy var graphView: GraphView = {
         let graphView = GraphView(graph: GraphView.graphInstance())
@@ -106,6 +110,7 @@ class ExplorerViewController: AEViewController {
                 self.view.bringSubviewToFront(self.tripWire)
                 if AexelsAI.tray.superview != nil { self.view.bringSubviewToFront(AexelsAI.tray) }
                 if AexelsAI.button.superview != nil { self.view.bringSubviewToFront(AexelsAI.button) }
+                if self.wingToggle.superview != nil { self.view.bringSubviewToFront(self.wingToggle) }
                 self.view.bringSubviewToFront(self.visionBar)
 
                 UIView.animate(withDuration: 0.5) {
@@ -241,7 +246,7 @@ class ExplorerViewController: AEViewController {
         graphView.bottom(dy: -50*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.topLeft(dx: 20*s, dy: 140*s, width: 200*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 200*s, height: 30*s)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        visionBar.topRight(dx: -5*s - corner, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
         layoutAI()
     }
     override func layoutRatio143() {
@@ -251,13 +256,14 @@ class ExplorerViewController: AEViewController {
         graphView.bottomRight(dx: -30*s, dy: -10*s, width: 600*s*a, height: 800*s*a)
         aexelsLabel.bottomRight(dx: -30*s, dy: -0*s, width: 300*s, height: 96*s)
         versionLabel.topLeft(dx: aexelsLabel.left-15*s, dy: aexelsLabel.top+42*s, width: 300*s, height: 30*s)
-        visionBar.topRight(dx: -5*s, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
+        visionBar.topRight(dx: -5*s - corner, dy: Screen.safeTop+(Screen.mac ? 5*s : 0))
         layoutAI()
     }
     /// The AI's circle beside the vision bar's, and its tray down the right.
     private func layoutAI() {
-        AexelsAI.button.frame = CGRect(x: view.width - 95*s, y: Screen.safeTop+(Screen.mac ? 0 : -5*s), width: 50*s, height: 50*s)
-        if AexelsAI.tray.superview != nil { AexelsAI.place(in: view, open: AexelsAI.open) }
+        AexelsAI.button.frame = CGRect(x: view.width - 95*s - corner, y: Screen.safeTop+(Screen.mac ? 0 : -5*s), width: 50*s, height: 50*s)
+        if Screen.mac { wingToggle.topRight(dx: -10*s, dy: Screen.safeTop + 10*s, width: 20*s, height: 20*s) }
+        if AexelsAI.tray.superview === view { AexelsAI.place(in: view, open: AexelsAI.open) }
     }
     
 // UIViewController ================================================================================
@@ -271,10 +277,14 @@ class ExplorerViewController: AEViewController {
         view.addSubview(tripWire)
         
 
+        if Screen.mac {
+            wingToggle.addAction { AexelsAI.toggle() }
+            view.addSubview(wingToggle)
+        }
         if !Screen.iPhone {
             view.addSubview(AexelsAI.button)
             view.addSubview(visionBar)
-            visionBar.topRight(dx: -5*s, dy: Screen.safeTop+5*s)
+            visionBar.topRight(dx: -5*s - corner, dy: Screen.safeTop+5*s)
             explorer = Aexels.nexusExplorer
         }
 

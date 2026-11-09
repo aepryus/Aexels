@@ -36,6 +36,8 @@ class Aexels {
     static let hyleLabExplorer: HyleLabExplorer = HyleLabExplorer()
 
     static var aetherView: AetherView? = nil
+    /// The Mac's window, the app with the AI's wing beside it; nil elsewhere.
+    static var wing: WingViewController? = nil
 
     static let shippedAethers: [String] = ["Day & Night", "Demons", "Game of Life", "Move", "Sweetness", "WalledCities"]
 
@@ -64,7 +66,12 @@ class Aexels {
 
 		window.rootViewController = UIViewController()
 		window.makeKeyAndVisible()
-		window.rootViewController = explorerViewController
+		if Screen.mac {
+			wing = WingViewController(app: explorerViewController)
+			window.rootViewController = wing
+		} else {
+			window.rootViewController = explorerViewController
+		}
 
         let oldVersion: String? = Aexels.basket.get(key: "version")
 		if oldVersion == nil { Local.archiveXML() }

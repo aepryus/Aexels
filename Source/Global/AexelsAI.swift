@@ -41,16 +41,13 @@ enum AexelsAI {
         return chat
     }
 
-    /// In from the right, or back out; the explorer under it carries on.
+    /// In from the right, or back out; the explorer under it carries on. On the Mac it opens in the wing instead.
     static func toggle() {
+        if let wing: WingViewController = Aexels.wing { return wing.toggle() }
         guard let view: UIView = Aexels.explorerViewController.view else { return }
         open.toggle()
         if tray.superview == nil {
-            // the limbo panels' shadow
-            tray.layer.shadowColor = UIColor.black.cgColor
-            tray.layer.shadowOffset = .zero
-            tray.layer.shadowRadius = 3*Screen.s
-            tray.layer.shadowOpacity = 0.6
+            shade()
             place(in: view, open: false)
             view.addSubview(tray)
         }
@@ -62,6 +59,13 @@ enum AexelsAI {
             if open { tray.onOpen() }
         }
     }
+    /// The limbo panels' shadow.
+    static func shade() {
+        tray.layer.shadowColor = UIColor.black.cgColor
+        tray.layer.shadowOffset = .zero
+        tray.layer.shadowRadius = 3*Screen.s
+        tray.layer.shadowOpacity = 0.6
+    }
     /// Down the right, under the vision bar and its circle; out past the edge when closed.
     static func place(in view: UIView, open: Bool) {
         let s: CGFloat = Screen.s
@@ -69,6 +73,84 @@ enum AexelsAI {
         let top: CGFloat = Screen.safeTop + 52*s
         tray.frame = CGRect(x: open ? view.bounds.width - w - 6*s : view.bounds.width + 6*s, y: top, width: w, height: view.bounds.height - top - Screen.safeBottom - 6*s)
         tray.layer.shadowPath = CGPath(roundedRect: tray.bounds, cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
+    }
+}
+
+/// The Mac's window: the app at its fixed size on the left and, opened, a wing to its right that the window grows
+/// into, holding the AI's tray, so the tray covers nothing. The toggle in the app's top right corner opens and closes
+/// it, as the Claude circle does; the window's left edge stays where it is.
+final class WingViewController: UIViewController {
+    private let app: UIViewController
+    private let ground: UIImageView = UIImageView(image: UIImage(named: "OldBack"))
+    private(set) var open: Bool = false
+
+    /// The app's fixed size, and the wing's width.
+    static var appSize: CGSize { CGSize(width: 1194/Screen.scaler, height: 834/Screen.scaler) }
+    static var width: CGFloat { 392*Screen.s }
+
+    init(app: UIViewController) {
+        self.app = app
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) { fatalError() }
+
+    func toggle() {
+        open.toggle()
+        Aexels.explorerViewController.wingToggle.rotateView()
+        let tray: AITray = AexelsAI.tray
+        if open {
+            if tray.superview == nil {
+                AexelsAI.shade()
+                view.addSubview(tray)
+            }
+            tray.isHidden = false
+            resize(width: WingViewController.appSize.width + WingViewController.width)
+            tray.onOpen()
+        } else {
+            tray.onClose()
+            resize(width: WingViewController.appSize.width)
+        }
+    }
+    /// The window grown to take the wing, or back to the app alone, its left edge where it was. Its size is pinned
+    /// (min = max), so the pin is moved first on the side that lets it change.
+    private func resize(width: CGFloat) {
+        guard let scene: UIWindowScene = view.window?.windowScene else { return }
+        let size: CGSize = CGSize(width: width, height: WingViewController.appSize.height)
+        if open {
+            scene.sizeRestrictions?.maximumSize = size
+            scene.sizeRestrictions?.minimumSize = size
+        } else {
+            scene.sizeRestrictions?.minimumSize = size
+            scene.sizeRestrictions?.maximumSize = size
+        }
+        if #available(iOS 16.0, *) {
+            let frame: CGRect = scene.effectiveGeometry.systemFrame
+            let k: CGFloat = frame.width/max(1, view.bounds.width)      // the system's points per the scene's
+            scene.requestGeometryUpdate(.Mac(systemFrame: CGRect(x: frame.minX, y: frame.minY, width: width*k, height: frame.height)))
+        }
+    }
+
+// UIViewController ================================================================================
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ground.contentMode = .scaleAspectFill
+        ground.clipsToBounds = true
+        view.addSubview(ground)
+        addChild(app)
+        view.addSubview(app.view)
+        app.didMove(toParent: self)
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let s: CGFloat = Screen.s
+        let size: CGSize = WingViewController.appSize
+        app.view.frame = CGRect(origin: .zero, size: size)
+        ground.frame = CGRect(x: size.width, y: 0, width: max(0, view.bounds.width - size.width), height: view.bounds.height)
+        let tray: AITray = AexelsAI.tray
+        guard tray.superview === view else { return }
+        tray.frame = CGRect(x: size.width + 6*s, y: Screen.safeTop + 6*s, width: WingViewController.width - 12*s, height: view.bounds.height - Screen.safeTop - 12*s)
+        tray.layer.shadowPath = CGPath(roundedRect: tray.bounds, cornerWidth: 10*s, cornerHeight: 10*s, transform: nil)
+        tray.isHidden = !open && view.bounds.width <= size.width + 1
     }
 }
 
