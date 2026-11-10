@@ -30,6 +30,7 @@
 		D823A26A2D0ABE4200A72DDF /* North.c in Sources */ = {isa = PBXBuildFile; fileRef = D823A2692D0ABE3E00A72DDF /* North.c */; };
 		D823A26C2D0BCB3E00A72DDF /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D823A26B2D0BCB3B00A72DDF /* Engine.swift */; };
 		D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */ = {isa = PBXBuildFile; productRef = D829C66C3018B0CF00990107 /* OoviumKit */; };
+		AB201CBC2F094148985A7148 /* AepryusKit in Frameworks */ = {isa = PBXBuildFile; productRef = DEF1C9EB2E884D7AB0E344D1 /* AepryusKit */; };
 		D830B9302D5B6EA000E7B029 /* ElectromagnetismExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B92F2D5B6E9800E7B029 /* ElectromagnetismExperiment.swift */; };
 		D830B9342D5B706B00E7B029 /* AetherExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9332D5B706600E7B029 /* AetherExperiment.swift */; };
 		D830B9362D5B790F00E7B029 /* DistanceExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B9352D5B790800E7B029 /* DistanceExperiment.swift */; };
@@ -427,6 +428,7 @@
 				D8B8DAB52FA6C8D800E52CC5 /* SwiftMath in Frameworks */,
 				D804561C281534BF0018223B /* Acheron in Frameworks */,
 				D829C66D3018B0CF00990107 /* OoviumKit in Frameworks */,
+				AB201CBC2F094148985A7148 /* AepryusKit in Frameworks */,
 				D8B8DAB82FA6C8E700E52CC5 /* Markdown in Frameworks */,
 				D804561E281534BF0018223B /* OoviumEngine in Frameworks */,
 			);
@@ -1223,6 +1225,7 @@
 				D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */,
 				D8B8DAB72FA6C8E700E52CC5 /* Markdown */,
 				D829C66C3018B0CF00990107 /* OoviumKit */,
+				DEF1C9EB2E884D7AB0E344D1 /* AepryusKit */,
 			);
 			productName = Aexels;
 			productReference = D8AE17372814E97200E74CB8 /* Aexels.app */;
@@ -1762,6 +1765,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */;
 			productName = OoviumKit;
+		};
+		DEF1C9EB2E884D7AB0E344D1 /* AepryusKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D829C66B3018B0CF00990107 /* XCRemoteSwiftPackageReference "OoviumKit" */;
+			productName = AepryusKit;
 		};
 		D8B8DAB42FA6C8D800E52CC5 /* SwiftMath */ = {
 			isa = XCSwiftPackageProductDependency;
